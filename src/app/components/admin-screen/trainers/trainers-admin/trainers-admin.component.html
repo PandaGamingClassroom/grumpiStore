@@ -1,0 +1,161 @@
+<app-nav-bar-admin></app-nav-bar-admin>
+<div class="btn-config">
+  <button type="button" class="button-73" routerLink="/admin">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-arrow-left-circle-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+      />
+    </svg>
+    Atrás
+  </button>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3><strong> Lista de entrenadores </strong></h3>
+      <hr>
+      <button
+        type="button"
+        class="btn btn-success btn-list"
+        data-bs-toggle="modal"
+        data-bs-target="#adModal"
+      >
+        <i class="material-icons">&#xe145;</i>
+      </button>
+      <div class="list">
+        <p *ngIf="getError">{{ errorGetTrainers }}</p>
+        <ul>
+          <li *ngFor="let alumno of trainers">
+            <div class="row">
+              <div class="col" id="entrenador">
+                <strong> {{ alumno.name }} </strong>
+              </div>
+              <!-- Botón editar entrenador -->
+              <div class="col">
+                <button type="button" class="btn btn-secondary btn-list" (click)="openEditPage(alumno)">
+                  <i class="material-icons">&#xe254;</i>
+                </button>
+                <!-- Botón eliminar entrenador -->
+                <button
+                  #trainerSelected
+                  type="button"
+                  class="btn btn-danger btn-list"
+                  data-bs-toggle="modal"
+                  data-bs-target="#eraseModal"
+                  (click)="selectTrainer(alumno.name)"
+                >
+                  <i class="material-icons">&#xe872;</i>
+                </button>
+              </div>
+            </div>
+            <hr/>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal BORRAR -->
+<div
+  class="modal fade"
+  id="eraseModal"
+  tabindex="-1"
+  aria-labelledby="erase"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="erase">Eliminar entrenador</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>¡Cuidado! Estás a punto de eliminar a <strong> {{trainerSelected}} </strong>.</p>
+        <p><strong> ¿Estás seguro? </strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTrainer()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal AÑADIR ENTRENADOR -->
+<div
+  class="modal fade"
+  id="adModal"
+  tabindex="-1"
+  aria-labelledby="ad-trainer"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ad-trainer">Añadir entrenador</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Nombre entrenador</label
+            >
+            <input
+              #nuevoNombreEntrenador
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Contraseña entrenador
+            </label>
+            <input
+              #nuevaPass
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+          (click)="guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

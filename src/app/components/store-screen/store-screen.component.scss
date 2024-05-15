@@ -1,0 +1,18 @@
+
+.img-config {
+  height: 350px;
+  width: 250px;
+  margin: 2%;
+}
+
+.img-config img {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  object-fit: cover;
+  align-items: center;
+}
+
+btn-config-space {
+  margin-right: 6px;
+}
