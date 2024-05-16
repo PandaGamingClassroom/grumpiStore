@@ -1,0 +1,33 @@
+ul {
+  list-style-type: none;
+}
+
+.img-creature {
+  width: 400px;
+  /* Ancho del contenedor */
+  height: 350px;
+  /* Altura del contenedor */
+  overflow: hidden;
+  /* Oculta cualquier contenido que se desborde */
+}
+
+.img-creature img {
+  max-width: 100%;
+  /* Asegura que la imagen no sea más ancha que el contenedor */
+  max-height: 100%;
+  /* Asegura que la imagen no sea más alta que el contenedor */
+  display: block;
+  /* Asegura que la imagen sea tratada como un bloque */
+}
+
+.scrollable-div {
+  height: 500px;
+  overflow-y: auto;
+}
+
+.box-info {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
