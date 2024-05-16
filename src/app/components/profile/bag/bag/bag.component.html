@@ -97,50 +97,10 @@
     >
       <h2>Grumpis</h2>
       <hr />
-      <div class="container creatures-box scrollable-div">
-        <ul>
-          <li *ngFor="let creature of grumpis">
-            <div class="row">
-              <div class="col-6 box-info">
-                <label
-                  ><strong>Nº: </strong> {{ creature.number_grumpidex }} </label
-                ><br />
-                <label><strong>Nombre: </strong> {{ creature.name }}</label
-                ><br />
-                <label
-                  ><strong>Descripción: </strong>
-                  {{ creature.description }} </label
-                ><br />
-                <label
-                  ><strong>Ataques: </strong>
-                  <ul>
-                    <li *ngFor="let a of creature.attacks">
-                      <label
-                        >{{ a.name }}
-                        <button class="see-btn" type="button">
-                          <i class="material-icons">&#xe417;</i>
-                        </button>
-                      </label>
-                    </li>
-                  </ul> </label
-                ><br />
-              </div>
-              <div class="col-5">
-                <div class="img-creature">
-                  <img srcset="{{ creature.image }}" />
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="btn-asign">
-                  <button type="button" class="btn btn-success">
-                    ¡Lo quiero!
-                  </button>
-                </div>
-              </div>
-            </div>
-            <hr />
-          </li>
-        </ul>
+      <div class="container scrollable-div">
+        <div class="img-creature mg-5" *ngFor="let creature of grumpis">
+          <img srcset="{{ creature.image }}" />
+        </div>
       </div>
     </div>
     <div

@@ -4,20 +4,15 @@ ul {
 
 .img-creature {
   width: 400px;
-  /* Ancho del contenedor */
   height: 350px;
-  /* Altura del contenedor */
   overflow: hidden;
-  /* Oculta cualquier contenido que se desborde */
+  margin-bottom: 2%;
 }
 
 .img-creature img {
   max-width: 100%;
-  /* Asegura que la imagen no sea más ancha que el contenedor */
   max-height: 100%;
-  /* Asegura que la imagen no sea más alta que el contenedor */
   display: block;
-  /* Asegura que la imagen sea tratada como un bloque */
 }
 
 .scrollable-div {
