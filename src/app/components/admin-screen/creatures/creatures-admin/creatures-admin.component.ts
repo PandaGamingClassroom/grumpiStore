@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Grumpi, grumpis } from '../../../../models/grumpi';
+import { CartaGrumpi, cartas_grumpi } from '../../../../models/grumpi';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -38,7 +38,7 @@ export class CreaturesAdminComponent implements OnInit {
   listaAtaques!: string;
   energia!: number;
   salud!: number;
-  grumpis: Grumpi[] = grumpis;
+  grumpis: CartaGrumpi[] = cartas_grumpi;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -56,7 +56,6 @@ export class CreaturesAdminComponent implements OnInit {
       imagen: [''],
     });
     console.log('Grumpis:', this.grumpis);
-
   }
 
   onSubmit() {

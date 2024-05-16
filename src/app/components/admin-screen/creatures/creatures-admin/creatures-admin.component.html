@@ -12,193 +12,32 @@
       <div class="col main-box design-column">
         <h2>Lista de Grumpis</h2>
         <div class="container creatures-box">
-          <ul>
-            <li *ngFor="let creature of grumpis">
-              <div class="row">
-                <div class="col-5">
-                  <label
-                    ><strong>Nº: </strong>
-                    {{ creature.number_grumpidex }} </label
-                  ><br />
-                  <label><strong>Nombre: </strong> {{ creature.name }}</label
-                  ><br />
-                  <label
-                    ><strong>Descripción: </strong>
-                    {{ creature.description }} </label
-                  ><br />
-                  <label
-                    ><strong>Ataques: </strong>
-                    <ul>
-                      <li *ngFor="let a of creature.attacks">
-                        <label
-                          >{{ a.name }}
-                          <button class="see-btn" type="button">
-                            <i class="material-icons">&#xe417;</i>
-                          </button>
-                        </label>
-                      </li>
-                    </ul> </label
-                  ><br />
-                </div>
-                <div class="col-3">
-                  <div class="img-creature">
-                    <img srcset="{{ creature.image }}" />
-                  </div>
-                </div>
-                <div class="col-1">
-                  <div class="btn-asign">
-                    <button type="button" class="btn btn-success">
-                      Asignar a
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <hr />
-            </li>
-          </ul>
+          <div class="img-creature" *ngFor="let creature of grumpis">
+            <img srcset="{{ creature.image }}" />
+          </div>
+          <hr />
         </div>
       </div>
       <div class="col form-group main-box">
         <h2>Añadir un Grumpi nuevo</h2>
         <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-          <ul>
-            <li>
-              <div class="row">
-                <div class="col">
-                  <label for="nombre"><strong>Nombre: </strong></label>
-                </div>
-                <div class="col">
-                  <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    required
-                    formControlName="nombre"
-                  />
-                </div>
-              </div>
-            </li>
-            <hr />
-            <br />
-            <li>
-              <div class="row">
-                <div class="col">
-                  <label for="descripcion" class="form-label"
-                    ><strong> Descripción: </strong></label
-                  >
-                </div>
-                <div class="col">
-                  <textarea
-                    id="descripcion"
-                    name="descripcion"
-                    required
-                    formControlName="descripcion"
-                  ></textarea>
-                </div>
-              </div>
-            </li>
-            <hr />
-            <br />
-            <li>
-              <div class="row">
-                <div class="col">
-                  <label for="numeroGrumpidex" class="form-label"
-                    ><strong>Número Grumpidex: </strong></label
-                  >
-                </div>
-                <div class="col">
-                  <input
-                    type="number"
-                    id="numeroGrumpidex"
-                    name="numeroGrumpidex"
-                    required
-                    formControlName="numeroGrumpidex"
-                  />
-                </div>
-              </div>
-            </li>
-            <hr />
-            <br />
-            <li>
-              <div class="row">
-                <div class="col">
-                  <label for="listaAtaques" class="form-label"
-                    ><strong>Lista de Ataques:</strong></label
-                  >
-                </div>
-                <div class="col">
-                  <input
-                    type="text"
-                    id="listaAtaques"
-                    name="listaAtaques"
-                    required
-                    formControlName="listaAtaques"
-                  />
-                </div>
-              </div>
-            </li>
-            <hr />
-            <br />
-            <li>
-              <div class="row">
-                <div class="col">
-                  <label for="energia" class="form-label"
-                    ><strong>Energía:</strong></label
-                  >
-                </div>
-                <div class="col">
-                  <input
-                    type="number"
-                    id="energia"
-                    name="energia"
-                    required
-                    formControlName="energia"
-                  />
-                </div>
-              </div>
-            </li>
-            <hr />
-            <br />
-            <li>
-              <div class="row">
-                <div class="col">
-                  <label for="salud" class="form-label"
-                    ><strong>Salud:</strong></label
-                  >
-                </div>
-                <div class="col">
-                  <input
-                    type="number"
-                    id="salud"
-                    name="salud"
-                    required
-                    formControlName="salud"
-                  />
-                </div>
-              </div>
-            </li>
-            <hr />
-            <br />
-            <li>
-              <div class="row">
-                <div class="col">
-                  <label for="imagen" class="form-label"
-                    ><strong>Imagen:</strong></label
-                  >
-                </div>
-                <div class="col">
-                  <input
-                    type="file"
-                    id="imagen"
-                    name="imagen"
-                    required
-                    formControlName="imagen"
-                  />
-                </div>
-              </div>
-            </li>
-            <hr />
-          </ul>
+          <div class="row">
+            <div class="col">
+              <label for="imagen" class="form-label"
+                ><strong>Carta Grumpi:</strong></label
+              >
+            </div>
+            <div class="col">
+              <input
+                type="file"
+                id="imagen"
+                name="imagen"
+                required
+                formControlName="imagen"
+              />
+            </div>
+          </div>
+          <hr />
 
           <div class="container mt-3 d-flex justify-content-center">
             <button type="submit" class="btn btn-success">Guardar</button>

@@ -15,8 +15,21 @@ export interface Attacks {
   image_energy: string;
 }
 
+export interface CartaGrumpi {
+  id: number;
+  image: string;
+}
 
-const attacks: Attacks[] = [
+/**
+ *
+ *
+ *  DEFINICIÓN DEL ARRAY DE ATAQUES
+ *
+ *
+ *
+ */
+
+export const attacks: Attacks[] = [
   {
     id: 1,
     name: 'Placaje',
@@ -67,7 +80,14 @@ const attacks: Attacks[] = [
   },
 ];
 
-// Define un array de objetos Grumpi
+/**
+ *
+ *
+ *  DEFINICIÓN DEL ARRAY DE GRUMPIS
+ *
+ *
+ *
+ */
 export const grumpis: Grumpi[] = [
   {
     id: 1,
@@ -75,7 +95,7 @@ export const grumpis: Grumpi[] = [
     description: 'Descripción del Grumpi 1',
     number_grumpidex: '001',
     image: '../../../../assets/grumpis/001-Bugi.jpeg',
-    attacks: [attacks[0], attacks[1]], // Asigna el primer ataque al primer Grumpi
+    attacks: [attacks[0], attacks[1]],
   },
   {
     id: 2,
@@ -83,7 +103,7 @@ export const grumpis: Grumpi[] = [
     description: 'Descripción del Grumpi 2',
     number_grumpidex: '002',
     image: '../../../../assets/grumpis/002-Bolibugi.jpeg',
-    attacks: [attacks[2], attacks[3]], // Asigna el segundo ataque al segundo Grumpi
+    attacks: [attacks[2], attacks[3]],
   },
   {
     id: 3,
@@ -91,6 +111,45 @@ export const grumpis: Grumpi[] = [
     description: 'Descripción del Grumpi 3',
     number_grumpidex: '003',
     image: '../../../../assets/grumpis/003-Bugelion.jpeg',
-    attacks: [attacks[4], attacks[5]], // Asigna el segundo ataque al segundo Grumpi
+    attacks: [attacks[4], attacks[5]],
+  },
+];
+
+export const cartas_grumpi: CartaGrumpi[] = [
+  {
+    id: 1,
+    image: '../../../../assets/cards/001.1.png',
+  },
+  {
+    id: 2,
+    image: '../../../../assets/cards/002.1.png',
+  },
+  {
+    id: 3,
+    image: '../../../../assets/cards/003.1.png',
+  },
+  {
+    id: 4,
+    image: '../../../../assets/cards/004.1.png',
+  },
+  {
+    id: 5,
+    image: '../../../../assets/cards/005.1.png',
+  },
+  {
+    id: 6,
+    image: '../../../../assets/cards/006.1.png',
+  },
+  {
+    id: 7,
+    image: '../../../../assets/cards/007.1.png',
+  },
+  {
+    id: 8,
+    image: '../../../../assets/cards/008.1.png',
+  },
+  {
+    id: 9,
+    image: '../../../../assets/cards/009.1.png',
   },
 ];
