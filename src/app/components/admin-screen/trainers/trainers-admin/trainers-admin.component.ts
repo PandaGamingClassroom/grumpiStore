@@ -7,8 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ConfirmModalComponentComponent } from '../../../confirm-modal-component/confirm-modal-component.component';
 import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
+import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
   selector: 'app-trainers-admin',

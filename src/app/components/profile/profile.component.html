@@ -30,14 +30,29 @@
                 border-bottom-left-radius: 0.5rem;
               "
             >
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                alt="Avatar"
-                class="img-fluid my-5"
-                style="width: 80px"
-              />
+              <div class="row d-flex justify-content-center">
+                <img
+                  src="{{ avatarSelect }}"
+                  alt="Avatar"
+                  class="img-fluid my-5"
+                />
+              </div>
+              <div class="row d-flex justify-content-center">
+                <button
+                  type="button"
+                  class="changeAvatar"
+                  data-bs-toggle="modal"
+                  data-bs-target="#avatarModal"
+                >
+                  <i class="material-icons d-flex justify-content-center"
+                    >&#xe863;</i
+                  >
+                </button>
+              </div>
+
+              <br />
+              <hr />
               <h5>NOMBRE DEL ENTRENADOR</h5>
-              <i class="far fa-edit mb-5"></i>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
@@ -49,31 +64,22 @@
                     <p class="text-muted">ejemplo email</p>
                   </div>
                   <div class="col-6 mb-3">
-                    <h6>Contraseña</h6>
-                    <p class="text-muted">
-                      ***
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                        data-bs-toggle="modal"
-                        data-bs-target="#errorMessage"
-                      >
-                        Modificar
-                      </button>
-                    </p>
+                    <h6>Grumpidólares:</h6>
+                    <p class="text-muted">?</p>
                   </div>
                 </div>
                 <h6>MOCHILA</h6>
                 <hr class="mt-0 mb-4" />
                 <div class="justify-content-center d-flex">
                   <p class="text-muted">
-                    <button type="button" class="button-73" routerLink="/profile/bag"> Ver mochila</button>
+                    <button
+                      type="button"
+                      class="button-73"
+                      routerLink="/profile/bag"
+                    >
+                      Ver mochila
+                    </button>
                   </p>
-                </div>
-                <div class="d-flex justify-content-start">
-                  <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
                 </div>
               </div>
             </div>
@@ -132,6 +138,59 @@
       <div class="modal-footer">
         <button type="button" class="button-73" data-bs-dismiss="modal">
           Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Selección del Avatar -->
+<div
+  class="modal fade"
+  id="avatarModal"
+  tabindex="-1"
+  aria-labelledby="avatar"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="avatar">
+          Selección del avatar del entrenador
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="scrollable-div">
+          <ul>
+            <li *ngFor="let avatar of avatar_list">
+              <div class="row">
+                <div class="col">
+                  <img src="{{ avatar }}" />
+                </div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="button-73"
+                    data-bs-dismiss="modal"
+                    (click)="avatarSelected(avatar)"
+                  >
+                    Seleccionar
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
         </button>
       </div>
     </div>

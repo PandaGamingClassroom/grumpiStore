@@ -12,3 +12,44 @@
 .config-spaces {
   margin: 2%;
 }
+
+
+.changeAvatar {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.changeAvatar:hover {
+  background-color: #3e8e41
+}
+
+.changeAvatar:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.scrollable-div {
+  width: 450px;
+  /* Ajusta el ancho según tus necesidades */
+  height: 200px;
+  /* Ajusta la altura según tus necesidades */
+  overflow-y: auto;
+  /* Habilita el scroll vertical */
+  border: 1px solid #ccc;
+  /* Opcional: añade un borde para visualizar mejor el área */
+  padding: 10px;
+  /* Opcional: añade padding si es necesario */
+}
