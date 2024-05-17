@@ -32,6 +32,15 @@
     </div>
   </div>
 
+  <div class="row spacesBetween">
+    <div class="col">
+      <button type="button" class="button-73"  data-bs-toggle="modal"
+                  data-bs-target="#openMessage">
+        Grumpiweb
+      </button>
+    </div>
+  </div>
+
   <div class="row spacesBetween footer">
     <div class="col">
       <button type="button" class="button-73 rounded-full" routerLink="/help">
@@ -39,6 +48,7 @@
       </button>
     </div>
   </div>
+
 
   <div class="container d-flex justify-content-center">
     <button type="button" class="btn-out" routerLink="/">
@@ -61,5 +71,41 @@
       </svg>
       Salir
     </button>
+  </div>
+</div>
+
+
+<!-- Mensaje advertencia -->
+<div
+  class="modal fade"
+  id="openMessage"
+  tabindex="-1"
+  aria-labelledby="openMessage"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="openMessage">¡ Cuidado !</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Estás a punto de acceder a una web en otra pestaña.</p>
+        <p>Si estás deacuerdo, pulsa <strong>Aceptar</strong>.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button-73" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="button-73" data-bs-dismiss="modal" (click)="abrirLink('https://sites.google.com/view/grumpiweb/inicio')">
+          Aceptar
+        </button>
+      </div>
+    </div>
   </div>
 </div>

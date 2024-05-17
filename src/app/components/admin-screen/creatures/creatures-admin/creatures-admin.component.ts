@@ -11,7 +11,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CartaGrumpi, cartas_grumpi } from '../../../../models/grumpi';
 
 @Component({
@@ -39,10 +39,13 @@ export class CreaturesAdminComponent implements OnInit {
   energia!: number;
   salud!: number;
   grumpis: CartaGrumpi[] = cartas_grumpi;
+  selectedFile: File | null = null;
+  imageUrls: string[] = [];
 
   constructor(
     private grumpiService: GrumpiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -55,26 +58,48 @@ export class CreaturesAdminComponent implements OnInit {
       salud: ['', Validators.required],
       imagen: [''],
     });
-    console.log('Grumpis:', this.grumpis);
   }
 
-  onSubmit() {
-    const datosGrumpi = this.myForm.value;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    } else {
+      this.selectedFile = null;
+    }
+  }
 
-    // Obtener el archivo del input de tipo file
-    const controlImagen = this.myForm.get('imagen');
-    const archivoImagen = controlImagen ? controlImagen.value : null;
+  onSubmit(event: Event) {
+    event.preventDefault();
 
-    console.log('Grumpi: ', datosGrumpi);
+    if (!this.selectedFile) {
+      console.error('No file selected');
+      return;
+    }
 
-    this.grumpiService.subirGrumpi(datosGrumpi).subscribe(
-      (respuesta) => {
-        console.log('Grumpi enviado correctamente', respuesta);
-        // Aquí puedes realizar cualquier acción adicional después de enviar los datos
+    const formData = new FormData();
+    formData.append('image', this.selectedFile, this.selectedFile.name);
+
+    this.http.post('http://localhost:3000/upload', formData).subscribe(
+      (response) => {
+        console.log('Imagen subida correctamente', response);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error al enviar el grumpi', error);
+      }
+    );
+  }
+
+  // Método para cargar la URL de la imagen desde el servidor
+  loadImageUrls() {
+    this.grumpiService.getImageUrls().subscribe(
+      (response) => {
+        this.imageUrls = response.imageUrls;
+        console.log('URL: ', this.imageUrls);
+
       },
       (error) => {
-        console.error('Error al enviar el grumpi', error);
-        // Aquí puedes manejar el error de acuerdo a tus necesidades
+        console.error('Error al obtener las URLs de las imágenes:', error);
       }
     );
   }
