@@ -12,6 +12,7 @@ import { BagComponent } from './components/profile/bag/bag/bag.component';
 import { TrainersAdminComponent } from './components/admin-screen/trainers/trainers-admin/trainers-admin.component';
 import { TrainersEditComponent } from './components/admin-screen/trainers/trainers-edit/trainers-edit.component';
 import { CreaturesAdminComponent } from './components/admin-screen/creatures/creatures-admin/creatures-admin.component';
+import { MedalsAdminScreenComponent } from './components/admin-screen/medals/medals-admin-screen/medals-admin-screen.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'admin/trainers-admin', component: TrainersAdminComponent },
   { path: 'admin/trainers-admin/edit', component: TrainersEditComponent },
   { path: 'admin/creatures', component: CreaturesAdminComponent },
+  { path: 'admin/medals', component: MedalsAdminScreenComponent },
   { path: 'help', component: HelpComponentComponent },
   { path: 'profile/bag', component: BagComponent },
 ];

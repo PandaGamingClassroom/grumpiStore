@@ -1,0 +1,48 @@
+<app-nav-bar-admin></app-nav-bar-admin>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col"><h2>Listado de medallas</h2></div>
+        <div class="col">
+          <button type="button" class="btn btn-success">Cargar medallas</button>
+        </div>
+      </div>
+      <br />
+      <hr />
+    </div>
+    <div class="col">
+      <h2>Añadir nueva medalla</h2>
+      <br />
+      <hr />
+
+        <form
+          [formGroup]="myForm"
+          (ngSubmit)="onSubmit($event)"
+          (change)="onFileSelected($event)"
+        >
+          <div class="row">
+            <div class="col">
+              <label for="imagen" class="form-label"
+                ><strong>Carta Grumpi:</strong></label
+              >
+            </div>
+            <div class="col">
+              <input
+                type="file"
+                id="imagen"
+                name="imagen"
+                required
+                formControlName="imagen"
+              />
+            </div>
+          </div>
+          <hr />
+
+          <div class="container mt-3 d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
