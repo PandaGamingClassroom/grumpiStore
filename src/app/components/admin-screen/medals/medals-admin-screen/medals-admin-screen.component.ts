@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -7,11 +11,12 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { RouterLink } from '@angular/router';
 import { GrumpiService } from '../../../services/grumpi/grumpi.service';
 import { url_upload_medals } from '../../../../models/urls';
+import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
   selector: 'app-medals-admin-screen',
@@ -34,10 +39,14 @@ export class MedalsAdminScreenComponent implements OnInit {
   selectedFile: File | null = null;
   imageUrls: string[] = [];
   uploadUrl: string = url_upload_medals;
+  modalAbierta = false;
+  confirmMessage: string = 'Medalla añadida correctamente.';
+
   constructor(
     private grumpiService: GrumpiService,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
@@ -72,10 +81,30 @@ export class MedalsAdminScreenComponent implements OnInit {
     this.http.post(this.uploadUrl, formData).subscribe(
       (response) => {
         console.log('Imagen subida correctamente', response);
+        this.openModal();
       },
       (error: HttpErrorResponse) => {
         console.error('Error al enviar el grumpi', error);
       }
     );
+  }
+
+  openModal() {
+    if (!this.modalAbierta) {
+      const data = {
+        title: '¡Medalla guardada correctamente!',
+        message: this.confirmMessage,
+      };
+
+      const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '300px',
+        data: data,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        window.location.reload();
+      });
+      this.modalAbierta = true;
+    }
   }
 }

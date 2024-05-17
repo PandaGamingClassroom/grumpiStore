@@ -1,1 +1,12 @@
-<p> Entrenador agregado correctamente </p>
+<div class="container bg">
+  <h1 class="d-flex justify-content-center">{{ data.title }}</h1>
+  <p class="d-flex justify-content-center txt">
+    <strong> {{ data.message }} </strong>
+  </p>
+
+  <div class="d-flex justify-content-end btn-config">
+    <button type="button" class="button-73" (click)="closeDialog()">
+      ¡OK!
+    </button>
+  </div>
+</div>
