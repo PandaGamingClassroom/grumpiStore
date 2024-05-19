@@ -40,6 +40,7 @@ export class CreaturesAdminComponent implements OnInit {
   uploadUrl: string = url_upload_grumpis;
   modalAbierta = false;
   confirmMessage: string = 'Grumpi añadido correctamente.';
+  searchTerm: string = '';
 
   constructor(
     private grumpiService: GrumpiService,
@@ -52,6 +53,7 @@ export class CreaturesAdminComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       imagen: [''],
     });
+    this.loadImageUrls();
   }
 
   onFileSelected(event: any) {
@@ -115,5 +117,11 @@ export class CreaturesAdminComponent implements OnInit {
       });
       this.modalAbierta = true;
     }
+  }
+
+  get filteredCreaturesImages(): string[] {
+    return this.imageUrls.filter((imageUrl) =>
+      imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }

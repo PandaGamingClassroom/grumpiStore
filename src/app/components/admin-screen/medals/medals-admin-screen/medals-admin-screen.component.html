@@ -12,7 +12,32 @@
       <div class="row">
         <div class="col"><h2>Listado de medallas</h2></div>
         <div class="col">
-          <button type="button" class="btn btn-success">Cargar medallas</button>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="loadmedalsImages()"
+          >
+            Cargar medallas
+          </button>
+        </div>
+      </div>
+
+      <div class="container creatures-box">
+        <div class="search-bar mb-3">
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Buscar medalla"
+            class="form-control"
+          />
+        </div>
+        <div class="img-creature" *ngFor="let imageUrl of filteredMedalsImages">
+          <div class="row">
+            <div class="col"><img [src]="imageUrl" alt="Imagen" /></div>
+            <div class="col">
+              <button type="button" class="btn btn-success">Asignar a</button>
+            </div>
+          </div>
         </div>
       </div>
       <br />

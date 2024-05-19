@@ -26,8 +26,21 @@
         </div>
 
         <div class="container creatures-box">
-          <div class="img-creature" *ngFor="let imageUrl of imageUrls">
-            <img [src]="imageUrl" alt="Imagen" />
+          <div class="search-bar mb-3">
+            <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              placeholder="Introduce el número de la carta"
+              class="form-control"
+            />
+          </div>
+          <div class="img-creature" *ngFor="let imageUrl of filteredCreaturesImages">
+            <div class="row">
+              <div class="col"><img [src]="imageUrl" alt="Imagen" /></div>
+              <div class="col">
+                <button type="button" class="btn btn-success">Asignar a</button>
+              </div>
+            </div>
           </div>
           <hr />
         </div>
