@@ -37,10 +37,11 @@ import { ConfirmModalComponentComponent } from '../../../../segments/confirm-mod
 export class MedalsAdminScreenComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
   selectedFile: File | null = null;
-  imageUrls: string[] = [];
+  medalsImages: string[] = [];
   uploadUrl: string = url_upload_medals;
   modalAbierta = false;
   confirmMessage: string = 'Medalla añadida correctamente.';
+  searchTerm: string = '';
 
   constructor(
     private grumpiService: GrumpiService,
@@ -52,6 +53,7 @@ export class MedalsAdminScreenComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       imagen: [''],
     });
+    this.loadmedalsImages();
   }
 
   /**
@@ -89,6 +91,19 @@ export class MedalsAdminScreenComponent implements OnInit {
     );
   }
 
+  // Método para cargar la URL de la imagen desde el servidor
+  loadmedalsImages() {
+    this.grumpiService.getImageMedals().subscribe(
+      (response) => {
+        this.medalsImages = response.imageUrls;
+        console.log('URL: ', this.medalsImages);
+      },
+      (error) => {
+        console.error('Error al obtener las URLs de las imágenes:', error);
+      }
+    );
+  }
+
   openModal() {
     if (!this.modalAbierta) {
       const data = {
@@ -106,5 +121,11 @@ export class MedalsAdminScreenComponent implements OnInit {
       });
       this.modalAbierta = true;
     }
+  }
+
+  get filteredMedalsImages(): string[] {
+    return this.medalsImages.filter((imageUrl) =>
+      imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }
