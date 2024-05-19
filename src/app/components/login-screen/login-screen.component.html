@@ -1,5 +1,5 @@
 <div class="container config-size">
-  <form [formGroup]="myForm" class="form-wrapper">
+  <form [formGroup]="myForm" class="form-wrapper" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="trainer_name"> Nombre de entrenador </label>
       <input
@@ -23,8 +23,8 @@
     </div>
     <br/>
     <div class="container">
-      <button type="button" class="button-73" (click)="startSession()">
-        Iniciar
+      <button type="submit" class="button-73" >
+        Iniciar sesión
       </button>
     </div>
   </form>

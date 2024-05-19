@@ -28,7 +28,7 @@ export class LoginScreenComponent implements OnInit {
   trainers: any[] = [];
   privateData: any;
   modalAbierta = false;
-
+  error: boolean = false;
   user: string = '';
   pass: string = '';
 
@@ -65,47 +65,41 @@ export class LoginScreenComponent implements OnInit {
    * Para informar al usuario.
    */
   openModal() {
-    if (!this.modalAbierta) {
-      const data = {
-        title: '¡Error de acceso!',
-        message: this.errorLogin,
-      };
+    const data = {
+      title: '¡Error de acceso!',
+      message: this.errorLogin,
+    };
 
-      this.dialog.open(ErrorLoginModalComponentComponent, {
-        width: '400px',
-        height: '300px',
-        data: data,
-      });
-
-      this.modalAbierta = true;
-    }
+    this.dialog.open(ErrorLoginModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      data: data,
+    });
   }
 
-  /**
-   * Función para el inicio de sesión
-   *
-   */
-  startSession() {
+  onSubmit() {
     this.user = this.myForm.value.trainer_name;
     this.pass = this.myForm.value.password;
-    console.log('entrenadores: ', this.trainers);
 
-    /** Si los datos de inicio de sesión son de administrador
-     * esto nos envía a una ventana Admin.
-     * Si no es el caso, enviamos al usuario a la ventana principal.
-     *
-     *
-     */
     if (this.user == this.adminName && this.pass == this.adminPassword) {
+      this.error = false;
       this.route.navigate(['/admin', this.myForm.value]);
-    } else {
-      for (const trainer of this.trainers) {
-        if (trainer.name === this.user && trainer.password === this.pass) {
-          this.route.navigate(['/home', this.myForm.value]);
-        } else {
-          this.openModal();
-        }
+    }
+    console.log('Entrenadores: ', this.trainers);
+
+    for (const trainer of this.trainers) {
+      if (trainer.name === this.user && trainer.password === this.pass) {
+        this.error = false;
+        this.route.navigate(['/home', this.myForm.value]);
+      } else {
+        this.error = true;
+        continue;
       }
     }
+    if (this.error) {
+      this.openModal();
+    }
   }
+
+
 }
