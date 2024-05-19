@@ -91,7 +91,7 @@ export class MedalsAdminScreenComponent implements OnInit {
     );
   }
 
-  // Método para cargar la URL de la imagen desde el servidor
+  // Función para cargar la URL de la imagen desde el servidor
   loadmedalsImages() {
     this.grumpiService.getImageMedals().subscribe(
       (response) => {
@@ -123,6 +123,9 @@ export class MedalsAdminScreenComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para filtrar por nombre las imágenes
+   */
   get filteredMedalsImages(): string[] {
     return this.medalsImages.filter((imageUrl) =>
       imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())

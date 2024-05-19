@@ -119,6 +119,9 @@ export class CreaturesAdminComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para filtrar por nombre las imágenes
+   */
   get filteredCreaturesImages(): string[] {
     return this.imageUrls.filter((imageUrl) =>
       imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
