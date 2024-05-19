@@ -22,6 +22,10 @@ export class GrumpiService {
     return this.http.post<any>(this.apiUrl, datosGrumpi);
   }
 
+  /**
+   * Función para obtener las imágenes de los Grumpi
+   * @returns lista de imágenes
+   */
   getImageUrls(): Observable<{ imageUrls: string[] }> {
     return this.http.get<{ imageUrls: string[] }>(this.imageUrlEndpoint);
   }
