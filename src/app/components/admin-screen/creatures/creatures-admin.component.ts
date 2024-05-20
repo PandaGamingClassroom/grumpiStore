@@ -47,6 +47,10 @@ export class CreaturesAdminComponent implements OnInit {
   modalAbierta = false;
   confirmMessage: string = 'Grumpi añadido correctamente.';
   searchTerm: string = '';
+  selectedImageUrl: string | null = null;
+  selectedTrainerName: string | null = null;
+  selectedCreatureName: string | null = null;
+
 
   constructor(
     private grumpiService: GrumpiService,
@@ -139,10 +143,55 @@ export class CreaturesAdminComponent implements OnInit {
    */
   getTrainers() {
     this.trainersService.getTrainers().subscribe(
-      (result) => {
-      this.trainerList = result;
+      (response: any) => {
+        if (Array.isArray(response.trainer_list)) {
+          this.trainerList = response.trainer_list;
+        } else {
+          console.error(
+            'Error: los datos de entrenadores no son un array:',
+            response.trainer_list
+          );
+        }
+      },
+      (error) => {
+        console.error('Error obteniendo los entrenadores:', error);
       }
     );
-    console.log('Listado de entrenadores disponibles: ', this.trainerList);
+  }
+  assignCreature(): void {
+    if (
+      this.selectedTrainerName !== null &&
+      this.selectedCreatureName !== null
+    ) {
+      // Obtén el nombre del entrenador seleccionado
+      const trainerName = this.selectedTrainerName;
+
+      // Obtén el nombre de la criatura seleccionada
+      const creatureName = this.selectedCreatureName;
+
+      // Llama al servicio para asignar la criatura al entrenador por su nombre
+      this.trainersService
+        .assignCreatureToTrainer(trainerName, creatureName)
+        .subscribe(
+          (response) => {
+            console.log('Criatura asignada con éxito:', response);
+            alert('Criatura asignada con éxito');
+          },
+          (error) => {
+            console.error('Error asignando la criatura:', error);
+            alert('Error asignando la criatura');
+          }
+        );
+    } else {
+      alert('Por favor, selecciona un entrenador y una criatura.');
+    }
+  }
+
+  onTrainerSelected() {
+    console.log('Entrenador seleccionado:', this.selectedTrainerName);
+    // Aquí puedes realizar cualquier acción adicional que necesites cuando se seleccione un nuevo entrenador
+  }
+  onCreatureSelected(creature: any) {
+    console.log('Criatura seleccionada:', creature);
   }
 }

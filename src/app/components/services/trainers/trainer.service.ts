@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -32,5 +32,26 @@ export class TrainerService {
   eliminarRegistro(id: number) {
     const url = this.apiUrl + `user/${id}`;
     return this.http.delete(url);
+  }
+
+  assignCreatureToTrainer(
+    trainerName: string,
+    creatureName: string
+  ): Observable<any> {
+    const url = this.apiUrl + 'assign-creature';
+    const body = { trainerName, creatureName };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          // El error se produce debido a que no se pudo analizar la respuesta como JSON
+          // Maneja este caso aquí, por ejemplo, mostrando un mensaje de error adecuado al usuario
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          // El error es de otro tipo, por lo que simplemente lo relanzamos
+          return throwError(error);
+        }
+      })
+    );
   }
 }
