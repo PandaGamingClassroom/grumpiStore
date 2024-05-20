@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   avatar6 = '../../../assets/avatars/Avatar-7.png';
   avatar7 = '../../../assets/avatars/Avatar-8.png';
   avatarSelect = '';
+  username: string | null = '';
 
   constructor(private avatarService: AvatarService) {
     this.avatar_list = [
@@ -41,10 +42,16 @@ export class ProfileComponent implements OnInit {
     this.avatarService.avatar$.subscribe((avatar) => {
       this.avatarSelect = avatar;
     });
+    this.username = localStorage.getItem('username');
+    if (this.username) {
+      console.log(`Usuario logueado: ${this.username}`);
+      // Usa los datos del usuario como necesites
+    } else {
+      // Manejar el caso en que no haya usuario logueado
+    }
   }
 
   avatarSelected(avatar: any) {
     this.avatarService.setAvatar(avatar);
   }
-
 }

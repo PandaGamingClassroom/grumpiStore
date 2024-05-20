@@ -26,7 +26,7 @@
         </div>
 
         <div class="container creatures-box">
-          <div class="search-bar mb-3">
+          <div class="search-bar mb-3 sticky-top">
             <input
               type="text"
               [(ngModel)]="searchTerm"
@@ -34,11 +34,23 @@
               class="form-control"
             />
           </div>
-          <div class="img-creature" *ngFor="let imageUrl of filteredCreaturesImages">
+
+          <div
+            class="img-creature"
+            *ngFor="let imageUrl of filteredCreaturesImages"
+          >
             <div class="row">
               <div class="col"><img [src]="imageUrl" alt="Imagen" /></div>
               <div class="col">
-                <button type="button" class="btn btn-success">Asignar a</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="selectedCreatureName = imageUrl; onCreatureSelected(imageUrl)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#eraseModal"
+                >
+                  Asignar a
+                </button>
               </div>
             </div>
           </div>
@@ -74,6 +86,52 @@
             <button type="submit" class="btn btn-success">Guardar</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="eraseModal"
+  tabindex="-1"
+  aria-labelledby="erase"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="erase">Selecciona un entrenador:</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <select
+          [(ngModel)]="selectedTrainerName"
+          class="form-control"
+          (change)="onTrainerSelected()"
+        >
+          <option *ngFor="let trainer of trainerList" [value]="trainer.name">
+            {{ trainer.name }}
+          </option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="assignCreature()"
+        >
+          Aceptar
+        </button>
       </div>
     </div>
   </div>

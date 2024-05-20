@@ -22,12 +22,9 @@ import { TrainerService } from '../services/trainers/trainer.service';
 export class LoginScreenComponent implements OnInit {
   myForm!: FormGroup;
 
-  /** INICIO DE SESIÓN ADMINISTRADOR */
   adminName = 'admin';
   adminPassword = 'admin';
   trainers: any[] = [];
-  privateData: any;
-  modalAbierta = false;
   error: boolean = false;
   user: string = '';
   pass: string = '';
@@ -42,28 +39,20 @@ export class LoginScreenComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    /** Valicación de datos para el formulario */
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
-      password: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
 
     this.getTrainers();
   }
 
-  /**
-   * Función para obtener los datos de los entrenadores registrados
-   */
   getTrainers() {
     this.trainerService.getTrainers().subscribe((data: any) => {
       this.trainers = data.trainer_list;
     });
   }
 
-  /**
-   * Función para abrir una ventana modal con mensaje de error
-   * Para informar al usuario.
-   */
   openModal() {
     const data = {
       title: '¡Error de acceso!',
@@ -83,23 +72,30 @@ export class LoginScreenComponent implements OnInit {
 
     if (this.user == this.adminName && this.pass == this.adminPassword) {
       this.error = false;
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('username', this.user);
       this.route.navigate(['/admin', this.myForm.value]);
+      return;
     }
-    console.log('Entrenadores: ', this.trainers);
 
     for (const trainer of this.trainers) {
       if (trainer.name === this.user && trainer.password === this.pass) {
         this.error = false;
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', this.user);
         this.route.navigate(['/home', this.myForm.value]);
-      } else {
-        this.error = true;
-        continue;
+        return;
       }
     }
+
     if (this.error) {
       this.openModal();
     }
   }
 
-
+  logout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    this.route.navigate(['/login']);
+  }
 }
