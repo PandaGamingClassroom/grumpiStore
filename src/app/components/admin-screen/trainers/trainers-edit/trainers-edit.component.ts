@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { RouterLink } from '@angular/router';
-import { TrainerService } from '../../../services/trainers/trainerService.service';
+import { TrainerService } from '../../../services/trainers/trainer.service';
 
 @Component({
   selector: 'app-trainers-edit',

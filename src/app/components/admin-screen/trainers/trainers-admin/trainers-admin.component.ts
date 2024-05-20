@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { CommonModule } from '@angular/common';
-import { TrainerService } from '../../../services/trainers/trainerService.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
 import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { TrainerService } from '../../../services/trainers/trainer.service';
 
 @Component({
   selector: 'app-trainers-admin',

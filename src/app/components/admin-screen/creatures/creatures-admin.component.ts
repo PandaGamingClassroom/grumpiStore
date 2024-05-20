@@ -19,7 +19,7 @@ import {
 import { CartaGrumpi, cartas_grumpi } from '../../../models/grumpi';
 import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
-import { TrainerService } from '../../services/trainers/trainerService.service';
+import { TrainerService } from '../../services/trainers/trainer.service';
 
 @Component({
   selector: 'app-creatures-admin',
