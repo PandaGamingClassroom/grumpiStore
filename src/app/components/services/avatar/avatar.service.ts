@@ -16,9 +16,11 @@ export class AvatarService {
   }
 
   loadAvatarFromStorage() {
-    const savedAvatar = localStorage.getItem('selectedAvatar');
-    if (savedAvatar) {
-      this.avatarSubject.next(savedAvatar);
+    if (typeof localStorage !== 'undefined') {
+      const savedAvatar = localStorage.getItem('selectedAvatar');
+      if (savedAvatar) {
+        this.avatarSubject.next(savedAvatar);
+      }
     }
   }
 }

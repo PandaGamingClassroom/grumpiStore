@@ -3,11 +3,14 @@ import { RouterLink } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { AvatarService } from '../services/avatar/avatar.service';
+import { TrainerService } from '../services/trainers/trainer.service';
+import { GrumpiService } from '../services/grumpi/grumpi.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [RouterLink, NavBarComponent, CommonModule],
+  providers: [GrumpiService, TrainerService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -23,8 +26,12 @@ export class ProfileComponent implements OnInit {
   avatar7 = '../../../assets/avatars/Avatar-8.png';
   avatarSelect = '';
   username: string | null = '';
+  trainerList: any[] = [];
 
-  constructor(private avatarService: AvatarService) {
+  constructor(
+    private avatarService: AvatarService,
+    private trainersService: TrainerService
+  ) {
     this.avatar_list = [
       this.avatar0,
       this.avatar1,
@@ -43,15 +50,21 @@ export class ProfileComponent implements OnInit {
       this.avatarSelect = avatar;
     });
     this.username = localStorage.getItem('username');
-    if (this.username) {
-      console.log(`Usuario logueado: ${this.username}`);
-      // Usa los datos del usuario como necesites
-    } else {
-      // Manejar el caso en que no haya usuario logueado
-    }
   }
 
   avatarSelected(avatar: any) {
     this.avatarService.setAvatar(avatar);
+  }
+
+  loadAvatarFromStorage() {
+    if (typeof localStorage !== 'undefined') {
+      // Acceder a localStorage aquí
+      const avatar = localStorage.getItem('avatar');
+      if (avatar) {
+        this.avatarService.setAvatar(avatar); // Utiliza el servicio para establecer el avatar
+      }
+    } else {
+      console.error('localStorage is not supported in this environment.');
+    }
   }
 }
