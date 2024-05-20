@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { TrainerService } from '../services/trainerService.component';
+import { TrainerService } from '../services/trainers/trainerService.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ErrorLoginModalComponentComponent } from '../../segments/error-login-modal-component/error-login-modal-component.component';
 
