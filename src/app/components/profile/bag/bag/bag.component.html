@@ -95,11 +95,11 @@
       aria-labelledby="pills-objects-tab"
       tabindex="0"
     >
-      <h2>Grumpis</h2>
+      <h2> Mis Grumpis </h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div
               class="img-creature mg-5"
               *ngFor="
@@ -112,7 +112,7 @@
               <img srcset="{{ creature }}" />
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div
               class="img-creature mg-5"
               *ngFor="
@@ -156,3 +156,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

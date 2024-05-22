@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../../services/trainers/trainer.service';
+import { FooterComponent } from '../../../footer/footer.component';
 
 @Component({
   selector: 'app-bag',
@@ -20,6 +21,7 @@ import { TrainerService } from '../../../services/trainers/trainer.service';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    FooterComponent
   ],
   providers: [TrainerService],
   templateUrl: './bag.component.html',

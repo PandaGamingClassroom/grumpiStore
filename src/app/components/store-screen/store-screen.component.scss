@@ -45,3 +45,79 @@ ul {
   align-items: flex-start;
   flex-wrap: nowrap;
 }
+
+.dolarbox {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 2%;
+}
+
+.dolarImg {
+  width: 30px;
+  height: 30px;
+}
+
+.dolarinfo {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.dolarinfo:hover {
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.dolarinfo:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .dolarbox {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+
+
+.price-tag {
+  display: inline-block;
+  background-color: #ffcc00;
+  /* Color de fondo */
+  padding: 5px 10px;
+  /* Espaciado interno */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+}
+
+.price {
+  font-size: 18px;
+  /* Tamaño de fuente */
+  font-weight: bold;
+  /* Negrita */
+  color: #333;
+  /* Color de texto */
+}
