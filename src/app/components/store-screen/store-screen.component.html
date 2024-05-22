@@ -1,20 +1,34 @@
 <app-nav-bar></app-nav-bar>
-<div class="btn-config">
-  <button type="button" class="button-73" routerLink="/home">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-arrow-left-circle-fill"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-      />
-    </svg>
-    Atrás
-  </button>
+<div class="row">
+  <div class="col">
+    <div class="btn-config">
+      <button type="button" class="button-73" routerLink="/home">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-arrow-left-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+          />
+        </svg>
+        Atrás
+      </button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="container dolarbox">
+      <button class="dolarinfo">
+        <img
+          class="dolarImg"
+          src="../../../assets/MONEDA_GRUMPI_CARA.png"
+        /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
+      </button>
+    </div>
+  </div>
 </div>
 
 <div class="container text-center">
@@ -84,16 +98,16 @@
             <div
               class="img-creature mg-5"
               *ngFor="
-                let object of this.imageUrls.slice(
-                  0,
-                  this.imageUrls.length / 2
-                )
+                let object of this.imageUrls.slice(0, this.imageUrls.length / 2)
               "
             >
               <div class="row">
                 <div class="col"><img srcset="{{ object }}" /></div>
                 <div class="col">
                   <button type="button" class="button-73">Lo quiero</button>
+                  <div class="price-tag mt-3">
+                    <span class="price">$19.99</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -109,6 +123,10 @@
                 <div class="col"><img srcset="{{ object }}" /></div>
                 <div class="col">
                   <button type="button" class="button-73">Lo quiero</button>
+
+                  <div class="price-tag mt-3">
+                    <span class="price">$19.99</span>
+                  </div>
                 </div>
               </div>
             </div>
