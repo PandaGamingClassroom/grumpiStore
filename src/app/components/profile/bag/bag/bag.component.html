@@ -98,8 +98,32 @@
       <h2>Grumpis</h2>
       <hr />
       <div class="container scrollable-div">
-        <div class="img-creature mg-5" *ngFor="let creature of this.trainer.data.criaturas">
-          <img srcset="{{ creature }}" />
+        <div class="row">
+          <div class="col-md-6">
+            <div
+              class="img-creature mg-5"
+              *ngFor="
+                let creature of this.trainer.data.criaturas.slice(
+                  0,
+                  this.trainer.data.criaturas.length / 2
+                )
+              "
+            >
+              <img srcset="{{ creature }}" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div
+              class="img-creature mg-5"
+              *ngFor="
+                let creature of this.trainer.data.criaturas.slice(
+                  this.trainer.data.criaturas.length / 2
+                )
+              "
+            >
+              <img srcset="{{ creature }}" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
