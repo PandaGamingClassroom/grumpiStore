@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-admin-screen',
   standalone: true,
-  imports: [RouterLink, NavBarAdminComponent],
+  imports: [RouterLink, NavBarAdminComponent, FooterComponent],
   templateUrl: './admin-screen.component.html',
   styleUrl: './admin-screen.component.scss',
 })

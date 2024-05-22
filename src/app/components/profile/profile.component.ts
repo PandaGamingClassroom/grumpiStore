@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { AvatarService } from '../services/avatar/avatar.service';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, NavBarComponent, CommonModule],
+  imports: [RouterLink, NavBarComponent, CommonModule, FooterComponent],
   providers: [GrumpiService, TrainerService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -53,7 +54,6 @@ export class ProfileComponent implements OnInit {
       this.avatarSelect = avatar;
     });
     this.username = localStorage.getItem('username');
-
   }
 
   avatarSelected(avatar: any) {
@@ -71,5 +71,4 @@ export class ProfileComponent implements OnInit {
       console.error('localStorage is not supported in this environment.');
     }
   }
-
 }
