@@ -24,29 +24,19 @@
   </h2>
   <hr />
 
-  <div class="container">
-    <form [formGroup]="myForm">
+<div class="container">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="trainer_name" class="form-label"
-          >Nombre de entrenador</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="trainer_name"
-          placeholder="{{ user }}"
-        />
+        <label for="trainer_name" class="form-label">Nombre de entrenador</label>
+        <input type="text" class="form-control" id="trainer_name" formControlName="trainer_name" />
       </div>
       <label for="trainer_pass" class="form-label mt-3">Contraseña entrenador</label>
-      <input
-        type="text"
-        class="form-control"
-        id="trainer_pass"
-        placeholder="{{ pass }}"
-      />
+      <input type="text" class="form-control" id="trainer_pass" formControlName="trainer_pass" />
+      <label for="grumpidolar" class="form-label mt-3">Añadir Grumpidólares</label>
+      <input type="text" class="form-control" id="grumpidolar" formControlName="grumpidolar" />
+      <div class="container mt-3 d-flex justify-content-center">
+        <button type="submit" class="button-73">Confirmar</button>
+      </div>
     </form>
-    <div class="container mt-3 d-flex justify-content-center">
-      <button type="button" class="button-73">Confirmar</button>
-    </div>
   </div>
 </div>

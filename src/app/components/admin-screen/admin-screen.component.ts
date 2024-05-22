@@ -19,6 +19,5 @@ export class AdminScreenComponent implements OnInit {
     this.routes.params.subscribe((params) => {
       this.userData = params['data'];
     });
-    console.log('Datos del usuario: ', this.userData);
   }
 }
