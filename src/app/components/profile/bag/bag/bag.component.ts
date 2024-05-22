@@ -39,6 +39,11 @@ export class BagComponent implements OnInit {
     }
   }
   ngOnInit(): void {}
+
+  /**
+   * Función para obtener información sobre el entrenador que ha iniciado sesión
+   * @param name recibe el nombre del entrenador
+   */
   getTrainerData(name: string): void {
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
