@@ -31,6 +31,8 @@ export class ProfileComponent implements OnInit {
   trainer: any;
   trainerName: string = '';
   errorMessage: string = '';
+  getError: boolean = false;
+  grumpidolar: string = '';
 
   constructor(
     private avatarService: AvatarService,
@@ -54,6 +56,9 @@ export class ProfileComponent implements OnInit {
       this.avatarSelect = avatar;
     });
     this.username = localStorage.getItem('username');
+    if (this.username) {
+      this.getTrainerData(this.username);
+    }
   }
 
   avatarSelected(avatar: any) {
@@ -70,5 +75,25 @@ export class ProfileComponent implements OnInit {
     } else {
       console.error('localStorage is not supported in this environment.');
     }
+  }
+
+  /**
+   * Función para obtener información sobre el entrenador que ha iniciado sesión
+   * @param name recibe el nombre del entrenador
+   */
+  getTrainerData(name: string): void {
+    this.trainersService.getTrainerByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+        } else {
+          this.trainer = data;
+          this.grumpidolar = this.trainer.data.grumpidolar;
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
 }

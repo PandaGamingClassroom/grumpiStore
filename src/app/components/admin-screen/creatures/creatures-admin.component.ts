@@ -143,17 +143,7 @@ export class CreaturesAdminComponent implements OnInit {
    *
    */
   getTrainers() {
-    // this.trainersService.getTrainers().subscribe((data: any) => {
-    //   // Verifica si el objeto de datos recibido tiene la propiedad 'trainer_list'
-    //   if (data && data.trainer_list) {
-    //     this.trainers = data.trainer_list;
-    //     this.getError = this.trainers.length === 0;
-    //   } else {
-    //     // Si el objeto de datos no tiene la propiedad 'trainer_list', establece un error
-    //     this.getError = true;
-    //   }
-    //   console.log('Entrenadores: ', this.trainers);
-    // });
+
     this.trainersService.getTrainers().subscribe(
       (response: any) => {
         if (Array.isArray(response.trainer_list)) {
