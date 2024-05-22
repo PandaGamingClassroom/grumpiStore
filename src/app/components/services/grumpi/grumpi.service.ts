@@ -9,6 +9,8 @@ export class GrumpiService {
   private apiUrl = 'http://localhost:3000/upload';
   private imageUrlEndpoint = 'http://localhost:3000/getImageUrls';
   private imageMedalsEndpoint = 'http://localhost:3000/getImageMedals';
+  private imageCombatObjects = 'http://localhost:3000/getImageCombatObjects';
+
   imageUrl: string = '';
 
   constructor(private http: HttpClient) {}
@@ -36,5 +38,9 @@ export class GrumpiService {
    */
   getImageMedals(): Observable<{ imageUrls: string[] }> {
     return this.http.get<{ imageUrls: string[] }>(this.imageMedalsEndpoint);
+  }
+
+  getCombatObjects(): Observable<{ imageUrls: string[] }> {
+    return this.http.get<{ imageUrls: string[] }>(this.imageCombatObjects);
   }
 }

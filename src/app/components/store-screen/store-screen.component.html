@@ -18,7 +18,11 @@
 </div>
 
 <div class="container text-center">
-  <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+  <ul
+    class="nav nav-pills mb-3 justify-content-center"
+    id="pills-tab"
+    role="tablist"
+  >
     <li class="nav-item" role="presentation">
       <button
         class="active button-73"
@@ -62,6 +66,8 @@
       </button>
     </li>
   </ul>
+
+  <!-- Contenido de las tablas -->
   <div class="tab-content" id="pills-tabContent">
     <div
       class="tab-pane fade show active"
@@ -70,7 +76,37 @@
       aria-labelledby="pills-objects-tab"
       tabindex="0"
     >
-      <h2> Objetos de combate </h2>
+      <h2>Objetos de combate</h2>
+      <hr />
+      <div class="container scrollable-div">
+        <div class="row">
+          <div class="col-md-6">
+            <div
+              class="img-creature mg-5"
+              *ngFor="
+                let creature of this.imageUrls.slice(
+                  0,
+                  this.imageUrls.length / 2
+                )
+              "
+            >
+              <img srcset="{{ creature }}" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div
+              class="img-creature mg-5"
+              *ngFor="
+                let creature of this.imageUrls.slice(
+                  this.imageUrls.length / 2
+                )
+              "
+            >
+              <img srcset="{{ creature }}" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="tab-pane fade"
@@ -79,7 +115,7 @@
       aria-labelledby="pills-rewards-tab"
       tabindex="0"
     >
-      <h2> Recompensas </h2>
+      <h2>Recompensas</h2>
     </div>
     <div
       class="tab-pane fade"
@@ -88,7 +124,7 @@
       aria-labelledby="pills-evolution-objects-tab"
       tabindex="0"
     >
-      <h2> Objetos evolutivos </h2>
+      <h2>Objetos evolutivos</h2>
     </div>
   </div>
 </div>
