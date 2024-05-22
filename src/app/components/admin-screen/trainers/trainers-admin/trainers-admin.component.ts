@@ -35,7 +35,7 @@ export class TrainersAdminComponent implements OnInit {
   trainerSelected: string = '';
 
   constructor(
-    private trainerService: TrainerService,
+    private trainersService: TrainerService,
     private dialog: MatDialog
   ) {}
 
@@ -47,7 +47,7 @@ export class TrainersAdminComponent implements OnInit {
    * Función para obtener la lista completa de entrenadores
    */
   getTrainers() {
-    this.trainerService.getTrainers().subscribe((data: any) => {
+    this.trainersService.getTrainers().subscribe((data: any) => {
       // Verifica si el objeto de datos recibido tiene la propiedad 'trainer_list'
       if (data && data.trainer_list) {
         this.trainers = data.trainer_list;
@@ -66,7 +66,7 @@ export class TrainersAdminComponent implements OnInit {
    * @param nuevaPass
    */
   guardarEntrenador(nuevoAlumnoNombre: any, nuevaPass: any) {
-    this.trainerService.postTrainer(nuevoAlumnoNombre, nuevaPass).subscribe(
+    this.trainersService.postTrainer(nuevoAlumnoNombre, nuevaPass).subscribe(
       (response) => {
         const data = {
           title: '¡Correcto!',
@@ -98,25 +98,29 @@ export class TrainersAdminComponent implements OnInit {
   }
 
   deleteTrainer() {
-    let existTrainer = false;
-    for (const trainer of this.trainers) {
-      if (trainer.name === this.trainerSelected) {
-        existTrainer = true;
-        this.trainerService.eliminarRegistro(trainer.id).subscribe(
-          (response) => {
-            console.log('Registro eliminado correctamente:', response);
-            window.location.reload();
-          },
-          (error) => {
-            console.error('Error al eliminar el registro:', error);
-          }
-        );
-        break;
-      }
+    const trainerToDelete = this.trainers.find(
+      (trainer) => trainer.name === this.trainerSelected
+    );
+
+    if (!trainerToDelete) {
+      console.error('No se encontró el entrenador a eliminar');
+      return;
     }
+
+    this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
+      () => {
+        console.log('Entrenador eliminado correctamente');
+        // Obtener la lista actualizada de entrenadores después de eliminar
+        this.getTrainers();
+      },
+      (error) => {
+        console.error('Error al eliminar el registro:', error);
+      }
+    );
   }
 
   openEditPage(trainer: any) {
+    console.log('Entrenador a editar: ', trainer);
 
     const dialogRef = this.dialog.open(TrainersEditComponent, {
       width: '700px', // Ancho de la ventana modal

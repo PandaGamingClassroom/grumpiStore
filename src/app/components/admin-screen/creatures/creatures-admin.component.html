@@ -45,7 +45,7 @@
                 <button
                   type="button"
                   class="btn btn-success"
-                  (click)="selectedCreatureName = imageUrl; onCreatureSelected(imageUrl)"
+                  (click)="selectedCreatureName = imageUrl;"
                   data-bs-toggle="modal"
                   data-bs-target="#eraseModal"
                 >
@@ -113,7 +113,6 @@
         <select
           [(ngModel)]="selectedTrainerName"
           class="form-control"
-          (change)="onTrainerSelected()"
         >
           <option *ngFor="let trainer of trainerList" [value]="trainer.name">
             {{ trainer.name }}

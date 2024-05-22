@@ -27,6 +27,9 @@ export class ProfileComponent implements OnInit {
   avatarSelect = '';
   username: string | null = '';
   trainerList: any[] = [];
+  trainer: any;
+  trainerName: string = '';
+  errorMessage: string = '';
 
   constructor(
     private avatarService: AvatarService,
@@ -50,6 +53,7 @@ export class ProfileComponent implements OnInit {
       this.avatarSelect = avatar;
     });
     this.username = localStorage.getItem('username');
+
   }
 
   avatarSelected(avatar: any) {
@@ -67,4 +71,5 @@ export class ProfileComponent implements OnInit {
       console.error('localStorage is not supported in this environment.');
     }
   }
+
 }

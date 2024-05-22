@@ -24,13 +24,40 @@ export class TrainerService {
     );
   }
 
+  /**
+   * Función para guardar un nuevo entrenador
+   *
+   * @param name
+   * @param password
+   * @returns
+   */
   postTrainer(name: string, password: string) {
     const body = { name, password }; // Objeto con los datos a enviar al servidor
     return this.http.post(this.apiUrl, body);
   }
 
-  eliminarRegistro(id: number) {
-    const url = this.apiUrl + `user/${id}`;
+  /**
+   * Función para actualizar la información del entrenador.
+   *
+   * @param trainerName
+   * @param trainerData
+   * @returns
+   */
+  updateTrainer(trainerName: string, trainerData: any): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}trainers/update/${trainerName}`,
+      trainerData
+    );
+  }
+
+  /**
+   * Función para eliminar un entrenador.
+   *
+   * @param id
+   * @returns
+   */
+  eliminarRegistro(trainerName: string) {
+    const url = this.apiUrl + `user/${trainerName}`;
     return this.http.delete(url);
   }
 
@@ -53,5 +80,9 @@ export class TrainerService {
         }
       })
     );
+  }
+
+  getTrainerByName(nombre: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}trainer/${nombre}`);
   }
 }

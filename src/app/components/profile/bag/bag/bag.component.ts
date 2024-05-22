@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TrainerService } from '../../../services/trainers/trainer.service';
 
 @Component({
   selector: 'app-bag',
@@ -20,12 +21,36 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     ReactiveFormsModule,
   ],
+  providers: [TrainerService],
   templateUrl: './bag.component.html',
   styleUrl: './bag.component.scss',
 })
 export class BagComponent implements OnInit {
   grumpis: Grumpi[] = grumpis;
   marcasCombate: any;
-  constructor() {}
+  username: string | null = '';
+  trainer: any;
+  errorMessage: string = '';
+
+  constructor(private trainersService: TrainerService) {
+    this.username = localStorage.getItem('username');
+    if (this.username) {
+      this.getTrainerData(this.username);
+    }
+  }
   ngOnInit(): void {}
+  getTrainerData(name: string): void {
+    this.trainersService.getTrainerByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+        } else {
+          this.trainer = data;
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
 }

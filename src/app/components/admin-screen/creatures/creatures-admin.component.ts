@@ -50,7 +50,8 @@ export class CreaturesAdminComponent implements OnInit {
   selectedImageUrl: string | null = null;
   selectedTrainerName: string | null = null;
   selectedCreatureName: string | null = null;
-
+  getError: boolean = false;
+  trainers: any[] = [];
 
   constructor(
     private grumpiService: GrumpiService,
@@ -142,6 +143,17 @@ export class CreaturesAdminComponent implements OnInit {
    *
    */
   getTrainers() {
+    // this.trainersService.getTrainers().subscribe((data: any) => {
+    //   // Verifica si el objeto de datos recibido tiene la propiedad 'trainer_list'
+    //   if (data && data.trainer_list) {
+    //     this.trainers = data.trainer_list;
+    //     this.getError = this.trainers.length === 0;
+    //   } else {
+    //     // Si el objeto de datos no tiene la propiedad 'trainer_list', establece un error
+    //     this.getError = true;
+    //   }
+    //   console.log('Entrenadores: ', this.trainers);
+    // });
     this.trainersService.getTrainers().subscribe(
       (response: any) => {
         if (Array.isArray(response.trainer_list)) {
@@ -158,6 +170,10 @@ export class CreaturesAdminComponent implements OnInit {
       }
     );
   }
+
+  /**
+   * Función para asignar una criatura seleccionada a un entrenador
+   */
   assignCreature(): void {
     if (
       this.selectedTrainerName !== null &&
@@ -185,13 +201,5 @@ export class CreaturesAdminComponent implements OnInit {
     } else {
       alert('Por favor, selecciona un entrenador y una criatura.');
     }
-  }
-
-  onTrainerSelected() {
-    console.log('Entrenador seleccionado:', this.selectedTrainerName);
-    // Aquí puedes realizar cualquier acción adicional que necesites cuando se seleccione un nuevo entrenador
-  }
-  onCreatureSelected(creature: any) {
-    console.log('Criatura seleccionada:', creature);
   }
 }

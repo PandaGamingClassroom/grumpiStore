@@ -98,8 +98,8 @@
       <h2>Grumpis</h2>
       <hr />
       <div class="container scrollable-div">
-        <div class="img-creature mg-5" *ngFor="let creature of grumpis">
-          <img srcset="{{ creature.image }}" />
+        <div class="img-creature mg-5" *ngFor="let creature of this.trainer.data.criaturas">
+          <img srcset="{{ creature }}" />
         </div>
       </div>
     </div>
