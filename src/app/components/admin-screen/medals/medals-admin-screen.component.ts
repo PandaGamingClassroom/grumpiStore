@@ -17,6 +17,7 @@ import { RouterLink } from '@angular/router';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { url_upload_medals } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { TrainerService } from '../../services/trainers/trainer.service';
 
 @Component({
   selector: 'app-medals-admin-screen',
@@ -30,7 +31,7 @@ import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-
     MatDialogModule,
     ReactiveFormsModule,
   ],
-  providers: [GrumpiService],
+  providers: [GrumpiService, TrainerService],
   templateUrl: './medals-admin-screen.component.html',
   styleUrl: './medals-admin-screen.component.scss',
 })
@@ -42,9 +43,13 @@ export class MedalsAdminScreenComponent implements OnInit {
   modalAbierta = false;
   confirmMessage: string = 'Medalla añadida correctamente.';
   searchTerm: string = '';
+  selectedMedalName: string | null = null;
+  selectedTrainerName: string | null = null;
+  trainerList: any[] = [];
 
   constructor(
     private grumpiService: GrumpiService,
+    private trainersService: TrainerService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private dialog: MatDialog
@@ -53,7 +58,27 @@ export class MedalsAdminScreenComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       imagen: [''],
     });
+    this.getTrainers();
   }
+
+  getTrainers() {
+    this.trainersService.getTrainers().subscribe(
+      (response: any) => {
+        if (Array.isArray(response.trainer_list)) {
+          this.trainerList = response.trainer_list;
+        } else {
+          console.error(
+            'Error: los datos de entrenadores no son un array:',
+            response.trainer_list
+          );
+        }
+      },
+      (error) => {
+        console.error('Error obteniendo los entrenadores:', error);
+      }
+    );
+  }
+
 
   /**
    * Función para verificar que la imagen se ha seleccionado.
@@ -129,5 +154,33 @@ export class MedalsAdminScreenComponent implements OnInit {
     return this.medalsImages.filter((imageUrl) =>
       imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+
+  /**
+   * Función para asignar una criatura seleccionada a un entrenador
+   */
+  assignMedal(): void {
+    if (this.selectedTrainerName !== null && this.selectedMedalName !== null) {
+      // Obtén el nombre del entrenador seleccionado
+      const trainerName = this.selectedTrainerName;
+
+      // Obtén el nombre de la criatura seleccionada
+      const creatureName = this.selectedMedalName;
+
+      // Llama al servicio para asignar la criatura al entrenador por su nombre
+      this.trainersService
+        .assignMedalToTrainer(trainerName, creatureName)
+        .subscribe(
+          (response) => {
+            alert('Medalla asignada con éxito');
+          },
+          (error) => {
+            console.error('Error asignando la medalla:', error);
+            alert('Error asignando la medalla');
+          }
+        );
+    } else {
+      alert('Por favor, selecciona un entrenador y una medalla.');
+    }
   }
 }

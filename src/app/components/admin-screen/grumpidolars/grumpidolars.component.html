@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="d-flex justify-content-center">Asignación de Grumpidólares</h1>
+  <hr />
+
+  <div class="scrollable-div">
+    <ul>
+      <li *ngFor="let trainer of trainerList" class="no-bullets">
+        <div class="row">
+          <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+          <div class="col">
+            <span class="d-flex align-items-center"><strong>{{ trainer.name }}</strong></span>
+            <span><strong>Grumpidólares actuales: </strong>{{ trainer.grumpidolar }}</span>
+          </div>
+          <div class="col">
+            <form #grumpidolarForm="ngForm" (ngSubmit)="assignGrumpidolares(trainer.name, grumpidolaresPorEntrenador[trainer.name])">
+              <label for="cantidad"><strong>Cantidad: </strong></label>
+              <input class="input-box" type="number" id="grumpidolar" name="cantidad" min="1" [(ngModel)]="grumpidolaresPorEntrenador[trainer.name]" required>
+              <button type="submit" class="btn btn-success">Añadir Grumpidólares</button>
+            </form>
+          </div>
+        </div>
+        <hr />
+      </li>
+    </ul>
+  </div>
+  <div class="fixed-bottom-left">
+    <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
+  </div>
+  <div class="fixed-bottom-right">
+    <button type="button" class="btn btn-success" (click)="close()">Terminar</button>
+  </div>
+</div>

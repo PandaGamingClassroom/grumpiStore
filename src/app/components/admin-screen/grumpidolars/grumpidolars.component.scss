@@ -1,0 +1,36 @@
+.container {
+  background-color: azure;
+  position: relative;
+  width: 600px;
+  height: 500px;
+  overflow: hidden;
+}
+
+.scrollable-div {
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.no-bullets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.fixed-bottom-right {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.fixed-bottom-left {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.input-box {
+  width: 80px;
+  margin-bottom: 2%;
+}

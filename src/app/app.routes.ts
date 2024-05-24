@@ -13,6 +13,8 @@ import { TrainersAdminComponent } from './components/admin-screen/trainers/train
 import { TrainersEditComponent } from './components/admin-screen/trainers/trainers-edit/trainers-edit.component';
 import { CreaturesAdminComponent } from './components/admin-screen/creatures/creatures-admin.component';
 import { MedalsAdminScreenComponent } from './components/admin-screen/medals/medals-admin-screen.component';
+import { GrumpidolarsComponent } from './components/admin-screen/grumpidolars/grumpidolars.component';
+import { EnergiesComponent } from './components/admin-screen/energies/energies.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -27,6 +29,8 @@ export const routes: Routes = [
   { path: 'admin/trainers-admin/edit', component: TrainersEditComponent },
   { path: 'admin/creatures', component: CreaturesAdminComponent },
   { path: 'admin/medals', component: MedalsAdminScreenComponent },
+  { path: 'admin/grumpidolars', component: GrumpidolarsComponent },
+  { path: 'admin/energies', component: EnergiesComponent },
   { path: 'help', component: HelpComponentComponent },
   { path: 'profile/bag', component: BagComponent },
 ];

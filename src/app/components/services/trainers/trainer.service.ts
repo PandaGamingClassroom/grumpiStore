@@ -82,7 +82,68 @@ export class TrainerService {
     );
   }
 
+  /**
+   * Función para asignar una energía a un entrenador
+   *
+   * @param trainerName Recibe el nombre del entrenador
+   * @param energieName Recibe el nombre de la energía
+   * @returns
+   */
+  assignEnergiesToTrainer(
+    trainerName: string,
+    energieName: string
+  ): Observable<any> {
+    const url = this.apiUrl + 'assign-energie';
+    const body = { trainerName, energieName };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
+
+  assignMedalToTrainer(
+    trainerName: string,
+    medalName: string
+  ): Observable<any> {
+    const url = this.apiUrl + 'assign-medal';
+    const body = { trainerName, medalName };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
+
   getTrainerByName(nombre: any): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}trainer/${nombre}`);
+  }
+
+  assignGrumpidolaresToTrainer(
+    trainerName: string,
+    grumpidolares: number
+  ): Observable<any> {
+    const url = `${this.apiUrl}assign-grumpidolares`;
+    const body = { trainerName, grumpidolares };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
   }
 }

@@ -9,6 +9,7 @@ export class GrumpiService {
   private apiUrl = 'http://localhost:3000/upload';
   private imageUrlEndpoint = 'http://localhost:3000/getImageUrls';
   private imageMedalsEndpoint = 'http://localhost:3000/getImageMedals';
+  private imageEnergiesEndpoint = 'http://localhost:3000/getImageEnergies';
   private imageCombatObjects = 'http://localhost:3000/getImageCombatObjects';
 
   imageUrl: string = '';
@@ -40,6 +41,18 @@ export class GrumpiService {
     return this.http.get<{ imageUrls: string[] }>(this.imageMedalsEndpoint);
   }
 
+  /**
+   * Función para obtener la lista de imágenes almacenadas de las energías
+   * @returns listado de imágenes de energías
+   */
+  getImageEnergies(): Observable<{ imageUrls: string[] }> {
+    return this.http.get<{ imageUrls: string[] }>(this.imageEnergiesEndpoint);
+  }
+
+  /**
+   * Función para obtener la lista de imágenes almacenadas de los objetos de combate
+   * @returns listado de imágenes de los objetos de combate
+   */
   getCombatObjects(): Observable<{ imageUrls: string[] }> {
     return this.http.get<{ imageUrls: string[] }>(this.imageCombatObjects);
   }
