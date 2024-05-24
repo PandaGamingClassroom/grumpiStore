@@ -14,38 +14,20 @@
       <div class="col main-box design-column">
         <div class="row">
           <div class="col"><h2>Lista de energías</h2></div>
-          <div class="col">
-            <button
-              type="submit"
-              class="btn btn-success"
-              (click)="loadImageUrls()"
-            >
-              Cargar energías
-            </button>
-          </div>
         </div>
 
         <div class="container creatures-box">
-          <div class="search-bar mb-3 sticky-top">
-            <input
-              type="text"
-              [(ngModel)]="searchTerm"
-              placeholder="Introduce el número de la carta"
-              class="form-control"
-            />
-          </div>
-
           <div
             class="img-creature"
-            *ngFor="let imageUrl of filteredMedalsImages"
+            *ngFor="let imageUrl of energy_list"
           >
             <div class="row">
-              <div class="col"><img srcset="{{imageUrl}}" alt="Imagen" /></div>
+              <div class="col"><img srcset="{{imageUrl.imagen}}" alt="Imagen" /></div>
               <div class="col">
                 <button
                   type="button"
                   class="btn btn-success"
-                  (click)="selectedEnergieName = imageUrl"
+                  (click)="selectedEnergie = imageUrl"
                   data-bs-toggle="modal"
                   data-bs-target="#eraseModal"
                 >

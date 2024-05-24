@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { Energies, energias } from '../../../models/energies';
 
 @Component({
   selector: 'app-energies',
@@ -28,10 +29,11 @@ export class EnergiesComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
   trainerList: any[] = [];
   energiesImages: string[] = [];
-  searchTerm: string = '';
   selectedEnergieName: string | null = null;
   selectedTrainerName: string | null = null;
   selectedFile: File | null = null;
+  energy_list: Energies[] = energias;
+  selectedEnergie: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -64,23 +66,6 @@ export class EnergiesComponent implements OnInit {
     );
   }
 
-  loadImageUrls() {
-    this.grumpiService.getImageEnergies().subscribe(
-      (response) => {
-        this.energiesImages = response.imageUrls;
-      },
-      (error) => {
-        console.error('Error al obtener las URLs de las imágenes:', error);
-      }
-    );
-  }
-
-  get filteredMedalsImages(): string[] {
-    return this.energiesImages.filter((imageUrl) =>
-      imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-  }
-
   onSubmit(event: Event) {
     event.preventDefault();
   }
@@ -94,31 +79,25 @@ export class EnergiesComponent implements OnInit {
     }
   }
   assignEnergies(): void {
-    if (
-      this.selectedTrainerName !== null &&
-      this.selectedEnergieName !== null
-    ) {
-      // Obtén el nombre del entrenador seleccionado
-      const trainerName = this.selectedTrainerName;
-
-      // Obtén el nombre de la criatura seleccionada
-      const energieName = this.selectedEnergieName;
-
-      // Llama al servicio para asignar la criatura al entrenador por su nombre
+    if (this.selectedTrainerName && this.selectedEnergie) {
       this.trainersService
-        .assignEnergiesToTrainer(trainerName, energieName)
+        .assignEnergie(this.selectedTrainerName, this.selectedEnergie)
         .subscribe(
           (response) => {
-            console.log('Energía asignada con éxito:', response);
-            alert('Energía asignada con éxito');
+            console.log(
+              'Energía asignada correctamente al entrenador:',
+              response
+            );
+            // Aquí puedes manejar la respuesta como desees
           },
           (error) => {
-            console.error('Error asignando la energía:', error);
-            alert('Error asignando la energía');
+            console.error('Error al asignar la energía al entrenador:', error);
+            // Aquí puedes manejar el error como desees
           }
         );
     } else {
-      alert('Por favor, selecciona un entrenador y una energía.');
+      console.error('No se ha seleccionado ningún entrenador o energía.');
+      // Aquí puedes manejar el caso donde no se haya seleccionado ningún entrenador o energía
     }
   }
 }

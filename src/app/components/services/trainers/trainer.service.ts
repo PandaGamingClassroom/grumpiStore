@@ -89,22 +89,9 @@ export class TrainerService {
    * @param energieName Recibe el nombre de la energía
    * @returns
    */
-  assignEnergiesToTrainer(
-    trainerName: string,
-    energieName: string
-  ): Observable<any> {
-    const url = this.apiUrl + 'assign-energie';
-    const body = { trainerName, energieName };
-
-    return this.http.post<any>(url, body).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 200 && error.error instanceof ProgressEvent) {
-          return throwError('Error al procesar la respuesta del servidor.');
-        } else {
-          return throwError(error);
-        }
-      })
-    );
+  assignEnergie(trainerName: string, energie: any): Observable<any> {
+    const url = `${this.apiUrl}assign-energie`;
+    return this.http.post<any>(url, { trainerName, energie });
   }
 
   assignMedalToTrainer(
