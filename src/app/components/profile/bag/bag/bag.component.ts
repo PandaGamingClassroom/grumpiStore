@@ -21,7 +21,7 @@ import { FooterComponent } from '../../../footer/footer.component';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    FooterComponent
+    FooterComponent,
   ],
   providers: [TrainerService],
   templateUrl: './bag.component.html',

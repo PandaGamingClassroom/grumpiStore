@@ -13,14 +13,14 @@
     <div class="row">
       <div class="col main-box design-column">
         <div class="row">
-          <div class="col"><h2>Lista de Grumpis</h2></div>
+          <div class="col"><h2>Lista de energías</h2></div>
           <div class="col">
             <button
               type="submit"
               class="btn btn-success"
               (click)="loadImageUrls()"
             >
-              Cargar Grumpis
+              Cargar energías
             </button>
           </div>
         </div>
@@ -37,7 +37,7 @@
 
           <div
             class="img-creature"
-            *ngFor="let imageUrl of filteredCreaturesImages"
+            *ngFor="let imageUrl of filteredMedalsImages"
           >
             <div class="row">
               <div class="col"><img srcset="{{imageUrl}}" alt="Imagen" /></div>
@@ -45,7 +45,7 @@
                 <button
                   type="button"
                   class="btn btn-success"
-                  (click)="selectedCreatureName = imageUrl;"
+                  (click)="selectedEnergieName = imageUrl"
                   data-bs-toggle="modal"
                   data-bs-target="#eraseModal"
                 >
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="col form-group main-box">
-        <h2>Añadir un Grumpi nuevo</h2>
+        <h2>Añadir una energía nueva</h2>
         <form
           [formGroup]="myForm"
           (ngSubmit)="onSubmit($event)"
@@ -67,7 +67,7 @@
           <div class="row">
             <div class="col">
               <label for="imagen" class="form-label"
-                ><strong>Carta Grumpi:</strong></label
+                ><strong>Energía:</strong></label
               >
             </div>
             <div class="col">
@@ -127,7 +127,7 @@
           type="button"
           class="btn btn-danger"
           data-bs-dismiss="modal"
-          (click)="assignCreature()"
+          (click)="assignEnergies()"
         >
           Aceptar
         </button>
@@ -135,3 +135,4 @@
     </div>
   </div>
 </div>
+

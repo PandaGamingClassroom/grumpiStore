@@ -143,7 +143,6 @@ export class CreaturesAdminComponent implements OnInit {
    *
    */
   getTrainers() {
-
     this.trainersService.getTrainers().subscribe(
       (response: any) => {
         if (Array.isArray(response.trainer_list)) {
@@ -192,4 +191,5 @@ export class CreaturesAdminComponent implements OnInit {
       alert('Por favor, selecciona un entrenador y una criatura.');
     }
   }
+
 }
