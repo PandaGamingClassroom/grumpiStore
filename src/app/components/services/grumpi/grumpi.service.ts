@@ -53,7 +53,7 @@ export class GrumpiService {
    * Función para obtener la lista de imágenes almacenadas de los objetos de combate
    * @returns listado de imágenes de los objetos de combate
    */
-  getCombatObjects(): Observable<{ imageUrls: string[] }> {
-    return this.http.get<{ imageUrls: string[] }>(this.imageCombatObjects);
+  getCombatObjects(): Observable<any> {
+    return this.http.get<any>(this.imageCombatObjects);
   }
 }

@@ -133,4 +133,24 @@ export class TrainerService {
       })
     );
   }
+
+    assignGrumpidolaresAfterBuyToTrainer(
+    trainerName: string,
+    grumpidolares: number
+  ): Observable<any> {
+    const url = `${this.apiUrl}assignGrumpidolares-after-buy`;
+    const body = { trainerName, grumpidolares };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
+
+
 }
