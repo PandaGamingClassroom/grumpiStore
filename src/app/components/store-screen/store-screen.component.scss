@@ -36,6 +36,7 @@ ul {
 
 .scrollable-div {
   height: 500px;
+  width: 500px;
   overflow-y: auto;
 }
 
@@ -120,4 +121,9 @@ ul {
   /* Negrita */
   color: #333;
   /* Color de texto */
+}
+
+.grumpiTag {
+  height: 20px;
+  width: 30px;
 }
