@@ -97,7 +97,13 @@
           <div class="row">
             <div class="col"><img srcset="{{ object.imagen }}" /></div>
             <div class="col">
-              <button type="button" class="button-73" (click)="selectedObject = object; buyCombatObjects()">Lo quiero</button>
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedObject = object; buyCombatObjects()"
+              >
+                Lo quiero
+              </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
@@ -133,6 +139,39 @@
       tabindex="0"
     >
       <h2>Objetos evolutivos</h2>
+      <hr />
+      <div class="container text-center align-items-center scrollable-div">
+        <div
+          class="img-creature mg-5"
+          *ngFor="let object of this.evolutionObjects"
+        >
+          <div class="row">
+            <div class="col"><img srcset="{{ object }}" /></div>
+            <div class="col">
+              <button
+                type="button"
+                class="button-73"
+
+              >
+                Lo quiero
+              </button>
+              <!-- <div class="price-tag mt-3">
+                <span class="price">
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                      />
+                    </div>
+                    <div class="col">{{ object.precio }}</div>
+                  </div>
+                </span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

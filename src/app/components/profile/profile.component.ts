@@ -55,9 +55,12 @@ export class ProfileComponent implements OnInit {
     this.avatarService.avatar$.subscribe((avatar) => {
       this.avatarSelect = avatar;
     });
-    this.username = localStorage.getItem('username');
-    if (this.username) {
-      this.getTrainerData(this.username);
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+      if (this.username) {
+        this.getTrainerData(this.username);
+      }
     }
   }
 

@@ -34,13 +34,17 @@ export class BagComponent implements OnInit {
   trainer: any;
   errorMessage: string = '';
 
-  constructor(private trainersService: TrainerService) {
-    this.username = localStorage.getItem('username');
-    if (this.username) {
-      this.getTrainerData(this.username);
+  constructor(private trainersService: TrainerService) {}
+
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+      if (this.username) {
+        this.getTrainerData(this.username);
+      }
     }
   }
-  ngOnInit(): void {}
 
   /**
    * Función para obtener información sobre el entrenador que ha iniciado sesión
