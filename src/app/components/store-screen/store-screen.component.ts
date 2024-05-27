@@ -34,6 +34,7 @@ import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-com
 })
 export class StoreScreenComponent implements OnInit {
   imageUrls: any;
+  evolutionObjects: any;
   grumpidolar: string = '';
   trainer: any;
   username: string | null = '';
@@ -53,17 +54,38 @@ export class StoreScreenComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadImageUrls();
-    this.username = localStorage.getItem('username');
-    if (this.username) {
-      this.getTrainerData(this.username);
+    this.loadEvolutionObjects();
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+      if (this.username) {
+        this.getTrainerData(this.username);
+      }
     }
-    this.trainerName = this.trainer.data.name;
   }
 
+  /**
+   * Función para obtener las imágenes de los objetos de combate
+   */
   loadImageUrls() {
     this.grumpiService.getCombatObjects().subscribe(
       (response) => {
         this.imageUrls = response.objectsList;
+      },
+      (error) => {
+        console.error('Error al obtener las URLs de las imágenes:', error);
+      }
+    );
+  }
+
+  /**
+   * Función para obtener las imágenes de los objetos evolutivos
+   */
+  loadEvolutionObjects() {
+    this.grumpiService.getEvolutionObjects().subscribe(
+      (response) => {
+        this.evolutionObjects = response.imageUrls;
+
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -106,7 +128,7 @@ export class StoreScreenComponent implements OnInit {
     let finalCount: number = 0;
     let trainerName = this.trainer.data.name;
     this.confirmTitle = 'Compra realizada';
-    this.confirmMessage= 'La compra ha sido realizada correctammente.';
+    this.confirmMessage = 'La compra ha sido realizada correctammente.';
 
     if (price > grumpidolarTrainer) {
       this.openErrorModal();
@@ -144,7 +166,8 @@ export class StoreScreenComponent implements OnInit {
         .subscribe(
           (response) => {
             this.confirmTitle = 'Objeto conseguido con éxito.';
-            this.confirmMessage = 'Has comprado el objeto '+ combatObject.nombre + ' con éxito.';
+            this.confirmMessage =
+              'Has comprado el objeto ' + combatObject.nombre + ' con éxito.';
             this.openConfirmModal(this.confirmTitle, this.confirmMessage);
           },
           (error) => {

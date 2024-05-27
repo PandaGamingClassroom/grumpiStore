@@ -11,6 +11,7 @@ export class GrumpiService {
   private imageMedalsEndpoint = 'http://localhost:3000/getImageMedals';
   private imageEnergiesEndpoint = 'http://localhost:3000/getImageEnergies';
   private imageCombatObjects = 'http://localhost:3000/getImageCombatObjects';
+  private imageEvolutionObjects = 'http://localhost:3000/getEvoOBjects';
 
   imageUrl: string = '';
 
@@ -55,5 +56,9 @@ export class GrumpiService {
    */
   getCombatObjects(): Observable<any> {
     return this.http.get<any>(this.imageCombatObjects);
+  }
+
+  getEvolutionObjects(): Observable<any> {
+    return this.http.get<any>(this.imageEvolutionObjects);
   }
 }
