@@ -39,11 +39,23 @@ export class StoreScreenComponent implements OnInit {
   trainer: any;
   username: string | null = '';
   selectedObject: any | null = null;
-  errorTitle: string = '¡Imposible realizar la compra!';
-  errorMessage: string = 'No dispones de suficientes Grumpidólares.';
+  errorTitle: string = '';
+  errorMessage: string = '';
   confirmTitle: string = '';
   confirmMessage: string = '';
   trainerName: string = '';
+  /**
+   * CANTIDADES DISPONIBLES DE LAS ENERGÍAS
+   */
+  cantidadEnergiaAgua: number = 0;
+  cantidadEnergiaAire: number = 0;
+  cantidadEnergiaLuz: number = 0;
+  cantidadEnergiaTierra: number = 0;
+  cantidadEnergiaFuego: number = 0;
+  cantidadEnergiaVida: number = 0;
+  cantidadEnergiaRayo: number = 0;
+  cantidadEnergiaNormal: number = 0;
+  cantidadEnergiaOscuridad: number = 0;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -84,8 +96,7 @@ export class StoreScreenComponent implements OnInit {
   loadEvolutionObjects() {
     this.grumpiService.getEvolutionObjects().subscribe(
       (response) => {
-        this.evolutionObjects = response.imageUrls;
-
+        this.evolutionObjects = response.objectsList;
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -105,6 +116,7 @@ export class StoreScreenComponent implements OnInit {
         } else {
           this.trainer = data;
           this.grumpidolar = this.trainer.data.grumpidolar;
+          this.getEnergies(this.trainer, this.trainer.data.energias.tipo);
         }
       },
       (error) => {
@@ -129,9 +141,11 @@ export class StoreScreenComponent implements OnInit {
     let trainerName = this.trainer.data.name;
     this.confirmTitle = 'Compra realizada';
     this.confirmMessage = 'La compra ha sido realizada correctammente.';
+    this.errorTitle = '¡Imposible realizar la compra!';
+    this.errorMessage = 'No dispones de suficientes Grumpidólares.';
 
     if (price > grumpidolarTrainer) {
-      this.openErrorModal();
+      this.openErrorModal(this.errorTitle, this.errorMessage);
     } else {
       finalCount = grumpidolarTrainer - price;
       console.log('Grumpidolares finales para el entrenador: ', finalCount);
@@ -146,6 +160,137 @@ export class StoreScreenComponent implements OnInit {
             console.error('Error:', error);
           }
         );
+    }
+  }
+
+
+  /**
+   * Función para comprar el objeto evolutivo seleccionado.
+   *
+   */
+  buyEvolutionObjects() {
+    let price = this.selectedObject.precio;
+    let requiredEnergyType = this.selectedObject.tipo;
+    /**
+     * Cantidades de energías de las que dispone el entrenador
+     */
+    let agua = this.cantidadEnergiaAgua;
+    let fuego = this.cantidadEnergiaFuego;
+    let aire = this.cantidadEnergiaAire;
+    let luz = this.cantidadEnergiaLuz;
+    let normal = this.cantidadEnergiaNormal;
+    let oscuridad = this.cantidadEnergiaOscuridad;
+    let rayo = this.cantidadEnergiaRayo;
+    let vida = this.cantidadEnergiaVida;
+    let tierra = this.cantidadEnergiaTierra;
+
+    /**
+     * Booleano para mostrar mensaje de error
+     * en el caso de no disponer de las suficientes energías
+     * para comprar el objeto seleccionado
+     */
+    let error: boolean = false;
+
+    console.log('Precio del objeto:', price);
+    console.log('Tipo de energía requerida:', requiredEnergyType);
+    /**
+     * Se validan todos los tipos de energía disponibles
+     * Se validan los precios de los objetos
+     */
+    switch (requiredEnergyType) {
+      case 'agua':
+        {
+          if (requiredEnergyType == 'agua' && price < agua) {
+            console.log('Estas comprando losa de agua');
+           // Llamada al servicio para añadir el objeto al entrenador
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'fuego':
+        {
+          if (requiredEnergyType == 'fuego' && price < fuego) {
+            console.log('Estas comprando losa de fuego');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'aire':
+        {
+          if (requiredEnergyType == 'aire' && price < aire) {
+            console.log('Estas comprando losa de aire');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'luz':
+        {
+          if (requiredEnergyType == 'luz' && price < luz) {
+            console.log('Estas comprando losa de luz');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'normal':
+        {
+          if (requiredEnergyType == 'normal' && price < normal) {
+            console.log('Estas comprando losa de normal');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'oscuridad':
+        {
+          if (requiredEnergyType == 'oscuridad' && price < oscuridad) {
+            console.log('Estas comprando losa de oscuridad');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'rayo':
+        {
+          if (requiredEnergyType == 'rayo' && price < rayo) {
+            console.log('Estas comprando losa de rayo');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'tierra':
+        {
+          if (requiredEnergyType == 'tierra' && price < tierra) {
+            console.log('Estas comprando losa de tierra');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      case 'vida':
+        {
+          if (requiredEnergyType == 'vida' && price > vida) {
+            console.log('Estas comprando losa de vida');
+          } else {
+            error = true;
+          }
+        }
+        break;
+      default:
+        console.warn(`Tipo de energía desconocido: ${requiredEnergyType}`);
+    }
+
+    if (error) {
+      this.errorTitle = '¡Imposible realizar la compra!';
+      this.errorMessage =
+        'No dispones de suficientes energías de tipo: ' +
+        requiredEnergyType +
+        '.';
+      this.openErrorModal(this.errorTitle, this.errorMessage);
     }
   }
 
@@ -186,10 +331,10 @@ export class StoreScreenComponent implements OnInit {
   /**
    * Función para invocar a la ventana modal de error.
    */
-  openErrorModal() {
+  openErrorModal(title: string, message: string) {
     const data = {
-      title: this.errorTitle,
-      message: this.errorMessage,
+      title: title,
+      message: message,
     };
 
     this.dialog.open(ErrorLoginModalComponentComponent, {
@@ -218,5 +363,36 @@ export class StoreScreenComponent implements OnInit {
       height: '300px',
       data: data,
     });
+  }
+
+  /**
+   * Función para obtener la información de las energías del entrenador
+   *
+   * @param trainerData Obtiene los datos del entrenador
+   */
+  getEnergies(trainerData: any, typeEnergy: string) {
+    let energies = trainerData.data.energias;
+    console.log('Datos del entrenador: ', energies);
+    for (let energia of energies) {
+      if (energia.tipo == 'Agua') {
+        this.cantidadEnergiaAgua++;
+      } else if (energia.tipo == 'Fuego') {
+        this.cantidadEnergiaFuego++;
+      } else if (energia.tipo == 'Aire') {
+        this.cantidadEnergiaAire++;
+      } else if (energia.tipo == 'Luz') {
+        this.cantidadEnergiaLuz++;
+      } else if (energia.tipo == 'Normal') {
+        this.cantidadEnergiaNormal++;
+      } else if (energia.tipo == 'Oscuridad') {
+        this.cantidadEnergiaOscuridad++;
+      } else if (energia.tipo == 'Rayo') {
+        this.cantidadEnergiaRayo++;
+      } else if (energia.tipo == 'Tierra') {
+        this.cantidadEnergiaTierra++;
+      } else if (energia.tipo == 'Vida') {
+        this.cantidadEnergiaVida++;
+      }
+    }
   }
 }

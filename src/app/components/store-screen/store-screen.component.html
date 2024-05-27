@@ -140,35 +140,74 @@
     >
       <h2>Objetos evolutivos</h2>
       <hr />
-      <div class="container text-center align-items-center scrollable-div">
-        <div
-          class="img-creature mg-5"
-          *ngFor="let object of this.evolutionObjects"
-        >
-          <div class="row">
-            <div class="col"><img srcset="{{ object }}" /></div>
-            <div class="col">
-              <button
-                type="button"
-                class="button-73"
-
-              >
-                Lo quiero
-              </button>
-              <!-- <div class="price-tag mt-3">
-                <span class="price">
-                  <div class="row">
-                    <div class="col">
-                      <img
-                        class="grumpiTag"
-                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                      />
-                    </div>
-                    <div class="col">{{ object.precio }}</div>
+      <div class="row">
+        <div class="col">
+          <div class="container text-center align-items-center scrollable-div">
+            <div
+              class="img-creature mg-5"
+              *ngFor="let object of this.evolutionObjects"
+            >
+              <div class="row">
+                <div class="col"><img srcset="{{ object.imagen }}" /></div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="button-73"
+                    (click)="selectedObject = object; buyEvolutionObjects()"
+                  >
+                    Lo quiero
+                  </button>
+                  <div class="price-tag mt-3">
+                    <span class="price">
+                      <span>
+                        5 energías de tipo: <strong> {{ object.tipo }}</strong>
+                      </span>
+                    </span>
                   </div>
-                </span>
-              </div> -->
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="container">
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Agua: </strong>
+              {{ cantidadEnergiaAgua }}
+            </button>
+            <br>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Fuego: </strong>
+              {{ cantidadEnergiaFuego }}
+            </button>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Aire: </strong>
+              {{ cantidadEnergiaAire }}
+            </button>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Luz: </strong>
+              {{ cantidadEnergiaLuz }}
+            </button>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Normal: </strong>
+              {{ cantidadEnergiaNormal }}
+            </button>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Oscuridad: </strong>
+              {{ cantidadEnergiaOscuridad }}
+            </button>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Rayo: </strong>
+              {{ cantidadEnergiaRayo }}
+            </button>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Tierra: </strong>
+              {{ cantidadEnergiaTierra }}
+            </button>
+            <button class="evoBox">
+              <strong> Mis Energías de tipo Vida: </strong>
+              {{ cantidadEnergiaVida }}
+            </button>
           </div>
         </div>
       </div>
