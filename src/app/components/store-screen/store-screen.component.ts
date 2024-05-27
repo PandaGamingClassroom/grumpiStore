@@ -40,8 +40,9 @@ export class StoreScreenComponent implements OnInit {
   selectedObject: any | null = null;
   errorTitle: string = '¡Imposible realizar la compra!';
   errorMessage: string = 'No dispones de suficientes Grumpidólares.';
-  confirmTitle: string = 'Compra realizada';
-  confirmMessage: string = 'La compra ha sido realizada correctammente.';
+  confirmTitle: string = '';
+  confirmMessage: string = '';
+  trainerName: string = '';
 
   constructor(
     private grumpiService: GrumpiService,
@@ -56,13 +57,13 @@ export class StoreScreenComponent implements OnInit {
     if (this.username) {
       this.getTrainerData(this.username);
     }
+    this.trainerName = this.trainer.data.name;
   }
 
   loadImageUrls() {
     this.grumpiService.getCombatObjects().subscribe(
       (response) => {
         this.imageUrls = response.objectsList;
-        console.log('Objetos: ', this.imageUrls);
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -104,6 +105,9 @@ export class StoreScreenComponent implements OnInit {
     let price = this.selectedObject.precio;
     let finalCount: number = 0;
     let trainerName = this.trainer.data.name;
+    this.confirmTitle = 'Compra realizada';
+    this.confirmMessage= 'La compra ha sido realizada correctammente.';
+
     if (price > grumpidolarTrainer) {
       this.openErrorModal();
     } else {
@@ -113,12 +117,46 @@ export class StoreScreenComponent implements OnInit {
         .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
         .subscribe(
           (response) => {
-            this.openConfirmModal();
+            this.assignCombatObjects();
+            this.openConfirmModal(this.confirmTitle, this.confirmMessage);
           },
           (error) => {
             console.error('Error:', error);
           }
         );
+    }
+  }
+
+  /**
+   *
+   * Función para asignar los objetos de combate comprados al entrenador
+   *
+   */
+  assignCombatObjects() {
+    let trainerName = this.trainer.data.name;
+    if (trainerName !== null && this.selectedObject !== null) {
+      // Obtén el objeto de combate
+      let combatObject = this.selectedObject;
+
+      // Llama al servicio para asignar la criatura al entrenador por su nombre
+      this.trainersService
+        .assignCombatObjectsToTrainer(trainerName, combatObject)
+        .subscribe(
+          (response) => {
+            this.confirmTitle = 'Objeto conseguido con éxito.';
+            this.confirmMessage = 'Has comprado el objeto '+ combatObject.nombre + ' con éxito.';
+            this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+          },
+          (error) => {
+            console.error('Error asignando el objeto de combate:', error);
+            alert('Error asignando el objeto de combate');
+          }
+        );
+    } else {
+      this.confirmTitle = '¡Cuidado!';
+      this.confirmMessage =
+        'Por favor, selecciona un entrenador y un objeto de combate.';
+      this.openConfirmModal(this.confirmTitle, this.confirmMessage);
     }
   }
 
@@ -138,10 +176,18 @@ export class StoreScreenComponent implements OnInit {
     });
   }
 
-  openConfirmModal() {
+  /**
+   * Función para invocar a la ventana modal mostrando el mensaje
+   * de confirmación de la acción realizada.
+   *
+   *
+   * @param title Recibe el título de la confirmación
+   * @param message Recibe el mensaje para la confirmación
+   */
+  openConfirmModal(title: string, message: string) {
     const data = {
-      title: this.confirmTitle,
-      message: this.confirmMessage,
+      title: title,
+      message: message,
     };
 
     this.dialog.open(ConfirmModalComponentComponent, {

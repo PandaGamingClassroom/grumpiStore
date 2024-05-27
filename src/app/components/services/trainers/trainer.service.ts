@@ -112,10 +112,34 @@ export class TrainerService {
     );
   }
 
+  assignCombatObjectsToTrainer(
+    trainerName: string,
+    combatObject: string
+  ): Observable<any> {
+    const url = this.apiUrl + 'assign-combatObjects';
+    const body = { trainerName, combatObject };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
+
+  /**
+   * Función para obtener un entrenador por su nombre
+   */
   getTrainerByName(nombre: any): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}trainer/${nombre}`);
   }
 
+  /**
+   * Función para asignar los grumpidólares a un entrenador
+   */
   assignGrumpidolaresToTrainer(
     trainerName: string,
     grumpidolares: number
@@ -134,7 +158,7 @@ export class TrainerService {
     );
   }
 
-    assignGrumpidolaresAfterBuyToTrainer(
+  assignGrumpidolaresAfterBuyToTrainer(
     trainerName: string,
     grumpidolares: number
   ): Observable<any> {
@@ -151,6 +175,4 @@ export class TrainerService {
       })
     );
   }
-
-
 }
