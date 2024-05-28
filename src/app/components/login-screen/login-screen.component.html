@@ -1,7 +1,10 @@
+<div class="logo">
+  <img src="../../../assets/Logo_v0.1_sinFondo.png" />
+</div>
 <div class="container config-size">
   <form [formGroup]="myForm" class="form-wrapper" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="trainer_name"> Nombre de entrenador </label>
+      <label for="trainer_name"><strong> Nombre de entrenador </strong></label>
       <input
         type="email"
         class="form-control"
@@ -12,7 +15,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="password"> Contraseña </label>
+      <label for="password"><strong> Contraseña </strong></label>
       <input
         type="password"
         class="form-control"
@@ -21,11 +24,9 @@
         formControlName="password"
       />
     </div>
-    <br/>
+    <br />
     <div class="container">
-      <button type="submit" class="button-73" >
-        Iniciar sesión
-      </button>
+      <button type="submit" class="button-73">Iniciar sesión</button>
     </div>
   </form>
 </div>

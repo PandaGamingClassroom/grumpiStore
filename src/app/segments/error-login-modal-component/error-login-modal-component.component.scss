@@ -17,3 +17,8 @@
   display: flex;
   margin-left: 40%;
 }
+
+:host ::ng-deep .mat-dialog-container {
+  border-radius: 10px;
+  overflow: hidden;
+}

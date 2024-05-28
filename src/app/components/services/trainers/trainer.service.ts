@@ -184,7 +184,7 @@ export class TrainerService {
    */
   assignEvolutionObjectsToTrainer(
     trainerName: string,
-    evoObject: string
+    evoObject: string,
   ): Observable<any> {
     const url = `${this.apiUrl}assign-evo-objects`;
     const body = { trainerName, evoObject };
