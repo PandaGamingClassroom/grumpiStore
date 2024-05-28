@@ -17,6 +17,6 @@ export class ErrorLoginModalComponentComponent {
 
   closeDialog() {
     this.dialogRef.close();
-    window.location.reload();
+    // window.location.reload();
   }
 }
