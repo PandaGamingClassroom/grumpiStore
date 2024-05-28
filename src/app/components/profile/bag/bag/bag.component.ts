@@ -57,6 +57,7 @@ export class BagComponent implements OnInit {
           console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
         } else {
           this.trainer = data;
+          console.log(this.trainer);
         }
       },
       (error) => {

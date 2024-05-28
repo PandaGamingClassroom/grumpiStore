@@ -1,13 +1,31 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/home"> GrumpiStore </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand">
+      <img
+        src="../../../assets/Logo_v0.1_sinFondo.png"
+        alt="Bootstrap"
+        width="30"
+        height="30"
+      />
+    </a>
+    <a class="navbar-brand" href="/home"> GrumpiApp </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home"> Inicio </a>
+          <a class="nav-link active" aria-current="page" href="/home">
+            Inicio
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/about"> Sobre Nosotros </a>
@@ -16,8 +34,16 @@
     </div>
     <div class="justify-content-end">
       <div class="row">
-        <div class="col-1"><img [src]="avatarSelect" alt="Avatar" style="height: 50px; width: 50px;"></div>
-        <div class="col trainer-link"><a class="nav-link" href="/profile"> Perfil Entrenador </a></div>
+        <div class="col-1">
+          <img
+            [src]="avatarSelect"
+            alt="Avatar"
+            style="height: 50px; width: 50px"
+          />
+        </div>
+        <div class="col trainer-link">
+          <a class="nav-link" href="/profile"> Perfil Entrenador </a>
+        </div>
       </div>
     </div>
   </div>

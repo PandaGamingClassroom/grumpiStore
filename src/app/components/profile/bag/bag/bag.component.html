@@ -103,9 +103,9 @@
             <div
               class="img-creature mg-5"
               *ngFor="
-                let creature of this.trainer.data.grumpis.slice(
+                let creature of this.trainer?.data?.grumpis?.slice(
                   0,
-                  this.trainer.data.grumpis.length / 2
+                  this.trainer?.data?.grumpis?.length / 2
                 )
               "
             >
@@ -116,8 +116,8 @@
             <div
               class="img-creature mg-5"
               *ngFor="
-                let creature of this.trainer.data.grumpis.slice(
-                  this.trainer.data.grumpis.length / 2
+                let creature of this.trainer?.data?.grumpis?.slice(
+                  this.trainer?.data?.grumpis?.length / 2
                 )
               "
             >
@@ -135,6 +135,23 @@
       tabindex="0"
     >
       <h2>Mis Recompensas</h2>
+      <hr />
+      <div class="container scrollable-div">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Objetos evolutivos:</h2>
+            <div
+              class="evolutionBox-img mg-5"
+              *ngFor="let combatObjet of this.trainer?.data?.objetos_evolutivos"
+            >
+              <img srcset="{{ combatObjet?.imagen }}" class="img-fluid" />
+            </div>
+            <div class="d-flex align-items-center" *ngFor="let combatObjet of this.trainer?.data?.objetos_evolutivos">
+              <h3>{{ combatObjet.nombre }}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="tab-pane fade"
@@ -144,12 +161,13 @@
       tabindex="0"
     >
       <h2>Mis Objetos de combate</h2>
+      <hr />
       <div class="container scrollable-div">
         <div class="row">
           <div class="col-md-6">
             <div
               class="img-creature mg-5"
-              *ngFor="let combatObjet of this.trainer.data.objetos_combate"
+              *ngFor="let combatObjet of this.trainer?.data?.objetos_combate"
             >
               <img srcset="{{ combatObjet.imagen }}" />
             </div>
@@ -171,7 +189,7 @@
           <div class="col-md-6">
             <div
               class="img-creature mg-5"
-              *ngFor="let medalImage of this.trainer.data.medallas"
+              *ngFor="let medalImage of this.trainer?.data?.medallas"
             >
               <img srcset="{{ medalImage }}" />
             </div>
