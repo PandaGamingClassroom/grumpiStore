@@ -52,7 +52,7 @@
 
               <br />
               <hr />
-              <h3>{{username}}</h3>
+              <h3>{{ username }}</h3>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
@@ -60,12 +60,11 @@
                 <hr class="mt-0 mb-4" />
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
-                    <h3> ¿?¿? </h3>
-                    <p class="text-muted"> </p>
+                    <h3>Energías: </h3>
                   </div>
                   <div class="col-6 mb-3">
-                    <h3>Grumpidólares:</h3>
-                    <p class="text-muted"> $ {{grumpidolar}} </p>
+                    <h3>Grumpidólares: $ {{ grumpidolar }}</h3>
+
                   </div>
                 </div>
                 <hr class="mt-0 mb-4" />
@@ -112,7 +111,6 @@
   </button>
 </div>
 
-
 <!-- Selección del Avatar -->
 <div
   class="modal fade"
@@ -140,9 +138,11 @@
             <li *ngFor="let avatar of avatar_list" class="mb-3">
               <div class="row row-avatar">
                 <div class="col-5">
-                  <img src="{{ avatar.imagen }}" class="avatar-box"/>
+                  <img src="{{ avatar.imagen }}" class="avatar-box" />
                 </div>
-                <div class="col d-flex justify-content-center align-items-center">
+                <div
+                  class="col d-flex justify-content-center align-items-center"
+                >
                   <button
                     type="button"
                     class="button-avatar"

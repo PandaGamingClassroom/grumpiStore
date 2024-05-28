@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
   }
 
   avatarSelected(avatar: any) {
-    this.avatarService.setAvatar(avatar);
+    this.avatarService.setAvatar(avatar.imagen);
   }
 
   loadAvatarFromStorage() {
@@ -76,6 +76,8 @@ export class ProfileComponent implements OnInit {
         } else {
           this.trainer = data;
           this.grumpidolar = this.trainer.data.grumpidolar;
+          console.log('Datos del entrenador: ', this.trainer.data);
+
         }
       },
       (error) => {
