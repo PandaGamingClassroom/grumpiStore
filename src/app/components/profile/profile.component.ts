@@ -6,6 +6,7 @@ import { AvatarService } from '../services/avatar/avatar.service';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { FooterComponent } from '../footer/footer.component';
+import { Avatars, lista_avatares } from '../../models/avatars';
 
 @Component({
   selector: 'app-profile',
@@ -16,15 +17,7 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent implements OnInit {
-  avatar_list: any[] = [];
-  avatar0 = '../../../assets/avatars/Avatar-1.png';
-  avatar1 = '../../../assets/avatars/Avatar-2.png';
-  avatar2 = '../../../assets/avatars/Avatar-3.png';
-  avatar3 = '../../../assets/avatars/Avatar-4.png';
-  avatar4 = '../../../assets/avatars/Avatar-5.png';
-  avatar5 = '../../../assets/avatars/Avatar-6.png';
-  avatar6 = '../../../assets/avatars/Avatar-7.png';
-  avatar7 = '../../../assets/avatars/Avatar-8.png';
+  avatar_list: Avatars[] = lista_avatares;
   avatarSelect = '';
   username: string | null = '';
   trainerList: any[] = [];
@@ -38,16 +31,7 @@ export class ProfileComponent implements OnInit {
     private avatarService: AvatarService,
     private trainersService: TrainerService
   ) {
-    this.avatar_list = [
-      this.avatar0,
-      this.avatar1,
-      this.avatar2,
-      this.avatar3,
-      this.avatar4,
-      this.avatar5,
-      this.avatar6,
-      this.avatar7,
-    ];
+
   }
 
   ngOnInit(): void {
