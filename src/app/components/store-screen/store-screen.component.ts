@@ -163,7 +163,6 @@ export class StoreScreenComponent implements OnInit {
     }
   }
 
-
   /**
    * Función para comprar el objeto evolutivo seleccionado.
    *
@@ -171,6 +170,8 @@ export class StoreScreenComponent implements OnInit {
   buyEvolutionObjects() {
     let price = this.selectedObject.precio;
     let requiredEnergyType = this.selectedObject.tipo;
+    let evoObjectSelected = this.selectedObject;
+    let trainerName = this.trainer.data.name;
     /**
      * Cantidades de energías de las que dispone el entrenador
      */
@@ -200,9 +201,10 @@ export class StoreScreenComponent implements OnInit {
     switch (requiredEnergyType) {
       case 'agua':
         {
-          if (requiredEnergyType == 'agua' && price < agua) {
+          if (requiredEnergyType == 'agua' && price <= agua) {
             console.log('Estas comprando losa de agua');
-           // Llamada al servicio para añadir el objeto al entrenador
+            // Llamada al servicio para añadir el objeto al entrenador
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -210,8 +212,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'fuego':
         {
-          if (requiredEnergyType == 'fuego' && price < fuego) {
+          if (requiredEnergyType == 'fuego' && price <= fuego) {
             console.log('Estas comprando losa de fuego');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -219,8 +222,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'aire':
         {
-          if (requiredEnergyType == 'aire' && price < aire) {
+          if (requiredEnergyType == 'aire' && price <= aire) {
             console.log('Estas comprando losa de aire');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -228,8 +232,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'luz':
         {
-          if (requiredEnergyType == 'luz' && price < luz) {
+          if (requiredEnergyType == 'luz' && price <= luz) {
             console.log('Estas comprando losa de luz');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -237,8 +242,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'normal':
         {
-          if (requiredEnergyType == 'normal' && price < normal) {
+          if (requiredEnergyType == 'normal' && price <= normal) {
             console.log('Estas comprando losa de normal');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -246,8 +252,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'oscuridad':
         {
-          if (requiredEnergyType == 'oscuridad' && price < oscuridad) {
+          if (requiredEnergyType == 'oscuridad' && price <= oscuridad) {
             console.log('Estas comprando losa de oscuridad');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -255,8 +262,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'rayo':
         {
-          if (requiredEnergyType == 'rayo' && price < rayo) {
+          if (requiredEnergyType == 'rayo' && price <= rayo) {
             console.log('Estas comprando losa de rayo');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -264,8 +272,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'tierra':
         {
-          if (requiredEnergyType == 'tierra' && price < tierra) {
+          if (requiredEnergyType == 'tierra' && price <= tierra) {
             console.log('Estas comprando losa de tierra');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -273,8 +282,9 @@ export class StoreScreenComponent implements OnInit {
         break;
       case 'vida':
         {
-          if (requiredEnergyType == 'vida' && price > vida) {
+          if (requiredEnergyType == 'vida' && price <= vida) {
             console.log('Estas comprando losa de vida');
+            this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
           }
@@ -294,6 +304,33 @@ export class StoreScreenComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para llamar al servicio que asigna el objeto seleccionado
+   * al entrenador que está en la sesión.
+   *
+   * @param trainerName Recibe el nombre del entrenador que realiza la compra
+   * @param evoObjectSelected Recibe el objeto evolutivo seleccionado.
+   */
+  assingEvolutionObjects(trainerName: string, evoObjectSelected: any) {
+    this.trainersService
+      .assignEvolutionObjectsToTrainer(trainerName, evoObjectSelected)
+      .subscribe(
+        (response) => {
+          this.confirmTitle = 'Objeto conseguido con éxito.';
+          this.confirmMessage =
+            'Has comprado el objeto ' +
+            evoObjectSelected.nombre +
+            ' con éxito.';
+          this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+        },
+        (error) => {
+          this.confirmTitle = '¡Cuidado!';
+          this.confirmMessage =
+            'Por favor, selecciona un entrenador y un objeto de combate.';
+          this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+        }
+      );
+  }
   /**
    *
    * Función para asignar los objetos de combate comprados al entrenador

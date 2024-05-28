@@ -175,4 +175,28 @@ export class TrainerService {
       })
     );
   }
+
+  /**
+   * Función para asignar el objeto de evolución al entrenador.
+   * @param trainerName
+   * @param evoObject
+   * @returns
+   */
+  assignEvolutionObjectsToTrainer(
+    trainerName: string,
+    evoObject: string
+  ): Observable<any> {
+    const url = `${this.apiUrl}assign-evo-objects`;
+    const body = { trainerName, evoObject };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
 }
