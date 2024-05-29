@@ -15,6 +15,16 @@ import { CreaturesAdminComponent } from './components/admin-screen/creatures/cre
 import { MedalsAdminScreenComponent } from './components/admin-screen/medals/medals-admin-screen.component';
 import { GrumpidolarsComponent } from './components/admin-screen/grumpidolars/grumpidolars.component';
 import { EnergiesComponent } from './components/admin-screen/energies/energies.component';
+import { CareerComponent } from './components/rules/career/career.component';
+import { CombatsComponent } from './components/rules/combats/combats.component';
+import { GrumpisComponent } from './components/rules/grumpis/grumpis.component';
+import { InChargeComponent } from './components/rules/in-charge/in-charge.component';
+import { LeagueComponent } from './components/rules/league/league.component';
+import { LegendComponent } from './components/rules/legend/legend.component';
+import { MapsComponent } from './components/rules/maps/maps.component';
+import { MedalsComponent } from './components/rules/medals/medals.component';
+import { RestsComponent } from './components/rules/rests/rests.component';
+
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -23,6 +33,17 @@ export const routes: Routes = [
   { path: 'about', component: AboutScreenComponent },
   { path: '', component: LoginScreenComponent },
   { path: 'rules', component: RulesComponent },
+  { path: 'rules/career', component: CareerComponent },
+  { path: 'rules/combats', component: CombatsComponent },
+  { path: 'rules/energies', component: EnergiesComponent },
+  { path: 'rules/grumpidolares', component: GrumpidolarsComponent },
+  { path: 'rules/grumpis', component: GrumpisComponent },
+  { path: 'rules/inCharge', component: InChargeComponent },
+  { path: 'rules/league', component: LeagueComponent },
+  { path: 'rules/legend', component: LegendComponent },
+  { path: 'rules/maps', component: MapsComponent },
+  { path: 'rules/medals', component: MedalsComponent },
+  { path: 'rules/rests', component: RestsComponent },
   { path: 'store/medals-store', component: MedalsStoreComponent },
   { path: 'admin', component: AdminScreenComponent },
   { path: 'admin/trainers-admin', component: TrainersAdminComponent },
