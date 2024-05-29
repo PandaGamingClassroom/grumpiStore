@@ -25,6 +25,7 @@ import { MapsComponent } from './components/rules/maps/maps.component';
 import { MedalsComponent } from './components/rules/medals/medals.component';
 import { RestsComponent } from './components/rules/rests/rests.component';
 
+
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
   { path: 'store', component: StoreScreenComponent },
