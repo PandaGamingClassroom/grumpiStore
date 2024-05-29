@@ -22,7 +22,9 @@
       {
         "ignore": [
           "-webkit-mask-image",
-          "-webkit-tap-highlight-color"
+          "-webkit-tap-highlight-color",
+          "scrollbar-width",
+          "scrollbar-color"
         ]
       }
     ],
