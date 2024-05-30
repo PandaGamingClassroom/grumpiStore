@@ -9,4 +9,4 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './energies.component.html',
   styleUrl: './energies.component.scss',
 })
-export class EnergiesComponent {}
+export class ObtainEnergies {}

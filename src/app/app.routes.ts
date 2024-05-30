@@ -24,6 +24,8 @@ import { LegendComponent } from './components/rules/legend/legend.component';
 import { MapsComponent } from './components/rules/maps/maps.component';
 import { MedalsComponent } from './components/rules/medals/medals.component';
 import { RestsComponent } from './components/rules/rests/rests.component';
+import { ObtainEnergies } from './components/rules/energies/energies.component';
+import { GrumpidolaresComponent } from './components/rules/grumpidolares/grumpidolares.component';
 
 
 export const routes: Routes = [
@@ -35,8 +37,8 @@ export const routes: Routes = [
   { path: 'rules', component: RulesComponent },
   { path: 'rules/career', component: CareerComponent },
   { path: 'rules/combats', component: CombatsComponent },
-  { path: 'rules/energies', component: EnergiesComponent },
-  { path: 'rules/grumpidolares', component: GrumpidolarsComponent },
+  { path: 'rules/obtain-energies', component: ObtainEnergies },
+  { path: 'rules/grumpidolares', component: GrumpidolaresComponent },
   { path: 'rules/grumpis', component: GrumpisComponent },
   { path: 'rules/inCharge', component: InChargeComponent },
   { path: 'rules/league', component: LeagueComponent },

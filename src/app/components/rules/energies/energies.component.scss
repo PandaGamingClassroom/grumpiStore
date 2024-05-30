@@ -1,0 +1,108 @@
+.img-box {
+  height: 600px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ul-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/**
+* SCROLL
+*/
+.scrollable-div {
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px solid #2d812d;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-div::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento vertical */
+  height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+.scrollable-div::-webkit-scrollbar-track {
+  background: #ffffff; /* Color de fondo de la pista */
+  border-radius: 10px; /* Radio de borde de la pista */
+}
+.scrollable-div::-webkit-scrollbar-thumb {
+  background: #197228; /* Color de la thumb */
+  border-radius: 10px; /* Radio de borde de la thumb */
+}
+.scrollable-div::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color de la thumb al pasar el ratón */
+}
+
+/* Estilo para el contenedor principal */
+.main-container {
+  width: 80%; /* Ancho del contenedor */
+  margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  padding: 20px; /* Añadir espacio interno al contenedor */
+  overflow-y: auto; /* Habilitar scroll vertical automáticamente */
+  max-height: calc(100vh - 100px); /* Altura máxima del contenedor */
+  margin-bottom: 12px;
+}
+.content-wrapper {
+  margin-bottom: 20px; /* Agregar espacio al final del contenido */
+}
+
+/* Estilo para la tabla */
+table {
+  width: 80%; /* Ancho de la tabla */
+  margin: 0 auto; /* Centrar la tabla horizontalmente */
+  border-collapse: collapse; /* Colapsar los bordes de la tabla */
+  border-radius: 10px; /* Borde redondeado */
+  overflow: hidden; /* Ocultar el contenido que excede */
+  position: relative; /* Asegurar que la tabla esté por debajo del contenedor de la imagen */
+  z-index: 1; /* Asegurar que la tabla esté detrás del contenedor de la imagen */
+}
+
+/* Estilo para las celdas de la tabla */
+th,
+td {
+  padding: 10px; /* Espacio interno de las celdas */
+  border: 1px solid #2d812d; /* Bordes de las celdas */
+  text-align: center; /* Alinear el texto al centro */
+}
+
+/* Estilo para las celdas de la primera fila (encabezados) */
+th {
+  background-color: #2d812d; /* Color de fondo de los encabezados */
+  color: white; /* Color del texto de los encabezados */
+}
+
+.image-container {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  z-index: 2;
+  margin-top: -145px;
+}
+
+.image-container img {
+  height: auto; /* Altura automática para mantener la proporción */
+  border-radius: 10px;
+}
+
+.obj img {
+  height: 400px;
+  width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
+}
+
+.types-box {
+text-align: center;
+  height: 400px;
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
+}
