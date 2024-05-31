@@ -60,14 +60,7 @@
     La forma de evolucionar a cada Grumpi es diferente, estas se encuentran
     descritas en la tarjeta de cada uno de los Grumpi.
   </p>
-  <div class="container d-flex justify-content-center">
-    <button class="button-73" (click)="loadImageUrls()">Ver Grumpis</button>
-  </div>
-  <div class="image-container d-flex justify-content-center">
-    <div *ngFor="let image of imageUrls">
-      <img [src]="image" alt="Imagen del Grumpi" />
-    </div>
-  </div>
+
   <h2 class="container d-flex justify-content-center mt-3 box-text">
     ¿Qué son los Grumpi legendarios? ¿Cómo capturarlos?
   </h2>
@@ -96,7 +89,9 @@
     Grumpi especiales y de evento
   </h2>
   <hr />
-  <h2 class="container d-flex justify-content-center mt-3 box-text">¿Qué son?</h2>
+  <h2 class="container d-flex justify-content-center mt-3 box-text">
+    ¿Qué son?
+  </h2>
 
   <div class="capital">
     <p>
@@ -107,6 +102,26 @@
     </p>
   </div>
   <div class="container text-center">
-    <img class="box-secret" src="../../../../assets/TopSecret.png" alt="Top Secret">
+    <img
+      class="box-secret"
+      src="../../../../assets/TopSecret.png"
+      alt="Top Secret"
+    />
+  </div>
+
+  <div class="container d-flex justify-content-center mt-3">
+    <button #scrollTarget class="button-73 size" (click)="handleClick()">Ver Grumpis</button>
+  </div>
+  <div
+    *ngIf="this.isClicked"
+    class="image-container d-flex justify-content-center mt-3"
+  >
+    <div *ngFor="let image of imageUrls">
+      <img [src]="image" alt="Imagen del Grumpi" />
+      <!-- Botón fijo -->
+      <button (click)="scrollToTop()" class="button-73 fixed-button">
+        <i class="material-icons">&#xe5d8;</i>
+      </button>
+    </div>
   </div>
 </div>

@@ -58,3 +58,17 @@
   height: 400px;
   width: 400px;
 }
+
+.size{
+  width: 700px;
+  height: 80px;
+}
+
+
+.fixed-button {
+  position: fixed;
+  bottom: 90px;
+  right: 90px;
+  z-index: 1000;
+}
+

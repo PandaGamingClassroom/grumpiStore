@@ -59,14 +59,15 @@
             <div class="col-md-8">
               <div class="card-body p-4">
                 <h1 class="box-text d-flex justify-content-center">
-                  Información del entrenador
+                  <strong> INFORMACIÓN DEL ENTRENADOR </strong>
                 </h1>
                 <hr class="mt-0 mb-4" />
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
                     <h3>
                       <strong class="box-text">Energías: </strong
-                      >{{ this.trainer.data.energias.length }}
+                      >
+                      <strong> {{ this.trainer.data.energias.length }} </strong>
                     </h3>
                   </div>
                   <div class="col-6 mb-3">
@@ -76,21 +77,19 @@
                           class="dolar"
                           src="../../../assets/MONEDA_GRUMPI_CARA.png"
                         />Grumpidólares: </strong
-                      >{{ grumpidolar }}
+                      > <strong>{{ grumpidolar }} </strong>
                     </h3>
                   </div>
                 </div>
+                <p class="box-text">
+                  <strong>Marcas de combate: </strong>
+                  <img
+                    *ngFor="let mark of getCombatMarksArray()"
+                    src="../../../assets/GrumpiVice.png"
+                    class="grumpivice"
+                  />
+                </p>
                 <hr class="mt-0 mb-4" />
-                <div class="container">
-                  <p class="box-text">
-                    <strong>Marcas de combate: </strong>
-                    <img
-                      *ngFor="let mark of getCombatMarksArray()"
-                      src="../../../assets/GrumpiVice_Plantilla.png"
-                      class="grumpivice"
-                    />
-                  </p>
-                </div>
                 <div class="justify-content-center d-flex">
                   <button
                     type="button"

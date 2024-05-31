@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
@@ -24,10 +24,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class GrumpisComponent implements OnInit {
   imageUrls: string[] = [];
+  isClicked: boolean = false;
+  @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
   constructor(private grumpiService: GrumpiService) {}
 
   ngOnInit(): void {
+    this.loadImageUrls();
   }
 
   loadImageUrls() {
@@ -41,4 +44,15 @@ export class GrumpisComponent implements OnInit {
     );
   }
 
+  handleClick(): void {
+    this.isClicked = !this.isClicked;
+  }
+
+  scrollToTop(): void {
+    if (this.scrollTarget) {
+      this.scrollTarget.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }
 }
