@@ -44,6 +44,7 @@ export class BagComponent implements OnInit {
   energiaRayo: number = 0;
   energiaTierra: number = 0;
   energiaVida: number = 0;
+  activeTab: string = '';
 
   constructor(
     private trainersService: TrainerService,
@@ -111,5 +112,9 @@ export class BagComponent implements OnInit {
       console.log('Lista de energías: ', result.imageUrls);
       this.energies = result.imageUrls;
     });
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 }

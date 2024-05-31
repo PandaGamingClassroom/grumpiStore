@@ -30,8 +30,10 @@
       </button>
     </div>
   </div>
-    <h1 class="d-flex justify-content-center text-align-center"> <strong> TIENDA GRUMPI </strong> </h1>
-  <hr>
+  <h1 class="d-flex justify-content-center text-align-center">
+    <strong> TIENDA GRUMPI </strong>
+  </h1>
+  <hr />
 </div>
 
 <div class="container text-center">
@@ -93,7 +95,7 @@
       aria-labelledby="pills-objects-tab"
       tabindex="0"
     >
-      <h2>Objetos de combate</h2>
+      <h2 class="box-text">Objetos de combate</h2>
       <hr />
       <div class="container text-center align-items-center scrollable-div">
         <div class="img-creature mg-5" *ngFor="let object of this.imageUrls">
@@ -132,7 +134,7 @@
       aria-labelledby="pills-rewards-tab"
       tabindex="0"
     >
-      <h2>Recompensas</h2>
+      <h2 class="box-text">Recompensas</h2>
     </div>
     <div
       class="tab-pane fade"
@@ -141,7 +143,7 @@
       aria-labelledby="pills-evolution-objects-tab"
       tabindex="0"
     >
-      <h2>Objetos evolutivos</h2>
+      <h2 class="box-text">Objetos evolutivos</h2>
       <hr />
       <div class="row">
         <div class="col">
@@ -162,8 +164,19 @@
                   </button>
                   <div class="price-tag mt-3">
                     <span class="price">
-                      <span>
-                        5 energías de tipo: <strong> {{ object.tipo }}</strong>
+                      <span *ngIf="object.nombre.includes('Losa')">
+                        {{ object.precio }} energías de tipo:
+                        <strong> {{ object.tipo }}</strong>
+                      </span>
+                      <span
+                        *ngIf="
+                          object.nombre === 'Pluma celestial' ||
+                          object.nombre === 'Pluma oscura' ||
+                          object.nombre === 'Balanza del orden'
+                        "
+                      >
+                        {{ object.precio }}
+                        <strong> energías de cualquier tipo</strong>
                       </span>
                     </span>
                   </div>
@@ -175,8 +188,8 @@
         <!-- INFORMACIÓN SOBRE LAS ENERGÍAS DISPONIBLES POR EL ENTRENADOR -->
         <div class="col">
           <div class="container">
-            <h2>Mis energías</h2>
-            <hr>
+            <h2 class="box-text">Mis energías</h2>
+            <hr />
             <ul>
               <li>
                 <button class="evoBox">

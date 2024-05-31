@@ -10,7 +10,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { ErrorLoginModalComponentComponent } from '../../segments/error-login-modal-component/error-login-modal-component.component';
-import { subscribe } from 'diagnostics_channel';
 import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
@@ -97,6 +96,7 @@ export class StoreScreenComponent implements OnInit {
     this.grumpiService.getEvolutionObjects().subscribe(
       (response) => {
         this.evolutionObjects = response.objectsList;
+
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -148,7 +148,6 @@ export class StoreScreenComponent implements OnInit {
       this.openErrorModal(this.errorTitle, this.errorMessage);
     } else {
       finalCount = grumpidolarTrainer - price;
-      console.log('Grumpidolares finales para el entrenador: ', finalCount);
       this.trainersService
         .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
         .subscribe(
@@ -191,9 +190,6 @@ export class StoreScreenComponent implements OnInit {
      * para comprar el objeto seleccionado
      */
     let error: boolean = false;
-
-    console.log('Precio del objeto:', price);
-    console.log('Tipo de energía requerida:', requiredEnergyType);
     /**
      * Se validan todos los tipos de energía disponibles
      * Se validan los precios de los objetos
@@ -409,7 +405,6 @@ export class StoreScreenComponent implements OnInit {
    */
   getEnergies(trainerData: any, typeEnergy: string) {
     let energies = trainerData.data.energias;
-    console.log('Datos del entrenador: ', energies);
     for (let energia of energies) {
       if (energia.tipo == 'Agua') {
         this.cantidadEnergiaAgua++;

@@ -17,12 +17,7 @@
   </button>
 </div>
 
-<h1 class="justify-content-center d-flex mb-3">Mochila entrenador</h1>
-
-<div class="container d-flex justify-content-end mb-6">
-  <h3>Marcas de combate conseguidas: {{ marcasCombate }}</h3>
-</div>
-
+<h1 class="justify-content-center d-flex mb-3 box-text">Mochila entrenador</h1>
 <div class="container text-center">
   <ul
     class="nav nav-pills mb-3 justify-content-center"
@@ -109,7 +104,7 @@
       aria-labelledby="pills-objects-tab"
       tabindex="0"
     >
-      <h2>Mis Grumpis</h2>
+      <h2 class="box-text">Mis Grumpis</h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -148,12 +143,12 @@
       aria-labelledby="pills-rewards-tab"
       tabindex="0"
     >
-      <h2>Mis Recompensas</h2>
+      <h2 class="box-text">Mis Recompensas</h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
           <div class="col-md-6">
-            <h2>Objetos evolutivos:</h2>
+            <h2 class="box-text">Objetos evolutivos:</h2>
             <div
               class="evolutionBox-img mg-5"
               *ngFor="let combatObjet of this.trainer?.data?.objetos_evolutivos"
@@ -177,7 +172,7 @@
       aria-labelledby="pills-evolution-objects-tab"
       tabindex="0"
     >
-      <h2>Mis Objetos de combate</h2>
+      <h2 class="box-text">Mis Objetos de combate</h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -199,7 +194,7 @@
       aria-labelledby="pills-medals-tab"
       tabindex="0"
     >
-      <h2>Mis Medallas</h2>
+      <h2 class="box-text">Mis Medallas</h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -221,7 +216,7 @@
       aria-labelledby="pills-energy-tab"
       tabindex="0"
     >
-      <h2>Mis Energías</h2>
+      <h2 class="box-text">Mis Energías</h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">

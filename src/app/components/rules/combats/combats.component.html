@@ -16,3 +16,257 @@
     Atrás
   </button>
 </div>
+<div class="container">
+  <h1 class="d-flex justify-content-center">Combates Grumpi</h1>
+  <hr />
+</div>
+<div class="container-md scrollable-div mb-6">
+  <div class="capital">
+    <p class="mt-3">
+      Los combates Grumpi, son un minijuego para poder utilizar y darle más uso
+      a nuestras criaturas. En estos, hemos de utilizar diversas destrezas de
+      lógica, calculo y razonamiento para poder superar cada uno de los retos.
+    </p>
+  </div>
+  <p>
+    Es un juego de cartas pensado para dos jugadores, en el que se enfrentarán
+    ambos, usando los Grumpi que ellos seleccionen, con la finalidad de derrotar
+    a los Grumpi de su contrincante. Ganará el primero que se quede sin Grumpi
+    Activos.
+  </p>
+  <p class="container d-flex justify-content-center mt-3 box-text">
+    <strong>¿Cómo se desarrollará el combate?</strong>
+  </p>
+  <h2 class="box-text">1º Fase de preparación</h2>
+  <div class="capital">
+    <p class="mt-3">
+      En primer lugar, se lanza una moneda Grumpi al aire para ver quién
+      comenzará seleccionando. Una vez determinado quién comenzará, elegirá de
+      entre los Grumpis que haya conseguido uno, posteriormente, su contrincante
+      elegirá otro de los que haya conseguido.. así consecutivamente hasta que
+      cada uno de ellos haya elegido tres. No vale repetir Grumpi, por eso se
+      hace por turnos.
+    </p>
+  </div>
+  <p>
+    Una vez seleccionados los Grumpi, se buscarán sus cartas en el mazo Grumpi y
+    se colocarán en el tablero boca arriba en la parte de Banco Grumpi. Además,
+    hemos de preparar los objetos de combate de los que dispongamos, así como de
+    las energías que queramos utilizar durante el combate.
+  </p>
+  <p>
+    Tras colocar las cartas y el resto de elementos, se vuelve a lanzar la
+    moneda Grumpi para determinar quién dará comienzo en el enfrentamiento. Una
+    vez determinado, cada uno de jugadores elegirá uno de sus Grumpi en el
+    banquillo y lo colocará como Grumpi activo.
+  </p>
+  <p>
+    Luego, marcaremos la vida de nuestro Grumpi activo en el contador de vida, y
+    dará comienzo la fase de combate.
+  </p>
+  <h2 class="box-text">2º Fase de combate.</h2>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="capital">
+        <p>
+          Cada ronda, se lanzará una moneda al aire para ver quién jugará
+          primero en ese turno, excepto, cuando un jugador use ciertas
+          habilidades como atacar primero, que entonces, será él o ella quién
+          dará comienzo en en el enfrentamiento.
+        </p>
+      </div>
+      <p>
+        El combate se desarrollará por turnos. En primer lugar, el jugador que
+        ganó el lanzamiento para comenzar en el combate, elegirá un ataque de la
+        carta de su Grumpi o el objeto que quiera utilizar, aplicando el efecto
+        de dicho ataque u objeto en su adversario o en sí mismo.
+      </p>
+      <p>
+        Si esa habilidad hace daño, se resta esa cantidad de salud del contador
+        de vida. Por otro lado, si la habilidad aplica un efecto secundario, se
+        colocará la carta de dicho efecto en el lugar indicado en el tablero.
+        Hemos de tener en cuenta estos efectos a lo largo del combate. Hay
+        ataques que solamente restan salud, ataques que solo aplican efectos y
+        otros que hacen ambas funciones.
+      </p>
+    </div>
+    <div class="col-md-3 ms-auto text-end">
+      <img
+        class="grumpi-shadow"
+        src="../../../../assets/grumpis/078-Okovil.png"
+      />
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+  <p>
+    Una vez haya terminado el turno del primer jugador, pasará a ser el lugar
+    del segundo para realizar su ataque.
+  </p>
+  <p>
+    Cuando ambos jugadores hayan realizado sus acciones, se acabará la ronda y,
+    como se indicaba, se volverá a lanzar la moneda para determinar nuevamente
+    quién comenzará en la siguiente ronda. Recordar, nuevamente, que hay ataques
+    que nos permiten ser los primeros en atacar, por lo que no necesitaremos
+    lanzar moneda esa ronda.
+  </p>
+  <p>
+    Una vez finalizada la ronda, los objetos y energía utilizada se retiran del
+    tablero, para que no se mezclen con los que se puedan usar en futuras
+    rondas.
+  </p>
+  <h2 class="box-text">3º Tipos de ataques.</h2>
+  <div class="capital">
+    <p class="mt-3">
+      Todos los Grumpi cuentan con dos ataques. Un ataque básico que no cuesta
+      energía usarlo, y un ataque cargado, para el cual, necesitaremos pagar la
+      cantidad de energía.
+    </p>
+  </div>
+  <p>
+    Para usar un ataque cargado, dejaremos la energía del tipo requerido sobre
+    el tablero, y realizaremos la acción que indique dicho ataque. Si no
+    dispongo de energías de ese tipo o se me han agotado, no podré utilizar
+    dicho ataque.
+  </p>
+
+  <h2 class="box-text">4º Estados alterados.</h2>
+  <div class="capital">
+    <p>
+      Son estados que alteran el rumbo normal del juego. Entre ellas
+      encontramos:
+    </p>
+  </div>
+  <div class="container box-instructions">
+    <p>
+      <strong class="box-text">Confusión: </strong>Al utilizar un ataque con la
+      habilidad de confundir, el Grumpi afectado pierde el turno. En su segundo
+      turno lanza una moneda. Cara: Desaparece la confusión y realiza el ataque.
+      Cruz: Recibe el daño el propio Grumpi. Si el Grumpi muere, desaparece este
+      estado.
+    </p>
+    <p>
+      <strong class="box-text">Paralizar: </strong>Al utilizar un ataque con la
+      habilidad de paralizar, el Grumpi afectado pierde el turno. En el
+      siguiente turno lanza una moneda. Cara: Desaparece la parálisis y realiza
+      el ataque. Cruz: Pierde el turno. Si el Grumpi muere, desaparece este
+      estado.
+    </p>
+    <p>
+      <strong class="box-text">Veneno: </strong>Al utilizar un ataque con la
+      habilidad de envenenar, el Grumpi objetivo queda envenenado. El veneno
+      resta salud al Grumpi cada turno. El daño que resta viene de multiplicar
+      el número indicado por x10. Este estado solo deja de hacer efecto cuando
+      usemos un antídoto o cuando el Grumpi muera.
+    </p>
+    <p>
+      <strong class="box-text">Cegar: </strong>Al utilizar un ataque con la
+      habilidad de cegar, el Grumpi afectado pierde el siguiente turno.
+    </p>
+    <p>
+      <strong class="box-text">Quemadura: </strong>Al utilizar un ataque con la
+      habilidad de quemar, el Grumpi afectado recibe X puntos de daño por turno.
+      El daño que resta viene de multiplicar el número indicado por x10. Este
+      estado solo deja de hacer efecto cuando usemos un extintor o cuando el
+      Grumpi muera.
+    </p>
+    <p>
+      <strong class="box-text">Atacar primero: </strong>Permite atacar en primer
+      lugar en el siguiente turno.
+    </p>
+    <p>
+      <strong class="box-text">Curar: </strong>El Grumpi se cura 10 puntos de
+      salud. Si por el contrario al lado nos aparece el icono de un recuadro con
+      un número indicado, significa que se cura 10 x cada número que aparezca.
+    </p>
+    <p>
+      <strong class="box-text">Protegerse: </strong>Ignora el siguiente ataque
+      del Grumpi contrario, por lo que no recibe daño este turno.
+    </p>
+    <p>
+      <strong class="box-text">Turno extra: </strong>Vuelve a jugar de nuevo. No
+      puede volver a usar el ataque de ganar un turno extra dos veces seguidas.
+    </p>
+  </div>
+  <h2 class="box-text">5º Otros efectos y ataques especiales.</h2>
+  <div class="capital">
+    <p class="mt-3">
+      Algunos ataques no nos dejan un estado alterado, pero sí tienen alguna
+      función adicional. Entre estos, encontramos:
+    </p>
+  </div>
+  <div class="container box-instructions">
+    <p>
+      <strong class="box-text">Lanzar moneda: </strong>Se lanza una moneda al
+      aire tantas veces como indique el ataque. Hace el daño por tantas caras
+      como saque.
+    </p>
+    <p>
+      <strong class="box-text">Teletransporte: </strong>Se cambia el Grumpi
+      activo en combate por otro Grumpi del banquillo. Mantiene los estados
+      alterados que tuviera.
+    </p>
+    <p>
+      <strong class="box-text">Copión: </strong>Copia el ataque más poderoso del
+      Grumpi rival.
+    </p>
+  </div>
+  <h2 class="box-text">6º Objetos de combate.</h2>
+  <div class="capital">
+    <p>
+      Durante mi turno, puedo elegir en lugar de atacar, utilizar un objeto que
+      me ayude en el combate. Esta acción cuenta como un ataque, por lo que no
+      puedo usar un objeto y atacar en el mismo turno. Estos objetos son:
+    </p>
+  </div>
+  <div class="container box-instructions">
+    <p>
+      <strong class="box-text">Poción: </strong>Restaura 80 de salud del Grumpi
+      que seleccionemos.
+    </p>
+    <p>
+      <strong class="box-text">Antídoto: </strong>Elimina el estado de veneno
+      del Grumpi.
+    </p>
+    <p>
+      <strong class="box-text">Extintor: </strong>Elimina el estado quemadura
+      del Grumpi.
+    </p>
+    <p>
+      <strong class="box-text">Gafas de sol: </strong>Elimina el estado ceguera.
+    </p>
+    <p>
+      <strong class="box-text">Despertador: </strong>Elimina el estado
+      confusión.
+    </p>
+    <p>
+      <strong class="box-text"><button>Desfibrilador:</button> </strong>Elimina
+      el estado paralizar.
+    </p>
+  </div>
+  <h2 class="box-text">7º Final del combate.</h2>
+  <div class="capital">
+    <p class="mt-3">
+      Ganará el combate el primer entrenador que derrote a los Grumpi de su
+      rival, es decir, que haga que todos ellos lleguen a 0 sus puntos de salud.
+    </p>
+  </div>
+  <p>
+    Una vez acabado el combate, se le indicará al profesor quién fue el vencedor
+    y este recibirá una marca de combate que pegará en su ficha de entrenador,
+    la cual es necesaria para evolucionar o mejorar algunos Grumpi.
+  </p>
+  <p>
+    Por otro lado, los objetos y la energía utilizada se le entregarán al
+    profesor o profesora para que los guarde.
+  </p>
+  <p class="container d-flex justify-content-center mt-3 box-text">
+    <strong>¿Serás tú quién gane más combates de clase?</strong>
+  </p>
+  <div class="container text-center">
+    <img
+      class="box-battleCamp"
+      src="../../../../assets/_CAMPO BATALLA GRUMPI._1.png"
+      alt="Campo de batalla Grumpi"
+    />
+  </div>
+</div>

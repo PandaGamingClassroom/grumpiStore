@@ -26,3 +26,37 @@
 .scrollable-div::-webkit-scrollbar-thumb:hover {
   background: #555; /* Color de la thumb al pasar el ratón */
 }
+
+.dolar-box {
+  height: 300px;
+  width: 350px;
+}
+
+.dolar-box-cruz {
+  height: 400px;
+  width: 300px;
+}
+
+/* Estilo para la tabla */
+table {
+  width: 80%; /* Ancho de la tabla */
+  margin: 0 auto; /* Centrar la tabla horizontalmente */
+  border-collapse: collapse; /* Colapsar los bordes de la tabla */
+  border-radius: 10px; /* Borde redondeado */
+  overflow: hidden; /* Ocultar el contenido que excede */
+  position: relative; /* Asegurar que la tabla esté por debajo del contenedor de la imagen */
+  z-index: 1; /* Asegurar que la tabla esté detrás del contenedor de la imagen */
+}
+/* Estilo para las celdas de la tabla */
+th,
+td {
+  padding: 10px; /* Espacio interno de las celdas */
+  border: 1px solid #2d812d; /* Bordes de las celdas */
+  text-align: center; /* Alinear el texto al centro */
+}
+
+/* Estilo para las celdas de la primera fila (encabezados) */
+th {
+  background-color: #2d812d; /* Color de fondo de los encabezados */
+  color: white; /* Color del texto de los encabezados */
+}

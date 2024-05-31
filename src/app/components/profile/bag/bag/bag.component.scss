@@ -44,3 +44,14 @@ ul {
   max-width: 100%;
   height: auto;
 }
+
+/* Ejemplo de personalización */
+.nav-link {
+  cursor: pointer;
+}
+.tab-pane {
+  display: none; /* Ocultar todos los paneles por defecto */
+}
+.tab-pane.active {
+  display: block; /* Mostrar el panel activo */
+}
