@@ -49,6 +49,7 @@ export class TrainersEditComponent implements OnInit {
       trainer_name: ['', Validators.required],
       trainer_pass: ['', Validators.required],
       grumpidolar: [''],
+      combatMark: ['']
     });
   }
 
@@ -58,6 +59,7 @@ export class TrainersEditComponent implements OnInit {
       trainer_name: this.data.name,
       trainer_pass: this.data.password,
       grumpidolar: this.data.grumpidolar || '', // Si no hay grumpidolar, se establece como cadena vacía
+      combatMark: this.data.marca_combate
     });
 
     console.log('data edit', this.data);
@@ -69,6 +71,7 @@ export class TrainersEditComponent implements OnInit {
         name: this.myForm.get('trainer_name')?.value,
         password: this.myForm.get('trainer_pass')?.value,
         grumpidolar: this.myForm.get('grumpidolar')?.value,
+        combatMark: this.myForm.get('combatMark')?.value,
       };
 
       this.trainersService

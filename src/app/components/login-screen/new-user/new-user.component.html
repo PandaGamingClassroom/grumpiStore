@@ -1,0 +1,45 @@
+<div class="logo">
+  <img src="../../../assets/Logo_v0.1_sinFondo.png" />
+</div>
+<div class="container config-size">
+  <h1 class="d-flex justify-content-center box-text">Alta nuevo usuario</h1>
+  <hr />
+  <form [formGroup]="myForm" class="form-wrapper" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="trainer_name"><strong> Nombre del usuario </strong></label>
+      <input
+        type="email"
+        class="form-control"
+        id="trainer_name"
+        aria-describedby="emailHelp"
+        placeholder="Introduce tu nombre de entrenador"
+        formControlName="trainer_name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password"><strong> Contraseña </strong></label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Contraseña"
+        formControlName="password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="rol"><strong> Rol </strong></label>
+      <select class="form-select" aria-label="Rol" formControlName="rol">
+        <option selected disabled>Selecciona un rol</option>
+        <option value="profesor">Profesor</option>
+        <option value="entrenador">Entrenador</option>
+      </select>
+    </div>
+    <br />
+    <div class="container d-flex justify-content-center">
+      <button type="submit" class="button-73">Añadir</button>
+    </div>
+  </form>
+</div>
+<div class="container d-flex justify-content-center mt-3">
+  <button type="submit" class="button-73" routerLink="/">Cancelar</button>
+</div>

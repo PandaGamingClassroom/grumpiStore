@@ -26,10 +26,12 @@ import { MedalsComponent } from './components/rules/medals/medals.component';
 import { RestsComponent } from './components/rules/rests/rests.component';
 import { ObtainEnergies } from './components/rules/energies/energies.component';
 import { GrumpidolaresComponent } from './components/rules/grumpidolares/grumpidolares.component';
+import { NewUserComponent } from './components/login-screen/new-user/new-user.component';
 
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
+  { path: 'newUser', component: NewUserComponent },
   { path: 'store', component: StoreScreenComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'about', component: AboutScreenComponent },

@@ -26,13 +26,12 @@ export class ProfileComponent implements OnInit {
   errorMessage: string = '';
   getError: boolean = false;
   grumpidolar: string = '';
+  combatMarks: number = 0;
 
   constructor(
     private avatarService: AvatarService,
     private trainersService: TrainerService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.avatarService.loadAvatarFromStorage();
@@ -76,13 +75,20 @@ export class ProfileComponent implements OnInit {
         } else {
           this.trainer = data;
           this.grumpidolar = this.trainer.data.grumpidolar;
+          this.combatMarks = this.trainer.data.marca_combate;
           console.log('Datos del entrenador: ', this.trainer.data);
-
         }
       },
       (error) => {
         console.error('Error:', error);
       }
     );
+  }
+  getCombatMarksArray(): number[] {
+    const combatMarksArray: number[] = [];
+    for (let i = 0; i < this.combatMarks; i++) {
+      combatMarksArray.push(i);
+    }
+    return combatMarksArray;
   }
 }
