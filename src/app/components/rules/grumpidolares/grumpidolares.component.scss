@@ -60,3 +60,9 @@ th {
   background-color: #2d812d; /* Color de fondo de los encabezados */
   color: white; /* Color del texto de los encabezados */
 }
+
+.capital > p::first-letter {
+  font-size: 4em; /* Tamaño de la primera letra */
+  font-weight: bold; /* Negrita (opcional) */
+  color: rgb(0, 143, 7); /* Color de la primera letra */
+}

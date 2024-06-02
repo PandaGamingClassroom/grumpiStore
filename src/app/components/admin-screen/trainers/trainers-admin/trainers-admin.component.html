@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col">
       <h3><strong> Lista de entrenadores </strong></h3>
-      <hr>
+      <hr />
       <button
         type="button"
         class="btn btn-success btn-list"
@@ -32,7 +32,7 @@
       </button>
       <div class="list">
         <p *ngIf="getError">{{ errorGetTrainers }}</p>
-        <ul>
+        <ul *ngIf="trainers.length > 1">
           <li *ngFor="let alumno of trainers">
             <div class="row">
               <div class="col" id="entrenador">
@@ -40,7 +40,11 @@
               </div>
               <!-- Botón editar entrenador -->
               <div class="col">
-                <button type="button" class="btn btn-secondary btn-list" (click)="openEditPage(alumno)">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-list"
+                  (click)="openEditPage(alumno)"
+                >
                   <i class="material-icons">&#xe254;</i>
                 </button>
                 <!-- Botón eliminar entrenador -->
@@ -56,7 +60,38 @@
                 </button>
               </div>
             </div>
-            <hr/>
+            <hr />
+          </li>
+        </ul>
+        <ul *ngIf="trainers.length == 1">
+          <li *ngFor="let alumno of trainers">
+            <div class="row">
+              <div class="col" id="entrenador">
+                <strong> {{ alumno.name }} </strong>
+              </div>
+              <!-- Botón editar entrenador -->
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-list"
+                  (click)="openEditPage(alumno)"
+                >
+                  <i class="material-icons">&#xe254;</i>
+                </button>
+                <!-- Botón eliminar entrenador -->
+                <button
+                  #trainerSelected
+                  type="button"
+                  class="btn btn-danger btn-list"
+                  data-bs-toggle="modal"
+                  data-bs-target="#eraseModal"
+                  (click)="selectTrainer(alumno.name)"
+                >
+                  <i class="material-icons">&#xe872;</i>
+                </button>
+              </div>
+            </div>
+            <hr />
           </li>
         </ul>
       </div>
@@ -84,14 +119,24 @@
         ></button>
       </div>
       <div class="modal-body">
-        <p>¡Cuidado! Estás a punto de eliminar a <strong> {{trainerSelected}} </strong>.</p>
+        <p>
+          ¡Cuidado! Estás a punto de eliminar a
+          <strong> {{ trainerSelected }} </strong>.
+        </p>
         <p><strong> ¿Estás seguro? </strong></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancelar
         </button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTrainer()">Aceptar</button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="deleteTrainer()"
+        >
+          Aceptar
+        </button>
       </div>
     </div>
   </div>
@@ -150,7 +195,9 @@
           type="submit"
           class="btn btn-success"
           data-bs-dismiss="modal"
-          (click)="guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)"
+          (click)="
+            guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)
+          "
         >
           Guardar
         </button>
@@ -158,4 +205,3 @@
     </div>
   </div>
 </div>
-

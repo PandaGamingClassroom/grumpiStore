@@ -8,23 +8,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './view-image.component.html',
   styleUrl: './view-image.component.scss',
 })
-export class ViewImageComponent implements OnInit{
+export class ViewImageComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ViewImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.data);
-
-  }
-
-  chooseImge(img: string) {
-
-  }
+  ngOnInit(): void {}
 
   closeDialog() {
     this.dialogRef.close();
-    window.location.reload();
   }
 }

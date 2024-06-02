@@ -7,6 +7,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class TrainerService {
   private apiUrl = 'http://localhost:3000/'; // URL del servidor donde se encuentra la API REST
+  private apiUrl_NewUser = 'http://localhost:3000/new-user/';
 
   constructor(private http: HttpClient) {}
 
@@ -34,6 +35,11 @@ export class TrainerService {
   postTrainer(name: string, password: string) {
     const body = { name, password }; // Objeto con los datos a enviar al servidor
     return this.http.post(this.apiUrl, body);
+  }
+
+  postNewUser(name: string, password: string, rol: string) {
+    const body = { name, password, rol }; // Objeto con los datos a enviar al servidor
+    return this.http.post(this.apiUrl_NewUser, body);
   }
 
   /**
@@ -184,7 +190,7 @@ export class TrainerService {
    */
   assignEvolutionObjectsToTrainer(
     trainerName: string,
-    evoObject: string,
+    evoObject: string
   ): Observable<any> {
     const url = `${this.apiUrl}assign-evo-objects`;
     const body = { trainerName, evoObject };
@@ -197,6 +203,47 @@ export class TrainerService {
           return throwError(error);
         }
       })
+    );
+  }
+
+  /************************************************
+   *
+   *
+   *             GESTIÓN DE PROFESORADO
+   *
+   *
+   ***********************************************/
+
+  /**
+   * Función para obtener una lista de profesores
+   *
+   * @returns Devuelve una lista de profesores disponibles
+   */
+  getProfesores(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}profesores`);
+  }
+
+  /**
+   * Función para obtener un profesor por su id
+   * @param id
+   * @returns
+   */
+  getProfesor(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}profesor/${id}`);
+  }
+
+  /**
+   * Función para obtener un profesor por su nombre
+   * @param nombre
+   * @returns
+   */
+  getProfesorByName(nombre: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}profesor/${nombre}`);
+  }
+
+  getEntrenadoresByProfesorId(profesorId: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}profesor/${profesorId}/entrenadores`
     );
   }
 }

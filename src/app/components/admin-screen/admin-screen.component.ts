@@ -5,26 +5,41 @@ import { FooterComponent } from '../footer/footer.component';
 import { GrumpidolarsComponent } from './grumpidolars/grumpidolars.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EnergiesComponent } from './energies/energies.component';
+import { TrainerService } from '../services/trainers/trainer.service';
 
 @Component({
   selector: 'app-admin-screen',
   standalone: true,
   imports: [RouterLink, NavBarAdminComponent, FooterComponent],
+  providers: [TrainerService],
   templateUrl: './admin-screen.component.html',
   styleUrl: './admin-screen.component.scss',
 })
 export class AdminScreenComponent implements OnInit {
   userData: any;
+  username: any;
   modalAbierta = false;
   confirmMessage: string = 'Grumpi añadido correctamente.';
+  profesor: any;
+  trainers: any[] = [];
+  nameProfesor: any;
+  lastNameProfesor: any;
 
-  constructor(private routes: ActivatedRoute, private dialog: MatDialog) {}
+  constructor(
+    private routes: ActivatedRoute,
+    private dialog: MatDialog,
+    private trainersService: TrainerService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     // Obtener los datos de la ruta
-    this.routes.params.subscribe((params) => {
-      this.userData = params['data'];
-    });
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+      this.nameProfesor = localStorage.getItem('nameUser');
+      this.getDadataProfesor(this.nameProfesor);
+    }
   }
 
   openModal() {
@@ -63,5 +78,33 @@ export class AdminScreenComponent implements OnInit {
       });
       this.modalAbierta = true;
     }
+  }
+
+  getDadataProfesor(name: string) {
+    this.trainersService.getProfesorByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+        } else {
+          this.profesor = data;
+          this.lastNameProfesor = data.data.apellidos;
+          this.getEntrenadores(data.data.id);
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  getEntrenadores(profesorId: number) {
+    this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
+      (data) => {
+        this.trainers = data;
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
 }

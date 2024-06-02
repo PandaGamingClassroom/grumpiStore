@@ -55,6 +55,7 @@ export class StoreScreenComponent implements OnInit {
   cantidadEnergiaRayo: number = 0;
   cantidadEnergiaNormal: number = 0;
   cantidadEnergiaOscuridad: number = 0;
+  cantidadTotal: number = 0;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -194,6 +195,8 @@ export class StoreScreenComponent implements OnInit {
      * Se validan todos los tipos de energía disponibles
      * Se validan los precios de los objetos
      */
+    console.log(requiredEnergyType);
+
     switch (requiredEnergyType) {
       case 'agua':
         {
@@ -426,5 +429,15 @@ export class StoreScreenComponent implements OnInit {
         this.cantidadEnergiaVida++;
       }
     }
+    this.cantidadTotal =
+      this.cantidadEnergiaAgua +
+      this.cantidadEnergiaFuego +
+      this.cantidadEnergiaAire +
+      this.cantidadEnergiaLuz +
+      this.cantidadEnergiaNormal +
+      this.cantidadEnergiaOscuridad +
+      this.cantidadEnergiaRayo +
+      this.cantidadEnergiaTierra +
+      this.cantidadEnergiaVida;
   }
 }

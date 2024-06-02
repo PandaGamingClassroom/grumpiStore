@@ -22,9 +22,10 @@ import { TrainerService } from '../services/trainers/trainer.service';
 export class LoginScreenComponent implements OnInit {
   myForm!: FormGroup;
 
-  adminName = 'admin';
-  adminPassword = 'admin';
+  adminName: string = '';
+  adminPassword: string = '';
   trainers: any[] = [];
+  profesors: any;
   error: boolean = false;
   user: string = '';
   pass: string = '';
@@ -45,11 +46,24 @@ export class LoginScreenComponent implements OnInit {
     });
 
     this.getTrainers();
+    this.getProfesores();
   }
 
+  /**
+   * Función para obtener los datos de los entrenadores
+   */
   getTrainers() {
     this.trainerService.getTrainers().subscribe((data: any) => {
       this.trainers = data.trainer_list;
+    });
+  }
+
+  /**
+   * Función para obtener los datos de los profesores
+   */
+  getProfesores() {
+    this.trainerService.getProfesores().subscribe((data: any) => {
+      this.profesors = data.profesoresList;
     });
   }
 
@@ -70,12 +84,15 @@ export class LoginScreenComponent implements OnInit {
     this.user = this.myForm.value.trainer_name;
     this.pass = this.myForm.value.password;
 
-    if (this.user == this.adminName && this.pass == this.adminPassword) {
-      this.error = false;
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('username', this.user);
-      this.route.navigate(['/admin', this.myForm.value]);
-      return;
+    for (const profe of this.profesors) {
+      if (profe.usuario === this.user && profe.password == this.pass) {
+        this.error = false;
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', this.user);
+        localStorage.setItem('nameUser', profe.nombre);
+        this.route.navigate(['/admin', this.myForm.value]);
+        return;
+      }
     }
 
     for (const trainer of this.trainers) {

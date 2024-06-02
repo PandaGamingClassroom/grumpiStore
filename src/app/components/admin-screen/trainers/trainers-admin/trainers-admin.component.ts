@@ -33,6 +33,10 @@ export class TrainersAdminComponent implements OnInit {
   confirmMessageBoolean: boolean = false;
   getError: boolean = false;
   trainerSelected: string = '';
+  nameProfesor: any;
+  lastNameProfesor: any;
+  profesor: any;
+  username: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -40,7 +44,12 @@ export class TrainersAdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getTrainers();
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+      this.nameProfesor = localStorage.getItem('nameUser');
+      this.getDadataProfesor(this.nameProfesor);
+    }
   }
 
   /**
@@ -132,5 +141,34 @@ export class TrainersAdminComponent implements OnInit {
       console.log('La modal se ha cerrado');
       window.location.reload();
     });
+  }
+
+  getDadataProfesor(name: string) {
+    this.trainersService.getProfesorByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+        } else {
+          this.profesor = data;
+          this.lastNameProfesor = data.data.apellidos;
+          this.getEntrenadores(data.data.id);
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  getEntrenadores(profesorId: number) {
+    this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
+      (data) => {
+        this.trainers = data.data;
+        console.log('Entrenadores del profesor: ', this.trainers);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
 }

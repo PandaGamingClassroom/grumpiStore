@@ -17,7 +17,9 @@
   </button>
 </div>
 
-<h1 class="justify-content-center d-flex mb-3 box-text">Mochila entrenador</h1>
+<h1 class="justify-content-center d-flex mb-3 box-text box-text">
+  <strong> MI MOCHILA </strong>
+</h1>
 <div class="container text-center">
   <ul
     class="nav nav-pills mb-3 justify-content-center"
@@ -104,7 +106,7 @@
       aria-labelledby="pills-objects-tab"
       tabindex="0"
     >
-      <h2 class="box-text">Mis Grumpis</h2>
+      <h2 class="box-text"><strong>MIS GRUMPIS</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -143,7 +145,7 @@
       aria-labelledby="pills-rewards-tab"
       tabindex="0"
     >
-      <h2 class="box-text">Mis Recompensas</h2>
+      <h2 class="box-text"><strong>MIS RECOMPENSAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -172,7 +174,7 @@
       aria-labelledby="pills-evolution-objects-tab"
       tabindex="0"
     >
-      <h2 class="box-text">Mis Objetos de combate</h2>
+      <h2 class="box-text"><strong>MIS OBJETOS DE COMBATE</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -194,7 +196,7 @@
       aria-labelledby="pills-medals-tab"
       tabindex="0"
     >
-      <h2 class="box-text">Mis Medallas</h2>
+      <h2 class="box-text"><strong>MIS MEDALLAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -216,7 +218,7 @@
       aria-labelledby="pills-energy-tab"
       tabindex="0"
     >
-      <h2 class="box-text">Mis Energías</h2>
+      <h2 class="box-text"><strong>MIS ENERGÍAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
@@ -225,19 +227,39 @@
               class="img-creature mg-5"
               *ngFor="let energyImage of this.energies"
             >
-            <div class="row">
-              <div class="col-md-6"><img srcset="{{ energyImage }}" /></div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Agua2')"><strong>Cantidad:</strong> {{ this.energiaAgua }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Fuego2')"><strong>Cantidad:</strong> {{ this.energiaFuego }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Aire2')"><strong>Cantidad:</strong> {{ this.energiaAire }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Luz2')"><strong>Cantidad:</strong> {{ this.energiaLuz }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Normal2')"><strong>Cantidad:</strong> {{ this.energiaNormal }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Oscuridad2')"><strong>Cantidad:</strong> {{ this.energiaOscuridad }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Rayo2')"><strong>Cantidad:</strong> {{ this.energiaRayo }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Tierra2')"><strong>Cantidad:</strong> {{ this.energiaTierra }}</div>
-              <div class="col-md-6" *ngIf="energyImage.includes('Vida2')"><strong>Cantidad:</strong> {{ this.energiaVida }}</div>
-            </div>
-
+              <div class="row">
+                <div class="col-md-6"><img srcset="{{ energyImage }}" /></div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Agua2')">
+                  <strong>Cantidad:</strong> {{ this.energiaAgua }}
+                </div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Fuego2')">
+                  <strong>Cantidad:</strong> {{ this.energiaFuego }}
+                </div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Aire2')">
+                  <strong>Cantidad:</strong> {{ this.energiaAire }}
+                </div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Luz2')">
+                  <strong>Cantidad:</strong> {{ this.energiaLuz }}
+                </div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Normal2')">
+                  <strong>Cantidad:</strong> {{ this.energiaNormal }}
+                </div>
+                <div
+                  class="col-md-6"
+                  *ngIf="energyImage.includes('Oscuridad2')"
+                >
+                  <strong>Cantidad:</strong> {{ this.energiaOscuridad }}
+                </div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Rayo2')">
+                  <strong>Cantidad:</strong> {{ this.energiaRayo }}
+                </div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Tierra2')">
+                  <strong>Cantidad:</strong> {{ this.energiaTierra }}
+                </div>
+                <div class="col-md-6" *ngIf="energyImage.includes('Vida2')">
+                  <strong>Cantidad:</strong> {{ this.energiaVida }}
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -33,3 +33,9 @@ col {
 .scrollable-div::-webkit-scrollbar-thumb:hover {
   background: #555; /* Color de la thumb al pasar el ratón */
 }
+
+.capital > p::first-letter {
+  font-size: 4em; /* Tamaño de la primera letra */
+  font-weight: bold; /* Negrita (opcional) */
+  color: rgb(0, 143, 7); /* Color de la primera letra */
+}
