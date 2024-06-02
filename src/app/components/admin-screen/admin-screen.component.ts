@@ -6,11 +6,12 @@ import { GrumpidolarsComponent } from './grumpidolars/grumpidolars.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EnergiesComponent } from './energies/energies.component';
 import { TrainerService } from '../services/trainers/trainer.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-screen',
   standalone: true,
-  imports: [RouterLink, NavBarAdminComponent, FooterComponent],
+  imports: [RouterLink,CommonModule, NavBarAdminComponent, FooterComponent],
   providers: [TrainerService],
   templateUrl: './admin-screen.component.html',
   styleUrl: './admin-screen.component.scss',
@@ -38,6 +39,7 @@ export class AdminScreenComponent implements OnInit {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       this.nameProfesor = localStorage.getItem('nameUser');
+      this.lastNameProfesor = localStorage.getItem('lastNameUser');
       this.getDadataProfesor(this.nameProfesor);
     }
   }

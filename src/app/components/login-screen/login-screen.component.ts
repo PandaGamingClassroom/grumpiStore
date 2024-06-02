@@ -90,6 +90,7 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', this.user);
         localStorage.setItem('nameUser', profe.nombre);
+        localStorage.setItem('lastNameUser', profe.apelidos);
         this.route.navigate(['/admin', this.myForm.value]);
         return;
       }
