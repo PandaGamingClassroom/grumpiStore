@@ -1,5 +1,5 @@
 .main-container {
-  margin-top: 5%;
+  margin-top: 1%;
 }
 
 .btns {
@@ -7,4 +7,17 @@
   width: 300px;
   font-size: medium;
   margin-bottom: 5%;
+}
+
+.scrollable-div {
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.prof_box {
+  border: 2px solid #ccc; /* Borde del div */
+  border-radius: 15px; /* Radio de las esquinas */
+  padding: 20px; /* Relleno interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
