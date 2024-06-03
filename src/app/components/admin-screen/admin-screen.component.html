@@ -1,15 +1,15 @@
 <app-nav-bar-admin></app-nav-bar-admin>
 
 <!-- Cuerpo de la página de admin -->
-<div class="container main-container">
+<div class="container-fluid main-container">
   <div class="row">
-    <div class="col">
+    <div class="col-12 col-md-6">
       <div class="row mt-5 d-flex justify-content-center mb-2">
-        <h2 class="d-flex justify-content-center">Datos del profesor</h2>
+        <h2>Datos del profesor</h2>
         <hr />
         <p class="box-text">
           <span>👍</span> Bienvenido
-          <strong> {{ nameProfesor }} {{ lastNameProfesor }} </strong> a la
+          <strong>{{ nameProfesor }} {{ lastNameProfesor }}</strong> a la
           GrumpiApp.
         </p>
         <p>
@@ -28,7 +28,7 @@
         </button>
       </div>
     </div>
-    <div class="col">
+    <div class="col-12 col-md-6">
       <h2 class="d-flex justify-content-center">Gestión de gamificación</h2>
       <div class="row mt-5 d-flex justify-content-center">
         <button
@@ -66,7 +66,10 @@
     </div>
   </div>
 
-  <div class="row d-flex justify-content-center" *ngIf="nameProfesor == 'Pablo' && lastNameProfesor == 'Moreno Ortega'">
+  <div
+    class="row d-flex justify-content-center"
+    *ngIf="nameProfesor == 'Pablo' && lastNameProfesor == 'Moreno Ortega'"
+  >
     <button type="button" class="button-73 btns">
       Alta usuario
     </button>

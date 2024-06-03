@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
 /* You can add global styles to this file, and also import other style files */
 .btn-config {
   margin: 1%;
@@ -13,10 +13,10 @@ ul {
 */
 .button-73 {
   appearance: none;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 40em;
   border-style: none;
-  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-shadow: #adcfff 0 -12px 6px inset;
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
@@ -24,22 +24,22 @@ ul {
   font-family: -apple-system, sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: -.24px;
+  letter-spacing: -0.24px;
   margin: 0;
   outline: none;
   padding: 1rem 1.3rem;
   quotes: auto;
   text-align: center;
   text-decoration: none;
-  transition: all .15s;
+  transition: all 0.15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
 .button-73:hover {
-  background-color: #FFC229;
-  box-shadow: #FF6314 0 -6px 8px inset;
+  background-color: #ffc229;
+  box-shadow: #ff6314 0 -6px 8px inset;
   transform: scale(1.125);
 }
 
@@ -50,14 +50,12 @@ ul {
 @media (min-width: 768px) {
   .button-73 {
     font-size: 1.5rem;
-    padding: .75rem 2rem;
+    padding: 0.75rem 2rem;
   }
 }
 
-
-
-body{
-  background-image:url("./assets/1716900037344.png");
+body {
+  background-image: url("./assets/1716900318340.png");
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -82,6 +80,38 @@ body{
   color: #197228;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: "Chakra Petch",
-  sans-serif }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  font-family: "Chakra Petch", sans-serif;
+}
+
+.main-container {
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+  overflow-x: hidden; /* Evita el desplazamiento horizontal no deseado */
+  padding: 20px; /* Ajusta el padding según sea necesario */
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 10px;
+  }
+
+  .row {
+    margin-bottom: 20px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,
+    1px 1px 0 white;
+}
