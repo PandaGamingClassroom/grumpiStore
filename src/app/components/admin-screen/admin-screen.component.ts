@@ -7,11 +7,26 @@ import { MatDialog } from '@angular/material/dialog';
 import { EnergiesComponent } from './energies/energies.component';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { CommonModule } from '@angular/common';
+import { TrainersAdminComponent } from './trainers/trainers-admin/trainers-admin.component';
+import { MedalsAdminScreenComponent } from './medals/medals-admin-screen.component';
+import { LeagueBadgesComponent } from './league-badges/league-badges.component';
+import { CreaturesAdminComponent } from './creatures/creatures-admin.component';
 
 @Component({
   selector: 'app-admin-screen',
   standalone: true,
-  imports: [RouterLink,CommonModule, NavBarAdminComponent, FooterComponent],
+  imports: [
+    RouterLink,
+    CommonModule,
+    NavBarAdminComponent,
+    FooterComponent,
+    TrainersAdminComponent,
+    MedalsAdminScreenComponent,
+    LeagueBadgesComponent,
+    GrumpidolarsComponent,
+    EnergiesComponent,
+    CreaturesAdminComponent,
+  ],
   providers: [TrainerService],
   templateUrl: './admin-screen.component.html',
   styleUrl: './admin-screen.component.scss',
@@ -25,6 +40,7 @@ export class AdminScreenComponent implements OnInit {
   trainers: any[] = [];
   nameProfesor: any;
   lastNameProfesor: any;
+  activeSection: string | null = null;
 
   constructor(
     private routes: ActivatedRoute,
@@ -108,5 +124,9 @@ export class AdminScreenComponent implements OnInit {
         console.error('Error:', error);
       }
     );
+  }
+
+  showSection(section: string) {
+    this.activeSection = section;
   }
 }

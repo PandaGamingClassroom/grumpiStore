@@ -85,13 +85,29 @@ export class LoginScreenComponent implements OnInit {
     this.pass = this.myForm.value.password;
 
     for (const profe of this.profesors) {
-      if (profe.usuario === this.user && profe.password == this.pass) {
+      if (
+        profe.usuario === this.user &&
+        profe.password == this.pass &&
+        profe.rol == 'administrador'
+      ) {
         this.error = false;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', this.user);
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
         this.route.navigate(['/admin', this.myForm.value]);
+        return;
+      } else if (
+        profe.usuario === this.user &&
+        profe.password == this.pass &&
+        profe.rol == 'profesor'
+      ) {
+        this.error = false;
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', this.user);
+        localStorage.setItem('nameUser', profe.nombre);
+        localStorage.setItem('lastNameUser', profe.apelidos);
+        this.route.navigate(['/management', this.myForm.value]);
         return;
       }
     }

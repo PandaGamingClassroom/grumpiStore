@@ -13,6 +13,9 @@ export class GrumpiService {
   private imageCombatObjects = 'http://localhost:3000/getImageCombatObjects';
   private imageEvolutionObjects = 'http://localhost:3000/getEvoOBjects';
   private getGrumpi_list = 'http://localhost:3000/getGrumpis';
+  private rewardsEndpoint = 'http://localhost:3000/getRewards';
+  private encargadosEndpoint = 'http://localhost:3000/getRewards';
+  private distintivosEndpoint = 'http://localhost:3000/getLeagueBadges';
 
   imageUrl: string = '';
 
@@ -68,5 +71,17 @@ export class GrumpiService {
 
   getEvolutionObjects(): Observable<any> {
     return this.http.get<any>(this.imageEvolutionObjects);
+  }
+
+  getRewards(): Observable<any> {
+    return this.http.get<any>(this.rewardsEndpoint);
+  }
+
+  getEncargados(): Observable<any> {
+    return this.http.get<any>(this.encargadosEndpoint);
+  }
+
+  getDistintivos(): Observable<any> {
+    return this.http.get<any>(this.distintivosEndpoint);
   }
 }

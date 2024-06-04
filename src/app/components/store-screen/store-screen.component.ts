@@ -43,6 +43,7 @@ export class StoreScreenComponent implements OnInit {
   confirmTitle: string = '';
   confirmMessage: string = '';
   trainerName: string = '';
+  rewards_list: any;
   /**
    * CANTIDADES DISPONIBLES DE LAS ENERGÍAS
    */
@@ -67,6 +68,7 @@ export class StoreScreenComponent implements OnInit {
   ngOnInit(): void {
     this.loadImageUrls();
     this.loadEvolutionObjects();
+    this.getRewards();
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
@@ -118,6 +120,23 @@ export class StoreScreenComponent implements OnInit {
           this.trainer = data;
           this.grumpidolar = this.trainer.data.grumpidolar;
           this.getEnergies(this.trainer, this.trainer.data.energias.tipo);
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  getRewards() {
+    this.grumpiService.getRewards().subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+        } else {
+          this.rewards_list = data.rewardsList;
+          console.log('Lista de recompensas: ', this.rewards_list);
+
         }
       },
       (error) => {

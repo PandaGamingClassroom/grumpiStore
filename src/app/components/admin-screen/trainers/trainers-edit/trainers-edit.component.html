@@ -24,18 +24,54 @@
   </h2>
   <hr />
 
-<div class="container">
+  <div class="container">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="trainer_name" class="form-label">Nombre de entrenador</label>
-        <input type="text" class="form-control" id="trainer_name" formControlName="trainer_name" />
+        <label for="trainer_name" class="form-label"
+          >Nombre de entrenador</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="trainer_name"
+          formControlName="trainer_name"
+        />
       </div>
-      <label for="trainer_pass" class="form-label mt-3">Contraseña entrenador</label>
-      <input type="text" class="form-control" id="trainer_pass" formControlName="trainer_pass" />
-      <label for="grumpidolar" class="form-label mt-3">Añadir Grumpidólares</label>
-      <input type="text" class="form-control" id="grumpidolar" formControlName="grumpidolar" />
-      <label for="combatMark" class="form-label mt-3">Añadir Marca de combate</label>
-      <input type="text" class="form-control" id="combatMark" formControlName="combatMark" />
+      <label for="trainer_pass" class="form-label mt-3"
+        >Contraseña entrenador</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="trainer_pass"
+        formControlName="trainer_pass"
+      />
+      <label for="grumpidolar" class="form-label mt-3">Grumpidólares</label>
+      <input
+        type="text"
+        class="form-control"
+        id="grumpidolar"
+        formControlName="grumpidolar"
+      />
+      <label for="combatMark" class="form-label mt-3">Marca de combate</label>
+      <input
+        type="text"
+        class="form-control"
+        id="combatMark"
+        formControlName="combatMark"
+      />
+      <div class="row mt-2">
+        <div class="col">
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Ver medallas</button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Ver objetos</button>
+          </div>
+        </div>
+      </div>
       <div class="container mt-3 d-flex justify-content-center">
         <button type="submit" class="button-73">Confirmar</button>
       </div>

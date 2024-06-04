@@ -135,6 +135,35 @@
       tabindex="0"
     >
       <h2 class="box-text"><strong> RECOMPENSAS </strong></h2>
+      <hr />
+      <div class="container text-center align-items-center scrollable-div">
+        <div class="img-creature mg-5" *ngFor="let object of this.rewards_list">
+          <div class="row">
+            <div class="col"><img srcset="{{ object.img }}" /></div>
+            <div class="col">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedObject = object; buyCombatObjects()"
+              >
+                Lo quiero
+              </button>
+              <div class="price-tag mt-3">
+                <span class="price">
+                  <div class="col" *ngIf="object.condicion !== '300'">
+                    {{ object.condicion }} energías.
+                  </div>
+
+                  <div class="col" *ngIf="object.condicion == '300'">
+                    {{ object.condicion }} energías. ​
+                  </div>
+                </span>
+              </div>
+              <div *ngIf="object.condicion == '300'">​✨</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="tab-pane fade"
@@ -178,7 +207,9 @@
         <!-- INFORMACIÓN SOBRE LAS ENERGÍAS DISPONIBLES POR EL ENTRENADOR -->
         <div class="col">
           <div class="container">
-            <h2 class="box-text">Mis energías: <strong>{{ cantidadTotal }}</strong></h2>
+            <h2 class="box-text">
+              Mis energías: <strong>{{ cantidadTotal }}</strong>
+            </h2>
             <hr />
             <ul>
               <li>

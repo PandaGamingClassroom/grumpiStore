@@ -1,5 +1,4 @@
 <app-nav-bar-admin></app-nav-bar-admin>
-
 <div class="container-fluid scrollable-div">
   <div class="row mb-3 prof_box mt-2">
     <div class="col">
@@ -38,15 +37,6 @@
               (click)="showSection('trainers')"
             >
               Lista de entrenadores
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              class="button-73 btns"
-              (click)="showSection('users')"
-            >
-              Alta usuario
             </button>
           </li>
           <li>
@@ -99,19 +89,19 @@
       <div class="col">
         <!-- CONTENIDO -->
         <div *ngIf="activeSection === 'trainers'">
-          <app-trainers-admin></app-trainers-admin>
+          <app-trainers-management></app-trainers-management>
         </div>
         <div *ngIf="activeSection === 'medals'">
-          <app-energies></app-energies>
+          <app-medals-management></app-medals-management>
         </div>
         <div *ngIf="activeSection === 'creatures'">
-          <app-creatures-admin></app-creatures-admin>
+          <app-creatures-management></app-creatures-management>
         </div>
         <div *ngIf="activeSection === 'distintivos'">
-          <app-league-badges></app-league-badges>
+          <app-league-badges-management></app-league-badges-management>
         </div>
         <div *ngIf="activeSection === 'energies'">
-          <app-energies></app-energies>
+          <app-energies-management></app-energies-management>
         </div>
         <div *ngIf="activeSection === 'dolars'">
           <app-grumpidolars></app-grumpidolars>

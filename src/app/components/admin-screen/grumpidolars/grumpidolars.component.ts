@@ -36,7 +36,6 @@ export class GrumpidolarsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private trainersService: TrainerService,
     private http: HttpClient,
-    public dialogRef: MatDialogRef<GrumpidolarsComponent>
   ) {
     this.myForm = this.formBuilder.group({
       grumpidolar: [''],
@@ -65,10 +64,6 @@ export class GrumpidolarsComponent implements OnInit {
         console.error('Error obteniendo los entrenadores:', error);
       }
     );
-  }
-
-  close() {
-    this.dialogRef.close();
   }
 
   assignGrumpidolares(trainerName: string, grumpidolares: number): void {
