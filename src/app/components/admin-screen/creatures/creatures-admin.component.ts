@@ -52,6 +52,8 @@ export class CreaturesAdminComponent implements OnInit {
   selectedCreatureName: string | null = null;
   getError: boolean = false;
   trainers: any[] = [];
+  grumpiList: any;
+
 
   constructor(
     private grumpiService: GrumpiService,
@@ -66,6 +68,7 @@ export class CreaturesAdminComponent implements OnInit {
       imagen: [''],
     });
     this.getTrainers();
+    this.loadGrumpis();
   }
 
   onFileSelected(event: any) {
@@ -104,6 +107,17 @@ export class CreaturesAdminComponent implements OnInit {
     this.grumpiService.getImageUrls().subscribe(
       (response) => {
         this.imageUrls = response.imageUrls;
+      },
+      (error) => {
+        console.error('Error al obtener las URLs de las imágenes:', error);
+      }
+    );
+  }
+
+  loadGrumpis() {
+    this.grumpiService.getGrumpis().subscribe(
+      (response) => {
+        this.grumpiList = response.grumpis_list;
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -191,5 +205,4 @@ export class CreaturesAdminComponent implements OnInit {
       alert('Por favor, selecciona un entrenador y una criatura.');
     }
   }
-
 }

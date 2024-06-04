@@ -27,6 +27,7 @@ import { RestsComponent } from './components/rules/rests/rests.component';
 import { ObtainEnergies } from './components/rules/energies/energies.component';
 import { GrumpidolaresComponent } from './components/rules/grumpidolares/grumpidolares.component';
 import { NewUserComponent } from './components/login-screen/new-user/new-user.component';
+import { LeagueBadgesComponent } from './components/admin-screen/league-badges/league-badges.component';
 
 
 export const routes: Routes = [
@@ -53,6 +54,7 @@ export const routes: Routes = [
   { path: 'admin/trainers-admin', component: TrainersAdminComponent },
   { path: 'admin/trainers-admin/edit', component: TrainersEditComponent },
   { path: 'admin/creatures', component: CreaturesAdminComponent },
+  { path: 'admin/leagueBadges', component: LeagueBadgesComponent },
   { path: 'admin/medals', component: MedalsAdminScreenComponent },
   { path: 'admin/grumpidolars', component: GrumpidolarsComponent },
   { path: 'admin/energies', component: EnergiesComponent },
