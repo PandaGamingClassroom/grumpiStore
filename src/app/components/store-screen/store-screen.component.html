@@ -136,35 +136,53 @@
     >
       <h2 class="box-text"><strong> RECOMPENSAS </strong></h2>
       <hr />
-      <div class="container text-center align-items-center scrollable-div">
-        <div class="img-creature mg-5" *ngFor="let object of this.rewards_list">
-          <div class="row">
-            <div class="col"><img srcset="{{ object.img }}" /></div>
-            <div class="col">
-              <button
-                type="button"
-                class="button-73"
-                (click)="selectedObject = object; buyCombatObjects()"
-              >
-                Lo quiero
-              </button>
-              <div class="price-tag mt-3">
-                <span class="price">
-                  <div class="col" *ngIf="object.condicion !== '300'">
-                    {{ object.condicion }} energías.
-                  </div>
-
-                  <div class="col" *ngIf="object.condicion == '300'">
-                    {{ object.condicion }} energías. ​
-                  </div>
-                </span>
+      <div class="row">
+        <div class="col scrollable-div">
+          <div
+            class="img-creature mg-5"
+            *ngFor="let object of this.rewards_list"
+          >
+            <div class="row">
+              <div class="col"><img srcset="{{ object.img }}" /></div>
+              <div class="col">
+                <button
+                  type="button"
+                  class="button-73"
+                  (click)="selectedObject = object; buyRewards()"
+                >
+                  Lo quiero
+                </button>
+                <div class="price-tag mt-3">
+                  <span class="price">
+                    <div class="col" *ngIf="object.condicion !== '300'">
+                      {{ object.condicion }} energías.
+                    </div>
+                    <div class="col" *ngIf="object.condicion == '300'">
+                      {{ object.condicion }} energías. ​
+                    </div>
+                  </span>
+                </div>
+                <div *ngIf="object.condicion == '300'">​✨</div>
               </div>
-              <div *ngIf="object.condicion == '300'">​✨</div>
+            </div>
+          </div>
+        </div>
+        <div class="col scrollable-div">
+          <!-- SELECCION DE ENERGÍAS -->
+          <div class="container-fluid">
+            <h2>Selección de energías</h2>
+            <div class="row">
+              <div class="col"><h3>Total de energías: {{ cantidadTotal }} </h3></div>
+              <div class="col"><h3>Cantidad necesaria: {{selectedObject?.condicion}}</h3></div>
+            </div>
+            <div class="container-fluid">
+              <app-medals-list *ngIf="this.isClicked"></app-medals-list>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div
       class="tab-pane fade"
       id="pills-evolution-objects"

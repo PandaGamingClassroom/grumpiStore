@@ -45,6 +45,7 @@ export class BagComponent implements OnInit {
   energiaTierra: number = 0;
   energiaVida: number = 0;
   activeTab: string = '';
+  rewards_list: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -58,6 +59,7 @@ export class BagComponent implements OnInit {
       if (this.username) {
         this.getTrainerData(this.username);
         this.getEnergies();
+        this.getRewards();
       }
     }
   }
@@ -112,6 +114,22 @@ export class BagComponent implements OnInit {
       console.log('Lista de energías: ', result.imageUrls);
       this.energies = result.imageUrls;
     });
+  }
+
+  getRewards() {
+    this.grumpiService.getRewards().subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+        } else {
+          this.rewards_list = data.rewardsList;
+          console.log('Lista de recompensas: ', this.rewards_list);
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   setActiveTab(tab: string) {

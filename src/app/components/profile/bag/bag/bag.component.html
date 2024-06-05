@@ -150,18 +150,23 @@
       <div class="container scrollable-div">
         <div class="row">
           <div class="col-md-6">
-            <h2 class="box-text">Objetos evolutivos:</h2>
+            <h2 class="box-text">OBJETOS EVOLUTIVOS:</h2>
             <div
               class="evolutionBox-img mg-5"
               *ngFor="let combatObjet of this.trainer?.data?.objetos_evolutivos"
             >
+              <h3>{{ combatObjet.nombre }}</h3>
               <img srcset="{{ combatObjet?.imagen }}" class="img-fluid" />
             </div>
+          </div>
+          <div class="col-md-6">
+            <h2 class="box-text">RECOMPENSAS:</h2>
             <div
-              class="d-flex align-items-center"
-              *ngFor="let combatObjet of this.trainer?.data?.objetos_evolutivos"
+              class="evolutionBox-img mg-5"
+              *ngFor="let combatObjet of rewards_list"
             >
               <h3>{{ combatObjet.nombre }}</h3>
+              <img srcset="{{ combatObjet?.img }}" class="img-fluid" />
             </div>
           </div>
         </div>

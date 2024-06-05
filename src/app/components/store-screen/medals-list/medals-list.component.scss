@@ -1,3 +1,14 @@
+.content-box {
+  box-shadow: #adcfff 0 -12px 6px inset;
+  border-radius: 5em;
+  overflow-y: auto;
+}
+
+.content-list {
+  margin-top: 10%;
+}
+
+
 .img-config {
   height: 350px;
   width: 250px;
@@ -33,9 +44,9 @@ ul {
   display: block;
 }
 
-.scrollable-div {
-  height: 500px;
-  width: 500px;
+.scrollable {
+  height: 100%;
+  width: 100%;
   overflow-y: auto;
 }
 
@@ -149,8 +160,6 @@ ul {
   text-align: center;
   text-decoration: none;
   transition: all 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
 }
 
@@ -171,8 +180,28 @@ ul {
   }
 }
 
-.scrollable {
-  height: 80%;
-  width: 100%;
-  overflow-y: auto;
+.inputBox {
+  height: 50px;
+  width: 200px;
+  appearance: none;
+  background-color: #ffffff;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #adcfff 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s;
+  touch-action: manipulation;
 }

@@ -11,6 +11,7 @@ import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { ErrorLoginModalComponentComponent } from '../../segments/error-login-modal-component/error-login-modal-component.component';
 import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
+import { MedalsListComponent } from './medals-list/medals-list.component';
 
 @Component({
   selector: 'app-store-screen',
@@ -26,6 +27,7 @@ import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-com
     ReactiveFormsModule,
     MedalsStoreComponent,
     FooterComponent,
+    MedalsListComponent,
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './store-screen.component.html',
@@ -44,6 +46,7 @@ export class StoreScreenComponent implements OnInit {
   confirmMessage: string = '';
   trainerName: string = '';
   rewards_list: any;
+  isClicked: boolean = false;
   /**
    * CANTIDADES DISPONIBLES DE LAS ENERGÍAS
    */
@@ -99,7 +102,6 @@ export class StoreScreenComponent implements OnInit {
     this.grumpiService.getEvolutionObjects().subscribe(
       (response) => {
         this.evolutionObjects = response.objectsList;
-
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -136,7 +138,6 @@ export class StoreScreenComponent implements OnInit {
         } else {
           this.rewards_list = data.rewardsList;
           console.log('Lista de recompensas: ', this.rewards_list);
-
         }
       },
       (error) => {
@@ -458,5 +459,28 @@ export class StoreScreenComponent implements OnInit {
       this.cantidadEnergiaRayo +
       this.cantidadEnergiaTierra +
       this.cantidadEnergiaVida;
+  }
+
+  buyRewards() {
+    console.log(this.selectedObject);
+    if (this.selectedObject.nombre == 'Recompensa 1') {
+      this.handleClick();
+    } else if (this.selectedObject.nombre == 'Recompensa 2') {
+      this.handleClick();
+
+    } else if (this.selectedObject.nombre == 'Recompensa 3') {
+      this.handleClick();
+
+    } else if (this.selectedObject.nombre == 'Recompensa 4') {
+      this.handleClick();
+
+    } else if (this.selectedObject.nombre == 'Recompensa 5') {
+      this.handleClick();
+
+    }
+  }
+
+  handleClick(): void {
+    this.isClicked = !this.isClicked;
   }
 }
