@@ -120,7 +120,7 @@
                 )
               "
             >
-              <img srcset="{{ creature }}" />
+              <img srcset="{{ creature.img }}" />
             </div>
           </div>
           <div class="col-md-6">
@@ -132,7 +132,7 @@
                 )
               "
             >
-              <img srcset="{{ creature }}" />
+              <img srcset="{{ creature.img }}" />
             </div>
           </div>
         </div>
@@ -152,26 +152,35 @@
           <div class="col-md-6">
             <h2 class="box-text">OBJETOS EVOLUTIVOS:</h2>
             <div
-              class="evolutionBox-img mg-5"
+              class="d-flex align-items-center mb-3"
               *ngFor="let combatObjet of this.trainer?.data?.objetos_evolutivos"
             >
-              <h3>{{ combatObjet.nombre }}</h3>
-              <img srcset="{{ combatObjet?.imagen }}" class="img-fluid" />
+              <img
+                src="{{ combatObjet?.imagen }}"
+                class="img-fluid me-3"
+                style="max-width: 50px"
+              />
+              <h3 class="m-0">{{ combatObjet?.nombre }}</h3>
             </div>
           </div>
           <div class="col-md-6">
             <h2 class="box-text">RECOMPENSAS:</h2>
             <div
-              class="evolutionBox-img mg-5"
+              class="d-flex align-items-center mb-3"
               *ngFor="let combatObjet of rewards_list"
             >
-              <h3>{{ combatObjet.nombre }}</h3>
-              <img srcset="{{ combatObjet?.img }}" class="img-fluid" />
+              <img
+                src="{{ combatObjet?.img }}"
+                class="img-fluid me-3"
+                style="max-width: 50px"
+              />
+              <h3 class="m-0">{{ combatObjet?.nombre }}</h3>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div
       class="tab-pane fade"
       id="pills-evolution-objects"
@@ -188,7 +197,7 @@
               class="img-creature mg-5"
               *ngFor="let combatObjet of this.trainer?.data?.objetos_combate"
             >
-              <img srcset="{{ combatObjet.imagen }}" />
+              <img srcset="{{ combatObjet?.imagen }}" />
             </div>
           </div>
         </div>

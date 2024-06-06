@@ -52,8 +52,7 @@ export class CreaturesAdminComponent implements OnInit {
   selectedCreatureName: string | null = null;
   getError: boolean = false;
   trainers: any[] = [];
-  grumpiList: any;
-
+  grumpiList: any[] = [];
 
   constructor(
     private grumpiService: GrumpiService,
@@ -118,6 +117,7 @@ export class CreaturesAdminComponent implements OnInit {
     this.grumpiService.getGrumpis().subscribe(
       (response) => {
         this.grumpiList = response.grumpis_list;
+        console.log('Grumpis: ', this.grumpiList);
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -147,9 +147,9 @@ export class CreaturesAdminComponent implements OnInit {
   /**
    * Función para filtrar por nombre las imágenes
    */
-  get filteredCreaturesImages(): string[] {
-    return this.imageUrls.filter((imageUrl) =>
-      imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
+  get filteredCreaturesImages(): any[] {
+    return this.grumpiList.filter((imageUrl) =>
+      imageUrl.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
@@ -186,11 +186,11 @@ export class CreaturesAdminComponent implements OnInit {
       const trainerName = this.selectedTrainerName;
 
       // Obtén el nombre de la criatura seleccionada
-      const creatureName = this.selectedCreatureName;
+      const creature= this.selectedCreatureName;
 
       // Llama al servicio para asignar la criatura al entrenador por su nombre
       this.trainersService
-        .assignCreatureToTrainer(trainerName, creatureName)
+        .assignCreatureToTrainer(trainerName, creature)
         .subscribe(
           (response) => {
             console.log('Criatura asignada con éxito:', response);

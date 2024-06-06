@@ -47,16 +47,9 @@
 }
 
 .scrollable-div {
-  width: 450px;
-  /* Ajusta el ancho según tus necesidades */
-  height: 200px;
-  /* Ajusta la altura según tus necesidades */
+  max-height: calc(100% - 60px);
   overflow-y: auto;
-  /* Habilita el scroll vertical */
-  border: 1px solid #ccc;
-  /* Opcional: añade un borde para visualizar mejor el área */
-  padding: 10px;
-  /* Opcional: añade padding si es necesario */
+  overflow-x: hidden;
 }
 
 // Configuración boton para salir de la sesión

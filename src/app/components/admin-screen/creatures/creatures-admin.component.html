@@ -36,15 +36,15 @@
 
           <div
             class="img-creature"
-            *ngFor="let imageUrl of filteredCreaturesImages"
+            *ngFor="let creature of filteredCreaturesImages"
           >
             <div class="row">
-              <div class="col"><img srcset="{{imageUrl}}" alt="Imagen" /></div>
+              <div class="col"><img srcset="{{creature.img}}" alt="Imagen" /></div>
               <div class="col">
                 <button
                   type="button"
                   class="btn btn-success"
-                  (click)="selectedCreatureName = imageUrl;"
+                  (click)="selectedCreatureName = creature;"
                   data-bs-toggle="modal"
                   data-bs-target="#eraseModal"
                 >

@@ -20,16 +20,7 @@
     </div>
   </div>
 
-  <div class="col">
-    <div class="container dolarbox">
-      <button class="dolarinfo">
-        <img
-          class="dolarImg"
-          src="../../../assets/MONEDA_GRUMPI_CARA.png"
-        /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
-      </button>
-    </div>
-  </div>
+  <div class="col"></div>
   <h1 class="d-flex justify-content-center text-align-center">
     <strong> TIENDA GRUMPI </strong>
   </h1>
@@ -95,7 +86,22 @@
       aria-labelledby="pills-objects-tab"
       tabindex="0"
     >
-      <h2 class="box-text"><strong> OBJETOS DE COMBATE </strong></h2>
+      <div class="row">
+        <div class="col-6">
+          <h2 class="box-text"><strong> OBJETOS DE COMBATE </strong></h2>
+        </div>
+        <div class="col-4">
+          <div class="container dolarbox">
+            <button class="dolarinfo">
+              <img
+                class="dolarImg"
+                src="../../../assets/MONEDA_GRUMPI_CARA.png"
+              /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
+            </button>
+          </div>
+        </div>
+      </div>
+
       <hr />
       <div class="container text-center align-items-center scrollable-div">
         <div class="img-creature mg-5" *ngFor="let object of this.imageUrls">
@@ -172,8 +178,12 @@
           <div class="container-fluid">
             <h2>Selección de energías</h2>
             <div class="row">
-              <div class="col"><h3>Total de energías: {{ cantidadTotal }} </h3></div>
-              <div class="col"><h3>Cantidad necesaria: {{selectedObject?.condicion}}</h3></div>
+              <div class="col">
+                <h3>Total de energías: {{ cantidadTotal }}</h3>
+              </div>
+              <div class="col">
+                <h3>Cantidad necesaria: {{ selectedObject?.condicion }}</h3>
+              </div>
             </div>
             <div class="container-fluid">
               <app-medals-list *ngIf="this.isClicked"></app-medals-list>

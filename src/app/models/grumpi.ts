@@ -4,6 +4,7 @@ export interface Grumpi {
   description: string;
   number_grumpidex: string;
   image: string;
+  salud: number;
   attacks: Attacks[];
 }
 export interface Attacks {
@@ -95,6 +96,7 @@ export const grumpis: Grumpi[] = [
     description: 'Descripción del Grumpi 1',
     number_grumpidex: '001',
     image: '../../../../assets/grumpis/001-Bugi.jpeg',
+    salud: 0,
     attacks: [attacks[0], attacks[1]],
   },
   {
@@ -103,6 +105,7 @@ export const grumpis: Grumpi[] = [
     description: 'Descripción del Grumpi 2',
     number_grumpidex: '002',
     image: '../../../../assets/grumpis/002-Bolibugi.jpeg',
+    salud: 0,
     attacks: [attacks[2], attacks[3]],
   },
   {
@@ -111,6 +114,7 @@ export const grumpis: Grumpi[] = [
     description: 'Descripción del Grumpi 3',
     number_grumpidex: '003',
     image: '../../../../assets/grumpis/003-Bugelion.jpeg',
+    salud: 0,
     attacks: [attacks[4], attacks[5]],
   },
 ];

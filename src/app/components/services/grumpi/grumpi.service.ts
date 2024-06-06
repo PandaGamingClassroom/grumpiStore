@@ -45,6 +45,7 @@ export class GrumpiService {
   getGrumpis(): Observable<any> {
     return this.http.get<any>(this.getGrumpi_list);
   }
+
   /**
    * Función para obtener las imágenes de las medallas almacenadas
    * @returns lista de imágenes

@@ -7,11 +7,18 @@ import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { FooterComponent } from '../footer/footer.component';
 import { Avatars, lista_avatares } from '../../models/avatars';
+import { BattleGameComponent } from '../battle-game/battle-game.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, NavBarComponent, CommonModule, FooterComponent],
+  imports: [
+    RouterLink,
+    NavBarComponent,
+    CommonModule,
+    FooterComponent,
+    BattleGameComponent,
+  ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',

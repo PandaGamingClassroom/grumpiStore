@@ -69,10 +69,10 @@ export class TrainerService {
 
   assignCreatureToTrainer(
     trainerName: string,
-    creatureName: string
+    creature: any
   ): Observable<any> {
     const url = this.apiUrl + 'assign-creature';
-    const body = { trainerName, creatureName };
+    const body = { trainerName, creature };
 
     return this.http.post<any>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {

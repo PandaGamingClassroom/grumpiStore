@@ -34,6 +34,7 @@ import { CreaturesManagementComponent } from './components/admin-screen/manageme
 import { LeagueBadgesManagementComponent } from './components/admin-screen/management/league-badges-management/league-badges-management.component';
 import { MedalsManagementComponent } from './components/admin-screen/management/medals-management/medals-management.component';
 import { EnergiesManagementComponent } from './components/admin-screen/management/energies-management/energies-management.component';
+import { BattleGameComponent } from './components/battle-game/battle-game.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -76,7 +77,10 @@ export const routes: Routes = [
     path: 'management/management-medals',
     component: MedalsManagementComponent,
   },
-  { path: 'management/management-energies', component: EnergiesManagementComponent },
+  {
+    path: 'management/management-energies',
+    component: EnergiesManagementComponent,
+  },
   { path: 'admin', component: AdminScreenComponent },
   { path: 'admin/trainers-admin', component: TrainersAdminComponent },
   { path: 'admin/trainers-admin/edit', component: TrainersEditComponent },
@@ -87,4 +91,5 @@ export const routes: Routes = [
   { path: 'admin/energies', component: EnergiesComponent },
   { path: 'help', component: HelpComponentComponent },
   { path: 'profile/bag', component: BagComponent },
+  { path: 'game', component: BattleGameComponent },
 ];
