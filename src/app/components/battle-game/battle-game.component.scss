@@ -17,7 +17,7 @@ body {
   margin-top: 10%;
 }
 
-.pokemon {
+.grumpi {
   background-color: #c0ffc0;
   border: 1px solid #000;
   margin-bottom: 10px;
@@ -62,4 +62,49 @@ button:hover {
 .log div {
   margin-bottom: 5px;
   color: #000;
+}
+
+
+.scrollable-div {
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.battle-list-creatures {
+  width: 300px;
+  height: 400px;
+  background-color: #f0f0f0;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin-top: 10%;
+}
+
+
+/* battle-game.component.scss */
+.img-small {
+  max-width: 80px;  /* Ajusta el tamaño según tus necesidades */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin-right: 10px;  /* Espaciado entre la imagen y el texto */
+}
+
+.battle-arena img {
+  max-width: 80px;  /* Ajusta este valor según el diseño de tu battle-arena */
+  height: auto;  /* Mantiene la proporción de la imagen */
+}
+
+.battle-arena .grumpi {
+  margin-bottom: 20px; /* Espacio entre las secciones de Pokémon */
+}
+
+.battle-arena .grumpi .col-4,
+.battle-arena .grumpi .col-8 {
+  display: flex;
+  align-items: center;
+}
+
+.battle-arena .grumpi .col-8 {
+  flex-direction: column;
+  align-items: flex-start;
 }
