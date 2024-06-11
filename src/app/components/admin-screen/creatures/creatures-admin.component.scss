@@ -1,8 +1,11 @@
 ul {
   list-style-type: none;
 }
+
 .main-box {
-  margin-top: 10%;
+  border-radius: 2em;
+  box-shadow: #adcfff 0 -12px 6px inset;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .row-creatures {

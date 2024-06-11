@@ -6,7 +6,6 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
@@ -67,7 +66,7 @@ export class CreaturesAdminComponent implements OnInit {
       imagen: [''],
     });
     this.getTrainers();
-    this.loadGrumpis();
+    // this.loadGrumpis();
   }
 
   onFileSelected(event: any) {
