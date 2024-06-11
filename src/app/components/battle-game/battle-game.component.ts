@@ -31,6 +31,7 @@ export class BattleGameComponent implements OnInit {
   trainer: any;
   selectedGrumpi: any | null = null;
   randomGrumpi: any | null = null;
+  playerTurn: boolean = false;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -46,6 +47,7 @@ export class BattleGameComponent implements OnInit {
         this.getTrainerData(this.username);
       }
     }
+    this.startBattle();
   }
 
   getTrainerData(name: string): void {
@@ -94,9 +96,62 @@ export class BattleGameComponent implements OnInit {
     return randomGrumpi;
   }
 
-  attack(attacker: Grumpi, defender: Grumpi, move: Attacks) {}
+  startBattle() {
+    this.log = [];
+    this.playerTurn = Math.random() < 0.5;
+    this.log.push(
+      this.playerTurn ? 'Player starts first!' : 'Opponent starts first!'
+    );
+    if (!this.playerTurn) {
+      this.opponentAttack();
+    }
+  }
 
   selectCreature() {
     console.log('Grumpi seleccionado: ', this.selectedGrumpi);
+  }
+
+  playerAttack(atk: any) {
+    if (this.playerTurn) {
+      this.randomGrumpi.hp -= atk.damage;
+      this.log.push(
+        `Player's ${this.selectedGrumpi.nombre} used ${atk.nombre} and dealt ${atk.damage} damage!`
+      );
+      this.checkBattleStatus();
+    }
+  }
+
+  opponentAttack() {
+    if (!this.playerTurn) {
+      const randomAttack =
+        this.randomGrumpi.ataques[
+          Math.floor(Math.random() * this.randomGrumpi.ataques.length)
+        ];
+      this.selectedGrumpi.hp -= randomAttack.damage;
+      this.log.push(
+        `Opponent's ${this.randomGrumpi.nombre} used ${randomAttack.nombre} and dealt ${randomAttack.damage} damage!`
+      );
+      this.checkBattleStatus();
+    }
+  }
+
+  checkBattleStatus() {
+    if (this.selectedGrumpi.hp <= 0) {
+      this.log.push(`Player's ${this.selectedGrumpi.nombre} has fainted!`);
+      this.endBattle();
+    } else if (this.randomGrumpi.hp <= 0) {
+      this.log.push(`Opponent's ${this.randomGrumpi.nombre} has fainted!`);
+      this.endBattle();
+    } else {
+      this.playerTurn = !this.playerTurn;
+      if (!this.playerTurn) {
+        setTimeout(() => this.opponentAttack(), 1000); // Give a short delay for the opponent's turn
+      }
+    }
+  }
+
+  endBattle() {
+    this.log.push('Battle is over!');
+    // Additional logic to handle the end of the battle
   }
 }

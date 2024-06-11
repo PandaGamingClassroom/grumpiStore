@@ -9,19 +9,47 @@ body {
 }
 
 .battle-arena {
-  width: 300px;
+  width: 400px;
   background-color: #f0f0f0;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 10px;
+  padding: 20px;
   margin-top: 10%;
+  transform: scale(1.2); /* Escalar el contenido */
 }
 
 .grumpi {
   background-color: #c0ffc0;
   border: 1px solid #000;
-  margin-bottom: 10px;
-  padding: 10px;
+  margin: 20px auto; /* Centramos el div horizontalmente y añadimos espacio vertical */
+  padding: 20px;
+  width: 100%; /* Ajusta el tamaño según tus necesidades */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Agrega sombra para destacar los bordes blancos */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.grumpi .info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.grumpi img {
+  order: 2; /* Mover la imagen a la derecha */
+  margin-left: 10px;
+}
+
+.grumpi .text {
+  flex-grow: 1;
+}
+
+.grumpi .attacks {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .player {
@@ -29,11 +57,10 @@ body {
 }
 
 .opponent {
-  text-align: right;
+  text-align: left; /* Cambiar de right a left */
 }
 
-h2,
-p {
+h2, p {
   margin: 0;
   color: #000;
 }
@@ -41,9 +68,9 @@ p {
 button {
   background-color: #f0f0f0;
   border: 1px solid #000;
-  padding: 5px 10px;
+  padding: 10px 20px; /* Aumentar el tamaño del botón */
   margin: 5px 0;
-  font-size: 14px;
+  font-size: 16px; /* Aumentar el tamaño del texto */
   cursor: pointer;
 }
 
@@ -64,7 +91,6 @@ button:hover {
   color: #000;
 }
 
-
 .scrollable-div {
   max-height: calc(100% - 60px);
   overflow-y: auto;
@@ -72,26 +98,25 @@ button:hover {
 }
 
 .battle-list-creatures {
-  width: 300px;
+  width: 400px;
   height: 400px;
   background-color: #f0f0f0;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 10px;
+  padding: 20px;
   margin-top: 10%;
+  margin-left: 50px; /* Aumentar el espacio a la izquierda */
 }
 
-
-/* battle-game.component.scss */
 .img-small {
-  max-width: 80px;  /* Ajusta el tamaño según tus necesidades */
+  max-width: 100px; /* Ajusta el tamaño según tus necesidades */
   height: auto; /* Mantiene la proporción de la imagen */
-  margin-right: 10px;  /* Espaciado entre la imagen y el texto */
+  margin-right: 10px; /* Espaciado entre la imagen y el texto */
 }
 
 .battle-arena img {
-  max-width: 80px;  /* Ajusta este valor según el diseño de tu battle-arena */
-  height: auto;  /* Mantiene la proporción de la imagen */
+  max-width: 100px; /* Ajusta este valor según el diseño de tu battle-arena */
+  height: auto; /* Mantiene la proporción de la imagen */
 }
 
 .battle-arena .grumpi {

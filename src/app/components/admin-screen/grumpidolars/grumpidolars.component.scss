@@ -1,9 +1,7 @@
-.container {
-  background-color: azure;
-  position: relative;
-  width: 600px;
-  height: 500px;
-  overflow: hidden;
+.main-box {
+  border-radius: 10em;
+  box-shadow: #adcfff 0 -12px 6px inset;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .scrollable-div {

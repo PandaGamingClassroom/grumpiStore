@@ -67,10 +67,7 @@ export class TrainerService {
     return this.http.delete(url);
   }
 
-  assignCreatureToTrainer(
-    trainerName: string,
-    creature: any
-  ): Observable<any> {
+  assignCreatureToTrainer(trainerName: string, creature: any): Observable<any> {
     const url = this.apiUrl + 'assign-creature';
     const body = { trainerName, creature };
 
@@ -245,5 +242,13 @@ export class TrainerService {
     return this.http.get<any>(
       `${this.apiUrl}profesor/${profesorId}/entrenadores`
     );
+  }
+
+  // Añade este método para usar las energías seleccionadas
+  useEnergiesForReward(name: string, energies: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/use-energies`, {
+      name,
+      energies,
+    });
   }
 }
