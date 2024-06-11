@@ -55,7 +55,7 @@ ul {
 }
 
 body {
-  background-image: url("./assets/1716900164928.png");
+  background-image: url("./assets/backgrounds/kids.jpg");
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -114,4 +114,11 @@ h2,
 h3 {
   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,
     1px 1px 0 white;
+}
+
+
+.bg-box {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2em;
+  box-shadow: #adcfff 0 -12px 6px inset;
 }

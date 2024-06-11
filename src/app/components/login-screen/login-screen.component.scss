@@ -1,34 +1,60 @@
-/* Estilos para centrar el contenedor en la pantalla */
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2%;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 }
 
-/* Ajustar el tamaño del contenedor secundario */
-.config-size {
-  width: 400px;
+.log {
+    background-image: url(../../../assets/backgrounds/bg_gato.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px; /* Añade espacio en la parte superior */
 }
-
-/* Estilos adicionales para el formulario */
-.form-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Estilos para los elementos del formulario */
-.form-group {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 
 .logo {
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Espacio entre el logo y el formulario */
+}
+
+.logo img {
+    max-width: 60%;
+    height: auto;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container.config-size {
+    max-width: 400px;
+    width: 100%; /* Asegura que el contenedor secundario no sea más grande que el contenedor principal */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Añade un fondo semitransparente para mejorar la legibilidad */
+    border-radius: 10px; /* Opcional: añade bordes redondeados */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: center;
 }

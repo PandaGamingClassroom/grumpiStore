@@ -1,35 +1,38 @@
-<div class="logo">
-  <img src="../../../assets/Logo_v0.1_sinFondo.png" />
+<div class="log">
+  <div class="logo">
+    <img src="../../../assets/Logo_v0.1_sinFondo.png" />
+  </div>
+  <div class="container config-size">
+    <form [formGroup]="myForm" class="form-wrapper" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="trainer_name"><strong>Nombre de entrenador</strong></label>
+        <input
+          type="email"
+          class="form-control"
+          id="trainer_name"
+          aria-describedby="emailHelp"
+          placeholder="Introduce tu nombre de entrenador"
+          formControlName="trainer_name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password"><strong>Contraseña</strong></label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
+      </div>
+      <br />
+      <div class="container">
+        <button type="submit" class="button-73">Iniciar sesión</button>
+      </div>
+    </form>
+  </div>
 </div>
-<div class="container config-size">
-  <form [formGroup]="myForm" class="form-wrapper" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="trainer_name"><strong> Nombre de entrenador </strong></label>
-      <input
-        type="email"
-        class="form-control"
-        id="trainer_name"
-        aria-describedby="emailHelp"
-        placeholder="Introduce tu nombre de entrenador"
-        formControlName="trainer_name"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password"><strong> Contraseña </strong></label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="Contraseña"
-        formControlName="password"
-      />
-    </div>
-    <br />
-    <div class="container">
-      <button type="submit" class="button-73">Iniciar sesión</button>
-    </div>
-  </form>
-</div>
+
 <!-- <div class="container mt-6">
     <button type="submit" class="button-73" routerLink="/newUser"> Alta usuario </button>
   </div> -->
