@@ -12,6 +12,7 @@ import { TrainerService } from '../services/trainers/trainer.service';
 import { ErrorLoginModalComponentComponent } from '../../segments/error-login-modal-component/error-login-modal-component.component';
 import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
 import { MedalsListComponent } from './medals-list/medals-list.component';
+import { Energies, energias } from '../../models/energies';
 
 @Component({
   selector: 'app-store-screen',
@@ -61,9 +62,11 @@ export class StoreScreenComponent implements OnInit {
   cantidadEnergiaOscuridad: number = 0;
   cantidadTotal: number = 0;
   totalEnergies: number = 0;
-
+  all_energies: any;
   energies: number[] = [];
   selectedEnergies: { type: string; quantity: number }[] = [];
+  selectedEnergie: any;
+  energy_list: Energies[] = energias;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -76,6 +79,7 @@ export class StoreScreenComponent implements OnInit {
     this.loadImageUrls();
     this.loadEvolutionObjects();
     this.getRewards();
+    this.getAllEnergies();
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
@@ -539,6 +543,67 @@ export class StoreScreenComponent implements OnInit {
       }
     } else {
       this.openErrorModal(errorTitle, errorMessage);
+    }
+  }
+
+  getAllEnergies() {
+    this.grumpiService.getImageEnergies().subscribe((result) => {
+      console.log('Lista de energías: ', result.imageUrls);
+      this.all_energies = result.imageUrls;
+    });
+  }
+
+  assignEnergies(): void {
+    if (this.username && this.selectedEnergie) {
+      this.trainersService
+        .assignEnergie(this.username, this.selectedEnergie)
+        .subscribe(
+          (response) => {
+            console.log(
+              'Energía asignada correctamente al entrenador:',
+              response
+            );
+            // Aquí puedes manejar la respuesta como desees
+          },
+          (error) => {
+            console.error('Error al asignar la energía al entrenador:', error);
+            // Aquí puedes manejar el error como desees
+          }
+        );
+    } else {
+      console.error('No se ha seleccionado ningún entrenador o energía.');
+      // Aquí puedes manejar el caso donde no se haya seleccionado ningún entrenador o energía
+    }
+  }
+
+  buyEnergy() {
+    const priceEnergy: number = 10;
+    let grumpidolarTrainer: any = this.grumpidolar;
+    let finalCount: number = 0;
+    const errorTitle = '¡Cuidado!';
+    const errorMessage =
+      'No tienes suficientes Grumpidólares para comprar la energía.';
+    const okTitle = 'Compra realizada';
+    const okMessage = 'La compra de las energías ha sido realizada con éxito.';
+
+    if (grumpidolarTrainer < priceEnergy) {
+      this.openErrorModal(errorTitle, errorMessage);
+    } else {
+      this.assignEnergies();
+      finalCount = grumpidolarTrainer - priceEnergy;
+      this.trainersService
+        .assignGrumpidolaresAfterBuyToTrainer(this.trainer.data.name, finalCount)
+        .subscribe(
+          (response) => {
+            this.assignCombatObjects();
+            this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+          },
+          (error) => {
+            console.error('Error:', error);
+          }
+        );
+
+      this.openConfirmModal(okTitle, okMessage);
     }
   }
 }

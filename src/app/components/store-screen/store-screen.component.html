@@ -103,30 +103,72 @@
       </div>
 
       <hr />
-      <div class="container text-center align-items-center scrollable-div">
-        <div class="img-creature mg-5" *ngFor="let object of this.imageUrls">
-          <div class="row">
-            <div class="col"><img srcset="{{ object.imagen }}" /></div>
-            <div class="col">
-              <button
-                type="button"
-                class="button-73"
-                (click)="selectedObject = object; buyCombatObjects()"
-              >
-                Lo quiero
-              </button>
-              <div class="price-tag mt-3">
-                <span class="price">
-                  <div class="row">
-                    <div class="col">
-                      <img
-                        class="grumpiTag"
-                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                      />
-                    </div>
-                    <div class="col">{{ object.precio }}</div>
+      <div class="row">
+        <div class="col">
+          <div class="container text-center align-items-center scrollable-div">
+            <div
+              class="img-creature mg-5"
+              *ngFor="let object of this.imageUrls"
+            >
+              <div class="row">
+                <div class="col"><img srcset="{{ object.imagen }}" /></div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="button-73"
+                    (click)="selectedObject = object; buyCombatObjects()"
+                  >
+                    Lo quiero
+                  </button>
+                  <div class="price-tag mt-3">
+                    <span class="price">
+                      <div class="row">
+                        <div class="col">
+                          <img
+                            class="grumpiTag"
+                            src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                          />
+                        </div>
+                        <div class="col">{{ object.precio }}</div>
+                      </div>
+                    </span>
                   </div>
-                </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- energías -->
+        <div class="col">
+          <div class="container text-center align-items-center scrollable-div">
+            <div
+              class="img-creature mg-5"
+              *ngFor="let object of energy_list"
+            >
+              <div class="row">
+                <div class="col"><img srcset="{{ object.imagen }}" /></div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="button-73"
+                    (click)="selectedEnergie = object; buyEnergy()"
+                  >
+                    Lo quiero
+                  </button>
+                  <div class="price-tag mt-3">
+                    <span class="price">
+                      <div class="row">
+                        <div class="col">
+                          <img
+                            class="grumpiTag"
+                            src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                          />
+                        </div>
+                        <div class="col"> 10 </div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

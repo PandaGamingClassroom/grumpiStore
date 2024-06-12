@@ -97,6 +97,10 @@ export class TrainerService {
     return this.http.post<any>(url, { trainerName, energie });
   }
 
+  buyEnergy(trainerName: string, energie: any): Observable<any> {
+    const url = `${this.apiUrl}buyEnergies`;
+    return this.http.post<any>(url, { trainerName, energie });
+  }
   assignMedalToTrainer(
     trainerName: string,
     medalName: string
