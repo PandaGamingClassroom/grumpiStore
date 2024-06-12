@@ -1,0 +1,51 @@
+<div class="btn-config">
+  <button type="button" class="button-73" routerLink="/profile">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-arrow-left-circle-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+      />
+    </svg>
+    Atrás
+  </button>
+</div>
+<div class="container">
+  <div class="device">
+    <div class="screen">
+      <div class="pet">
+        <div *ngFor="let row of petPixels; let rowIndex = index" class="row">
+          <div *ngFor="let pixel of row; let colIndex = index"
+               [ngClass]="{'pixel': pixel, 'empty': !pixel}"
+               class="pixel-cell"></div>
+        </div>
+      </div>
+      <div class="status-bar">
+        <label>Hambre: {{ pet.hunger }}</label>
+        <progress max="100" [value]="pet.hunger"></progress>
+      </div>
+      <div class="status-bar">
+        <label>Felicidad: {{ pet.happiness }}</label>
+        <progress max="100" [value]="pet.happiness"></progress>
+      </div>
+      <div class="status-bar">
+        <label>Suciedad: {{ pet.cleanliness }}</label>
+        <progress max="100" [value]="pet.cleanliness"></progress>
+      </div>
+      <div *ngIf="!pet.isAlive" class="game-over">
+        <h2>Game Over</h2>
+        <p>Tu mascota ha muerto. Tendrás que volver a empezar.</p>
+      </div>
+    </div>
+    <div class="controls">
+      <button type="button" class="button-73" (click)="feedPet()" [disabled]="!pet.isAlive">Dar comida</button>
+      <button type="button" class="button-73" (click)="playWithPet()" [disabled]="!pet.isAlive">Jugar</button>
+      <button type="button" class="button-73" (click)="cleanPet()" [disabled]="!pet.isAlive">Limpiar</button>
+    </div>
+  </div>
+</div>

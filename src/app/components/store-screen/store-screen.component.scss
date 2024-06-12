@@ -39,6 +39,12 @@ ul {
   overflow-y: auto;
 }
 
+.scrollBox {
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .box-info {
   display: flex !important;
   flex-direction: column;

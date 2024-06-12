@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.device {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background: #ccc;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.pet {
+  display: grid;
+  grid-template-columns: repeat(10, 10px); /* Ajusta el tamaño de la cuadrícula según sea necesario */
+  grid-gap: 1px;
+}
+
+.row {
+  display: contents;
+}
+
+.pixel-cell {
+  width: 10px;
+  height: 10px;
+}
+
+.pixel {
+  background-color: black;
+}
+
+.empty {
+  background-color: transparent;
+}
+
+.status-bar {
+  width: 100%;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+// .controls button {
+//   padding: 10px 20px;
+//   border: none;
+//   border-radius: 5px;
+//   background: #007bff;
+//   color: white;
+//   font-size: 16px;
+//   cursor: pointer;
+//   transition: background 0.3s;
+// }
+
+// .controls button:hover {
+//   background: #0056b3;
+// }
+
+.controls button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.game-over {
+  color: red;
+  text-align: center;
+}
+
+.dead .pixel {
+  background-color: grey;
+}

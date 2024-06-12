@@ -95,7 +95,7 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('username', this.user);
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
-        this.route.navigate(['/admin', this.myForm.value]);
+        this.route.navigate(['/admin']);
         return;
       } else if (
         profe.usuario === this.user &&
@@ -107,7 +107,7 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('username', this.user);
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
-        this.route.navigate(['/management', this.myForm.value]);
+        this.route.navigate(['/management']);
         return;
       } else {
         this.error = true;
@@ -119,7 +119,7 @@ export class LoginScreenComponent implements OnInit {
         this.error = false;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', this.user);
-        this.route.navigate(['/home', this.myForm.value]);
+        this.route.navigate(['/home']);
         return;
       } else {
         this.error = true;

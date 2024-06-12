@@ -35,6 +35,7 @@ import { LeagueBadgesManagementComponent } from './components/admin-screen/manag
 import { MedalsManagementComponent } from './components/admin-screen/management/medals-management/medals-management.component';
 import { EnergiesManagementComponent } from './components/admin-screen/management/energies-management/energies-management.component';
 import { BattleGameComponent } from './components/battle-game/battle-game.component';
+import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -92,4 +93,5 @@ export const routes: Routes = [
   { path: 'help', component: HelpComponentComponent },
   { path: 'profile/bag', component: BagComponent },
   { path: 'game', component: BattleGameComponent },
+  { path: 'virtual-pet', component: VirtualPetComponent },
 ];
