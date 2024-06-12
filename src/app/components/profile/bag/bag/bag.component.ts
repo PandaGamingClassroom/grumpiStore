@@ -95,6 +95,10 @@ export class BagComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para hacer un recuento de las energías que tiene el entrenador.
+   * @param energyOfTrainer Obtiene la lista de energías del entrenador
+   */
   energyCount(energyOfTrainer: any) {
     for (let type of energyOfTrainer) {
       if (type.tipo === 'Fuego') {
@@ -119,6 +123,9 @@ export class BagComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para obtener todas las energías disponibles
+   */
   getEnergies() {
     this.grumpiService.getImageEnergies().subscribe((result) => {
       console.log('Lista de energías: ', result.imageUrls);
@@ -130,6 +137,10 @@ export class BagComponent implements OnInit {
     this.activeTab = tab;
   }
 
+  /**
+   * Función para hacer un recuento de las recompensas que tiene el entrenador
+   * @param rewards Obtiene la lista de recompensas del entrenador
+   */
   contadorRecompensas(rewards: any) {
     console.log(rewards);
     for (let reward of rewards) {
@@ -149,6 +160,9 @@ export class BagComponent implements OnInit {
 
   }
 
+  /**
+   * Función para obtener todas las recompensas disponibles
+   */
   getRewards() {
     this.grumpiService.getRewards().subscribe(
       (data) => {

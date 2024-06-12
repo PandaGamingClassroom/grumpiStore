@@ -88,6 +88,10 @@ export class MedalsListComponent implements OnInit {
     }
   }
 
+  /**
+   * Botón para confirmar la selección de energías que ha realizado el entrenador.
+   * Cuando se recibe esta información, se manda de vuelta al componente storeScreen.
+   */
   confirmSelection(): void {
     this.energiesSelected.emit(this.energiesToSpend);
   }
