@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 export class VirtualPetComponent implements OnInit {
   pet: Pet;
   petPixels: boolean[][];
+  moveTimer: any;
 
   constructor() {
     this.pet = new Pet();
@@ -21,6 +22,7 @@ export class VirtualPetComponent implements OnInit {
 
   ngOnInit(): void {
     this.startPetStatusDecrement();
+    this.startMovingPet();
   }
 
   feedPet(): void {
@@ -73,5 +75,24 @@ export class VirtualPetComponent implements OnInit {
       [false, true, false, true, true, true, true, false, true, false],
       [false, false, true, true, false, false, true, true, false, false],
     ];
+  }
+
+  movePet(): void {
+    this.petPixels.forEach((row, rowIndex) => {
+      row.forEach((pixel, colIndex) => {
+        if (pixel) {
+          this.petPixels[rowIndex][colIndex] = true; // Mantener el píxel activo
+          setTimeout(() => {
+            this.petPixels[rowIndex][colIndex] = false; // Desactivar el píxel después de un tiempo
+          }, 300); // Retraso para desactivar el píxel después de 300 milisegundos
+        }
+      });
+    });
+  }
+
+  startMovingPet(): void {
+    this.moveTimer = setInterval(() => {
+      this.movePet(); // Llamar a movePet automáticamente cada cierto tiempo
+    }, 5000); // Intervalo de 5 segundos (puedes ajustarlo según tus necesidades)
   }
 }
