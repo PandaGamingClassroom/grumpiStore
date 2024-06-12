@@ -102,7 +102,7 @@
           <app-trainers-admin></app-trainers-admin>
         </div>
         <div *ngIf="activeSection === 'medals'">
-          <app-energies></app-energies>
+          <app-medals-admin-screen></app-medals-admin-screen>
         </div>
         <div *ngIf="activeSection === 'creatures'">
           <app-creatures-admin></app-creatures-admin>
@@ -115,6 +115,11 @@
         </div>
         <div *ngIf="activeSection === 'dolars'">
           <app-grumpidolars></app-grumpidolars>
+        </div>
+        <div *ngIf="activeSection === 'users'">
+          <div class="d-flex justify-content-center align-items-center mt-6 bg-box box-text">
+            <p>🧑‍🔧 Estamos trabajando en esta sección 🧑‍🔧</p>
+          </div>
         </div>
       </div>
     </div>
