@@ -87,10 +87,10 @@
       tabindex="0"
     >
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 d-flex justify-content-end align-items-center">
           <h2 class="box-text"><strong> OBJETOS DE COMBATE </strong></h2>
         </div>
-        <div class="col-4">
+        <div class="col-6">
           <div class="container dolarbox">
             <button class="dolarinfo">
               <img
@@ -140,53 +140,47 @@
       aria-labelledby="pills-rewards-tab"
       tabindex="0"
     >
-      <h2 class="box-text"><strong> RECOMPENSAS </strong></h2>
+      <h2 class="box-text"><strong>RECOMPENSAS</strong></h2>
       <hr />
       <div class="row">
         <div class="col scrollable-div">
-          <div
-            class="img-creature mg-5"
-            *ngFor="let object of this.rewards_list"
-          >
+          <div class="img-creature mg-5" *ngFor="let object of rewards_list">
             <div class="row">
               <div class="col"><img srcset="{{ object.img }}" /></div>
               <div class="col">
                 <button
                   type="button"
                   class="button-73"
-                  (click)="selectedObject = object; buyRewards()"
+                  (click)="selectedObject = object; seeRewards()"
                 >
                   Lo quiero
                 </button>
                 <div class="price-tag mt-3">
                   <span class="price">
-                    <div class="col" *ngIf="object.condicion !== '300'">
-                      {{ object.condicion }} energías.
-                    </div>
-                    <div class="col" *ngIf="object.condicion == '300'">
-                      {{ object.condicion }} energías. ​
-                    </div>
+                    <div class="col">{{ object.condicion }} energías.</div>
                   </span>
                 </div>
-                <div *ngIf="object.condicion == '300'">​✨</div>
+                <div *ngIf="object.condicion == '300'">✨</div>
               </div>
             </div>
           </div>
         </div>
         <div class="col scrollable-div">
-          <!-- SELECCION DE ENERGÍAS -->
           <div class="container-fluid">
             <h2>Selección de energías</h2>
             <div class="row">
               <div class="col">
-                <h3>Total de energías: {{ cantidadTotal }}</h3>
+                <h3>Total de energías: {{ totalEnergies }}</h3>
               </div>
               <div class="col">
                 <h3>Cantidad necesaria: {{ selectedObject?.condicion }}</h3>
               </div>
             </div>
             <div class="container-fluid">
-              <app-medals-list *ngIf="this.isClicked"></app-medals-list>
+              <app-medals-list
+                *ngIf="isClicked"
+                (energiesSelected)="onEnergiesSelected($event)"
+              ></app-medals-list>
             </div>
           </div>
         </div>

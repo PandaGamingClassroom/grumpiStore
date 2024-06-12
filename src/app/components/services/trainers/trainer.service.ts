@@ -246,9 +246,26 @@ export class TrainerService {
 
   // Añade este método para usar las energías seleccionadas
   useEnergiesForReward(name: string, energies: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/use-energies`, {
+    return this.http.post<any>(`${this.apiUrl}use-energies`, {
       name,
       energies,
+    });
+  }
+
+  spendEnergies(
+    trainerName: string,
+    energiesToSpend: { type: string; quantity: number }[]
+  ): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}spend-energies`, {
+      trainerName,
+      energiesToSpend,
+    });
+  }
+
+  assignReward(trainerName: string, reward: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}assign-rewards`, {
+      trainerName,
+      reward,
     });
   }
 }

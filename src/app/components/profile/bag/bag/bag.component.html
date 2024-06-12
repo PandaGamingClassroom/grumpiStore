@@ -17,10 +17,10 @@
   </button>
 </div>
 
-<h1 class="justify-content-center d-flex mb-3 box-text box-text">
+<h1 class="justify-content-center d-flex mb-3 box-text box-text ">
   <strong> MI MOCHILA </strong>
 </h1>
-<div class="container text-center">
+<div class="container text-center bg-box">
   <ul
     class="nav nav-pills mb-3 justify-content-center"
     id="pills-tab"
@@ -158,7 +158,7 @@
               <img
                 src="{{ combatObjet?.imagen }}"
                 class="img-fluid me-3"
-                style="max-width: 50px"
+                style="max-width: 250px;"
               />
               <h3 class="m-0">{{ combatObjet?.nombre }}</h3>
             </div>
@@ -167,14 +167,18 @@
             <h2 class="box-text">RECOMPENSAS:</h2>
             <div
               class="d-flex align-items-center mb-3"
-              *ngFor="let combatObjet of rewards_list"
+              *ngFor="let combatObjet of rewards_total_list"
             >
               <img
                 src="{{ combatObjet?.img }}"
                 class="img-fluid me-3"
-                style="max-width: 50px"
+                style="max-width: 250px"
               />
-              <h3 class="m-0">{{ combatObjet?.nombre }}</h3>
+              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 1'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia1}}</h3>
+              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 2'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia2}}</h3>
+              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 3'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia3}}</h3>
+              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 4'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia4}}</h3>
+              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 5'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia5}}</h3>
             </div>
           </div>
         </div>

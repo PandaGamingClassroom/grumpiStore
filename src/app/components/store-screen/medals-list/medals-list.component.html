@@ -1,159 +1,19 @@
 <div class="container-fluid content-box">
   <div class="content-list">
     <ul>
-      <li>
+      <li *ngFor="let energyGroup of groupedEnergies">
         <div class="row">
           <div class="col mb-2">
             <button class="evoBox">
-              <strong> Tipo Agua: </strong>
-              {{ cantidadEnergiaAgua }}
+              <strong>{{ energyGroup.type }}: </strong>{{ energyGroup.quantity }}
             </button>
           </div>
           <div class="col align-items-center">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Fuego: </strong>
-              {{ cantidadEnergiaFuego }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Aire: </strong>
-              {{ cantidadEnergiaAire }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Luz: </strong>
-              {{ cantidadEnergiaLuz }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Normal: </strong>
-              {{ cantidadEnergiaNormal }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Oscuridad: </strong>
-              {{ cantidadEnergiaOscuridad }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Rayo: </strong>
-              {{ cantidadEnergiaRayo }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Tierra: </strong>
-              {{ cantidadEnergiaTierra }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong> Vida: </strong>
-              {{ cantidadEnergiaVida }}
-            </button>
-          </div>
-          <div class="col">
-            <input
-              type="number"
-              class="form-control inputBox"
-              aria-label="Selecciona las energías"
-            />
+            <input type="number" class="form-control inputBox" aria-label="Selecciona las energías" (input)="onQuantityChange(energyGroup.type, $event)" min="1" max={{energyGroup.quantity}} />
           </div>
         </div>
       </li>
     </ul>
+    <button (click)="confirmSelection()" class="btn btn-primary mt-3">Confirmar Selección</button>
   </div>
 </div>

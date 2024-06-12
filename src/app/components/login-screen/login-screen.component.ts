@@ -109,6 +109,8 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('lastNameUser', profe.apelidos);
         this.route.navigate(['/management', this.myForm.value]);
         return;
+      } else {
+        this.error = true;
       }
     }
 
@@ -119,6 +121,8 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('username', this.user);
         this.route.navigate(['/home', this.myForm.value]);
         return;
+      } else {
+        this.error = true;
       }
     }
 

@@ -1,51 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TrainerService } from '../../services/trainers/trainer.service';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-medals-list',
   standalone: true,
   imports: [
-    RouterLink,
     CommonModule,
     HttpClientModule,
     FormsModule,
-    MatDialogModule,
     ReactiveFormsModule,
   ],
   providers: [TrainerService],
   templateUrl: './medals-list.component.html',
-  styleUrl: './medals-list.component.scss',
+  styleUrls: ['./medals-list.component.scss'],
 })
 export class MedalsListComponent implements OnInit {
-  /**
-   * CANTIDADES DISPONIBLES DE LAS ENERGÍAS
-   */
-  cantidadEnergiaAgua: number = 0;
-  cantidadEnergiaAire: number = 0;
-  cantidadEnergiaLuz: number = 0;
-  cantidadEnergiaTierra: number = 0;
-  cantidadEnergiaFuego: number = 0;
-  cantidadEnergiaVida: number = 0;
-  cantidadEnergiaRayo: number = 0;
-  cantidadEnergiaNormal: number = 0;
-  cantidadEnergiaOscuridad: number = 0;
-  cantidadTotal: number = 0;
+  @Output() energiesSelected = new EventEmitter<
+    { type: string; quantity: number }[]
+  >();
+
   trainer: any;
   username: string | null = '';
+  energiesToSpend: { type: string; quantity: number }[] = [];
 
-  constructor(private trainersService: TrainerService) {}
+  constructor(
+    private trainersService: TrainerService) {}
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
-      // Verifica si `window` está definido
-      this.username = localStorage.getItem('username');
-      if (this.username) {
-        this.getTrainerData(this.username);
+      const username = localStorage.getItem('username');
+      if (username) {
+        this.getTrainerData(username);
       }
     }
   }
@@ -57,7 +45,7 @@ export class MedalsListComponent implements OnInit {
           console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
         } else {
           this.trainer = data;
-          this.getEnergies(this.trainer, this.trainer.data.energias.tipo);
+          this.groupedEnergies = this.groupEnergies(this.trainer.data.energias);
         }
       },
       (error) => {
@@ -66,38 +54,43 @@ export class MedalsListComponent implements OnInit {
     );
   }
 
-  getEnergies(trainerData: any, typeEnergy: string) {
-    let energies = trainerData.data.energias;
-    for (let energia of energies) {
-      if (energia.tipo == 'Agua') {
-        this.cantidadEnergiaAgua++;
-      } else if (energia.tipo == 'Fuego') {
-        this.cantidadEnergiaFuego++;
-      } else if (energia.tipo == 'Aire') {
-        this.cantidadEnergiaAire++;
-      } else if (energia.tipo == 'Luz') {
-        this.cantidadEnergiaLuz++;
-      } else if (energia.tipo == 'Normal') {
-        this.cantidadEnergiaNormal++;
-      } else if (energia.tipo == 'Oscuridad') {
-        this.cantidadEnergiaOscuridad++;
-      } else if (energia.tipo == 'Rayo') {
-        this.cantidadEnergiaRayo++;
-      } else if (energia.tipo == 'Tierra') {
-        this.cantidadEnergiaTierra++;
-      } else if (energia.tipo == 'Vida') {
-        this.cantidadEnergiaVida++;
-      }
+  groupedEnergies: { type: string; quantity: number }[] = [];
+
+  groupEnergies(energies: any[]): { type: string; quantity: number }[] {
+    const grouped: { [type: string]: number } = {};
+    for (let energy of energies) {
+      grouped[energy.tipo] = (grouped[energy.tipo] || 0) + 1;
     }
-    this.cantidadTotal =
-      this.cantidadEnergiaAgua +
-      this.cantidadEnergiaFuego +
-      this.cantidadEnergiaAire +
-      this.cantidadEnergiaLuz +
-      this.cantidadEnergiaNormal +
-      this.cantidadEnergiaOscuridad +
-      this.cantidadEnergiaRayo +
-      this.cantidadEnergiaTierra +
-      this.cantidadEnergiaVida;
+    return Object.keys(grouped).map((type) => ({
+      type,
+      quantity: grouped[type],
+    }));
   }
+
+  getEnergyQuantity(type: string): number {
+    return (
+      this.groupedEnergies.find((energy) => energy.type === type)?.quantity || 0
+    );
+  }
+
+  onQuantityChange(type: string, event: any): void {
+    const quantity = parseInt(event.target.value, 10);
+    const energyIndex = this.energiesToSpend.findIndex((e) => e.type === type);
+
+    if (energyIndex > -1) {
+      if (quantity > 0) {
+        this.energiesToSpend[energyIndex].quantity = quantity;
+      } else {
+        this.energiesToSpend.splice(energyIndex, 1);
+      }
+    } else if (quantity > 0) {
+      this.energiesToSpend.push({ type, quantity });
+    }
+  }
+
+  confirmSelection(): void {
+    this.energiesSelected.emit(this.energiesToSpend);
+  }
+
+
 }

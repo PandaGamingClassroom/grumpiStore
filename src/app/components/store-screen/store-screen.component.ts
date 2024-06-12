@@ -60,6 +60,10 @@ export class StoreScreenComponent implements OnInit {
   cantidadEnergiaNormal: number = 0;
   cantidadEnergiaOscuridad: number = 0;
   cantidadTotal: number = 0;
+  totalEnergies: number = 0;
+
+  energies: number[] = [];
+  selectedEnergies: { type: string; quantity: number }[] = [];
 
   constructor(
     private grumpiService: GrumpiService,
@@ -461,26 +465,80 @@ export class StoreScreenComponent implements OnInit {
       this.cantidadEnergiaVida;
   }
 
-  buyRewards() {
+  seeRewards() {
     console.log(this.selectedObject);
     if (this.selectedObject.nombre == 'Recompensa 1') {
       this.handleClick();
     } else if (this.selectedObject.nombre == 'Recompensa 2') {
       this.handleClick();
-
     } else if (this.selectedObject.nombre == 'Recompensa 3') {
       this.handleClick();
-
     } else if (this.selectedObject.nombre == 'Recompensa 4') {
       this.handleClick();
-
     } else if (this.selectedObject.nombre == 'Recompensa 5') {
       this.handleClick();
-
     }
   }
 
   handleClick(): void {
     this.isClicked = !this.isClicked;
+  }
+
+  selectEnergy(energyType: string, quantity: number): void {
+    const index = this.selectedEnergies.findIndex(
+      (energy) => energy.type === energyType
+    );
+    if (index > -1) {
+      if (quantity === 0) {
+        // Si la cantidad es 0, elimina el objeto del array
+        this.selectedEnergies.splice(index, 1);
+      } else {
+        // Si el tipo de energía ya está en el array, actualiza la cantidad
+        this.selectedEnergies[index].quantity = quantity;
+      }
+    } else if (quantity > 0) {
+      // Si el tipo de energía no está en el array y la cantidad es mayor que 0, agrégalo
+      this.selectedEnergies.push({ type: energyType, quantity: quantity });
+    }
+  }
+
+  onEnergiesSelected(
+    selectedEnergies: { type: string; quantity: number }[]
+  ): void {
+    this.selectedEnergies = selectedEnergies;
+    this.buyRewards();
+  }
+
+  buyRewards(): void {
+    const requiredEnergies = this.selectedObject?.condicion;
+    const totalSelectedEnergies = this.selectedEnergies.reduce(
+      (acc, curr) => acc + curr.quantity,
+      0
+    );
+
+    const errorTitle = '¡Cuidado!';
+    const errorMessage = 'No tienes energías suficientes.';
+
+    if (requiredEnergies && totalSelectedEnergies >= requiredEnergies) {
+      const trainerName = localStorage.getItem('username');
+
+      if (trainerName) {
+        this.trainersService
+          .spendEnergies(trainerName, this.selectedEnergies)
+          .subscribe((data) => {
+            this.totalEnergies = data.totalEnergies;
+            this.selectedEnergies = [];
+            if (this.selectedObject) {
+              this.trainersService
+                .assignReward(trainerName, this.selectedObject)
+                .subscribe((response) => {
+                  console.log(response.message);
+                });
+            }
+          });
+      }
+    } else {
+      this.openErrorModal(errorTitle, errorMessage);
+    }
   }
 }

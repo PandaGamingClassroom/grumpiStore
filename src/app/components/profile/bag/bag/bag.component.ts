@@ -46,6 +46,13 @@ export class BagComponent implements OnInit {
   energiaVida: number = 0;
   activeTab: string = '';
   rewards_list: any;
+  rewards_total_list: any;
+
+  totalEnergia1: number = 0;
+  totalEnergia2: number = 0;
+  totalEnergia3: number = 0;
+  totalEnergia4: number = 0;
+  totalEnergia5: number = 0;
 
   constructor(
     private trainersService: TrainerService,
@@ -77,6 +84,8 @@ export class BagComponent implements OnInit {
         } else {
           this.trainer = data;
           energyTrainer = this.trainer.data.energias;
+          this.rewards_list = this.trainer.data.recompensas;
+          this.contadorRecompensas(this.rewards_list);
           this.energyCount(energyTrainer);
         }
       },
@@ -109,11 +118,35 @@ export class BagComponent implements OnInit {
       }
     }
   }
+
   getEnergies() {
     this.grumpiService.getImageEnergies().subscribe((result) => {
       console.log('Lista de energías: ', result.imageUrls);
       this.energies = result.imageUrls;
     });
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  contadorRecompensas(rewards: any) {
+    console.log(rewards);
+    for (let reward of rewards) {
+      if (reward.nombre == 'Recompensa 1') {
+        this.totalEnergia1++;
+      } else if (reward.nombre == 'Recompensa 2') {
+        this.totalEnergia2++;
+      } else if (reward.nombre == 'Recompensa 3') {
+        this.totalEnergia3++;
+      } else if (reward.nombre == 'Recompensa 4') {
+        this.totalEnergia4++;
+      } else if (reward.nombre == 'Recompensa 5') {
+        this.totalEnergia5++;
+      }
+
+    }
+
   }
 
   getRewards() {
@@ -122,17 +155,13 @@ export class BagComponent implements OnInit {
         if (data.message) {
           console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
         } else {
-          this.rewards_list = data.rewardsList;
-          console.log('Lista de recompensas: ', this.rewards_list);
+          this.rewards_total_list = data.rewardsList;
+          console.log('Lista de recompensas: ', this.rewards_total_list);
         }
       },
       (error) => {
         console.error('Error:', error);
       }
     );
-  }
-
-  setActiveTab(tab: string) {
-    this.activeTab = tab;
   }
 }
