@@ -17,10 +17,10 @@
   </button>
 </div>
 
-<h1 class="justify-content-center d-flex mb-3 box-text box-text ">
+<h1 class="justify-content-center d-flex mb-3 box-text box-text">
   <strong> MI MOCHILA </strong>
 </h1>
-<div class="container text-center bg-box ">
+<div class="container text-center bg-box">
   <ul
     class="nav nav-pills mb-3 justify-content-center"
     id="pills-tab"
@@ -153,32 +153,33 @@
             <h2 class="box-text">OBJETOS EVOLUTIVOS:</h2>
             <div
               class="d-flex align-items-center mb-3"
-              *ngFor="let combatObjet of this.trainer?.data?.objetos_evolutivos"
+              *ngFor="let combatObjet of uniqueCombatObjects"
             >
               <img
                 src="{{ combatObjet?.imagen }}"
                 class="img-fluid me-3"
-                style="max-width: 250px;"
+                style="max-width: 250px"
               />
-              <h3 class="m-0">{{ combatObjet?.nombre }}</h3>
+              <h3 class="m-0">
+                {{ combatObjet?.nombre }} ({{ combatObjet?.count }})
+              </h3>
             </div>
           </div>
           <div class="col-md-6">
             <h2 class="box-text">RECOMPENSAS:</h2>
             <div
               class="d-flex align-items-center mb-3"
-              *ngFor="let combatObjet of rewards_total_list"
+              *ngFor="let combatObjet of uniqueRewards"
             >
               <img
                 src="{{ combatObjet?.img }}"
                 class="img-fluid me-3"
                 style="max-width: 250px"
               />
-              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 1'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia1}}</h3>
-              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 2'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia2}}</h3>
-              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 3'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia3}}</h3>
-              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 4'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia4}}</h3>
-              <h3 class="m-0" *ngIf="combatObjet?.nombre == 'Recompensa 5'">{{ combatObjet?.nombre }} | Total conseguidas: {{totalEnergia5}}</h3>
+              <h3 class="m-0">
+                {{ combatObjet?.nombre }} | Total conseguidas:
+                {{ combatObjet?.count }}
+              </h3>
             </div>
           </div>
         </div>
@@ -192,21 +193,32 @@
       aria-labelledby="pills-evolution-objects-tab"
       tabindex="0"
     >
-      <h2 class="box-text"><strong>MIS OBJETOS DE COMBATE</strong></h2>
+      <h2 class="box-text text-center">
+        <strong>MIS OBJETOS DE COMBATE</strong>
+      </h2>
       <hr />
       <div class="container scrollable-div">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-md-6">
             <div
-              class="img-creature mg-5"
-              *ngFor="let combatObjet of this.trainer?.data?.objetos_combate"
+              *ngFor="let combatObjet of uniqueCombatObjects"
+              class="d-flex align-items-center mb-3 justify-content-center"
             >
-              <img srcset="{{ combatObjet?.imagen }}" />
+              <img
+                src="{{ combatObjet?.imagen }}"
+                class="img-fluid me-3"
+                style="max-width: 250px"
+              />
+              <h3 class="m-0 text-center">
+                {{ combatObjet?.nombre }} | Total conseguidas:
+                {{ combatObjet?.count }}
+              </h3>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div
       class="tab-pane fade"
       id="pills-medals"
@@ -236,48 +248,23 @@
       aria-labelledby="pills-energy-tab"
       tabindex="0"
     >
-      <h2 class="box-text"><strong>MIS ENERGÍAS</strong></h2>
+      <h2 class="box-text text-center"><strong>MIS ENERGÍAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-md-6">
             <div
-              class="img-creature mg-5"
-              *ngFor="let energyImage of this.energies"
+              *ngFor="let energy of uniqueEnergies"
+              class="d-flex align-items-center mb-3 justify-content-center"
             >
-              <div class="row">
-                <div class="col-md-6"><img srcset="{{ energyImage }}" /></div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Agua2')">
-                  <strong>Cantidad:</strong> {{ this.energiaAgua }}
-                </div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Fuego2')">
-                  <strong>Cantidad:</strong> {{ this.energiaFuego }}
-                </div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Aire2')">
-                  <strong>Cantidad:</strong> {{ this.energiaAire }}
-                </div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Luz2')">
-                  <strong>Cantidad:</strong> {{ this.energiaLuz }}
-                </div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Normal2')">
-                  <strong>Cantidad:</strong> {{ this.energiaNormal }}
-                </div>
-                <div
-                  class="col-md-6"
-                  *ngIf="energyImage.includes('Oscuridad2')"
-                >
-                  <strong>Cantidad:</strong> {{ this.energiaOscuridad }}
-                </div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Rayo2')">
-                  <strong>Cantidad:</strong> {{ this.energiaRayo }}
-                </div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Tierra2')">
-                  <strong>Cantidad:</strong> {{ this.energiaTierra }}
-                </div>
-                <div class="col-md-6" *ngIf="energyImage.includes('Vida2')">
-                  <strong>Cantidad:</strong> {{ this.energiaVida }}
-                </div>
-              </div>
+              <img
+                src="{{ energy.imagen }}"
+                class="img-fluid me-3"
+                style="max-width: 250px"
+              />
+              <h3 class="m-0 text-center">
+                {{ energy.nombre }} | Total conseguidas: {{ energy.count }}
+              </h3>
             </div>
           </div>
         </div>

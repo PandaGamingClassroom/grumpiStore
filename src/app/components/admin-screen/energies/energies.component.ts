@@ -78,6 +78,8 @@ export class EnergiesComponent implements OnInit {
       this.selectedFile = null;
     }
   }
+
+
   assignEnergies(): void {
     if (this.selectedTrainerName && this.selectedEnergie) {
       this.trainersService

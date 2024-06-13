@@ -48,11 +48,31 @@ export class BagComponent implements OnInit {
   rewards_list: any;
   rewards_total_list: any;
 
-  totalEnergia1: number = 0;
-  totalEnergia2: number = 0;
-  totalEnergia3: number = 0;
-  totalEnergia4: number = 0;
-  totalEnergia5: number = 0;
+  /** Totales de las recompensas */
+  totalRecompensa1: number = 0;
+  totalRecompensa2: number = 0;
+  totalRecompensa3: number = 0;
+  totalRecompensa4: number = 0;
+  totalRecompensa5: number = 0;
+
+  /** Totales de los objetos evolutivos */
+  totalLosaAgua: number = 0;
+  totalLosaAire: number = 0;
+  totalLosaFuego: number = 0;
+  totalLosaLuz: number = 0;
+  totalLosaNormal: number = 0;
+  totalLosaOscuridad: number = 0;
+  totalLosaVida: number = 0;
+  totalLosaTierra: number = 0;
+  totalLosaRayo: number = 0;
+  totalPlumaCelestial: number = 0;
+  totalPlumaOscura: number = 0;
+  totalBalanza: number = 0;
+
+  uniqueCombatObjects: any[] = [];
+  uniqueEvolutionObjects: any[] = [];
+  uniqueRewards: any[] = [];
+  uniqueEnergies: any[] = [];
 
   constructor(
     private trainersService: TrainerService,
@@ -86,7 +106,10 @@ export class BagComponent implements OnInit {
           energyTrainer = this.trainer.data.energias;
           this.rewards_list = this.trainer.data.recompensas;
           this.contadorRecompensas(this.rewards_list);
-          this.energyCount(energyTrainer);
+          this.contadorLosas(this.trainer.data.objetos_evolutivos);
+          this.contadorObjetosCombate(this.trainer.data.objetos_combate);
+          // this.energyCount(energyTrainer);
+          this.contadorEnergias(energyTrainer);
         }
       },
       (error) => {
@@ -142,22 +165,119 @@ export class BagComponent implements OnInit {
    * @param rewards Obtiene la lista de recompensas del entrenador
    */
   contadorRecompensas(rewards: any) {
-    console.log(rewards);
-    for (let reward of rewards) {
-      if (reward.nombre == 'Recompensa 1') {
-        this.totalEnergia1++;
-      } else if (reward.nombre == 'Recompensa 2') {
-        this.totalEnergia2++;
-      } else if (reward.nombre == 'Recompensa 3') {
-        this.totalEnergia3++;
-      } else if (reward.nombre == 'Recompensa 4') {
-        this.totalEnergia4++;
-      } else if (reward.nombre == 'Recompensa 5') {
-        this.totalEnergia5++;
-      }
+    console.log('Recompensas del entrenador: ', rewards);
 
+    const rewardCounts: { [key: string]: any } = {};
+
+    for (let reward of rewards) {
+      if (!rewardCounts[reward.nombre]) {
+        rewardCounts[reward.nombre] = { ...reward, count: 0 };
+      }
+      rewardCounts[reward.nombre].count++;
     }
 
+    this.uniqueRewards = Object.values(rewardCounts);
+
+    // Contadores individuales, si aún son necesarios
+    this.totalRecompensa1 = rewardCounts['Recompensa 1']?.count || 0;
+    this.totalRecompensa2 = rewardCounts['Recompensa 2']?.count || 0;
+    this.totalRecompensa3 = rewardCounts['Recompensa 3']?.count || 0;
+    this.totalRecompensa4 = rewardCounts['Recompensa 4']?.count || 0;
+    this.totalRecompensa5 = rewardCounts['Recompensa 5']?.count || 0;
+  }
+
+  /**
+   * Función para hacer un recuento de cada objeto evolutivo que tiene el entrenador.
+   * @param combatObjects Recibe la lista de objetos evolutivos que tiene el entrenador
+   */
+  contadorLosas(combatObjects: any) {
+    console.log('Objetos evolutivos del entrenador: ', combatObjects);
+
+    const objectCounts: { [key: string]: any } = {};
+
+    for (let obj of combatObjects) {
+      if (!objectCounts[obj.nombre]) {
+        objectCounts[obj.nombre] = { ...obj, count: 0 };
+      }
+      objectCounts[obj.nombre].count++;
+    }
+
+    this.uniqueEvolutionObjects = Object.values(objectCounts);
+
+    // Contadores individuales, si aún son necesarios
+    this.totalLosaAgua = objectCounts['Losa Agua']?.count || 0;
+    this.totalLosaAire = objectCounts['Losa Aire']?.count || 0;
+    this.totalLosaFuego = objectCounts['Losa Fuego']?.count || 0;
+    this.totalLosaLuz = objectCounts['Losa Luz']?.count || 0;
+    this.totalLosaNormal = objectCounts['Losa Normal']?.count || 0;
+    this.totalLosaOscuridad = objectCounts['Losa Oscuridad']?.count || 0;
+    this.totalLosaRayo = objectCounts['Losa Rayo']?.count || 0;
+    this.totalLosaTierra = objectCounts['Losa Tierra']?.count || 0;
+    this.totalLosaVida = objectCounts['Losa Vida']?.count || 0;
+    this.totalBalanza = objectCounts['Balanza del orden']?.count || 0;
+    this.totalPlumaCelestial = objectCounts['Pluma celestial']?.count || 0;
+    this.totalPlumaOscura = objectCounts['Pluma oscura']?.count || 0;
+  }
+
+  contadorObjetosCombate(combatObjects: any) {
+    console.log('Objetos de combate del entrenador: ', combatObjects);
+
+    const objectCounts: { [key: string]: any } = {};
+
+    for (let obj of combatObjects) {
+      if (!objectCounts[obj.nombre]) {
+        objectCounts[obj.nombre] = { ...obj, count: 0 };
+      }
+      objectCounts[obj.nombre].count++;
+    }
+
+    this.uniqueCombatObjects = Object.values(objectCounts);
+  }
+
+  contadorEnergias(energies: any) {
+    const energyCounts: { [key: string]: any } = {};
+
+    for (let energy of energies) {
+      if (!energyCounts[energy.nombre]) {
+        energyCounts[energy.nombre] = { ...energy, count: 0 };
+      }
+      energyCounts[energy.nombre].count++;
+    }
+
+    this.uniqueEnergies = Object.values(energyCounts);
+
+    // Set the specific energy counts
+    for (let energy of this.uniqueEnergies) {
+      switch (energy.nombre) {
+        case 'Agua':
+          this.energiaAgua = energy.count;
+          break;
+        case 'Fuego':
+          this.energiaFuego = energy.count;
+          break;
+        case 'Aire':
+          this.energiaAire = energy.count;
+          break;
+        case 'Luz':
+          this.energiaLuz = energy.count;
+          break;
+        case 'Normal':
+          this.energiaNormal = energy.count;
+          break;
+        case 'Oscuridad':
+          this.energiaOscuridad = energy.count;
+          break;
+        case 'Rayo':
+          this.energiaRayo = energy.count;
+          break;
+        case 'Tierra':
+          this.energiaTierra = energy.count;
+          break;
+        case 'Vida':
+          this.energiaVida = energy.count;
+          break;
+      }
+    }
   }
 
   /**
