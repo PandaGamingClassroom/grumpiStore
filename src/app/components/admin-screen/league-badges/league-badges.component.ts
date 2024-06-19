@@ -117,6 +117,7 @@ export class LeagueBadgesComponent implements OnInit {
       }
     );
   }
+
   openModal() {
     if (!this.modalAbierta) {
       const data = {
