@@ -12,6 +12,12 @@ import { MedalsManagementComponent } from './medals-management/medals-management
 import { LeagueBadgesManagementComponent } from './league-badges-management/league-badges-management.component';
 import { CreaturesManagementComponent } from './creatures-management/creatures-management.component';
 import { EnergiesManagementComponent } from './energies-management/energies-management.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
+
 @Component({
   selector: 'app-management',
   standalone: true,
@@ -26,6 +32,10 @@ import { EnergiesManagementComponent } from './energies-management/energies-mana
     GrumpidolarsComponent,
     EnergiesManagementComponent,
     CreaturesManagementComponent,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [TrainerService],
   templateUrl: './management.component.html',

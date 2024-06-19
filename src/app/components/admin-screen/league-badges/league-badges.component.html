@@ -4,64 +4,59 @@
       <div class="row">
         <div class="col"><h2>Distintivos de liga</h2></div>
       </div>
-
-      <!-- <div class="container creatures-box ">
-          <div
-            class="img-creature"
-            *ngFor="let imageUrl of energy_list"
-          >
-            <div class="row">
-              <div class="col"><img srcset="{{imageUrl.imagen}}" alt="Imagen" /></div>
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  (click)="selectedEnergie = imageUrl"
-                  data-bs-toggle="modal"
-                  data-bs-target="#eraseModal"
-                >
-                  Asignar a
-                </button>
-              </div>
+      <div class="container creatures-box">
+        <div class="img-creature" *ngFor="let imageUrl of distintivosImg">
+          <div class="row">
+            <div class="col"><img srcset="{{imageUrl}}" alt="Imagen" /></div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="selectedBadgeName = imageUrl"
+                data-bs-toggle="modal"
+                data-bs-target="#eraseModal"
+              >
+                Asignar a
+              </button>
             </div>
           </div>
-          <hr />
-        </div> -->
+        </div>
+        <hr />
+      </div>
     </div>
     <div class="col form-group main-box">
       <h2>Añadir un distintivo nuevo</h2>
-      <!-- <form
-          [formGroup]="myForm"
-          (ngSubmit)="onSubmit($event)"
-          (change)="onFileSelected($event)"
-        >
-          <div class="row">
-            <div class="col">
-              <label for="imagen" class="form-label"
-                ><strong>Energía:</strong></label
-              >
-            </div>
-            <div class="col">
-              <input
-                type="file"
-                id="imagen"
-                name="imagen"
-                required
-                formControlName="imagen"
-              />
-            </div>
+      <form
+        [formGroup]="myForm"
+        (ngSubmit)="onSubmit($event)"
+        (change)="onFileSelected($event)"
+      >
+        <div class="row">
+          <div class="col">
+            <label for="imagen" class="form-label"
+              ><strong>Distintivo :</strong></label
+            >
           </div>
-          <hr />
-
-          <div class="container mt-3 d-flex justify-content-center">
-            <button type="submit" class="btn btn-success">Guardar</button>
+          <div class="col">
+            <input
+              type="file"
+              id="imagen"
+              name="imagen"
+              required
+              formControlName="imagen"
+            />
           </div>
-        </form> -->
+        </div>
+        <hr />
+        <div class="container mt-3 d-flex justify-content-center">
+          <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
-<!-- <div
+<div
   class="modal fade"
   id="eraseModal"
   tabindex="-1"
@@ -80,10 +75,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <select
-          [(ngModel)]="selectedTrainerName"
-          class="form-control"
-        >
+        <select [(ngModel)]="selectedTrainerName" class="form-control">
           <option *ngFor="let trainer of trainerList" [value]="trainer.name">
             {{ trainer.name }}
           </option>
@@ -97,11 +89,11 @@
           type="button"
           class="btn btn-danger"
           data-bs-dismiss="modal"
-          (click)="assignEnergies()"
+          (click)="assignBadges()"
         >
           Aceptar
         </button>
       </div>
     </div>
   </div>
-</div> -->
+</div>
