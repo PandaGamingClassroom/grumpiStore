@@ -1,7 +1,20 @@
 .main{
   background-color: aliceblue;
   background-image: url(../../../../../assets/cool-background.svg);
-  height: 100%;
   width: 100%;
   background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+.img-creature {
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 2%;
+}
+
+.img-creature img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
 }

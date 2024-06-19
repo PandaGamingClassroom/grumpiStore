@@ -11,6 +11,10 @@ import { TrainersAdminComponent } from './trainers/trainers-admin/trainers-admin
 import { MedalsAdminScreenComponent } from './medals/medals-admin-screen.component';
 import { LeagueBadgesComponent } from './league-badges/league-badges.component';
 import { CreaturesAdminComponent } from './creatures/creatures-admin.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-admin-screen',
@@ -26,6 +30,10 @@ import { CreaturesAdminComponent } from './creatures/creatures-admin.component';
     GrumpidolarsComponent,
     EnergiesComponent,
     CreaturesAdminComponent,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [TrainerService],
   templateUrl: './admin-screen.component.html',
@@ -41,6 +49,7 @@ export class AdminScreenComponent implements OnInit {
   nameProfesor: any;
   lastNameProfesor: any;
   activeSection: string | null = null;
+
 
   constructor(
     private routes: ActivatedRoute,

@@ -73,3 +73,46 @@
     padding: .75rem 2rem;
   }
 }
+
+
+
+.sidenav-container {
+  height: 100%;
+  background-color: burlywood;
+}
+
+.sidenav {
+  width: 240px;
+}
+
+.sidenav .mat-list-item {
+  cursor: pointer;
+}
+
+.mat-sidenav-content {
+  padding: 20px;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+}
+
+h1, h2, h3, p {
+  color: #000000;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+}
+
+.box-text, p, span, strong {
+  color: black; /* Color de la tipografía del texto en general */
+}
+
+.btn-out {
+  color: black; /* Color de la tipografía del botón de salir */
+  border-color: black; /* Bordes negros para el botón de salir */
+}
+
+
+

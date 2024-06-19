@@ -3,7 +3,8 @@ ul {
 }
 
 .main-box {
-  margin-top: 10%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 
 .row-creatures {
@@ -70,4 +71,9 @@ ul {
   top: 0;
   z-index: 1000;
   padding: 10px 0;
+}
+
+
+h1, h2, h3, p, label, input {
+  color: #000000;
 }

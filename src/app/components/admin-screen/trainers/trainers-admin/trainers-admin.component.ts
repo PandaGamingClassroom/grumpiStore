@@ -150,6 +150,7 @@ export class TrainersAdminComponent implements OnInit {
           console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
         } else {
           this.profesor = data;
+          console.log('Profesor: ', this.profesor);
           this.lastNameProfesor = data.data.apellidos;
           this.getEntrenadores(data.data.id);
         }

@@ -60,7 +60,8 @@ ul {
 }
 
 .design-column {
-  border-right: 1px solid black;
+  // border-right: 1px solid black;
+  margin-right: 2%;
 }
 
 
@@ -70,4 +71,9 @@ ul {
   top: 0;
   z-index: 1000;
   padding: 10px 0;
+}
+
+
+h1, h2, h3, p, label, input {
+  color: #000000;
 }
