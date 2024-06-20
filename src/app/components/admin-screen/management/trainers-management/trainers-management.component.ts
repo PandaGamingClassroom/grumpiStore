@@ -74,27 +74,33 @@ export class TrainersManagementComponent implements OnInit {
    * @param nuevaPass
    */
   guardarEntrenador(nuevoAlumnoNombre: any, nuevaPass: any) {
-    this.trainersService.postTrainer(nuevoAlumnoNombre, nuevaPass).subscribe(
-      (response) => {
-        const data = {
-          title: '¡Correcto!',
-          message: 'El entrenador se ha añadido correctamente.',
-        };
-        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
-          width: '400px', // Ancho de la ventana modal
-          height: '300px', // Alto de la ventana modal
-          data: data,
-        });
-        // Puedes realizar acciones después de que se cierre la modal si lo deseas
-        dialogRef.afterClosed().subscribe((result) => {
-          console.log('La modal se ha cerrado');
-          window.location.reload();
-        });
-      },
-      (error) => {
-        console.error('Error al agregar el entrenador:', error);
-      }
-    );
+     const nuevoEntrenador = {
+       name: nuevoAlumnoNombre,
+       password: nuevaPass,
+       id_profesor: this.profesor.data.id, // Asegúrate de que el profesor esté cargado
+     };
+
+     this.trainersService.postTrainer(nuevoEntrenador).subscribe(
+       (response) => {
+         const data = {
+           title: '¡Correcto!',
+           message: 'El entrenador se ha añadido correctamente.',
+         };
+         const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+           width: '400px', // Ancho de la ventana modal
+           height: '300px', // Alto de la ventana modal
+           data: data,
+         });
+         // Puedes realizar acciones después de que se cierre la modal si lo deseas
+         dialogRef.afterClosed().subscribe((result) => {
+           console.log('La modal se ha cerrado');
+           window.location.reload();
+         });
+       },
+       (error) => {
+         console.error('Error al agregar el entrenador:', error);
+       }
+     );
   }
 
   /**

@@ -8,7 +8,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../services/trainers/trainer.service';
 
 @Component({
@@ -24,18 +24,21 @@ import { TrainerService } from '../../services/trainers/trainer.service';
   ],
   providers: [TrainerService],
   templateUrl: './grumpidolars.component.html',
-  styleUrl: './grumpidolars.component.scss',
+  styleUrls: ['./grumpidolars.component.scss'],
 })
 export class GrumpidolarsComponent implements OnInit {
   trainerList: any[] = [];
   myForm: FormGroup;
-  grumpidolar: number = 0;
   grumpidolaresPorEntrenador: { [key: string]: number } = {};
+  nameProfesor: any;
+  username: any;
+  lastNameProfesor: any;
+  profesor: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private trainersService: TrainerService,
-    private http: HttpClient,
+    private http: HttpClient
   ) {
     this.myForm = this.formBuilder.group({
       grumpidolar: [''],
@@ -44,8 +47,14 @@ export class GrumpidolarsComponent implements OnInit {
       this.grumpidolaresPorEntrenador[trainer.name] = 0;
     });
   }
+
   ngOnInit(): void {
-    this.getTrainers();
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+      this.nameProfesor = localStorage.getItem('nameUser');
+      this.getDadataProfesor(this.nameProfesor);
+    }
   }
 
   getTrainers() {
@@ -66,22 +75,53 @@ export class GrumpidolarsComponent implements OnInit {
     );
   }
 
-  assignGrumpidolares(trainerName: string, grumpidolares: number): void {
-  const grumpidolaresNumber = Number(grumpidolares);
-  if (isNaN(grumpidolaresNumber) || grumpidolaresNumber <= 0) {
-    console.error('Grumpidólares debe ser un número positivo.');
-    return;
-  }
-
-  this.trainersService
-    .assignGrumpidolaresToTrainer(trainerName, grumpidolaresNumber)
-    .subscribe(
-      (response) => {
-        this.getTrainers();
+  getDadataProfesor(name: string) {
+    this.trainersService.getProfesorByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+        } else {
+          this.profesor = data;
+          console.log('Profesor: ', this.profesor);
+          this.lastNameProfesor = data.data.apellidos;
+          this.getEntrenadores(data.data.id);
+        }
       },
       (error) => {
         console.error('Error:', error);
       }
     );
+  }
+
+  getEntrenadores(profesorId: number) {
+    this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
+      (data) => {
+        this.trainerList = data.data;
+        console.log('Entrenadores del profesor: ', this.trainerList);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  assignGrumpidolares(trainerName: string, grumpidolares: number): void {
+    const grumpidolaresNumber = Number(grumpidolares);
+    if (isNaN(grumpidolaresNumber) || grumpidolaresNumber <= 0) {
+      console.error('Grumpidólares debe ser un número positivo.');
+      return;
+    }
+
+    this.trainersService
+      .assignGrumpidolaresToTrainer(trainerName, grumpidolaresNumber)
+      .subscribe(
+        (response) => {
+          this.getDadataProfesor(this.nameProfesor);
+          this.grumpidolaresPorEntrenador[trainerName] = 0; // Limpiar el input
+        },
+        (error) => {
+          console.error('Error:', error);
+        }
+      );
   }
 }

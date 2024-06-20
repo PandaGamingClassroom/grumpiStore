@@ -32,8 +32,8 @@ export class TrainerService {
    * @param password
    * @returns
    */
-  postTrainer(name: string, password: string) {
-    const body = { name, password }; // Objeto con los datos a enviar al servidor
+  postTrainer(nuevoEntrenador: any) {
+    const body = { nuevoEntrenador }; // Objeto con los datos a enviar al servidor
     return this.http.post(this.apiUrl, body);
   }
 

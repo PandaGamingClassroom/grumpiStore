@@ -52,97 +52,6 @@ export class TrainersAdminComponent implements OnInit {
     }
   }
 
-  /**
-   * Función para obtener la lista completa de entrenadores
-   */
-  getTrainers() {
-    this.trainersService.getTrainers().subscribe((data: any) => {
-      // Verifica si el objeto de datos recibido tiene la propiedad 'trainer_list'
-      if (data && data.trainer_list) {
-        this.trainers = data.trainer_list;
-        this.getError = this.trainers.length === 0;
-      } else {
-        // Si el objeto de datos no tiene la propiedad 'trainer_list', establece un error
-        this.getError = true;
-      }
-      console.log('Entrenadores: ', this.trainers);
-    });
-  }
-
-  /**
-   * Función para guardar los datos de un nuevo entrenador
-   * @param nuevoAlumnoNombre
-   * @param nuevaPass
-   */
-  guardarEntrenador(nuevoAlumnoNombre: any, nuevaPass: any) {
-    this.trainersService.postTrainer(nuevoAlumnoNombre, nuevaPass).subscribe(
-      (response) => {
-        const data = {
-          title: '¡Correcto!',
-          message: 'El entrenador se ha añadido correctamente.',
-        };
-        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
-          width: '400px', // Ancho de la ventana modal
-          height: '300px', // Alto de la ventana modal
-          data: data,
-        });
-        // Puedes realizar acciones después de que se cierre la modal si lo deseas
-        dialogRef.afterClosed().subscribe((result) => {
-          console.log('La modal se ha cerrado');
-          window.location.reload();
-        });
-      },
-      (error) => {
-        console.error('Error al agregar el entrenador:', error);
-      }
-    );
-  }
-
-  /**
-   * Función para seleccionar un entrenador de la lista.
-   * @param trainer entrenador seleccionado
-   */
-  selectTrainer(trainer: string) {
-    this.trainerSelected = trainer;
-  }
-
-  deleteTrainer() {
-    const trainerToDelete = this.trainers.find(
-      (trainer) => trainer.name === this.trainerSelected
-    );
-
-    if (!trainerToDelete) {
-      console.error('No se encontró el entrenador a eliminar');
-      return;
-    }
-
-    this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
-      () => {
-        console.log('Entrenador eliminado correctamente');
-        // Obtener la lista actualizada de entrenadores después de eliminar
-        this.getTrainers();
-      },
-      (error) => {
-        console.error('Error al eliminar el registro:', error);
-      }
-    );
-  }
-
-  openEditPage(trainer: any) {
-    console.log('Entrenador a editar: ', trainer);
-
-    const dialogRef = this.dialog.open(TrainersEditComponent, {
-      width: '700px', // Ancho de la ventana modal
-      height: '600px', // Alto de la ventana modal
-      data: trainer,
-    });
-    // Puedes realizar acciones después de que se cierre la modal si lo deseas
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('La modal se ha cerrado');
-      window.location.reload();
-    });
-  }
-
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -171,5 +80,76 @@ export class TrainersAdminComponent implements OnInit {
         console.error('Error:', error);
       }
     );
+  }
+
+  guardarEntrenador(nuevoAlumnoNombre: any, nuevaPass: any) {
+    const nuevoEntrenador = {
+      name: nuevoAlumnoNombre,
+      password: nuevaPass,
+      id_profesor: this.profesor.data.id, // Asegúrate de que el profesor esté cargado
+    };
+
+    this.trainersService.postTrainer(nuevoEntrenador).subscribe(
+      (response) => {
+        const data = {
+          title: '¡Correcto!',
+          message: 'El entrenador se ha añadido correctamente.',
+        };
+        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+          width: '400px', // Ancho de la ventana modal
+          height: '300px', // Alto de la ventana modal
+          data: data,
+        });
+        // Puedes realizar acciones después de que se cierre la modal si lo deseas
+        dialogRef.afterClosed().subscribe((result) => {
+          console.log('La modal se ha cerrado');
+          window.location.reload();
+        });
+      },
+      (error) => {
+        console.error('Error al agregar el entrenador:', error);
+      }
+    );
+  }
+
+  selectTrainer(trainer: string) {
+    this.trainerSelected = trainer;
+  }
+
+  deleteTrainer() {
+    const trainerToDelete = this.trainers.find(
+      (trainer) => trainer.name === this.trainerSelected
+    );
+
+    if (!trainerToDelete) {
+      console.error('No se encontró el entrenador a eliminar');
+      return;
+    }
+
+    this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
+      () => {
+        console.log('Entrenador eliminado correctamente');
+        // Obtener la lista actualizada de entrenadores después de eliminar
+        this.getEntrenadores(this.profesor.data.id);
+      },
+      (error) => {
+        console.error('Error al eliminar el registro:', error);
+      }
+    );
+  }
+
+  openEditPage(trainer: any) {
+    console.log('Entrenador a editar: ', trainer);
+
+    const dialogRef = this.dialog.open(TrainersEditComponent, {
+      width: '700px', // Ancho de la ventana modal
+      height: '600px', // Alto de la ventana modal
+      data: trainer,
+    });
+    // Puedes realizar acciones después de que se cierre la modal si lo deseas
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('La modal se ha cerrado');
+      window.location.reload();
+    });
   }
 }
