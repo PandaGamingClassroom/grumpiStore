@@ -1,32 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatDialogModule } from '@angular/material/dialog';
-import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
-import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
-import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
+import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
-  selector: 'app-trainers-admin',
+  selector: 'app-add-trainers',
   standalone: true,
   imports: [
     RouterLink,
-    NavBarAdminComponent,
     CommonModule,
     HttpClientModule,
     FormsModule,
     MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [TrainerService],
-  templateUrl: './trainers-admin.component.html',
-  styleUrls: ['./trainers-admin.component.scss'],
+  templateUrl: './add-trainers.component.html',
+  styleUrl: './add-trainers.component.scss',
 })
-export class TrainersAdminComponent implements OnInit {
+export class AddTrainersComponent implements OnInit {
   trainers: any[] = [];
   errorGetTrainers: string = 'No se han encontrado entrenadores';
   getError: boolean = false;
@@ -35,11 +37,21 @@ export class TrainersAdminComponent implements OnInit {
   username: any;
   nameProfesor: any;
   lastNameProfesor: any;
+  myForm: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private trainersService: TrainerService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    public dialogRef: MatDialogRef<AddTrainersComponent>
+  ) {
+    this.myForm = this.formBuilder.group({
+      trainer_name: ['', Validators.required],
+      trainer_pass: ['', Validators.required],
+      grumpidolar: [''],
+      combatMark: [''],
+    });
+  }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
@@ -104,53 +116,7 @@ export class TrainersAdminComponent implements OnInit {
     );
   }
 
-  selectTrainer(trainer: string) {
-    this.trainerSelected = trainer;
-  }
-
-  deleteTrainer() {
-    const trainerToDelete = this.trainers.find(
-      (trainer) => trainer.name === this.trainerSelected
-    );
-
-    if (!trainerToDelete) {
-      console.error('No se encontró el entrenador a eliminar');
-      return;
-    }
-
-    this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
-      () => {
-        this.getEntrenadores(this.profesor.data.id); // Actualiza la lista de entrenadores después de eliminar
-      },
-      (error) => {
-        console.error('Error al eliminar el registro:', error);
-      }
-    );
-  }
-
-  openEditPage(trainer: any) {
-    const dialogRef = this.dialog.open(TrainersEditComponent, {
-      width: '700px',
-      height: '600px',
-      data: trainer,
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.getEntrenadores(this.profesor.data.id); // Actualiza la lista de entrenadores después de cerrar el modal
-    });
-  }
-
-  openAddTrainerModal(): void {
-    const dialogRef = this.dialog.open(AddTrainersComponent, {
-      width: '700px',
-      height: '600px',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Nuevo entrenador:', result);
-        // lógica para manejar el nuevo entrenador
-      }
-    });
+  close() {
+    this.dialogRef.close();
   }
 }

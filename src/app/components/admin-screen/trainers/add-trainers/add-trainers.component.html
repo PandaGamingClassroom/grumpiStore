@@ -1,0 +1,85 @@
+<div class="container-fluid main">
+  <div class="btn-config mt-3">
+    <button type="button" class="btn" (click)="close()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-left-circle-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+        />
+      </svg>
+      Atrás
+    </button>
+  </div>
+
+  <h2 class="justify-content-center d-flex mt-2">Añadir nuevo entrenador</h2>
+
+  <hr />
+
+  <div class="container">
+    <form [formGroup]="myForm">
+      <div class="form-group">
+        <label for="trainer_name" class="form-label"
+          >Nombre de entrenador</label
+        >
+        <label for="exampleInputEmail1" class="form-label"
+          >Nombre entrenador</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          #nuevoNombreEntrenador
+        />
+      </div>
+      <label for="trainer_pass" class="form-label mt-3"
+        >Contraseña entrenador</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputPassword1"
+        #nuevaPass
+      />
+      <label for="grumpidolar" class="form-label mt-3">Grumpidólares</label>
+      <input
+        type="text"
+        class="form-control"
+        id="grumpidolar"
+        formControlName="grumpidolar"
+      />
+      <label for="combatMark" class="form-label mt-3">Marcas de combate</label>
+      <input
+        type="text"
+        class="form-control"
+        id="combatMark"
+        formControlName="combatMark"
+      />
+
+      <div class="modal-footer mt-3">
+        <button
+          type="button"
+          class="btn btn-secondary me-3"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="
+            guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)
+          "
+          data-bs-dismiss="modal"
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

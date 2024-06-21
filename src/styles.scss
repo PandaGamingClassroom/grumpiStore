@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
+
 /* You can add global styles to this file, and also import other style files */
 .btn-config {
   margin: 1%;
@@ -63,7 +64,6 @@ body {
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-  // overflow-y: auto;
 }
 
 .spacesBetween {
@@ -109,13 +109,6 @@ body {
   }
 }
 
-// h1,
-// h2,
-// h3 {
-//   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,
-//     1px 1px 0 white;
-// }
-
 
 .bg-box {
   background: rgba(255, 255, 255, 0.8);
@@ -124,4 +117,3 @@ body {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -10,8 +10,7 @@
         <button
           type="button"
           class="btn btn-success btn-list d-flex justify-content-center align-items-center"
-          data-bs-toggle="modal"
-          data-bs-target="#adModal"
+          (click)="openAddTrainerModal()"
         >
           <i class="material-icons">&#xe145;</i>
         </button>
@@ -24,69 +23,42 @@
   <div class="d-flex justify-content-center">
     <div class="list mt-3 box-trainer scrollable-div">
       <p *ngIf="getError">{{ errorGetTrainers }}</p>
-      <ul *ngIf="trainers.length > 1">
-        <li *ngFor="let alumno of trainers">
+      <ul *ngIf="trainers.length > 0">
+        <li *ngFor="let trainer of trainers">
           <div class="row">
             <div class="col" id="entrenador">
-              <strong> {{ alumno.name }} </strong>
+              <strong> {{ trainer.name }} </strong>
             </div>
             <div class="col">
               <button
                 type="button"
                 class="btn btn-secondary btn-list"
-                (click)="openEditPage(alumno)"
+                (click)="openEditPage(trainer)"
               >
-                <i class="material-icons d-flex justify-content-center align-items-center">&#xe417;</i>
+                <i class="material-icons">&#xe417;</i>
               </button>
               <button
                 type="button"
                 class="btn btn-secondary btn-list"
-                (click)="openEditPage(alumno)"
+                (click)="openEditPage(trainer)"
               >
-                <i class="material-icons d-flex justify-content-center align-items-center">&#xe254;</i>
+                <i class="material-icons">&#xe254;</i>
               </button>
               <button
                 type="button"
                 class="btn btn-danger btn-list"
                 data-bs-toggle="modal"
                 data-bs-target="#eraseModal"
-                (click)="selectTrainer(alumno.name)"
+                (click)="selectTrainer(trainer.name)"
               >
-                <i class="material-icons d-flex justify-content-center align-items-center">&#xe872;</i>
+                <i class="material-icons">&#xe872;</i>
               </button>
             </div>
           </div>
           <hr />
         </li>
       </ul>
-      <ul *ngIf="trainers.length == 1">
-        <li *ngFor="let alumno of trainers">
-          <div class="row">
-            <div class="col" id="entrenador">
-              <strong> {{ alumno.name }} </strong>
-            </div>
-            <div class="col">
-              <button
-                type="button"
-                class="btn btn-secondary btn-list"
-                (click)="openEditPage(alumno)"
-              >
-                <i class="material-icons d-flex justify-content-center align-items-center">&#xe254;</i>
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger btn-list"
-                data-bs-toggle="modal"
-                data-bs-target="#eraseModal"
-                (click)="selectTrainer(alumno.name)"
-              >
-                <i class="material-icons d-flex justify-content-center align-items-center">&#xe872;</i>
-              </button>
-            </div>
-          </div>
-          <hr />
-        </li>
-      </ul>
+      <p *ngIf="trainers.length === 0">No hay entrenadores disponibles.</p>
     </div>
   </div>
 </div>
@@ -100,19 +72,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>¡Cuidado! Estás a punto de eliminar a <strong>{{ trainerSelected }}</strong>.</p>
+        <p>
+          ¡Cuidado! Estás a punto de eliminar a <strong>{{ trainerSelected }}</strong>.
+        </p>
         <p><strong>¿Estás seguro?</strong></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTrainer()">Aceptar</button>
+        <button type="button" class="btn btn-danger" (click)="deleteTrainer()" data-bs-dismiss="modal">Aceptar</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Modal AÑADIR ENTRENADOR -->
-<div class="modal fade" id="adModal" tabindex="-1" aria-labelledby="ad-trainer" aria-hidden="true">
+<div class="modal fade" id="ad-trainer" tabindex="-1" aria-labelledby="ad-trainer" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -123,17 +97,17 @@
         <form>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre entrenador</label>
-            <input #nuevoNombreEntrenador type="text" class="form-control" id="exampleInputEmail1" />
+            <input type="text" class="form-control" id="exampleInputEmail1" #nuevoNombreEntrenador />
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña entrenador</label>
-            <input #nuevaPass type="text" class="form-control" id="exampleInputPassword1" />
+            <input type="text" class="form-control" id="exampleInputPassword1" #nuevaPass />
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" (click)="guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)">Guardar</button>
+        <button type="button" class="btn btn-success" (click)="guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)" data-bs-dismiss="modal">Guardar</button>
       </div>
     </div>
   </div>
