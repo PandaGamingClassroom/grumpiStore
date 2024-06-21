@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -12,7 +8,6 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { RouterLink } from '@angular/router';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { url_upload_medals } from '../../../models/urls';
@@ -25,7 +20,6 @@ import { SelectTrainerComponent } from '../trainers/select-trainer/select-traine
   standalone: true,
   imports: [
     RouterLink,
-    NavBarAdminComponent,
     CommonModule,
     HttpClientModule,
     FormsModule,
@@ -92,15 +86,12 @@ export class MedalsAdminScreenComponent implements OnInit {
 
   onSubmit(event: Event) {
     event.preventDefault();
-
     if (!this.selectedFile) {
       console.error('No file selected');
       return;
     }
-
     const formData = new FormData();
     formData.append('image', this.selectedFile, this.selectedFile.name);
-
     this.http.post(this.uploadUrl, formData).subscribe(
       (response) => {
         console.log('Imagen subida correctamente', response);
@@ -130,7 +121,6 @@ export class MedalsAdminScreenComponent implements OnInit {
         title: '¡Medalla guardada correctamente!',
         message: this.confirmMessage,
       };
-
       const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
         width: '400px',
         height: '300px',
@@ -143,21 +133,16 @@ export class MedalsAdminScreenComponent implements OnInit {
     }
   }
 
-  /**
-   * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
-   * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
-   * Y con esos datos asignamos el objeto seleccionado.
-   */
   openTrainers() {
+    const data = { title: 'Selecciona el entrenador de la lista' };
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
       height: '300px',
+      data: data,
     });
-
-    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
-      if (selectedTrainerName) {
-        this.selectedTrainerName = selectedTrainerName;
-        console.log('Seleccion de entrenador: ', selectedTrainerName);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedTrainerName = result;
         this.assignMedal();
       }
     });
@@ -170,10 +155,9 @@ export class MedalsAdminScreenComponent implements OnInit {
   }
 
   assignMedal(): void {
-    if (this.selectedTrainerName !== null && this.selectedMedalName !== null) {
+    if (this.selectedTrainerName && this.selectedMedalName) {
       const trainerName = this.selectedTrainerName;
       const creatureName = this.selectedMedalName;
-
       this.trainersService
         .assignMedalToTrainer(trainerName, creatureName)
         .subscribe(

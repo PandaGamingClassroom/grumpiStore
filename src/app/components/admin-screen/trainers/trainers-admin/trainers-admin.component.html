@@ -32,14 +32,14 @@
             <div class="col">
               <button
                 type="button"
-                class="btn btn-secondary btn-list"
+                class="btn btn-success btn-list"
                 (click)="openEditPage(trainer)"
               >
                 <i class="material-icons">&#xe417;</i>
               </button>
               <button
                 type="button"
-                class="btn btn-secondary btn-list"
+                class="btn btn-primary btn-list"
                 (click)="openEditPage(trainer)"
               >
                 <i class="material-icons">&#xe254;</i>
@@ -47,9 +47,7 @@
               <button
                 type="button"
                 class="btn btn-danger btn-list"
-                data-bs-toggle="modal"
-                data-bs-target="#eraseModal"
-                (click)="selectTrainer(trainer.name)"
+                (click)="selectTrainer(trainer.name); openDeleteTrainerModal(trainer)"
               >
                 <i class="material-icons">&#xe872;</i>
               </button>
@@ -80,34 +78,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-danger" (click)="deleteTrainer()" data-bs-dismiss="modal">Aceptar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal AÑADIR ENTRENADOR -->
-<div class="modal fade" id="ad-trainer" tabindex="-1" aria-labelledby="ad-trainer" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="ad-trainer">Añadir entrenador</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nombre entrenador</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" #nuevoNombreEntrenador />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Contraseña entrenador</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" #nuevaPass />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" (click)="guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)" data-bs-dismiss="modal">Guardar</button>
       </div>
     </div>
   </div>

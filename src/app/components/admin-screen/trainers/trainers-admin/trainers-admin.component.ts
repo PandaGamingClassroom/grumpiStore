@@ -10,6 +10,7 @@ import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component'
 import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
+import { DeleteTrainersComponent } from '../delete-trainers/delete-trainers.component';
 
 @Component({
   selector: 'app-trainers-admin',
@@ -144,6 +145,21 @@ export class TrainersAdminComponent implements OnInit {
     const dialogRef = this.dialog.open(AddTrainersComponent, {
       width: '700px',
       height: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Nuevo entrenador:', result);
+        this.getEntrenadores(this.profesor.data.id);
+      }
+    });
+  }
+
+  openDeleteTrainerModal(rainer: any) {
+    const dialogRef = this.dialog.open(DeleteTrainersComponent, {
+      width: '700px',
+      height: '600px',
+      data: rainer,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

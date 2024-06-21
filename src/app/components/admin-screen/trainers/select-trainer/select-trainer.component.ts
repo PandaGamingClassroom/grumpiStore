@@ -1,24 +1,13 @@
 import { CommonModule } from '@angular/common';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {
-  MatDialog,
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
-import { GrumpiService } from '../../../services/grumpi/grumpi.service';
 
 @Component({
   selector: 'app-select-trainer',
@@ -31,45 +20,63 @@ import { GrumpiService } from '../../../services/grumpi/grumpi.service';
     MatDialogModule,
     ReactiveFormsModule,
   ],
-  providers: [GrumpiService, TrainerService],
+  providers: [TrainerService],
   templateUrl: './select-trainer.component.html',
   styleUrls: ['./select-trainer.component.scss'],
 })
 export class SelectTrainerComponent implements OnInit {
   trainerList: any[] = [];
   selectedTrainer: string | null = null;
+  profesor: any;
+  lastNameProfesor: any;
+  nameProfesor: any;
+  username: any;
   @Output() selectedTrainerName = new EventEmitter<string>();
 
   constructor(
-    private grumpiService: GrumpiService,
     private trainersService: TrainerService,
-    private formBuilder: FormBuilder,
-    private http: HttpClient,
-    private dialog: MatDialog,
     public dialogRef: MatDialogRef<SelectTrainerComponent>
   ) {}
 
   ngOnInit(): void {
-    this.getTrainers();
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+      this.nameProfesor = localStorage.getItem('nameUser');
+      this.getDadataProfesor(this.nameProfesor);
+    }
   }
 
-  getTrainers() {
-    this.trainersService.getTrainers().subscribe(
-      (response: any) => {
-        if (Array.isArray(response.trainer_list)) {
-          this.trainerList = response.trainer_list;
+  getDadataProfesor(name: string) {
+    this.trainersService.getProfesorByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
         } else {
-          console.error(
-            'Error: los datos de entrenadores no son un array:',
-            response.trainer_list
-          );
+          this.profesor = data;
+          console.log('Profesor: ', this.profesor);
+          this.lastNameProfesor = data.data.apellidos;
+          this.getEntrenadores(data.data.id);
         }
       },
       (error) => {
-        console.error('Error obteniendo los entrenadores:', error);
+        console.error('Error:', error);
       }
     );
   }
+
+  getEntrenadores(profesorId: number) {
+    this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
+      (data) => {
+        this.trainerList = data.data;
+        console.log('Entrenadores del profesor: ', this.trainerList);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
 
   close() {
     this.dialogRef.close();
