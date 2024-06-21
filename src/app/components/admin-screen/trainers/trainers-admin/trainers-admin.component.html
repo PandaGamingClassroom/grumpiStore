@@ -60,25 +60,3 @@
     </div>
   </div>
 </div>
-
-<!-- Modal BORRAR -->
-<div class="modal fade" id="eraseModal" tabindex="-1" aria-labelledby="erase" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="erase">Eliminar entrenador</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>
-          ¡Cuidado! Estás a punto de eliminar a <strong>{{ trainerSelected }}</strong>.
-        </p>
-        <p><strong>¿Estás seguro?</strong></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="deleteTrainer()" data-bs-dismiss="modal">Aceptar</button>
-      </div>
-    </div>
-  </div>
-</div>

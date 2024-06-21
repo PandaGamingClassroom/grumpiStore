@@ -2,7 +2,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 
@@ -24,6 +29,9 @@ export class DeleteTrainersComponent implements OnInit {
   trainerSelected: string = '';
   trainers: any[] = [];
   profesor: any;
+  username: any;
+  nameProfesor: any;
+  lastNameProfesor: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -32,12 +40,32 @@ export class DeleteTrainersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
-
+    this.username = localStorage.getItem('username');
+    this.nameProfesor = localStorage.getItem('nameUser');
+    this.getDadataProfesor(this.nameProfesor);
     this.trainerSelected = this.data.name;
   }
 
+  getDadataProfesor(name: string) {
+    this.trainersService.getProfesorByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+        } else {
+          this.profesor = data.data;
+          this.lastNameProfesor = data.data.apellidos;
+          this.getEntrenadores(data.data.id);
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
   deleteTrainer() {
+    console.log('Entrenador a eliminar: ', this.trainerSelected);
+
     const trainerToDelete = this.trainers.find(
       (trainer) => trainer.name === this.trainerSelected
     );
@@ -49,7 +77,7 @@ export class DeleteTrainersComponent implements OnInit {
 
     this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
       () => {
-        this.getEntrenadores(this.profesor.data.id); // Actualiza la lista de entrenadores después de eliminar
+        this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de eliminar
       },
       (error) => {
         console.error('Error al eliminar el registro:', error);

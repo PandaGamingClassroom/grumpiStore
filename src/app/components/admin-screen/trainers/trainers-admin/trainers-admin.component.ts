@@ -109,26 +109,12 @@ export class TrainersAdminComponent implements OnInit {
     this.trainerSelected = trainer;
   }
 
-  deleteTrainer() {
-    const trainerToDelete = this.trainers.find(
-      (trainer) => trainer.name === this.trainerSelected
-    );
-
-    if (!trainerToDelete) {
-      console.error('No se encontró el entrenador a eliminar');
-      return;
-    }
-
-    this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
-      () => {
-        this.getEntrenadores(this.profesor.data.id); // Actualiza la lista de entrenadores después de eliminar
-      },
-      (error) => {
-        console.error('Error al eliminar el registro:', error);
-      }
-    );
-  }
-
+  /**
+   * Función para abrir una ventana emergente en la cual se va a poder
+   * editar la información del entrenador seleccionado.
+   *
+   * @param trainer REcibe el entrenador seleccionado.
+   */
   openEditPage(trainer: any) {
     const dialogRef = this.dialog.open(TrainersEditComponent, {
       width: '700px',
@@ -141,6 +127,10 @@ export class TrainersAdminComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para abrir una ventana emergente en la cual
+   * se puede añadir un entrenador nuevo a la lista de entrenadores del profesor.
+   */
   openAddTrainerModal(): void {
     const dialogRef = this.dialog.open(AddTrainersComponent, {
       width: '700px',
@@ -155,16 +145,20 @@ export class TrainersAdminComponent implements OnInit {
     });
   }
 
-  openDeleteTrainerModal(rainer: any) {
+  /**
+   * Función para abrir una ventana emergente en la cual se elimina al entrenador seleccionado.
+   *
+   * @param trainer Recibe el entrenador que se ha seleccionado
+   */
+  openDeleteTrainerModal(trainer: any) {
     const dialogRef = this.dialog.open(DeleteTrainersComponent, {
       width: '700px',
       height: '600px',
-      data: rainer,
+      data: trainer,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Nuevo entrenador:', result);
         this.getEntrenadores(this.profesor.data.id);
       }
     });
