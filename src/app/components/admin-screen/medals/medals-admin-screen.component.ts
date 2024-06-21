@@ -18,6 +18,7 @@ import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { url_upload_medals } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
+import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 
 @Component({
   selector: 'app-medals-admin-screen',
@@ -33,7 +34,7 @@ import { TrainerService } from '../../services/trainers/trainer.service';
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './medals-admin-screen.component.html',
-  styleUrl: './medals-admin-screen.component.scss',
+  styleUrls: ['./medals-admin-screen.component.scss'],
 })
 export class MedalsAdminScreenComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
@@ -54,6 +55,7 @@ export class MedalsAdminScreenComponent implements OnInit {
     private http: HttpClient,
     private dialog: MatDialog
   ) {}
+
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
       imagen: [''],
@@ -79,11 +81,6 @@ export class MedalsAdminScreenComponent implements OnInit {
     );
   }
 
-
-  /**
-   * Función para verificar que la imagen se ha seleccionado.
-   * @param event Recibe la información de la imagen seleccionada en el input
-   */
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -115,7 +112,6 @@ export class MedalsAdminScreenComponent implements OnInit {
     );
   }
 
-  // Función para cargar la URL de la imagen desde el servidor
   loadmedalsImages() {
     this.grumpiService.getImageMedals().subscribe(
       (response) => {
@@ -147,27 +143,32 @@ export class MedalsAdminScreenComponent implements OnInit {
     }
   }
 
-  /**
-   * Función para filtrar por nombre las imágenes
-   */
+  openTrainers() {
+    const dialogRef = this.dialog.open(SelectTrainerComponent, {
+      width: '400px',
+      height: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
+      if (selectedTrainerName) {
+        this.selectedTrainerName = selectedTrainerName;
+        console.log('Seleccion de entrenador: ', selectedTrainerName);
+        this.assignMedal();
+      }
+    });
+  }
+
   get filteredMedalsImages(): string[] {
     return this.medalsImages.filter((imageUrl) =>
       imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
-  /**
-   * Función para asignar una criatura seleccionada a un entrenador
-   */
   assignMedal(): void {
     if (this.selectedTrainerName !== null && this.selectedMedalName !== null) {
-      // Obtén el nombre del entrenador seleccionado
       const trainerName = this.selectedTrainerName;
-
-      // Obtén el nombre de la criatura seleccionada
       const creatureName = this.selectedMedalName;
 
-      // Llama al servicio para asignar la criatura al entrenador por su nombre
       this.trainersService
         .assignMedalToTrainer(trainerName, creatureName)
         .subscribe(

@@ -149,7 +149,7 @@ export class TrainersAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Nuevo entrenador:', result);
-        // lógica para manejar el nuevo entrenador
+        this.getEntrenadores(this.profesor.data.id);
       }
     });
   }

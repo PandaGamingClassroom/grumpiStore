@@ -34,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    FooterComponent
   ],
   providers: [TrainerService],
   templateUrl: './admin-screen.component.html',

@@ -1,0 +1,31 @@
+<div class="container-fluid main">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 d-flex justify-content-center">
+          Selecciona un entrenador:
+        </h1>
+      </div>
+      <div class="modal-body">
+        <select [(ngModel)]="selectedTrainer" class="form-control">
+          <option *ngFor="let trainer of trainerList" [value]="trainer.name">
+            {{ trainer.name }}
+          </option>
+        </select>
+      </div>
+      <div class="modal-footer mt-3">
+        <button type="button" class="btn btn-secondary me-3" (click)="close()">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="selectTrainer()"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
