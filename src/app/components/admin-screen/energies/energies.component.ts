@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { Energies, energias } from '../../../models/energies';
+import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 
 @Component({
   selector: 'app-energies',
@@ -38,7 +39,8 @@ export class EnergiesComponent implements OnInit {
   constructor(
     private trainersService: TrainerService,
     private grumpiService: GrumpiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -79,7 +81,6 @@ export class EnergiesComponent implements OnInit {
     }
   }
 
-
   assignEnergies(): void {
     if (this.selectedTrainerName && this.selectedEnergie) {
       this.trainersService
@@ -101,5 +102,25 @@ export class EnergiesComponent implements OnInit {
       console.error('No se ha seleccionado ningún entrenador o energía.');
       // Aquí puedes manejar el caso donde no se haya seleccionado ningún entrenador o energía
     }
+  }
+
+  /**
+   * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
+   * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
+   * Y con esos datos asignamos el objeto seleccionado.
+   */
+  openTrainers() {
+    const dialogRef = this.dialog.open(SelectTrainerComponent, {
+      width: '400px',
+      height: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
+      if (selectedTrainerName) {
+        this.selectedTrainerName = selectedTrainerName;
+        console.log('Seleccion de entrenador: ', selectedTrainerName);
+        this.assignEnergies();
+      }
+    });
   }
 }

@@ -19,6 +19,7 @@ import { CartaGrumpi, cartas_grumpi } from '../../../models/grumpi';
 import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
+import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -185,7 +186,7 @@ export class CreaturesAdminComponent implements OnInit {
       const trainerName = this.selectedTrainerName;
 
       // Obtén el nombre de la criatura seleccionada
-      const creature= this.selectedCreatureName;
+      const creature = this.selectedCreatureName;
 
       // Llama al servicio para asignar la criatura al entrenador por su nombre
       this.trainersService
@@ -203,5 +204,25 @@ export class CreaturesAdminComponent implements OnInit {
     } else {
       alert('Por favor, selecciona un entrenador y una criatura.');
     }
+  }
+
+  /**
+   * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
+   * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
+   * Y con esos datos asignamos el objeto seleccionado.
+   */
+  openTrainers() {
+    const dialogRef = this.dialog.open(SelectTrainerComponent, {
+      width: '400px',
+      height: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
+      if (selectedTrainerName) {
+        this.selectedTrainerName = selectedTrainerName;
+        console.log('Seleccion de entrenador: ', selectedTrainerName);
+        this.assignCreature();
+      }
+    });
   }
 }

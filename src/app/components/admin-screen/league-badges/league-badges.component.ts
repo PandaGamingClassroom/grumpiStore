@@ -14,6 +14,7 @@ import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { url_upload_leagueBadges } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 
 @Component({
   selector: 'app-league-badges',
@@ -137,5 +138,25 @@ export class LeagueBadgesComponent implements OnInit {
     }
   }
 
-  assignBadges(){}
+  assignBadges() {}
+
+  /**
+   * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
+   * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
+   * Y con esos datos asignamos el objeto seleccionado.
+   */
+  openTrainers() {
+    const dialogRef = this.dialog.open(SelectTrainerComponent, {
+      width: '400px',
+      height: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
+      if (selectedTrainerName) {
+        this.selectedTrainerName = selectedTrainerName;
+        console.log('Seleccion de entrenador: ', selectedTrainerName);
+        this.assignBadges();
+      }
+    });
+  }
 }

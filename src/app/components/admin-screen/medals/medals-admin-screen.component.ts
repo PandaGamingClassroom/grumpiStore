@@ -143,6 +143,11 @@ export class MedalsAdminScreenComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
+   * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
+   * Y con esos datos asignamos el objeto seleccionado.
+   */
   openTrainers() {
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',

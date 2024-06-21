@@ -36,9 +36,7 @@
               <button
                 type="button"
                 class="btn btn-success"
-                (click)="selectedCreatureName = creature"
-                data-bs-toggle="modal"
-                data-bs-target="#eraseModal"
+                (click)="selectedCreatureName = creature; openTrainers()"
               >
                 Asignar a
               </button>
