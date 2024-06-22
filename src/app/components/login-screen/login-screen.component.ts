@@ -29,6 +29,8 @@ export class LoginScreenComponent implements OnInit {
   error: boolean = false;
   user: string = '';
   pass: string = '';
+  adminUser = 'administrador';
+  profesor = 'profesor';
 
   errorLogin: string = 'Nombre de entrenador o contraseña incorrectos.';
 
@@ -94,6 +96,11 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('username', this.user);
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
+        if (profe.nombre === 'Pablo' && profe.apellidos === 'Moreno Ortega') {
+          localStorage.setItem('isAdminUser', this.adminUser);
+        } else {
+          localStorage.setItem('isAdminUser', this.profesor);
+        }
         this.route.navigate(['/admin']);
         return;
       } else {

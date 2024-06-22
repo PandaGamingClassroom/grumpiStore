@@ -42,9 +42,6 @@
     </div>
     <div class="col m-3" *ngIf="isAdminUser">
       <h2>Añadir nueva medalla</h2>
-      <br />
-      <hr />
-
       <form
         [formGroup]="myForm"
         (ngSubmit)="onSubmit($event)"

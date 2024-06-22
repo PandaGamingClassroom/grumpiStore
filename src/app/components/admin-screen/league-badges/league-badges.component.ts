@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -7,7 +11,11 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
@@ -44,6 +52,7 @@ export class LeagueBadgesComponent implements OnInit {
   selectedTrainerName: string | null = null;
   trainerList: any[] = [];
   isAdminUser: boolean = false;
+  adminUser: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -55,9 +64,14 @@ export class LeagueBadgesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.adminUserService.adminUser$.subscribe((isAdmin) => {
-      this.isAdminUser = isAdmin;
-    });
+    if (typeof window !== 'undefined') {
+      this.adminUser = localStorage.getItem('isAdminUser');
+      if (this.adminUser === 'administrador') {
+        this.isAdminUser = true;
+      } else {
+        this.isAdminUser = false;
+      }
+    }
     this.myForm = this.formBuilder.group({
       imagen: [''],
     });

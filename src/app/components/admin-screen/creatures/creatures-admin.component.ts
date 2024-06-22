@@ -20,7 +20,6 @@ import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
-import { AdminUserService } from '../../services/adminUser/adminUser.service';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -34,7 +33,7 @@ import { AdminUserService } from '../../services/adminUser/adminUser.service';
     MatDialogModule,
     ReactiveFormsModule,
   ],
-  providers: [GrumpiService, TrainerService, AdminUserService],
+  providers: [GrumpiService, TrainerService],
   templateUrl: './creatures-admin.component.html',
   styleUrl: './creatures-admin.component.scss',
 })
@@ -55,24 +54,29 @@ export class CreaturesAdminComponent implements OnInit {
   trainers: any[] = [];
   grumpiList: any[] = [];
   isAdminUser: boolean = false;
+  adminUser: any;
 
   constructor(
     private grumpiService: GrumpiService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private dialog: MatDialog,
-    private trainersService: TrainerService,
-    private adminUserService: AdminUserService
+    private trainersService: TrainerService
   ) {}
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
       imagen: [''],
     });
+    if (typeof window !== 'undefined') {
+      this.adminUser = localStorage.getItem('isAdminUser');
+      if (this.adminUser === 'administrador') {
+        this.isAdminUser = true;
+      } else {
+        this.isAdminUser = false;
+      }
+    }
     this.getTrainers();
-    this.adminUserService.adminUser$.subscribe((isAdmin) => {
-      this.isAdminUser = isAdmin;
-    });
   }
 
   onFileSelected(event: any) {

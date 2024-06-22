@@ -50,8 +50,8 @@ export class AdminScreenComponent implements OnInit {
   trainers: any[] = [];
   nameProfesor: any;
   lastNameProfesor: any;
+  adminUser: any;
   activeSection: string | null = null;
-  @Output() adminUser = new EventEmitter<boolean>();
 
   constructor(
     private routes: ActivatedRoute,
@@ -62,13 +62,13 @@ export class AdminScreenComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.adminUserService.setAdminUser(false);
     // Obtener los datos de la ruta
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       this.nameProfesor = localStorage.getItem('nameUser');
       this.lastNameProfesor = localStorage.getItem('lastNameUser');
+      this.adminUser = localStorage.getItem('isAdminUser');
       this.getDadataProfesor(this.nameProfesor);
     }
   }
@@ -119,10 +119,12 @@ export class AdminScreenComponent implements OnInit {
         } else {
           this.profesor = data;
           this.lastNameProfesor = data.data.apellidos;
-          console.log('Datos del profesor que inicia sesión: ', this.profesor);
           if (this.profesor.data.rol === 'administrador') {
             this.adminUserService.setAdminUser(true);
+          } else {
+            this.adminUserService.setAdminUser(false);
           }
+          console.log('Datos del profesor que inicia sesión: ', this.profesor);
           this.getEntrenadores(data.data.id);
         }
       },

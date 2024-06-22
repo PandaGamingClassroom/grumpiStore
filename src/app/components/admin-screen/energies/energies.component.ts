@@ -45,6 +45,7 @@ export class EnergiesComponent implements OnInit {
   energy_list: Energies[] = energias;
   selectedEnergie: any;
   isAdminUser: boolean = false;
+  adminUser: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -54,13 +55,18 @@ export class EnergiesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      this.adminUser = localStorage.getItem('isAdminUser');
+      if (this.adminUser === 'administrador') {
+        this.isAdminUser = true;
+      } else {
+        this.isAdminUser = false;
+      }
+    }
     this.myForm = this.formBuilder.group({
       imagen: [''],
     });
     this.getTrainers();
-    this.adminUserService.adminUser$.subscribe((isAdmin) => {
-      this.isAdminUser = isAdmin;
-    });
   }
 
   getTrainers() {
