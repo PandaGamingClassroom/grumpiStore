@@ -15,6 +15,7 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
 import { url_upload_leagueBadges } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
+import { AdminUserService } from '../../services/adminUser/adminUser.service';
 
 @Component({
   selector: 'app-league-badges',
@@ -28,7 +29,7 @@ import { SelectTrainerComponent } from '../trainers/select-trainer/select-traine
     ReactiveFormsModule,
     NavBarAdminComponent,
   ],
-  providers: [TrainerService, GrumpiService],
+  providers: [TrainerService, GrumpiService, AdminUserService],
   templateUrl: './league-badges.component.html',
   styleUrl: './league-badges.component.scss',
 })
@@ -42,16 +43,21 @@ export class LeagueBadgesComponent implements OnInit {
   confirmMessage: string = 'El distintivo se ha guardado correctamente.';
   selectedTrainerName: string | null = null;
   trainerList: any[] = [];
+  isAdminUser: boolean = false;
 
   constructor(
     private trainersService: TrainerService,
     private grumpiService: GrumpiService,
     private http: HttpClient,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private adminUserService: AdminUserService
   ) {}
 
   ngOnInit(): void {
+    this.adminUserService.adminUser$.subscribe((isAdmin) => {
+      this.isAdminUser = isAdmin;
+    });
     this.myForm = this.formBuilder.group({
       imagen: [''],
     });

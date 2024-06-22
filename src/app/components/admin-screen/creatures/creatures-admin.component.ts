@@ -20,6 +20,7 @@ import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
+import { AdminUserService } from '../../services/adminUser/adminUser.service';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -33,7 +34,7 @@ import { SelectTrainerComponent } from '../trainers/select-trainer/select-traine
     MatDialogModule,
     ReactiveFormsModule,
   ],
-  providers: [GrumpiService, TrainerService],
+  providers: [GrumpiService, TrainerService, AdminUserService],
   templateUrl: './creatures-admin.component.html',
   styleUrl: './creatures-admin.component.scss',
 })
@@ -53,13 +54,15 @@ export class CreaturesAdminComponent implements OnInit {
   getError: boolean = false;
   trainers: any[] = [];
   grumpiList: any[] = [];
+  isAdminUser: boolean = false;
 
   constructor(
     private grumpiService: GrumpiService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private dialog: MatDialog,
-    private trainersService: TrainerService
+    private trainersService: TrainerService,
+    private adminUserService: AdminUserService
   ) {}
 
   ngOnInit() {
@@ -67,7 +70,9 @@ export class CreaturesAdminComponent implements OnInit {
       imagen: [''],
     });
     this.getTrainers();
-    // this.loadGrumpis();
+    this.adminUserService.adminUser$.subscribe((isAdmin) => {
+      this.isAdminUser = isAdmin;
+    });
   }
 
   onFileSelected(event: any) {

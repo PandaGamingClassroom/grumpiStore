@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../services/trainers/trainer.service';
+import { AdminUserService } from '../../services/adminUser/adminUser.service';
 
 @Component({
   selector: 'app-grumpidolars',
@@ -22,7 +23,7 @@ import { TrainerService } from '../../services/trainers/trainer.service';
     MatDialogModule,
     ReactiveFormsModule,
   ],
-  providers: [TrainerService],
+  providers: [TrainerService, AdminUserService],
   templateUrl: './grumpidolars.component.html',
   styleUrls: ['./grumpidolars.component.scss'],
 })
@@ -34,11 +35,12 @@ export class GrumpidolarsComponent implements OnInit {
   username: any;
   lastNameProfesor: any;
   profesor: any;
+  isAdminUser: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private trainersService: TrainerService,
-    private http: HttpClient
+    private adminUserService: AdminUserService
   ) {
     this.myForm = this.formBuilder.group({
       grumpidolar: [''],
@@ -49,6 +51,9 @@ export class GrumpidolarsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.adminUserService.adminUser$.subscribe((isAdmin) => {
+      this.isAdminUser = isAdmin;
+    });
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');

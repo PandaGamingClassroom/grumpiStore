@@ -1,12 +1,12 @@
 <div class="container-fluid main">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5 d-flex justify-content-center">
+    <div class="modal-content d-flex flex-column h-100">
+      <div class="modal-header d-flex justify-content-center mt-3">
+        <h1 class="modal-title fs-5">
           Selecciona un entrenador:
         </h1>
       </div>
-      <div class="modal-body">
+      <div class="modal-body flex-grow-1">
         <select [(ngModel)]="selectedTrainer" class="form-control">
           <option *ngFor="let trainer of trainerList" [value]="trainer.name">
             {{ trainer.name }}

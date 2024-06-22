@@ -1,14 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../services/trainers/trainer.service';
-import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { Energies, energias } from '../../../models/energies';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
+import { AdminUserService } from '../../services/adminUser/adminUser.service';
 
 @Component({
   selector: 'app-energies',
@@ -22,7 +31,7 @@ import { SelectTrainerComponent } from '../trainers/select-trainer/select-traine
     ReactiveFormsModule,
     NavBarAdminComponent,
   ],
-  providers: [TrainerService, GrumpiService],
+  providers: [TrainerService, AdminUserService],
   templateUrl: './energies.component.html',
   styleUrl: './energies.component.scss',
 })
@@ -35,12 +44,13 @@ export class EnergiesComponent implements OnInit {
   selectedFile: File | null = null;
   energy_list: Energies[] = energias;
   selectedEnergie: any;
+  isAdminUser: boolean = false;
 
   constructor(
     private trainersService: TrainerService,
-    private grumpiService: GrumpiService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private adminUserService: AdminUserService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +58,9 @@ export class EnergiesComponent implements OnInit {
       imagen: [''],
     });
     this.getTrainers();
+    this.adminUserService.adminUser$.subscribe((isAdmin) => {
+      this.isAdminUser = isAdmin;
+    });
   }
 
   getTrainers() {

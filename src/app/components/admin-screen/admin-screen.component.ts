@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -15,6 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { AdminUserService } from '../services/adminUser/adminUser.service';
 
 @Component({
   selector: 'app-admin-screen',
@@ -34,9 +35,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    FooterComponent
+    FooterComponent,
   ],
-  providers: [TrainerService],
+  providers: [TrainerService, AdminUserService],
   templateUrl: './admin-screen.component.html',
   styleUrl: './admin-screen.component.scss',
 })
@@ -50,16 +51,18 @@ export class AdminScreenComponent implements OnInit {
   nameProfesor: any;
   lastNameProfesor: any;
   activeSection: string | null = null;
-
+  @Output() adminUser = new EventEmitter<boolean>();
 
   constructor(
     private routes: ActivatedRoute,
     private dialog: MatDialog,
     private trainersService: TrainerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private adminUserService: AdminUserService
   ) {}
 
   ngOnInit() {
+    this.adminUserService.setAdminUser(false);
     // Obtener los datos de la ruta
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
@@ -112,10 +115,14 @@ export class AdminScreenComponent implements OnInit {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+          console.log(data.message);
         } else {
           this.profesor = data;
           this.lastNameProfesor = data.data.apellidos;
+          console.log('Datos del profesor que inicia sesión: ', this.profesor);
+          if (this.profesor.data.rol === 'administrador') {
+            this.adminUserService.setAdminUser(true);
+          }
           this.getEntrenadores(data.data.id);
         }
       },

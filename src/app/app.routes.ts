@@ -28,12 +28,6 @@ import { ObtainEnergies } from './components/rules/energies/energies.component';
 import { GrumpidolaresComponent } from './components/rules/grumpidolares/grumpidolares.component';
 import { NewUserComponent } from './components/login-screen/new-user/new-user.component';
 import { LeagueBadgesComponent } from './components/admin-screen/league-badges/league-badges.component';
-import { ManagementComponent } from './components/admin-screen/management/management.component';
-import { TrainersManagementComponent } from './components/admin-screen/management/trainers-management/trainers-management.component';
-import { CreaturesManagementComponent } from './components/admin-screen/management/creatures-management/creatures-management.component';
-import { LeagueBadgesManagementComponent } from './components/admin-screen/management/league-badges-management/league-badges-management.component';
-import { MedalsManagementComponent } from './components/admin-screen/management/medals-management/medals-management.component';
-import { EnergiesManagementComponent } from './components/admin-screen/management/energies-management/energies-management.component';
 import { BattleGameComponent } from './components/battle-game/battle-game.component';
 import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.component';
 
@@ -57,30 +51,9 @@ export const routes: Routes = [
   { path: 'rules/medals', component: MedalsComponent },
   { path: 'rules/rests', component: RestsComponent },
   { path: 'store/medals-store', component: MedalsStoreComponent },
-  { path: 'management', component: ManagementComponent },
-  {
-    path: 'management/management-trainers-admin',
-    component: TrainersManagementComponent,
-  },
   {
     path: 'management/management-trainers-admin/edit',
     component: TrainersEditComponent,
-  },
-  {
-    path: 'management/management-creatures',
-    component: CreaturesManagementComponent,
-  },
-  {
-    path: 'management/management-leagueBadges',
-    component: LeagueBadgesManagementComponent,
-  },
-  {
-    path: 'management/management-medals',
-    component: MedalsManagementComponent,
-  },
-  {
-    path: 'management/management-energies',
-    component: EnergiesManagementComponent,
   },
   { path: 'admin', component: AdminScreenComponent },
   { path: 'admin/trainers-admin', component: TrainersAdminComponent },

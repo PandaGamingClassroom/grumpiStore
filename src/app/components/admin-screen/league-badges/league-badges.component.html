@@ -22,7 +22,7 @@
         <hr />
       </div>
     </div>
-    <div class="col form-group main-box">
+    <div class="col form-group main-box" *ngIf="isAdminUser">
       <h2>Añadir un distintivo nuevo</h2>
       <form
         [formGroup]="myForm"

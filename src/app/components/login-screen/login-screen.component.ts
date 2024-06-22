@@ -87,8 +87,7 @@ export class LoginScreenComponent implements OnInit {
     for (const profe of this.profesors) {
       if (
         profe.usuario === this.user &&
-        profe.password == this.pass &&
-        profe.rol == 'administrador'
+        profe.password == this.pass
       ) {
         this.error = false;
         localStorage.setItem('isLoggedIn', 'true');
@@ -96,18 +95,6 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
         this.route.navigate(['/admin']);
-        return;
-      } else if (
-        profe.usuario === this.user &&
-        profe.password == this.pass &&
-        profe.rol == 'profesor'
-      ) {
-        this.error = false;
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('username', this.user);
-        localStorage.setItem('nameUser', profe.nombre);
-        localStorage.setItem('lastNameUser', profe.apelidos);
-        this.route.navigate(['/management']);
         return;
       } else {
         this.error = true;

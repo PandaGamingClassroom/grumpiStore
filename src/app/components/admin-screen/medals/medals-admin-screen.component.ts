@@ -14,6 +14,7 @@ import { url_upload_medals } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
+import { AdminUserService } from '../../services/adminUser/adminUser.service';
 
 @Component({
   selector: 'app-medals-admin-screen',
@@ -41,13 +42,15 @@ export class MedalsAdminScreenComponent implements OnInit {
   selectedMedalName: string | null = null;
   selectedTrainerName: string | null = null;
   trainerList: any[] = [];
+  isAdminUser: boolean = false;
 
   constructor(
     private grumpiService: GrumpiService,
     private trainersService: TrainerService,
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private adminUserService: AdminUserService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +58,9 @@ export class MedalsAdminScreenComponent implements OnInit {
       imagen: [''],
     });
     this.getTrainers();
+    this.adminUserService.adminUser$.subscribe((isAdmin) => {
+      this.isAdminUser = isAdmin;
+    });
   }
 
   getTrainers() {

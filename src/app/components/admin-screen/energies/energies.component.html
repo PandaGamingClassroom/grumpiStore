@@ -27,7 +27,7 @@
           <hr />
         </div>
       </div>
-      <div class="col form-group main-box">
+      <div class="col form-group main-box" *ngIf="isAdminUser">
         <h2>Añadir una energía nueva</h2>
         <form
           [formGroup]="myForm"
