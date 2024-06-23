@@ -32,9 +32,18 @@ export class TrainerService {
    * @param password
    * @returns
    */
-  postTrainer(nuevoEntrenador: any) {
-    const body = { nuevoEntrenador }; // Objeto con los datos a enviar al servidor
-    return this.http.post(this.apiUrl, body);
+  postTrainer(trainer: any): Observable<any> {
+    return this.http
+      .post<any>(
+        `${this.apiUrl}profesores/${trainer.id_profesor}/entrenadores`,
+        trainer
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error al agregar el entrenador:', error);
+          return throwError(error);
+        })
+      );
   }
 
   postNewUser(name: string, password: string, rol: string) {

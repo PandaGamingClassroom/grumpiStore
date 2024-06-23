@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
@@ -21,7 +21,6 @@ import { ConfirmModalComponentComponent } from '../../../../segments/confirm-mod
     CommonModule,
     HttpClientModule,
     FormsModule,
-    MatDialogModule,
     ReactiveFormsModule,
   ],
   providers: [TrainerService],
@@ -48,18 +47,16 @@ export class AddTrainersComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
       trainer_pass: ['', Validators.required],
-      grumpidolar: [''],
-      combatMark: [''],
     });
   }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
     this.nameProfesor = localStorage.getItem('nameUser');
-    this.getDadataProfesor(this.nameProfesor);
+    this.getDataProfesor(this.nameProfesor);
   }
 
-  getDadataProfesor(name: string) {
+  getDataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
@@ -87,11 +84,11 @@ export class AddTrainersComponent implements OnInit {
     );
   }
 
-  guardarEntrenador(nuevoAlumnoNombre: any, nuevaPass: any) {
+  guardarEntrenador() {
     const nuevoEntrenador = {
-      name: nuevoAlumnoNombre,
-      password: nuevaPass,
-      id_profesor: this.profesor.data.id,
+      name: this.myForm.get('trainer_name')?.value,
+      password: this.myForm.get('trainer_pass')?.value,
+      id_profesor: this.profesor.id,
     };
 
     this.trainersService.postTrainer(nuevoEntrenador).subscribe(
@@ -107,7 +104,7 @@ export class AddTrainersComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(() => {
-          this.getEntrenadores(this.profesor.data.id); // Actualiza la lista de entrenadores después de cerrar el modal
+          this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
         });
       },
       (error) => {
