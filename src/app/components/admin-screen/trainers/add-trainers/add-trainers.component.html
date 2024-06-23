@@ -46,36 +46,17 @@
         id="exampleInputPassword1"
         #nuevaPass
       />
-      <label for="grumpidolar" class="form-label mt-3">Grumpidólares</label>
-      <input
-        type="text"
-        class="form-control"
-        id="grumpidolar"
-        formControlName="grumpidolar"
-      />
-      <label for="combatMark" class="form-label mt-3">Marcas de combate</label>
-      <input
-        type="text"
-        class="form-control"
-        id="combatMark"
-        formControlName="combatMark"
-      />
-
       <div class="modal-footer mt-3">
-        <button
-          type="button"
-          class="btn btn-secondary me-3"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary me-3" (click)="close()">
           Cancelar
         </button>
         <button
           type="button"
           class="btn btn-success"
           (click)="
-            guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value)
+            guardarEntrenador(nuevoNombreEntrenador.value, nuevaPass.value);
+            close()
           "
-          data-bs-dismiss="modal"
         >
           Guardar
         </button>
