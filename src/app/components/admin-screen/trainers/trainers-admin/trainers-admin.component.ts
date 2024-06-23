@@ -11,6 +11,7 @@ import { ConfirmModalComponentComponent } from '../../../../segments/confirm-mod
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
 import { DeleteTrainersComponent } from '../delete-trainers/delete-trainers.component';
+import { SeeTrainersComponent } from '../see-trainers/see-trainers.component';
 
 @Component({
   selector: 'app-trainers-admin',
@@ -80,7 +81,7 @@ export class TrainersAdminComponent implements OnInit {
     const nuevoEntrenador = {
       name: nuevoAlumnoNombre,
       password: nuevaPass,
-      id_profesor: this.profesor.data.id,
+      id_profesor: this.profesor.id,
     };
 
     this.trainersService.postTrainer(nuevoEntrenador).subscribe(
@@ -96,7 +97,7 @@ export class TrainersAdminComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(() => {
-          this.getEntrenadores(this.profesor.data.id); // Actualiza la lista de entrenadores después de cerrar el modal
+          this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
         });
       },
       (error) => {
@@ -123,10 +124,21 @@ export class TrainersAdminComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getEntrenadores(this.profesor.data.id); // Actualiza la lista de entrenadores después de cerrar el modal
+      this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
     });
   }
 
+  openSeeTrainers(trainer: any) {
+    const dialogRef = this.dialog.open(SeeTrainersComponent, {
+      width: '700px',
+      height: '600px',
+      data: trainer,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
+    });
+  }
   /**
    * Función para abrir una ventana emergente en la cual
    * se puede añadir un entrenador nuevo a la lista de entrenadores del profesor.
@@ -140,7 +152,7 @@ export class TrainersAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Nuevo entrenador:', result);
-        this.getEntrenadores(this.profesor.data.id);
+        this.getEntrenadores(this.profesor.id);
       }
     });
   }
@@ -159,7 +171,7 @@ export class TrainersAdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.getEntrenadores(this.profesor.data.id);
+        this.getEntrenadores(this.profesor.id);
       }
     });
   }

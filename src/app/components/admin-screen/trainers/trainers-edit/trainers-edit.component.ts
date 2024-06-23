@@ -10,12 +10,14 @@ import {
 } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
+  MatDialog,
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
+import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
   selector: 'app-trainers-edit',
@@ -43,13 +45,14 @@ export class TrainersEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<TrainersEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private trainersService: TrainerService
+    private trainersService: TrainerService,
+    private dialog: MatDialog
   ) {
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
       trainer_pass: ['', Validators.required],
       grumpidolar: [''],
-      combatMark: ['']
+      combatMark: [''],
     });
   }
 
@@ -59,13 +62,18 @@ export class TrainersEditComponent implements OnInit {
       trainer_name: this.data.name,
       trainer_pass: this.data.password,
       grumpidolar: this.data.grumpidolar || '', // Si no hay grumpidolar, se establece como cadena vacía
-      combatMark: this.data.marca_combate
+      combatMark: this.data.marca_combate,
     });
 
     console.log('data edit', this.data);
   }
 
   onSubmit() {
+    const data = {
+      title: '¡Correcto!',
+      message: 'El entrenador se ha editado correctamente.',
+    };
+
     if (this.myForm.valid) {
       const updatedData = {
         name: this.myForm.get('trainer_name')?.value,
@@ -80,6 +88,13 @@ export class TrainersEditComponent implements OnInit {
           console.log('Trainer updated', response);
           this.close();
         });
+
+      this.dialog.open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '300px',
+        data: data,
+      });
+
     }
   }
 
