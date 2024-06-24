@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GrumpiService {
+  private baseUrl = 'http://localhost:3000/';
   private apiUrl = 'http://localhost:3000/upload';
   private imageUrlEndpoint = 'http://localhost:3000/getImageUrls';
   private imageMedalsEndpoint = 'http://localhost:3000/getImageMedals';
@@ -84,5 +85,15 @@ export class GrumpiService {
 
   getDistintivos(): Observable<any> {
     return this.http.get<any>(this.distintivosEndpoint);
+  }
+
+  /**
+   * Función para obtener toda la lista de ataques disponibles
+   * para los grumpis.
+   *
+   * @returns Devuelve una lista con todos los ataques disponibles.
+   */
+  getAllAttacks(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}getAllAttacks`);
   }
 }

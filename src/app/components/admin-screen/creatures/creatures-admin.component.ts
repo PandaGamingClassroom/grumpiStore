@@ -20,6 +20,7 @@ import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
+import { AttackType, typeOfAttacks } from '../../../models/attacks';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -55,6 +56,10 @@ export class CreaturesAdminComponent implements OnInit {
   grumpiList: any[] = [];
   isAdminUser: boolean = false;
   adminUser: any;
+  typesAttacks: AttackType[] = typeOfAttacks; // Arreglo para almacenar los tipos de ataques
+  attacks_list: any[] = [];
+  filteredAttacks: { name: string; value: string }[] = [];
+  selectedType: string | null = null;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -77,6 +82,7 @@ export class CreaturesAdminComponent implements OnInit {
       }
     }
     this.getTrainers();
+    this.loadAttacks();
   }
 
   onFileSelected(event: any) {
@@ -233,5 +239,36 @@ export class CreaturesAdminComponent implements OnInit {
         this.assignCreature();
       }
     });
+  }
+
+  loadAttacks() {
+    this.grumpiService.getAllAttacks().subscribe(
+      (response: any) => {
+        this.attacks_list = response.attacks_list;
+        console.log('Attacks: ', this.attacks_list);
+        this.typesAttacks = response.attacks_list.map((atk: any) => ({
+          tipo: atk.tipo,
+          ataques: atk.ataques.map((a: any) => ({
+            nombre: a.nombre,
+            id: a.id,
+          })),
+        }));
+      },
+      (error) => {
+        console.error('Error obtaining attacks:', error);
+      }
+    );
+  }
+
+  onTypeChange(): void {
+    this.filteredAttacks = [];
+
+    if (this.selectedType) {
+      this.typesAttacks.forEach((atk: any) => {
+        if (atk.tipo === this.selectedType) {
+          this.filteredAttacks = atk.ataques;
+        }
+      });
+    }
   }
 }

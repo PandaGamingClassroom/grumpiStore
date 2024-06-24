@@ -136,7 +136,10 @@
             <li>
               <div class="row">
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
-                <div class="col-4"><label> Ataque principal: </label> <button type="button" class="btn">❓​</button></div>
+                <div class="col-4">
+                  <label> Ataque principal: </label>
+                  <button type="button" class="btn">❓​</button>
+                </div>
                 <div class="col">
                   <select class="form-select" id="atqPrincipal">
                     <option selected>Selecciona un ataque</option>
@@ -151,17 +154,37 @@
             <li>
               <div class="row">
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
-                <div class="col-4"><label> Ataque especial: ​</label> <button type="button" class="btn">❓​</button></div>
+                <div class="col-4">
+                  <label>Ataque especial:</label>
+                  <button type="button" class="btn">❓</button>
+                </div>
                 <div class="col">
+                  <select
+                    class="form-select"
+                    id="selectType"
+                    [(ngModel)]="selectedType"
+                    (change)="onTypeChange()"
+                    placeholder="Selecciona un tipo de ataque"
+                  >
+                    <option *ngFor="let atk of typesAttacks" [value]="atk.tipo">
+                      {{ atk.tipo }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col" *ngIf="selectedType">
                   <select class="form-select" id="atqEspecial">
-                    <option selected>Selecciona un ataque</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected disabled>Selecciona un ataque</option>
+                    <option
+                      *ngFor="let attack of filteredAttacks"
+                      [value]="attack"
+                    >
+                      {{ attack }}
+                    </option>
                   </select>
                 </div>
               </div>
             </li>
+
             <br />
           </ul>
         </div>
