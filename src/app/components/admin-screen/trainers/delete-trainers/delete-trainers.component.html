@@ -13,8 +13,8 @@
         </div>
         <hr>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary me-3" onclick="closeModal()">Cancelar</button>
-          <button type="button" class="btn btn-danger" onclick="deleteTrainer(); closeModal()">Aceptar</button>
+          <button type="button" class="btn btn-secondary me-3" (click)="close()">Cancelar</button>
+          <button type="button" class="btn btn-danger" (click)="deleteTrainer(); close()">Aceptar</button>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ ul {
 }
 
 .row-creatures {
-  width: 600px;
+  width: 100%;
 }
 
 .img-creature {
@@ -38,7 +38,7 @@ ul {
 }
 
 .creatures-box{
-  max-height: 400px;
+  max-height: 500px;
   overflow-y: auto;
 }
 
@@ -60,7 +60,6 @@ ul {
 }
 
 .design-column {
-  // border-right: 1px solid black;
   margin-right: 2%;
 }
 

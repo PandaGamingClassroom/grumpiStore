@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
-import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
 import { DeleteTrainersComponent } from '../delete-trainers/delete-trainers.component';
@@ -77,35 +76,6 @@ export class TrainersAdminComponent implements OnInit {
     );
   }
 
-  guardarEntrenador(nuevoAlumnoNombre: any, nuevaPass: any) {
-    const nuevoEntrenador = {
-      name: nuevoAlumnoNombre,
-      password: nuevaPass,
-      id_profesor: this.profesor.id,
-    };
-
-    this.trainersService.postTrainer(nuevoEntrenador).subscribe(
-      (response) => {
-        const data = {
-          title: '¡Correcto!',
-          message: 'El entrenador se ha añadido correctamente.',
-        };
-        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
-          width: '400px',
-          height: '300px',
-          data: data,
-        });
-
-        dialogRef.afterClosed().subscribe(() => {
-          this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
-        });
-      },
-      (error) => {
-        console.error('Error al agregar el entrenador:', error);
-      }
-    );
-  }
-
   selectTrainer(trainer: string) {
     this.trainerSelected = trainer;
   }
@@ -114,7 +84,7 @@ export class TrainersAdminComponent implements OnInit {
    * Función para abrir una ventana emergente en la cual se va a poder
    * editar la información del entrenador seleccionado.
    *
-   * @param trainer REcibe el entrenador seleccionado.
+   * @param trainer Recibe el entrenador seleccionado.
    */
   openEditPage(trainer: any) {
     const dialogRef = this.dialog.open(TrainersEditComponent, {
@@ -128,6 +98,15 @@ export class TrainersAdminComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para abrir la ventana modal en la que se va a mostrar la información
+   * de un entrenador seleccionado.ç
+   *
+   * En esta ventana solo se podrá visualizar la información
+   * No se va a poder editar nada.
+   *
+   * @param trainer Recibe el entrenador seleccionado.
+   */
   openSeeTrainers(trainer: any) {
     const dialogRef = this.dialog.open(SeeTrainersComponent, {
       width: '700px',
@@ -139,6 +118,7 @@ export class TrainersAdminComponent implements OnInit {
       this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
     });
   }
+
   /**
    * Función para abrir una ventana emergente en la cual
    * se puede añadir un entrenador nuevo a la lista de entrenadores del profesor.

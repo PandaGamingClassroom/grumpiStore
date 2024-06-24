@@ -10,6 +10,7 @@ import {
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
+import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
   selector: 'app-delete-trainers',
@@ -36,7 +37,8 @@ export class DeleteTrainersComponent implements OnInit {
   constructor(
     private trainersService: TrainerService,
     public dialogRef: MatDialogRef<DeleteTrainersComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +72,11 @@ export class DeleteTrainersComponent implements OnInit {
       (trainer) => trainer.name === this.trainerSelected
     );
 
+    const data = {
+      title: '¡Eliminando entrenador!',
+      message: 'El entrenador se ha eliminado correctamente.',
+    };
+
     if (!trainerToDelete) {
       console.error('No se encontró el entrenador a eliminar');
       return;
@@ -78,6 +85,15 @@ export class DeleteTrainersComponent implements OnInit {
     this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
       () => {
         this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de eliminar
+
+        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+          width: '400px',
+          height: '300px',
+          data: data,
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          window.location.reload();
+        });
       },
       (error) => {
         console.error('Error al eliminar el registro:', error);
