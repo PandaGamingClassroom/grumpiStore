@@ -1,6 +1,6 @@
 <div class="container-fluid mainBoxAdmin scrollable-div">
   <div class="btn-config mt-3 mainBoxAdminContent">
-    <button type="button" class="btn btn-secondary" (click)="close()">
+    <button type="button" class="btn" (click)="close()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -62,19 +62,26 @@
 
       <div class="row mt-4">
         <div class="col d-flex justify-content-center flex-wrap">
-          <div
-            class="img-creature text-center m-3"
-            *ngFor="let medalImage of data?.medallas; let i = index"
-          >
-            <img [src]="medalImage" class="img-thumbnail" />
-            <div class="form-check mt-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                (change)="toggleMedalSelection(i)"
-              />
+          <ng-container *ngIf="data?.medallas?.length > 0; else noMedals">
+            <div
+              class="img-creature text-center m-3"
+              *ngFor="let medalImage of data?.medallas; let i = index"
+            >
+              <img [src]="medalImage" class="img-thumbnail" />
+              <div class="form-check mt-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  (change)="toggleMedalSelection(i)"
+                />
+              </div>
             </div>
-          </div>
+          </ng-container>
+          <ng-template #noMedals>
+            <div class="text-center bg-box">
+              <p class="mt-3 mb-3 me-3 ms-3">El entrenador {{ data.name }} no tiene ninguna medalla asignada.</p>
+            </div>
+          </ng-template>
         </div>
       </div>
 
