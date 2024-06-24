@@ -107,15 +107,4 @@ export class TrainersEditComponent implements OnInit {
       this.selectedMedals.push(index);
     }
   }
-
-  removeSelectedMedals() {
-    this.data.medallas = this.data.medallas.filter(
-      (_: any, index: number) => !this.selectedMedals.includes(index)
-    );
-    this.selectedMedals = [];
-  }
-
-  viewAvailableMedals() {
-    // Lógica para mostrar medallas disponibles y añadir nuevas medallas.
-  }
 }
