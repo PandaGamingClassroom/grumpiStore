@@ -58,11 +58,10 @@ export class TrainersEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Rellenar el formulario con los datos recibidos
     this.myForm.patchValue({
       trainer_name: this.data.name,
       trainer_pass: this.data.password,
-      grumpidolar: this.data.grumpidolar || '', // Si no hay grumpidolar, se establece como cadena vacía
+      grumpidolar: this.data.grumpidolar || '',
       combatMark: this.data.marca_combate,
     });
 
@@ -70,17 +69,13 @@ export class TrainersEditComponent implements OnInit {
   }
 
   onSubmit() {
-    const data = {
-      title: '¡Correcto!',
-      message: 'El entrenador se ha editado correctamente.',
-    };
-
     if (this.myForm.valid) {
       const updatedData = {
         name: this.myForm.get('trainer_name')?.value,
         password: this.myForm.get('trainer_pass')?.value,
         grumpidolar: this.myForm.get('grumpidolar')?.value,
         combatMark: this.myForm.get('combatMark')?.value,
+        medalsToRemove: this.selectedMedals,
       };
 
       this.trainersService
@@ -88,13 +83,15 @@ export class TrainersEditComponent implements OnInit {
         .subscribe((response) => {
           console.log('Trainer updated', response);
           this.close();
+          this.dialog.open(ConfirmModalComponentComponent, {
+            width: '400px',
+            height: '300px',
+            data: {
+              title: '¡Correcto!',
+              message: 'El entrenador se ha editado correctamente.',
+            },
+          });
         });
-
-      this.dialog.open(ConfirmModalComponentComponent, {
-        width: '400px',
-        height: '300px',
-        data: data,
-      });
     }
   }
 
@@ -115,11 +112,10 @@ export class TrainersEditComponent implements OnInit {
     this.data.medallas = this.data.medallas.filter(
       (_: any, index: number) => !this.selectedMedals.includes(index)
     );
-    this.selectedMedals = []; // Reset the selection
+    this.selectedMedals = [];
   }
 
   viewAvailableMedals() {
-    // Aquí puedes implementar la lógica para mostrar las medallas disponibles y añadir nuevas medallas.
-    // Por ejemplo, podrías abrir un modal con una lista de medallas disponibles para seleccionar.
+    // Lógica para mostrar medallas disponibles y añadir nuevas medallas.
   }
 }
