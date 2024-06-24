@@ -164,8 +164,8 @@ export class TrainersAdminComponent implements OnInit {
    */
   openDeleteTrainerModal(trainer: any) {
     const dialogRef = this.dialog.open(DeleteTrainersComponent, {
-      width: '700px',
-      height: '600px',
+      width: '400px',
+      height: '300px',
       data: trainer,
     });
 

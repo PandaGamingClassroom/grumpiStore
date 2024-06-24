@@ -109,18 +109,53 @@ body {
   }
 }
 
-
 .bg-box {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 2em;
   box-shadow: #adcfff 0 -12px 6px inset;
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 footer {
   margin-top: auto;
 }
 
 .trainerName {
   color: #197228;
+}
+
+.mainBoxAdmin {
+  background-color: aliceblue;
+  background-image: url(./assets/1716900318340.png);
+  width: 100%;
+  height: 100vh; /* Hace que la altura sea igual a la altura de la ventana */
+  background-repeat: no-repeat;
+  background-size: cover; /* Hace que la imagen de fondo cubra toda la ventana */
+  background-position: center; /* Centra la imagen de fondo */
+  position: relative;
+  overflow: hidden;
+}
+
+.mainBoxAdmin::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  background-repeat: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  filter: blur(10px); /* Ajusta el valor para más o menos desenfoque */
+  z-index: 0;
+}
+
+.mainBoxAdminContent {
+  position: relative;
+  z-index: 1;
+  /* Estilos adicionales para tu contenido */
 }

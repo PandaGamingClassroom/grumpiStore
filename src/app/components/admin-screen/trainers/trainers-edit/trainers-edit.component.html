@@ -1,7 +1,7 @@
 <!-- <app-nav-bar-admin></app-nav-bar-admin> -->
 
-<div class="container-fluid main">
-  <div class="btn-config mt-3">
+<div class="container-fluid mainBoxAdmin">
+  <div class="btn-config mt-3 mainBoxAdminContent">
     <button type="button" class="btn" (click)="close()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,12 +19,12 @@
     </button>
   </div>
 
-  <h2 class="justify-content-center d-flex">
+  <h2 class="justify-content-center d-flex mainBoxAdminContent">
     Edición del entrenador: <span class="trainerName"> {{this.data.name}}</span>
   </h2>
   <hr />
 
-  <div class="container">
+  <div class="container mainBoxAdminContent">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="trainer_name" class="form-label"

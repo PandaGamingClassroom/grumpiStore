@@ -1,19 +1,21 @@
-<div class="container-fluid">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="erase">Eliminar entrenador</h1>
-      </div>
-      <div class="modal-body">
-        <p>
-          ¡Cuidado! Estás a punto de eliminar a <strong>{{ trainerSelected }}</strong>.
-        </p>
-        <p><strong>¿Estás seguro?</strong></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="deleteTrainer(); close()">Aceptar</button>
+  <div class="container-fluid mainBoxAdmin">
+    <div class="modal-dialog modal-dialog-centered mainBoxAdminContent">
+      <div class="modal-content deleteContainer">
+        <div class="modal-header deleteTitle">
+          <h1 class="modal-title fs-5" id="erase">Eliminar entrenador</h1>
+        </div>
+        <hr>
+        <div class="modal-body deleteContainer">
+          <p>
+            ¡Cuidado! Estás a punto de eliminar a <strong>{{ trainerSelected }}</strong>.
+          </p>
+          <p><strong>¿Estás seguro?</strong></p>
+        </div>
+        <hr>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary me-3" onclick="closeModal()">Cancelar</button>
+          <button type="button" class="btn btn-danger" onclick="deleteTrainer(); closeModal()">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

@@ -1,7 +1,7 @@
 <!-- <app-nav-bar-admin></app-nav-bar-admin> -->
 
-<div class="container-fluid main">
-  <div class="btn-config mt-3">
+<div class="container-fluid mainBoxAdmin">
+  <div class="btn-config mt-3 mainBoxAdminContent">
     <button type="button" class="btn" (click)="close()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,10 +19,12 @@
     </button>
   </div>
 
-  <h2 class="justify-content-center d-flex">Datos de: <span class="trainerName"> {{this.data.name}}</span></h2>
+  <h2 class="justify-content-center d-flex mainBoxAdminContent">
+    Datos de: <span class="trainerName"> {{ this.data.name }}</span>
+  </h2>
   <hr />
 
-  <div class="container">
+  <div class="container mainBoxAdminContent">
     <p>
       ⚠️​ <strong>Atención!</strong> Aquí estos datos solo se pueden visualizar,
       para modificarlos debes ir al apartado de "editar entrenador" o botón del
@@ -33,7 +35,7 @@
       que aparece junto al nombre del entrenador
     </p>
   </div>
-  <div class="container">
+  <div class="container mainBoxAdminContent">
     <form [formGroup]="myForm">
       <div class="form-group">
         <label for="trainer_name" class="form-label"
