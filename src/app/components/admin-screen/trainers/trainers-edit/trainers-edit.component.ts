@@ -40,6 +40,7 @@ export class TrainersEditComponent implements OnInit {
   pass: string = '';
   grumpidolar: string = '';
   myForm: FormGroup;
+  selectedMedals: number[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -94,11 +95,31 @@ export class TrainersEditComponent implements OnInit {
         height: '300px',
         data: data,
       });
-
     }
   }
 
   close() {
     this.dialogRef.close();
+  }
+
+  toggleMedalSelection(index: number) {
+    const selectedIndex = this.selectedMedals.indexOf(index);
+    if (selectedIndex > -1) {
+      this.selectedMedals.splice(selectedIndex, 1);
+    } else {
+      this.selectedMedals.push(index);
+    }
+  }
+
+  removeSelectedMedals() {
+    this.data.medallas = this.data.medallas.filter(
+      (_: any, index: number) => !this.selectedMedals.includes(index)
+    );
+    this.selectedMedals = []; // Reset the selection
+  }
+
+  viewAvailableMedals() {
+    // Aquí puedes implementar la lógica para mostrar las medallas disponibles y añadir nuevas medallas.
+    // Por ejemplo, podrías abrir un modal con una lista de medallas disponibles para seleccionar.
   }
 }
