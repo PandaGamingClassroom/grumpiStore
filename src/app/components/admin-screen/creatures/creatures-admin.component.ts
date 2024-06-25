@@ -6,6 +6,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
@@ -19,8 +20,8 @@ import { CartaGrumpi, cartas_grumpi } from '../../../models/grumpi';
 import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
-import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AttackType, typeOfAttacks } from '../../../models/attacks';
+import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -48,18 +49,17 @@ export class CreaturesAdminComponent implements OnInit {
   modalAbierta = false;
   confirmMessage: string = 'Grumpi añadido correctamente.';
   searchTerm: string = '';
-  selectedImageUrl: string | null = null;
+  searchAttack: string = '';
   selectedTrainerName: string | null = null;
   selectedCreatureName: string | null = null;
-  getError: boolean = false;
   trainers: any[] = [];
   grumpiList: any[] = [];
   isAdminUser: boolean = false;
   adminUser: any;
-  typesAttacks: AttackType[] = typeOfAttacks; // Arreglo para almacenar los tipos de ataques
+  typesAttacks: AttackType[] = typeOfAttacks;
   attacks_list: any[] = [];
-  filteredAttacks: { name: string; value: string }[] = [];
-  selectedType: string | null = null;
+  selectedListAttack: any[] = [];
+  isTypeSelected: boolean = false;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -71,15 +71,17 @@ export class CreaturesAdminComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      imagen: [''],
+      imagen: ['', Validators.required],
+      nombre: ['', Validators.required],
+      numero: ['', Validators.required],
+      tipo: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      firstAttack: ['', Validators.required],
+      specialAttack: ['', Validators.required],
     });
     if (typeof window !== 'undefined') {
       this.adminUser = localStorage.getItem('isAdminUser');
-      if (this.adminUser === 'administrador') {
-        this.isAdminUser = true;
-      } else {
-        this.isAdminUser = false;
-      }
+      this.isAdminUser = this.adminUser === 'administrador';
     }
     this.getTrainers();
     this.loadAttacks();
@@ -87,16 +89,16 @@ export class CreaturesAdminComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
+    this.selectedFile = file ? file : null;
+    if (this.searchTerm) {
+      this.isTypeSelected = true;
     } else {
-      this.selectedFile = null;
+      this.isTypeSelected = false;
     }
   }
 
   onSubmit(event: Event) {
     event.preventDefault();
-
     if (!this.selectedFile) {
       console.error('No file selected');
       return;
@@ -116,7 +118,6 @@ export class CreaturesAdminComponent implements OnInit {
     );
   }
 
-  // Método para cargar la URL de la imagen desde el servidor
   loadImageUrls() {
     this.grumpiService.getImageUrls().subscribe(
       (response) => {
@@ -146,31 +147,27 @@ export class CreaturesAdminComponent implements OnInit {
         title: '¡Grumpi guardado correctamente!',
         message: this.confirmMessage,
       };
-
       const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
         width: '400px',
         height: '300px',
         data: data,
       });
-      dialogRef.afterClosed().subscribe((result) => {
-        window.location.reload();
-      });
+      dialogRef.afterClosed().subscribe(() => window.location.reload());
       this.modalAbierta = true;
     }
   }
 
-  /**
-   * Función para filtrar por nombre las imágenes
-   */
   get filteredCreaturesImages(): any[] {
     return this.grumpiList.filter((imageUrl) =>
       imageUrl.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
-  /**
-   *
-   */
+  get filteredListAttacks(): any[] {
+    return this.attacks_list.filter(
+      (atk) => atk.tipo === this.myForm.get('tipo')?.value
+    );
+  }
   getTrainers() {
     this.trainersService.getTrainers().subscribe(
       (response: any) => {
@@ -189,21 +186,11 @@ export class CreaturesAdminComponent implements OnInit {
     );
   }
 
-  /**
-   * Función para asignar una criatura seleccionada a un entrenador
-   */
-  assignCreature(): void {
-    if (
-      this.selectedTrainerName !== null &&
-      this.selectedCreatureName !== null
-    ) {
-      // Obtén el nombre del entrenador seleccionado
+  assignCreature() {
+    if (this.selectedTrainerName && this.selectedCreatureName) {
       const trainerName = this.selectedTrainerName;
-
-      // Obtén el nombre de la criatura seleccionada
       const creature = this.selectedCreatureName;
 
-      // Llama al servicio para asignar la criatura al entrenador por su nombre
       this.trainersService
         .assignCreatureToTrainer(trainerName, creature)
         .subscribe(
@@ -221,11 +208,6 @@ export class CreaturesAdminComponent implements OnInit {
     }
   }
 
-  /**
-   * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
-   * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
-   * Y con esos datos asignamos el objeto seleccionado.
-   */
   openTrainers() {
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
@@ -245,30 +227,10 @@ export class CreaturesAdminComponent implements OnInit {
     this.grumpiService.getAllAttacks().subscribe(
       (response: any) => {
         this.attacks_list = response.attacks_list;
-        console.log('Attacks: ', this.attacks_list);
-        this.typesAttacks = response.attacks_list.map((atk: any) => ({
-          tipo: atk.tipo,
-          ataques: atk.ataques.map((a: any) => ({
-            nombre: a.nombre,
-            id: a.id,
-          })),
-        }));
       },
       (error) => {
         console.error('Error obtaining attacks:', error);
       }
     );
-  }
-
-  onTypeChange(): void {
-    this.filteredAttacks = [];
-
-    if (this.selectedType) {
-      this.typesAttacks.forEach((atk: any) => {
-        if (atk.tipo === this.selectedType) {
-          this.filteredAttacks = atk.ataques;
-        }
-      });
-    }
   }
 }

@@ -1,10 +1,10 @@
-<div class="contanier-fluid bg-box">
+<div class="container-fluid bg-box">
   <div class="row">
     <div class="col design-column">
       <div class="row container">
         <div class="col mt-3"><h2>Lista de Grumpis</h2></div>
         <div class="col mt-3">
-          <button type="submit" class="btn btn-success" (click)="loadGrumpis()">
+          <button type="button" class="btn btn-success" (click)="loadGrumpis()">
             Cargar Grumpis
           </button>
         </div>
@@ -15,7 +15,7 @@
           <input
             type="text"
             [(ngModel)]="searchTerm"
-            placeholder="Introduce el número de la carta"
+            placeholder="Introduce el nombre del Grumpi"
             class="form-control"
           />
         </div>
@@ -26,7 +26,7 @@
         >
           <div class="row">
             <div class="col">
-              <img srcset="{{creature.img}}" alt="Imagen" />
+              <img [src]="creature.img" alt="Imagen" />
             </div>
             <div class="col">
               <button
@@ -61,26 +61,28 @@
               type="file"
               id="imagen"
               name="imagen"
-              required
+              class="form-control"
               formControlName="imagen"
+              required
             />
           </div>
         </div>
         <hr />
 
         <h2>Datos del Grumpi</h2>
-        <div class="contanier-fluid me-3">
+        <div class="container-fluid me-3">
           <ul>
             <li>
               <div class="row">
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
-                <div class="col-4"><label> Nombre: </label></div>
+                <div class="col-4"><label for="nombre">Nombre:</label></div>
                 <div class="col">
                   <input
                     type="text"
+                    id="nombre"
                     class="form-control"
-                    aria-label="Nombre del Grumpi"
-                    aria-describedby="inputGroup-sizing-sm"
+                    formControlName="nombre"
+                    required
                   />
                 </div>
               </div>
@@ -90,14 +92,15 @@
               <div class="row">
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
                 <div class="col-4">
-                  <label> Número de la Grumpidex: </label>
+                  <label for="numero">Número de la Grumpidex:</label>
                 </div>
                 <div class="col">
                   <input
                     type="text"
+                    id="numero"
                     class="form-control"
-                    aria-label="Nombre del Grumpi"
-                    aria-describedby="inputGroup-sizing-sm"
+                    formControlName="numero"
+                    required
                   />
                 </div>
               </div>
@@ -106,28 +109,14 @@
             <li>
               <div class="row">
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
-                <div class="col-4"><label> Tipo: </label></div>
+                <div class="col-4"><label for="tipo">Tipo:</label></div>
                 <div class="col">
                   <input
                     type="text"
+                    id="tipo"
                     class="form-control"
-                    aria-label="Nombre del Grumpi"
-                    aria-describedby="inputGroup-sizing-sm"
-                  />
-                </div>
-              </div>
-            </li>
-            <br />
-            <li>
-              <div class="row">
-                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
-                <div class="col-4"><label> Descripción: </label></div>
-                <div class="col">
-                  <input
-                    type="text"
-                    class="form-control"
-                    aria-label="Nombre del Grumpi"
-                    aria-describedby="inputGroup-sizing-sm"
+                    formControlName="tipo"
+                    required
                   />
                 </div>
               </div>
@@ -137,15 +126,38 @@
               <div class="row">
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
                 <div class="col-4">
-                  <label> Ataque principal: </label>
+                  <label for="descripcion">Descripción:</label>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    id="descripcion"
+                    class="form-control"
+                    formControlName="descripcion"
+                    required
+                  />
+                </div>
+              </div>
+            </li>
+            <br />
+            <li>
+              <div class="row">
+                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+                <div class="col-4">
+                  <label for="firstAttack">Ataque principal:</label>
                   <button type="button" class="btn">❓​</button>
                 </div>
                 <div class="col">
-                  <select class="form-select" id="atqPrincipal">
-                    <option selected>Selecciona un ataque</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                  <select
+                    id="firstAttack"
+                    class="form-select"
+                    formControlName="firstAttack"
+                    required
+                  >
+                    <option selected disabled>Selecciona un ataque</option>
+                    <option *ngFor="let atq of attacks_list" [value]="atq">
+                      {{ atq.nombre }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -155,37 +167,43 @@
               <div class="row">
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
                 <div class="col-4">
-                  <label>Ataque especial:</label>
+                  <label for="specialAttack">Ataque especial:</label>
                   <button type="button" class="btn">❓</button>
                 </div>
                 <div class="col">
                   <select
+                    id="specialAttack"
                     class="form-select"
-                    id="selectType"
-                    [(ngModel)]="selectedType"
-                    (change)="onTypeChange()"
-                    placeholder="Selecciona un tipo de ataque"
+                    formControlName="tipo"
+                    required
                   >
-                    <option *ngFor="let atk of typesAttacks" [value]="atk.tipo">
-                      {{ atk.tipo }}
+                    <option selected disabled>Selecciona un tipo</option>
+                    <option
+                      *ngFor="let attack of typesAttacks"
+                      [value]="attack.tipo"
+                    >
+                      {{ attack.tipo }}
                     </option>
                   </select>
                 </div>
-                <div class="col" *ngIf="selectedType">
-                  <select class="form-select" id="atqEspecial">
+                <div class="col">
+                  <select
+                    id="specialAttack"
+                    class="form-select"
+                    formControlName="specialAttack"
+                    required
+                  >
                     <option selected disabled>Selecciona un ataque</option>
                     <option
-                      *ngFor="let attack of filteredAttacks"
-                      [value]="attack"
+                      *ngFor="let attack of filteredListAttacks"
+                      [value]="attack.nombre"
                     >
-                      {{ attack }}
+                      {{ attack.nombre }}
                     </option>
                   </select>
                 </div>
               </div>
             </li>
-
-            <br />
           </ul>
         </div>
 
