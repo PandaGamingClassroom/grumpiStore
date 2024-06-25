@@ -118,24 +118,26 @@ export class CreaturesAdminComponent implements OnInit {
     if (this.findNumberGrumpidex(formValues.numero)) {
       this.openErrorModal();
     }
+
+    const firstAttack = this.attacks_list.find(
+      (atq) => atq.nombre === formValues.firstAttack
+    );
+    const specialAttack = this.attacks_list.find(
+      (atq) => atq.nombre === formValues.specialAttack
+    );
+
+    if (!firstAttack || !specialAttack) {
+      console.error('Invalid attack selected');
+      return;
+    }
+
     // Construir el objeto Grumpi a enviar
     this.grumpiData = {
       nombre: formValues.nombre,
       n_grumpidex: formValues.numero,
       img: '', // La URL de la imagen se actualizará después de subirla
       descripcion: formValues.descripcion,
-      ataques: [
-        {
-          nombre: formValues.firstAttack.nombre,
-          efecto: formValues.firstAttack.efecto,
-          tipo: formValues.firstAttack.tipo,
-        },
-        {
-          nombre: formValues.specialAttack.nombre,
-          efecto: formValues.specialAttack.efecto,
-          tipo: formValues.specialAttack.tipo,
-        },
-      ],
+      ataques: [firstAttack, specialAttack],
       tipo: formValues.tipo,
     };
 
