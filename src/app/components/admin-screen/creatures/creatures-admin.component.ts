@@ -22,6 +22,7 @@ import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { AttackType, typeOfAttacks } from '../../../models/attacks';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
+import { ErrorLoginModalComponentComponent } from '../../../segments/error-login-modal-component/error-login-modal-component.component';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -60,6 +61,9 @@ export class CreaturesAdminComponent implements OnInit {
   attacks_list: any[] = [];
   selectedListAttack: any[] = [];
   isTypeSelected: boolean = false;
+  grumpiData: any;
+  exist: boolean = false;
+  seeAllGrumpis: boolean = false;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -75,7 +79,7 @@ export class CreaturesAdminComponent implements OnInit {
       nombre: ['', Validators.required],
       numero: ['', Validators.required],
       tipo: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      descripcion: [''],
       firstAttack: ['', Validators.required],
       specialAttack: ['', Validators.required],
     });
@@ -83,6 +87,7 @@ export class CreaturesAdminComponent implements OnInit {
       this.adminUser = localStorage.getItem('isAdminUser');
       this.isAdminUser = this.adminUser === 'administrador';
     }
+    this.loadGrumpis();
     this.getTrainers();
     this.loadAttacks();
   }
@@ -107,15 +112,74 @@ export class CreaturesAdminComponent implements OnInit {
     const formData = new FormData();
     formData.append('image', this.selectedFile, this.selectedFile.name);
 
-    this.http.post(this.uploadUrl, formData).subscribe(
+    // Obtener los valores del formulario
+    const formValues = this.myForm.value;
+    this.findNumberGrumpidex(formValues.numero);
+    if (this.findNumberGrumpidex(formValues.numero)) {
+      this.openErrorModal();
+    }
+    // Construir el objeto Grumpi a enviar
+    this.grumpiData = {
+      nombre: formValues.nombre,
+      n_grumpidex: formValues.numero,
+      img: '', // La URL de la imagen se actualizará después de subirla
+      descripcion: formValues.descripcion,
+      ataques: [
+        {
+          nombre: formValues.firstAttack.nombre,
+          efecto: formValues.firstAttack.efecto,
+          tipo: formValues.firstAttack.tipo,
+        },
+        {
+          nombre: formValues.specialAttack.nombre,
+          efecto: formValues.specialAttack.efecto,
+          tipo: formValues.specialAttack.tipo,
+        },
+      ],
+      tipo: formValues.tipo,
+    };
+
+    // Enviar la imagen al servidor
+    this.http.post<any>(this.uploadUrl, formData).subscribe(
       (response) => {
         console.log('Imagen subida correctamente', response);
-        this.openModal();
+
+        // Actualizar la URL de la imagen en el objeto Grumpi
+        this.grumpiData.img = response.imageUrl; // Ajusta esto según la respuesta real del servidor
+
+        // Enviar los datos del Grumpi al servicio de Angular
+        this.saveGrumpi();
       },
       (error: HttpErrorResponse) => {
-        console.error('Error al enviar el grumpi', error);
+        console.error('Error al enviar la imagen', error);
       }
     );
+  }
+
+  saveGrumpi() {
+    this.grumpiService.saveGrumpi(this.grumpiData).subscribe(
+      (response) => {
+        console.log('Grumpi guardado correctamente en Node.js:', response);
+        // Aquí podrías mostrar un modal de confirmación o realizar alguna otra acción
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error al guardar el Grumpi en Node.js', error);
+      }
+    );
+  }
+
+  findNumberGrumpidex(numberOnInput: string) {
+    console.log(numberOnInput);
+
+    for (let grumpi of this.grumpiList) {
+      if (grumpi.n_grumpidex == numberOnInput) {
+        this.exist = true;
+      } else {
+        this.exist = false;
+      }
+    }
+
+    return this.exist;
   }
 
   loadImageUrls() {
@@ -141,6 +205,18 @@ export class CreaturesAdminComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para mostrar u ocultar la lista
+   * de Grumpis disponibles.
+   */
+  verGrumpis() {
+    if (!this.seeAllGrumpis) {
+      this.seeAllGrumpis = true;
+    } else {
+      this.seeAllGrumpis = false;
+    }
+  }
+
   openModal() {
     if (!this.modalAbierta) {
       const data = {
@@ -153,6 +229,22 @@ export class CreaturesAdminComponent implements OnInit {
         data: data,
       });
       dialogRef.afterClosed().subscribe(() => window.location.reload());
+      this.modalAbierta = true;
+    }
+  }
+
+  openErrorModal() {
+    if (!this.modalAbierta) {
+      const data = {
+        title: '¡Algo ha salido mal!',
+        message: 'El número de la Grumpidex, ya existe.',
+      };
+      const dialogRef = this.dialog.open(ErrorLoginModalComponentComponent, {
+        width: '400px',
+        height: '300px',
+        data: data,
+      });
+      dialogRef.afterClosed().subscribe();
       this.modalAbierta = true;
     }
   }

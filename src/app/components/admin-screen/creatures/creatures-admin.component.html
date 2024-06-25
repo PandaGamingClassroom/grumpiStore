@@ -4,13 +4,13 @@
       <div class="row container">
         <div class="col mt-3"><h2>Lista de Grumpis</h2></div>
         <div class="col mt-3">
-          <button type="button" class="btn btn-success" (click)="loadGrumpis()">
+          <button type="button" class="btn btn-success" (click)="verGrumpis()">
             Cargar Grumpis
           </button>
         </div>
       </div>
 
-      <div class="container creatures-box">
+      <div class="container creatures-box" *ngIf="seeAllGrumpis">
         <div class="search-bar mb-3 sticky-top">
           <input
             type="text"
@@ -111,13 +111,20 @@
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
                 <div class="col-4"><label for="tipo">Tipo:</label></div>
                 <div class="col">
-                  <input
-                    type="text"
+                  <select
                     id="tipo"
-                    class="form-control"
+                    class="form-select"
                     formControlName="tipo"
                     required
-                  />
+                  >
+                    <option selected disabled>Selecciona un tipo</option>
+                    <option
+                      *ngFor="let attack of typesAttacks"
+                      [value]="attack.tipo"
+                    >
+                      {{ attack.tipo }}
+                    </option>
+                  </select>
                 </div>
               </div>
             </li>
@@ -134,7 +141,6 @@
                     id="descripcion"
                     class="form-control"
                     formControlName="descripcion"
-                    required
                   />
                 </div>
               </div>
@@ -155,7 +161,10 @@
                     required
                   >
                     <option selected disabled>Selecciona un ataque</option>
-                    <option *ngFor="let atq of attacks_list" [value]="atq">
+                    <option
+                      *ngFor="let atq of attacks_list"
+                      [value]="atq.nombre"
+                    >
                       {{ atq.nombre }}
                     </option>
                   </select>
@@ -186,6 +195,7 @@
                     </option>
                   </select>
                 </div>
+
                 <div class="col">
                   <select
                     id="specialAttack"

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -95,5 +95,10 @@ export class GrumpiService {
    */
   getAllAttacks(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}getAllAttacks`);
+  }
+
+  saveGrumpi(grumpiData: any) {
+    const nodeServerUrl = `${this.baseUrl}grumpis`; // URL del endpoint en el servidor Node.js
+    return this.http.post<any>(nodeServerUrl, grumpiData);
   }
 }
