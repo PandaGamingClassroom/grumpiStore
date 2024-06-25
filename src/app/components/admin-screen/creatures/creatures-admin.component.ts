@@ -93,12 +93,8 @@ export class CreaturesAdminComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.selectedFile = file ? file : null;
-    if (this.searchTerm) {
-      this.isTypeSelected = true;
-    } else {
-      this.isTypeSelected = false;
+    if (event.target.files && event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
     }
   }
 
