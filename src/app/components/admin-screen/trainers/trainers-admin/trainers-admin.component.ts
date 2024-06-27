@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +10,8 @@ import { TrainerService } from '../../../services/trainers/trainer.service';
 import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
 import { DeleteTrainersComponent } from '../delete-trainers/delete-trainers.component';
 import { SeeTrainersComponent } from '../see-trainers/see-trainers.component';
+import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { FooterComponent } from '../../../footer/footer.component';
 
 @Component({
   selector: 'app-trainers-admin',
@@ -22,6 +23,7 @@ import { SeeTrainersComponent } from '../see-trainers/see-trainers.component';
     HttpClientModule,
     FormsModule,
     MatDialogModule,
+    FooterComponent
   ],
   providers: [TrainerService],
   templateUrl: './trainers-admin.component.html',

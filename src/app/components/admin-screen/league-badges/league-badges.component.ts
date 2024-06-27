@@ -19,11 +19,12 @@ import {
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
-import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { url_upload_leagueBadges } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
+import { FooterComponent } from '../../footer/footer.component';
+import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
   selector: 'app-league-badges',
@@ -36,6 +37,8 @@ import { AdminUserService } from '../../services/adminUser/adminUser.service';
     MatDialogModule,
     ReactiveFormsModule,
     NavBarAdminComponent,
+    FooterComponent
+
   ],
   providers: [TrainerService, GrumpiService, AdminUserService],
   templateUrl: './league-badges.component.html',

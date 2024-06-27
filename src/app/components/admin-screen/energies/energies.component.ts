@@ -18,6 +18,7 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
 import { Energies, energias } from '../../../models/energies';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-energies',
@@ -30,6 +31,7 @@ import { AdminUserService } from '../../services/adminUser/adminUser.service';
     MatDialogModule,
     ReactiveFormsModule,
     NavBarAdminComponent,
+    FooterComponent
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './energies.component.html',

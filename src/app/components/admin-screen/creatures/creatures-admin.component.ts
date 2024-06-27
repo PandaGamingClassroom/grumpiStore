@@ -9,7 +9,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { CommonModule } from '@angular/common';
 import {
   HttpClient,
@@ -23,6 +22,8 @@ import { TrainerService } from '../../services/trainers/trainer.service';
 import { AttackType, typeOfAttacks } from '../../../models/attacks';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { ErrorLoginModalComponentComponent } from '../../../segments/error-login-modal-component/error-login-modal-component.component';
+import { FooterComponent } from '../../footer/footer.component';
+import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -35,6 +36,7 @@ import { ErrorLoginModalComponentComponent } from '../../../segments/error-login
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    FooterComponent
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './creatures-admin.component.html',

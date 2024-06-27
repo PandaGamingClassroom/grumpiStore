@@ -15,6 +15,7 @@ import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-medals-admin-screen',
@@ -26,6 +27,7 @@ import { AdminUserService } from '../../services/adminUser/adminUser.service';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    FooterComponent
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './medals-admin-screen.component.html',

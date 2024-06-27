@@ -11,6 +11,7 @@ import {
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-grumpidolars',
@@ -22,6 +23,7 @@ import { AdminUserService } from '../../services/adminUser/adminUser.service';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    FooterComponent
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './grumpidolars.component.html',
