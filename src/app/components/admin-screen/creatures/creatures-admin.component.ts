@@ -166,6 +166,11 @@ export class CreaturesAdminComponent implements OnInit {
     );
   }
 
+  /**
+   *
+   * Comprueba si el número introducido para la Grumpidex ya existe
+   *
+   */
   findNumberGrumpidex(numberOnInput: string) {
     console.log(numberOnInput);
 
@@ -180,17 +185,12 @@ export class CreaturesAdminComponent implements OnInit {
     return this.exist;
   }
 
-  loadImageUrls() {
-    this.grumpiService.getImageUrls().subscribe(
-      (response) => {
-        this.imageUrls = response.imageUrls;
-      },
-      (error) => {
-        console.error('Error al obtener las URLs de las imágenes:', error);
-      }
-    );
-  }
 
+  /**
+   *
+   * Se obtienen los datos de los Grumpi disponibles.
+   *
+   */
   loadGrumpis() {
     this.grumpiService.getGrumpis().subscribe(
       (response) => {
@@ -215,6 +215,12 @@ export class CreaturesAdminComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   * Abre la ventana modal en la que se muestra
+   * un mensaje de confirmación.
+   *
+   */
   openModal() {
     if (!this.modalAbierta) {
       const data = {
@@ -231,6 +237,12 @@ export class CreaturesAdminComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   * Se abre una ventana modal en la que
+   * se muestra un mensaje de error al usuario
+   *
+   */
   openErrorModal() {
     if (!this.modalAbierta) {
       const data = {
@@ -258,6 +270,12 @@ export class CreaturesAdminComponent implements OnInit {
       (atk) => atk.tipo === this.myForm.get('tipo')?.value
     );
   }
+
+  /**
+   *
+   * Se obtienen los datos de los entreandores.
+   *
+   */
   getTrainers() {
     this.trainersService.getTrainers().subscribe(
       (response: any) => {
@@ -276,6 +294,11 @@ export class CreaturesAdminComponent implements OnInit {
     );
   }
 
+  /**
+   *
+   * Se asigna el Grumpi al entrenador.
+   *
+   */
   assignCreature() {
     if (this.selectedTrainerName && this.selectedCreatureName) {
       const trainerName = this.selectedTrainerName;
@@ -298,6 +321,12 @@ export class CreaturesAdminComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   * Se abre una ventana modal en la que se pude hacer una selección
+   * de los entrenadores disponibles.
+   *
+   */
   openTrainers() {
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
@@ -313,6 +342,12 @@ export class CreaturesAdminComponent implements OnInit {
     });
   }
 
+  /**
+   *
+   * Se obtiene el listado de ataques disponibles
+   * para poder mostrarlos al usuario.
+   *
+   */
   loadAttacks() {
     this.grumpiService.getAllAttacks().subscribe(
       (response: any) => {

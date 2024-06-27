@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-battle-game',
@@ -19,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    NavBarComponent
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './battle-game.component.html',

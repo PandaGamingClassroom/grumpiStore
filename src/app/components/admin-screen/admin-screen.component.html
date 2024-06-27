@@ -72,18 +72,23 @@
             <div *ngIf="activeSection === 'dolars'">
               <app-grumpidolars></app-grumpidolars>
             </div>
-            <div *ngIf="activeSection === 'users'">
-              <div
-                class="d-flex justify-content-center align-items-center mt-6 bg-box box-text"
-              >
-                <p>🧑‍🔧 Estamos trabajando en esta sección 🧑‍🔧</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
+    <div
+      *ngIf="showLogo"
+      class="container-fluid d-flex justify-content-center align-items-center"
+    >
+      <img src="../../../assets/Logo_v0.1_sinFondo.png" />
+    </div>
+    <div
+      *ngIf="showLogo"
+      class="bg-box container-fluid d-flex justify-content-center align-items-center"
+    >
+      <p>&copy; 2024 Grumpi-App. Todos los derechos reservados.</p>
+      <br>
+      <p> Creado por Pan`n`Da </p>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<app-footer></app-footer>

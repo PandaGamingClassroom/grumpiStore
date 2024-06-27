@@ -52,12 +52,11 @@ export class AdminScreenComponent implements OnInit {
   lastNameProfesor: any;
   adminUser: any;
   activeSection: string | null = null;
+  showLogo: boolean = true;
 
   constructor(
-    private routes: ActivatedRoute,
     private dialog: MatDialog,
     private trainersService: TrainerService,
-    private route: ActivatedRoute,
     private adminUserService: AdminUserService
   ) {}
 
@@ -146,6 +145,9 @@ export class AdminScreenComponent implements OnInit {
   }
 
   showSection(section: string) {
+    if (section) {
+      this.showLogo = false;
+    }
     this.activeSection = section;
   }
 }
