@@ -44,6 +44,7 @@ export class SeeTrainersComponent implements OnInit {
       combatMark: [''],
     });
   }
+
   ngOnInit(): void {
     this.myForm.patchValue({
       trainer_name: this.data.name,

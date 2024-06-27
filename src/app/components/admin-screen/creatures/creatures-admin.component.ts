@@ -24,6 +24,7 @@ import { SelectTrainerComponent } from '../trainers/select-trainer/select-traine
 import { ErrorLoginModalComponentComponent } from '../../../segments/error-login-modal-component/error-login-modal-component.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { MessageModalComponent } from '../../../segments/message-modal-component/message-modal.component';
 
 @Component({
   selector: 'app-creatures-admin',
@@ -36,7 +37,7 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    FooterComponent
+    FooterComponent,
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './creatures-admin.component.html',
@@ -95,9 +96,15 @@ export class CreaturesAdminComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
+    const selectedType = event.target.value;
     if (event.target.files && event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
     }
+
+    if(selectedType) {
+      this.isTypeSelected = true;
+    }
+
   }
 
   onSubmit(event: Event) {
@@ -187,7 +194,6 @@ export class CreaturesAdminComponent implements OnInit {
     return this.exist;
   }
 
-
   /**
    *
    * Se obtienen los datos de los Grumpi disponibles.
@@ -236,6 +242,43 @@ export class CreaturesAdminComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(() => window.location.reload());
       this.modalAbierta = true;
+    }
+  }
+
+  /**
+   *
+   * Se abre una ventana modal para mostrar al profesor
+   * un mensaje de ayuda sobre el ataque que se va a seleccionar.
+   *
+   */
+  openHelpMessage(ataque: string) {
+    if (ataque === 'ataquePrincipal') {
+      const data = {
+        title: '¡Información!',
+        subTitle: 'Ataque Principal',
+        message:
+          'Se trata del ataque básico que va a aparecer asignado al nuevo Grumpi.',
+      };
+      const dialogRef = this.dialog.open(MessageModalComponent, {
+        width: '400px',
+        height: '300px',
+        data: data,
+      });
+      dialogRef.afterClosed().subscribe();
+    } else if (ataque === 'special') {
+      const data = {
+        title: '¡Información!',
+        subTitle: 'Ataque Especial',
+        message:
+          'Se trata del ataque que necesita de una energía, dependiendo del tipo que sea el ataque, para poder ser utilizado.' +
+          'Por eso, recuerda seleccionar primero el Tipo del ataque.',
+      };
+      const dialogRef = this.dialog.open(MessageModalComponent, {
+        width: '400px',
+        height: '300px',
+        data: data,
+      });
+      dialogRef.afterClosed().subscribe();
     }
   }
 
@@ -360,4 +403,5 @@ export class CreaturesAdminComponent implements OnInit {
       }
     );
   }
+
 }

@@ -186,7 +186,7 @@
                     formControlName="tipo"
                     required
                   >
-                    <option selected disabled>Selecciona un tipo</option>
+                    <option  disabled>Selecciona un tipo:</option>
                     <option
                       *ngFor="let attack of typesAttacks"
                       [value]="attack.tipo"
@@ -196,7 +196,7 @@
                   </select>
                 </div>
 
-                <div class="col">
+                <div class="col" *ngIf="isTypeSelected">
                   <select
                     id="specialAttack"
                     class="form-select"
@@ -224,4 +224,3 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>

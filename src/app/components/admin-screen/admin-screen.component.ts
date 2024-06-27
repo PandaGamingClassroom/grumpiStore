@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { FooterComponent } from '../footer/footer.component';
 import { GrumpidolarsComponent } from './grumpidolars/grumpidolars.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminUserService } from '../services/adminUser/adminUser.service';
+import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
   selector: 'app-admin-screen',

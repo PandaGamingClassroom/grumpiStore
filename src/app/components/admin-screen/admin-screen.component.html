@@ -76,19 +76,38 @@
         </div>
       </div>
     </div>
-    <div
-      *ngIf="showLogo"
-      class="container-fluid d-flex justify-content-center align-items-center"
-    >
-      <img src="../../../assets/Logo_v0.1_sinFondo.png" />
-    </div>
-    <div
-      *ngIf="showLogo"
-      class="bg-box container-fluid d-flex justify-content-center align-items-center"
-    >
-      <p>&copy; 2024 Grumpi-App. Todos los derechos reservados.</p>
-      <br>
-      <p> Creado por Pan`n`Da </p>
+
+    <div class="container-fluid">
+      <div
+        *ngIf="showLogo"
+        class="container-fluid d-flex justify-content-center align-items-center"
+      >
+        <img src="../../../assets/Logo_v0.1_sinFondo.png" />
+      </div>
+      <div class="bg-box">
+        <div
+          *ngIf="showLogo"
+          class="mt-3 container-fluid d-flex justify-content-center align-items-center"
+        >
+          <p class="d-flex justify-content-center align-items-center mt-3">
+            &copy; 2024 Grumpi-App. Todos los derechos reservados.
+          </p>
+          <br />
+          <p class="d-flex justify-content-center align-items-center mt-3">
+            Creado por Pan`n`Da
+          </p>
+        </div>
+        <div
+          *ngIf="showLogo"
+          class="container-fluid d-flex justify-content-center align-items-center"
+        >
+          <img
+            id="panda"
+            class="logoPanda"
+            src="../../../assets/LogoEscuelaDeVerano2016-2.png"
+          />
+        </div>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
