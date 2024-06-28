@@ -70,6 +70,7 @@ export class StoreScreenComponent implements OnInit {
   selectedEnergies: { type: string; quantity: number }[] = [];
   selectedEnergie: any;
   energy_list: Energies[] = energias;
+  showLogo: boolean = true;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -102,7 +103,9 @@ export class StoreScreenComponent implements OnInit {
       this.mostrarGrumpidolares = false;
       this.mostrarEnergias = true;
     }
+    this.showLogo = false;
   }
+
 
   /**
    * Función para obtener las imágenes de los objetos de combate

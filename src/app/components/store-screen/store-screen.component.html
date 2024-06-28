@@ -40,8 +40,16 @@
       </ul>
    </div>
 
+  <div class="container-fluid">
+    <div *ngIf="showLogo">
+      <div class="container-fluid d-flex justify-content-center align-items-center">
+        <img class="boxImg" id="img" src="../../../assets/TIENDA GRUMPI.png" />
+      </div>
+    </div>
+  </div>
 
   <div class="tab-content" id="pills-tabContent" *ngIf="mostrarGrumpidolares || mostrarEnergias">
+
 
     <!-- SUBMENÚ QUE SE MUESTRA SEGÚN SE SELECCIONA COMPRAR CON GRUMPIDÓLARES -->
     <div class="tab-pane fade show active" id="pills-grumpiDolarContent" role="tabpanel" aria-labelledby="pills-grumpiDolarContent-tab">
