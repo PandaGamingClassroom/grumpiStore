@@ -35,6 +35,9 @@ import { Energies, energias } from '../../models/energies';
   styleUrl: './store-screen.component.scss',
 })
 export class StoreScreenComponent implements OnInit {
+  mostrarGrumpidolares = false;
+  mostrarEnergias = false;
+
   imageUrls: any;
   evolutionObjects: any;
   grumpidolar: string = '';
@@ -86,6 +89,18 @@ export class StoreScreenComponent implements OnInit {
       if (this.username) {
         this.getTrainerData(this.username);
       }
+    }
+    this.mostrarGrumpidolares = false;
+    this.mostrarEnergias = false;
+  }
+
+  seleccionarOpcion(opcion: string) {
+    if (opcion === 'grumpidolares') {
+      this.mostrarGrumpidolares = true;
+      this.mostrarEnergias = false;
+    } else if (opcion === 'energias') {
+      this.mostrarGrumpidolares = false;
+      this.mostrarEnergias = true;
     }
   }
 
@@ -592,7 +607,10 @@ export class StoreScreenComponent implements OnInit {
       this.assignEnergies();
       finalCount = grumpidolarTrainer - priceEnergy;
       this.trainersService
-        .assignGrumpidolaresAfterBuyToTrainer(this.trainer.data.name, finalCount)
+        .assignGrumpidolaresAfterBuyToTrainer(
+          this.trainer.data.name,
+          finalCount
+        )
         .subscribe(
           (response) => {
             this.assignCombatObjects();

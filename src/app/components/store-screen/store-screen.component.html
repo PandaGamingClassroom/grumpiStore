@@ -20,7 +20,6 @@
     </div>
   </div>
 
-  <div class="col"></div>
   <h1 class="d-flex justify-content-center text-align-center">
     <strong> TIENDA GRUMPI </strong>
   </h1>
@@ -28,313 +27,66 @@
 </div>
 
 <div class="container text-center bg-box scrollBox">
-  <ul
-    class="nav nav-pills mb-3 justify-content-center"
-    id="pills-tab"
-    role="tablist"
-  >
+
+  <!-- MENÚ PRINCIPAL DE LA TIENDA -->
+  <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button
-        class="active button-73"
-        id="pills-objects-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-objects"
-        type="button"
-        role="tab"
-        aria-controls="pills-objects"
-        aria-selected="true"
-      >
-        Objetos de combate
-      </button>
+      <button class="nav-link button-73 me-3 active" id="pills-grumpiDolarContent-tab" data-bs-toggle="pill" data-bs-target="#pills-grumpiDolarContent" type="button" role="tab" aria-controls="pills-grumpiDolarContent" aria-selected="true" (click)="seleccionarOpcion('grumpidolares')">Con Grumpidólares</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button
-        class="button-73"
-        id="pills-rewards-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-rewards"
-        type="button"
-        role="tab"
-        aria-controls="pills-rewards"
-        aria-selected="false"
-      >
-        Recompensas
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="button-73"
-        id="pills-evolution-objects-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-evolution-objects"
-        type="button"
-        role="tab"
-        aria-controls="pills-evolution-objects"
-        aria-selected="false"
-      >
-        Objetos evolutivos
-      </button>
+      <button class="nav-link button-73 me-3" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" (click)="seleccionarOpcion('energias')">Con Energías</button>
     </li>
   </ul>
 
-  <!-- Contenido de las tablas -->
-  <div class="tab-content" id="pills-tabContent">
-    <div
-      class="tab-pane fade show active"
-      id="pills-objects"
-      role="tabpanel"
-      aria-labelledby="pills-objects-tab"
-      tabindex="0"
-    >
-      <div class="row">
-        <div class="col-6 d-flex justify-content-end align-items-center">
-          <h2 class="box-text"><strong> OBJETOS DE COMBATE </strong></h2>
-        </div>
-        <div class="col-6">
-          <div class="container dolarbox">
-            <button class="dolarinfo">
-              <img
-                class="dolarImg"
-                src="../../../assets/MONEDA_GRUMPI_CARA.png"
-              /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
-            </button>
-          </div>
-        </div>
-      </div>
+  <div class="tab-content" id="pills-tabContent" *ngIf="mostrarGrumpidolares || mostrarEnergias">
 
-      <hr />
-      <div class="row">
-        <div class="col">
-          <div class="container text-center align-items-center scrollable-div">
-            <div
-              class="img-creature mg-5"
-              *ngFor="let object of this.imageUrls"
-            >
-              <div class="row">
-                <div class="col"><img srcset="{{ object.imagen }}" /></div>
-                <div class="col">
-                  <button
-                    type="button"
-                    class="button-73"
-                    (click)="selectedObject = object; buyCombatObjects()"
-                  >
-                    Lo quiero
-                  </button>
-                  <div class="price-tag mt-3">
-                    <span class="price">
-                      <div class="row">
-                        <div class="col">
-                          <img
-                            class="grumpiTag"
-                            src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                          />
-                        </div>
-                        <div class="col">{{ object.precio }}</div>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- SUBMENÚ QUE SE MUESTRA SEGÚN SE SELECCIONA COMPRAR CON GRUMPIDÓLARES -->
+    <div class="tab-pane fade show active" id="pills-grumpiDolarContent" role="tabpanel" aria-labelledby="pills-grumpiDolarContent-tab">
+      <ul class="nav nav-pills mb-3 mt-3" id="pills-tabGrumpiDolar" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link button-73 me-3 active" id="pills-objects-tab" data-bs-toggle="pill" data-bs-target="#pills-objects" type="button" role="tab" aria-controls="pills-objects" aria-selected="true">Objetos de Combate</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link button-73 me-3" id="pills-energies-tab" data-bs-toggle="pill" data-bs-target="#pills-energies" type="button" role="tab" aria-controls="pills-energies" aria-selected="false">Energías</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContentGrumpiDolar">
+        <!-- ESPACIO PARA MOSTRAR EL CONTENIDO DE LOS OBJETOS DE COMBATE -->
+        <div class="tab-pane fade show active" id="pills-objects" role="tabpanel" aria-labelledby="pills-objects-tab">
+          Aquí los objetos de combate
         </div>
-        <!-- energías -->
-        <div class="col">
-          <div class="container text-center align-items-center scrollable-div">
-            <div
-              class="img-creature mg-5"
-              *ngFor="let object of energy_list"
-            >
-              <div class="row">
-                <div class="col"><img srcset="{{ object.imagen }}" /></div>
-                <div class="col">
-                  <button
-                    type="button"
-                    class="button-73"
-                    (click)="selectedEnergie = object; buyEnergy()"
-                  >
-                    Lo quiero
-                  </button>
-                  <div class="price-tag mt-3">
-                    <span class="price">
-                      <div class="row">
-                        <div class="col">
-                          <img
-                            class="grumpiTag"
-                            src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                          />
-                        </div>
-                        <div class="col"> 10 </div>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="tab-pane fade"
-      id="pills-rewards"
-      role="tabpanel"
-      aria-labelledby="pills-rewards-tab"
-      tabindex="0"
-    >
-      <h2 class="box-text"><strong>RECOMPENSAS</strong></h2>
-      <hr />
-      <div class="row">
-        <div class="col scrollable-div">
-          <div class="img-creature mg-5" *ngFor="let object of rewards_list">
-            <div class="row">
-              <div class="col"><img srcset="{{ object.img }}" /></div>
-              <div class="col">
-                <button
-                  type="button"
-                  class="button-73"
-                  (click)="selectedObject = object; seeRewards()"
-                >
-                  Lo quiero
-                </button>
-                <div class="price-tag mt-3">
-                  <span class="price">
-                    <div class="col">{{ object.condicion }} energías.</div>
-                  </span>
-                </div>
-                <div *ngIf="object.condicion == '300'">✨</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col scrollable-div">
-          <div class="container-fluid">
-            <h2>Selección de energías</h2>
-            <div class="row">
-              <div class="col">
-                <h3>Total de energías: {{ totalEnergies }}</h3>
-              </div>
-              <div class="col">
-                <h3>Cantidad necesaria: {{ selectedObject?.condicion }}</h3>
-              </div>
-            </div>
-            <div class="container-fluid">
-              <app-medals-list
-                *ngIf="isClicked"
-                (energiesSelected)="onEnergiesSelected($event)"
-              ></app-medals-list>
-            </div>
-          </div>
+        <!-- ESPACIO PARA MOSTRAR EL CONTENIDO DE LAS ENERGÍAS -->
+        <div class="tab-pane fade" id="pills-energies" role="tabpanel" aria-labelledby="pills-energies-tab">
+          Aquí las energías
         </div>
       </div>
     </div>
 
-    <div
-      class="tab-pane fade"
-      id="pills-evolution-objects"
-      role="tabpanel"
-      aria-labelledby="pills-evolution-objects-tab"
-      tabindex="0"
-    >
-      <h2 class="box-text"><strong>OBJETOS EVOLUTIVOS</strong></h2>
-      <hr />
-      <div class="row">
-        <div class="col">
-          <div class="container text-center align-items-center scrollable-div">
-            <div
-              class="img-creature mg-5"
-              *ngFor="let object of this.evolutionObjects"
-            >
-              <div class="row">
-                <div class="col"><img srcset="{{ object.imagen }}" /></div>
-                <div class="col">
-                  <button
-                    type="button"
-                    class="button-73"
-                    (click)="selectedObject = object; buyEvolutionObjects()"
-                  >
-                    Lo quiero
-                  </button>
-                  <div class="price-tag mt-3">
-                    <span class="price">
-                      <span>
-                        {{ object.precio }} energías de tipo:
-                        <strong> {{ object.tipo }}</strong>
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- SUBMENÚ QUE SE MUESTRA SEGÚN SE SELECCIONA COMPRAR CON ENERGÍAS -->
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      <ul class="nav nav-pills mb-3 mt-3" id="pills-tabEnergies" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link button-73 me-3 active" id="pills-objects-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-objects-profile" type="button" role="tab" aria-controls="pills-objects-profile" aria-selected="true">Recompensas</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link button-73 me-3" id="pills-energies-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-energies-profile" type="button" role="tab" aria-controls="pills-energies-profile" aria-selected="false">Objetos Evolutivos</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContentProfile">
+
+        <!-- ESPACIO PARA MOSTRAR EL CONTENIDO DE LAS RECOMPENSAS -->
+        <div class="tab-pane fade" id="pills-objects-profile" role="tabpanel" aria-labelledby="pills-objects-profile-tab">
+          Contenido de las recompensas
         </div>
-        <!-- INFORMACIÓN SOBRE LAS ENERGÍAS DISPONIBLES POR EL ENTRENADOR -->
-        <div class="col">
-          <div class="container">
-            <h2 class="box-text">
-              Mis energías: <strong>{{ cantidadTotal }}</strong>
-            </h2>
-            <hr />
-            <ul>
-              <li>
-                <button class="evoBox">
-                  <strong> Tipo Agua: </strong>
-                  {{ cantidadEnergiaAgua }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Fuego: </strong>
-                  {{ cantidadEnergiaFuego }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Aire: </strong>
-                  {{ cantidadEnergiaAire }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Luz: </strong>
-                  {{ cantidadEnergiaLuz }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Normal: </strong>
-                  {{ cantidadEnergiaNormal }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Oscuridad: </strong>
-                  {{ cantidadEnergiaOscuridad }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Rayo: </strong>
-                  {{ cantidadEnergiaRayo }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Tierra: </strong>
-                  {{ cantidadEnergiaTierra }}
-                </button>
-              </li>
-              <li>
-                <button class="evoBox">
-                  <strong> Vida: </strong>
-                  {{ cantidadEnergiaVida }}
-                </button>
-              </li>
-            </ul>
-          </div>
+        <!-- ESPACIO PARA MOSTRAR EL CONTENIDO DE LOS OBJETOS EVOLUTIVOS -->
+        <div class="tab-pane fade" id="pills-energies-profile" role="tabpanel" aria-labelledby="pills-energies-profile-tab">
+          Contenido de los objetos evolutivos
         </div>
       </div>
     </div>
+
   </div>
+
 </div>
+
 <app-footer></app-footer>
