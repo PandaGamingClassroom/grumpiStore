@@ -164,3 +164,20 @@ footer {
   font-family: "Bangers";
   font-size: 3rem;
 }
+
+
+.scrollable-div::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento vertical */
+  height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+.scrollable-div::-webkit-scrollbar-track {
+  background: #ffffff; /* Color de fondo de la pista */
+  border-radius: 10px; /* Radio de borde de la pista */
+}
+.scrollable-div::-webkit-scrollbar-thumb {
+  background: #197228; /* Color de la thumb */
+  border-radius: 10px; /* Radio de borde de la thumb */
+}
+.scrollable-div::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color de la thumb al pasar el ratón */
+}
