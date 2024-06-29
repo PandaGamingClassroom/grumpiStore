@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="container">
-  <h1 class="text-focus-in"> GRUMPIAPP </h1>
+  <h1 class="text-focus-in" id="titulo"> GRUMPIAPP </h1>
   <div class="logo">
     <img src="../../../assets/Logo_v0.1_sinFondo.png" />
   </div>
@@ -41,14 +41,6 @@
     </div>
   </div>
 
-  <div class="row spacesBetween footer">
-    <div class="col">
-      <button type="button" class="button-73 rounded-full" routerLink="/help">
-        ?
-      </button>
-    </div>
-  </div>
-
   <div class="container d-flex justify-content-center">
     <button type="button" class="btn-out" routerLink="/">
       <svg
@@ -72,7 +64,16 @@
     </button>
   </div>
 </div>
+
+<!-- Botón flotante -->
+<div class="floating-button">
+  <button type="button" class="button-73 rounded-full" routerLink="/help">
+    ?
+  </button>
+</div>
+
 <app-footer></app-footer>
+
 <!-- Mensaje advertencia -->
 <div
   class="modal fade"

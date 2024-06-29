@@ -20,11 +20,14 @@ ul {
   list-style-type: none;
 }
 
+// Aspecto para el título de la tienda
 #titulo {
   font-family: "Bangers";
-  font-size: 22px;
+  font-size: 3rem;
 }
 
+.sizeHand {font-size: 3rem;}
+// Aspecto para las pestañas seleccionadas
 .nav-pills .nav-link.active {
   background-color: #abf8b6; /* Cambia el color de fondo del tab activo */
   color: #020202; /* Cambia el color del texto del tab activo */
