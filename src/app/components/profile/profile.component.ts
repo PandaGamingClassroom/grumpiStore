@@ -91,8 +91,10 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
   getCombatMarksArray(): number[] {
     const combatMarksArray: number[] = [];
+
     for (let i = 0; i < this.combatMarks; i++) {
       combatMarksArray.push(i);
     }

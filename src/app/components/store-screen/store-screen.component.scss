@@ -20,13 +20,9 @@ ul {
   list-style-type: none;
 }
 
-// Aspecto para el título de la tienda
-#titulo {
-  font-family: "Bangers";
+.sizeHand {
   font-size: 3rem;
 }
-
-.sizeHand {font-size: 3rem;}
 // Aspecto para las pestañas seleccionadas
 .nav-pills .nav-link.active {
   background-color: #abf8b6; /* Cambia el color de fondo del tab activo */
@@ -49,13 +45,15 @@ ul {
 }
 
 .scrollable-div {
+  max-height: 60vh;
   overflow-y: auto;
 }
 
 .scrollBox {
-  max-height: calc(100% - 60px);
+  max-height: 80vh;
   overflow-y: auto;
-  overflow-x: hidden;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .box-info {
@@ -122,22 +120,14 @@ ul {
 .price-tag {
   display: inline-block;
   background-color: #ffcc00;
-  /* Color de fondo */
   padding: 5px 10px;
-  /* Espaciado interno */
   border-radius: 5px;
-  /* Bordes redondeados */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Sombra */
 }
 
 .price {
   font-size: 18px;
-  /* Tamaño de fuente */
-  font-weight: bold;
-  /* Negrita */
   color: #333;
-  /* Color de texto */
 }
 
 .grumpiTag {
@@ -214,9 +204,6 @@ app-footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: auto;
-  background-color: #f8f9fa5e;
-  text-align: center;
 }
 
 #info {
@@ -352,4 +339,20 @@ app-footer {
   100% {
     opacity: 1;
   }
+}
+
+.iconImg {
+  height: 45px;
+  width: 45px;
+}
+
+.boxIcon {
+  background-color: #75b3ec;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #adcfff 0 -12px 6px inset;
+}
+
+.toUpperCase {
+  text-transform: uppercase;
 }

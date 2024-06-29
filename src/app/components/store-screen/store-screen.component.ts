@@ -12,7 +12,7 @@ import { TrainerService } from '../services/trainers/trainer.service';
 import { ErrorLoginModalComponentComponent } from '../../segments/error-login-modal-component/error-login-modal-component.component';
 import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
 import { MedalsListComponent } from './medals-list/medals-list.component';
-import { Energies, energias } from '../../models/energies';
+import { Energies, energias, iconEnergy } from '../../models/energies';
 
 @Component({
   selector: 'app-store-screen',
@@ -70,6 +70,7 @@ export class StoreScreenComponent implements OnInit {
   selectedEnergies: { type: string; quantity: number }[] = [];
   selectedEnergie: any;
   energy_list: Energies[] = energias;
+  iconListEnergy = iconEnergy;
   showLogo: boolean = true;
 
   constructor(
@@ -93,9 +94,12 @@ export class StoreScreenComponent implements OnInit {
     }
     this.mostrarGrumpidolares = false;
     this.mostrarEnergias = false;
+    console.log('Lista de iconos: ', this.iconListEnergy);
+
   }
 
   seleccionarOpcion(opcion: string) {
+    this.showLogo = false;
     if (opcion === 'grumpidolares') {
       this.mostrarGrumpidolares = true;
       this.mostrarEnergias = false;
@@ -103,9 +107,7 @@ export class StoreScreenComponent implements OnInit {
       this.mostrarGrumpidolares = false;
       this.mostrarEnergias = true;
     }
-    this.showLogo = false;
   }
-
 
   /**
    * Función para obtener las imágenes de los objetos de combate

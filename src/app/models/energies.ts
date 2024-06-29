@@ -61,3 +61,33 @@ export const energias: Energies[] = [
     imagen: '../../../../assets/energies/ENERGIA_VIDA.1.png',
   },
 ];
+
+export const iconEnergy = [
+  {
+    imagen: '../../../../assets/iconEnergies/Agua2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Aire2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Fuego2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Luz2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Normal2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Oscuridad2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Rayo2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Tierra2.0.PNG',
+  },
+  {
+    imagen: '../../../../assets/iconEnergies/Vida2.0.PNG',
+  },
+];

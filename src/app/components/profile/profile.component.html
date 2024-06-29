@@ -77,20 +77,20 @@
 
               <br />
               <hr />
-              <h1 style="color: black">
-                {{ username }}
+              <h1 style="color: black" id="titulo">
+                <strong>{{ username }}</strong>
               </h1>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
                 <h1 class="box-text d-flex justify-content-center">
-                  <strong> INFORMACIÓN DEL ENTRENADOR </strong>
+                  <strong> MI PERFIL </strong>
                 </h1>
                 <hr class="mt-0 mb-4" />
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
                     <h3>
-                      <strong class="box-text">Energías: </strong>
+                      <strong class="box-text">Energías totales: </strong>
                       <strong>
                         {{ this.trainer?.data?.energias?.length }}
                       </strong>
