@@ -442,7 +442,7 @@ export class StoreScreenComponent implements OnInit {
 
     this.dialog.open(ConfirmModalComponentComponent, {
       width: '400px',
-      height: '300px',
+      height: '250px',
       data: data,
     });
   }

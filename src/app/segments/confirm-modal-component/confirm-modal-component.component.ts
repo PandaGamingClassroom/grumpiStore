@@ -16,6 +16,5 @@ export class ConfirmModalComponentComponent {
 
   closeDialog() {
     this.dialogRef.close();
-    window.location.reload();
   }
 }
