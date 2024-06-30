@@ -48,6 +48,7 @@ export class BagComponent implements OnInit {
   activeTab: string = '';
   rewards_list: any;
   rewards_total_list: any;
+  filteredGrumpis: any[] = [];
 
   /** Totales de las recompensas */
   totalRecompensa1: number = 0;
@@ -74,6 +75,8 @@ export class BagComponent implements OnInit {
   uniqueEvolutionObjects: any[] = [];
   uniqueRewards: any[] = [];
   uniqueEnergies: any[] = [];
+
+  searchTerm: string = '';
 
   constructor(
     private trainersService: TrainerService,
@@ -309,5 +312,15 @@ export class BagComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {});
+  }
+
+  // Función para filtrar los Grumpis según el término de búsqueda
+  get filteredCreaturesImages(): any[] {
+    if (!this.trainer || !this.trainer.data || !this.trainer.data.grumpis) {
+      return [];
+    }
+    return this.trainer.data.grumpis.filter((creature: any) =>
+      creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }

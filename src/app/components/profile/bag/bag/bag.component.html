@@ -108,15 +108,21 @@
     >
       <h2 class="box-text"><strong>MIS GRUMPIS</strong></h2>
       <hr />
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Buscar Grumpi..."
+        class="form-control mb-3"
+      />
       <div class="container scrollable-div">
         <div class="row">
           <!-- Primera mitad de grumpis -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="
-              let creature of trainer?.data?.grumpis?.slice(
+              let creature of filteredCreaturesImages.slice(
                 0,
-                trainer?.data?.grumpis?.length / 2
+                filteredCreaturesImages.length / 2
               )
             "
           >
@@ -134,9 +140,9 @@
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="
-              let creature of trainer?.data?.grumpis?.slice(
+              let creature of filteredCreaturesImages.slice(
                 0,
-                trainer?.data?.grumpis?.length / 2
+                filteredCreaturesImages.length / 2
               )
             "
           >
