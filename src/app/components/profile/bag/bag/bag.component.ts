@@ -5,10 +5,11 @@ import { Grumpi, grumpis } from '../../../../models/grumpi';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { FooterComponent } from '../../../footer/footer.component';
 import { GrumpiService } from '../../../services/grumpi/grumpi.service';
+import { ViewImageComponent } from '../../../../segments/view-image/view-image.component';
 
 @Component({
   selector: 'app-bag',
@@ -76,7 +77,8 @@ export class BagComponent implements OnInit {
 
   constructor(
     private trainersService: TrainerService,
-    private grumpiService: GrumpiService
+    private grumpiService: GrumpiService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -297,5 +299,15 @@ export class BagComponent implements OnInit {
         console.error('Error:', error);
       }
     );
+  }
+
+  openGrumpi(creature: any) {
+    const dialogRef = this.dialog.open(ViewImageComponent, {
+      width: '700px',
+      height: '600px',
+      data: creature,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
   }
 }

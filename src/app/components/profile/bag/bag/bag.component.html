@@ -112,7 +112,7 @@
         <div class="row">
           <!-- Primera mitad de grumpis -->
           <div
-            class="col-lg-3 col-md-6 mb-4"
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="
               let creature of trainer?.data?.grumpis?.slice(
                 0,
@@ -121,21 +121,32 @@
             "
           >
             <div class="img-creature">
-              <img class="img-fluid" src="{{ creature.img }}" alt="Grumpi" />
+              <img
+                class="img-fluid"
+                src="{{ creature.img }}"
+                alt="Grumpi"
+                (click)="openGrumpi(creature)"
+              />
             </div>
           </div>
 
           <!-- Segunda mitad de grumpis -->
           <div
-            class="col-lg-3 col-md-6 mb-4"
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="
               let creature of trainer?.data?.grumpis?.slice(
+                0,
                 trainer?.data?.grumpis?.length / 2
               )
             "
           >
             <div class="img-creature">
-              <img class="img-fluid" src="{{ creature.img }}" alt="Grumpi" />
+              <img
+                class="img-fluid"
+                src="{{ creature.img }}"
+                alt="Grumpi"
+                (click)="openGrumpi(creature)"
+              />
             </div>
           </div>
         </div>

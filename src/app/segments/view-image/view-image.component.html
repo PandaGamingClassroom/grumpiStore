@@ -1,16 +1,20 @@
-<div class="container navTitle">
-  <div class="navTitle">
-    <h1 class="d-flex justify-content-center box-text">{{ data.title }}</h1>
+<div class="container-fluid bg">
+  <div class="button-container">
+    <button type="button" class="button-73" (click)="closeDialog()">¡OK!</button>
+  </div>
+  <div class="container mt-3" *ngIf="isGrumpi">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">{{ data.nombre }}</h1>
     <hr />
   </div>
-  <div class="bg">
+  <div class="container">
     <div class="d-flex justify-content-center">
-      <img class="img-box mt-1" src="{{ data.message }}" />
+      <img class="img-box" src="{{ data.img }}" />
     </div>
-    <div class="d-flex justify-content-end btn-config">
-      <button type="button" class="button-73" (click)="closeDialog()">
-        ¡OK!
-      </button>
+    <div class="container bg-box mt-3">
+      <div class="container mt-3 mb-3">
+        <h2>Descripción</h2>
+        <p>{{ data.descripcion }}</p>
+      </div>
     </div>
   </div>
 </div>
