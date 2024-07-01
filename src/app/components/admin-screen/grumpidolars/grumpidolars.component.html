@@ -15,7 +15,7 @@
             <form #grumpidolarForm="ngForm" (ngSubmit)="assignGrumpidolares(trainer.name, grumpidolaresPorEntrenador[trainer.name])">
               <div class="row">
                 <div class="col-2"><label for="cantidad"><strong>Cantidad: </strong></label></div>
-                <div class="col-4"><input class="input-box" type="number" id="grumpidolar" name="cantidad" min="1" [(ngModel)]="grumpidolaresPorEntrenador[trainer.name]" required></div>
+                <div class="col-4"><input class="input-box" type="number" id="grumpidolar" name="cantidad" min="0" [(ngModel)]="grumpidolaresPorEntrenador[trainer.name]" required></div>
                 <div class="col-6"><button type="submit" class="btn btn-success">Añadir Grumpidólares</button></div>
               </div>
             </form>

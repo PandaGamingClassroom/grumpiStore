@@ -25,59 +25,77 @@
     <form [formGroup]="myForm">
       <div class="form-group mt-3">
         <label for="trainer_rol" class="form-label">Rol del usuario</label>
-        <select formControlName="trainer_rol" class="form-control">
+        <select formControlName="trainer_rol" class="form-control" (change)="selectedTrainerOrProfesor()">
           <option value="">Selecciona un rol de usuario</option>
           <option value="entrenador">Entrenador</option>
           <option value="profesor">Profesor</option>
         </select>
         <div
-          *ngIf="
-            myForm.get('trainer_rol')?.touched &&
-            myForm.get('trainer_rol')?.invalid
-          "
+          *ngIf="myForm.get('trainer_rol')?.touched && myForm.get('trainer_rol')?.invalid"
           class="text-danger"
         >
           Selecciona un rol de usuario.
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="trainer_name" class="form-label"
-          >Nombre de entrenador</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          formControlName="trainer_name"
-        />
-        <div
-          *ngIf="
-            myForm.get('trainer_name')?.touched &&
-            myForm.get('trainer_name')?.invalid
-          "
-          class="text-danger"
-        >
-          Nombre de entrenador es obligatorio.
+      <!-- FORMULARIO PARA EL ENTRENADOR -->
+      <div *ngIf="isTrainer">
+        <div class="form-group">
+          <label for="trainer_name" class="form-label">Nombre de entrenador</label>
+          <input type="text" class="form-control" formControlName="trainer_name" />
+          <div
+            *ngIf="myForm.get('trainer_name')?.touched && myForm.get('trainer_name')?.invalid"
+            class="text-danger"
+          >
+            Nombre de entrenador es obligatorio.
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="trainer_pass" class="form-label">Contraseña entrenador</label>
+          <input type="text" class="form-control" formControlName="trainer_pass" />
+          <div
+            *ngIf="myForm.get('trainer_pass')?.touched && myForm.get('trainer_pass')?.invalid"
+            class="text-danger"
+          >
+            Contraseña es obligatoria.
+          </div>
         </div>
       </div>
 
-      <div class="form-group mt-3">
-        <label for="trainer_pass" class="form-label"
-          >Contraseña entrenador</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          formControlName="trainer_pass"
-        />
-        <div
-          *ngIf="
-            myForm.get('trainer_pass')?.touched &&
-            myForm.get('trainer_pass')?.invalid
-          "
-          class="text-danger"
-        >
-          Contraseña es obligatoria.
+      <!-- FORMULARIO PARA EL PROFESOR -->
+      <div *ngIf="!isTrainer">
+        <div class="form-group">
+          <label for="trainer_name" class="form-label">Nombre del profesor</label>
+          <input type="text" class="form-control" formControlName="trainer_name" />
+          <div
+            *ngIf="myForm.get('trainer_name')?.touched && myForm.get('trainer_name')?.invalid"
+            class="text-danger"
+          >
+            El nombre del profesor es obligatorio.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="trainer_lastName" class="form-label">Apellidos del profesor</label>
+          <input type="text" class="form-control" formControlName="trainer_lastName" />
+          <div
+            *ngIf="myForm.get('trainer_lastName')?.touched && myForm.get('trainer_lastName')?.invalid"
+            class="text-danger"
+          >
+            Los apellidos del profesor son obligatorios.
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="trainer_pass" class="form-label">Contraseña profesor</label>
+          <input type="text" class="form-control" formControlName="trainer_pass" />
+          <div
+            *ngIf="myForm.get('trainer_pass')?.touched && myForm.get('trainer_pass')?.invalid"
+            class="text-danger"
+          >
+            Contraseña es obligatoria.
+          </div>
         </div>
       </div>
 

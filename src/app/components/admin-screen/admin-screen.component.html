@@ -6,6 +6,8 @@
       <mat-list-item (click)="showSection('trainers')"
         >Lista de entrenadores</mat-list-item
       >
+      <hr>
+      <h3 class="d-flex justify-content-center"> <strong>Administración del entrenador </strong></h3>
       <mat-list-item (click)="showSection('creatures')">Grumpis</mat-list-item>
       <mat-list-item (click)="showSection('medals')">Medallas</mat-list-item>
       <mat-list-item (click)="showSection('distintivos')"
@@ -15,14 +17,13 @@
       <mat-list-item (click)="showSection('dolars')"
         >Grumpidólares</mat-list-item
       >
+      <hr>
+      <h3 class="d-flex justify-content-center"> <strong> Ayuda </strong></h3>
+      <mat-list-item (click)="showSection('guide')"
+        >Guía Grumpi</mat-list-item
+      >
     </mat-nav-list>
   </mat-sidenav>
-  <ul class="dropdown-menu">
-    <li><span class="dropdown-item-text">Dropdown item text</span></li>
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
   <mat-sidenav-content>
     <div class="container-fluid scrollable-div">
       <div class="row mb-3 prof_box mt-2">
@@ -72,6 +73,7 @@
             <div *ngIf="activeSection === 'dolars'">
               <app-grumpidolars></app-grumpidolars>
             </div>
+            <div *ngIf="activeSection === 'guide'"></div>
           </div>
         </div>
       </div>
@@ -84,7 +86,7 @@
       >
         <img src="../../../assets/Logo_v0.1_sinFondo.png" />
       </div>
-      <div class="bg-box">
+      <div class="bg-box" style="bottom: 0">
         <div
           *ngIf="showLogo"
           class="mt-3 container-fluid d-flex justify-content-center align-items-center"

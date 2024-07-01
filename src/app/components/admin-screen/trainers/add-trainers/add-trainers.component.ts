@@ -25,7 +25,7 @@ import { ConfirmModalComponentComponent } from '../../../../segments/confirm-mod
   ],
   providers: [TrainerService],
   templateUrl: './add-trainers.component.html',
-  styleUrl: './add-trainers.component.scss',
+  styleUrls: ['./add-trainers.component.scss'],
 })
 export class AddTrainersComponent implements OnInit {
   trainers: any[] = [];
@@ -38,6 +38,7 @@ export class AddTrainersComponent implements OnInit {
   lastNameProfesor: any;
   myForm: FormGroup;
   selectedRol: string | null = null;
+  isTrainer: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,6 +48,7 @@ export class AddTrainersComponent implements OnInit {
   ) {
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
+      trainer_lastName: ['', Validators.required],
       trainer_pass: ['', Validators.required],
       trainer_rol: ['', Validators.required],
     });
@@ -58,17 +60,16 @@ export class AddTrainersComponent implements OnInit {
     this.getDataProfesor(this.nameProfesor);
   }
 
-  /**
-   * Función para obtener la información de un profesor concreto.
-   * En este caso el que ha iniciado sesión.
-   *
-   * @param name => Nombre del profesor que ha iniciado sesión en la App.
-   */
+  selectedTrainerOrProfesor() {
+    this.selectedRol = this.myForm.get('trainer_rol')?.value;
+    this.isTrainer = this.selectedRol === 'entrenador';
+  }
+
   getDataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+          console.log(data.message);
         } else {
           this.profesor = data.data;
           this.lastNameProfesor = data.data.apellidos;
@@ -81,12 +82,6 @@ export class AddTrainersComponent implements OnInit {
     );
   }
 
-  /**
-   * Función para obtener la información de los entrenadores
-   * que hay actualmente en BBDD.
-   *
-   * @param profesorId
-   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
@@ -98,35 +93,31 @@ export class AddTrainersComponent implements OnInit {
     );
   }
 
-  /**
-   * Función para guardar los nuevos usuarios.
-   * Se valida el tipo de rol que es el usuario para así,
-   * envíar unos datos u otros a la API.
-   */
   guardarEntrenador() {
-    const trainerString = 'entrenador';
-    const profesorString = 'profesor';
-    let stringMessage = '';
-
-    const nuevoEntrenador = {
-      name: this.myForm.get('trainer_name')?.value,
-      password: this.myForm.get('trainer_pass')?.value,
-      rol: this.myForm.get('trainer_rol')?.value,
-      id_profesor: this.profesor.id,
-    };
-
     if (this.myForm.invalid) {
-      this.myForm.markAllAsTouched(); // Marca todos los controles como "tocados" para activar los mensajes de error
+      this.myForm.markAllAsTouched();
       return;
     }
 
-    this.trainersService.postTrainer(nuevoEntrenador).subscribe(
-      (response) => {
-        if (nuevoEntrenador.rol === 'entrenador') {
-          stringMessage = trainerString;
-        } else if (nuevoEntrenador.rol === 'profesor') {
-          stringMessage = profesorString;
+    const nuevoUsuario = this.isTrainer
+      ? {
+          name: this.myForm.get('trainer_name')?.value,
+          password: this.myForm.get('trainer_pass')?.value,
+          rol: this.myForm.get('trainer_rol')?.value,
+          id_profesor: this.profesor.id,
         }
+      : {
+          nombre: this.myForm.get('trainer_name')?.value,
+          apellidos: this.myForm.get('trainer_lastName')?.value,
+          usuario: this.myForm.get('trainer_name')?.value,
+          password: this.myForm.get('trainer_pass')?.value,
+          rol: this.myForm.get('trainer_rol')?.value,
+          id_profesor: this.profesor.id,
+        };
+
+    this.trainersService.postTrainer(nuevoUsuario).subscribe(
+      (response) => {
+        const stringMessage = this.isTrainer ? 'entrenador' : 'profesor';
         const data = {
           title: '¡Correcto!',
           message: `El ${stringMessage} se ha añadido correctamente.`,
@@ -138,7 +129,7 @@ export class AddTrainersComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(() => {
-          this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
+          this.getEntrenadores(this.profesor.id);
           window.location.reload();
         });
       },
