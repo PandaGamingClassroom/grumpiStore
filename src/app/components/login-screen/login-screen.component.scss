@@ -1,60 +1,70 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .log {
-    background-image: url(../../../assets/backgrounds/gato.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px; /* Añade espacio en la parte superior */
+  background-image: url(../../../assets/backgrounds/gato.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px; /* Añade espacio en la parte superior */
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px; /* Espacio entre el logo y el formulario */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Espacio entre el logo y el formulario */
 }
 
 .logo img {
-    max-width: 60%;
-    height: auto;
+  max-width: 60%;
+  height: auto;
+}
+
+.logo-img:hover {
+  transform: scale(1.1);
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .container.config-size {
-    max-width: 400px;
-    width: 100%; /* Asegura que el contenedor secundario no sea más grande que el contenedor principal */
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8); /* Añade un fondo semitransparente para mejorar la legibilidad */
-    border-radius: 10px; /* Opcional: añade bordes redondeados */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  max-width: 400px;
+  width: 100%; /* Asegura que el contenedor secundario no sea más grande que el contenedor principal */
+  padding: 20px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Añade un fondo semitransparente para mejorar la legibilidad */
+  border-radius: 10px; /* Opcional: añade bordes redondeados */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-group {
-    margin-bottom: 20px;
-    text-align: center;
+  margin-bottom: 20px;
+  text-align: center;
 }
