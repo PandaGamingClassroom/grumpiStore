@@ -115,9 +115,14 @@ export class AddTrainersComponent implements OnInit {
       id_profesor: this.profesor.id,
     };
 
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched(); // Marca todos los controles como "tocados" para activar los mensajes de error
+      return;
+    }
+
     this.trainersService.postTrainer(nuevoEntrenador).subscribe(
       (response) => {
-        if(nuevoEntrenador.rol === 'entrenador'){
+        if (nuevoEntrenador.rol === 'entrenador') {
           stringMessage = trainerString;
         } else if (nuevoEntrenador.rol === 'profesor') {
           stringMessage = profesorString;

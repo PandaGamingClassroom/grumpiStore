@@ -23,16 +23,26 @@
   <hr />
   <div class="container-fluid mainBoxAdminContent">
     <form [formGroup]="myForm">
-      <div class="form-group mb-3">
+      <div class="form-group mt-3">
         <label for="trainer_rol" class="form-label">Rol del usuario</label>
-        <select formControlName="trainer_rol" [(ngModel)]="selectedRol" class="form-control">
-          <option selected>Selecciona un rol de usuario</option>
+        <select formControlName="trainer_rol" class="form-control">
+          <option value="">Selecciona un rol de usuario</option>
           <option value="entrenador">Entrenador</option>
           <option value="profesor">Profesor</option>
         </select>
+        <div
+          *ngIf="
+            myForm.get('trainer_rol')?.touched &&
+            myForm.get('trainer_rol')?.invalid
+          "
+          class="text-danger"
+        >
+          Selecciona un rol de usuario.
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="trainer_name mt-3" class="form-label"
+        <label for="trainer_name" class="form-label"
           >Nombre de entrenador</label
         >
         <input
@@ -40,7 +50,17 @@
           class="form-control"
           formControlName="trainer_name"
         />
+        <div
+          *ngIf="
+            myForm.get('trainer_name')?.touched &&
+            myForm.get('trainer_name')?.invalid
+          "
+          class="text-danger"
+        >
+          Nombre de entrenador es obligatorio.
+        </div>
       </div>
+
       <div class="form-group mt-3">
         <label for="trainer_pass" class="form-label"
           >Contraseña entrenador</label
@@ -50,6 +70,15 @@
           class="form-control"
           formControlName="trainer_pass"
         />
+        <div
+          *ngIf="
+            myForm.get('trainer_pass')?.touched &&
+            myForm.get('trainer_pass')?.invalid
+          "
+          class="text-danger"
+        >
+          Contraseña es obligatoria.
+        </div>
       </div>
 
       <div class="modal-footer mt-3">
