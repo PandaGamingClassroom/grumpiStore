@@ -181,3 +181,12 @@ footer {
 .scrollable-div::-webkit-scrollbar-thumb:hover {
   background: #555; /* Color de la thumb al pasar el ratón */
 }
+
+
+
+app-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 8%;
+}
