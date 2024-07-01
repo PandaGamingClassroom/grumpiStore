@@ -37,6 +37,7 @@ export class AddTrainersComponent implements OnInit {
   nameProfesor: any;
   lastNameProfesor: any;
   myForm: FormGroup;
+  selectedRol: string | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,6 +48,7 @@ export class AddTrainersComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
       trainer_pass: ['', Validators.required],
+      trainer_rol: ['', Validators.required],
     });
   }
 
@@ -56,6 +58,12 @@ export class AddTrainersComponent implements OnInit {
     this.getDataProfesor(this.nameProfesor);
   }
 
+  /**
+   * Función para obtener la información de un profesor concreto.
+   * En este caso el que ha iniciado sesión.
+   *
+   * @param name => Nombre del profesor que ha iniciado sesión en la App.
+   */
   getDataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -73,6 +81,12 @@ export class AddTrainersComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para obtener la información de los entrenadores
+   * que hay actualmente en BBDD.
+   *
+   * @param profesorId
+   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
@@ -84,18 +98,33 @@ export class AddTrainersComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para guardar los nuevos usuarios.
+   * Se valida el tipo de rol que es el usuario para así,
+   * envíar unos datos u otros a la API.
+   */
   guardarEntrenador() {
+    const trainerString = 'entrenador';
+    const profesorString = 'profesor';
+    let stringMessage = '';
+
     const nuevoEntrenador = {
       name: this.myForm.get('trainer_name')?.value,
       password: this.myForm.get('trainer_pass')?.value,
+      rol: this.myForm.get('trainer_rol')?.value,
       id_profesor: this.profesor.id,
     };
 
     this.trainersService.postTrainer(nuevoEntrenador).subscribe(
       (response) => {
+        if(nuevoEntrenador.rol === 'entrenador'){
+          stringMessage = trainerString;
+        } else if (nuevoEntrenador.rol === 'profesor') {
+          stringMessage = profesorString;
+        }
         const data = {
           title: '¡Correcto!',
-          message: 'El entrenador se ha añadido correctamente.',
+          message: `El ${stringMessage} se ha añadido correctamente.`,
         };
         const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
@@ -105,6 +134,7 @@ export class AddTrainersComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(() => {
           this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
+          window.location.reload();
         });
       },
       (error) => {
