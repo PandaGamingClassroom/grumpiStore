@@ -145,7 +145,7 @@ export class MedalsAdminScreenComponent implements OnInit {
     const data = { title: 'Selecciona el entrenador de la lista' };
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
-      height: '300px',
+      height: '360px',
       data: data,
     });
     dialogRef.afterClosed().subscribe((result) => {

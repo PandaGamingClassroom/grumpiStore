@@ -1,15 +1,19 @@
-  .modal-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
 
-  .modal-body {
-    flex-grow: 1;
-    overflow-y: auto;
-  }
+.modal-body {
+  flex-grow: 1;
+  overflow-y: auto;
+}
 
-  .modal-footer {
-    justify-content: center;
-    display: flex;
-  }
+.modal-footer {
+  justify-content: center;
+  display: flex;
+}
+
+.scrollable-div {
+  max-height: 230px;
+  overflow-y: auto;
+}

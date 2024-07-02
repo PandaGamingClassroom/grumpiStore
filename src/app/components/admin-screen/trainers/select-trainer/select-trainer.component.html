@@ -6,12 +6,24 @@
           Selecciona un entrenador:
         </h1>
       </div>
-      <div class="modal-body flex-grow-1">
-        <select [(ngModel)]="selectedTrainer" class="form-control">
-          <option *ngFor="let trainer of trainerList" [value]="trainer.name">
-            {{ trainer.name }}
-          </option>
-        </select>
+      <div class="modal-body flex-grow-1 bg-box">
+        <div class="scrollable-div">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let trainer of trainerList">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [(ngModel)]="trainer.selected"
+                  id="{{'trainer' + trainer.id}}"
+                />
+                <label class="form-check-label" for="{{'trainer' + trainer.id}}">
+                  {{trainer.name}}
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary me-3" (click)="close()">

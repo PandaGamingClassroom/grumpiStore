@@ -171,7 +171,7 @@ export class LeagueBadgesComponent implements OnInit {
   openTrainers() {
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
-      height: '300px',
+      height: '360px',
     });
 
     dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
