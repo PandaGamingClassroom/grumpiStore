@@ -8,8 +8,8 @@
       </div>
       <div class="modal-body flex-grow-1 bg-box">
         <div class="scrollable-div">
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let trainer of trainerList">
+          <ul>
+            <li class="list-group-item mt-2" *ngFor="let trainer of trainerList">
               <div class="form-check">
                 <input
                   class="form-check-input"
@@ -21,6 +21,7 @@
                   {{trainer.name}}
                 </label>
               </div>
+              <hr>
             </li>
           </ul>
         </div>
