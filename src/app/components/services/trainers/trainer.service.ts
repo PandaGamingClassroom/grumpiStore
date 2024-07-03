@@ -1,13 +1,15 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { environment, environmentProd } from '../../../../environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrainerService {
-  private apiUrl = 'http://localhost:3000/'; // URL del servidor donde se encuentra la API REST
-  private apiUrl_NewUser = 'http://localhost:3000/new-user/';
+  private apiUrl = environmentProd.apiUrl;
+  // private apiUrl = 'http://localhost:3000/'; // URL del servidor donde se encuentra la API REST
+  private apiUrl_NewUser = environmentProd.apiUrl + '/new-user/';
 
   constructor(private http: HttpClient) {}
 
