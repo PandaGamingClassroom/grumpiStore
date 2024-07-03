@@ -7,5 +7,5 @@ export const environment = {
 // environment.prod.ts
 export const environmentProd = {
   production: true,
-  apiUrl: 'https://grumpi-store-server-0d0ef9d7a378.herokuapp.com', // URL de producción en Heroku
+  apiUrl: 'http://grumpi-store-server.es', // URL de producción en Heroku
 };
