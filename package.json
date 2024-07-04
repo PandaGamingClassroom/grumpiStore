@@ -4,10 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:grumpiStore": "node dist/grumpi-store/server/server.mjs"
+    "build": "ng build --prod",
+    "serve:ssr": "node dist/grumpi-store-server/app.js"
   },
   "private": true,
   "dependencies": {
