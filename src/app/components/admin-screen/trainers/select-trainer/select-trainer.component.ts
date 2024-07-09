@@ -31,7 +31,7 @@ export class SelectTrainerComponent implements OnInit {
   lastNameProfesor: any;
   nameProfesor: any;
   username: any;
-  @Output() selectedTrainerName = new EventEmitter<string>();
+  @Output() selectedTrainerName = new EventEmitter<any>();
 
   constructor(
     private trainersService: TrainerService,
@@ -77,15 +77,28 @@ export class SelectTrainerComponent implements OnInit {
     );
   }
 
-
   close() {
     this.dialogRef.close();
   }
 
   selectTrainer() {
-    if (this.selectedTrainer) {
-      this.selectedTrainerName.emit(this.selectedTrainer);
-      this.dialogRef.close(this.selectedTrainer);
+    // Filtra los entrenadores que están seleccionados (donde `trainer.selected` es verdadero)
+    const selectedTrainers = this.trainerList.filter(
+      (trainer) => trainer.selected
+    );
+
+    // Si hay al menos un entrenador seleccionado
+    if (selectedTrainers.length > 0) {
+      // Mapea los nombres de los entrenadores seleccionados a un nuevo array
+      const selectedTrainerNames = selectedTrainers.map(
+        (trainer) => trainer.name
+      );
+
+      // Emite el array de nombres de entrenadores seleccionados
+      this.selectedTrainerName.emit(selectedTrainerNames);
+
+      // Cierra el diálogo y pasa el array de nombres de entrenadores seleccionados como resultado
+      this.dialogRef.close(selectedTrainerNames);
     }
   }
 }

@@ -7,8 +7,8 @@ import { environment, environmentProd } from '../../../../environment';
   providedIn: 'root',
 })
 export class TrainerService {
-  private apiUrl = environmentProd.apiUrl;
-  // private apiUrl = 'http://localhost:3000/'; // URL del servidor donde se encuentra la API REST
+  // private apiUrl = environmentProd.apiUrl;
+  private apiUrl = 'http://localhost:3000/'; // URL del servidor donde se encuentra la API REST
   private apiUrl_NewUser = environmentProd.apiUrl + '/new-user/';
 
   constructor(private http: HttpClient) {}
@@ -96,6 +96,23 @@ export class TrainerService {
     );
   }
 
+  assignCreatureToTrainers(
+    trainerNames: string[],
+    creature: string
+  ): Observable<any> {
+    const url = this.apiUrl + 'assign-creature';
+    const body = { trainerNames, creature };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
   /**
    * Función para asignar una energía a un entrenador
    *

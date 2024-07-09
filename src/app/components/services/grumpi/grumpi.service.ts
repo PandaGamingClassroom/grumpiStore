@@ -7,8 +7,8 @@ import { environment, environmentProd } from '../../../../environment';
   providedIn: 'root',
 })
 export class GrumpiService {
-  private baseUrl = environmentProd.apiUrl;
-  // private baseUrl = 'http://localhost:3000/';
+  // private baseUrl = environmentProd.apiUrl;
+  private baseUrl = 'http://localhost:3000/';
   private apiUrl = 'http://localhost:3000/upload';
   private imageUrlEndpoint = 'http://localhost:3000/getImageUrls';
   private imageMedalsEndpoint = 'http://localhost:3000/getImageMedals';

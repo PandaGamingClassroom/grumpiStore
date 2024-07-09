@@ -101,10 +101,9 @@ export class CreaturesAdminComponent implements OnInit {
       this.selectedFile = event.target.files[0];
     }
 
-    if(selectedType) {
+    if (selectedType) {
       this.isTypeSelected = true;
     }
-
   }
 
   onSubmit(event: Event) {
@@ -375,17 +374,45 @@ export class CreaturesAdminComponent implements OnInit {
   openTrainers() {
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
-      height: '300px',
+      height: '360px',
     });
 
-    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
-      if (selectedTrainerName) {
-        this.selectedTrainerName = selectedTrainerName;
-        console.log('Seleccion de entrenador: ', selectedTrainerName);
-        this.assignCreature();
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((selectedTrainerNames: string[] | null) => {
+        if (selectedTrainerNames && selectedTrainerNames.length > 0) {
+          this.selectedTrainerName = selectedTrainerNames.join(', ');
+          this.assignCreaturesToTrainers(selectedTrainerNames);
+        }
+      });
   }
+
+  /**
+   * Función para poder asignar el mismo Grumpi a varios entrenadores al mismo tiempo.
+   *
+   * @param trainerNames Lista de entrenadores seleciconados.
+   */
+  assignCreaturesToTrainers(trainerNames: string[]) {
+    if (trainerNames.length > 0 && this.selectedCreatureName) {
+      const creature = this.selectedCreatureName;
+
+      this.trainersService
+        .assignCreatureToTrainers(trainerNames, creature)
+        .subscribe(
+          (response) => {
+            console.log('Criatura asignada con éxito:', response);
+            alert('Criatura asignada con éxito');
+          },
+          (error) => {
+            console.error('Error asignando la criatura:', error);
+            alert('Error asignando la criatura');
+          }
+        );
+    } else {
+      alert('Por favor, selecciona al menos un entrenador y una criatura.');
+    }
+  }
+
 
   /**
    *
@@ -403,5 +430,4 @@ export class CreaturesAdminComponent implements OnInit {
       }
     );
   }
-
 }
