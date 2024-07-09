@@ -96,6 +96,13 @@ export class TrainerService {
     );
   }
 
+  /**
+   * Función para asignar un mismo Grumpi a varios entrenadores al mismo tiempo.
+   *
+   * @param trainerNames Lista de entrenadores seleccionados.
+   * @param creature Grumpi que se ha seleccionado.
+   * @returns
+   */
   assignCreatureToTrainers(
     trainerNames: string[],
     creature: string
@@ -125,10 +132,24 @@ export class TrainerService {
     return this.http.post<any>(url, { trainerName, energie });
   }
 
+/**
+ * Función para que un entrenador pueda comprar energía
+ * @param trainerName
+ * @param energie
+ * @returns
+ */
   buyEnergy(trainerName: string, energie: any): Observable<any> {
     const url = `${this.apiUrl}buyEnergies`;
     return this.http.post<any>(url, { trainerName, energie });
   }
+
+  /**
+   * Función para asignar la medalla a un entrenador.
+   *
+   * @param trainerName
+   * @param medalName
+   * @returns
+   */
   assignMedalToTrainer(
     trainerName: string,
     medalName: string
@@ -147,6 +168,13 @@ export class TrainerService {
     );
   }
 
+  /**
+   * Función para asignar el objeto de combate a un entrenador.
+   *
+   * @param trainerName
+   * @param combatObject
+   * @returns
+   */
   assignCombatObjectsToTrainer(
     trainerName: string,
     combatObject: string

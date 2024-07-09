@@ -47,6 +47,11 @@ export class SelectTrainerComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para obtener los datos del profesor que ha iniciado sesión.
+   *
+   * @param name --> Nombre del profesor.
+   */
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -65,6 +70,11 @@ export class SelectTrainerComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para obtener los datos de los entrenadores según su profesor.
+   *
+   * @param profesorId --> ID del profesor.
+   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
@@ -77,10 +87,19 @@ export class SelectTrainerComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para cerrar el componente actual.
+   */
   close() {
     this.dialogRef.close();
   }
 
+  /**
+   *
+   * Función para seleccionar a los entrenadores.
+   * Una vez los entrenadores estén seleccionados, esta información
+   * se envía al componente padre.
+   */
   selectTrainer() {
     // Filtra los entrenadores que están seleccionados (donde `trainer.selected` es verdadero)
     const selectedTrainers = this.trainerList.filter(
