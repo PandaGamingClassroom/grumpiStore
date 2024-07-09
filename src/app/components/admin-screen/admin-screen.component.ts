@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { GrumpidolarsComponent } from './grumpidolars/grumpidolars.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminUserService } from '../services/adminUser/adminUser.service';
 import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { RulesComponent } from '../rules/rules.component';
 
 @Component({
   selector: 'app-admin-screen',
@@ -31,6 +32,7 @@ import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin
     GrumpidolarsComponent,
     EnergiesComponent,
     CreaturesAdminComponent,
+    RulesComponent,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
@@ -57,7 +59,8 @@ export class AdminScreenComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private trainersService: TrainerService,
-    private adminUserService: AdminUserService
+    private adminUserService: AdminUserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -69,44 +72,6 @@ export class AdminScreenComponent implements OnInit {
       this.lastNameProfesor = localStorage.getItem('lastNameUser');
       this.adminUser = localStorage.getItem('isAdminUser');
       this.getDadataProfesor(this.nameProfesor);
-    }
-  }
-
-  openModal() {
-    if (!this.modalAbierta) {
-      const data = {
-        title: '¡Grumpi guardado correctamente!',
-        message: this.confirmMessage,
-      };
-
-      const dialogRef = this.dialog.open(GrumpidolarsComponent, {
-        width: '600px',
-        height: '500px',
-        data: data,
-      });
-      dialogRef.afterClosed().subscribe((result) => {
-        window.location.reload();
-      });
-      this.modalAbierta = true;
-    }
-  }
-
-  openWindowEnergies() {
-    if (!this.modalAbierta) {
-      const data = {
-        title: '¡Grumpi guardado correctamente!',
-        message: this.confirmMessage,
-      };
-
-      const dialogRef = this.dialog.open(EnergiesComponent, {
-        width: '600px',
-        height: '500px',
-        data: data,
-      });
-      dialogRef.afterClosed().subscribe((result) => {
-        window.location.reload();
-      });
-      this.modalAbierta = true;
     }
   }
 
@@ -149,5 +114,12 @@ export class AdminScreenComponent implements OnInit {
       this.showLogo = false;
     }
     this.activeSection = section;
+    if (this.activeSection) {
+
+    }
+  }
+
+  navigateToRules() {
+    this.router.navigate(['/rules'], { queryParams: { hideElements: 'true' } });
   }
 }

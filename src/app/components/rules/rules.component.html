@@ -1,6 +1,6 @@
-<app-nav-bar></app-nav-bar>
-<div class="btn-config">
-  <button type="button" class="button-73" routerLink="/home">
+<app-nav-bar *ngIf="!hideElements"></app-nav-bar>
+<div class="btn-config" >
+  <button type="button" class="button-73" routerLink="/home" *ngIf="!hideElements">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -147,4 +147,4 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>
+<app-footer *ngIf="!hideElements"></app-footer>

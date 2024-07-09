@@ -132,12 +132,12 @@ export class TrainerService {
     return this.http.post<any>(url, { trainerName, energie });
   }
 
-/**
- * Función para que un entrenador pueda comprar energía
- * @param trainerName
- * @param energie
- * @returns
- */
+  /**
+   * Función para que un entrenador pueda comprar energía
+   * @param trainerName
+   * @param energie
+   * @returns
+   */
   buyEnergy(trainerName: string, energie: any): Observable<any> {
     const url = `${this.apiUrl}buyEnergies`;
     return this.http.post<any>(url, { trainerName, energie });

@@ -3,6 +3,29 @@
  margin-bottom: 3%;
 }
 
+/* Estilos para el componente principal */
+.mat-sidenav-content {
+  padding: 20px;
+  transition: margin 0.3s ease;
+  overflow: auto;
+}
+
+.mat-sidenav-content.fullscreen {
+  margin-left: 0;
+}
+
+.sidenav-container {
+  height: calc(100vh - 60px);
+  background-color: burlywood;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+/* Otros estilos específicos que puedas necesitar */
+
 .btns {
   height: 80px;
   width: 300px;
@@ -70,12 +93,6 @@
 }
 
 
-
-.sidenav-container {
-  height: 100%;
-  background-color: burlywood;
-}
-
 .sidenav {
   width: 240px;
 }
@@ -84,16 +101,8 @@
   cursor: pointer;
 }
 
-.mat-sidenav-content {
-  padding: 20px;
-}
-
 h1, h2, h3, p {
   color: #000000;
-}
-
-.scrollable-div {
-  overflow-y: auto;
 }
 
 .box-text, p, span, strong {
