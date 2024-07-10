@@ -147,6 +147,31 @@ export class TrainerService {
   }
 
   /**
+   * Función para asignar un distintivo de liga a varios entrenadores al mismo tiempo.
+   *
+   * @param trainerNames --> Listado de entrenadores seleccionados.
+   * @param badge --> Distintivo de liga seleccionado
+   * @returns
+   */
+  assignBadgeToTrainers(
+    trainerNames: string[],
+    badge: string
+  ): Observable<any> {
+    const url = this.apiUrl + 'assign-badge';
+    const body = { trainerNames, badge };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
+
+  /**
    * Función para asignar una energía a un entrenador
    *
    * @param trainerName Recibe el nombre del entrenador

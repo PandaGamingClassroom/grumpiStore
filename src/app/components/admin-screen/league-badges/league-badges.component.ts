@@ -37,8 +37,7 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
     MatDialogModule,
     ReactiveFormsModule,
     NavBarAdminComponent,
-    FooterComponent
-
+    FooterComponent,
   ],
   providers: [TrainerService, GrumpiService, AdminUserService],
   templateUrl: './league-badges.component.html',
@@ -161,7 +160,29 @@ export class LeagueBadgesComponent implements OnInit {
     }
   }
 
-  assignBadges() {}
+  /**
+   * Función para asignar un distintivo de liga a varios entrenadores al mismo tiempo.
+   *
+   * @param trainerNames --> Listado de entrenadores seleccionados.
+   */
+  assignBadges(trainerNames: string[]) {
+    if (trainerNames.length > 0 && this.selectedBadgeName) {
+      const badge = this.selectedBadgeName;
+
+      this.trainersService.assignBadgeToTrainers(trainerNames, badge).subscribe(
+        (response) => {
+          console.log('Distintivo asignado con éxito:', response);
+          alert('Distintivo asignado con éxito');
+        },
+        (error) => {
+          console.error('Error asignando el distintivo:', error);
+          alert('Error asignando el distintivo');
+        }
+      );
+    } else {
+      alert('Por favor, selecciona al menos un entrenador y un distintivo.');
+    }
+  }
 
   /**
    * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
@@ -174,12 +195,13 @@ export class LeagueBadgesComponent implements OnInit {
       height: '360px',
     });
 
-    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
-      if (selectedTrainerName) {
-        this.selectedTrainerName = selectedTrainerName;
-        console.log('Seleccion de entrenador: ', selectedTrainerName);
-        this.assignBadges();
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((selectedTrainerNames: string[] | null) => {
+        if (selectedTrainerNames && selectedTrainerNames.length > 0) {
+          this.selectedTrainerName = selectedTrainerNames.join(', ');
+          this.assignBadges(selectedTrainerNames);
+        }
+      });
   }
 }
