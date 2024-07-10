@@ -120,6 +120,32 @@ export class TrainerService {
       })
     );
   }
+
+  /**
+   * Función para asignar una sola medalla a varios entrenadores al mismo timepo.
+   *
+   * @param trainerNames
+   * @param medal
+   * @returns
+   */
+  assignMedalToTrainers(
+    trainerNames: string[],
+    medal: string
+  ): Observable<any> {
+    const url = this.apiUrl + 'assign-medal';
+    const body = { trainerNames, medal };
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
+  }
+
   /**
    * Función para asignar una energía a un entrenador
    *

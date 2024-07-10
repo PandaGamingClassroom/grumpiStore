@@ -2,26 +2,31 @@
   <div class="modal-dialog modal-dialog-centered mainBoxAdminContent">
     <div class="modal-content d-flex flex-column h-100">
       <div class="modal-header d-flex justify-content-center mt-3">
-        <h1 class="modal-title fs-5">
-          Selecciona un entrenador:
-        </h1>
+        <h1 class="modal-title fs-5">Selecciona un entrenador:</h1>
+        <hr />
       </div>
       <div class="modal-body flex-grow-1 bg-box">
         <div class="scrollable-div">
           <ul>
-            <li class="list-group-item mt-2" *ngFor="let trainer of trainerList">
+            <li
+              class="list-group-item mt-2"
+              *ngFor="let trainer of trainerList"
+            >
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"
                   [(ngModel)]="trainer.selected"
-                  id="{{'trainer' + trainer.id}}"
+                  id="{{ 'trainer' + trainer.id }}"
                 />
-                <label class="form-check-label" for="{{'trainer' + trainer.id}}">
-                  {{trainer.name}}
+                <label
+                  class="form-check-label"
+                  for="{{ 'trainer' + trainer.id }}"
+                >
+                  {{ trainer.name }}
                 </label>
               </div>
-              <hr>
+              <hr />
             </li>
           </ul>
         </div>
@@ -30,11 +35,7 @@
         <button type="button" class="btn btn-secondary me-3" (click)="close()">
           Cancelar
         </button>
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="selectTrainer()"
-        >
+        <button type="button" class="btn btn-danger" (click)="selectTrainer()">
           Aceptar
         </button>
       </div>

@@ -3,18 +3,38 @@
     <div class="col">
       <div class="row">
         <div class="col mt-3"><h2>Listado de medallas</h2></div>
-        <div class="col mt-3">
-          <button
-            type="button"
-            class="btn btn-success"
-            (click)="loadmedalsImages()"
-          >
-            Cargar medallas
+        <div class="col mt-3" *ngIf="seeAllMedals">
+          <button type="button" class="btn btn-success" (click)="verMedallas()">
+            Ocultar Medallas
+          </button>
+        </div>
+        <div class="col mt-3" *ngIf="!seeAllMedals">
+          <button type="button" class="btn btn-success" (click)="verMedallas()">
+            Cargar Medallas
           </button>
         </div>
       </div>
 
-      <div class="container creatures-box">
+      <div
+        class="container creatures-box m-3 d-flex justify-content-center align-items-center"
+        *ngIf="!seeAllMedals"
+      >
+        <div class="text-center">
+          <p>
+            Pulsa
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="verMedallas()"
+            >
+              Cargar Medallas
+            </button>
+            para ver el listado completo de todos los grumpis
+          </p>
+        </div>
+      </div>
+
+      <div class="container creatures-box" *ngIf="seeAllMedals">
         <div class="search-bar mb-3 sticky-top">
           <input
             type="text"
@@ -26,15 +46,15 @@
         <div class="img-creature" *ngFor="let imageUrl of filteredMedalsImages">
           <div class="row">
             <div class="col"><img [src]="imageUrl" alt="Imagen" /></div>
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  (click)="selectedMedalName = imageUrl; openTrainers()"
-                >
-                  Asignar a
-                </button>
-              </div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="selectedMedalName = imageUrl; openTrainers()"
+              >
+                Asignar a
+              </button>
+            </div>
           </div>
         </div>
       </div>

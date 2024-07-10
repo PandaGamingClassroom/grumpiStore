@@ -3,10 +3,34 @@
     <div class="col design-column">
       <div class="row container">
         <div class="col mt-3"><h2>Lista de Grumpis</h2></div>
-        <div class="col mt-3">
+        <div class="col mt-3" *ngIf="seeAllGrumpis">
+          <button type="button" class="btn btn-success" (click)="verGrumpis()">
+            Ocultar Grumpis
+          </button>
+        </div>
+        <div class="col mt-3" *ngIf="!seeAllGrumpis">
           <button type="button" class="btn btn-success" (click)="verGrumpis()">
             Cargar Grumpis
           </button>
+        </div>
+      </div>
+
+      <div
+        class="container creatures-box m-3 d-flex justify-content-center align-items-center"
+        *ngIf="!seeAllGrumpis"
+      >
+        <div class="text-center">
+          <p>
+            Pulsa
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="verGrumpis()"
+            >
+              Cargar Grumpis
+            </button>
+            para ver el listado completo de todos los grumpis
+          </p>
         </div>
       </div>
 
@@ -151,7 +175,13 @@
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
                 <div class="col-4">
                   <label for="firstAttack">Ataque principal:</label>
-                  <button type="button" class="btn" (click)="openHelpMessage('ataquePrincipal')">❓​</button>
+                  <button
+                    type="button"
+                    class="btn"
+                    (click)="openHelpMessage('ataquePrincipal')"
+                  >
+                    ❓​
+                  </button>
                 </div>
                 <div class="col">
                   <select
@@ -177,7 +207,13 @@
                 <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
                 <div class="col-4">
                   <label for="specialAttack">Ataque especial:</label>
-                  <button type="button" class="btn" (click)="openHelpMessage('special')">❓</button>
+                  <button
+                    type="button"
+                    class="btn"
+                    (click)="openHelpMessage('special')"
+                  >
+                    ❓
+                  </button>
                 </div>
                 <div class="col">
                   <select
@@ -186,7 +222,7 @@
                     formControlName="tipo"
                     required
                   >
-                    <option  disabled>Selecciona un tipo:</option>
+                    <option disabled>Selecciona un tipo:</option>
                     <option
                       *ngFor="let attack of typesAttacks"
                       [value]="attack.tipo"

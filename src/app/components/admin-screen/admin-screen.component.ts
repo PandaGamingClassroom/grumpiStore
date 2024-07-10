@@ -114,8 +114,8 @@ export class AdminScreenComponent implements OnInit {
       this.showLogo = false;
     }
     this.activeSection = section;
-    if (this.activeSection) {
-
+    if (this.activeSection === 'guide') {
+      this.navigateToRules();
     }
   }
 

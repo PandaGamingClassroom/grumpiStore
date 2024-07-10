@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -27,7 +31,7 @@ import { FooterComponent } from '../../footer/footer.component';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    FooterComponent
+    FooterComponent,
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './medals-admin-screen.component.html',
@@ -45,6 +49,7 @@ export class MedalsAdminScreenComponent implements OnInit {
   selectedTrainerName: string | null = null;
   trainerList: any[] = [];
   isAdminUser: boolean = false;
+  seeAllMedals: boolean = false;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -60,6 +65,7 @@ export class MedalsAdminScreenComponent implements OnInit {
       imagen: [''],
     });
     this.getTrainers();
+    this.loadmedalsImages();
     this.adminUserService.adminUser$.subscribe((isAdmin) => {
       this.isAdminUser = isAdmin;
     });
@@ -111,6 +117,14 @@ export class MedalsAdminScreenComponent implements OnInit {
     );
   }
 
+  verMedallas() {
+    if (!this.seeAllMedals) {
+      this.seeAllMedals = true;
+    } else {
+      this.seeAllMedals = false;
+    }
+  }
+
   loadmedalsImages() {
     this.grumpiService.getImageMedals().subscribe(
       (response) => {
@@ -148,12 +162,14 @@ export class MedalsAdminScreenComponent implements OnInit {
       height: '360px',
       data: data,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedTrainerName = result;
-        this.assignMedal();
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((selectedTrainerNames: string[] | null) => {
+        if (selectedTrainerNames && selectedTrainerNames.length > 0) {
+          this.selectedTrainerName = selectedTrainerNames.join(', ');
+          this.assignMedalToTrainer(selectedTrainerNames);
+        }
+      });
   }
 
   get filteredMedalsImages(): string[] {
@@ -162,6 +178,10 @@ export class MedalsAdminScreenComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para asignar una sola medalla a un solo entrenador.
+   *
+   */
   assignMedal(): void {
     if (this.selectedTrainerName && this.selectedMedalName) {
       const trainerName = this.selectedTrainerName;
@@ -179,6 +199,30 @@ export class MedalsAdminScreenComponent implements OnInit {
         );
     } else {
       alert('Por favor, selecciona un entrenador y una medalla.');
+    }
+  }
+
+  /**
+   * Función para asignar una misma medalla a varios entrenadores al mismo tiempo.
+   *
+   * @param trainerNames
+   */
+  assignMedalToTrainer(trainerNames: string[]) {
+    if (trainerNames.length > 0 && this.selectedMedalName) {
+      const medal = this.selectedMedalName;
+
+      this.trainersService.assignMedalToTrainers(trainerNames, medal).subscribe(
+        (response) => {
+          console.log('Medalla asignada con éxito:', response);
+          alert('Medalla asignada con éxito');
+        },
+        (error) => {
+          console.error('Error asignando la medalla:', error);
+          alert('Error asignando la medalla');
+        }
+      );
+    } else {
+      alert('Por favor, selecciona al menos un entrenador y una medalla.');
     }
   }
 }

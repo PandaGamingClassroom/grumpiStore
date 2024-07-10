@@ -129,7 +129,7 @@ footer {
 
 .mainBoxAdmin {
   background-color: aliceblue;
-  background-image: url(./assets/1716900318340.png);
+  background-image: url(./assets/geometric.jpeg);
   width: 100%;
   height: 100vh; /* Hace que la altura sea igual a la altura de la ventana */
   background-repeat: no-repeat;
@@ -150,7 +150,7 @@ footer {
   background-repeat: inherit;
   background-size: inherit;
   background-position: inherit;
-  filter: blur(10px); /* Ajusta el valor para más o menos desenfoque */
+  filter: blur(1px); /* Ajusta el valor para más o menos desenfoque */
   z-index: 0;
 }
 
