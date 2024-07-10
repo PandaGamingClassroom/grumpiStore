@@ -1,4 +1,5 @@
 <app-nav-bar></app-nav-bar>
+
 <div class="btn-config">
   <button type="button" class="button-73" routerLink="/profile">
     <svg
@@ -17,9 +18,10 @@
   </button>
 </div>
 
-<h1 class="justify-content-center d-flex mb-3 box-text box-text" id="titulo">
-  <strong> MI MOCHILA </strong>
+<h1 class="justify-content-center d-flex mb-3 box-text" id="titulo">
+  <strong>MI MOCHILA</strong>
 </h1>
+
 <div class="container text-center bg-box">
   <ul
     class="nav nav-pills mb-3 justify-content-center"
@@ -99,6 +101,7 @@
   </ul>
 
   <div class="tab-content" id="pills-tabContent">
+    <!-- Grumpis Tab -->
     <div
       class="tab-pane fade show active"
       id="pills-objects"
@@ -141,8 +144,8 @@
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="
               let creature of filteredCreaturesImages.slice(
-                0,
-                filteredCreaturesImages.length / 2
+                filteredCreaturesImages.length / 2,
+                filteredCreaturesImages.length
               )
             "
           >
@@ -158,6 +161,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Recompensas Tab -->
     <div
       class="tab-pane fade"
       id="pills-rewards"
@@ -169,44 +174,44 @@
       <hr />
       <div class="container scrollable-div">
         <div class="row">
-          <div class="col-md-6">
-            <h2 class="box-text">OBJETOS EVOLUTIVOS:</h2>
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let combatObjet of uniqueCombatObjects"
-            >
+          <!-- Primera mitad de recompensas -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let reward of rewards_total_list
+            "
+          >
+            <div class="img-creature">
               <img
-                src="{{ combatObjet?.imagen }}"
-                class="img-fluid me-3"
-                style="max-width: 250px"
+                class="img-fluid"
+                src="{{ reward.img }}"
+                alt="Recompensa"
+                (click)="openReward(reward)"
               />
-              <h3 class="m-0">
-                <strong>Objeto: </strong>{{ combatObjet?.nombre }} | Total
-                conseguido: {{ combatObjet?.count }}
-              </h3>
             </div>
           </div>
-          <div class="col-md-6">
-            <h2 class="box-text">RECOMPENSAS:</h2>
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let combatObjet of uniqueRewards"
-            >
+
+          <!-- Segunda mitad de recompensas -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let reward of rewards_total_list
+            "
+          >
+            <div class="img-creature">
               <img
-                src="{{ combatObjet?.img }}"
-                class="img-fluid me-3"
-                style="max-width: 250px"
+                class="img-fluid"
+                src="{{ reward.img }}"
+                alt="Recompensa"
+                (click)="openReward(reward)"
               />
-              <h3 class="m-0">
-                {{ combatObjet?.nombre }} | Total conseguidas:
-                {{ combatObjet?.count }}
-              </h3>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Objetos de Combate Tab -->
     <div
       class="tab-pane fade"
       id="pills-evolution-objects"
@@ -214,32 +219,48 @@
       aria-labelledby="pills-evolution-objects-tab"
       tabindex="0"
     >
-      <h2 class="box-text text-center">
-        <strong>MIS OBJETOS DE COMBATE</strong>
-      </h2>
+      <h2 class="box-text"><strong>MIS OBJETOS DE COMBATE</strong></h2>
       <hr />
       <div class="container scrollable-div">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <div
-              *ngFor="let combatObjet of uniqueCombatObjects"
-              class="d-flex align-items-center mb-3 justify-content-center"
-            >
+        <div class="row">
+          <!-- Primera mitad de objetos de combate -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let combatObject of trainer?.data?.objetos_combate
+            "
+          >
+            <div class="img-creature">
               <img
-                src="{{ combatObjet?.imagen }}"
-                class="img-fluid me-3"
-                style="max-width: 250px"
+                class="img-fluid"
+                src="{{ combatObject.imagen }}"
+                alt="Objeto de Combate"
+                (click)="openCombatObject(combatObject)"
               />
-              <h3 class="m-0 text-center">
-                {{ combatObjet?.nombre }} | Total conseguidas:
-                {{ combatObjet?.count }}
-              </h3>
+            </div>
+          </div>
+
+          <!-- Segunda mitad de objetos de combate -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let combatObject of trainer?.data?.objetos_combate
+            "
+          >
+            <div class="img-creature">
+              <img
+                class="img-fluid"
+                src="{{ combatObject.imagen }}"
+                alt="Objeto de Combate"
+                (click)="openCombatObject(combatObject)"
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Medallas Tab -->
     <div
       class="tab-pane fade"
       id="pills-medals"
@@ -251,17 +272,44 @@
       <hr />
       <div class="container scrollable-div">
         <div class="row">
-          <div class="col-md-6">
-            <div
-              class="img-creature mg-5"
-              *ngFor="let medalImage of this.trainer?.data?.medallas"
-            >
-              <img srcset="{{ medalImage }}" />
+          <!-- Primera mitad de medallas -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let medal of this.trainer?.data?.medallas
+            "
+          >
+            <div class="img-creature">
+              <img
+                class="img-fluid"
+                src="{{ medal }}"
+                alt="Medalla"
+                (click)="openMedal(medal)"
+              />
+            </div>
+          </div>
+
+          <!-- Segunda mitad de medallas -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let medal of this.trainer?.data?.medallas
+            "
+          >
+            <div class="img-creature">
+              <img
+                class="img-fluid"
+                src="{{ medal }}"
+                alt="Medalla"
+                (click)="openMedal(medal)"
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Energías Tab -->
     <div
       class="tab-pane fade"
       id="pills-energy"
@@ -269,23 +317,41 @@
       aria-labelledby="pills-energy-tab"
       tabindex="0"
     >
-      <h2 class="box-text text-center"><strong>MIS ENERGÍAS</strong></h2>
+      <h2 class="box-text"><strong>MIS ENERGÍAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <div
-              *ngFor="let energy of uniqueEnergies"
-              class="d-flex align-items-center mb-3 justify-content-center"
-            >
+        <div class="row">
+          <!-- Primera mitad de energías -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let energy of trainer?.data?.energias
+            "
+          >
+            <div class="img-creature">
               <img
+                class="img-fluid"
                 src="{{ energy.imagen }}"
-                class="img-fluid me-3"
-                style="max-width: 250px"
+                alt="Energía"
+                (click)="openEnergy(energy)"
               />
-              <h3 class="m-0 text-center">
-                {{ energy.nombre }} | Total conseguidas: {{ energy.count }}
-              </h3>
+            </div>
+          </div>
+
+          <!-- Segunda mitad de energías -->
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let energy of trainer?.data?.energias
+            "
+          >
+            <div class="img-creature">
+              <img
+                class="img-fluid"
+                src="{{ energy.imagen }}"
+                alt="Energía"
+                (click)="openEnergy(energy)"
+              />
             </div>
           </div>
         </div>
@@ -293,4 +359,5 @@
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>

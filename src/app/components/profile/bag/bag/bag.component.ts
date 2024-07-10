@@ -314,6 +314,46 @@ export class BagComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {});
   }
 
+  openMedal(medal: any) {
+    const dialogRef = this.dialog.open(ViewImageComponent, {
+      width: '700px',
+      height: '600px',
+      data: medal,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+
+  openEnergy(energy: any) {
+    const dialogRef = this.dialog.open(ViewImageComponent, {
+      width: '700px',
+      height: '600px',
+      data: energy,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+
+  openCombatObject(combatObject: any) {
+    const dialogRef = this.dialog.open(ViewImageComponent, {
+      width: '700px',
+      height: '600px',
+      data: combatObject,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+
+  openReward(reward: any) {
+    const dialogRef = this.dialog.open(ViewImageComponent, {
+      width: '700px',
+      height: '600px',
+      data: reward,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+
   // Función para filtrar los Grumpis según el término de búsqueda
   get filteredCreaturesImages(): any[] {
     if (!this.trainer || !this.trainer.data || !this.trainer.data.grumpis) {
@@ -323,4 +363,6 @@ export class BagComponent implements OnInit {
       creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
+
+
 }

@@ -17,7 +17,9 @@
   </button>
 </div>
 <div class="container">
-  <h1 class="d-flex justify-content-center"><strong> OBTENCIÓN DE CRIATURAS </strong></h1>
+  <h1 class="d-flex justify-content-center">
+    <strong> OBTENCIÓN DE CRIATURAS </strong>
+  </h1>
   <hr />
 </div>
 <div class="container-md scrollable-div mb-6 bg-box">
@@ -109,15 +111,22 @@
     />
   </div>
 
-  <div class="container d-flex justify-content-center mt-3">
-    <button #scrollTarget class="button-73 size" (click)="handleClick()">Ver Grumpis</button>
+  <div class="container d-flex justify-content-center mt-3" *ngIf="!this.isClicked">
+    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      Ver Grumpis
+    </button>
+  </div>
+  <div class="container d-flex justify-content-center mt-3" *ngIf="this.isClicked">
+    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      Ocultar Grumpis
+    </button>
   </div>
   <div
     *ngIf="this.isClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
     <div *ngFor="let image of imageUrls">
-      <img [src]="image" alt="Imagen del Grumpi" />
+      <img class="tilt-in-fwd-tr" [src]="image" alt="Imagen del Grumpi" />
       <!-- Botón fijo -->
       <button (click)="scrollToTop()" class="button-73 fixed-button">
         <i class="material-icons">&#xe5d8;</i>

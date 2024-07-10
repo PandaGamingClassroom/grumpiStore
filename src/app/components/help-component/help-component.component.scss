@@ -9,3 +9,17 @@
   height: auto;
   border-radius: 10px;
 }
+
+.imgGrumpi {
+  width: 150px;
+  height: 300px;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+.btnReport{
+  bottom: 0;
+}
