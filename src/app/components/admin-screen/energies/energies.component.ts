@@ -31,7 +31,7 @@ import { FooterComponent } from '../../footer/footer.component';
     MatDialogModule,
     ReactiveFormsModule,
     NavBarAdminComponent,
-    FooterComponent
+    FooterComponent,
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './energies.component.html',
@@ -71,6 +71,9 @@ export class EnergiesComponent implements OnInit {
     this.getTrainers();
   }
 
+  /**
+   *
+   */
   getTrainers() {
     this.trainersService.getTrainers().subscribe(
       (response: any) => {
@@ -89,10 +92,18 @@ export class EnergiesComponent implements OnInit {
     );
   }
 
+  /**
+   *
+   * @param event
+   */
   onSubmit(event: Event) {
     event.preventDefault();
   }
 
+  /**
+   *
+   * @param event
+   */
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -102,6 +113,9 @@ export class EnergiesComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   */
   assignEnergies(): void {
     if (this.selectedTrainerName && this.selectedEnergie) {
       this.trainersService
@@ -126,6 +140,31 @@ export class EnergiesComponent implements OnInit {
   }
 
   /**
+   *
+   * @param trainerNames --> Listado de entrenadores seleccionados.
+   */
+  assignEnergiestoTrainers(trainerNames: string[]) {
+    if (trainerNames.length > 0 && this.selectedEnergie) {
+      const creature = this.selectedEnergie;
+
+      this.trainersService
+        .assignEnergieToTrainers(trainerNames, creature)
+        .subscribe(
+          (response) => {
+            console.log('Energía asignada con éxito:', response);
+            alert('Energía asignada con éxito');
+          },
+          (error) => {
+            console.error('Error asignando la energía:', error);
+            alert('Error asignando la energía');
+          }
+        );
+    } else {
+      alert('Por favor, selecciona al menos un entrenador y una energía.');
+    }
+  }
+
+  /**
    * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
    * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
    * Y con esos datos asignamos el objeto seleccionado.
@@ -136,12 +175,13 @@ export class EnergiesComponent implements OnInit {
       height: '360px',
     });
 
-    dialogRef.afterClosed().subscribe((selectedTrainerName: string | null) => {
-      if (selectedTrainerName) {
-        this.selectedTrainerName = selectedTrainerName;
-        console.log('Seleccion de entrenador: ', selectedTrainerName);
-        this.assignEnergies();
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((selectedTrainerNames: string[] | null) => {
+        if (selectedTrainerNames && selectedTrainerNames.length > 0) {
+          this.selectedTrainerName = selectedTrainerNames.join(', ');
+          this.assignEnergiestoTrainers(selectedTrainerNames);
+        }
+      });
   }
 }

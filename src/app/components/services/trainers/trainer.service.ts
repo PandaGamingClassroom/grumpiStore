@@ -184,6 +184,17 @@ export class TrainerService {
   }
 
   /**
+   *
+   * @param trainerNames
+   * @param energie
+   * @returns
+   */
+  assignEnergieToTrainers(trainerNames: string[], energie: string) {
+    const url = `${this.apiUrl}assign-energie`;
+    return this.http.post<any>(url, { trainerNames, energie });
+  }
+
+  /**
    * Función para que un entrenador pueda comprar energía
    * @param trainerName
    * @param energie
