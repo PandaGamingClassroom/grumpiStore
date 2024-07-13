@@ -1,16 +1,38 @@
 <div class="container-fluid bg scrollable-div">
   <div class="button-container">
-    <button type="button" class="button-73" (click)="closeDialog()">¡OK!</button>
+    <button type="button" class="button-73" (click)="closeDialog()">
+      ¡OK!
+    </button>
   </div>
-  <div class="container mt-3" *ngIf="isGrumpi">
-    <h1 class="d-flex justify-content-center box-text" id="titulo">{{ data.nombre }}</h1>
+  <div class="container mt-3" *ngIf="!isNotAMedal">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      {{ data.nombre }}
+    </h1>
+    <hr />
+  </div>
+  <div class="container mt-3" *ngIf="isFire">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Fuego
+    </h1>
     <hr />
   </div>
   <div class="container">
-    <div class="d-flex justify-content-center">
+    <!-- Se renderiza cuando la imagen proviene de un grumpi -->
+    <div class="d-flex justify-content-center" *ngIf="isAGrumpi">
       <img class="img-box" src="{{ data.img }}" />
     </div>
-    <div class="container bg-box mt-3">
+    <!-- Se renderiza cuando la imagen no proviene de un grumpi -->
+    <div class="d-flex justify-content-center" *ngIf="data?.imagen">
+      <img class="img-box" src="{{ data.imagen }}" />
+    </div>
+    <!-- Se renderiza cuando la información solo consta de la imagen -->
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="!data.img && !data.imagen"
+    >
+      <img class="img-box" src="{{ data }}" />
+    </div>
+    <div class="container bg-box mt-3" *ngIf="data?.descripcion">
       <div class="container mt-3 mb-3">
         <h2>Descripción</h2>
         <p>{{ data.descripcion }}</p>
