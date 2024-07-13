@@ -30,6 +30,7 @@ import { NewUserComponent } from './components/login-screen/new-user/new-user.co
 import { LeagueBadgesComponent } from './components/admin-screen/league-badges/league-badges.component';
 import { BattleGameComponent } from './components/battle-game/battle-game.component';
 import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.component';
+import { AboutTheAppComponent } from './components/about-the-app/about-the-app.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -37,6 +38,7 @@ export const routes: Routes = [
   { path: 'store', component: StoreScreenComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'about', component: AboutScreenComponent },
+  { path: 'about-the-app', component: AboutTheAppComponent},
   { path: '', component: LoginScreenComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'rules/career', component: CareerComponent },
