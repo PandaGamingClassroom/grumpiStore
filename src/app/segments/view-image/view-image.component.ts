@@ -25,6 +25,14 @@ import { RouterLink } from '@angular/router';
 export class ViewImageComponent implements OnInit {
   isGrumpi: boolean = false;
   isFire: boolean = false;
+  isWater: boolean = false;
+  isLight: boolean = false;
+  isDark: boolean = false;
+  isThunder: boolean = false;
+  isNormal: boolean = false;
+  isEarth: boolean = false;
+  isLife: boolean = false;
+
   isNotAMedal: boolean = false;
   imageUrl: string = '';
 
@@ -36,23 +44,28 @@ export class ViewImageComponent implements OnInit {
   ngOnInit(): void {
     this.isAGrumpi(this.data);
     this.detectedMedalName(this.data);
-    this.checkIsMedal(this.data);
-    if (!this.isGrumpi && !this.data?.imagen) {
-      this.imageUrl = this.data;
-    } else if (this.data?.img) {
-      this.imageUrl = this.data.img;
-    } else if (this.data?.imagen) {
-      this.imageUrl = this.data.imagen;
-    }
     console.log('Data que se recibe: ', this.data);
-    console.log('Image URL: ', this.imageUrl);
   }
 
   detectedMedalName(data: any) {
     if (this.checkIsMedal(data)) {
       this.isNotAMedal = false;
-      if (data.includes('fuego')) {
+      if (data.toLowerCase().includes('fuego')) {
         this.isFire = true;
+      } else if (data.toLowerCase().includes('agua')) {
+        this.isWater = true;
+      } else if (data.toLowerCase().includes('luz')) {
+        this.isLight = true;
+      } else if (data.toLowerCase().includes('oscuridad')) {
+        this.isDark = true;
+      } else if (data.toLowerCase().includes('rayo')) {
+        this.isThunder = true;
+      } else if (data.toLowerCase().includes('normal')) {
+        this.isNormal = true;
+      } else if (data.toLowerCase().includes('tierra')) {
+        this.isEarth = true;
+      } else if (data.toLowerCase().includes('vida')) {
+        this.isLife = true;
       }
     } else {
       this.isNotAMedal = true;

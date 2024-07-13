@@ -4,18 +4,52 @@
       ¡OK!
     </button>
   </div>
-  <div class="container mt-3" *ngIf="!isNotAMedal">
+  <div class="container mt-3" *ngIf="isNotAMedal">
     <h1 class="d-flex justify-content-center box-text" id="titulo">
       {{ data.nombre }}
     </h1>
-    <hr />
   </div>
   <div class="container mt-3" *ngIf="isFire">
     <h1 class="d-flex justify-content-center box-text" id="titulo">
       Medalla Fuego
     </h1>
-    <hr />
   </div>
+  <div class="container mt-3" *ngIf="isWater">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Agua
+    </h1>
+  </div>
+  <div class="container mt-3" *ngIf="isLight">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Luz
+    </h1>
+  </div>
+  <div class="container mt-3" *ngIf="isDark">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Oscuridad
+    </h1>
+  </div>
+  <div class="container mt-3" *ngIf="isThunder">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Rayo
+    </h1>
+  </div>
+  <div class="container mt-3" *ngIf="isNormal">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Normal
+    </h1>
+  </div>
+  <div class="container mt-3" *ngIf="isEarth">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Tierra
+    </h1>
+  </div>
+  <div class="container mt-3" *ngIf="isLife">
+    <h1 class="d-flex justify-content-center box-text" id="titulo">
+      Medalla Vida
+    </h1>
+  </div>
+
   <div class="container">
     <!-- Se renderiza cuando la imagen proviene de un grumpi -->
     <div class="d-flex justify-content-center" *ngIf="isAGrumpi">
