@@ -223,39 +223,23 @@
       <hr />
       <div class="container scrollable-div">
         <div class="row">
-          <!-- Primera mitad de objetos de combate -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="
-              let combatObject of trainer?.data?.objetos_combate
+              let combatObject of uniqueCombatObjects
             "
           >
             <div class="img-creature">
               <img
-                class="img-fluid"
+                class="img-fluid me-3"
                 src="{{ combatObject.imagen }}"
                 alt="Objeto de Combate"
                 (click)="openCombatObject(combatObject)"
               />
+              <p>Total conseguidos: {{combatObject.count}}</p>
             </div>
           </div>
 
-          <!-- Segunda mitad de objetos de combate -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let combatObject of trainer?.data?.objetos_combate
-            "
-          >
-            <div class="img-creature">
-              <img
-                class="img-fluid"
-                src="{{ combatObject.imagen }}"
-                alt="Objeto de Combate"
-                (click)="openCombatObject(combatObject)"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -321,37 +305,20 @@
       <hr />
       <div class="container scrollable-div">
         <div class="row">
-          <!-- Primera mitad de energías -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="
-              let energy of trainer?.data?.energias
+              let energy of uniqueEnergies
             "
           >
             <div class="img-creature">
               <img
-                class="img-fluid"
+                class="img-fluid me-3"
                 src="{{ energy.imagen }}"
                 alt="Energía"
                 (click)="openEnergy(energy)"
               />
-            </div>
-          </div>
-
-          <!-- Segunda mitad de energías -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let energy of trainer?.data?.energias
-            "
-          >
-            <div class="img-creature">
-              <img
-                class="img-fluid"
-                src="{{ energy.imagen }}"
-                alt="Energía"
-                (click)="openEnergy(energy)"
-              />
+              <p>Total conseguidas: {{energy.count}}</p>
             </div>
           </div>
         </div>
