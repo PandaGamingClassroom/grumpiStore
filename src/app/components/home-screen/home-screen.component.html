@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="container">
-  <h1 class="text-focus-in" id="titulo"> GRUMPIAPP </h1>
+  <h1 class="text-focus-in" id="titulo">GRUMPIAPP</h1>
   <div class="logo tilt-in-fwd-tr">
     <img src="../../../assets/Logo_v0.1_sinFondo.png" />
   </div>
@@ -34,15 +34,24 @@
 
   <div class="row spacesBetween">
     <div class="col">
-      <button type="button" class="button-73"  data-bs-toggle="modal"
-                  data-bs-target="#openMessage">
+      <button
+        type="button"
+        class="button-73"
+        data-bs-toggle="modal"
+        data-bs-target="#openMessage"
+      >
         Grumpiweb
       </button>
     </div>
   </div>
 
   <div class="container d-flex justify-content-center">
-    <button type="button" class="btn-out" routerLink="/">
+    <button
+      type="button"
+      class="btn-out"
+      data-bs-toggle="modal"
+      data-bs-target="#openOut"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -74,7 +83,11 @@
 
 <app-footer></app-footer>
 
-<!-- Mensaje advertencia -->
+<!--
+      Mensajes de advertencia
+-->
+
+<!-- Aviso para abrir una pestaña nueva -->
 <div
   class="modal fade"
   id="openMessage"
@@ -101,7 +114,52 @@
         <button type="button" class="button-73" data-bs-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="button-73" data-bs-dismiss="modal" (click)="abrirLink('https://sites.google.com/view/grumpiweb/inicio')">
+        <button
+          type="button"
+          class="button-73"
+          data-bs-dismiss="modal"
+          (click)="abrirLink('https://sites.google.com/view/grumpiweb/inicio')"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Aviso para salir de la aplicación -->
+<div
+  class="modal fade"
+  id="openOut"
+  tabindex="-1"
+  aria-labelledby="openOut"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="openOut">¡ Cuidado !</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Si continúas vas a salir de la aplicación y se cerrará la sesión.</p>
+        <p>Si estás deacuerdo, pulsa <strong>Aceptar</strong>.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button-73 me-3" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="button-73"
+          data-bs-dismiss="modal"
+          routerLink="/"
+        >
           Aceptar
         </button>
       </div>
