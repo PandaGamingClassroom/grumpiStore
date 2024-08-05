@@ -111,13 +111,14 @@
     >
       <h2 class="box-text"><strong>MIS GRUMPIS</strong></h2>
       <hr />
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        placeholder="Buscar Grumpi..."
-        class="form-control mb-3"
-      />
+
       <div class="container scrollable-div">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          placeholder="Buscar Grumpi..."
+          class="form-control mb-3"
+        />
         <div class="row">
           <!-- Primera mitad de grumpis -->
           <div
@@ -177,9 +178,7 @@
           <!-- Primera mitad de recompensas -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let reward of rewards_total_list
-            "
+            *ngFor="let reward of rewards_total_list"
           >
             <div class="img-creature">
               <img
@@ -194,9 +193,7 @@
           <!-- Segunda mitad de recompensas -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let reward of rewards_total_list
-            "
+            *ngFor="let reward of rewards_total_list"
           >
             <div class="img-creature">
               <img
@@ -225,9 +222,7 @@
         <div class="row">
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let combatObject of uniqueCombatObjects
-            "
+            *ngFor="let combatObject of uniqueCombatObjects"
           >
             <div class="img-creature">
               <img
@@ -236,10 +231,9 @@
                 alt="Objeto de Combate"
                 (click)="openCombatObject(combatObject)"
               />
-              <p>Total conseguidos: {{combatObject.count}}</p>
+              <p>Total conseguidos: {{ combatObject.count }}</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -259,9 +253,7 @@
           <!-- Primera mitad de medallas -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let medal of this.trainer?.data?.medallas
-            "
+            *ngFor="let medal of this.trainer?.data?.medallas"
           >
             <div class="img-creature">
               <img
@@ -276,9 +268,7 @@
           <!-- Segunda mitad de medallas -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let medal of this.trainer?.data?.medallas
-            "
+            *ngFor="let medal of this.trainer?.data?.medallas"
           >
             <div class="img-creature">
               <img
@@ -307,9 +297,7 @@
         <div class="row">
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let energy of uniqueEnergies
-            "
+            *ngFor="let energy of uniqueEnergies"
           >
             <div class="img-creature">
               <img
@@ -318,7 +306,7 @@
                 alt="Energía"
                 (click)="openEnergy(energy)"
               />
-              <p>Total conseguidas: {{energy.count}}</p>
+              <p>Total conseguidas: {{ energy.count }}</p>
             </div>
           </div>
         </div>
