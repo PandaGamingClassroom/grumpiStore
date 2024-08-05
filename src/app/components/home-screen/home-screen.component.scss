@@ -216,10 +216,23 @@ app-footer {
     AJUSTE PARA LOS BOTONES DE REDES SOCIALES
 */
 .dropdown-menu {
-  box-shadow: #adcfff 0 -12px 6px inset;
-  border-radius: 10%;
-  position: relative; /* Necesario para posicionar el pseudo-elemento */
-  overflow: hidden; /* Asegura que el pseudo-elemento no se salga del contenedor */
+  position: relative;
+  border-radius: 10px;
+  background-color: white; /* Fondo del bocadillo */
+  padding: 20px;
+  margin: 20px;
+  width: 200px;
+  overflow: hidden; /* Asegura que la flecha quede dentro del div */
+}
+
+.dropdown-menu {
+  position: relative;
+  border-radius: 10px;
+  background-color: white; /* Fondo del bocadillo */
+  padding: 10px;
+  margin: 20px;
+  width: 50px;
+  overflow: hidden; /* Asegura que la flecha quede dentro del div */
 }
 
 .dropdown-menu::before {
@@ -231,12 +244,22 @@ app-footer {
   height: 100%;
   background-image: url(../../../assets/GrumpiApp.png);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
-  filter: blur(1px); /* Aplica el efecto de desenfoque */
-  z-index: -1; /* Coloca el fondo detrás del contenido */
+  filter: blur(1px); /* Efecto de blur solo al fondo */
+  z-index: -1; /* Envía el fondo desenfocado detrás del contenido */
 }
 
+.dropdown-menu::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; /* Ajusta la posición vertical de la flecha */
+  left: 20px; /* Ajusta la posición horizontal de la flecha */
+  border-width: 10px 10px 0 10px; /* Tamaño de la flecha */
+  border-style: solid;
+  border-color: white transparent transparent transparent; /* Color de la flecha */
+  z-index: 1; /* Asegura que la flecha esté encima del fondo desenfocado */
+}
 
 .menuBTN {
   appearance: none;
