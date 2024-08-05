@@ -109,7 +109,6 @@ export class StoreScreenComponent implements OnInit {
    * @param opcion Recibe una opción seleccionada por el usuario en el menu de la tienda
    */
   seleccionarOpcion(opcion: string) {
-    this.showLogo = false;
     if (opcion === 'grumpidolares') {
       this.mostrarGrumpidolares = true;
       this.mostrarEnergias = false;
@@ -119,6 +118,7 @@ export class StoreScreenComponent implements OnInit {
       this.showCombatObject = false;
       this.showRewards = false;
       this.showObjEvol = false;
+      this.showLogo = true;
     } else if (opcion === 'energias') {
       this.mostrarGrumpidolares = false;
       this.mostrarEnergias = true;
@@ -128,26 +128,31 @@ export class StoreScreenComponent implements OnInit {
       this.showCombatObject = false;
       this.showRewards = false;
       this.showObjEvol = false;
+      this.showLogo = true;
     } else if (opcion === 'objCombat') {
       this.showCombatObject = true;
       this.showEnergys = false;
       this.showRewards = false;
       this.showObjEvol = false;
+      this.showLogo = false;
     } else if (opcion === 'objEnergy') {
       this.showEnergys = true;
       this.showCombatObject = false;
       this.showRewards = false;
       this.showObjEvol = false;
+      this.showLogo = false;
     } else if (opcion === 'objRewards') {
       this.showEnergys = false;
       this.showCombatObject = false;
       this.showRewards = true;
       this.showObjEvol = false;
+      this.showLogo = false;
     } else if (opcion === 'objEvol') {
       this.showEnergys = false;
       this.showCombatObject = false;
       this.showRewards = false;
       this.showObjEvol = true;
+      this.showLogo = false;
     }
   }
 
