@@ -72,6 +72,12 @@ export class StoreScreenComponent implements OnInit {
   energy_list: Energies[] = energias;
   iconListEnergy = iconEnergy;
   showLogo: boolean = true;
+  withEnergy: boolean = false;
+  withGDolar: boolean = false;
+  showCombatObject: boolean = false;
+  showEnergys: boolean = false;
+  showRewards: boolean = false;
+  showObjEvol: boolean = false;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -95,17 +101,53 @@ export class StoreScreenComponent implements OnInit {
     this.mostrarGrumpidolares = false;
     this.mostrarEnergias = false;
     console.log('Lista de iconos: ', this.iconListEnergy);
-
   }
 
+  /**
+   * Función para validar el contenido que se va a mostrar en la tienda Grumpi.
+   *
+   * @param opcion Recibe una opción seleccionada por el usuario en el menu de la tienda
+   */
   seleccionarOpcion(opcion: string) {
     this.showLogo = false;
     if (opcion === 'grumpidolares') {
       this.mostrarGrumpidolares = true;
       this.mostrarEnergias = false;
+      this.withGDolar = true;
+      this.withEnergy = false;
+      this.showEnergys = false;
+      this.showCombatObject = false;
+      this.showRewards = false;
+      this.showObjEvol = false;
     } else if (opcion === 'energias') {
       this.mostrarGrumpidolares = false;
       this.mostrarEnergias = true;
+      this.withEnergy = true;
+      this.withGDolar = false;
+      this.showEnergys = false;
+      this.showCombatObject = false;
+      this.showRewards = false;
+      this.showObjEvol = false;
+    } else if (opcion === 'objCombat') {
+      this.showCombatObject = true;
+      this.showEnergys = false;
+      this.showRewards = false;
+      this.showObjEvol = false;
+    } else if (opcion === 'objEnergy') {
+      this.showEnergys = true;
+      this.showCombatObject = false;
+      this.showRewards = false;
+      this.showObjEvol = false;
+    } else if (opcion === 'objRewards') {
+      this.showEnergys = false;
+      this.showCombatObject = false;
+      this.showRewards = true;
+      this.showObjEvol = false;
+    } else if (opcion === 'objEvol') {
+      this.showEnergys = false;
+      this.showCombatObject = false;
+      this.showRewards = false;
+      this.showObjEvol = true;
     }
   }
 
