@@ -69,7 +69,14 @@
     <div class="container bg-box mt-3" *ngIf="data?.descripcion">
       <div class="container mt-3 mb-3">
         <h2>Descripción</h2>
+        <hr>
         <p>{{ data.descripcion }}</p>
+      </div>
+    </div>
+    <div class="container bg-box mt-3" *ngIf="data?.count">
+      <div class="container mt-3 mb-3">
+        <hr />
+        <p>Has conseguido {{ data?.count }} </p>
       </div>
     </div>
   </div>

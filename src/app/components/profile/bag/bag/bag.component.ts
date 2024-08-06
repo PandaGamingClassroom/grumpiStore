@@ -75,6 +75,7 @@ export class BagComponent implements OnInit {
   uniqueEvolutionObjects: any[] = [];
   uniqueRewards: any[] = [];
   uniqueEnergies: any[] = [];
+  uniqueMedals: any[] = [];
 
   searchTerm: string = '';
 
@@ -113,8 +114,8 @@ export class BagComponent implements OnInit {
           this.contadorRecompensas(this.rewards_list);
           this.contadorLosas(this.trainer.data.objetos_evolutivos);
           this.contadorObjetosCombate(this.trainer.data.objetos_combate);
-          // this.energyCount(energyTrainer);
           this.contadorEnergias(energyTrainer);
+          this.contadorMedallas(this.trainer.data.medallas);
         }
       },
       (error) => {
@@ -285,6 +286,11 @@ export class BagComponent implements OnInit {
     }
   }
 
+  contadorMedallas(medals: any){
+    console.log('Medallas del entrenador: ', medals);
+
+  }
+
   /**
    * Función para obtener todas las recompensas disponibles
    */
@@ -363,6 +369,4 @@ export class BagComponent implements OnInit {
       creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
-
-
 }

@@ -28,7 +28,7 @@
     id="pills-tab"
     role="tablist"
   >
-    <li class="nav-item mt-3" role="presentation">
+    <li class="nav-item mt-3 me-3" role="presentation">
       <button
         class="active button-73"
         id="pills-objects-tab"
@@ -42,7 +42,7 @@
         Grumpis
       </button>
     </li>
-    <li class="nav-item mt-3" role="presentation">
+    <li class="nav-item mt-3 me-3" role="presentation">
       <button
         class="button-73"
         id="pills-rewards-tab"
@@ -56,7 +56,7 @@
         Recompensas
       </button>
     </li>
-    <li class="nav-item mt-3" role="presentation">
+    <li class="nav-item mt-3 me-3" role="presentation">
       <button
         class="button-73"
         id="pills-evolution-objects-tab"
@@ -70,7 +70,7 @@
         Objetos de combate
       </button>
     </li>
-    <li class="nav-item mt-3" role="presentation">
+    <li class="nav-item mt-3 me-3" role="presentation">
       <button
         class="button-73"
         id="pills-medals-tab"
@@ -178,30 +178,32 @@
           <!-- Primera mitad de recompensas -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let reward of rewards_total_list"
+            *ngFor="let reward of uniqueRewards"
           >
             <div class="img-creature">
               <img
-                class="img-fluid"
+                class="img-fluid me-3"
                 src="{{ reward.img }}"
                 alt="Recompensa"
                 (click)="openReward(reward)"
               />
+              <p>Tienes un total de: {{reward.count}}</p>
             </div>
           </div>
 
           <!-- Segunda mitad de recompensas -->
           <div
             class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let reward of rewards_total_list"
+            *ngFor="let reward of uniqueRewards"
           >
             <div class="img-creature">
               <img
-                class="img-fluid"
+                class="img-fluid me-3"
                 src="{{ reward.img }}"
                 alt="Recompensa"
                 (click)="openReward(reward)"
               />
+              <p>Tienes un total de: {{reward.count}}</p>
             </div>
           </div>
         </div>
@@ -265,20 +267,6 @@
             </div>
           </div>
 
-          <!-- Segunda mitad de medallas -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let medal of this.trainer?.data?.medallas"
-          >
-            <div class="img-creature">
-              <img
-                class="img-fluid"
-                src="{{ medal }}"
-                alt="Medalla"
-                (click)="openMedal(medal)"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
