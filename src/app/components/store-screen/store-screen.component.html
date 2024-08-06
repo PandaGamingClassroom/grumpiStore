@@ -167,29 +167,81 @@
   </div>
 
   <div class="container text-center align-items-center scrollable-div">
-    <div class="img-creature mg-5" *ngFor="let object of this.imageUrls">
-      <div class="row">
-        <div class="col"><img srcset="{{ object.imagen }}" /></div>
-        <div class="col">
-          <button
-            type="button"
-            class="button-73"
-            (click)="selectedObject = object; buyCombatObjects()"
-          >
-            Lo quiero
-          </button>
-          <div class="price-tag mt-3">
-            <span class="price">
-              <div class="row">
-                <div class="col">
-                  <img
-                    class="grumpiTag"
-                    src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                  />
-                </div>
-                <div class="col">{{ object.precio }}</div>
+    <!-- Agrupar los elementos de a dos en una fila -->
+    <div
+      class="row"
+      *ngFor="
+        let pair of imageUrls | slice : 0 : imageUrls.length / 2;
+        let i = index
+      "
+    >
+      <!-- Primera columna: imagen de la izquierda -->
+      <div class="col-md-6">
+        <div class="img-creature mg-5">
+          <div class="row">
+            <div class="col">
+              <img srcset="{{ imageUrls[i * 2].imagen }}" class="img-fluid" />
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedObject = imageUrls[i * 2]; buyCombatObjects()"
+              >
+                Lo quiero
+              </button>
+              <div class="price-tag mt-3">
+                <span class="price">
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                      />
+                    </div>
+                    <div class="col">{{ imageUrls[i * 2].precio }}</div>
+                  </div>
+                </span>
               </div>
-            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Segunda columna: imagen de la derecha -->
+      <div class="col-md-6" *ngIf="imageUrls[i * 2 + 1]">
+        <div class="img-creature mg-5">
+          <div class="row">
+            <div class="col">
+              <img
+                srcset="{{ imageUrls[i * 2 + 1].imagen }}"
+                class="img-fluid"
+              />
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="button-73"
+                (click)="
+                  selectedObject = imageUrls[i * 2 + 1]; buyCombatObjects()
+                "
+              >
+                Lo quiero
+              </button>
+              <div class="price-tag mt-3">
+                <span class="price">
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                      />
+                    </div>
+                    <div class="col">{{ imageUrls[i * 2 + 1].precio }}</div>
+                  </div>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -218,29 +270,79 @@
     </div>
   </div>
   <div class="container text-center align-items-center scrollable-div">
-    <div class="img-creature mg-5" *ngFor="let object of energy_list">
-      <div class="row">
-        <div class="col"><img srcset="{{ object.imagen }}" /></div>
-        <div class="col">
-          <button
-            type="button"
-            class="button-73"
-            (click)="selectedEnergie = object; buyEnergy()"
-          >
-            Lo quiero
-          </button>
-          <div class="price-tag mt-3">
-            <span class="price">
-              <div class="row">
-                <div class="col">
-                  <img
-                    class="grumpiTag"
-                    src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                  />
-                </div>
-                <div class="col">10</div>
+    <!-- Agrupar los elementos de a dos en una fila -->
+    <div
+      class="row"
+      *ngFor="
+        let i = index;
+        of: energy_list | slice : 0 : energy_list.length / 2
+      "
+    >
+      <!-- Primera columna: imagen de la izquierda -->
+      <div class="col-md-6">
+        <div class="img-creature mg-5">
+          <div class="row">
+            <div class="col">
+              <img srcset="{{ energy_list[i * 2].imagen }}" class="img-fluid" />
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedEnergie = energy_list[i * 2]; buyEnergy()"
+              >
+                Lo quiero
+              </button>
+              <div class="price-tag mt-3">
+                <span class="price">
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                      />
+                    </div>
+                    <div class="col">10</div>
+                  </div>
+                </span>
               </div>
-            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Segunda columna: imagen de la derecha -->
+      <div class="col-md-6" *ngIf="energy_list[i * 2 + 1]">
+        <div class="img-creature mg-5">
+          <div class="row">
+            <div class="col">
+              <img
+                srcset="{{ energy_list[i * 2 + 1].imagen }}"
+                class="img-fluid"
+              />
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedEnergie = energy_list[i * 2 + 1]; buyEnergy()"
+              >
+                Lo quiero
+              </button>
+              <div class="price-tag mt-3">
+                <span class="price">
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                      />
+                    </div>
+                    <div class="col">10</div>
+                  </div>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -339,7 +441,7 @@
     </div>
     <!-- INFORMACIÓN SOBRE LAS ENERGÍAS DISPONIBLES POR EL ENTRENADOR -->
     <div class="col">
-      <div class="container">
+      <div class="container scrollable-div">
         <h2 class="box-text">
           Mis energías: <strong>{{ cantidadTotal }}</strong>
         </h2>
