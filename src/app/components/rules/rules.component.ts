@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   RouterLink,
-  Router,
-  NavigationEnd,
+  Router
 } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -18,7 +17,6 @@ import { CommonModule } from '@angular/common';
 })
 export class RulesComponent implements OnInit {
   hideElements: boolean = false;
-  source: string = '';
   showBackBTNHome: boolean = false;
   showBackBTNAdmin: boolean = false;
 
