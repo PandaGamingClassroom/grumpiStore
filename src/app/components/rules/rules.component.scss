@@ -123,3 +123,53 @@ col {
 .div2 {
   grid-column-start: 6;
 }
+
+/* Estructura general de la página */
+.container {
+  max-width: 100%;
+  padding: 15px;
+}
+
+/* Flexbox para centrar contenido verticalmente */
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.scrollable-div {
+  max-height: 60vh; /* Ajusta la altura para que sea scrollable */
+  overflow-y: auto;
+}
+
+@media (max-width: 576px) {
+  .box {
+    flex-direction: column;
+  }
+
+  /* Ajustar los botones en la vista móvil */
+  .btn,
+  .btnMenu {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    max-width: 90%; /* Limita el ancho máximo del botón */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+    padding: 12px; /* Ajuste de padding para pantallas más pequeñas */
+    font-size: 1.2rem; /* Aumenta el tamaño del texto para móviles */
+  }
+
+  /* Ajustar el contenedor principal */
+  .container-md {
+    padding: 10px;
+  }
+
+  /* Centrar contenido y ajustar para móviles */
+  .text-center ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .text-center li {
+    margin-bottom: 10px;
+  }
+}
