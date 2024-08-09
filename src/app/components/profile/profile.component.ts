@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { AvatarService } from '../services/avatar/avatar.service';
@@ -37,7 +37,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private avatarService: AvatarService,
-    private trainersService: TrainerService
+    private trainersService: TrainerService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -99,5 +100,10 @@ export class ProfileComponent implements OnInit {
       combatMarksArray.push(i);
     }
     return combatMarksArray;
+  }
+
+  logOut() {
+    sessionStorage.clear();
+    this.router.navigate(['/']);
   }
 }

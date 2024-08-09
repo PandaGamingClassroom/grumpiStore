@@ -1,24 +1,48 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
 
+.scrollable-container {
+  max-height: calc(100vh - 60px); /* Ajusta el valor según la altura del encabezado y el pie de página */
+  overflow-y: auto;
+}
+
+.box {
+  padding: 20px; /* Ajusta el padding según sea necesario */
+}
+
+.container {
+  margin-bottom: 20px; /* Ajusta el margen inferior para proporcionar espacio entre los elementos */
+}
+
+@media (max-width: 576px) {
+  .scrollable-container {
+    max-height: calc(100vh - 70px); /* Ajusta para pantallas más pequeñas si es necesario */
+  }
+}
+
+.spacesBetween {
+    margin: 4%;
+}
+
 #titulo {
   font-family: "Bangers";
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .footer {
   position: absolute;
   bottom: 0;
   display: flex;
+  width: 100%;
 }
 
 .logo {
-  height: 150px;
+  height: 200px;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
-.button-73 {
+.button-73, .btn-out, .menuBTN {
   appearance: none;
   background-color: #ffffff;
   border-radius: 40em;
@@ -29,12 +53,12 @@
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem; /* Ajusta el tamaño de la fuente por defecto */
   font-weight: 700;
   letter-spacing: -0.24px;
   margin: 0;
   outline: none;
-  padding: 1rem 1.3rem;
+  padding: 0.8rem 1.2rem; /* Ajusta el padding por defecto */
   quotes: auto;
   text-align: center;
   text-decoration: none;
@@ -44,28 +68,114 @@
   touch-action: manipulation;
 }
 
-.button-73:hover {
+.button-73:hover, .btn-out:hover, .menuBTN:hover {
   background-color: #ffc229;
   box-shadow: #ff6314 0 -6px 8px inset;
   transform: scale(1.125);
 }
 
-.button-73:active {
+.button-73:active, .btn-out:active, .menuBTN:active {
   transform: scale(1.025);
 }
 
 @media (min-width: 768px) {
-  .button-73 {
+  .button-73, .btn-out, .menuBTN {
     font-size: 1.5rem;
     padding: 0.75rem 2rem;
   }
 }
 
-/*------------------------------------------*
-*
-*  CONFIGURACIÓN PARA EL TÍTULO DE LA APP
-*
-*-------------------------------------------*/
+.container {
+  margin-bottom: 50px;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+  max-height: calc(100vh - 215px);
+}
+
+.dropdown-menu {
+  position: relative;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px;
+  margin: 10px; /* Reduce el margen para pantallas más pequeñas */
+  width: 100%; /* Asegura que el menú desplegable ocupe el ancho completo en pantallas pequeñas */
+  max-width: 300px; /* Limita el ancho del menú desplegable */
+}
+
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  filter: blur(1px);
+  z-index: -1;
+}
+
+.dropdown-menu::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 1;
+}
+
+.floating-button, .floating-button-redes {
+  position: fixed;
+  bottom: 20px;
+  z-index: 1000;
+}
+
+.floating-button {
+  left: 20px;
+}
+
+.floating-button-redes {
+  left: 80px;
+}
+
+.floating-button .button-73, .floating-button-redes .button-73 {
+  border-radius: 50%;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  box-shadow: #adcfff 0 -12px 6px inset;
+  cursor: pointer;
+}
+
+.floating-button .button-73:hover, .floating-button-redes .button-73:hover {
+  background-color: #ffc229;
+  box-shadow: #ff6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.container.d-flex.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 576px) {
+  #titulo {
+    font-size: 2rem; /* Ajusta el tamaño del título en pantallas muy pequeñas */
+  }
+
+  .logo {
+    height: 100px; /* Ajusta el tamaño del logo en pantallas pequeñas */
+  }
+
+  .button-73, .btn-out, .menuBTN {
+    font-size: 1rem;
+    padding: 0.5rem 1rem; /* Ajusta el padding en pantallas pequeñas */
+  }
+}
 
 .text-focus-in {
   justify-content: center;
@@ -146,160 +256,6 @@
 
 @media (min-width: 768px) {
   .btn-out {
-    font-size: 1.5rem;
-    padding: 0.75rem 2rem;
-  }
-}
-
-app-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.floating-button {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-}
-
-.floating-button-redes {
-  position: fixed;
-  bottom: 20px;
-  left: 80px;
-  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-}
-
-.floating-button .button-73 {
-  border-radius: 50%; /* Hace que el botón sea redondo */
-  padding: 10px 15px; /* Ajusta el tamaño del botón */
-  background-color: #ffffff; /* Ajusta el color de fondo */
-  color: rgb(0, 0, 0); /* Ajusta el color del texto */
-  border: none; /* Remueve el borde */
-  box-shadow: #adcfff 0 -12px 6px inset; /* Añade una sombra */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-}
-
-.floating-button .button-73:hover {
-  background-color: #ffc229;
-  box-shadow: #ff6314 0 -6px 8px inset;
-  transform: scale(1.125);
-}
-
-.floating-button-redes .button-73 {
-  border-radius: 50%; /* Hace que el botón sea redondo */
-  padding: 10px 15px; /* Ajusta el tamaño del botón */
-  background-color: #ffffff; /* Ajusta el color de fondo */
-  color: rgb(0, 0, 0); /* Ajusta el color del texto */
-  border: none; /* Remueve el borde */
-  box-shadow: #adcfff 0 -12px 6px inset; /* Añade una sombra */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-}
-
-.floating-button-redes .button-73:hover {
-  background-color: #ffc229;
-  box-shadow: #ff6314 0 -6px 8px inset;
-  transform: scale(1.125);
-}
-
-.container {
-  margin-bottom: 50px; /* Ajusta el valor según lo necesario */
-}
-
-.scrollable-div {
-  overflow-y: auto;
-   max-height: calc(100vh - 215px);
-}
-
-/**
-    AJUSTE PARA LOS BOTONES DE REDES SOCIALES
-*/
-.dropdown-menu {
-  position: relative;
-  border-radius: 10px;
-  background-color: white; /* Fondo del bocadillo */
-  padding: 20px;
-  margin: 20px;
-  width: 200px;
-  overflow: hidden; /* Asegura que la flecha quede dentro del div */
-}
-
-.dropdown-menu {
-  position: relative;
-  border-radius: 10px;
-  background-color: white; /* Fondo del bocadillo */
-  padding: 10px;
-  margin: 20px;
-  width: 50px;
-  overflow: hidden; /* Asegura que la flecha quede dentro del div */
-}
-
-.dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(../../../assets/geometric.jpeg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  filter: blur(1px); /* Efecto de blur solo al fondo */
-  z-index: -1; /* Envía el fondo desenfocado detrás del contenido */
-}
-
-.dropdown-menu::after {
-  content: '';
-  position: absolute;
-  bottom: -20px; /* Ajusta la posición vertical de la flecha */
-  left: 20px; /* Ajusta la posición horizontal de la flecha */
-  border-width: 10px 10px 0 10px; /* Tamaño de la flecha */
-  border-style: solid;
-  border-color: white transparent transparent transparent; /* Color de la flecha */
-  z-index: 1; /* Asegura que la flecha esté encima del fondo desenfocado */
-}
-
-.menuBTN {
-  appearance: none;
-  background-color: #ffffff;
-  border-radius: 40em;
-  border-style: none;
-  box-shadow: #adcfff 0 -12px 6px inset;
-  box-sizing: border-box;
-  color: #000000;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.24px;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.3rem;
-  quotes: auto;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 30%;
-}
-
-.menuBTN:hover {
-  background-color: #ffc229;
-  box-shadow: #ff6314 0 -6px 8px inset;
-  transform: scale(1.125);
-}
-
-.menuBTN:active {
-  transform: scale(1.025);
-}
-
-@media (min-width: 768px) {
-  .menuBTN {
     font-size: 1.5rem;
     padding: 0.75rem 2rem;
   }

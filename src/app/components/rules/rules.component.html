@@ -102,89 +102,112 @@
     más aspectos lúdicos para reforzar el aprendizaje de nuestro alumnado.
   </p>
 
-  <div class="accordion accordion-flush" id="accordionFlush">
-    <div class="accordion-item">
-      <h2 class="accordion-header text-center">
+  <div class="text-center">
+    <div class="parent mt-5 mb-3">
+      <div class="div1"><h1 class="text-center" id="titulo">VER GUÍA GRUMPI</h1></div>
+      <div class="div2">
         <button
-          class="accordion-button collapsed"
+          type="button"
+          class="btnMenu"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#flush-collapseOne"
+          data-bs-target="#collapseExample"
           aria-expanded="false"
-          aria-controls="flush-collapseOne"
+          aria-controls="collapseExample"
         >
-          ACCESOS DIRECTOS DE LA GUÍA GRUMPI
+          <i class="material-icons">arrow_drop_down</i>
         </button>
-      </h2>
-      <div
-        id="flush-collapseOne"
-        class="accordion-collapse collapse"
-        data-bs-parent="#accordionFlush"
-      >
-        <div class="accordion-body">
-          <ul>
-            <li>
-              <button
-                class="button-73 mb-3"
-                routerLink="/rules/obtain-energies"
-              >
-                Obtención de energías
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/grumpidolares">
-                Grumpidólares
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/grumpis">
-                Obtención de criaturas
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/medals">
-                Obtención de medallas
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/league">
-                Liga Grumpi
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/combats">
-                Combates Grumpi
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/legend">
-                Leyenda Grumpi
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/rests">
-                Descansos activos
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/career">
-                Carrera lectora
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/inCharge">
-                Encargos Grumpi
-              </button>
-            </li>
-            <li>
-              <button class="button-73 mb-3" routerLink="/rules/maps">
-                Mapas Grumpi
-              </button>
-            </li>
-          </ul>
-        </div>
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div class="bg-box">
+        <ul class="text-center">
+          <li>
+            <button class="btn mb-3" routerLink="/rules/obtain-energies">
+              Obtención de energías
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/grumpidolares">
+              Grumpidólares
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/grumpis">
+              Obtención de criaturas
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/medals">
+              Obtención de medallas
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/league">
+              Liga Grumpi
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/combats">
+              Combates Grumpi
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/legend">
+              Leyenda Grumpi
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/rests">
+              Descansos activos
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/career">
+              Carrera lectora
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/inCharge">
+              Encargos Grumpi
+            </button>
+          </li>
+          <li>
+            <button class="btn mb-3" routerLink="/rules/maps">
+              Mapas Grumpi
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
+
+  <!-- <div class="container mt-5">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            ACCESOS DIRECTOS DE LA GUÍA GRUMPI
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body"></div>
+        </div>
+      </div>
+    </div>
+  </div> -->
 </div>
 <app-footer *ngIf="!hideElements"></app-footer>
