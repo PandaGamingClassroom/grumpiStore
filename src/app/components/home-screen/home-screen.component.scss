@@ -42,7 +42,7 @@
   align-items: center;
 }
 
-.button-73, .btn-out, .menuBTN {
+.button-73, .btn-out {
   appearance: none;
   background-color: #ffffff;
   border-radius: 40em;
@@ -63,9 +63,36 @@
   text-align: center;
   text-decoration: none;
   transition: all 0.15s;
-  user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   touch-action: manipulation;
+}
+
+.menuBTN{
+  appearance: none;
+  background-color: #ffffff;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #adcfff 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, sans-serif;
+  font-size: 1rem; /* Ajusta el tamaño de la fuente por defecto */
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  margin: 0;
+  outline: none;
+  padding: 0.8rem 1.2rem; /* Ajusta el padding por defecto */
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  width: 300px;
 }
 
 .button-73:hover, .btn-out:hover, .menuBTN:hover {
@@ -239,8 +266,8 @@
   text-align: center;
   text-decoration: none;
   transition: all 0.15s;
-  user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   touch-action: manipulation;
 }
 
