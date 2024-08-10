@@ -109,6 +109,16 @@ col {
   touch-action: manipulation;
 }
 
+.btnMenu:hover {
+  background-color: #ffc229;
+  box-shadow: #ff6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.btnMenu:active {
+  transform: scale(1.025);
+}
+
 .parent {
   display: grid;
   grid-template-columns: repeat(1, 1fr);

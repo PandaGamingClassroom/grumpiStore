@@ -1,5 +1,5 @@
 <app-nav-bar *ngIf="!hideElements"></app-nav-bar>
-<div class="btn-config ">
+<div class="btn-config">
   <button
     type="button"
     class="button-73"
@@ -104,17 +104,18 @@
 
   <div class="text-center">
     <div class="parent mt-5 mb-3">
-      <div class="div1"><h1 class="text-center" id="titulo">VER GUÍA GRUMPI</h1></div>
-      <div class="div2">
-        <button
-          type="button"
-          class="btnMenu"
-          type="button"
-          #scrollTarget
-          (click)="handleClick()"
-        >
-          <i class="material-icons">arrow_drop_down</i>
-        </button>
+      <div class="container">
+        <h1 class="text-center me-2" id="titulo">
+          VER GUÍA GRUMPI
+          <button
+            type="button"
+            class="btnMenu"
+            #scrollTarget
+            (click)="handleClick()"
+          >
+            <i class="material-icons">arrow_drop_down</i>
+          </button>
+        </h1>
       </div>
     </div>
 
