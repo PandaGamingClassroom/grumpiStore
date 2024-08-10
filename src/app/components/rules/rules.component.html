@@ -110,17 +110,15 @@
           type="button"
           class="btnMenu"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseExample"
-          aria-expanded="false"
-          aria-controls="collapseExample"
+          #scrollTarget
+          (click)="handleClick()"
         >
           <i class="material-icons">arrow_drop_down</i>
         </button>
       </div>
     </div>
 
-    <div class="collapse" id="collapseExample">
+    <div class="container" *ngIf="this.isClicked">
       <div class="bg-box">
         <ul class="text-center">
           <li>

@@ -19,6 +19,7 @@ export class RulesComponent implements OnInit {
   hideElements: boolean = false;
   showBackBTNHome: boolean = false;
   showBackBTNAdmin: boolean = false;
+  isClicked: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
@@ -43,5 +44,9 @@ export class RulesComponent implements OnInit {
       this.showBackBTNHome = true;
       this.showBackBTNAdmin = false;
     }
+  }
+
+  handleClick(): void {
+    this.isClicked = !this.isClicked;
   }
 }
