@@ -27,33 +27,12 @@
   background: #555; /* Color de la thumb al pasar el ratón */
 }
 
+
 /**
-  PRIMERA LETRA CAPITAL DEL TEXTO
+*
+*   Configuración para la vista desde móvil
+*
 */
-.capital > p::first-letter {
-  font-size: 4em; /* Tamaño de la primera letra */
-  font-weight: bold; /* Negrita (opcional) */
-  color: rgb(0, 143, 7); /* Color de la primera letra */
-}
-
-.image-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Espacio entre las imágenes */
-}
-.image-container div {
-  box-sizing: border-box;
-}
-.image-container img {
-  height: 600px;
-  display: block;
-}
-
-.sizeIMG {
-  height: 450px;
-  width: 350px;
-}
-
 @media (max-width: 576px) {
   .boxSizing {
     min-height: 2vh;
