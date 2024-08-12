@@ -401,7 +401,7 @@ export class CreaturesAdminComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log('Criatura asignada con éxito:', response);
-            alert('Criatura asignada con éxito');
+            this.openModal();
           },
           (error) => {
             console.error('Error asignando la criatura:', error);

@@ -122,15 +122,14 @@ export class SelectTrainerComponent implements OnInit {
       let canAddGrumpi = true; // Bandera para verificar si se puede añadir el Grumpi
 
       selectedTrainers.forEach((trainer) => {
-        // Verifica si `trainer.grumpis` está definido y es un array
-        const alreadyHasGrumpi =
-          Array.isArray(trainer.grumpis) &&
-          trainer.grumpis.some((grumpi: any) => grumpi.id === grumpiIdToAdd);
+        const alreadyHasGrumpi = trainer.grumpis.some(
+          (grumpi: any) => grumpi.id === grumpiIdToAdd
+        );
 
         if (alreadyHasGrumpi) {
           canAddGrumpi = false;
           const data = {
-            title: '¡Ups se están repitiendo!',
+            title: '¡Ups, algo se está repitiendo!',
             message: `El entrenador ${trainer.name} ya tiene este Grumpi.`,
           };
           const dialogRef = this.dialog.open(MessageModalComponent, {
