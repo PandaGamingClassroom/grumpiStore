@@ -41,8 +41,8 @@
 }
 
 .grumpi-shadow {
-  height: 400px;
-  width: 300px;
+  height: 200px;
+  width: 150px;
   top: -20px;
   right: 10px;
   z-index: 1;
@@ -64,4 +64,10 @@
 .sizeBtn {
   font-size: medium !important;
   width: 200px;
+}
+
+.cajaEstados{
+  height: 700px;
+  width: auto;
+  border-radius: 10px;
 }

@@ -62,21 +62,27 @@
     <!-- Se renderiza cuando la información solo consta de la imagen -->
     <div
       class="d-flex justify-content-center"
-      *ngIf="!data.img && !data.imagen"
+      *ngIf="!data.img && !data.imagen && !data.message"
     >
       <img class="img-box" src="{{ data }}" />
+    </div>
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="data.message"
+    >
+      <img class="img-box" src="{{ data.message }}" />
     </div>
     <div class="container bg-box mt-3" *ngIf="data?.descripcion">
       <div class="container mt-3 mb-3">
         <h2>Descripción</h2>
-        <hr>
+        <hr />
         <p>{{ data.descripcion }}</p>
       </div>
     </div>
     <div class="container bg-box mt-3" *ngIf="data?.count">
       <div class="container mt-3 mb-3">
         <hr />
-        <p>Has conseguido {{ data?.count }} </p>
+        <p>Has conseguido {{ data?.count }}</p>
       </div>
     </div>
   </div>

@@ -17,7 +17,9 @@
   </button>
 </div>
 <div class="container">
-  <h1 class="d-flex justify-content-center"><strong>COMBATES GRUMPI</strong></h1>
+  <h1 class="d-flex justify-content-center" id="titulo">
+    <strong>COMBATES GRUMPI</strong>
+  </h1>
   <hr />
 </div>
 <div class="container-md scrollable-div mb-6 bg-box">
@@ -90,7 +92,7 @@
         otros que hacen ambas funciones.
       </p>
     </div>
-    <div class="col-md-3 ms-auto text-end">
+    <div class="col-md-3 ms-auto">
       <img
         class="grumpi-shadow"
         src="../../../../assets/grumpis/078-Okovil.png"
@@ -137,55 +139,66 @@
     </p>
   </div>
   <div class="container box-instructions">
-    <p>
-      <strong class="box-text">Confusión: </strong>Al utilizar un ataque con la
-      habilidad de confundir, el Grumpi afectado pierde el turno. En su segundo
-      turno lanza una moneda. Cara: Desaparece la confusión y realiza el ataque.
-      Cruz: Recibe el daño el propio Grumpi. Si el Grumpi muere, desaparece este
-      estado.
-    </p>
-    <p>
-      <strong class="box-text">Paralizar: </strong>Al utilizar un ataque con la
-      habilidad de paralizar, el Grumpi afectado pierde el turno. En el
-      siguiente turno lanza una moneda. Cara: Desaparece la parálisis y realiza
-      el ataque. Cruz: Pierde el turno. Si el Grumpi muere, desaparece este
-      estado.
-    </p>
-    <p>
-      <strong class="box-text">Veneno: </strong>Al utilizar un ataque con la
-      habilidad de envenenar, el Grumpi objetivo queda envenenado. El veneno
-      resta salud al Grumpi cada turno. El daño que resta viene de multiplicar
-      el número indicado por x10. Este estado solo deja de hacer efecto cuando
-      usemos un antídoto o cuando el Grumpi muera.
-    </p>
-    <p>
-      <strong class="box-text">Cegar: </strong>Al utilizar un ataque con la
-      habilidad de cegar, el Grumpi afectado pierde el siguiente turno.
-    </p>
-    <p>
-      <strong class="box-text">Quemadura: </strong>Al utilizar un ataque con la
-      habilidad de quemar, el Grumpi afectado recibe X puntos de daño por turno.
-      El daño que resta viene de multiplicar el número indicado por x10. Este
-      estado solo deja de hacer efecto cuando usemos un extintor o cuando el
-      Grumpi muera.
-    </p>
-    <p>
-      <strong class="box-text">Atacar primero: </strong>Permite atacar en primer
-      lugar en el siguiente turno.
-    </p>
-    <p>
-      <strong class="box-text">Curar: </strong>El Grumpi se cura 10 puntos de
-      salud. Si por el contrario al lado nos aparece el icono de un recuadro con
-      un número indicado, significa que se cura 10 x cada número que aparezca.
-    </p>
-    <p>
-      <strong class="box-text">Protegerse: </strong>Ignora el siguiente ataque
-      del Grumpi contrario, por lo que no recibe daño este turno.
-    </p>
-    <p>
-      <strong class="box-text">Turno extra: </strong>Vuelve a jugar de nuevo. No
-      puede volver a usar el ataque de ganar un turno extra dos veces seguidas.
-    </p>
+    <div class="row">
+      <div class="col">
+        <p>
+          <strong class="box-text">Confusión: </strong>Al utilizar un ataque con
+          la habilidad de confundir, el Grumpi afectado pierde el turno. En su
+          segundo turno lanza una moneda. Cara: Desaparece la confusión y
+          realiza el ataque. Cruz: Recibe el daño el propio Grumpi. Si el Grumpi
+          muere, desaparece este estado.
+        </p>
+        <p>
+          <strong class="box-text">Paralizar: </strong>Al utilizar un ataque con
+          la habilidad de paralizar, el Grumpi afectado pierde el turno. En el
+          siguiente turno lanza una moneda. Cara: Desaparece la parálisis y
+          realiza el ataque. Cruz: Pierde el turno. Si el Grumpi muere,
+          desaparece este estado.
+        </p>
+        <p>
+          <strong class="box-text">Veneno: </strong>Al utilizar un ataque con la
+          habilidad de envenenar, el Grumpi objetivo queda envenenado. El veneno
+          resta salud al Grumpi cada turno. El daño que resta viene de
+          multiplicar el número indicado por x10. Este estado solo deja de hacer
+          efecto cuando usemos un antídoto o cuando el Grumpi muera.
+        </p>
+        <p>
+          <strong class="box-text">Cegar: </strong>Al utilizar un ataque con la
+          habilidad de cegar, el Grumpi afectado pierde el siguiente turno.
+        </p>
+        <p>
+          <strong class="box-text">Quemadura: </strong>Al utilizar un ataque con
+          la habilidad de quemar, el Grumpi afectado recibe X puntos de daño por
+          turno. El daño que resta viene de multiplicar el número indicado por
+          x10. Este estado solo deja de hacer efecto cuando usemos un extintor o
+          cuando el Grumpi muera.
+        </p>
+        <p>
+          <strong class="box-text">Atacar primero: </strong>Permite atacar en
+          primer lugar en el siguiente turno.
+        </p>
+        <p>
+          <strong class="box-text">Curar: </strong>El Grumpi se cura 10 puntos
+          de salud. Si por el contrario al lado nos aparece el icono de un
+          recuadro con un número indicado, significa que se cura 10 x cada
+          número que aparezca.
+        </p>
+        <p>
+          <strong class="box-text">Protegerse: </strong>Ignora el siguiente
+          ataque del Grumpi contrario, por lo que no recibe daño este turno.
+        </p>
+        <p>
+          <strong class="box-text">Turno extra: </strong>Vuelve a jugar de
+          nuevo. No puede volver a usar el ataque de ganar un turno extra dos
+          veces seguidas.
+        </p>
+      </div>
+      <div class="col">
+        <div class="text-center">
+          <img class="cajaEstados" src="../../../../assets/carteleria/estadosAlterados.png" />
+        </div>
+      </div>
+    </div>
   </div>
   <h2 class="box-text">5º Otros efectos y ataques especiales.</h2>
   <div class="capital">
@@ -220,27 +233,55 @@
   </div>
   <div class="container box-instructions">
     <p>
-      <button class="button-73 sizeBtn me-3" (click)="openImageWindow('pocion')">Poción: </button> Restaura 80 de salud del Grumpi
-      que seleccionemos.
+      <button
+        class="button-73 sizeBtn me-3"
+        (click)="openImageWindow('pocion')"
+      >
+        Poción:
+      </button>
+      Restaura 80 de salud del Grumpi que seleccionemos.
     </p>
     <p>
-      <button class="button-73 sizeBtn me-3" (click)="openImageWindow('antidoto')">Antídoto: </button> Elimina el estado de veneno
-      del Grumpi.
+      <button
+        class="button-73 sizeBtn me-3"
+        (click)="openImageWindow('antidoto')"
+      >
+        Antídoto:
+      </button>
+      Elimina el estado de veneno del Grumpi.
     </p>
     <p>
-      <button class="button-73 sizeBtn me-3" (click)="openImageWindow('gafas de sol')">Extintor: </button> Elimina el estado quemadura
-      del Grumpi.
+      <button
+        class="button-73 sizeBtn me-3"
+        (click)="openImageWindow('extintor')"
+      >
+        Extintor:
+      </button>
+      Elimina el estado quemadura del Grumpi.
     </p>
     <p>
-      <button class="button-73 sizeBtn me-3" (click)="openImageWindow('gafas de sol')">Gafas de sol:  </button>Elimina el estado ceguera.
+      <button
+        class="button-73 sizeBtn me-3"
+        (click)="openImageWindow('gafas de sol')"
+      >
+        Gafas de sol:</button
+      >Elimina el estado ceguera.
     </p>
     <p>
-      <button class="button-73 sizeBtn me-3" (click)="openImageWindow('despertador')">Despertador: </button>Elimina el estado
-      confusión.
+      <button
+        class="button-73 sizeBtn me-3"
+        (click)="openImageWindow('despertador')"
+      >
+        Despertador:</button
+      >Elimina el estado confusión.
     </p>
     <p>
-      <button class="button-73 sizeBtn me-3" (click)="openImageWindow('desfifriblador')">Desfibrilador:</button>Elimina
-      el estado paralizar.
+      <button
+        class="button-73 sizeBtn me-3"
+        (click)="openImageWindow('desfibrilador')"
+      >
+        Desfibrilador:</button
+      >Elimina el estado paralizar.
     </p>
   </div>
   <h2 class="box-text">7º Final del combate.</h2>

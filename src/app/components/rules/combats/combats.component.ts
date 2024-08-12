@@ -13,9 +13,11 @@ import { ViewImageComponent } from '../../../segments/view-image/view-image.comp
 })
 export class CombatsComponent implements OnInit {
 
+
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
 
   openImageWindow(selectedObject: string) {
     let urlImage: string;
@@ -26,7 +28,7 @@ export class CombatsComponent implements OnInit {
     } else if (selectedObject === 'despertador') {
       urlImage = '../../../../assets/objects/Despertador.1.png';
       titleImage = 'Despertador';
-    } else if (selectedObject === 'gafase de sol') {
+    } else if (selectedObject === 'gafas de sol') {
       urlImage = '../../../../assets/objects/Gafas_de_sol.1.png';
       titleImage = 'Gafas de sol';
     } else if (selectedObject === 'extintor') {
