@@ -3,11 +3,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  MatDialog,
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
+import { MessageModalComponent } from '../../../../segments/message-modal-component/message-modal.component';
 
 @Component({
   selector: 'app-select-trainer',
@@ -35,7 +37,8 @@ export class SelectTrainerComponent implements OnInit {
 
   constructor(
     private trainersService: TrainerService,
-    public dialogRef: MatDialogRef<SelectTrainerComponent>
+    public dialogRef: MatDialogRef<SelectTrainerComponent>,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -119,16 +122,23 @@ export class SelectTrainerComponent implements OnInit {
       let canAddGrumpi = true; // Bandera para verificar si se puede añadir el Grumpi
 
       selectedTrainers.forEach((trainer) => {
-        const alreadyHasGrumpi = trainer.grumpis.some(
-          (grumpi: any) => grumpi.id === grumpiIdToAdd
-        );
+        // Verifica si `trainer.grumpis` está definido y es un array
+        const alreadyHasGrumpi =
+          Array.isArray(trainer.grumpis) &&
+          trainer.grumpis.some((grumpi: any) => grumpi.id === grumpiIdToAdd);
 
         if (alreadyHasGrumpi) {
           canAddGrumpi = false;
-          console.error(`El entrenador ${trainer.name} ya tiene este Grumpi.`);
-          alert(
-            `Error: El entrenador ${trainer.name} ya tiene este Grumpi y no puede ser añadido nuevamente.`
-          );
+          const data = {
+            title: '¡Ups se están repitiendo!',
+            message: `El entrenador ${trainer.name} ya tiene este Grumpi.`,
+          };
+          const dialogRef = this.dialog.open(MessageModalComponent, {
+            width: '400px',
+            height: '300px',
+            data: data,
+          });
+          dialogRef.afterClosed().subscribe();
         }
       });
 
