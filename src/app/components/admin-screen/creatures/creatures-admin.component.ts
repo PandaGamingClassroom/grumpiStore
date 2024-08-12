@@ -109,7 +109,7 @@ export class CreaturesAdminComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault();
     if (!this.selectedFile) {
-      console.error('No file selected');
+      console.error('No hya imagen seleccionada');
       return;
     }
 

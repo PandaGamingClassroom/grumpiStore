@@ -101,23 +101,45 @@ export class SelectTrainerComponent implements OnInit {
    * se envía al componente padre.
    */
   selectTrainer() {
-    // Filtra los entrenadores que están seleccionados (donde `trainer.selected` es verdadero)
+    // Filtra los entrenadores que están seleccionados
     const selectedTrainers = this.trainerList.filter(
       (trainer) => trainer.selected
     );
 
-    // Si hay al menos un entrenador seleccionado
     if (selectedTrainers.length > 0) {
       // Mapea los nombres de los entrenadores seleccionados a un nuevo array
       const selectedTrainerNames = selectedTrainers.map(
         (trainer) => trainer.name
       );
 
-      // Emite el array de nombres de entrenadores seleccionados
-      this.selectedTrainerName.emit(selectedTrainerNames);
+      // Aquí agregamos la lógica para validar si ya tienen el Grumpi
+      const grumpiIdToAdd = 1; // Aquí puedes establecer el ID del Grumpi que deseas agregar
 
-      // Cierra el diálogo y pasa el array de nombres de entrenadores seleccionados como resultado
-      this.dialogRef.close(selectedTrainerNames);
+      // Paso 2: Verificar si el Grumpi ya existe en la lista de grumpis de cada entrenador
+      let canAddGrumpi = true; // Bandera para verificar si se puede añadir el Grumpi
+
+      selectedTrainers.forEach((trainer) => {
+        const alreadyHasGrumpi = trainer.grumpis.some(
+          (grumpi: any) => grumpi.id === grumpiIdToAdd
+        );
+
+        if (alreadyHasGrumpi) {
+          canAddGrumpi = false;
+          console.error(`El entrenador ${trainer.name} ya tiene este Grumpi.`);
+          alert(
+            `Error: El entrenador ${trainer.name} ya tiene este Grumpi y no puede ser añadido nuevamente.`
+          );
+        }
+      });
+
+      // Si todos los entrenadores seleccionados pueden recibir el Grumpi, emitimos y cerramos el diálogo
+      if (canAddGrumpi) {
+        // Emite el array de nombres de entrenadores seleccionados
+        this.selectedTrainerName.emit(selectedTrainerNames);
+
+        // Cierra el diálogo y pasa el array de nombres de entrenadores seleccionados como resultado
+        this.dialogRef.close(selectedTrainerNames);
+      }
     }
   }
 }
