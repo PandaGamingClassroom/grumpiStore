@@ -19,6 +19,7 @@ import { Energies, energias } from '../../../models/energies';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
 import { FooterComponent } from '../../footer/footer.component';
+import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
   selector: 'app-energies',
@@ -48,6 +49,7 @@ export class EnergiesComponent implements OnInit {
   selectedEnergie: any;
   isAdminUser: boolean = false;
   adminUser: any;
+  confirmMessage: string = 'La energía ha sido asignada con éxito al entrenador.';
 
   constructor(
     private trainersService: TrainerService,
@@ -140,6 +142,24 @@ export class EnergiesComponent implements OnInit {
   }
 
   /**
+   * Función para abrir la ventana modal de confirmación de la acción.
+   *
+   * @param data_to_receive Recibe en este caso el nombre del entrenador seleccionado.
+   */
+  modalConfirm(data_to_receive: any){
+    const data = {
+      title: '¡Energía asignada con éxito!',
+      message: `La energía ha sido asignada correctamente al entrenador ${data_to_receive}`,
+    };
+    const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      data: data,
+    });
+    dialogRef.afterClosed().subscribe();
+  }
+
+  /**
    *
    * @param trainerNames --> Listado de entrenadores seleccionados.
    */
@@ -152,7 +172,7 @@ export class EnergiesComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log('Energía asignada con éxito:', response);
-            alert('Energía asignada con éxito');
+            this.modalConfirm(trainerNames);
           },
           (error) => {
             console.error('Error asignando la energía:', error);

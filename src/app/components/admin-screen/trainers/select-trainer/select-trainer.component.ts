@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  MAT_DIALOG_DATA,
   MatDialog,
   MatDialogModule,
   MatDialogRef,
@@ -38,7 +39,8 @@ export class SelectTrainerComponent implements OnInit {
   constructor(
     private trainersService: TrainerService,
     public dialogRef: MatDialogRef<SelectTrainerComponent>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data_receive: any
   ) {}
 
   ngOnInit(): void {
@@ -104,50 +106,66 @@ export class SelectTrainerComponent implements OnInit {
    * se envía al componente padre.
    */
   selectTrainer() {
+    console.log('Grumpi recibido: ', this.data_receive);
+
     // Filtra los entrenadores que están seleccionados
     const selectedTrainers = this.trainerList.filter(
       (trainer) => trainer.selected
     );
 
     if (selectedTrainers.length > 0) {
-      // Mapea los nombres de los entrenadores seleccionados a un nuevo array
-      const selectedTrainerNames = selectedTrainers.map(
-        (trainer) => trainer.name
-      );
-
-      // Aquí agregamos la lógica para validar si ya tienen el Grumpi
-      const grumpiIdToAdd = 1; // Aquí puedes establecer el ID del Grumpi que deseas agregar
-
-      // Paso 2: Verificar si el Grumpi ya existe en la lista de grumpis de cada entrenador
-      let canAddGrumpi = true; // Bandera para verificar si se puede añadir el Grumpi
-
-      selectedTrainers.forEach((trainer) => {
-        const alreadyHasGrumpi = trainer.grumpis.some(
-          (grumpi: any) => grumpi.id === grumpiIdToAdd
+      if (this.data_receive === null) {
+        const selectedTrainerNames = selectedTrainers.map(
+          (trainer) => trainer.name
         );
 
-        if (alreadyHasGrumpi) {
-          canAddGrumpi = false;
-          const data = {
-            title: '¡Ups, algo se está repitiendo!',
-            message: `El entrenador ${trainer.name} ya tiene este Grumpi.`,
-          };
-          const dialogRef = this.dialog.open(MessageModalComponent, {
-            width: '400px',
-            height: '300px',
-            data: data,
-          });
-          dialogRef.afterClosed().subscribe();
-        }
-      });
-
-      // Si todos los entrenadores seleccionados pueden recibir el Grumpi, emitimos y cerramos el diálogo
-      if (canAddGrumpi) {
-        // Emite el array de nombres de entrenadores seleccionados
+        // Emitir el array de nombres de entrenadores seleccionados
         this.selectedTrainerName.emit(selectedTrainerNames);
 
-        // Cierra el diálogo y pasa el array de nombres de entrenadores seleccionados como resultado
+        // Cerrar el diálogo y pasar el array de nombres de entrenadores seleccionados como resultado
         this.dialogRef.close(selectedTrainerNames);
+      } else {
+        // ID del Grumpi que deseas agregar
+        const grumpiIdToAdd = this.data_receive.id; // ID del Grumpi a verificar
+
+        // Variable para verificar si algún entrenador ya tiene el Grumpi
+        let canAddGrumpi = true;
+
+        selectedTrainers.forEach((trainer) => {
+          // Verificamos si el entrenador ya tiene el Grumpi en su lista
+          const alreadyHasGrumpi = trainer.grumpis.some(
+            (grumpi: any) => grumpi.id === grumpiIdToAdd
+          );
+
+          if (alreadyHasGrumpi) {
+            canAddGrumpi = false;
+
+            // Mostrar un mensaje de error para este entrenador
+            const data = {
+              title: '¡Ups, algo se está repitiendo!',
+              message: `El entrenador ${trainer.name} ya tiene este Grumpi.`,
+            };
+            const dialogRef = this.dialog.open(MessageModalComponent, {
+              width: '400px',
+              height: '300px',
+              data: data,
+            });
+            dialogRef.afterClosed().subscribe();
+          }
+        });
+
+        // Si todos los entrenadores seleccionados pueden recibir el Grumpi
+        if (canAddGrumpi) {
+          const selectedTrainerNames = selectedTrainers.map(
+            (trainer) => trainer.name
+          );
+
+          // Emitir el array de nombres de entrenadores seleccionados
+          this.selectedTrainerName.emit(selectedTrainerNames);
+
+          // Cerrar el diálogo y pasar el array de nombres de entrenadores seleccionados como resultado
+          this.dialogRef.close(selectedTrainerNames);
+        }
       }
     }
   }

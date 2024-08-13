@@ -375,6 +375,7 @@ export class CreaturesAdminComponent implements OnInit {
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
       height: '360px',
+      data: this.selectedCreatureName,
     });
 
     dialogRef

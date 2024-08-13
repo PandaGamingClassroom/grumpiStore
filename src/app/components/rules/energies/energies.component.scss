@@ -80,16 +80,16 @@ th {
 }
 
 .image-container {
-  height: 600px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-content: center;
   z-index: 2;
-  margin-top: -80px;
+  margin-top: -63px;
 }
 
 .image-container img {
-  height: auto;
+  height: 70%;
   border-radius: 10px;
 }
 
