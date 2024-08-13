@@ -38,7 +38,7 @@ export const routes: Routes = [
   { path: 'store', component: StoreScreenComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'about', component: AboutScreenComponent },
-  { path: 'about-the-app', component: AboutTheAppComponent},
+  { path: 'about-the-app', component: AboutTheAppComponent },
   { path: '', component: LoginScreenComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'rules/career', component: CareerComponent },
@@ -52,6 +52,25 @@ export const routes: Routes = [
   { path: 'rules/maps', component: MapsComponent },
   { path: 'rules/medals', component: MedalsComponent },
   { path: 'rules/rests', component: RestsComponent },
+
+  /**
+   *
+   * RUTAS DE GUÍA GRUMPI PARA EL ADMINISTRADOR
+   *
+   */
+  { path: 'rules_admin', component: RulesComponent },
+  { path: 'rules_admin/career', component: CareerComponent },
+  { path: 'rules_admin/combats', component: CombatsComponent },
+  { path: 'rules_admin/obtain-energies', component: ObtainEnergies },
+  { path: 'rules_admin/grumpidolares', component: GrumpidolaresComponent },
+  { path: 'rules_admin/grumpis', component: GrumpisComponent },
+  { path: 'rules_admin/inCharge', component: InChargeComponent },
+  { path: 'rules_admin/league', component: LeagueComponent },
+  { path: 'rules_admin/legend', component: LegendComponent },
+  { path: 'rules_admin/maps', component: MapsComponent },
+  { path: 'rules_admin/medals', component: MedalsComponent },
+  { path: 'rules_admin/rests', component: RestsComponent },
+
   { path: 'store/medals-store', component: MedalsStoreComponent },
   {
     path: 'management/management-trainers-admin/edit',

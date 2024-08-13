@@ -120,7 +120,9 @@ export class AdminScreenComponent implements OnInit {
   }
 
   navigateToRules() {
-    this.router.navigate(['/rules'], { queryParams: { hideElements: 'true' } });
+    this.router.navigate(['/rules_admin'], {
+      queryParams: { hideElements: 'true' },
+    });
   }
 
   logOut() {

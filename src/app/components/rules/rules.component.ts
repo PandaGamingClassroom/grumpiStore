@@ -37,12 +37,9 @@ export class RulesComponent implements OnInit {
      * para cambiar el botón que vuelve atrás.
      *
      */
-    if (currentUrl === '/rules?hideElements=true') {
+    if (currentUrl === '/rules_admin?hideElements=true') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
-    } else if (currentUrl === '/rules') {
-      this.showBackBTNHome = true;
-      this.showBackBTNAdmin = false;
     }
   }
 
