@@ -48,8 +48,9 @@ export class ProfileComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.myForm = this.formBuilder.group({
-      trainer_name: ['', Validators.required],
-      trainer_pass: ['', Validators.required],
+      nombre: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      password: ['', Validators.required],
       usuario: ['', Validators.required],
     });
   }
@@ -60,6 +61,14 @@ export class ProfileComponent implements OnInit {
     this.getDadataProfesor(this.nameProfesor);
   }
 
+  validateForm(profesor: any) {
+    this.myForm.patchValue({
+      usuario: profesor.usuario,
+      nombre: profesor.nombre,
+      apellidos: profesor.apellidos,
+      password: profesor.password,
+    });
+  }
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -68,6 +77,7 @@ export class ProfileComponent implements OnInit {
         } else {
           this.profesor = data.data;
           this.lastNameProfesor = data.data.apellidos;
+          this.validateForm(this.profesor);
         }
       },
       (error) => {
