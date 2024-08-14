@@ -41,6 +41,7 @@ export class GrumpiService {
     return this.http.get<{ imageUrls: string[] }>(this.imageUrlEndpoint);
   }
 
+
   /**
    * Función para obtener los datos de los Grumpis desde la Base de Datos
    * @returns lista de grumpis

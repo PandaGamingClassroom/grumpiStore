@@ -37,6 +37,7 @@ export class GrumpisComponent implements OnInit {
     this.grumpiService.getImageUrls().subscribe(
       (response) => {
         this.imageUrls = response.imageUrls;
+
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
