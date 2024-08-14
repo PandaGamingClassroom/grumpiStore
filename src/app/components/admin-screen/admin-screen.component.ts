@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AdminUserService } from '../services/adminUser/adminUser.service';
 import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { RulesComponent } from '../rules/rules.component';
-import { ProfesorAdmin } from './trainers/profesor-admin/profesor-admin.component';
+import { ProfesorAdmin } from './profesor-admin/profesor-admin.component';
 
 @Component({
   selector: 'app-admin-screen',

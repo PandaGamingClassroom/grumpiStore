@@ -94,10 +94,6 @@ export class AddTrainersComponent implements OnInit {
   }
 
   guardarEntrenador() {
-    // if (this.myForm.invalid) {
-    //   this.myForm.markAllAsTouched();
-    //   return;
-    // }
 
     const nuevoUsuario = this.isTrainer
       ? {
@@ -109,7 +105,7 @@ export class AddTrainersComponent implements OnInit {
       : {
           nombre: this.myForm.get('trainer_name')?.value,
           apellidos: this.myForm.get('trainer_lastName')?.value,
-          usuario: this.myForm.get('trainer_name')?.value,
+          usuario: this.myForm.get('userProfesor')?.value,
           password: this.myForm.get('trainer_pass')?.value,
           rol: this.myForm.get('trainer_rol')?.value,
           id_profesor: this.profesor.id,

@@ -65,7 +65,17 @@
 
       <!-- FORMULARIO PARA EL PROFESOR -->
       <div *ngIf="!isTrainer">
-        <div class="form-group">
+        <div class="form-group mt-3">
+          <label for="userProfesor" class="form-label">Usuario del profesor</label>
+          <input type="text" class="form-control" formControlName="userProfesor" />
+          <div
+            *ngIf="myForm.get('userProfesor')?.touched && myForm.get('userProfesor')?.invalid"
+            class="text-danger"
+          >
+            Es necesario añdir un usuario para el profesor.
+          </div>
+        </div>
+        <div class="form-group mt-3">
           <label for="trainer_name" class="form-label">Nombre del profesor</label>
           <input type="text" class="form-control" formControlName="trainer_name" />
           <div
@@ -76,7 +86,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="trainer_lastName" class="form-label">Apellidos del profesor</label>
           <input type="text" class="form-control" formControlName="trainer_lastName" />
           <div

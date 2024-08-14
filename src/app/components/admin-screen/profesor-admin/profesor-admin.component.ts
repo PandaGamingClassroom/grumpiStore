@@ -5,13 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
-import { TrainerService } from '../../../services/trainers/trainer.service';
-import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
-import { DeleteTrainersComponent } from '../delete-trainers/delete-trainers.component';
-import { SeeTrainersComponent } from '../see-trainers/see-trainers.component';
-import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
-import { FooterComponent } from '../../../footer/footer.component';
+import { TrainersEditComponent } from '../trainers/trainers-edit/trainers-edit.component';
+import { TrainerService } from '../../services/trainers/trainer.service';
+import { AddTrainersComponent } from '../trainers/add-trainers/add-trainers.component';
+import { DeleteTrainersComponent } from '../trainers/delete-trainers/delete-trainers.component';
+import { SeeTrainersComponent } from '../trainers/see-trainers/see-trainers.component';
+import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-profesor-admin',
