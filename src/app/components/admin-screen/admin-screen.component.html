@@ -6,6 +6,9 @@
       <mat-list-item (click)="showSection('trainers')"
         >Lista de entrenadores</mat-list-item
       >
+      <mat-list-item (click)="showSection('profesorado')"  *ngIf="isAdminUser"
+        >Lista de profesores</mat-list-item
+      >
       <hr>
       <h3 class="d-flex justify-content-center"> <strong>Administración del entrenador </strong></h3>
       <mat-list-item (click)="showSection('creatures')">Grumpis</mat-list-item>
@@ -57,6 +60,9 @@
             <!-- CONTENIDO -->
             <div *ngIf="activeSection === 'trainers'">
               <app-trainers-admin></app-trainers-admin>
+            </div>
+            <div *ngIf="activeSection === 'profesorado'">
+              <app-profesor-admin></app-profesor-admin>
             </div>
             <div *ngIf="activeSection === 'medals'">
               <app-medals-admin-screen></app-medals-admin-screen>

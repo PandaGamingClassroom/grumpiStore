@@ -94,10 +94,10 @@ export class AddTrainersComponent implements OnInit {
   }
 
   guardarEntrenador() {
-    if (this.myForm.invalid) {
-      this.myForm.markAllAsTouched();
-      return;
-    }
+    // if (this.myForm.invalid) {
+    //   this.myForm.markAllAsTouched();
+    //   return;
+    // }
 
     const nuevoUsuario = this.isTrainer
       ? {

@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AdminUserService } from '../services/adminUser/adminUser.service';
 import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { RulesComponent } from '../rules/rules.component';
+import { ProfesorAdmin } from './trainers/profesor-admin/profesor-admin.component';
 
 @Component({
   selector: 'app-admin-screen',
@@ -27,6 +28,7 @@ import { RulesComponent } from '../rules/rules.component';
     NavBarAdminComponent,
     FooterComponent,
     TrainersAdminComponent,
+    ProfesorAdmin,
     MedalsAdminScreenComponent,
     LeagueBadgesComponent,
     GrumpidolarsComponent,
@@ -55,6 +57,7 @@ export class AdminScreenComponent implements OnInit {
   adminUser: any;
   activeSection: string | null = null;
   showLogo: boolean = true;
+  isAdminUser: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -71,6 +74,7 @@ export class AdminScreenComponent implements OnInit {
       this.nameProfesor = localStorage.getItem('nameUser');
       this.lastNameProfesor = localStorage.getItem('lastNameUser');
       this.adminUser = localStorage.getItem('isAdminUser');
+      this.isAdminUser = this.adminUser === 'administrador';
       this.getDadataProfesor(this.nameProfesor);
     }
   }

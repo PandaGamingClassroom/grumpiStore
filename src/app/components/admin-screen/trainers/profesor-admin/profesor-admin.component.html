@@ -1,0 +1,62 @@
+<!-- Lista de profesores -->
+<div class="container-fluid bg-box">
+  <h3 class="d-flex justify-content-center">
+    <strong> Lista de profesores </strong>
+  </h3>
+  <hr class="d-flex justify-content-center mainBoxAdminContent" />
+  <div class="d-flex justify-content-center mainBoxAdminContent">
+    <div class="row">
+      <div class="col-2">
+        <button
+          type="button"
+          class="btn btn-success btn-list d-flex justify-content-center align-items-center"
+          (click)="openAddTrainerModal()"
+        >
+          <i class="material-icons">&#xe145;</i>
+        </button>
+      </div>
+      <div class="col d-flex align-items-center">
+        <h2>Añadir nuevo usuario</h2>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mainBoxAdminContent ">
+    <div class="list mt-3 box-trainer scrollable-div">
+      <p *ngIf="getError">{{ errorGetTrainers }}</p>
+      <ul *ngIf="profesors.length > 0">
+        <li *ngFor="let profesor of profesors">
+          <div class="row">
+            <div class="col" id="entrenador">
+              <strong> {{ profesor.nombre }} </strong>
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-success btn-list"
+                (click)="openSeeTrainers(profesor)"
+              >
+                <i class="material-icons">&#xe417;</i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary btn-list"
+                (click)="openEditPage(profesor)"
+              >
+                <i class="material-icons">&#xe254;</i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-list"
+                (click)="selectTrainer(profesor.nombre); openDeleteTrainerModal(profesor)"
+              >
+                <i class="material-icons">&#xe872;</i>
+              </button>
+            </div>
+          </div>
+          <hr />
+        </li>
+      </ul>
+      <p *ngIf="trainers.length === 0">No hay profesores disponibles.</p>
+    </div>
+  </div>
+</div>
