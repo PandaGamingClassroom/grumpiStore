@@ -51,6 +51,7 @@ export class AddTrainersComponent implements OnInit {
       trainer_lastName: ['', Validators.required],
       trainer_pass: ['', Validators.required],
       trainer_rol: ['', Validators.required],
+      usuario: ['', Validators.required]
     });
   }
 
@@ -60,11 +61,21 @@ export class AddTrainersComponent implements OnInit {
     this.getDataProfesor(this.nameProfesor);
   }
 
+  /**
+   * Función para validar si se está seleccionando
+   * un profesor o un entrenador.
+   */
   selectedTrainerOrProfesor() {
     this.selectedRol = this.myForm.get('trainer_rol')?.value;
     this.isTrainer = this.selectedRol === 'entrenador';
   }
 
+  /**
+   * Función para obtener los datos del profesor
+   * que ha iniciado sesión.
+   *
+   * @param name Recibe el nombre del profesor.
+   */
   getDataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -82,6 +93,12 @@ export class AddTrainersComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para obtener los entrenadores del profesor
+   * que ha iniciado sesión.
+   *
+   * @param profesorId Recibe el id del profesor que está logueado en la aplicación.
+   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
@@ -93,8 +110,11 @@ export class AddTrainersComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para guardar un nuevo usuario
+   * Se comprueba si es un entrenador o un profesor.
+   */
   guardarEntrenador() {
-
     const nuevoUsuario = this.isTrainer
       ? {
           name: this.myForm.get('trainer_name')?.value,
@@ -105,7 +125,7 @@ export class AddTrainersComponent implements OnInit {
       : {
           nombre: this.myForm.get('trainer_name')?.value,
           apellidos: this.myForm.get('trainer_lastName')?.value,
-          usuario: this.myForm.get('userProfesor')?.value,
+          usuario: this.myForm.get('usuario')?.value,
           password: this.myForm.get('trainer_pass')?.value,
           rol: this.myForm.get('trainer_rol')?.value,
           id_profesor: this.profesor.id,

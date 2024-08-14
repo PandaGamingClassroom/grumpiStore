@@ -66,10 +66,10 @@
       <!-- FORMULARIO PARA EL PROFESOR -->
       <div *ngIf="!isTrainer">
         <div class="form-group mt-3">
-          <label for="userProfesor" class="form-label">Usuario del profesor</label>
-          <input type="text" class="form-control" formControlName="userProfesor" />
+          <label for="usuario" class="form-label">Usuario del profesor</label>
+          <input type="text" class="form-control" formControlName="usuario" />
           <div
-            *ngIf="myForm.get('userProfesor')?.touched && myForm.get('userProfesor')?.invalid"
+            *ngIf="myForm.get('usuario')?.touched && myForm.get('usuario')?.invalid"
             class="text-danger"
           >
             Es necesario añdir un usuario para el profesor.
