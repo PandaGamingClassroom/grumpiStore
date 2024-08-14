@@ -3,6 +3,9 @@
 <mat-sidenav-container class="sidenav-container box">
   <mat-sidenav mode="side" opened class="sidenav">
     <mat-nav-list>
+      <mat-list-item (click)="showSection('profile')"
+        >Perfil</mat-list-item
+      >
       <mat-list-item (click)="showSection('trainers')"
         >Lista de entrenadores</mat-list-item
       >
@@ -58,6 +61,9 @@
         <div class="row">
           <div class="col">
             <!-- CONTENIDO -->
+            <div *ngIf="activeSection === 'profile'">
+              <app-profile-profesor></app-profile-profesor>
+            </div>
             <div *ngIf="activeSection === 'trainers'">
               <app-trainers-admin></app-trainers-admin>
             </div>

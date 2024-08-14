@@ -13,6 +13,7 @@ import { SeeTrainersComponent } from '../trainers/see-trainers/see-trainers.comp
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { EditProfesorComponent } from './edit-profesor/edit-profesor.component';
+import { SeeProfesorsComponent } from './see-profesor/see-profesors.component';
 
 @Component({
   selector: 'app-profesor-admin',
@@ -129,15 +130,15 @@ export class ProfesorAdmin implements OnInit {
    *
    * @param trainer Recibe el entrenador seleccionado.
    */
-  openSeeTrainers(trainer: any) {
-    const dialogRef = this.dialog.open(SeeTrainersComponent, {
+  openSeeProfesors(trainer: any) {
+    const dialogRef = this.dialog.open(SeeProfesorsComponent, {
       width: '700px',
       height: '600px',
       data: trainer,
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
+      this.getAllProfesors(); // Actualiza la lista de entrenadores después de cerrar el modal
     });
   }
 

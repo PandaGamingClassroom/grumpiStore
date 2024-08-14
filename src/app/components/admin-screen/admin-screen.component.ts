@@ -18,6 +18,7 @@ import { AdminUserService } from '../services/adminUser/adminUser.service';
 import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { RulesComponent } from '../rules/rules.component';
 import { ProfesorAdmin } from './profesor-admin/profesor-admin.component';
+import { ProfileComponent } from './profesor-admin/profile/profile-profesor.component';
 
 @Component({
   selector: 'app-admin-screen',
@@ -29,6 +30,7 @@ import { ProfesorAdmin } from './profesor-admin/profesor-admin.component';
     FooterComponent,
     TrainersAdminComponent,
     ProfesorAdmin,
+    ProfileComponent,
     MedalsAdminScreenComponent,
     LeagueBadgesComponent,
     GrumpidolarsComponent,

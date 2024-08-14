@@ -1,0 +1,39 @@
+<div class="container bg-box">
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- Mostrar la imagen del profesor si existe, si no, una imagen predeterminada -->
+        <img [src]="profesor.foto ? profesor.foto : 'ruta/a/imagen/predeterminada.jpg'" alt="Foto del Profesor" class="img-fluid">
+      </div>
+      <div class="col">
+        <!-- Otra información que desees mostrar -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="container">
+        <form [formGroup]="myForm">
+          <div class="mb-3">
+            <label for="usuario" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="usuario" formControlName="usuario">
+          </div>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+          </div>
+          <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="apellidos" formControlName="apellidos">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" formControlName="contrasena">
+          </div>
+          <div class="mb-3 text-center">
+            <button type="submit" class="btn btn-primary" (click)="openEditPage(profesor)">Editar mi información</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
