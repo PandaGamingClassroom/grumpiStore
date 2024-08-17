@@ -18,38 +18,15 @@
   </div>
 
   <h2 class="justify-content-center d-flex mainBoxAdminContent">
-    Edición del profesor:
-    <span class="trainerName">{{ this.data.nombre }}</span>
+    Modifica tu contraseña actual
   </h2>
   <hr />
 
   <div class="container mainBoxAdminContent">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="profesorName" class="form-label"
-          >Nombre del profesor</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="profesorName"
-          formControlName="profesorName"
-        />
-      </div>
-      <div class="form-group">
-        <label for="usuario" class="form-label"
-          >Usuario del profesor</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="usuario"
-          formControlName="usuario"
-        />
-      </div>
-      <div class="form-group">
         <label for="profesorPass" class="form-label mt-3"
-          >Contraseña entrenador</label
+          >Escribe la nueva contraseña</label
         >
         <input
           type="text"

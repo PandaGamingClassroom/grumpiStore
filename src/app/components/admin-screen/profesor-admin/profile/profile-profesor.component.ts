@@ -94,8 +94,8 @@ export class ProfileComponent implements OnInit {
    */
   openEditPage(trainer: any) {
     const dialogRef = this.dialog.open(EditProfesorComponent, {
-      width: '700px',
-      height: '600px',
+      width: '400px',
+      height: '400px',
       data: trainer,
     });
 

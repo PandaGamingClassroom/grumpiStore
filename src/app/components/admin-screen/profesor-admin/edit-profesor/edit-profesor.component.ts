@@ -50,45 +50,41 @@ export class EditProfesorComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.myForm = this.formBuilder.group({
-      profesorName: ['', Validators.required],
+      newPassword: ['', Validators.required],
       profesorPass: ['', Validators.required],
-      profesorUser: ['', Validators.required]
     });
   }
 
   ngOnInit() {
     this.myForm.patchValue({
-      profesorName: this.data.nombre,
       profesorPass: this.data.password,
-      profesorUser: this.data.usuario,
     });
 
     console.log('data edit', this.data);
   }
 
   onSubmit() {
-    if (this.myForm.valid) {
-      const updatedData = {
-        nombre: this.myForm.get('profesorName')?.value,
-        password: this.myForm.get('profesorPass')?.value,
-        usuario: this.myForm.get('profesorUser')?.value,
-      };
+    const updatedData = {
+      password: this.myForm.get('profesorPass')?.value,
+    };
 
-      this.trainersService
-        .updateTrainer(this.data.name, updatedData)
-        .subscribe((response) => {
-          console.log('Trainer updated', response);
-          this.close();
-          this.dialog.open(ConfirmModalComponentComponent, {
-            width: '400px',
-            height: '300px',
-            data: {
-              title: '¡Correcto!',
-              message: 'El entrenador se ha editado correctamente.',
-            },
-          });
+    this.trainersService
+      .updateProfessor(this.data.nombre, updatedData)
+      .subscribe((response) => {
+        console.log('Profesor actualizado correctamente.', response);
+        this.close();
+        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+          width: '400px',
+          height: '300px',
+          data: {
+            title: '¡Correcto!',
+            message: 'El profesor se ha editado correctamente.',
+          },
         });
-    }
+        dialogRef.afterClosed().subscribe(() => {
+          window.location.reload();
+        });
+      });
   }
 
   close() {

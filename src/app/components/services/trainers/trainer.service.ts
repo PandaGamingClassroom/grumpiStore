@@ -68,6 +68,20 @@ export class TrainerService {
   }
 
   /**
+   * Función para actualizar los datos del profesor.
+   *
+   * @param professorName
+   * @param professorData
+   * @returns
+   */
+  updateProfessor(professorName: string, professorData: any): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}profesors/update/${professorName}`,
+      professorData
+    );
+  }
+
+  /**
    * Función para eliminar un entrenador.
    *
    * @param id
