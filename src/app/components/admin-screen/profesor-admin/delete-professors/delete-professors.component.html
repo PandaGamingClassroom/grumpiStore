@@ -1,0 +1,21 @@
+  <div class="container-fluid mainBoxAdmin">
+    <div class="modal-dialog modal-dialog-centered mainBoxAdminContent">
+      <div class="modal-content deleteContainer">
+        <div class="modal-header deleteTitle">
+          <h1 class="modal-title fs-5" id="erase">Eliminar profesor</h1>
+        </div>
+        <hr>
+        <div class="modal-body deleteContainer">
+          <p>
+            ¡Cuidado! Estás a punto de eliminar a <strong>{{ professorName }}</strong>.
+          </p>
+          <p><strong>¿Estás seguro?</strong></p>
+        </div>
+        <hr>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary me-3" (click)="close()">Cancelar</button>
+          <button type="button" class="btn btn-danger" (click)="deleteProfessor(); close()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

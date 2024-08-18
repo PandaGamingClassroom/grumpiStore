@@ -81,7 +81,6 @@ export class TrainerService {
     );
   }
 
-
   /**
    * Función para actualizar todos los datos del profesor.
    *
@@ -89,7 +88,10 @@ export class TrainerService {
    * @param professorData
    * @returns
    */
-  updateAllDataProfessor(professorName: string, professorData: any): Observable<any> {
+  updateAllDataProfessor(
+    professorName: string,
+    professorData: any
+  ): Observable<any> {
     return this.http.put(
       `${this.apiUrl}profesors/update_all_data/${professorName}`,
       professorData
@@ -105,6 +107,17 @@ export class TrainerService {
   eliminarRegistro(trainerName: string) {
     const url = this.apiUrl + `user/${trainerName}`;
     return this.http.delete(url);
+  }
+
+  /**
+   * Función para eliminar a un profesor
+   *
+   * @param professorName Recibe el nombre del profesor a eliminar
+   * @returns Devuelve la lista de profesores actualizada.
+   */
+  eliminarProfesor(professorName: string) {
+     const url = this.apiUrl + `professor_to_delete/${professorName}`;
+     return this.http.delete(url);
   }
 
   assignCreatureToTrainer(trainerName: string, creature: any): Observable<any> {
