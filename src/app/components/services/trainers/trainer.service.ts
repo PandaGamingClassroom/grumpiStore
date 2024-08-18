@@ -68,7 +68,7 @@ export class TrainerService {
   }
 
   /**
-   * Función para actualizar los datos del profesor.
+   * Función para actualizar solo la contraseña del profesor.
    *
    * @param professorName
    * @param professorData
@@ -77,6 +77,21 @@ export class TrainerService {
   updateProfessor(professorName: string, professorData: any): Observable<any> {
     return this.http.put(
       `${this.apiUrl}profesors/update/${professorName}`,
+      professorData
+    );
+  }
+
+
+  /**
+   * Función para actualizar todos los datos del profesor.
+   *
+   * @param professorName
+   * @param professorData
+   * @returns
+   */
+  updateAllDataProfessor(professorName: string, professorData: any): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}profesors/update_all_data/${professorName}`,
       professorData
     );
   }
