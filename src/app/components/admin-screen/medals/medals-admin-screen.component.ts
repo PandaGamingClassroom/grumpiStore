@@ -155,6 +155,24 @@ export class MedalsAdminScreenComponent implements OnInit {
     }
   }
 
+  openErrorModal() {
+    if (!this.modalAbierta) {
+      const data = {
+        title: '¡La medalla no se ha podido asignar!',
+        message: 'Hemos tenido un problema al asignar la medalla al entrenador.',
+      };
+      const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '300px',
+        data: data,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        window.location.reload();
+      });
+      this.modalAbierta = true;
+    }
+  }
+
   openTrainers() {
     const data = { title: 'Selecciona el entrenador de la lista' };
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
@@ -194,7 +212,7 @@ export class MedalsAdminScreenComponent implements OnInit {
           },
           (error) => {
             console.error('Error asignando la medalla:', error);
-            alert('Error asignando la medalla');
+            this.openModal();
           }
         );
     } else {
@@ -214,11 +232,11 @@ export class MedalsAdminScreenComponent implements OnInit {
       this.trainersService.assignMedalToTrainers(trainerNames, medal).subscribe(
         (response) => {
           console.log('Medalla asignada con éxito:', response);
-          alert('Medalla asignada con éxito');
+          this.openModal();
         },
         (error) => {
           console.error('Error asignando la medalla:', error);
-          alert('Error asignando la medalla');
+          this.openErrorModal();
         }
       );
     } else {

@@ -160,6 +160,25 @@ export class LeagueBadgesComponent implements OnInit {
     }
   }
 
+  openErrorModal() {
+    if (!this.modalAbierta) {
+      const data = {
+        title: '¡El distintivo no se ha podido asignar!',
+        message:
+          'Hemos tenido un problema al asignar el distintivo al entrenador.',
+      };
+      const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '300px',
+        data: data,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        window.location.reload();
+      });
+      this.modalAbierta = true;
+    }
+  }
+
   /**
    * Función para asignar un distintivo de liga a varios entrenadores al mismo tiempo.
    *
@@ -172,11 +191,11 @@ export class LeagueBadgesComponent implements OnInit {
       this.trainersService.assignBadgeToTrainers(trainerNames, badge).subscribe(
         (response) => {
           console.log('Distintivo asignado con éxito:', response);
-          alert('Distintivo asignado con éxito');
+          this.openModal();
         },
         (error) => {
           console.error('Error asignando el distintivo:', error);
-          alert('Error asignando el distintivo');
+          this.openErrorModal();
         }
       );
     } else {

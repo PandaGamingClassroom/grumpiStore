@@ -149,10 +149,8 @@ export class CreaturesAdminComponent implements OnInit {
     this.http.post<any>(this.uploadUrl, formData).subscribe(
       (response) => {
         console.log('Imagen subida correctamente', response);
-
         // Actualizar la URL de la imagen en el objeto Grumpi
         this.grumpiData.img = response.imageUrl; // Ajusta esto según la respuesta real del servidor
-
         // Enviar los datos del Grumpi al servicio de Angular
         this.saveGrumpi();
       },
@@ -166,7 +164,6 @@ export class CreaturesAdminComponent implements OnInit {
     this.grumpiService.saveGrumpi(this.grumpiData).subscribe(
       (response) => {
         console.log('Grumpi guardado correctamente en Node.js:', response);
-        // Aquí podrías mostrar un modal de confirmación o realizar alguna otra acción
       },
       (error: HttpErrorResponse) => {
         console.error('Error al guardar el Grumpi en Node.js', error);

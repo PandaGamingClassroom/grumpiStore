@@ -1,5 +1,3 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -7,19 +5,17 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../services/trainers/trainer.service';
-import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { Energies, energias } from '../../../models/energies';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
-import { FooterComponent } from '../../footer/footer.component';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { FooterComponent } from '../../footer/footer.component';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
   selector: 'app-energies',
@@ -36,20 +32,18 @@ import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './energies.component.html',
-  styleUrl: './energies.component.scss',
+  styleUrls: ['./energies.component.scss'],
 })
 export class EnergiesComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
   trainerList: any[] = [];
-  energiesImages: string[] = [];
-  selectedEnergieName: string | null = null;
-  selectedTrainerName: string | null = null;
-  selectedFile: File | null = null;
+  selectedEnergie: Energies | null = null;
+  selectedTrainerNames: string[] = [];
   energy_list: Energies[] = energias;
-  selectedEnergie: any;
   isAdminUser: boolean = false;
   adminUser: any;
-  confirmMessage: string = 'La energía ha sido asignada con éxito al entrenador.';
+  confirmMessage: string =
+    'La energía ha sido asignada con éxito al entrenador.';
 
   constructor(
     private trainersService: TrainerService,
@@ -61,21 +55,17 @@ export class EnergiesComponent implements OnInit {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       this.adminUser = localStorage.getItem('isAdminUser');
-      if (this.adminUser === 'administrador') {
-        this.isAdminUser = true;
-      } else {
-        this.isAdminUser = false;
-      }
+      this.isAdminUser = this.adminUser === 'administrador';
     }
+
     this.myForm = this.formBuilder.group({
       imagen: [''],
+      cantidad: [1], // Campo para la cantidad de energía
     });
+
     this.getTrainers();
   }
 
-  /**
-   *
-   */
   getTrainers() {
     this.trainersService.getTrainers().subscribe(
       (response: any) => {
@@ -94,62 +84,49 @@ export class EnergiesComponent implements OnInit {
     );
   }
 
-  /**
-   *
-   * @param event
-   */
-  onSubmit(event: Event) {
-    event.preventDefault();
-  }
-
-  /**
-   *
-   * @param event
-   */
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      this.selectedFile = file;
-    } else {
-      this.selectedFile = null;
+      this.myForm.patchValue({ imagen: file });
     }
   }
 
-  /**
-   *
-   */
   assignEnergies(): void {
-    if (this.selectedTrainerName && this.selectedEnergie) {
-      this.trainersService
-        .assignEnergie(this.selectedTrainerName, this.selectedEnergie)
-        .subscribe(
-          (response) => {
-            console.log(
-              'Energía asignada correctamente al entrenador:',
-              response
-            );
-            // Aquí puedes manejar la respuesta como desees
-          },
-          (error) => {
-            console.error('Error al asignar la energía al entrenador:', error);
-            // Aquí puedes manejar el error como desees
-          }
-        );
+    const cantidad = this.myForm.get('cantidad')?.value;
+
+    if (
+      this.selectedTrainerNames.length > 0 &&
+      this.selectedEnergie &&
+      cantidad > 0
+    ) {
+      const creature = this.selectedEnergie;
+
+      for (let i = 0; i < cantidad; i++) {
+        this.trainersService
+          .assignEnergieToTrainers(this.selectedTrainerNames, creature)
+          .subscribe(
+            (response) => {
+              console.log(`Energía #${i + 1} asignada con éxito:`, response);
+            },
+            (error) => {
+              console.error('Error asignando la energía:', error);
+              alert('Error asignando la energía');
+            }
+          );
+      }
+
+      this.modalConfirm(this.selectedTrainerNames);
     } else {
-      console.error('No se ha seleccionado ningún entrenador o energía.');
-      // Aquí puedes manejar el caso donde no se haya seleccionado ningún entrenador o energía
+      alert('Por favor, selecciona al menos un entrenador y una energía.');
     }
   }
 
-  /**
-   * Función para abrir la ventana modal de confirmación de la acción.
-   *
-   * @param data_to_receive Recibe en este caso el nombre del entrenador seleccionado.
-   */
-  modalConfirm(data_to_receive: any){
+  modalConfirm(trainerNames: string[]) {
     const data = {
       title: '¡Energía asignada con éxito!',
-      message: `La energía ha sido asignada correctamente al entrenador ${data_to_receive}`,
+      message: `La energía ha sido asignada correctamente a los entrenadores ${trainerNames.join(
+        ', '
+      )}`,
     };
     const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
       width: '400px',
@@ -159,36 +136,6 @@ export class EnergiesComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
-  /**
-   *
-   * @param trainerNames --> Listado de entrenadores seleccionados.
-   */
-  assignEnergiestoTrainers(trainerNames: string[]) {
-    if (trainerNames.length > 0 && this.selectedEnergie) {
-      const creature = this.selectedEnergie;
-
-      this.trainersService
-        .assignEnergieToTrainers(trainerNames, creature)
-        .subscribe(
-          (response) => {
-            console.log('Energía asignada con éxito:', response);
-            this.modalConfirm(trainerNames);
-          },
-          (error) => {
-            console.error('Error asignando la energía:', error);
-            alert('Error asignando la energía');
-          }
-        );
-    } else {
-      alert('Por favor, selecciona al menos un entrenador y una energía.');
-    }
-  }
-
-  /**
-   * Función para abrir la ventana emergente que muestra la lista de entrenadores disponibles
-   * Al seleccionar el entrenador en dicha ventana, recibimos aquí el nombre de ese entrenador
-   * Y con esos datos asignamos el objeto seleccionado.
-   */
   openTrainers() {
     const dialogRef = this.dialog.open(SelectTrainerComponent, {
       width: '400px',
@@ -199,8 +146,8 @@ export class EnergiesComponent implements OnInit {
       .afterClosed()
       .subscribe((selectedTrainerNames: string[] | null) => {
         if (selectedTrainerNames && selectedTrainerNames.length > 0) {
-          this.selectedTrainerName = selectedTrainerNames.join(', ');
-          this.assignEnergiestoTrainers(selectedTrainerNames);
+          this.selectedTrainerNames = selectedTrainerNames;
+          this.assignEnergies();
         }
       });
   }

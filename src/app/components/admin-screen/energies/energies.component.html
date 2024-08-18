@@ -3,24 +3,48 @@
     <div class="row">
       <div class="col main-box design-column">
         <div class="row">
-          <div class="col"><h2>Lista de energías</h2></div>
+          <div class="col">
+            <h2>Lista de energías</h2>
+          </div>
         </div>
 
         <div class="container creatures-box">
-          <div
-            class="img-creature"
-            *ngFor="let imageUrl of energy_list"
-          >
+          <div class="img-creature" *ngFor="let imageUrl of energy_list">
             <div class="row">
-              <div class="col"><img srcset="{{imageUrl.imagen}}" alt="Imagen" /></div>
               <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  (click)="selectedEnergie = imageUrl; openTrainers()"
+                <img srcset="{{imageUrl.imagen}}" alt="Imagen" />
+              </div>
+              <div class="col">
+                <form
+                  [formGroup]="myForm"
+                  (ngSubmit)="assignEnergies()"
+                  (change)="onFileSelected($event)"
                 >
-                  Asignar a
-                </button>
+                  <div class="row mt-3">
+                    <div class="col">
+                      <label for="cantidad" class="form-label"
+                        ><strong>Cantidad de energías para asignar:</strong></label
+                      >
+                    </div>
+                    <div class="col">
+                      <input
+                        type="number"
+                        id="cantidad"
+                        formControlName="cantidad"
+                        min="1"
+                        value="1"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn btn-success mt-2"
+                    (click)="selectedEnergie = imageUrl; openTrainers()"
+                  >
+                    Asignar a
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -31,7 +55,7 @@
         <h2>Añadir una energía nueva</h2>
         <form
           [formGroup]="myForm"
-          (ngSubmit)="onSubmit($event)"
+          (ngSubmit)="assignEnergies()"
           (change)="onFileSelected($event)"
         >
           <div class="row">
@@ -51,7 +75,6 @@
             </div>
           </div>
           <hr />
-
           <div class="container mt-3 d-flex justify-content-center">
             <button type="submit" class="btn btn-success">Guardar</button>
           </div>
@@ -60,6 +83,5 @@
     </div>
   </div>
 </div>
-
 
 <app-footer></app-footer>
