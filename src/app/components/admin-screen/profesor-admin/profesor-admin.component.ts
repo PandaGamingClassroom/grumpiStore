@@ -5,15 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TrainersEditComponent } from '../trainers/trainers-edit/trainers-edit.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { AddTrainersComponent } from '../trainers/add-trainers/add-trainers.component';
 import { DeleteTrainersComponent } from '../trainers/delete-trainers/delete-trainers.component';
-import { SeeTrainersComponent } from '../trainers/see-trainers/see-trainers.component';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { FooterComponent } from '../../footer/footer.component';
-import { EditProfesorComponent } from './edit-profesor/edit-profesor.component';
 import { SeeProfesorsComponent } from './see-profesor/see-profesors.component';
+import { EditCompleteDataProfesorComponent } from './edit-complete-dataProfesor/edit-complete-dataProfesor.component';
 
 @Component({
   selector: 'app-profesor-admin',
@@ -110,7 +108,7 @@ export class ProfesorAdmin implements OnInit {
    * @param trainer Recibe el entrenador seleccionado.
    */
   openEditPage(trainer: any) {
-    const dialogRef = this.dialog.open(EditProfesorComponent, {
+    const dialogRef = this.dialog.open(EditCompleteDataProfesorComponent, {
       width: '700px',
       height: '600px',
       data: trainer,
