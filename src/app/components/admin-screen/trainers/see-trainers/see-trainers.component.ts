@@ -67,7 +67,7 @@ export class SeeTrainersComponent implements OnInit {
   verInventario(): void {
     const dialogRef = this.dialog.open(VerObjetosModalComponent, {
       width: '600px',
-      height: '400px',
+      height: '550px',
       data: this.data,
     });
 
