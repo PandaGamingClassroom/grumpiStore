@@ -116,8 +116,33 @@ export class TrainerService {
    * @returns Devuelve la lista de profesores actualizada.
    */
   eliminarProfesor(professorName: string) {
-     const url = this.apiUrl + `professor_to_delete/${professorName}`;
-     return this.http.delete(url);
+    const url = this.apiUrl + `professor_to_delete/${professorName}`;
+    return this.http.delete(url);
+  }
+
+  /**
+   * Función para eliminar objetos de un entrenador.
+   *
+   * @param objetosAEliminar Lista de objetos que se desean eliminar
+   * @returns Observable con la respuesta del servidor
+   */
+  deleteObjectsFromTrainer(objetosAEliminar: any[]): Observable<any> {
+    const url = `${this.apiUrl}eliminar-objetos`;
+
+    // Utiliza DELETE para eliminar recursos
+    return this.http
+      .request<any>('DELETE', url, {
+        body: { objetos: objetosAEliminar },
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error al eliminar objetos:', error);
+          return throwError(
+            'Error al eliminar objetos. Por favor, inténtalo de nuevo más tarde.'
+          );
+        })
+      );
   }
 
   assignCreatureToTrainer(trainerName: string, creature: any): Observable<any> {

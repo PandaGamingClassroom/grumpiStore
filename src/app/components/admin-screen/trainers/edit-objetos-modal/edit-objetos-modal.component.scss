@@ -1,0 +1,89 @@
+.mainBoxInventory {
+  position: relative;
+  width: 100%;
+}
+
+.mainBoxInventory::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../../../../../assets/geometric.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  z-index: 0;
+}
+
+.mainBoxInventory h2,
+.mainBoxInventory h3 {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.288);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.mainBoxInventory .d-flex {
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+}
+
+.mainBoxInventory .scrollable-div {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+.mainBoxInventory .container.text-center button {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.img-creature {
+  width: 150px; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.img-creature img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.combat-info {
+  flex-grow: 1;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+}
+
+.delete-options {
+  display: flex;
+  flex-direction: column; /* Cambia a columna para que el label esté sobre el input */
+  gap: 5px;
+  margin-left: 15px;
+}
+
+.delete-options .form-label {
+  margin-bottom: 0;
+}
+
+.delete-options input[type="number"] {
+  width: 100px; /* Ajusta el ancho según sea necesario */
+}
+
+.delete-options input[type="checkbox"] {
+  transform: scale(1.2); /* Ajusta el tamaño del checkbox si es necesario */
+}

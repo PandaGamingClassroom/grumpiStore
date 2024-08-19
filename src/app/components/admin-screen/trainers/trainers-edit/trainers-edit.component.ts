@@ -18,6 +18,7 @@ import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-a
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { EditObjetosModalComponent } from '../edit-objetos-modal/edit-objetos-modal.component';
 
 @Component({
   selector: 'app-trainers-edit',
@@ -93,6 +94,23 @@ export class TrainersEditComponent implements OnInit {
           });
         });
     }
+  }
+
+  /**
+   * Función para abrir la ventana emergente con el inventario
+   * del entrenador seleccionado.
+   *
+   */
+  verInventario(): void {
+    const dialogRef = this.dialog.open(EditObjetosModalComponent, {
+      width: '600px',
+      height: '550px',
+      data: this.data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('La vista de los objetos se ha cerrado');
+    });
   }
 
   close() {
