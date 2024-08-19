@@ -10,10 +10,12 @@ import {
 } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
+  MatDialog,
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
+import { VerObjetosModalComponent } from '../ver-objetos-modal/ver-objetos-modal.component';
 
 @Component({
   selector: 'app-see-trainers',
@@ -35,7 +37,8 @@ export class SeeTrainersComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<SeeTrainersComponent>
+    public dialogRef: MatDialogRef<SeeTrainersComponent>,
+    public dialog: MatDialog
   ) {
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
@@ -56,5 +59,20 @@ export class SeeTrainersComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  /**
+   * Función para mostrar los objetos que tienen los entrenadores en la mochila
+   */
+  verInventario(): void {
+    const dialogRef = this.dialog.open(VerObjetosModalComponent, {
+      width: '600px',
+      height: '400px',
+      data: this.data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('La vista de los objetos se ha cerrado');
+    });
   }
 }

@@ -78,17 +78,7 @@
       <div class="row mt-2">
         <div class="col">
           <div class="d-flex justify-content-center">
-            <div
-              class="img-creature mg-5"
-              *ngFor="let medalImage of data?.medallas"
-            >
-              <img srcset="{{ medalImage }}" />
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary">Ver objetos</button>
+            <button type="button" class="btn btn-primary" (click)="verInventario()">Ver inventario</button>
           </div>
         </div>
       </div>

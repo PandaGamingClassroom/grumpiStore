@@ -1,0 +1,78 @@
+<div class="container bg-box mainBoxInventory">
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <h2 class="flex-grow-1 text-center mb-0">Inventario de {{ objetos.name }}</h2>
+    <button type="button" class="btn ms-2" (click)="close()">
+      <i class="material-icons">&#xe5cd;</i>
+    </button>
+  </div>
+  <div class="container scrollable-div mt-3">
+    <!-- ENERGÍAS -->
+    <div class="container mb-3">
+      <h3 class="text-center">Listado de energías</h3>
+      <hr />
+      <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueEnergies">
+        <div class="img-creature">
+          <img class="img-fluid me-3" [src]="objeto.imagen" alt="Energías" />
+        </div>
+        <div class="combat-info">
+          <p class="mb-0">Total conseguidos: {{ objeto.count }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- MEDALLAS -->
+    <div class="container mb-3">
+      <h3 class="text-center">Listado de medallas</h3>
+      <hr />
+      <div class="d-flex align-items-center mb-3" *ngFor="let objeto of objetos?.medallas">
+        <div class="img-creature">
+          <img class="img-fluid me-3" [src]="objeto" alt="Energías" />
+        </div>
+        <div class="combat-info">
+          <!-- <p class="mb-0">Total conseguidos: {{ objeto.count }}</p> -->
+        </div>
+      </div>
+    </div>
+    <!-- OBJETOS DE COMBATE -->
+    <div class="container mb-3">
+      <h3 class="text-center">Listado de objetos de combate</h3>
+      <hr />
+      <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueCombatObjects">
+        <div class="img-creature">
+          <img class="img-fluid me-3" [src]="objeto.imagen" alt="Objeto de Combate" />
+        </div>
+        <div class="combat-info">
+          <p class="mb-0">Total conseguidos: {{ objeto.count }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- OBJETOS EVOLUTIVOS -->
+    <div class="container mb-3">
+      <h3 class="text-center">Listado de objetos evolutivos</h3>
+      <hr />
+      <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueEvolutionObjects">
+        <div class="img-creature">
+          <img class="img-fluid me-3" [src]="objeto.imagen" alt="Objeto evolutivo" />
+        </div>
+        <div class="combat-info">
+          <p class="mb-0">Total conseguidos: {{ objeto.count }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- RECOMPENSAS -->
+    <div class="container mb-3">
+      <h3 class="text-center">Listado de recompensas</h3>
+      <hr />
+      <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueRewards">
+        <div class="img-creature">
+          <img class="img-fluid me-3" [src]="objeto.img" alt="Recompensa" />
+        </div>
+        <div class="combat-info">
+          <p class="mb-0">Total conseguidas: {{ objeto.count }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="container text-center mb-3">
+      <button type="button" class="btn btn-light" (click)="close()">Cerrar inventario</button>
+    </div>
+  </div>
+</div>
