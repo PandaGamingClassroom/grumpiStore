@@ -138,3 +138,28 @@ h1, h2, h3, p {
   width: 100px;
   height: 50px;
 }
+
+
+/* Estilos para el sidebar */
+.sidenav {
+  position: relative; /* Necesario para posicionar el footer dentro del sidenav */
+  width: 250px; /* Ajusta el ancho del sidenav según tu necesidad */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f9fa; /* Fondo para el área del reloj */
+  border-top: 1px solid #dee2e6; /* Opcional: una línea superior */
+}
+
+.footer-time {
+  font-size: 0.9rem; /* Tamaño de fuente del reloj */
+  color: #333; /* Color del texto */
+}
