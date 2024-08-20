@@ -72,6 +72,8 @@ export class EditObjetosModalComponent implements OnInit {
   energiaTierra: number = 0;
   energiaVida: number = 0;
 
+  grumpiList: any[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<EditObjetosModalComponent>,
     @Inject(MAT_DIALOG_DATA) public objetos: any,
@@ -86,6 +88,7 @@ export class EditObjetosModalComponent implements OnInit {
     this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos || []);
     this.contadorRecompensas(this.objetos?.recompensas || []);
     this.contadorEnergias(this.objetos?.energias || []);
+    this.grumpiList = this.objetos?.grumpis || [];
   }
 
   /**

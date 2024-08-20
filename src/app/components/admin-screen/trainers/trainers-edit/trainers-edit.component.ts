@@ -70,30 +70,28 @@ export class TrainersEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.myForm.valid) {
-      const updatedData = {
-        name: this.myForm.get('trainer_name')?.value,
-        password: this.myForm.get('trainer_pass')?.value,
-        grumpidolar: this.myForm.get('grumpidolar')?.value,
-        combatMark: this.myForm.get('combatMark')?.value,
-        medalsToRemove: this.selectedMedals,
-      };
+    const updatedData = {
+      name: this.myForm.get('trainer_name')?.value,
+      password: this.myForm.get('trainer_pass')?.value,
+      grumpidolar: this.myForm.get('grumpidolar')?.value,
+      combatMark: this.myForm.get('combatMark')?.value,
+      medalsToRemove: this.selectedMedals,
+    };
 
-      this.trainersService
-        .updateTrainer(this.data.name, updatedData)
-        .subscribe((response) => {
-          console.log('Trainer updated', response);
-          this.close();
-          this.dialog.open(ConfirmModalComponentComponent, {
-            width: '400px',
-            height: '300px',
-            data: {
-              title: '¡Correcto!',
-              message: 'El entrenador se ha editado correctamente.',
-            },
-          });
+    this.trainersService
+      .updateTrainer(this.data.name, updatedData)
+      .subscribe((response) => {
+        console.log('Trainer updated', response);
+        this.close();
+        this.dialog.open(ConfirmModalComponentComponent, {
+          width: '400px',
+          height: '300px',
+          data: {
+            title: '¡Correcto!',
+            message: 'El entrenador se ha editado correctamente.',
+          },
         });
-    }
+      });
   }
 
   /**

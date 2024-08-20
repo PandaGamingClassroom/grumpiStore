@@ -8,47 +8,65 @@
     </button>
   </div>
   <div class="container scrollable-div mt-3">
-    <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion accordion-flush" id="inventoryAccordion">
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseThree"
+            data-bs-target="#grumpisCollapse"
             aria-expanded="false"
-            aria-controls="flush-collapseThree"
+            aria-controls="grumpisCollapse"
           >
-            Listado de grumpis
+            Grumpis
           </button>
         </h2>
         <div
-          id="flush-collapseThree"
+          id="grumpisCollapse"
           class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
+          data-bs-parent="#inventoryAccordion"
         >
           <div class="accordion-body">
-            Aquí se muestra la lista de grumpis del entrenador
+            <div
+              class="d-flex align-items-center mb-3"
+              *ngFor="let grumpi of grumpiList"
+            >
+              <div class="img-creature">
+                <img class="img-fluid me-3" [src]="grumpi.img" alt="Grumpi" />
+              </div>
+              <div class="delete-options">
+                <input
+                  id="grumpi-{{ grumpi }}"
+                  type="checkbox"
+                  [(ngModel)]="grumpi.toDelete"
+                />
+                <label for="grumpi-{{ grumpi }}" class="form-label"
+                  >Eliminar</label
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseOne"
+            data-bs-target="#energiesCollapse"
             aria-expanded="false"
-            aria-controls="flush-collapseOne"
+            aria-controls="energiesCollapse"
           >
-            Listado de energías
+            Energías
           </button>
         </h2>
         <div
-          id="flush-collapseOne"
+          id="energiesCollapse"
           class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
+          data-bs-parent="#inventoryAccordion"
         >
           <div class="accordion-body">
             <div
@@ -81,23 +99,24 @@
           </div>
         </div>
       </div>
+
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseTwo"
+            data-bs-target="#medalsCollapse"
             aria-expanded="false"
-            aria-controls="flush-collapseTwo"
+            aria-controls="medalsCollapse"
           >
-            Listado de medallas
+            Medallas
           </button>
         </h2>
         <div
-          id="flush-collapseTwo"
+          id="medalsCollapse"
           class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
+          data-bs-parent="#inventoryAccordion"
         >
           <div class="accordion-body">
             <div
@@ -121,23 +140,65 @@
           </div>
         </div>
       </div>
+
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseThree"
+            data-bs-target="#leagueObjCollapse"
             aria-expanded="false"
-            aria-controls="flush-collapseThree"
+            aria-controls="leagueObjCollapse"
           >
-            Listado de objetos de combate
+            Distintivos de liga
           </button>
         </h2>
         <div
-          id="flush-collapseThree"
+          id="leagueObjCollapse"
           class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
+          data-bs-parent="#inventoryAccordion"
+        >
+          <div class="accordion-body">
+            <div
+              class="d-flex align-items-center mb-3"
+              *ngFor="let objeto of objetos?.distintivos_liga"
+            >
+              <div class="img-creature">
+                <img class="img-fluid me-3" [src]="objeto" alt="Medalla" />
+              </div>
+              <div class="delete-options">
+                <input
+                  id="medal-{{ objeto }}"
+                  type="checkbox"
+                  [(ngModel)]="objeto.toDelete"
+                />
+                <label for="medal-{{ objeto }}" class="form-label"
+                  >Eliminar</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#combatObjectsCollapse"
+            aria-expanded="false"
+            aria-controls="combatObjectsCollapse"
+          >
+            Objetos de combate
+          </button>
+        </h2>
+        <div
+          id="combatObjectsCollapse"
+          class="accordion-collapse collapse"
+          data-bs-parent="#inventoryAccordion"
         >
           <div class="accordion-body">
             <div
@@ -170,23 +231,24 @@
           </div>
         </div>
       </div>
+
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseThree"
+            data-bs-target="#evolutionObjectsCollapse"
             aria-expanded="false"
-            aria-controls="flush-collapseThree"
+            aria-controls="evolutionObjectsCollapse"
           >
-            Listado de objetos evolutivos
+            Objetos evolutivos
           </button>
         </h2>
         <div
-          id="flush-collapseThree"
+          id="evolutionObjectsCollapse"
           class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
+          data-bs-parent="#inventoryAccordion"
         >
           <div class="accordion-body">
             <div
@@ -219,23 +281,24 @@
           </div>
         </div>
       </div>
+
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseThree"
+            data-bs-target="#rewardsCollapse"
             aria-expanded="false"
-            aria-controls="flush-collapseThree"
+            aria-controls="rewardsCollapse"
           >
-            Listado de recompensas
+            Recompensas
           </button>
         </h2>
         <div
-          id="flush-collapseThree"
+          id="rewardsCollapse"
           class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
+          data-bs-parent="#inventoryAccordion"
         >
           <div class="accordion-body">
             <div
