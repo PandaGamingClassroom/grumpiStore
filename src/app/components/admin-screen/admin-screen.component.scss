@@ -21,9 +21,13 @@
 
 .scrollable-div {
   overflow-y: auto;
-   max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 320px);
 }
 
+
+.bigBox {
+  max-height: calc(100vh - 320px);
+}
 /* Otros estilos específicos que puedas necesitar */
 
 .btns {
@@ -92,14 +96,6 @@
   }
 }
 
-.sidenav {
-  width: 20%;
-}
-
-.sidenav .mat-list-item {
-  cursor: pointer;
-}
-
 a {
   cursor: pointer;
 }
@@ -143,7 +139,7 @@ h1, h2, h3, p {
 /* Estilos para el sidebar */
 .sidenav {
   position: relative; /* Necesario para posicionar el footer dentro del sidenav */
-  width: 250px; /* Ajusta el ancho del sidenav según tu necesidad */
+  width: 350px; /* Ajusta el ancho del sidenav según tu necesidad */
   height: 100vh; /* Ocupa toda la altura de la ventana */
   display: flex;
   flex-direction: column;

@@ -1,9 +1,17 @@
-.list {
-  height: 200px;
-  width: 600px;
-  padding: 10px;
+/* Ajuste para que solo la lista tenga scroll */
+.scrollable-div {
+  overflow-y: auto;
+  max-height: 320px;
+  overflow-x: hidden;
 }
 
+.list {
+  width: 600px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Resto del CSS permanece igual */
 .btn-list {
   height: 45px;
   width: 45px;
@@ -19,12 +27,17 @@
   margin-bottom: 5%;
 }
 
-.scrollable-div {
-  max-height: calc(100% - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
+.bgBox {
+  height: auto;
+  padding-bottom: 5%;
 }
 
-h1, h2, h3, p, label, input, li{
+h1,
+h2,
+h3,
+p,
+label,
+input,
+li {
   color: #000000;
 }

@@ -9,13 +9,19 @@
         <a class="nav-link" (click)="showSection('profile')">Perfil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"(click)="showSection('trainers')">Lista de entrenadores</a>
+        <a class="nav-link" (click)="showSection('trainers')"
+          >Lista de entrenadores</a
+        >
       </li>
       <li class="nav-item" *ngIf="isAdminUser">
-        <a class="nav-link" (click)="showSection('profesorado')">Lista de profesores</a>
+        <a class="nav-link" (click)="showSection('profesorado')"
+          >Lista de profesores</a
+        >
       </li>
-      <hr>
-      <h3 class="d-flex justify-content-center"><strong>Administración del entrenador</strong></h3>
+      <hr />
+      <h3 class="d-flex justify-content-center">
+        <strong>Administración del entrenador</strong>
+      </h3>
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('creatures')">Grumpis</a>
       </li>
@@ -23,7 +29,9 @@
         <a class="nav-link" (click)="showSection('medals')">Medallas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showSection('distintivos')">Distintivos de liga</a>
+        <a class="nav-link" (click)="showSection('distintivos')"
+          >Distintivos de liga</a
+        >
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('energies')">Energía</a>
@@ -31,37 +39,40 @@
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('dolars')">Grumpidólares</a>
       </li>
-      <hr>
+      <hr />
       <h3 class="d-flex justify-content-center"><strong>Ayuda</strong></h3>
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('guide')">Guía Grumpi</a>
       </li>
     </ul>
-    <!-- Reloj en la parte inferior -->
-    <div class="sidenav-footer">
-      <p class="footer-time">{{ currentTime }}</p>
-    </div>
   </div>
 
   <!-- Contenido principal -->
-  <div class="container-fluid scrollable-div">
+  <div class="container-fluid">
     <div class="row mb-3 prof_box mt-2">
       <div class="col">
         <p class="box-text">
           <span>👍</span> Bienvenido
-          <strong>{{ nameProfesor }} {{ lastNameProfesor }}</strong> a la GrumpiApp.
+          <strong>{{ nameProfesor }} {{ lastNameProfesor }}</strong> a la
+          GrumpiApp.
         </p>
-        <p>En este espacio podrá gestionar toda la información referente a sus alumnos para poder comenzar con los Grumpi.</p>
+        <p>
+          En este espacio podrá gestionar toda la información referente a sus
+          alumnos para poder comenzar con los Grumpi.
+        </p>
       </div>
       <div class="col-2">
         <div class="row d-flex justify-content-center">
-          <button type="button" class="btn-out btns" (click)="logOut()">Salir</button>
+          <button type="button" class="btn-out btns" (click)="logOut()">
+            Salir
+          </button>
         </div>
       </div>
-         <hr />
-    <p class="d-flex justify-content-center">
-      A tu izquierda encontrarás una selección de opciones y a la derecha se mostrará el contenido de la opción seleccionada.
-    </p>
+      <hr />
+      <p class="d-flex justify-content-center">
+        A tu izquierda encontrarás una selección de opciones y a la derecha se
+        mostrará el contenido de la opción seleccionada.
+      </p>
     </div>
 
     <div class="container-fluid">
@@ -71,61 +82,37 @@
       >
         <img src="../../../assets/Logo_v0.1_sinFondo.png" />
       </div>
-      <div class="bg-box" style="bottom: 0">
-        <div
-          *ngIf="showLogo"
-          class="mt-3 container-fluid d-flex justify-content-center align-items-center"
-        >
-          <p class="d-flex justify-content-center align-items-center mt-3">
-            &copy; 2024 Grumpi-App. Todos los derechos reservados.
-          </p>
-          <br />
-          <p class="d-flex justify-content-center align-items-center mt-3">
-            Creado por Daniel G.D. & Pablo M.O.
-          </p>
-        </div>
-        <div
-          *ngIf="showLogo"
-          class="container-fluid d-flex justify-content-center align-items-center"
-        >
-          <img
-            id="panda"
-            class="logoPanda"
-            src="../../../assets/LogoEscuelaDeVerano2016-2.png"
-          />
-        </div>
-      </div>
     </div>
 
     <!-- Dynamic Content -->
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <div *ngIf="activeSection === 'profile'">
+          <div *ngIf="activeSection === 'profile'" class="scrollable-div">
             <app-profile-profesor></app-profile-profesor>
           </div>
-          <div *ngIf="activeSection === 'trainers'">
+          <div *ngIf="activeSection === 'trainers'" class="bigBox">
             <app-trainers-admin></app-trainers-admin>
           </div>
-          <div *ngIf="activeSection === 'profesorado'">
+          <div *ngIf="activeSection === 'profesorado'" class="scrollable-div">
             <app-profesor-admin></app-profesor-admin>
           </div>
-          <div *ngIf="activeSection === 'medals'">
+          <div *ngIf="activeSection === 'medals'" class="scrollable-div">
             <app-medals-admin-screen></app-medals-admin-screen>
           </div>
-          <div *ngIf="activeSection === 'creatures'">
+          <div *ngIf="activeSection === 'creatures'" class="scrollable-div">
             <app-creatures-admin></app-creatures-admin>
           </div>
-          <div *ngIf="activeSection === 'distintivos'">
+          <div *ngIf="activeSection === 'distintivos'" class="scrollable-div">
             <app-league-badges></app-league-badges>
           </div>
-          <div *ngIf="activeSection === 'energies'">
+          <div *ngIf="activeSection === 'energies'" class="scrollable-div">
             <app-energies></app-energies>
           </div>
-          <div *ngIf="activeSection === 'dolars'">
+          <div *ngIf="activeSection === 'dolars'" class="scrollable-div">
             <app-grumpidolars></app-grumpidolars>
           </div>
-          <div *ngIf="activeSection === 'guide'">
+          <div *ngIf="activeSection === 'guide'" class="scrollable-div">
             <app-rules></app-rules>
           </div>
         </div>
@@ -133,3 +120,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

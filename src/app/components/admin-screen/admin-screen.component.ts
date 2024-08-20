@@ -1,11 +1,8 @@
 import {
   Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  OnDestroy,
+  OnInit
 } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { GrumpidolarsComponent } from './grumpidolars/grumpidolars.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -53,7 +50,7 @@ import { ProfileComponent } from './profesor-admin/profile/profile-profesor.comp
   templateUrl: './admin-screen.component.html',
   styleUrl: './admin-screen.component.scss',
 })
-export class AdminScreenComponent implements OnInit, OnDestroy {
+export class AdminScreenComponent implements OnInit {
   userData: any;
   username: any;
   modalAbierta = false;
@@ -89,10 +86,6 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
       this.getDadataProfesor(this.nameProfesor);
     }
 
-    this.updateTime();
-    this.timer = setInterval(() => {
-      this.updateTime();
-    }, 60000); // Actualiza cada minuto
   }
 
   getDadataProfesor(name: string) {
@@ -150,15 +143,6 @@ export class AdminScreenComponent implements OnInit, OnDestroy {
   logOut() {
     sessionStorage.clear();
     this.router.navigate(['/']);
-  }
-
- ngOnDestroy() {
-    clearInterval(this.timer); // Limpia el intervalo cuando el componente se destruya
-  }
-
-  updateTime() {
-    const now = new Date();
-    this.currentTime = now.toLocaleTimeString(); // Ajusta el formato según tu preferencia
   }
 
 }
