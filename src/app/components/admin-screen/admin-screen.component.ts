@@ -116,10 +116,12 @@ export class AdminScreenComponent implements OnInit {
   }
 
   showSection(section: string) {
+    console.log('Navigating to section:', section);
     if (section) {
       this.showLogo = false;
     }
     this.activeSection = section;
+    console.log('Active section set to:', this.activeSection);
     if (this.activeSection === 'guide') {
       this.navigateToRules();
     }

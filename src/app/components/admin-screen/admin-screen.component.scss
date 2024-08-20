@@ -21,7 +21,7 @@
 
 .scrollable-div {
   overflow-y: auto;
-   max-height: calc(100vh - 150px);
+   max-height: calc(100vh - 100px);
 }
 
 /* Otros estilos específicos que puedas necesitar */
@@ -92,13 +92,20 @@
   }
 }
 
-
 .sidenav {
-  width: 240px;
+  width: 20%;
 }
 
 .sidenav .mat-list-item {
   cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
+
+.nav-link{
+  color: #000000;
 }
 
 h1, h2, h3, p {

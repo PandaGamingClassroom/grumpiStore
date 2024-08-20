@@ -1,96 +1,63 @@
 <app-nav-bar-admin></app-nav-bar-admin>
 
-<mat-sidenav-container class="sidenav-container box">
-  <mat-sidenav mode="side" opened class="sidenav">
-    <mat-nav-list>
-      <mat-list-item (click)="showSection('profile')"
-        >Perfil</mat-list-item
-      >
-      <mat-list-item (click)="showSection('trainers')"
-        >Lista de entrenadores</mat-list-item
-      >
-      <mat-list-item (click)="showSection('profesorado')"  *ngIf="isAdminUser"
-        >Lista de profesores</mat-list-item
-      >
+<!-- Main Content Container -->
+<div class="container-fluid d-flex box">
+  <!-- Sidebar -->
+  <div class="bg-light border-end sidenav">
+    <ul class="nav flex-column mt-3">
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('profile')">Perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"(click)="showSection('trainers')">Lista de entrenadores</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdminUser">
+        <a class="nav-link" (click)="showSection('profesorado')">Lista de profesores</a>
+      </li>
       <hr>
-      <h3 class="d-flex justify-content-center"> <strong>Administración del entrenador </strong></h3>
-      <mat-list-item (click)="showSection('creatures')">Grumpis</mat-list-item>
-      <mat-list-item (click)="showSection('medals')">Medallas</mat-list-item>
-      <mat-list-item (click)="showSection('distintivos')"
-        >Distintivos de liga</mat-list-item
-      >
-      <mat-list-item (click)="showSection('energies')">Energía</mat-list-item>
-      <mat-list-item (click)="showSection('dolars')"
-        >Grumpidólares</mat-list-item
-      >
+      <h3 class="d-flex justify-content-center"><strong>Administración del entrenador</strong></h3>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('creatures')">Grumpis</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('medals')">Medallas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('distintivos')">Distintivos de liga</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('energies')">Energía</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('dolars')">Grumpidólares</a>
+      </li>
       <hr>
-      <h3 class="d-flex justify-content-center"> <strong> Ayuda </strong></h3>
-      <mat-list-item (click)="showSection('guide')"
-        >Guía Grumpi</mat-list-item
-      >
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="container-fluid scrollable-div">
-      <div class="row mb-3 prof_box mt-2">
-        <div class="col">
-          <p class="box-text">
-            <span>👍</span> Bienvenido
-            <strong>{{ nameProfesor }} {{ lastNameProfesor }}</strong> a la
-            GrumpiApp.
-          </p>
-          <p>
-            En este espacio podrá gestionar toda la información referente a sus
-            alumnos para poder comenzar con los Grumpi.
-          </p>
-        </div>
-        <div class="col-2">
-          <div class="row d-flex justify-content-center">
-            <button type="button" class="btn-out btns" (click)="logOut()">
-              Salir
-            </button>
-          </div>
-        </div>
-        <hr />
-        <p class="d-flex justify-content-center">
-          A tu izquierda encontrarás una selección de opciones y a la derecha se
-          mostrará el contenido de la opción seleccionada.
+      <h3 class="d-flex justify-content-center"><strong>Ayuda</strong></h3>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('guide')">Guía Grumpi</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="container-fluid scrollable-div">
+    <div class="row mb-3 prof_box mt-2">
+      <div class="col">
+        <p class="box-text">
+          <span>👍</span> Bienvenido
+          <strong>{{ nameProfesor }} {{ lastNameProfesor }}</strong> a la GrumpiApp.
         </p>
+        <p>En este espacio podrá gestionar toda la información referente a sus alumnos para poder comenzar con los Grumpi.</p>
       </div>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
-            <!-- CONTENIDO -->
-            <div *ngIf="activeSection === 'profile'">
-              <app-profile-profesor></app-profile-profesor>
-            </div>
-            <div *ngIf="activeSection === 'trainers'">
-              <app-trainers-admin></app-trainers-admin>
-            </div>
-            <div *ngIf="activeSection === 'profesorado'">
-              <app-profesor-admin></app-profesor-admin>
-            </div>
-            <div *ngIf="activeSection === 'medals'">
-              <app-medals-admin-screen></app-medals-admin-screen>
-            </div>
-            <div *ngIf="activeSection === 'creatures'">
-              <app-creatures-admin></app-creatures-admin>
-            </div>
-            <div *ngIf="activeSection === 'distintivos'">
-              <app-league-badges></app-league-badges>
-            </div>
-            <div *ngIf="activeSection === 'energies'">
-              <app-energies></app-energies>
-            </div>
-            <div *ngIf="activeSection === 'dolars'">
-              <app-grumpidolars></app-grumpidolars>
-            </div>
-            <div *ngIf="activeSection === 'guide'">
-              <app-rules></app-rules>
-            </div>
-          </div>
+      <div class="col-2">
+        <div class="row d-flex justify-content-center">
+          <button type="button" class="btn-out btns" (click)="logOut()">Salir</button>
         </div>
       </div>
+         <hr />
+    <p class="d-flex justify-content-center">
+      A tu izquierda encontrarás una selección de opciones y a la derecha se mostrará el contenido de la opción seleccionada.
+    </p>
     </div>
 
     <div class="container-fluid">
@@ -125,5 +92,40 @@
         </div>
       </div>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+    <!-- Dynamic Content -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div *ngIf="activeSection === 'profile'">
+            <app-profile-profesor></app-profile-profesor>
+          </div>
+          <div *ngIf="activeSection === 'trainers'">
+            <app-trainers-admin></app-trainers-admin>
+          </div>
+          <div *ngIf="activeSection === 'profesorado'">
+            <app-profesor-admin></app-profesor-admin>
+          </div>
+          <div *ngIf="activeSection === 'medals'">
+            <app-medals-admin-screen></app-medals-admin-screen>
+          </div>
+          <div *ngIf="activeSection === 'creatures'">
+            <app-creatures-admin></app-creatures-admin>
+          </div>
+          <div *ngIf="activeSection === 'distintivos'">
+            <app-league-badges></app-league-badges>
+          </div>
+          <div *ngIf="activeSection === 'energies'">
+            <app-energies></app-energies>
+          </div>
+          <div *ngIf="activeSection === 'dolars'">
+            <app-grumpidolars></app-grumpidolars>
+          </div>
+          <div *ngIf="activeSection === 'guide'">
+            <app-rules></app-rules>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
