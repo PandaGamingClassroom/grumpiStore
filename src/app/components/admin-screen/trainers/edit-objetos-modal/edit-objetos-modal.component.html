@@ -11,89 +11,49 @@
     <div class="accordion accordion-flush" id="inventoryAccordion">
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#grumpisCollapse"
-            aria-expanded="false"
-            aria-controls="grumpisCollapse"
-          >
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#grumpisCollapse" aria-expanded="false" aria-controls="grumpisCollapse">
             Grumpis
           </button>
         </h2>
-        <div
-          id="grumpisCollapse"
-          class="accordion-collapse collapse"
-          data-bs-parent="#inventoryAccordion"
-        >
+        <div id="grumpisCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let grumpi of grumpiList"
-            >
+            <div class="d-flex align-items-center mb-3" *ngFor="let grumpi of uniqueGrumpis">
               <div class="img-creature">
-                <img class="img-fluid me-3" [src]="grumpi.img" alt="Grumpi" />
+                <img class="img-fluid me-3" [src]="grumpi.img_conseguir" alt="Grumpi" />
               </div>
               <div class="delete-options">
-                <input
-                  id="grumpi-{{ grumpi }}"
-                  type="checkbox"
-                  [(ngModel)]="grumpi.toDelete"
-                />
-                <label for="grumpi-{{ grumpi }}" class="form-label"
-                  >Eliminar</label
-                >
+                <input id="grumpi-{{ grumpi.nombre }}" type="checkbox" [(ngModel)]="grumpi.toDelete" />
+                <label for="grumpi-{{ grumpi.nombre }}" class="form-label">
+                  Eliminar
+                </label>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#energiesCollapse"
-            aria-expanded="false"
-            aria-controls="energiesCollapse"
-          >
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#energiesCollapse" aria-expanded="false" aria-controls="energiesCollapse">
             Energías
           </button>
         </h2>
-        <div
-          id="energiesCollapse"
-          class="accordion-collapse collapse"
-          data-bs-parent="#inventoryAccordion"
-        >
+        <div id="energiesCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let objeto of uniqueEnergies"
-            >
+            <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueEnergies">
               <div class="img-creature">
-                <img
-                  class="img-fluid me-3"
-                  [src]="objeto.imagen"
-                  alt="Energías"
-                />
+                <img class="img-fluid me-3" [src]="objeto.imagen" alt="Energías" />
               </div>
               <div class="combat-info flex-grow-1">
                 <p class="mb-0">Total conseguidos: {{ objeto.count }}</p>
               </div>
               <div class="delete-options">
-                <label for="energy-{{ objeto.id }}" class="form-label"
-                  >Cantidad a eliminar</label
-                >
-                <input
-                  id="energy-{{ objeto.id }}"
-                  type="number"
-                  [(ngModel)]="objeto.quantityToDelete"
-                  min="0"
-                  [max]="objeto.count"
-                />
+                <label for="energy-{{ objeto.id }}" class="form-label">Cantidad a eliminar</label>
+                <input id="energy-{{ objeto.id }}" type="number" [(ngModel)]="objeto.quantityToDelete" min="0"
+                  [max]="objeto.count" />
               </div>
             </div>
           </div>
@@ -102,36 +62,19 @@
 
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#medalsCollapse"
-            aria-expanded="false"
-            aria-controls="medalsCollapse"
-          >
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#medalsCollapse" aria-expanded="false" aria-controls="medalsCollapse">
             Medallas
           </button>
         </h2>
-        <div
-          id="medalsCollapse"
-          class="accordion-collapse collapse"
-          data-bs-parent="#inventoryAccordion"
-        >
+        <div id="medalsCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let medalla of uniqueMedals"
-            >
+            <div class="d-flex align-items-center mb-3" *ngFor="let medalla of uniqueMedals">
               <div class="img-creature">
                 <img class="img-fluid me-3" [src]="medalla.url" alt="Medalla" />
               </div>
               <div class="delete-options">
-                <input
-                  id="medal-{{ medalla.nombre }}"
-                  type="checkbox"
-                  [(ngModel)]="medalla.toDelete"
-                />
+                <input id="medal-{{ medalla.nombre }}" type="checkbox" [(ngModel)]="medalla.toDelete" />
                 <label for="medal-{{ medalla.nombre }}" class="form-label">
                   Eliminar
                 </label>
@@ -140,43 +83,24 @@
           </div>
         </div>
       </div>
-      
+
 
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#leagueObjCollapse"
-            aria-expanded="false"
-            aria-controls="leagueObjCollapse"
-          >
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#leagueObjCollapse" aria-expanded="false" aria-controls="leagueObjCollapse">
             Distintivos de liga
           </button>
         </h2>
-        <div
-          id="leagueObjCollapse"
-          class="accordion-collapse collapse"
-          data-bs-parent="#inventoryAccordion"
-        >
+        <div id="leagueObjCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let objeto of objetos?.distintivos_liga"
-            >
+            <div class="d-flex align-items-center mb-3" *ngFor="let objeto of objetos?.distintivos_liga">
               <div class="img-creature">
                 <img class="img-fluid me-3" [src]="objeto" alt="Medalla" />
               </div>
               <div class="delete-options">
-                <input
-                  id="medal-{{ objeto }}"
-                  type="checkbox"
-                  [(ngModel)]="objeto.toDelete"
-                />
-                <label for="medal-{{ objeto }}" class="form-label"
-                  >Eliminar</label
-                >
+                <input id="medal-{{ objeto }}" type="checkbox" [(ngModel)]="objeto.toDelete" />
+                <label for="medal-{{ objeto }}" class="form-label">Eliminar</label>
               </div>
             </div>
           </div>
@@ -185,48 +109,24 @@
 
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#combatObjectsCollapse"
-            aria-expanded="false"
-            aria-controls="combatObjectsCollapse"
-          >
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#combatObjectsCollapse" aria-expanded="false" aria-controls="combatObjectsCollapse">
             Objetos de combate
           </button>
         </h2>
-        <div
-          id="combatObjectsCollapse"
-          class="accordion-collapse collapse"
-          data-bs-parent="#inventoryAccordion"
-        >
+        <div id="combatObjectsCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let objeto of uniqueCombatObjects"
-            >
+            <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueCombatObjects">
               <div class="img-creature">
-                <img
-                  class="img-fluid me-3"
-                  [src]="objeto.imagen"
-                  alt="Objeto de Combate"
-                />
+                <img class="img-fluid me-3" [src]="objeto.imagen" alt="Objeto de Combate" />
               </div>
               <div class="combat-info flex-grow-1">
                 <p class="mb-0">Total conseguidos: {{ objeto.count }}</p>
               </div>
               <div class="delete-options">
-                <label for="combat-{{ objeto.id }}" class="form-label"
-                  >Cantidad a eliminar</label
-                >
-                <input
-                  id="combat-{{ objeto.id }}"
-                  type="number"
-                  [(ngModel)]="objeto.quantityToDelete"
-                  min="0"
-                  [max]="objeto.count"
-                />
+                <label for="combat-{{ objeto.id }}" class="form-label">Cantidad a eliminar</label>
+                <input id="combat-{{ objeto.id }}" type="number" [(ngModel)]="objeto.quantityToDelete" min="0"
+                  [max]="objeto.count" />
               </div>
             </div>
           </div>
@@ -235,48 +135,24 @@
 
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#evolutionObjectsCollapse"
-            aria-expanded="false"
-            aria-controls="evolutionObjectsCollapse"
-          >
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#evolutionObjectsCollapse" aria-expanded="false" aria-controls="evolutionObjectsCollapse">
             Objetos evolutivos
           </button>
         </h2>
-        <div
-          id="evolutionObjectsCollapse"
-          class="accordion-collapse collapse"
-          data-bs-parent="#inventoryAccordion"
-        >
+        <div id="evolutionObjectsCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let objeto of uniqueEvolutionObjects"
-            >
+            <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueEvolutionObjects">
               <div class="img-creature">
-                <img
-                  class="img-fluid me-3"
-                  [src]="objeto.imagen"
-                  alt="Objeto evolutivo"
-                />
+                <img class="img-fluid me-3" [src]="objeto.imagen" alt="Objeto evolutivo" />
               </div>
               <div class="combat-info flex-grow-1">
                 <p class="mb-0">Total conseguidos: {{ objeto.count }}</p>
               </div>
               <div class="delete-options">
-                <label for="evolution-{{ objeto.id }}" class="form-label"
-                  >Cantidad a eliminar</label
-                >
-                <input
-                  id="evolution-{{ objeto.id }}"
-                  type="number"
-                  [(ngModel)]="objeto.quantityToDelete"
-                  min="0"
-                  [max]="objeto.count"
-                />
+                <label for="evolution-{{ objeto.id }}" class="form-label">Cantidad a eliminar</label>
+                <input id="evolution-{{ objeto.id }}" type="number" [(ngModel)]="objeto.quantityToDelete" min="0"
+                  [max]="objeto.count" />
               </div>
             </div>
           </div>
@@ -285,48 +161,24 @@
 
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#rewardsCollapse"
-            aria-expanded="false"
-            aria-controls="rewardsCollapse"
-          >
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#rewardsCollapse" aria-expanded="false" aria-controls="rewardsCollapse">
             Recompensas
           </button>
         </h2>
-        <div
-          id="rewardsCollapse"
-          class="accordion-collapse collapse"
-          data-bs-parent="#inventoryAccordion"
-        >
+        <div id="rewardsCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div
-              class="d-flex align-items-center mb-3"
-              *ngFor="let objeto of uniqueRewards"
-            >
+            <div class="d-flex align-items-center mb-3" *ngFor="let objeto of uniqueRewards">
               <div class="img-creature">
-                <img
-                  class="img-fluid me-3"
-                  [src]="objeto.img"
-                  alt="Recompensa"
-                />
+                <img class="img-fluid me-3" [src]="objeto.img" alt="Recompensa" />
               </div>
               <div class="combat-info flex-grow-1">
                 <p class="mb-0">Total conseguidas: {{ objeto.count }}</p>
               </div>
               <div class="delete-options">
-                <label for="reward-{{ objeto.id }}" class="form-label"
-                  >Cantidad a eliminar</label
-                >
-                <input
-                  id="reward-{{ objeto.id }}"
-                  type="number"
-                  [(ngModel)]="objeto.quantityToDelete"
-                  min="0"
-                  [max]="objeto.count"
-                />
+                <label for="reward-{{ objeto.id }}" class="form-label">Cantidad a eliminar</label>
+                <input id="reward-{{ objeto.id }}" type="number" [(ngModel)]="objeto.quantityToDelete" min="0"
+                  [max]="objeto.count" />
               </div>
             </div>
           </div>

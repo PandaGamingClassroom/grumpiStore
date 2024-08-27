@@ -39,6 +39,7 @@ export class EditObjetosModalComponent implements OnInit {
   uniqueRewards: any[] = [];
   uniqueEnergies: any[] = [];
   uniqueMedals: any[] = [];
+  uniqueGrumpis: any[] = [];
 
   /** Totales de los objetos evolutivos */
   totalLosaAgua: number = 0;
@@ -89,6 +90,7 @@ export class EditObjetosModalComponent implements OnInit {
     this.contadorRecompensas(this.objetos?.recompensas || []);
     this.contadorEnergias(this.objetos?.energias || []);
     this.contadorMedallas(this.objetos?.medallas || []);
+    this.contadorGrumpis(this.objetos?.grumpis || []);
     this.grumpiList = this.objetos?.grumpis || [];
   }
 
@@ -146,8 +148,6 @@ export class EditObjetosModalComponent implements OnInit {
    * @param rewards Obtiene la lista de recompensas del entrenador
    */
   contadorRecompensas(rewards: any) {
-    console.log('Recompensas del entrenador: ', rewards);
-
     const rewardCounts: { [key: string]: any } = {};
 
     for (let reward of rewards) {
@@ -226,9 +226,37 @@ export class EditObjetosModalComponent implements OnInit {
     this.uniqueMedals = Object.values(medallaCounts);
   }
 
+  /**
+   * Función para eliminar Grumpis de la lista del entrenador.
+   * 
+   * @param grumpis Recibe el listado de Grumpis marcados para eliminar.
+   */
+  contadorGrumpis(grumpis: any[]) {
+    const grumpiCounts: { [nombre: string]: any } = {};
+  
+    for (let grumpi of grumpis) {
+      if (!grumpiCounts[grumpi.nombre]) {
+        grumpiCounts[grumpi.nombre] = { ...grumpi, toDelete: false };
+      }
+    }
+  
+    this.uniqueGrumpis = Object.values(grumpiCounts);
+  }
+
   // Ajusta la función para eliminar objetos
   eliminarObjetos() {
     const objetosAEliminar: any[] = [];
+
+    // Grumpis
+    for (const grumpi of this.uniqueGrumpis) {
+      if (grumpi.toDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'grumpi',
+          nombre: grumpi.nombre,
+          cantidad: grumpi.quantityToDelete,
+        });
+      }
+    }
 
     // Energías
     for (const energia of this.uniqueEnergies) {
