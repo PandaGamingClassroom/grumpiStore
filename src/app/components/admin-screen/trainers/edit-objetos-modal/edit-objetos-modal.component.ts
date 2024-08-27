@@ -79,7 +79,7 @@ export class EditObjetosModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public objetos: any,
     private trainersService: TrainerService,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     console.log('Datos iniciales:', this.objetos);
@@ -88,6 +88,7 @@ export class EditObjetosModalComponent implements OnInit {
     this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos || []);
     this.contadorRecompensas(this.objetos?.recompensas || []);
     this.contadorEnergias(this.objetos?.energias || []);
+    this.contadorMedallas(this.objetos?.medallas || []);
     this.grumpiList = this.objetos?.grumpis || [];
   }
 
@@ -212,7 +213,20 @@ export class EditObjetosModalComponent implements OnInit {
     }
   }
 
-  // Función para recolectar los objetos a eliminar y sus cantidades
+  // Ajusta el contador de medallas para que cree objetos de medallas
+  contadorMedallas(medallas: any[]) {
+    const medallaCounts: { [key: string]: any } = {};
+
+    for (let medalla of medallas) {
+      if (!medallaCounts[medalla]) {
+        medallaCounts[medalla] = { url: medalla, toDelete: false };
+      }
+    }
+
+    this.uniqueMedals = Object.values(medallaCounts);
+  }
+
+  // Ajusta la función para eliminar objetos
   eliminarObjetos() {
     const objetosAEliminar: any[] = [];
 
@@ -228,11 +242,11 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Medallas
-    for (const medalla of this.objetos?.medallas) {
+    for (const medalla of this.uniqueMedals) {
       if (medalla.toDelete) {
         objetosAEliminar.push({
           tipo: 'medalla',
-          nombre: medalla, // Aquí podrías necesitar un identificador en lugar del nombre
+          nombre: medalla.url, // Usa `url` aquí si es lo que necesitas
         });
       }
     }
@@ -271,9 +285,10 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     if (objetosAEliminar.length > 0) {
+      console.log('Objetos a eliminar: ', objetosAEliminar);
+
       this.trainersService
         .updateTrainer(this.trainer_name, {
-          // Otros datos del entrenador si es necesario
           objetosAEliminar,
         })
         .subscribe(
@@ -282,7 +297,6 @@ export class EditObjetosModalComponent implements OnInit {
               'Objetos eliminados y entrenador actualizado correctamente:',
               response
             );
-            // Actualizar la interfaz de usuario o estado según sea necesario
             this.close(); // O cualquier otra lógica de cierre o actualización
           },
           (error) => {

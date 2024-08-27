@@ -121,25 +121,26 @@
           <div class="accordion-body">
             <div
               class="d-flex align-items-center mb-3"
-              *ngFor="let objeto of objetos?.medallas"
+              *ngFor="let medalla of uniqueMedals"
             >
               <div class="img-creature">
-                <img class="img-fluid me-3" [src]="objeto" alt="Medalla" />
+                <img class="img-fluid me-3" [src]="medalla.url" alt="Medalla" />
               </div>
               <div class="delete-options">
                 <input
-                  id="medal-{{ objeto }}"
+                  id="medal-{{ medalla.nombre }}"
                   type="checkbox"
-                  [(ngModel)]="objeto.toDelete"
+                  [(ngModel)]="medalla.toDelete"
                 />
-                <label for="medal-{{ objeto }}" class="form-label"
-                  >Eliminar</label
-                >
+                <label for="medal-{{ medalla.nombre }}" class="form-label">
+                  Eliminar
+                </label>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
 
       <div class="accordion-item">
         <h2 class="accordion-header">
