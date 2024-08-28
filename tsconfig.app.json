@@ -1,16 +1,18 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [
-      "node"
-    ]
+    "module": "es2020",
+    "target": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "sourceMap": true
   },
   "files": [
     "src/main.ts",
-    "src/main.server.ts",
-    "server.ts"
+    "src/polyfills.ts"
   ],
   "include": [
     "src/**/*.d.ts"
