@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "http://grumpi-store-server.es/"
+      "dest": "https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/"
     },
     {
       "src": "/(.*)",
