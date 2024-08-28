@@ -7,8 +7,8 @@ import { environment, environmentProd } from '../../../../environment';
   providedIn: 'root',
 })
 export class TrainerService {
-  // private apiUrl = environmentProd.apiUrl;
-  private apiUrl = 'http://localhost:3000/'; // URL del servidor donde se encuentra la API REST
+  private apiUrl = environmentProd.apiUrl;
+  // private apiUrl = 'http://localhost:3000/'; // URL del servidor donde se encuentra la API REST
   private apiUrl_NewUser = environmentProd.apiUrl + '/new-user/';
 
   constructor(private http: HttpClient) {}

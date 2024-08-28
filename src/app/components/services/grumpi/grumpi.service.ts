@@ -7,18 +7,18 @@ import { environment, environmentProd } from '../../../../environment';
   providedIn: 'root',
 })
 export class GrumpiService {
-  // private baseUrl = environmentProd.apiUrl;
-  private baseUrl = 'http://localhost:3000/';
-  private apiUrl = 'http://localhost:3000/upload';
-  private imageUrlEndpoint = 'http://localhost:3000/getImageUrls';
-  private imageMedalsEndpoint = 'http://localhost:3000/getImageMedals';
-  private imageEnergiesEndpoint = 'http://localhost:3000/getImageEnergies';
-  private imageCombatObjects = 'http://localhost:3000/getImageCombatObjects';
-  private imageEvolutionObjects = 'http://localhost:3000/getEvoOBjects';
-  private getGrumpi_list = 'http://localhost:3000/getGrumpis';
-  private rewardsEndpoint = 'http://localhost:3000/getRewards';
-  private encargadosEndpoint = 'http://localhost:3000/getRewards';
-  private distintivosEndpoint = 'http://localhost:3000/getLeagueBadges';
+  private baseUrl = environmentProd.apiUrl;
+  // private baseUrl = 'http://localhost:3000/';
+  private apiUrl = this.baseUrl + 'upload';
+  private imageUrlEndpoint = this.baseUrl + 'getImageUrls';
+  private imageMedalsEndpoint = this.baseUrl + 'getImageMedals';
+  private imageEnergiesEndpoint = this.baseUrl + 'getImageEnergies';
+  private imageCombatObjects = this.baseUrl + 'getImageCombatObjects';
+  private imageEvolutionObjects = this.baseUrl + 'getEvoOBjects';
+  private getGrumpi_list = this.baseUrl + 'getGrumpis';
+  private rewardsEndpoint = this.baseUrl + 'getRewards';
+  private encargadosEndpoint = this.baseUrl + 'getRewards';
+  private distintivosEndpoint = this.baseUrl + 'getLeagueBadges';
 
   imageUrl: string = '';
 
