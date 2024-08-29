@@ -287,9 +287,14 @@
     padding: 0.75rem 2rem;
   }
 }
+
 .custom-modal .mat-dialog-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  max-width: 100%; /* Evita que el modal se salga de la pantalla */
+  width: 100%; /* Asegura que la configuración de ancho en Angular se aplique correctamente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Le da una sombra al modal */
+  border-radius: 8px; /* Redondea los bordes del modal */
 }
