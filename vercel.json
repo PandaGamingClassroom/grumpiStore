@@ -15,6 +15,9 @@
       "dest": "https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
