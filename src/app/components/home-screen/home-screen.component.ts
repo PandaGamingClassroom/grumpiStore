@@ -47,9 +47,11 @@ export class HomeScreenComponent implements OnInit {
     this.dialog.open(BienvenidaModalComponent, {
       disableClose: true,
       autoFocus: true,
+      panelClass: 'custom-modal', // Usamos la clase personalizada para los estilos
       data: {},
     });
   }
+  
 
   abrirLink(url: string) {
     window.open(url, '_blank');

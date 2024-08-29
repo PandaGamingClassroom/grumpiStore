@@ -287,29 +287,23 @@
     padding: 0.75rem 2rem;
   }
 }
-
 .custom-modal {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 100%; /* Evita que el modal se salga de la pantalla */
-  width: 100%; /* Asegura que la configuración de ancho en Angular se aplique correctamente */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Le da una sombra al modal */
-  border-radius: 8px; /* Redondea los bordes del modal */
-}
-
-.mat-dialog-container {
-  width: 90vw;
-  margin: auto;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
+  max-width: 90vw; /* Limitar el ancho máximo a 90% del viewport */
+  width: 100%; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; 
+  padding: 20px; /* Añadir un padding interno para que el contenido no toque los bordes */
+  background-color: white; /* Asegurar que el fondo sea blanco para visibilidad */
+  overflow-y: auto; /* Permitir desplazamiento si el contenido es demasiado alto */
+  max-height: 90vh; /* Limitar la altura máxima para que no salga de la pantalla */
 }
 
 @media (min-width: 600px) {
-  .mat-dialog-container {
-    width: 50vw;
-    max-width: 500px;
+  .custom-modal {
+    max-width: 500px; /* Ancho fijo para pantallas más grandes */
   }
 }
