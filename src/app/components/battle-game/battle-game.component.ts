@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BattleService } from '../services/battle/battle.service';
-import { Attacks, Grumpi } from '../../models/grumpi';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { RouterLink } from '@angular/router';

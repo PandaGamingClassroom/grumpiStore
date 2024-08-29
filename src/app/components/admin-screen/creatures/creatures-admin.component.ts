@@ -15,7 +15,6 @@ import {
   HttpClientModule,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { CartaGrumpi, cartas_grumpi } from '../../../models/grumpi';
 import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
@@ -45,7 +44,6 @@ import { MessageModalComponent } from '../../../segments/message-modal-component
 })
 export class CreaturesAdminComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
-  grumpis: CartaGrumpi[] = cartas_grumpi;
   selectedFile: File | null = null;
   imageUrls: string[] = [];
   trainerList: any[] = [];
