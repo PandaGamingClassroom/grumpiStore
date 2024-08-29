@@ -298,3 +298,21 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Le da una sombra al modal */
   border-radius: 8px; /* Redondea los bordes del modal */
 }
+
+.mat-dialog-container {
+  width: 90vw;
+  max-width: 500px;
+  height: auto;
+  max-height: 90vh;
+  margin: auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .mat-dialog-container {
+    width: 50vw;
+    max-width: 500px;
+  }
+}

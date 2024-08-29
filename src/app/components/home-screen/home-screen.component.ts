@@ -45,9 +45,6 @@ export class HomeScreenComponent implements OnInit {
    */
   openWelcomeDialog() {
     this.dialog.open(BienvenidaModalComponent, {
-      width: '500px',
-      panelClass: 'custom-modal',
-      position: { top: '-40%', left: '34%' },
       disableClose: true,
       autoFocus: true,
       data: {},
