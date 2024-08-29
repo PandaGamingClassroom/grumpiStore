@@ -12,11 +12,14 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/"
+      "dest": "https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/api/$1"
     },
     {
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ]
+  ],
+  "errorPages": {
+    "404": "/404.html"
+  }
 }
