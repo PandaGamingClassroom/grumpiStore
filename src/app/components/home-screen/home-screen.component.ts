@@ -12,13 +12,14 @@ import { MatDialog } from '@angular/material/dialog';
     RouterLink,
     NavBarComponent,
     FooterComponent,
-    BienvenidaModalComponent,
+    BienvenidaModalComponent
   ],
   templateUrl: './home-screen.component.html',
   styleUrl: './home-screen.component.scss',
 })
 export class HomeScreenComponent implements OnInit {
-  constructor(private dialog: MatDialog, private router: Router) {}
+  constructor(private dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.checkAndShowWelcomeDialog();
@@ -31,11 +32,11 @@ export class HomeScreenComponent implements OnInit {
   checkAndShowWelcomeDialog() {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       const welcomeShown = sessionStorage.getItem('welcomeShown');
-
       if (!welcomeShown) {
         this.openWelcomeDialog();
         sessionStorage.setItem('welcomeShown', 'true');
       }
+
     }
   }
 

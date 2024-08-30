@@ -8,21 +8,21 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './bienvenida-modal.component.html',
   styleUrl: './bienvenida-modal.component.scss',
 })
-export class BienvenidaModalComponent implements OnInit{
+export class BienvenidaModalComponent implements OnInit {
 
   username: any;
 
   constructor(
     public dialogRef: MatDialogRef<BienvenidaModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
-ngOnInit(): void {
-      if (typeof window !== 'undefined') {
-        // Verifica si `window` está definido
-        this.username = localStorage.getItem('username');
-      }
-}
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      // Verifica si `window` está definido
+      this.username = localStorage.getItem('username');
+    }
+  }
   closeDialog() {
     this.dialogRef.close();
   }
