@@ -287,23 +287,28 @@
     padding: 0.75rem 2rem;
   }
 }
+
 .custom-modal {
-  position: fixed;
+  position: fixed; /* Mantiene el modal centrado en relación con la ventana */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 90vw; /* Limitar el ancho máximo a 90% del viewport */
-  width: 100%; 
+  transform: translate(-50%, -50%); /* Céntralo en ambas direcciones */
+  width: 90vw; /* Ancho máximo para móviles */
+  max-width: 500px; /* Limita el ancho máximo para pantallas más grandes */
+  max-height: 90vh; /* Limita la altura máxima para evitar que se salga de la pantalla */
+  padding: 20px; /* Añade un margen interno */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px; 
-  padding: 20px; /* Añadir un padding interno para que el contenido no toque los bordes */
-  background-color: white; /* Asegurar que el fondo sea blanco para visibilidad */
-  overflow-y: auto; /* Permitir desplazamiento si el contenido es demasiado alto */
-  max-height: 90vh; /* Limitar la altura máxima para que no salga de la pantalla */
+  border-radius: 8px;
+  background-color: white; /* Establece un fondo blanco */
+  overflow-y: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .custom-modal {
-    max-width: 500px; /* Ancho fijo para pantallas más grandes */
+    width: 500px; /* Ajuste del tamaño para pantallas más grandes */
+    height: auto; /* La altura se ajustará según el contenido */
   }
 }
+
+
+
