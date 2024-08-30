@@ -72,7 +72,7 @@ export class CreaturesAdminComponent implements OnInit {
     private http: HttpClient,
     private dialog: MatDialog,
     private trainersService: TrainerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -232,6 +232,9 @@ export class CreaturesAdminComponent implements OnInit {
       const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
         width: '400px',
         height: '300px',
+        panelClass: 'custom-modal',
+        disableClose: true,
+        autoFocus: true,
         data: data,
       });
       dialogRef.afterClosed().subscribe(() => window.location.reload());

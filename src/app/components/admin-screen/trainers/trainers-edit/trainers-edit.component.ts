@@ -103,6 +103,9 @@ export class TrainersEditComponent implements OnInit {
     const dialogRef = this.dialog.open(EditObjetosModalComponent, {
       width: '600px',
       height: '550px',
+      panelClass: 'custom-modal',
+      disableClose: true,
+      autoFocus: true,
       data: this.data,
     });
 
