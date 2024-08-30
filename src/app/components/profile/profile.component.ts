@@ -8,6 +8,13 @@ import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { FooterComponent } from '../footer/footer.component';
 import { Avatars, lista_avatares } from '../../models/avatars';
 import { BattleGameComponent } from '../battle-game/battle-game.component';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -18,12 +25,15 @@ import { BattleGameComponent } from '../battle-game/battle-game.component';
     CommonModule,
     FooterComponent,
     BattleGameComponent,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent implements OnInit {
+  myForm: FormGroup = new FormGroup({});
   avatar_list: Avatars[] = lista_avatares;
   avatarSelect = '';
   username: string | null = '';
@@ -35,10 +45,15 @@ export class ProfileComponent implements OnInit {
   grumpidolar: string = '';
   combatMarks: number = 0;
 
+  /** Variables para la imagen que sube el entrenador */
+  isTypeSelected: boolean = false;
+  selectedFile: File | null = null;
+
   constructor(
     private avatarService: AvatarService,
     private trainersService: TrainerService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -53,10 +68,24 @@ export class ProfileComponent implements OnInit {
         this.getTrainerData(this.username);
       }
     }
+    this.myForm = this.formBuilder.group({
+      imagen: ['', Validators.required],
+    });
   }
 
   avatarSelected(avatar: any) {
     this.avatarService.setAvatar(avatar.imagen);
+  }
+
+  onFileSelected(event: any) {
+    const selectedType = event.target.value;
+    if (event.target.files && event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+    }
+
+    if (selectedType) {
+      this.isTypeSelected = true;
+    }
   }
 
   loadAvatarFromStorage() {
@@ -64,7 +93,7 @@ export class ProfileComponent implements OnInit {
       // Acceder a localStorage aquí
       const avatar = localStorage.getItem('avatar');
       if (avatar) {
-        this.avatarService.setAvatar(avatar); // Utiliza el servicio para establecer el avatar
+        this.avatarService.setAvatar(avatar);
       }
     } else {
       console.error('localStorage is not supported in this environment.');

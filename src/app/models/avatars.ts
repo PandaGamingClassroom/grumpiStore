@@ -47,9 +47,5 @@ export const lista_avatares: Avatars[] = [
   {
     id: 11,
     imagen: '../../../../assets/avatars/Avatar-8.png',
-  },
-  {
-    id: 12,
-    imagen: '../../../../assets/avatars/avatar-triste.png',
-  },
+  }
 ];

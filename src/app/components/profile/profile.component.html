@@ -74,7 +74,25 @@
                   >
                 </button>
               </div>
-
+              <!-- <form [formGroup]="myForm" (change)="onFileSelected($event)">
+                <div class="row">
+                  <div class="col-4">
+                    <label for="imagen" class="form-label"
+                      ><strong>Selecciona una imagen:</strong></label
+                    >
+                  </div>
+                  <div class="col">
+                    <input
+                      type="file"
+                      id="imagen"
+                      name="imagen"
+                      class="form-control"
+                      formControlName="imagen"
+                      required
+                    />
+                  </div>
+                </div>
+              </form> -->
               <br />
               <hr />
               <h1 style="color: black" id="titulo">
@@ -137,11 +155,11 @@
                     Ver mochila
                   </button>
                 </div>
-                <div class="justify-content-center d-flex mt-3">
+                <!-- <div class="justify-content-center d-flex mt-3">
                   <button type="button" class="button-73" routerLink="/game">
                     Juego
                   </button>
-                </div>
+                </div> -->
                 <!-- <div class="justify-content-center d-flex mt-3">
                   <button type="button" class="button-73" routerLink="/virtual-pet">
                     👾
@@ -234,11 +252,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="scrollable-div">
-
-
-
-        </div>
+        <div class="scrollable-div"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
