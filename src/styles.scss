@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 /* You can add global styles to this file, and also import other style files */
 .btn-config {
@@ -374,3 +375,13 @@ app-footer {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.custom-modal .mat-dialog-container {
+  transform: translate(-50%, -50%) !important; // asegura que el diálogo esté centrado
+  max-width: 80vw; // ajusta según sea necesario
+  max-height: 80vh;
+  overflow: auto; // permite scroll si el contenido es grande
+  position: absolute !important; // fuerza el contenedor a ser absoluto
+}
