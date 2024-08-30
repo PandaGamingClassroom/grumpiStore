@@ -33,6 +33,7 @@ export class VerObjetosModalComponent implements OnInit {
   uniqueRewards: any[] = [];
   uniqueEnergies: any[] = [];
   uniqueMedals: any[] = [];
+  uniqueGrumpis: any[] = [];
 
   /** Totales de los objetos evolutivos */
   totalLosaAgua: number = 0;
@@ -66,17 +67,23 @@ export class VerObjetosModalComponent implements OnInit {
   energiaTierra: number = 0;
   energiaVida: number = 0;
 
+  grumpiList: any[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<VerObjetosModalComponent>,
     @Inject(MAT_DIALOG_DATA) public objetos: any
   ) {}
 
   ngOnInit(): void {
-    this.trainer_name = this.objetos.name;
-    this.contadorObjetosCombate(this.objetos.objetos_combate);
-    this.contadorObjEvolutivos(this.objetos.objetos_evolutivos);
-    this.contadorRecompensas(this.objetos.recompensas);
-    this.contadorEnergias(this.objetos.energias);
+    console.log('Datos iniciales:', this.objetos);
+    this.trainer_name = this.objetos?.name || '';
+    this.contadorObjetosCombate(this.objetos?.objetos_combate || []);
+    this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos || []);
+    this.contadorRecompensas(this.objetos?.recompensas || []);
+    this.contadorEnergias(this.objetos?.energias || []);
+    this.contadorMedallas(this.objetos?.medallas || []);
+    this.contadorGrumpis(this.objetos?.grumpis || []);
+    this.grumpiList = this.objetos?.grumpis || [];
   }
 
   /**
@@ -133,8 +140,6 @@ export class VerObjetosModalComponent implements OnInit {
    * @param rewards Obtiene la lista de recompensas del entrenador
    */
   contadorRecompensas(rewards: any) {
-    console.log('Recompensas del entrenador: ', rewards);
-
     const rewardCounts: { [key: string]: any } = {};
 
     for (let reward of rewards) {
@@ -200,6 +205,37 @@ export class VerObjetosModalComponent implements OnInit {
     }
   }
 
+  // Ajusta el contador de medallas para que cree objetos de medallas
+  contadorMedallas(medallas: any[]) {
+    const medallaCounts: { [key: string]: any } = {};
+
+    for (let medalla of medallas) {
+      if (!medallaCounts[medalla]) {
+        medallaCounts[medalla] = { url: medalla, toDelete: false };
+      }
+    }
+
+    this.uniqueMedals = Object.values(medallaCounts);
+  }
+
+  /**
+   * Función para eliminar Grumpis de la lista del entrenador.
+   * 
+   * @param grumpis Recibe el listado de Grumpis marcados para eliminar.
+   */
+  contadorGrumpis(grumpis: any[]) {
+    const grumpiCounts: { [nombre: string]: any } = {};
+  
+    for (let grumpi of grumpis) {
+      if (!grumpiCounts[grumpi.nombre]) {
+        grumpiCounts[grumpi.nombre] = { ...grumpi, toDelete: false };
+      }
+    }
+  
+    this.uniqueGrumpis = Object.values(grumpiCounts);
+  }
+
+  
   /**
    * Función para cerrar la ventana emergente
    */
