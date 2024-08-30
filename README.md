@@ -67,3 +67,17 @@ límite de retos a realizar a la semana. Del mismo modo, se podría
 adaptar a los cursos deseados.
 
 ![Logo Grumpis](https://github.com/PandaGamingClassroom/grumpiStore/blob/main/src/assets/Logo_v0.1_sinFondo.png)
+
+
+
+
+
+### Desarrollado por:
+:teacher: **Pablo M.O.**
+:technologist: **Dani G.D.**
+
+
+[![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/kennethreitz)
+
+[![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
+
