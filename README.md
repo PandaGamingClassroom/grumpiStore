@@ -66,7 +66,11 @@ cursos. Sin embargo, se podría reducir a un solo curso eliminando el
 límite de retos a realizar a la semana. Del mismo modo, se podría
 adaptar a los cursos deseados.
 
-![Logo Grumpis](https://github.com/PandaGamingClassroom/grumpiStore/blob/main/src/assets/Logo_v0.1_sinFondo.png)
+<p align="center">
+  <img src="https://github.com/PandaGamingClassroom/grumpiStore/blob/main/src/assets/Logo_v0.1_sinFondo.png" alt="Logo Grumpis" width="300"/>
+</p>
+
+
 
 
 
