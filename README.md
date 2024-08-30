@@ -1,3 +1,4 @@
+<p align="center">
 ## 	:point_right: GRUMPI STORE :point_left: ## 
 
 Mediante esta aplicación se pretende acercar la **gamificación** al mundo digital, para que sirva como apoyo o como elemento acompañante 
@@ -69,11 +70,6 @@ adaptar a los cursos deseados.
 <p align="center">
   <img src="https://github.com/PandaGamingClassroom/grumpiStore/blob/main/src/assets/Logo_v0.1_sinFondo.png" alt="Logo Grumpis" width="300"/>
 </p>
-
-
-
-
-
 
 
 ### Desarrollado por:
