@@ -133,7 +133,7 @@ export class SelectTrainerComponent implements OnInit {
 
         selectedTrainers.forEach((trainer) => {
           // Verificamos si el entrenador ya tiene el Grumpi en su lista
-          const alreadyHasGrumpi = trainer.grumpis.some(
+          const alreadyHasGrumpi = Array.isArray(trainer.grumpis) && trainer.grumpis.some(
             (grumpi: any) => grumpi.id === grumpiIdToAdd
           );
 
