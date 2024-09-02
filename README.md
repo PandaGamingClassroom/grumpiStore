@@ -1,4 +1,4 @@
-<p align="center">
+
 ## 	:point_right: GRUMPI STORE :point_left: ## 
 
 Mediante esta aplicación se pretende acercar la **gamificación** al mundo digital, para que sirva como apoyo o como elemento acompañante 
