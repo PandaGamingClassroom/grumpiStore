@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/"
+      "dest": "https://grumpistoreserver.onrender.com"
     },
     {
       "handle": "filesystem"
