@@ -86,7 +86,6 @@ export class EditCompleteDataProfesorComponent implements OnInit {
           },
         });
         dialogRef.afterClosed().subscribe(() => {
-          window.location.reload();
         });
       });
   }

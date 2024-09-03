@@ -237,7 +237,7 @@ export class CreaturesAdminComponent implements OnInit {
         autoFocus: true,
         data: data,
       });
-      dialogRef.afterClosed().subscribe(() => window.location.reload());
+      dialogRef.afterClosed().subscribe();
       this.modalAbierta = true;
     }
   }

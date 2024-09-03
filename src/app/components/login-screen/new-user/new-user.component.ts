@@ -95,7 +95,6 @@ export class NewUserComponent implements OnInit {
           // Puedes realizar acciones después de que se cierre la modal si lo deseas
           dialogRef.afterClosed().subscribe((result) => {
             console.log('La modal se ha cerrado');
-            window.location.reload();
           });
         },
         (error) => {

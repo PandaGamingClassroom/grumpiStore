@@ -89,7 +89,6 @@ export class DeleteProfessorsComponent implements OnInit {
           data: data,
         });
         dialogRef.afterClosed().subscribe(() => {
-          window.location.reload();
         });
       },
       (error) => {

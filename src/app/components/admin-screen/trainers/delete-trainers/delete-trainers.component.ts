@@ -92,7 +92,6 @@ export class DeleteTrainersComponent implements OnInit {
           data: data,
         });
         dialogRef.afterClosed().subscribe(() => {
-          window.location.reload();
         });
       },
       (error) => {

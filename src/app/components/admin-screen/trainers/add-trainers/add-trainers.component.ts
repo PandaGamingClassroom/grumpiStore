@@ -146,7 +146,6 @@ export class AddTrainersComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(() => {
           this.getEntrenadores(this.profesor.id);
-          window.location.reload();
         });
       },
       (error) => {

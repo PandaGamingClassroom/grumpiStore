@@ -82,7 +82,6 @@ export class EditProfesorComponent implements OnInit {
           },
         });
         dialogRef.afterClosed().subscribe(() => {
-          window.location.reload();
         });
       });
   }

@@ -149,7 +149,6 @@ export class MedalsAdminScreenComponent implements OnInit {
         data: data,
       });
       dialogRef.afterClosed().subscribe((result) => {
-        window.location.reload();
       });
       this.modalAbierta = true;
     }
@@ -167,7 +166,6 @@ export class MedalsAdminScreenComponent implements OnInit {
         data: data,
       });
       dialogRef.afterClosed().subscribe((result) => {
-        window.location.reload();
       });
       this.modalAbierta = true;
     }
