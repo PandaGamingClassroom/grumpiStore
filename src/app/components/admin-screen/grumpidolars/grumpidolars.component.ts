@@ -120,7 +120,7 @@ export class GrumpidolarsComponent implements OnInit {
     }
 
     this.trainersService
-      .assignGrumpidolaresToTrainer(trainerName, grumpidolaresNumber)
+      .updateTrainer(trainerName, grumpidolaresNumber)
       .subscribe(
         (response) => {
           this.getDadataProfesor(this.nameProfesor);
