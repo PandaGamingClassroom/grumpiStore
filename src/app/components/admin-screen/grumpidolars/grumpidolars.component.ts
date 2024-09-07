@@ -114,13 +114,16 @@ export class GrumpidolarsComponent implements OnInit {
 
   assignGrumpidolares(trainerName: string, grumpidolares: number): void {
     const grumpidolaresNumber = Number(grumpidolares);
+    const updatedData = {
+      grumpidolar: grumpidolares,
+    };
     if (isNaN(grumpidolaresNumber) || grumpidolaresNumber <= 0) {
       console.error('Grumpidólares debe ser un número positivo.');
       return;
     }
 
     this.trainersService
-      .updateTrainer(trainerName, grumpidolaresNumber)
+      .updateTrainer(trainerName, updatedData)
       .subscribe(
         (response) => {
           this.getDadataProfesor(this.nameProfesor);
