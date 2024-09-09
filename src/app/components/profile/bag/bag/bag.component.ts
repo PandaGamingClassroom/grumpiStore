@@ -47,6 +47,7 @@ export class BagComponent implements OnInit {
   rewards_list: any;
   rewards_total_list: any;
   filteredGrumpis: any[] = [];
+  grumpiList: any[] = [];
 
   /** Totales de las recompensas */
   totalRecompensa1: number = 0;
@@ -107,6 +108,7 @@ export class BagComponent implements OnInit {
           console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
         } else {
           this.trainer = data;
+          this.grumpiList = JSON.parse(this.trainer.grumpis)
           energyTrainer = this.trainer.data.energias;
           this.rewards_list = this.trainer.data.recompensas;
           this.contadorRecompensas(this.rewards_list);
@@ -360,10 +362,10 @@ export class BagComponent implements OnInit {
 
   // Función para filtrar los Grumpis según el término de búsqueda
   get filteredCreaturesImages(): any[] {
-    if (!this.trainer || !this.trainer.data || !this.trainer.data.grumpis) {
+    if (!this.trainer || !this.trainer.data || !this.grumpiList) {
       return [];
     }
-    return this.trainer.data.grumpis.filter((creature: any) =>
+    return this.grumpiList.filter((creature: any) =>
       creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
