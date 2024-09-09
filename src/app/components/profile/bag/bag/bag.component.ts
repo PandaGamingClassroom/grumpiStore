@@ -370,6 +370,8 @@ export class BagComponent implements OnInit {
 
   // Función para filtrar los Grumpis según el término de búsqueda
   get filteredCreaturesImages(): any[] {
+    console.log('Lista de Grumpis para filtrar: ', this.grumpiList);
+    
     if (!this.trainer || !this.trainer.data || !this.grumpiList) {
       return [];
     }
