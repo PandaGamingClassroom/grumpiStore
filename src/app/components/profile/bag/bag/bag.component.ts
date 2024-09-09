@@ -109,13 +109,19 @@ export class BagComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data;
-          try {
-            const parsedGrumpis = JSON.parse(this.trainer.grumpis);
-            this.grumpiList = Array.isArray(parsedGrumpis) ? parsedGrumpis : [];
-          } catch (error) {
-            console.error("Error al parsear los grumpis:", error);
+          if (this.trainer.grumpis && this.trainer.grumpis !== "undefined") {
+            try {
+              this.grumpiList = JSON.parse(this.trainer.grumpis);
+              console.log('Lista de grumpis del entrenador: ', this.grumpiList);
+            } catch (error) {
+              console.error("Error al parsear los grumpis:", error);
+              this.grumpiList = [];
+            }
+          } else {
+            console.warn("El campo grumpis es undefined o null");
             this.grumpiList = [];
           }
+          
           
           energyTrainer = this.trainer.data.energias;
           this.rewards_list = this.trainer.data.recompensas;
