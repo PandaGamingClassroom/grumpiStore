@@ -102,15 +102,28 @@ export class BagComponent implements OnInit {
    */
   getTrainerData(name: string): void {
     let energyTrainer: any;
+    
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+          console.log(data.message);
         } else {
           this.trainer = data;
-          this.grumpiList = JSON.parse(this.trainer.grumpis)
+  
+          // Manejo del array de grumpis
+          try {
+            // Asegúrate de que grumpis no sea nulo o vacío antes de hacer JSON.parse
+            this.grumpiList = this.trainer.grumpis ? JSON.parse(this.trainer.grumpis) : [];
+          } catch (error) {
+            console.error("Error al parsear los grumpis:", error);
+            this.grumpiList = [];
+          }
+  
+          // Energías y otros datos
           energyTrainer = this.trainer.data.energias;
           this.rewards_list = this.trainer.data.recompensas;
+  
+          // Ejecutar contadores con los datos correspondientes
           this.contadorRecompensas(this.rewards_list);
           this.contadorLosas(this.trainer.data.objetos_evolutivos);
           this.contadorObjetosCombate(this.trainer.data.objetos_combate);
@@ -123,6 +136,7 @@ export class BagComponent implements OnInit {
       }
     );
   }
+  
 
   /**
    * Función para hacer un recuento de las energías que tiene el entrenador.
