@@ -101,33 +101,21 @@ export class BagComponent implements OnInit {
    * @param name recibe el nombre del entrenador
    */
   getTrainerData(name: string): void {
-    let energyTrainer: any;
-    
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
         if (data.message) {
           console.log(data.message);
         } else {
-          this.trainer = data;
+          this.trainer = data.data;
           
-          // Verifica si `grumpis` es una cadena válida antes de intentar parsear
-          if (typeof this.trainer.grumpis === 'string' && this.trainer.grumpis.trim() !== '') {
-            try {
-              this.grumpiList = JSON.parse(this.trainer.grumpis);
-              console.log('Lista de grumpis del entrenador: ', this.grumpiList);
-            } catch (error) {
-              console.error("Error al parsear los grumpis:", error);
-              this.grumpiList = [];
-            }
-          } else {
-            console.warn("El campo grumpis es undefined, null o una cadena vacía");
-            this.grumpiList = [];
-          }
+          // `grumpis` ya está como un objeto, así que no necesitas parsear
+          this.grumpiList = this.trainer.grumpis || [];
+          console.log('Lista de grumpis del entrenador: ', this.grumpiList);
           
           // Procesa otros datos del entrenador
-          energyTrainer = this.trainer.data?.energias || [];
+          let energyTrainer = this.trainer.data?.energias || [];
           this.rewards_list = this.trainer.data?.recompensas || [];
-    
+  
           this.contadorRecompensas(this.rewards_list);
           this.contadorLosas(this.trainer.data?.objetos_evolutivos || []);
           this.contadorObjetosCombate(this.trainer.data?.objetos_combate || []);
@@ -140,6 +128,7 @@ export class BagComponent implements OnInit {
       }
     );
   }
+  
   
   
 
