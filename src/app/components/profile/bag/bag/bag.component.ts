@@ -109,9 +109,9 @@ export class BagComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data.data;
+          console.log('ENTRENADOR: ', this.trainer);
           
-          // `grumpis` ya está como un objeto, así que no necesitas parsear
-          this.grumpiList = this.trainer.grumpis || [];
+          this.grumpiList = this.trainer.data.grumpis || [];
           this.cdr.detectChanges(); 
           console.log('Lista de grumpis del entrenador: ', this.grumpiList);
           
@@ -376,7 +376,7 @@ export class BagComponent implements OnInit {
     console.log('Trainer:', this.trainer);
     console.log('Lista de Grumpis para filtrar:', this.grumpiList);
     
-    if (!this.trainer || !this.trainer.data || !this.grumpiList) {
+    if (!this.trainer || !this.grumpiList) {
       console.warn('Datos no disponibles para filtrar.');
       return [];
     }
