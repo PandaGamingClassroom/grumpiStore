@@ -60,20 +60,29 @@
         <input type="text" [(ngModel)]="searchTerm" placeholder="Escribe el nombre del Grumpi..."
           class="form-control mb-3" />
         <div class="row">
-          <!-- Primera mitad de Grumpis -->
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let creature of filteredCreaturesImages.slice(0, filteredCreaturesImages.length / 2)">
-            <div class="img-creature" (click)="openGrumpi(creature)">
-              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" />
+          <div class="row" *ngIf="grumpiList && grumpiList.length > 0">
+            <!-- Primera mitad de Grumpis -->
+            <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+              *ngFor="let creature of filteredCreaturesImages.slice(0, filteredCreaturesImages.length / 2)">
+              <div class="img-creature" (click)="openGrumpi(creature)">
+                <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" />
+              </div>
+            </div>
+
+            <!-- Segunda mitad de Grumpis -->
+            <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+              *ngFor="let creature of filteredCreaturesImages.slice(filteredCreaturesImages.length / 2)">
+              <div class="img-creature" (click)="openGrumpi(creature)">
+                <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" />
+              </div>
             </div>
           </div>
-          <!-- Segunda mitad de Grumpis -->
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let creature of filteredCreaturesImages.slice(filteredCreaturesImages.length / 2)">
-            <div class="img-creature" (click)="openGrumpi(creature)">
-              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" />
-            </div>
+
+          <!-- Mostrar un mensaje si no hay Grumpis disponibles -->
+          <div *ngIf="grumpiList && grumpiList.length === 0">
+            <p>No hay Grumpis disponibles para mostrar.</p>
           </div>
+
         </div>
       </div>
     </div>
