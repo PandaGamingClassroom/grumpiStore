@@ -32,6 +32,7 @@ import { DeleteProfessorsComponent } from './delete-professors/delete-professors
 export class ProfesorAdmin implements OnInit {
   trainers: any[] = [];
   errorGetTrainers: string = 'No se han encontrado profesores';
+  errorGetProfesors: string = 'No se han encontrado profesores';
   getError: boolean = false;
   trainerSelected: string = '';
   profesor: any;
@@ -39,6 +40,7 @@ export class ProfesorAdmin implements OnInit {
   nameProfesor: any;
   lastNameProfesor: any;
   profesors: any[] = [];
+  loading: boolean = true;
 
   constructor(
     private trainersService: TrainerService,
@@ -65,6 +67,7 @@ export class ProfesorAdmin implements OnInit {
       },
       (error) => {
         console.error('Error:', error);
+        this.loading = false; 
       }
     );
   }
@@ -79,9 +82,11 @@ export class ProfesorAdmin implements OnInit {
         console.log('Listado de profesores: ', data);
 
         this.profesors = data.profesoresList;
+        this.loading = false; 
       },
       (error) => {
         console.error('Error:', error);
+        this.loading = false; 
       }
     );
   }
@@ -90,9 +95,11 @@ export class ProfesorAdmin implements OnInit {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data.data;
+        this.loading = false; 
       },
       (error) => {
         console.error('Error:', error);
+        this.loading = false; 
       }
     );
   }
