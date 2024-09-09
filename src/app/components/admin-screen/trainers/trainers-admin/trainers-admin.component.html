@@ -4,7 +4,14 @@
     <strong> Lista de entrenadores </strong>
   </h3>
   <hr class="d-flex justify-content-center mainBoxAdminContent" />
-  <div class="d-flex justify-content-center mainBoxAdminContent">
+
+  <div *ngIf="loading" class="d-flex justify-content-center mt-4">
+    <div class="spinner-grow text-success" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="d-flex justify-content-center mainBoxAdminContent">
     <div class="row">
       <div class="col-2">
         <button
@@ -20,7 +27,8 @@
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center mainBoxAdminContent ">
+
+  <div *ngIf="!loading" class="d-flex justify-content-center mainBoxAdminContent ">
     <div class="list mt-3 box-trainer">
       <p *ngIf="getError">{{ errorGetTrainers }}</p>
       <ul *ngIf="trainers.length > 0" class="scrollable-div">
