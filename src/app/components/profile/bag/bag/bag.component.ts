@@ -109,7 +109,9 @@ export class BagComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data;
-          if (this.trainer.grumpis && this.trainer.grumpis !== "undefined") {
+          
+          // Verifica si `grumpis` es una cadena válida antes de intentar parsear
+          if (typeof this.trainer.grumpis === 'string' && this.trainer.grumpis.trim() !== '') {
             try {
               this.grumpiList = JSON.parse(this.trainer.grumpis);
               console.log('Lista de grumpis del entrenador: ', this.grumpiList);
@@ -118,19 +120,19 @@ export class BagComponent implements OnInit {
               this.grumpiList = [];
             }
           } else {
-            console.warn("El campo grumpis es undefined o null");
+            console.warn("El campo grumpis es undefined, null o una cadena vacía");
             this.grumpiList = [];
           }
           
-          
-          energyTrainer = this.trainer.data.energias;
-          this.rewards_list = this.trainer.data.recompensas;
-  
+          // Procesa otros datos del entrenador
+          energyTrainer = this.trainer.data?.energias || [];
+          this.rewards_list = this.trainer.data?.recompensas || [];
+    
           this.contadorRecompensas(this.rewards_list);
-          this.contadorLosas(this.trainer.data.objetos_evolutivos);
-          this.contadorObjetosCombate(this.trainer.data.objetos_combate);
+          this.contadorLosas(this.trainer.data?.objetos_evolutivos || []);
+          this.contadorObjetosCombate(this.trainer.data?.objetos_combate || []);
           this.contadorEnergias(energyTrainer);
-          this.contadorMedallas(this.trainer.data.medallas);
+          this.contadorMedallas(this.trainer.data?.medallas || []);
         }
       },
       (error) => {
@@ -138,6 +140,7 @@ export class BagComponent implements OnInit {
       }
     );
   }
+  
   
 
   /**
