@@ -8,6 +8,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { FooterComponent } from '../../../footer/footer.component';
 import { GrumpiService } from '../../../services/grumpi/grumpi.service';
+import { ChangeDetectorRef } from '@angular/core';
 import { ViewImageComponent } from '../../../../segments/view-image/view-image.component';
 
 @Component({
@@ -81,7 +82,8 @@ export class BagComponent implements OnInit {
   constructor(
     private trainersService: TrainerService,
     private grumpiService: GrumpiService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -110,6 +112,7 @@ export class BagComponent implements OnInit {
           
           // `grumpis` ya está como un objeto, así que no necesitas parsear
           this.grumpiList = this.trainer.grumpis || [];
+          this.cdr.detectChanges(); 
           console.log('Lista de grumpis del entrenador: ', this.grumpiList);
           
           // Procesa otros datos del entrenador
