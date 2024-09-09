@@ -111,7 +111,7 @@ export class BagComponent implements OnInit {
           this.trainer = data.data;
           console.log('ENTRENADOR: ', this.trainer);
           
-          this.grumpiList = this.trainer.data.grumpis || [];
+          this.grumpiList = this.trainer.grumpis || [];
           this.cdr.detectChanges(); 
           console.log('Lista de grumpis del entrenador: ', this.grumpiList);
           
