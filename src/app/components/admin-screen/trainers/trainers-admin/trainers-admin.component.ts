@@ -38,6 +38,7 @@ export class TrainersAdminComponent implements OnInit {
   username: any;
   nameProfesor: any;
   lastNameProfesor: any;
+  loading: boolean = true;
 
   constructor(
     private trainersService: TrainerService,
@@ -50,11 +51,17 @@ export class TrainersAdminComponent implements OnInit {
     this.getDadataProfesor(this.nameProfesor);
   }
 
+  /**
+   * 
+   * Función para obtener los datos del profesor.
+   * 
+   * @param name Recibe el nombre del profesor
+   */
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+          console.log(data.message);
         } else {
           this.profesor = data.data;
           this.lastNameProfesor = data.data.apellidos;
@@ -63,17 +70,27 @@ export class TrainersAdminComponent implements OnInit {
       },
       (error) => {
         console.error('Error:', error);
+        this.loading = false; 
       }
     );
   }
 
+  /**
+   * 
+   * Función para obtener la lista de entrenadores
+   * del profesor que ha iniciado sesión.
+   * 
+   * @param profesorId Recibe el id del profesor.
+   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data.data;
+        this.loading = false; 
       },
       (error) => {
         console.error('Error:', error);
+        this.loading = false; 
       }
     );
   }

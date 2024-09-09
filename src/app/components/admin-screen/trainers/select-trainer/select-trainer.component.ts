@@ -42,7 +42,7 @@ export class SelectTrainerComponent implements OnInit {
     public dialogRef: MatDialogRef<SelectTrainerComponent>,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data_receive: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
@@ -52,6 +52,12 @@ export class SelectTrainerComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * Función para obtener los datos del profesor.
+   * 
+   * @param name Recibe el nombre del profesor
+   */
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -69,15 +75,22 @@ export class SelectTrainerComponent implements OnInit {
     );
   }
 
+ /**
+  * 
+  * Función para obtener la lista de entrenadores
+  * del profesor que ha iniciado sesión.
+  * 
+  * @param profesorId Recibe el id del profesor.
+  */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainerList = data.data;
-        this.isLoading = false; // Cambiar estado a false cuando los datos están cargados
+        this.isLoading = false;
         console.log('Entrenadores del profesor: ', this.trainerList);
       },
       (error) => {
-        this.isLoading = false; // Cambiar estado a false en caso de error
+        this.isLoading = false;
         console.error('Error:', error);
       }
     );
