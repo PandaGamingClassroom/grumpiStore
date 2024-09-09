@@ -109,21 +109,23 @@ export class BagComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data.data;
+  
+          // Verificar que trainer y grumpis existan
+          this.grumpiList = this.trainer?.grumpis || [];
           console.log('ENTRENADOR: ', this.trainer);
-          
-          this.grumpiList = this.trainer.grumpis || [];
-          this.cdr.detectChanges(); 
           console.log('Lista de grumpis del entrenador: ', this.grumpiList);
           
+          this.cdr.detectChanges();
+          
           // Procesa otros datos del entrenador
-          let energyTrainer = this.trainer.data?.energias || [];
-          this.rewards_list = this.trainer.data?.recompensas || [];
+          let energyTrainer = this.trainer?.data?.energias || [];
+          this.rewards_list = this.trainer?.data?.recompensas || [];
   
           this.contadorRecompensas(this.rewards_list);
-          this.contadorLosas(this.trainer.data?.objetos_evolutivos || []);
-          this.contadorObjetosCombate(this.trainer.data?.objetos_combate || []);
+          this.contadorLosas(this.trainer?.data?.objetos_evolutivos || []);
+          this.contadorObjetosCombate(this.trainer?.data?.objetos_combate || []);
           this.contadorEnergias(energyTrainer);
-          this.contadorMedallas(this.trainer.data?.medallas || []);
+          this.contadorMedallas(this.trainer?.data?.medallas || []);
         }
       },
       (error) => {
@@ -132,9 +134,25 @@ export class BagComponent implements OnInit {
     );
   }
   
+  // Función para filtrar los Grumpis según el término de búsqueda
+  get filteredCreaturesImages(): any[] {
+    console.log('Trainer:', this.trainer);
+    console.log('Lista de Grumpis para filtrar:', this.grumpiList);
   
+    // Verificar que trainer y grumpiList existan
+    if (!this.trainer || !this.grumpiList) {
+      console.warn('Datos no disponibles para filtrar.');
+      return [];
+    }
   
-
+    const filtered = this.grumpiList.filter((creature: any) =>
+      creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  
+    console.log('Filtered Creatures:', filtered);
+    return filtered;
+  }
+  
   /**
    * Función para hacer un recuento de las energías que tiene el entrenador.
    * @param energyOfTrainer Obtiene la lista de energías del entrenador
@@ -369,24 +387,6 @@ export class BagComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {});
-  }
-
-  // Función para filtrar los Grumpis según el término de búsqueda
-  get filteredCreaturesImages(): any[] {
-    console.log('Trainer:', this.trainer);
-    console.log('Lista de Grumpis para filtrar:', this.grumpiList);
-    
-    if (!this.trainer || !this.grumpiList) {
-      console.warn('Datos no disponibles para filtrar.');
-      return [];
-    }
-    
-    const filtered = this.grumpiList.filter((creature: any) =>
-      creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-    
-    console.log('Filtered Creatures:', filtered);
-    return filtered;
   }
   
   
