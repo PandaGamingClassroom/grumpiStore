@@ -373,16 +373,21 @@ export class BagComponent implements OnInit {
 
   // Función para filtrar los Grumpis según el término de búsqueda
   get filteredCreaturesImages(): any[] {
-    console.log('Lista de Grumpis para filtrar: ', this.grumpiList);
+    console.log('Trainer:', this.trainer);
+    console.log('Lista de Grumpis para filtrar:', this.grumpiList);
     
     if (!this.trainer || !this.trainer.data || !this.grumpiList) {
+      console.warn('Datos no disponibles para filtrar.');
       return [];
     }
+    
     const filtered = this.grumpiList.filter((creature: any) =>
       creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+    
     console.log('Filtered Creatures:', filtered);
     return filtered;
   }
+  
   
 }
