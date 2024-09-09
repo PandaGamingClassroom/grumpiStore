@@ -153,6 +153,10 @@ export class BagComponent implements OnInit {
     return filtered;
   }
   
+  handleImageError(creature: any) {
+    console.error('Error al cargar la imagen:', creature.img_conseguir);
+  }
+
   /**
    * Función para hacer un recuento de las energías que tiene el entrenador.
    * @param energyOfTrainer Obtiene la lista de energías del entrenador
