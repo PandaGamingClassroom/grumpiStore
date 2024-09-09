@@ -117,19 +117,19 @@ export class AddTrainersComponent implements OnInit {
   guardarEntrenador() {
     const nuevoUsuario = this.isTrainer
       ? {
-          name: this.myForm.get('trainer_name')?.value,
-          password: this.myForm.get('trainer_pass')?.value,
-          rol: this.myForm.get('trainer_rol')?.value,
-          id_profesor: this.profesor.id,
-        }
+        name: this.myForm.get('trainer_name')?.value,
+        password: this.myForm.get('trainer_pass')?.value,
+        rol: this.myForm.get('trainer_rol')?.value,
+        id_profesor: this.profesor.id,
+      }
       : {
-          nombre: this.myForm.get('trainer_name')?.value,
-          apellidos: this.myForm.get('trainer_lastName')?.value,
-          usuario: this.myForm.get('usuario')?.value,
-          password: this.myForm.get('trainer_pass')?.value,
-          rol: this.myForm.get('trainer_rol')?.value,
-          id_profesor: this.profesor.id,
-        };
+        nombre: this.myForm.get('trainer_name')?.value,
+        apellidos: this.myForm.get('trainer_lastName')?.value,
+        usuario: this.myForm.get('usuario')?.value,
+        password: this.myForm.get('trainer_pass')?.value,
+        rol: this.myForm.get('trainer_rol')?.value,
+        id_profesor: this.profesor.id,
+      };
 
     this.trainersService.postTrainer(nuevoUsuario).subscribe(
       (response) => {
@@ -140,12 +140,8 @@ export class AddTrainersComponent implements OnInit {
         };
         const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
-          height: '300px',
+          height: '250px',
           data: data,
-        });
-
-        dialogRef.afterClosed().subscribe(() => {
-          this.getEntrenadores(this.profesor.id);
         });
       },
       (error) => {

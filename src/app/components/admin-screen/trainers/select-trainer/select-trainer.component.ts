@@ -34,6 +34,7 @@ export class SelectTrainerComponent implements OnInit {
   lastNameProfesor: any;
   nameProfesor: any;
   username: any;
+  isLoading: boolean = true; // Estado de carga
   @Output() selectedTrainerName = new EventEmitter<any>();
 
   constructor(
@@ -45,26 +46,19 @@ export class SelectTrainerComponent implements OnInit {
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
-      // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       this.nameProfesor = localStorage.getItem('nameUser');
       this.getDadataProfesor(this.nameProfesor);
     }
   }
 
-  /**
-   * Función para obtener los datos del profesor que ha iniciado sesión.
-   *
-   * @param name --> Nombre del profesor.
-   */
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+          console.log(data.message);
         } else {
           this.profesor = data;
-          console.log('Profesor: ', this.profesor);
           this.lastNameProfesor = data.data.apellidos;
           this.getEntrenadores(data.data.id);
         }
@@ -75,40 +69,27 @@ export class SelectTrainerComponent implements OnInit {
     );
   }
 
-  /**
-   * Función para obtener los datos de los entrenadores según su profesor.
-   *
-   * @param profesorId --> ID del profesor.
-   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainerList = data.data;
+        this.isLoading = false; // Cambiar estado a false cuando los datos están cargados
         console.log('Entrenadores del profesor: ', this.trainerList);
       },
       (error) => {
+        this.isLoading = false; // Cambiar estado a false en caso de error
         console.error('Error:', error);
       }
     );
   }
 
-  /**
-   * Función para cerrar el componente actual.
-   */
   close() {
     this.dialogRef.close();
   }
 
-  /**
-   *
-   * Función para seleccionar a los entrenadores.
-   * Una vez los entrenadores estén seleccionados, esta información
-   * se envía al componente padre.
-   */
   selectTrainer() {
     console.log('Grumpi recibido: ', this.data_receive);
 
-    // Filtra los entrenadores que están seleccionados
     const selectedTrainers = this.trainerList.filter(
       (trainer) => trainer.selected
     );
@@ -119,28 +100,20 @@ export class SelectTrainerComponent implements OnInit {
           (trainer) => trainer.name
         );
 
-        // Emitir el array de nombres de entrenadores seleccionados
         this.selectedTrainerName.emit(selectedTrainerNames);
-
-        // Cerrar el diálogo y pasar el array de nombres de entrenadores seleccionados como resultado
         this.dialogRef.close(selectedTrainerNames);
       } else {
-        // ID del Grumpi que deseas agregar
-        const grumpiIdToAdd = this.data_receive.id; // ID del Grumpi a verificar
+        const grumpiIdToAdd = this.data_receive.id;
 
-        // Variable para verificar si algún entrenador ya tiene el Grumpi
         let canAddGrumpi = true;
 
         selectedTrainers.forEach((trainer) => {
-          // Verificamos si el entrenador ya tiene el Grumpi en su lista
           const alreadyHasGrumpi = Array.isArray(trainer.grumpis) && trainer.grumpis.some(
             (grumpi: any) => grumpi.id === grumpiIdToAdd
           );
 
           if (alreadyHasGrumpi) {
             canAddGrumpi = false;
-
-            // Mostrar un mensaje de error para este entrenador
             const data = {
               title: '¡Ups, algo se está repitiendo!',
               message: `El entrenador ${trainer.name} ya tiene este Grumpi.`,
@@ -154,16 +127,12 @@ export class SelectTrainerComponent implements OnInit {
           }
         });
 
-        // Si todos los entrenadores seleccionados pueden recibir el Grumpi
         if (canAddGrumpi) {
           const selectedTrainerNames = selectedTrainers.map(
             (trainer) => trainer.name
           );
 
-          // Emitir el array de nombres de entrenadores seleccionados
           this.selectedTrainerName.emit(selectedTrainerNames);
-
-          // Cerrar el diálogo y pasar el array de nombres de entrenadores seleccionados como resultado
           this.dialogRef.close(selectedTrainerNames);
         }
       }
