@@ -373,8 +373,11 @@ export class BagComponent implements OnInit {
     if (!this.trainer || !this.trainer.data || !this.grumpiList) {
       return [];
     }
-    return this.grumpiList.filter((creature: any) =>
+    const filtered = this.grumpiList.filter((creature: any) =>
       creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+    console.log('Filtered Creatures:', filtered);
+    return filtered;
   }
+  
 }
