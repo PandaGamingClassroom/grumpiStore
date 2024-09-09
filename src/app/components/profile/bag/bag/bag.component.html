@@ -2,17 +2,10 @@
 
 <div class="btn-config">
   <button type="button" class="button-73" routerLink="/profile">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-arrow-left-circle-fill"
-      viewBox="0 0 16 16"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
       <path
-        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-      />
+        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
     </svg>
     Atrás
   </button>
@@ -23,78 +16,35 @@
 </h1>
 
 <div class="container text-center bg-box">
-  <ul
-    class="nav nav-pills mb-3 justify-content-center"
-    id="pills-tab"
-    role="tablist"
-  >
+  <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
     <li class="nav-item mt-3 me-3" role="presentation">
-      <button
-        class="active button-73"
-        id="pills-objects-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-objects"
-        type="button"
-        role="tab"
-        aria-controls="pills-objects"
-        aria-selected="true"
-      >
+      <button class="active button-73" id="pills-objects-tab" data-bs-toggle="pill" data-bs-target="#pills-objects"
+        type="button" role="tab" aria-controls="pills-objects" aria-selected="true">
         Grumpis
       </button>
     </li>
     <li class="nav-item mt-3 me-3" role="presentation">
-      <button
-        class="button-73"
-        id="pills-rewards-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-rewards"
-        type="button"
-        role="tab"
-        aria-controls="pills-rewards"
-        aria-selected="false"
-      >
+      <button class="button-73" id="pills-rewards-tab" data-bs-toggle="pill" data-bs-target="#pills-rewards"
+        type="button" role="tab" aria-controls="pills-rewards" aria-selected="false">
         Recompensas
       </button>
     </li>
     <li class="nav-item mt-3 me-3" role="presentation">
-      <button
-        class="button-73"
-        id="pills-evolution-objects-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-evolution-objects"
-        type="button"
-        role="tab"
-        aria-controls="pills-evolution-objects"
-        aria-selected="false"
-      >
+      <button class="button-73" id="pills-evolution-objects-tab" data-bs-toggle="pill"
+        data-bs-target="#pills-evolution-objects" type="button" role="tab" aria-controls="pills-evolution-objects"
+        aria-selected="false">
         Objetos de combate
       </button>
     </li>
     <li class="nav-item mt-3 me-3" role="presentation">
-      <button
-        class="button-73"
-        id="pills-medals-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-medals"
-        type="button"
-        role="tab"
-        aria-controls="pills-medals"
-        aria-selected="false"
-      >
+      <button class="button-73" id="pills-medals-tab" data-bs-toggle="pill" data-bs-target="#pills-medals" type="button"
+        role="tab" aria-controls="pills-medals" aria-selected="false">
         Medallas
       </button>
     </li>
     <li class="nav-item mt-3" role="presentation">
-      <button
-        class="button-73"
-        id="pills-energy-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-energy"
-        type="button"
-        role="tab"
-        aria-controls="pills-energy"
-        aria-selected="false"
-      >
+      <button class="button-73" id="pills-energy-tab" data-bs-toggle="pill" data-bs-target="#pills-energy" type="button"
+        role="tab" aria-controls="pills-energy" aria-selected="false">
         Energías
       </button>
     </li>
@@ -102,107 +52,53 @@
 
   <div class="tab-content" id="pills-tabContent">
     <!-- Grumpis Tab -->
-    <div
-      class="tab-pane fade show active"
-      id="pills-objects"
-      role="tabpanel"
-      aria-labelledby="pills-objects-tab"
-      tabindex="0"
-    >
+    <div class="tab-pane fade show active" id="pills-objects" role="tabpanel" aria-labelledby="pills-objects-tab"
+      tabindex="0">
       <h2 class="box-text"><strong>MIS GRUMPIS</strong></h2>
       <hr />
 
       <div class="container scrollable-div">
-        <input
-          type="text"
-          [(ngModel)]="searchTerm"
-          placeholder="Escribe el nombre del Grumpi..."
-          class="form-control mb-3"
-        />
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Escribe el nombre del Grumpi..."
+          class="form-control mb-3" />
         <div class="row">
-          <!-- Primera mitad de grumpis -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let creature of filteredCreaturesImages.slice(
-                0,
-                filteredCreaturesImages.length / 2
-              )
-            "
-          >
-            <div class="img-creature">
-              <img
-                class="img-fluid"
-                src="{{ creature.img_conseguir }}"
-                alt="Grumpi"
-                (click)="openGrumpi(creature)"
-              />
+          <!-- Primera mitad de Grumpis -->
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="let creature of filteredCreaturesImages.slice(0, filteredCreaturesImages.length / 2)">
+            <div class="img-creature" (click)="openGrumpi(creature)">
+              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" />
             </div>
           </div>
 
-          <!-- Segunda mitad de grumpis -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="
-              let creature of filteredCreaturesImages.slice(
-                filteredCreaturesImages.length / 2,
-                filteredCreaturesImages.length
-              )
-            "
-          >
-            <div class="img-creature">
-              <img
-                class="img-fluid"
-                src="{{ creature.img_conseguir }}"
-                alt="Grumpi"
-                (click)="openGrumpi(creature)"
-              />
+          <!-- Segunda mitad de Grumpis -->
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="let creature of filteredCreaturesImages.slice(filteredCreaturesImages.length / 2)">
+            <div class="img-creature" (click)="openGrumpi(creature)">
+              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" />
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- Recompensas Tab -->
-    <div
-      class="tab-pane fade"
-      id="pills-rewards"
-      role="tabpanel"
-      aria-labelledby="pills-rewards-tab"
-      tabindex="0"
-    >
+    <div class="tab-pane fade" id="pills-rewards" role="tabpanel" aria-labelledby="pills-rewards-tab" tabindex="0">
       <h2 class="box-text"><strong>MIS RECOMPENSAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
           <!-- Primera mitad de recompensas -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let reward of uniqueRewards"
-          >
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let reward of uniqueRewards">
             <div class="img-creature">
-              <img
-                class="img-fluid me-3"
-                src="{{ reward.img }}"
-                alt="Recompensa"
-                (click)="openReward(reward)"
-              />
+              <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" />
               <p>Tienes un total de: {{reward.count}}</p>
             </div>
           </div>
 
           <!-- Segunda mitad de recompensas -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let reward of uniqueRewards"
-          >
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let reward of uniqueRewards">
             <div class="img-creature">
-              <img
-                class="img-fluid me-3"
-                src="{{ reward.img }}"
-                alt="Recompensa"
-                (click)="openReward(reward)"
-              />
+              <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" />
               <p>Tienes un total de: {{reward.count}}</p>
             </div>
           </div>
@@ -211,28 +107,17 @@
     </div>
 
     <!-- Objetos de Combate Tab -->
-    <div
-      class="tab-pane fade"
-      id="pills-evolution-objects"
-      role="tabpanel"
-      aria-labelledby="pills-evolution-objects-tab"
-      tabindex="0"
-    >
+    <div class="tab-pane fade" id="pills-evolution-objects" role="tabpanel"
+      aria-labelledby="pills-evolution-objects-tab" tabindex="0">
       <h2 class="box-text"><strong>MIS OBJETOS DE COMBATE</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let combatObject of uniqueCombatObjects"
-          >
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="let combatObject of uniqueCombatObjects">
             <div class="img-creature">
-              <img
-                class="img-fluid me-3"
-                src="{{ combatObject.imagen }}"
-                alt="Objeto de Combate"
-                (click)="openCombatObject(combatObject)"
-              />
+              <img class="img-fluid me-3" src="{{ combatObject.imagen }}" alt="Objeto de Combate"
+                (click)="openCombatObject(combatObject)" />
               <p>Total conseguidos: {{ combatObject.count }}</p>
             </div>
           </div>
@@ -241,29 +126,16 @@
     </div>
 
     <!-- Medallas Tab -->
-    <div
-      class="tab-pane fade"
-      id="pills-medals"
-      role="tabpanel"
-      aria-labelledby="pills-medals-tab"
-      tabindex="0"
-    >
+    <div class="tab-pane fade" id="pills-medals" role="tabpanel" aria-labelledby="pills-medals-tab" tabindex="0">
       <h2 class="box-text"><strong>MIS MEDALLAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
           <!-- Primera mitad de medallas -->
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let medal of this.trainer?.data?.medallas"
-          >
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="let medal of this.trainer?.data?.medallas">
             <div class="img-creature">
-              <img
-                class="img-fluid"
-                src="{{ medal }}"
-                alt="Medalla"
-                (click)="openMedal(medal)"
-              />
+              <img class="img-fluid" src="{{ medal }}" alt="Medalla" (click)="openMedal(medal)" />
             </div>
           </div>
 
@@ -272,28 +144,14 @@
     </div>
 
     <!-- Energías Tab -->
-    <div
-      class="tab-pane fade"
-      id="pills-energy"
-      role="tabpanel"
-      aria-labelledby="pills-energy-tab"
-      tabindex="0"
-    >
+    <div class="tab-pane fade" id="pills-energy" role="tabpanel" aria-labelledby="pills-energy-tab" tabindex="0">
       <h2 class="box-text"><strong>MIS ENERGÍAS</strong></h2>
       <hr />
       <div class="container scrollable-div">
         <div class="row">
-          <div
-            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let energy of uniqueEnergies"
-          >
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let energy of uniqueEnergies">
             <div class="img-creature">
-              <img
-                class="img-fluid me-3"
-                src="{{ energy.imagen }}"
-                alt="Energía"
-                (click)="openEnergy(energy)"
-              />
+              <img class="img-fluid me-3" src="{{ energy.imagen }}" alt="Energía" (click)="openEnergy(energy)" />
               <p>Total conseguidas: {{ energy.count }}</p>
             </div>
           </div>

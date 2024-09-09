@@ -110,13 +110,13 @@ export class BagComponent implements OnInit {
         } else {
           this.trainer = data;
           try {
-            this.grumpiList = this.trainer.grumpis ? JSON.parse(this.trainer.grumpis) : [];
-            console.log('Lista de grumpis del entrenador: ', this.grumpiList);
-            
+            const parsedGrumpis = JSON.parse(this.trainer.grumpis);
+            this.grumpiList = Array.isArray(parsedGrumpis) ? parsedGrumpis : [];
           } catch (error) {
             console.error("Error al parsear los grumpis:", error);
             this.grumpiList = [];
           }
+          
           energyTrainer = this.trainer.data.energias;
           this.rewards_list = this.trainer.data.recompensas;
   
