@@ -115,16 +115,13 @@ export class BagComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data.data;
-  
-          // Verificar que trainer y grumpis existan
           this.grumpiList = this.trainer?.grumpis || [];
           console.log('ENTRENADOR: ', this.trainer);
           console.log('Lista de grumpis del entrenador: ', this.grumpiList);
           
           this.cdr.detectChanges();
           
-          // Procesa otros datos del entrenador
-          let energyTrainer = this.trainer?.data?.energias || [];
+          let energyTrainer = this.trainer?.data?.energies || [];
           this.rewards_list = this.trainer?.data?.recompensas || [];
   
           this.contadorRecompensas(this.rewards_list);
