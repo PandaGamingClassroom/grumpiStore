@@ -147,14 +147,15 @@ export class TrainersAdminComponent implements OnInit {
       width: '700px',
       height: '600px',
     });
-
+  
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Nuevo entrenador:', result);
+        console.log('Nuevo entrenador añadido:', result);
         this.getEntrenadores(this.profesor.id);
       }
     });
   }
+  
 
   /**
    * Función para abrir una ventana emergente en la cual se elimina al entrenador seleccionado.
