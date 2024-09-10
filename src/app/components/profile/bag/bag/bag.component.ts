@@ -120,8 +120,8 @@ export class BagComponent implements OnInit {
           
           this.cdr.detectChanges();
           
-          let energyTrainer = this.trainer?.data?.energies || [];
-          this.rewards_list = this.trainer?.data?.recompensas || [];
+          let energyTrainer = this.trainer?.energies || [];
+          this.rewards_list = this.trainer?.recompensas || [];
   
           this.contadorRecompensas(this.rewards_list);
           this.contadorLosas(this.trainer?.data?.objetos_evolutivos || []);
