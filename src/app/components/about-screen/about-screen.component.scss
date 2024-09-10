@@ -2,7 +2,20 @@
   padding: 5%;
 }
 
-.chibiBox{
-  width: 20%;
-  height: 90%;
+.chibiBox {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .chibiBox {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  .chibiBox {
+    max-width: 100px;
+  }
 }
