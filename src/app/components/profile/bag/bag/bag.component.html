@@ -17,212 +17,95 @@
   </h1>
 </div>
 
-
 <div class="container text-center bg-box">
-
-
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Dropdown
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      Selecciona una opción
     </button>
-    <ul class="dropdown-menu">
-      <li class="nav-item mt-3 me-3" role="presentation">
-        <button class="active button-73" id="pills-objects-tab" data-bs-toggle="pill" data-bs-target="#pills-objects"
-          type="button" role="tab" aria-controls="pills-objects" aria-selected="true">
-          Grumpis
-        </button>
-      </li>
-      <li class="nav-item mt-3 me-3" role="presentation">
-        <button class="button-73" id="pills-rewards-tab" data-bs-toggle="pill" data-bs-target="#pills-rewards"
-          type="button" role="tab" aria-controls="pills-rewards" aria-selected="false">
-          Recompensas
-        </button>
-      </li>
-      <li class="nav-item mt-3 me-3" role="presentation">
-        <button class="button-73" id="pills-evolution-objects-tab" data-bs-toggle="pill"
-          data-bs-target="#pills-evolution-objects" type="button" role="tab" aria-controls="pills-evolution-objects"
-          aria-selected="false">
-          Objetos de combate
-        </button>
-      </li>
-      <li class="nav-item mt-3 me-3" role="presentation">
-        <button class="button-73" id="pills-medals-tab" data-bs-toggle="pill" data-bs-target="#pills-medals" type="button"
-          role="tab" aria-controls="pills-medals" aria-selected="false">
-          Medallas
-        </button>
-      </li>
-      <li class="nav-item mt-3" role="presentation">
-        <button class="button-73" id="pills-energy-tab" data-bs-toggle="pill" data-bs-target="#pills-energy" type="button"
-          role="tab" aria-controls="pills-energy" aria-selected="false">
-          Energías
-        </button>
-      </li>
-      <li class="nav-item mt-3" role="presentation">
-        <button class="button-73" id="pills-league-tab" data-bs-toggle="pill" data-bs-target="#pills-league" type="button"
-          role="tab" aria-controls="pills-league" aria-selected="false">
-          Distintivos de liga
-        </button>
-      </li>
-      <li class="nav-item mt-3" role="presentation">
-        <button class="button-73" id="pills-evolution-tab" data-bs-toggle="pill" data-bs-target="#pills-evolution"
-          type="button" role="tab" aria-controls="pills-evolution" aria-selected="false">
-          Objetos evolutivos
-        </button>
-      </li>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li><button class="dropdown-item" (click)="showContent('grumpis')">Grumpis</button></li>
+      <li><button class="dropdown-item" (click)="showContent('rewards')">Recompensas</button></li>
+      <li><button class="dropdown-item" (click)="showContent('combatObjects')">Objetos de combate</button></li>
+      <li><button class="dropdown-item" (click)="showContent('medals')">Medallas</button></li>
+      <li><button class="dropdown-item" (click)="showContent('energies')">Energías</button></li>
+      <li><button class="dropdown-item" (click)="showContent('league')">Distintivos de liga</button></li>
+      <li><button class="dropdown-item" (click)="showContent('evolution')">Objetos evolutivos</button></li>
     </ul>
   </div>
 
-
-  <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-    <li class="nav-item mt-3 me-3" role="presentation">
-      <button class="active button-73" id="pills-objects-tab" data-bs-toggle="pill" data-bs-target="#pills-objects"
-        type="button" role="tab" aria-controls="pills-objects" aria-selected="true">
-        Grumpis
-      </button>
-    </li>
-    <li class="nav-item mt-3 me-3" role="presentation">
-      <button class="button-73" id="pills-rewards-tab" data-bs-toggle="pill" data-bs-target="#pills-rewards"
-        type="button" role="tab" aria-controls="pills-rewards" aria-selected="false">
-        Recompensas
-      </button>
-    </li>
-    <li class="nav-item mt-3 me-3" role="presentation">
-      <button class="button-73" id="pills-evolution-objects-tab" data-bs-toggle="pill"
-        data-bs-target="#pills-evolution-objects" type="button" role="tab" aria-controls="pills-evolution-objects"
-        aria-selected="false">
-        Objetos de combate
-      </button>
-    </li>
-    <li class="nav-item mt-3 me-3" role="presentation">
-      <button class="button-73" id="pills-medals-tab" data-bs-toggle="pill" data-bs-target="#pills-medals" type="button"
-        role="tab" aria-controls="pills-medals" aria-selected="false">
-        Medallas
-      </button>
-    </li>
-    <li class="nav-item mt-3" role="presentation">
-      <button class="button-73" id="pills-energy-tab" data-bs-toggle="pill" data-bs-target="#pills-energy" type="button"
-        role="tab" aria-controls="pills-energy" aria-selected="false">
-        Energías
-      </button>
-    </li>
-    <li class="nav-item mt-3" role="presentation">
-      <button class="button-73" id="pills-league-tab" data-bs-toggle="pill" data-bs-target="#pills-league" type="button"
-        role="tab" aria-controls="pills-league" aria-selected="false">
-        Distintivos de liga
-      </button>
-    </li>
-    <li class="nav-item mt-3" role="presentation">
-      <button class="button-73" id="pills-evolution-tab" data-bs-toggle="pill" data-bs-target="#pills-evolution"
-        type="button" role="tab" aria-controls="pills-evolution" aria-selected="false">
-        Objetos evolutivos
-      </button>
-    </li>
-  </ul>
-
-  <div class="tab-content" id="pills-tabContent">
-    <!-- Grumpis Tab -->
-    <div class="tab-pane fade show active" id="pills-objects" role="tabpanel" aria-labelledby="pills-objects-tab"
-      tabindex="0">
-      <h2 class="box-text"><strong>MIS GRUMPIS</strong></h2>
-      <hr />
-      <div class="container scrollable-div">
-        <input type="text" [(ngModel)]="searchTerm" placeholder="Escribe el nombre del Grumpi..."
-          class="form-control mb-3" />
-        <div class="row">
-          <div class="row" *ngIf="grumpiList && grumpiList.length > 0">
-            <!-- Primera mitad de Grumpis -->
-            <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-              *ngFor="let creature of filteredCreaturesImages.slice(0, filteredCreaturesImages.length / 2)">
-              <div class="img-creature" (click)="openGrumpi(creature)">
-                <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}"
-                  (error)="handleImageError(creature)" />
-              </div>
-            </div>
-
-            <!-- Segunda mitad de Grumpis -->
-            <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-              *ngFor="let creature of filteredCreaturesImages.slice(filteredCreaturesImages.length / 2)">
-              <div class="img-creature" (click)="openGrumpi(creature)">
-                <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}"
-                  (error)="handleImageError(creature)" />
-              </div>
+  <div *ngIf="selectedContent === 'grumpis'">
+    <h2 class="box-text"><strong>MIS GRUMPIS</strong></h2>
+    <hr />
+    <div class="container scrollable-div">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Escribe el nombre del Grumpi..." class="form-control mb-3" />
+      <div class="row">
+        <div class="row" *ngIf="grumpiList && grumpiList.length > 0">
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="let creature of filteredCreaturesImages.slice(0, filteredCreaturesImages.length / 2)">
+            <div class="img-creature" (click)="openGrumpi(creature)">
+              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" />
             </div>
           </div>
 
-          <!-- Mostrar un mensaje si no hay Grumpis disponibles -->
-          <div *ngIf="grumpiList && grumpiList.length === 0">
-            <p>No hay Grumpis disponibles para mostrar.</p>
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="let creature of filteredCreaturesImages.slice(filteredCreaturesImages.length / 2)">
+            <div class="img-creature" (click)="openGrumpi(creature)">
+              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" />
+            </div>
           </div>
+        </div>
 
+        <div *ngIf="grumpiList && grumpiList.length === 0">
+          <p>No hay Grumpis disponibles para mostrar.</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Recompensas Tab -->
-    <div class="tab-pane fade" id="pills-rewards" role="tabpanel" aria-labelledby="pills-rewards-tab" tabindex="0">
-      <h2 class="box-text"><strong>MIS RECOMPENSAS</strong></h2>
-      <hr />
-      <div class="container scrollable-div">
-        <div class="row">
-          <!-- Primera mitad de recompensas -->
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let reward of uniqueRewards">
-            <div class="img-creature">
-              <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" />
-              <p>Tienes un total de: {{reward.count}}</p>
-            </div>
-          </div>
-
-          <!-- Segunda mitad de recompensas -->
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let reward of uniqueRewards">
-            <div class="img-creature">
-              <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" />
-              <p>Tienes un total de: {{reward.count}}</p>
-            </div>
+  <div *ngIf="selectedContent === 'rewards'">
+    <h2 class="box-text"><strong>MIS RECOMPENSAS</strong></h2>
+    <hr />
+    <div class="container scrollable-div">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let reward of uniqueRewards">
+          <div class="img-creature">
+            <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" />
+            <p>Tienes un total de: {{reward.count}}</p>
           </div>
         </div>
         <div *ngIf="uniqueRewards && uniqueRewards.length === 0">
           <p>Aún no tienes recompensas.</p>
         </div>
-
       </div>
     </div>
+  </div>
 
-    <!-- Objetos de Combate Tab -->
-    <div class="tab-pane fade" id="pills-evolution-objects" role="tabpanel"
-      aria-labelledby="pills-evolution-objects-tab" tabindex="0">
-      <h2 class="box-text"><strong>MIS OBJETOS DE COMBATE</strong></h2>
-      <hr />
-      <div class="container scrollable-div">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let combatObject of uniqueCombatObjects">
-            <div class="img-creature">
-              <img class="img-fluid me-3" src="{{ combatObject.imagen }}" alt="Objeto de Combate"
-                (click)="openCombatObject(combatObject)" />
-              <p>Total conseguidos: {{ combatObject.count }}</p>
-            </div>
+  <div *ngIf="selectedContent === 'combatObjects'">
+    <h2 class="box-text"><strong>MIS OBJETOS DE COMBATE</strong></h2>
+    <hr />
+    <div class="container scrollable-div">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let combatObject of uniqueCombatObjects">
+          <div class="img-creature">
+            <img class="img-fluid me-3" src="{{ combatObject.imagen }}" alt="Objeto de Combate" (click)="openCombatObject(combatObject)" />
+            <p>Total conseguidos: {{ combatObject.count }}</p>
           </div>
         </div>
-
         <div *ngIf="uniqueCombatObjects && uniqueCombatObjects.length === 0">
           <p>Aún no tienes objetos de combate.</p>
         </div>
-
       </div>
     </div>
+  </div>
 
-    <!-- Medallas Tab -->
-    <div class="tab-pane fade" id="pills-medals" role="tabpanel" aria-labelledby="pills-medals-tab" tabindex="0">
-      <h2 class="box-text"><strong>MIS MEDALLAS</strong></h2>
-      <hr />
-      <div class="container scrollable-div">
-        <div class="row">
-          <!-- Primera mitad de medallas -->
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let medal of this.trainer?.data?.medallas">
-            <div class="img-creature">
-              <img class="img-fluid" src="{{ medal }}" alt="Medalla" (click)="openMedal(medal)" />
-            </div>
+  <div *ngIf="selectedContent === 'medals'">
+    <h2 class="box-text"><strong>MIS MEDALLAS</strong></h2>
+    <hr />
+    <div class="container scrollable-div">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let medal of this.trainer?.data?.medallas">
+          <div class="img-creature">
+            <img class="img-fluid" src="{{ medal }}" alt="Medalla" (click)="openMedal(medal)" />
           </div>
         </div>
         <div *ngIf="trainer?.data?.medallas && trainer?.data?.medallas.length === 0">
@@ -230,18 +113,17 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Energías Tab -->
-    <div class="tab-pane fade" id="pills-energy" role="tabpanel" aria-labelledby="pills-energy-tab" tabindex="0">
-      <h2 class="box-text"><strong>MIS ENERGÍAS</strong></h2>
-      <hr />
-      <div class="container scrollable-div">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let energy of uniqueEnergies">
-            <div class="img-creature">
-              <img class="img-fluid me-3" src="{{ energy.imagen }}" alt="Energía" (click)="openEnergy(energy)" />
-              <p>Total conseguidas: {{ energy.count }}</p>
-            </div>
+  <div *ngIf="selectedContent === 'energies'">
+    <h2 class="box-text"><strong>MIS ENERGÍAS</strong></h2>
+    <hr />
+    <div class="container scrollable-div">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let energy of uniqueEnergies">
+          <div class="img-creature">
+            <img class="img-fluid me-3" src="{{ energy.imagen }}" alt="Energía" (click)="openEnergy(energy)" />
+            <p>Total conseguidas: {{ energy.count }}</p>
           </div>
         </div>
         <div *ngIf="uniqueEnergies && uniqueEnergies.length === 0">
@@ -249,32 +131,28 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Distintivos de liga -->
-    <div class="tab-pane fade" id="pills-league" role="tabpanel" aria-labelledby="pills-league-tab" tabindex="0">
-      <h2 class="box-text"><strong>MIS DISTINTIVOS DE LIGA</strong></h2>
-      <hr />
-      <div class="container scrollable-div">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
-            <p> EN CONSTRUCCIÓN </p>
-          </div>
+  <div *ngIf="selectedContent === 'league'">
+    <h2 class="box-text"><strong>MIS DISTINTIVOS DE LIGA</strong></h2>
+    <hr />
+    <div class="container scrollable-div">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
+          <p> EN CONSTRUCCIÓN </p>
         </div>
-
       </div>
     </div>
+  </div>
 
-    <!-- Objetos evolutivos -->
-    <div class="tab-pane fade" id="pills-evolution" role="tabpanel" aria-labelledby="pills-evolution-tab" tabindex="0">
-      <h2 class="box-text"><strong>MIS OBJETOS EVOLUTIVOS</strong></h2>
-      <hr />
-      <div class="container scrollable-div">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
-            <p> EN CONSTRUCCIÓN </p>
-          </div>
+  <div *ngIf="selectedContent === 'evolution'">
+    <h2 class="box-text"><strong>MIS OBJETOS EVOLUTIVOS</strong></h2>
+    <hr />
+    <div class="container scrollable-div">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
+          <p> EN CONSTRUCCIÓN </p>
         </div>
-
       </div>
     </div>
   </div>

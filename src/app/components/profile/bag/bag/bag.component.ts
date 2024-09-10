@@ -50,6 +50,8 @@ export class BagComponent implements OnInit {
   filteredGrumpis: any[] = [];
   grumpiList: any[] = [];
 
+  selectedContent: string = 'grumpis';
+
   /** Totales de las recompensas */
   totalRecompensa1: number = 0;
   totalRecompensa2: number = 0;
@@ -98,6 +100,10 @@ export class BagComponent implements OnInit {
     }
   }
 
+  showContent(content: string) {
+    this.selectedContent = content;
+  }
+  
   /**
    * Función para obtener información sobre el entrenador que ha iniciado sesión
    * @param name recibe el nombre del entrenador
