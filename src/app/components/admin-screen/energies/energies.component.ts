@@ -67,6 +67,7 @@ export class EnergiesComponent implements OnInit {
     });
 
     this.getTrainers();
+    this.getEnergies();
   }
 
   getTrainers() {
