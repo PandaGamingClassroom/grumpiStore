@@ -139,7 +139,7 @@ export class AddTrainersComponent implements OnInit {
           message: `El ${stringMessage} se ha añadido correctamente.`,
         };
         this.close();
-        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+        this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
           height: '250px',
           data: data,
@@ -152,6 +152,7 @@ export class AddTrainersComponent implements OnInit {
   }
 
   close() {
+    this.getDataProfesor(this.nameProfesor);
     this.dialogRef.close();
   }
 }
