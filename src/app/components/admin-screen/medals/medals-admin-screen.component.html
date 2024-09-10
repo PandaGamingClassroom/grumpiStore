@@ -45,7 +45,7 @@
         </div>
         <div class="img-creature" *ngFor="let imageUrl of filteredMedalsImages">
           <div class="row">
-            <div class="col"><img [src]="imageUrl" alt="Imagen" /></div>
+            <div class="col"><img srcset="{{imageUrl.imagen}}" alt="{{imageUrl.nombre}}" /></div>
             <div class="col">
               <button
                 type="button"

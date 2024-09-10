@@ -54,8 +54,8 @@ export class GrumpiService {
    * Función para obtener las imágenes de las medallas almacenadas
    * @returns lista de imágenes
    */
-  getImageMedals(): Observable<{ imageUrls: string[] }> {
-    return this.http.get<{ imageUrls: string[] }>(this.imageMedalsEndpoint);
+  getImageMedals(): Observable<any> {
+    return this.http.get<any>(this.imageMedalsEndpoint);
   }
 
   /**

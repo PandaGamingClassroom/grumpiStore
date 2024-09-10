@@ -40,7 +40,7 @@ import { FooterComponent } from '../../footer/footer.component';
 export class MedalsAdminScreenComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
   selectedFile: File | null = null;
-  medalsImages: string[] = [];
+  medalsImages: any[] = [];
   uploadUrl: string = url_upload_medals;
   modalAbierta = false;
   confirmMessage: string = 'Medalla añadida correctamente.';
@@ -128,7 +128,7 @@ export class MedalsAdminScreenComponent implements OnInit {
   loadmedalsImages() {
     this.grumpiService.getImageMedals().subscribe(
       (response) => {
-        this.medalsImages = response.imageUrls;
+        this.medalsImages = response.medals_list;
         console.log('URL: ', this.medalsImages);
       },
       (error) => {
@@ -188,9 +188,9 @@ export class MedalsAdminScreenComponent implements OnInit {
       });
   }
 
-  get filteredMedalsImages(): string[] {
+  get filteredMedalsImages(): any[] {
     return this.medalsImages.filter((imageUrl) =>
-      imageUrl.toLowerCase().includes(this.searchTerm.toLowerCase())
+      imageUrl.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
