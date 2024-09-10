@@ -48,6 +48,18 @@
         Energías
       </button>
     </li>
+    <li class="nav-item mt-3" role="presentation">
+      <button class="button-73" id="pills-league-tab" data-bs-toggle="pill" data-bs-target="#pills-league" type="button"
+        role="tab" aria-controls="pills-league" aria-selected="false">
+        Distintivos de liga
+      </button>
+    </li>
+    <li class="nav-item mt-3" role="presentation">
+      <button class="button-73" id="pills-evolution-tab" data-bs-toggle="pill" data-bs-target="#pills-evolution" type="button"
+        role="tab" aria-controls="pills-evolution" aria-selected="false">
+        Objetos evolutivos
+      </button>
+    </li>
   </ul>
 
   <div class="tab-content" id="pills-tabContent">
@@ -109,6 +121,10 @@
             </div>
           </div>
         </div>
+        <div *ngIf="uniqueRewards && uniqueRewards.length === 0">
+          <p>Aún no tienes recompensas.</p>
+        </div>
+
       </div>
     </div>
 
@@ -128,6 +144,11 @@
             </div>
           </div>
         </div>
+
+        <div *ngIf="uniqueCombatObjects && uniqueCombatObjects.length === 0">
+          <p>Aún no tienes objetos de combate.</p>
+        </div>
+
       </div>
     </div>
 
@@ -144,7 +165,9 @@
               <img class="img-fluid" src="{{ medal }}" alt="Medalla" (click)="openMedal(medal)" />
             </div>
           </div>
-
+        </div>
+        <div *ngIf="trainer?.data?.medallas && trainer?.data?.medallas.length === 0">
+          <p>Aún no tienes medallas.</p>
         </div>
       </div>
     </div>
@@ -162,6 +185,37 @@
             </div>
           </div>
         </div>
+        <div *ngIf="uniqueEnergies && uniqueEnergies.length === 0">
+          <p>Aún no tienes energías.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Distintivos de liga -->
+    <div class="tab-pane fade" id="pills-league" role="tabpanel" aria-labelledby="pills-league-tab" tabindex="0">
+      <h2 class="box-text"><strong>MIS DISTINTIVOS DE LIGA</strong></h2>
+      <hr />
+      <div class="container scrollable-div">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" >
+            <p> EN CONSTRUCCIÓN </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Objetos evolutivos -->
+    <div class="tab-pane fade" id="pills-evolution" role="tabpanel" aria-labelledby="pills-evolution-tab" tabindex="0">
+      <h2 class="box-text"><strong>MIS OBJETOS EVOLUTIVOS</strong></h2>
+      <hr />
+      <div class="container scrollable-div">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" >
+            <p> EN CONSTRUCCIÓN </p>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

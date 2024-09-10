@@ -137,7 +137,7 @@ export class CreaturesAdminComponent implements OnInit {
     this.grumpiData = {
       nombre: formValues.nombre,
       n_grumpidex: formValues.numero,
-      img: '', // La URL de la imagen se actualizará después de subirla
+      img: '',
       descripcion: formValues.descripcion,
       ataques: [firstAttack, specialAttack],
       tipo: formValues.tipo,
@@ -147,9 +147,7 @@ export class CreaturesAdminComponent implements OnInit {
     this.http.post<any>(this.uploadUrl, formData).subscribe(
       (response) => {
         console.log('Imagen subida correctamente', response);
-        // Actualizar la URL de la imagen en el objeto Grumpi
-        this.grumpiData.img = response.imageUrl; // Ajusta esto según la respuesta real del servidor
-        // Enviar los datos del Grumpi al servicio de Angular
+        this.grumpiData.img = response.imageUrl;
         this.saveGrumpi();
       },
       (error: HttpErrorResponse) => {
