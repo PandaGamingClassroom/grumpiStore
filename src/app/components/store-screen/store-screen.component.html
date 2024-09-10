@@ -1,65 +1,36 @@
 <app-nav-bar></app-nav-bar>
-<div class="row">
-  <div class="col">
-    <div class="btn-config">
-      <button type="button" class="button-73" routerLink="/home">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-arrow-left-circle-fill"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-          />
-        </svg>
-        Atrás
-      </button>
-    </div>
+
+<div class="header-container">
+  <div class="btn-config">
+    <button type="button" class="button-73" routerLink="/home">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+      </svg>
+      Atrás
+    </button>
   </div>
 
-  <h1
-    class="d-flex justify-content-center text-align-center tracking-in-expand"
-    id="titulo"
-  >
+  <h1 class="box-text" id="titulo">
     <strong> TIENDA GRUMPI </strong>
   </h1>
-  <hr />
 </div>
+
 <div class="container text-center">
   <div class="d-flex justify-content-center">
-    <ul
-      class="nav nav-pills mb-3 mt-3"
-      id="pills-tabGrumpiDolar"
-      role="tablist"
-    >
+    <ul class="nav nav-pills mb-3 mt-3" id="pills-tabGrumpiDolar" role="tablist">
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link button-73 me-3 active"
-          id="pills-grumpiDolarContent-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-grumpiDolarContent"
-          type="button"
-          aria-controls="pills-grumpiDolarContent"
-          aria-selected="true"
-          (click)="seleccionarOpcion('grumpidolares')"
-        >
+        <button class="nav-link button-73 me-3 active" id="pills-grumpiDolarContent-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-grumpiDolarContent" type="button" aria-controls="pills-grumpiDolarContent"
+          aria-selected="true" (click)="seleccionarOpcion('grumpidolares')">
           Comprar con Grumpidólares
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link button-73 me-3"
-          id="pills-energy-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-energy"
-          type="button"
-          aria-controls="pills-energies"
-          aria-selected="false"
-          (click)="seleccionarOpcion('energias')"
-        >
+        <button class="nav-link button-73 me-3" id="pills-energy-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-energy" type="button" aria-controls="pills-energies" aria-selected="false"
+          (click)="seleccionarOpcion('energias')">
           Comprar con Energías
         </button>
       </li>
@@ -69,38 +40,18 @@
 
 <div class="d-flex justify-content-center" *ngIf="withGDolar">
   <div class="d-flex justify-content-center">
-    <ul
-      class="nav nav-pills mb-3 mt-3"
-      id="pills-tabGrumpiDolar"
-      role="tablist"
-    >
+    <ul class="nav nav-pills mb-3 mt-3" id="pills-tabGrumpiDolar" role="tablist">
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link button-73 me-3 active"
-          id="pills-objects-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-objects"
-          type="button"
-          role="tab"
-          aria-controls="pills-objects"
-          aria-selected="true"
-          (click)="seleccionarOpcion('objCombat')"
-        >
+        <button class="nav-link button-73 me-3 active" id="pills-objects-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-objects" type="button" role="tab" aria-controls="pills-objects" aria-selected="true"
+          (click)="seleccionarOpcion('objCombat')">
           Objetos de Combate
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link button-73 me-3"
-          id="pills-energies-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-energies"
-          type="button"
-          role="tab"
-          aria-controls="pills-energies"
-          aria-selected="false"
-          (click)="seleccionarOpcion('objEnergy')"
-        >
+        <button class="nav-link button-73 me-3" id="pills-energies-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-energies" type="button" role="tab" aria-controls="pills-energies" aria-selected="false"
+          (click)="seleccionarOpcion('objEnergy')">
           Energías
         </button>
       </li>
@@ -112,32 +63,16 @@
   <div class="d-flex justify-content-center">
     <ul class="nav nav-pills mb-3 mt-3" id="pills-tabEnergies" role="tablist">
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link button-73 me-3 active"
-          id="pills-rewards-profile-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-rewards-profile"
-          type="button"
-          role="tab"
-          aria-controls="pills-rewards-profile"
-          aria-selected="true"
-          (click)="seleccionarOpcion('objRewards')"
-        >
+        <button class="nav-link button-73 me-3 active" id="pills-rewards-profile-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-rewards-profile" type="button" role="tab" aria-controls="pills-rewards-profile"
+          aria-selected="true" (click)="seleccionarOpcion('objRewards')">
           Recompensas
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button
-          class="nav-link button-73 me-3"
-          id="pills-obj-rewards-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-obj-profile"
-          type="button"
-          role="tab"
-          aria-controls="pills-obj-profile"
-          aria-selected="false"
-          (click)="seleccionarOpcion('objEvol')"
-        >
+        <button class="nav-link button-73 me-3" id="pills-obj-rewards-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-obj-profile" type="button" role="tab" aria-controls="pills-obj-profile"
+          aria-selected="false" (click)="seleccionarOpcion('objEvol')">
           Objetos Evolutivos
         </button>
       </li>
@@ -146,10 +81,7 @@
 </div>
 
 <!-- OBJETOS DE COMBATE -->
-<div
-  class="container text-center bg-box align-items-center"
-  *ngIf="showCombatObject"
->
+<div class="container text-center bg-box align-items-center" *ngIf="showCombatObject">
   <div class="row">
     <div class="col-6 d-flex justify-content-end align-items-center">
       <h2 class="box-text"><strong> OBJETOS DE COMBATE </strong></h2>
@@ -157,10 +89,8 @@
     <div class="col-6">
       <div class="container dolarbox">
         <button class="dolarinfo">
-          <img
-            class="dolarImg"
-            src="../../../assets/MONEDA_GRUMPI_CARA.png"
-          /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
+          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" /><strong> Mis Grumpidólares: </strong> {{
+          grumpidolar }}
         </button>
       </div>
     </div>
@@ -168,13 +98,10 @@
 
   <div class="container text-center align-items-center scrollable-div">
     <!-- Agrupar los elementos de a dos en una fila -->
-    <div
-      class="row"
-      *ngFor="
+    <div class="row" *ngFor="
         let pair of imageUrls | slice : 0 : imageUrls.length / 2;
         let i = index
-      "
-    >
+      ">
       <!-- Primera columna: imagen de la izquierda -->
       <div class="col-md-6">
         <div class="img-creature mg-5">
@@ -183,21 +110,14 @@
               <img srcset="{{ imageUrls[i * 2].imagen }}" class="img-fluid" />
             </div>
             <div class="col">
-              <button
-                type="button"
-                class="button-73"
-                (click)="selectedObject = imageUrls[i * 2]; buyCombatObjects()"
-              >
+              <button type="button" class="button-73" (click)="selectedObject = imageUrls[i * 2]; buyCombatObjects()">
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img
-                        class="grumpiTag"
-                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                      />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
                     </div>
                     <div class="col">{{ imageUrls[i * 2].precio }}</div>
                   </div>
@@ -213,29 +133,19 @@
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img
-                srcset="{{ imageUrls[i * 2 + 1].imagen }}"
-                class="img-fluid"
-              />
+              <img srcset="{{ imageUrls[i * 2 + 1].imagen }}" class="img-fluid" />
             </div>
             <div class="col">
-              <button
-                type="button"
-                class="button-73"
-                (click)="
+              <button type="button" class="button-73" (click)="
                   selectedObject = imageUrls[i * 2 + 1]; buyCombatObjects()
-                "
-              >
+                ">
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img
-                        class="grumpiTag"
-                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                      />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
                     </div>
                     <div class="col">{{ imageUrls[i * 2 + 1].precio }}</div>
                   </div>
@@ -250,10 +160,7 @@
 </div>
 
 <!-- ENERGIAS -->
-<div
-  class="container text-center bg-box align-items-center"
-  *ngIf="showEnergys"
->
+<div class="container text-center bg-box align-items-center" *ngIf="showEnergys">
   <div class="row">
     <div class="col-6 d-flex justify-content-end align-items-center">
       <h2 class="box-text"><strong> ENERGÍAS </strong></h2>
@@ -261,23 +168,18 @@
     <div class="col-6">
       <div class="container dolarbox">
         <button class="dolarinfo">
-          <img
-            class="dolarImg"
-            src="../../../assets/MONEDA_GRUMPI_CARA.png"
-          /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
+          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" /><strong> Mis Grumpidólares: </strong> {{
+          grumpidolar }}
         </button>
       </div>
     </div>
   </div>
   <div class="container text-center align-items-center scrollable-div">
     <!-- Agrupar los elementos de a dos en una fila -->
-    <div
-      class="row"
-      *ngFor="
+    <div class="row" *ngFor="
         let i = index;
         of: energy_list | slice : 0 : energy_list.length / 2
-      "
-    >
+      ">
       <!-- Primera columna: imagen de la izquierda -->
       <div class="col-md-6">
         <div class="img-creature mg-5">
@@ -286,21 +188,14 @@
               <img srcset="{{ energy_list[i * 2].imagen }}" class="img-fluid" />
             </div>
             <div class="col">
-              <button
-                type="button"
-                class="button-73"
-                (click)="selectedEnergie = energy_list[i * 2]; buyEnergy()"
-              >
+              <button type="button" class="button-73" (click)="selectedEnergie = energy_list[i * 2]; buyEnergy()">
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img
-                        class="grumpiTag"
-                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                      />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
                     </div>
                     <div class="col">10</div>
                   </div>
@@ -316,27 +211,17 @@
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img
-                srcset="{{ energy_list[i * 2 + 1].imagen }}"
-                class="img-fluid"
-              />
+              <img srcset="{{ energy_list[i * 2 + 1].imagen }}" class="img-fluid" />
             </div>
             <div class="col">
-              <button
-                type="button"
-                class="button-73"
-                (click)="selectedEnergie = energy_list[i * 2 + 1]; buyEnergy()"
-              >
+              <button type="button" class="button-73" (click)="selectedEnergie = energy_list[i * 2 + 1]; buyEnergy()">
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img
-                        class="grumpiTag"
-                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                      />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
                     </div>
                     <div class="col">10</div>
                   </div>
@@ -351,10 +236,7 @@
 </div>
 
 <!-- RECOMPENSAS -->
-<div
-  class="container text-center bg-box align-items-center"
-  *ngIf="showRewards"
->
+<div class="container text-center bg-box align-items-center" *ngIf="showRewards">
   <h2 class="box-text"><strong>RECOMPENSAS</strong></h2>
   <hr />
   <div class="row">
@@ -363,11 +245,7 @@
         <div class="row">
           <div class="col"><img srcset="{{ object.img }}" /></div>
           <div class="col">
-            <button
-              type="button"
-              class="button-73"
-              (click)="selectedObject = object; seeRewards()"
-            >
+            <button type="button" class="button-73" (click)="selectedObject = object; seeRewards()">
               Lo quiero
             </button>
             <div class="price-tag mt-3">
@@ -392,10 +270,7 @@
           </div>
         </div>
         <div class="container-fluid">
-          <app-medals-list
-            *ngIf="isClicked"
-            (energiesSelected)="onEnergiesSelected($event)"
-          ></app-medals-list>
+          <app-medals-list *ngIf="isClicked" (energiesSelected)="onEnergiesSelected($event)"></app-medals-list>
         </div>
       </div>
     </div>
@@ -403,27 +278,17 @@
 </div>
 
 <!-- OBJETOS EVOLUTIVOS -->
-<div
-  class="container text-center bg-box align-items-center"
-  *ngIf="showObjEvol"
->
+<div class="container text-center bg-box align-items-center" *ngIf="showObjEvol">
   <h2 class="box-text"><strong>OBJETOS EVOLUTIVOS</strong></h2>
   <hr />
   <div class="row">
     <div class="col">
       <div class="container text-center align-items-center scrollable-div">
-        <div
-          class="img-creature mg-5"
-          *ngFor="let object of this.evolutionObjects"
-        >
+        <div class="img-creature mg-5" *ngFor="let object of this.evolutionObjects">
           <div class="row">
             <div class="col"><img srcset="{{ object.imagen }}" /></div>
             <div class="col">
-              <button
-                type="button"
-                class="button-73"
-                (click)="selectedObject = object; buyEvolutionObjects()"
-              >
+              <button type="button" class="button-73" (click)="selectedObject = object; buyEvolutionObjects()">
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
@@ -573,9 +438,7 @@
 <div class="container text-center bg-box">
   <div class="container-fluid">
     <div *ngIf="showLogo">
-      <div
-        class="container-fluid d-flex justify-content-center align-items-center"
-      >
+      <div class="container-fluid d-flex justify-content-center align-items-center">
         <img class="boxImg" id="img" src="../../../assets/TIENDA GRUMPI.png" />
       </div>
       <div class="container-fluid d-flex justify-content-center" id="info">
