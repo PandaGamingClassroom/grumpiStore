@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
   getError: boolean = false;
   grumpidolar: string = '';
   combatMarks: number = 0;
+  avatar: any;
 
   /** Variables para la imagen que sube el entrenador */
   isTypeSelected: boolean = false;
@@ -111,6 +112,7 @@ export class ProfileComponent implements OnInit {
           console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
         } else {
           this.trainer = data;
+          this.avatar = this.trainer.data.avatar;
           this.grumpidolar = this.trainer.data.grumpidolar;
           this.combatMarks = this.trainer.data.marca_combate;
           console.log('Datos del entrenador: ', this.trainer.data);
