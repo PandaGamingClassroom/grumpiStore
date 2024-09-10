@@ -47,6 +47,7 @@ export class AddTrainersComponent implements OnInit {
     public dialogRef: MatDialogRef<AddTrainersComponent>
   ) {
     this.myForm = this.formBuilder.group({
+      avatar: ['', Validators.required],
       trainer_name: ['', Validators.required],
       trainer_lastName: ['', Validators.required],
       trainer_pass: ['', Validators.required],
@@ -117,6 +118,7 @@ export class AddTrainersComponent implements OnInit {
   guardarEntrenador() {
     const nuevoUsuario = this.isTrainer
       ? {
+          avatar: this.myForm.get('avatar')?.value,
           name: this.myForm.get('trainer_name')?.value,
           password: this.myForm.get('trainer_pass')?.value,
           rol: this.myForm.get('trainer_rol')?.value,
