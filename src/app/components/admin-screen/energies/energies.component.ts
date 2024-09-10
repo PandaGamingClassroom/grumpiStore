@@ -16,6 +16,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { GrumpiService } from '../../services/grumpi/grumpi.service';
 
 @Component({
   selector: 'app-energies',
@@ -30,7 +31,7 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
     NavBarAdminComponent,
     FooterComponent,
   ],
-  providers: [TrainerService, AdminUserService],
+  providers: [TrainerService, AdminUserService, GrumpiService],
   templateUrl: './energies.component.html',
   styleUrls: ['./energies.component.scss'],
 })
@@ -40,6 +41,7 @@ export class EnergiesComponent implements OnInit {
   selectedEnergie: Energies | null = null;
   selectedTrainerNames: string[] = [];
   energy_list: Energies[] = energias;
+  energies: any;
   isAdminUser: boolean = false;
   adminUser: any;
   confirmMessage: string =
@@ -47,6 +49,7 @@ export class EnergiesComponent implements OnInit {
 
   constructor(
     private trainersService: TrainerService,
+    private grumpiService: GrumpiService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private adminUserService: AdminUserService
@@ -82,6 +85,13 @@ export class EnergiesComponent implements OnInit {
         console.error('Error obteniendo los entrenadores:', error);
       }
     );
+  }
+
+  getEnergies() {
+    this.grumpiService.getImageEnergies().subscribe((result) => {
+      console.log('Lista de energías: ', result.imageUrls);
+      this.energies = result.imageUrls;
+    });
   }
 
   onFileSelected(event: any) {
