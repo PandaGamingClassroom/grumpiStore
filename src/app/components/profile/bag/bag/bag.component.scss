@@ -12,9 +12,19 @@
 }
 
 .dropdown-item.button-73 {
-  margin-bottom: 10px;
+  margin-bottom: 3%;
 }
 
+.dropdown-menu .dropdown-item {
+  border: 1px solid rgb(1, 114, 1);
+  border-radius: 4px;
+  margin-bottom: 5px; 
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f0f0f0;
+  border-color: darkgreen; 
+}
 ul {
   list-style-type: none;
 }
