@@ -64,6 +64,20 @@
               "namedChunks": true
             }
           }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "grumpiStore:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "grumpiStore:build:production"
+            },
+            "development": {
+              "browserTarget": "grumpiStore:build:development"
+            }
+          }
         }
       }
     }

@@ -138,6 +138,7 @@ export class AddTrainersComponent implements OnInit {
           title: '¡Correcto!',
           message: `El ${stringMessage} se ha añadido correctamente.`,
         };
+        this.close();
         const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
           height: '250px',

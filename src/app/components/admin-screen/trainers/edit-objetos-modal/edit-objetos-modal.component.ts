@@ -274,7 +274,7 @@ export class EditObjetosModalComponent implements OnInit {
       if (medalla.toDelete) {
         objetosAEliminar.push({
           tipo: 'medalla',
-          nombre: medalla.url, // Usa `url` aquí si es lo que necesitas
+          nombre: medalla.url,
         });
       }
     }
@@ -325,7 +325,7 @@ export class EditObjetosModalComponent implements OnInit {
               'Objetos eliminados y entrenador actualizado correctamente:',
               response
             );
-            this.close(); // O cualquier otra lógica de cierre o actualización
+            this.close();
           },
           (error) => {
             console.error('Error al eliminar objetos:', error);

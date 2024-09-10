@@ -81,8 +81,7 @@ export class DeleteProfessorsComponent implements OnInit {
 
     this.trainersService.eliminarProfesor(this.professorName).subscribe(
       () => {
-        this.getProfessors(this.profesor.id); // Actualiza la lista de entrenadores después de eliminar
-
+        this.getProfessors(this.profesor.id);
         const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
           height: '300px',
