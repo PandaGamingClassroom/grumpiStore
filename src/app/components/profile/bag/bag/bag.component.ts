@@ -90,7 +90,6 @@ export class BagComponent implements OnInit {
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
-      // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       if (this.username) {
         this.getTrainerData(this.username);
@@ -278,7 +277,8 @@ export class BagComponent implements OnInit {
 
   contadorEnergias(energies: any) {
     const energyCounts: { [key: string]: any } = {};
-
+    console.log('Lista de energías del entrenador: ', energies);
+    
     for (let energy of energies) {
       if (!energyCounts[energy.nombre]) {
         energyCounts[energy.nombre] = { ...energy, count: 0 };
