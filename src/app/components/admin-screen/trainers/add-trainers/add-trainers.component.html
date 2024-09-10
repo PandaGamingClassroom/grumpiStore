@@ -30,10 +30,12 @@
 
       <!-- FORMULARIO PARA EL ENTRENADOR -->
       <div *ngIf="isTrainer">
+        <!--  TODO: Permitir subir una iamgen como avatar del entrenador.
         <div class="form-group">
           <label for="avatar" class="form-label"> Selecciona un avatar para el alumno </label>
           <input type="file" id="avatar" name="avatar" required formControlName="avatar" />
         </div>
+        -->
         <div class="form-group">
           <label for="trainer_name" class="form-label">Nombre de entrenador</label>
           <input type="text" class="form-control" formControlName="trainer_name" />
