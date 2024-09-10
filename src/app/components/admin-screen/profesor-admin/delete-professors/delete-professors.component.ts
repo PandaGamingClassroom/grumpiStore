@@ -82,13 +82,12 @@ export class DeleteProfessorsComponent implements OnInit {
     this.trainersService.eliminarProfesor(this.professorName).subscribe(
       () => {
         this.getProfessors(this.profesor.id);
-        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+        this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
           height: '300px',
           data: data,
-        });
-        dialogRef.afterClosed().subscribe(() => {
-          
+        }).afterClosed().subscribe(() => {
+          this.dialogRef.close(true);
         });
       },
       (error) => {

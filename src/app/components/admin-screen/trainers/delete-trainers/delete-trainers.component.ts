@@ -39,7 +39,7 @@ export class DeleteTrainersComponent implements OnInit {
     public dialogRef: MatDialogRef<DeleteTrainersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.username = localStorage.getItem('username');
@@ -47,7 +47,12 @@ export class DeleteTrainersComponent implements OnInit {
     this.getDadataProfesor(this.nameProfesor);
     this.trainerSelected = this.data.name;
   }
-
+  /**
+   * 
+   * Función para obtener los datos de un profesor.
+   * 
+   * @param name Recibe el nombre del profesor.
+   */
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -65,6 +70,12 @@ export class DeleteTrainersComponent implements OnInit {
     );
   }
 
+  /**
+   * 
+   * Función para eliminar el entrenador seleccionado.
+   * 
+   * @returns Solo devuelve un error.
+   */
   deleteTrainer() {
     console.log('Entrenador a eliminar: ', this.trainerSelected);
 
@@ -84,14 +95,12 @@ export class DeleteTrainersComponent implements OnInit {
 
     this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
       () => {
-        this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de eliminar
-
-        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+        this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
           height: '300px',
           data: data,
-        });
-        dialogRef.afterClosed().subscribe(() => {
+        }).afterClosed().subscribe(() => {
+          this.dialogRef.close(true);
         });
       },
       (error) => {
@@ -100,6 +109,13 @@ export class DeleteTrainersComponent implements OnInit {
     );
   }
 
+  /**
+   * 
+   * Función para obtener la información de los entrenadores
+   * de un profesor.
+   * 
+   * @param profesorId Recibe el id del profesor.
+   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {

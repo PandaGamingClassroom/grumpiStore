@@ -168,11 +168,13 @@ export class TrainersAdminComponent implements OnInit {
       height: '300px',
       data: trainer,
     });
-
+  
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        console.log('Entrenador eliminado:', trainer);
         this.getEntrenadores(this.profesor.id);
       }
     });
   }
+  
 }

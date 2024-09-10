@@ -100,17 +100,15 @@ export class TrainersEditComponent implements OnInit {
    *
    */
   verInventario(): void {
-    const dialogRef = this.dialog.open(EditObjetosModalComponent, {
+    this.dialog.open(EditObjetosModalComponent, {
       width: '600px',
       height: '550px',
       panelClass: 'custom-modal',
       disableClose: true,
       autoFocus: true,
       data: this.data,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('La vista de los objetos se ha cerrado');
+    }).afterClosed().subscribe(() => {
+      this.dialogRef.close(this.data);
     });
   }
 

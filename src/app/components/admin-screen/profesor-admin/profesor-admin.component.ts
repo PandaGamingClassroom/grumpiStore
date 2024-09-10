@@ -45,7 +45,7 @@ export class ProfesorAdmin implements OnInit {
   constructor(
     private trainersService: TrainerService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
@@ -67,7 +67,7 @@ export class ProfesorAdmin implements OnInit {
       },
       (error) => {
         console.error('Error:', error);
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }
@@ -82,11 +82,11 @@ export class ProfesorAdmin implements OnInit {
         console.log('Listado de profesores: ', data);
 
         this.profesors = data.profesoresList;
-        this.loading = false; 
+        this.loading = false;
       },
       (error) => {
         console.error('Error:', error);
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }
@@ -95,11 +95,11 @@ export class ProfesorAdmin implements OnInit {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data.data;
-        this.loading = false; 
+        this.loading = false;
       },
       (error) => {
         console.error('Error:', error);
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }
@@ -159,7 +159,7 @@ export class ProfesorAdmin implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Nuevo entrenador:', result);
+        console.log('Nuevo profesor:', result);
         this.getEntrenadores(this.profesor.id);
       }
     });
@@ -179,6 +179,7 @@ export class ProfesorAdmin implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        console.log('Profesor eliminado:', trainer);
         this.getEntrenadores(this.profesor.id);
       }
     });
