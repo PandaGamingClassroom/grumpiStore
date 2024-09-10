@@ -90,8 +90,8 @@ export class EnergiesComponent implements OnInit {
 
   getEnergies() {
     this.grumpiService.getImageEnergies().subscribe((result) => {
-      console.log('Lista de energías: ', result.imageUrls);
-      this.energies = result.imageUrls;
+      console.log('Lista de energías: ', result.energy_list);
+      this.energies = result.energy_list;
     });
   }
 

@@ -62,8 +62,8 @@ export class GrumpiService {
    * Función para obtener la lista de imágenes almacenadas de las energías
    * @returns listado de imágenes de energías
    */
-  getImageEnergies(): Observable<{ imageUrls: string[] }> {
-    return this.http.get<{ imageUrls: string[] }>(this.imageEnergiesEndpoint);
+  getImageEnergies(): Observable<any>  {
+    return this.http.get<any>(this.imageEnergiesEndpoint);
   }
 
   /**
