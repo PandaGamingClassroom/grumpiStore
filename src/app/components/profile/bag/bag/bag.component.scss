@@ -15,9 +15,24 @@
   margin-bottom: 4%;
 }
 
-.dropdown {
-  border: 2px solid rgb(2, 104, 2);
+.dropdown-menu {
+  border: 2px solid green; /* Borde verde */
+  background-color: #b9d6f3; /* Fondo claro para diferenciar del botón */
+  border-radius: 4px; /* Opcional: redondea las esquinas del borde */
+  padding: 10px; /* Opcional: añade algo de espacio interno */
 }
+
+.dropdown-item {
+  border: 1px solid transparent; /* Mantiene el borde del ítem transparente por defecto */
+  border-radius: 4px; /* Opcional: redondea las esquinas del ítem */
+  margin-bottom: 5px; /* Espacio entre los ítems */
+}
+
+.dropdown-item:hover {
+  background-color: #e2e6ea; /* Color de fondo cuando se pasa el ratón sobre el ítem */
+  border-color: green; /* Cambia el borde al pasar el ratón */
+}
+
 
 ul {
   list-style-type: none;
