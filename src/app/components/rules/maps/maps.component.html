@@ -70,7 +70,7 @@
   <div class="container mt-3">
     <div class="row">
       <div class="col-1 me-4">
-        <img class="alert" src="../../../../assets/alert.png" />
+        <img class="alert" src="../../../../assets/alert.png" (contextmenu)="disableRightClick($event)"/>
       </div>
       <div class="col d-flex align-items-center">
         <p>
@@ -84,10 +84,10 @@
 
   <hr />
   <div class="container">
-    <img class="box-map mb-3" src="../../../../assets/mapas/Bosque-desierto.png" />
-    <img class="box-map mb-3" src="../../../../assets/mapas/Volcán-Océano.png" />
+    <img class="box-map mb-3" src="../../../../assets/mapas/Bosque-desierto.png" (contextmenu)="disableRightClick($event)"/>
+    <img class="box-map mb-3" src="../../../../assets/mapas/Volcán-Océano.png" (contextmenu)="disableRightClick($event)"/>
     <div class="d-flex justify-content-center">
-      <img class="box-map mb-3" src="../../../../assets/mapas/Gélido-cielo.png" />
+      <img class="box-map mb-3" src="../../../../assets/mapas/Gélido-cielo.png" (contextmenu)="disableRightClick($event)"/>
     </div>
   </div>
 </div>

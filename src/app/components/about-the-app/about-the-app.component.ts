@@ -10,4 +10,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './about-the-app.component.html',
   styleUrl: './about-the-app.component.scss',
 })
-export class AboutTheAppComponent {}
+export class AboutTheAppComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

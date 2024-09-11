@@ -9,4 +9,8 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './in-charge.component.html',
   styleUrl: './in-charge.component.scss',
 })
-export class InChargeComponent {}
+export class InChargeComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

@@ -11,4 +11,7 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 })
 export class MedalsStoreComponent {
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

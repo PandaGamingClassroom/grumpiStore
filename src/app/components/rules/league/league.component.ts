@@ -9,4 +9,8 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './league.component.html',
   styleUrl: './league.component.scss',
 })
-export class LeagueComponent {}
+export class LeagueComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

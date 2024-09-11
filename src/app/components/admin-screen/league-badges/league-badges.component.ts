@@ -177,6 +177,10 @@ export class LeagueBadgesComponent implements OnInit {
     }
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   /**
    * Función para asignar un distintivo de liga a varios entrenadores al mismo tiempo.
    *

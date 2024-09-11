@@ -18,7 +18,10 @@ export class CombatsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   openImageWindow(selectedObject: string) {
     let urlImage: string;
     let titleImage: string;

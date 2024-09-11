@@ -18,4 +18,7 @@ export class RestsComponent implements OnInit {
       this.hideElements = params['hideElements'] === 'true';
     });
   }
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

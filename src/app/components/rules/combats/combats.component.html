@@ -96,6 +96,7 @@
       <img
         class="grumpi-shadow"
         src="../../../../assets/grumpis/078-Okovil.png"
+        (contextmenu)="disableRightClick($event)"
       />
     </div>
     <div class="col-md-8"></div>
@@ -195,7 +196,7 @@
       </div>
       <div class="col">
         <div class="text-center">
-          <img class="cajaEstados" src="../../../../assets/carteleria/estadosAlterados.png" />
+          <img class="cajaEstados" src="../../../../assets/carteleria/estadosAlterados.png" (contextmenu)="disableRightClick($event)"/>
         </div>
       </div>
     </div>
@@ -308,6 +309,7 @@
       class="box-battleCamp"
       src="../../../../assets/_CAMPO BATALLA GRUMPI._1.png"
       alt="Campo de batalla Grumpi"
+      (contextmenu)="disableRightClick($event)"
     />
   </div>
 </div>

@@ -33,6 +33,10 @@ export class GrumpisComponent implements OnInit {
     this.loadImageUrls();
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   loadImageUrls() {
     this.grumpiService.getImageUrls().subscribe(
       (response) => {

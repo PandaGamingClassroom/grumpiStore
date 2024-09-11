@@ -26,4 +26,7 @@ export class BienvenidaModalComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

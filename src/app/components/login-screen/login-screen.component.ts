@@ -82,6 +82,10 @@ export class LoginScreenComponent implements OnInit {
     });
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+
   onSubmit() {
     this.user = this.myForm.value.trainer_name;
     this.pass = this.myForm.value.password;

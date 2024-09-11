@@ -69,6 +69,11 @@ export class ProfileComponent implements OnInit {
       password: profesor.password,
     });
   }
+
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {

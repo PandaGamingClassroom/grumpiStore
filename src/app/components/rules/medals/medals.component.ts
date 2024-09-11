@@ -9,4 +9,8 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './medals.component.html',
   styleUrl: './medals.component.scss',
 })
-export class MedalsComponent {}
+export class MedalsComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

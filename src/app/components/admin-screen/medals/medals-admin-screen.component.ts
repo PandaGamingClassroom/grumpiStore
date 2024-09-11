@@ -89,6 +89,10 @@ export class MedalsAdminScreenComponent implements OnInit {
     );
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {

@@ -9,4 +9,8 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './career.component.html',
   styleUrl: './career.component.scss',
 })
-export class CareerComponent {}
+export class CareerComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

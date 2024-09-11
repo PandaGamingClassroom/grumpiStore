@@ -118,6 +118,10 @@ export class EditObjetosModalComponent implements OnInit {
     this.uniqueCombatObjects = Object.values(objectCounts);
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   /**
    * Función para contabilizar el total de objetos evolutivos que tiene en el inventario
    * el entrenador seleccionado.

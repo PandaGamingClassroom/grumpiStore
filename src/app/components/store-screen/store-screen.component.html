@@ -89,7 +89,7 @@
     <div class="col-6">
       <div class="container dolarbox">
         <button class="dolarinfo">
-          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" /><strong> Mis Grumpidólares: </strong> {{
+          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/><strong> Mis Grumpidólares: </strong> {{
           grumpidolar }}
         </button>
       </div>
@@ -107,7 +107,7 @@
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img srcset="{{ imageUrls[i * 2].imagen }}" class="img-fluid" />
+              <img srcset="{{ imageUrls[i * 2].imagen }}" class="img-fluid" (contextmenu)="disableRightClick($event)"/>
             </div>
             <div class="col">
               <button type="button" class="button-73" (click)="selectedObject = imageUrls[i * 2]; buyCombatObjects()">
@@ -117,7 +117,7 @@
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
                     </div>
                     <div class="col">{{ imageUrls[i * 2].precio }}</div>
                   </div>
@@ -133,7 +133,7 @@
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img srcset="{{ imageUrls[i * 2 + 1].imagen }}" class="img-fluid" />
+              <img srcset="{{ imageUrls[i * 2 + 1].imagen }}" class="img-fluid" (contextmenu)="disableRightClick($event)"/>
             </div>
             <div class="col">
               <button type="button" class="button-73" (click)="
@@ -145,7 +145,7 @@
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
                     </div>
                     <div class="col">{{ imageUrls[i * 2 + 1].precio }}</div>
                   </div>
@@ -168,7 +168,7 @@
     <div class="col-6">
       <div class="container dolarbox">
         <button class="dolarinfo">
-          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" /><strong> Mis Grumpidólares: </strong> {{
+          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/><strong> Mis Grumpidólares: </strong> {{
           grumpidolar }}
         </button>
       </div>
@@ -195,7 +195,7 @@
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
                     </div>
                     <div class="col">10</div>
                   </div>
@@ -211,7 +211,7 @@
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img srcset="{{ energy_list[i * 2 + 1].imagen }}" class="img-fluid" />
+              <img srcset="{{ energy_list[i * 2 + 1].imagen }}" class="img-fluid" (contextmenu)="disableRightClick($event)"/>
             </div>
             <div class="col">
               <button type="button" class="button-73" (click)="selectedEnergie = energy_list[i * 2 + 1]; buyEnergy()">
@@ -221,7 +221,7 @@
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" />
+                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
                     </div>
                     <div class="col">10</div>
                   </div>
@@ -243,7 +243,7 @@
     <div class="col scrollable-div">
       <div class="img-creature mg-5" *ngFor="let object of rewards_list">
         <div class="row">
-          <div class="col"><img srcset="{{ object.img }}" /></div>
+          <div class="col"><img srcset="{{ object.img }}" (contextmenu)="disableRightClick($event)"/></div>
           <div class="col">
             <button type="button" class="button-73" (click)="selectedObject = object; seeRewards()">
               Lo quiero
@@ -286,7 +286,7 @@
       <div class="container text-center align-items-center scrollable-div">
         <div class="img-creature mg-5" *ngFor="let object of this.evolutionObjects">
           <div class="row">
-            <div class="col"><img srcset="{{ object.imagen }}" /></div>
+            <div class="col"><img srcset="{{ object.imagen }}" (contextmenu)="disableRightClick($event)"/></div>
             <div class="col">
               <button type="button" class="button-73" (click)="selectedObject = object; buyEvolutionObjects()">
                 Lo quiero
@@ -315,7 +315,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[0].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[0].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -328,7 +328,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[2].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[2].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -341,7 +341,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[1].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[1].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -354,7 +354,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[3].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[3].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -367,7 +367,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[4].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[4].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -380,7 +380,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[5].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[5].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -393,7 +393,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[6].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[6].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -406,7 +406,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[7].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[7].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -419,7 +419,7 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[8].imagen" />
+                <img class="iconImg" [src]="iconListEnergy[8].imagen" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -439,7 +439,7 @@
   <div class="container-fluid">
     <div *ngIf="showLogo">
       <div class="container-fluid d-flex justify-content-center align-items-center">
-        <img class="boxImg" id="img" src="../../../assets/TIENDA GRUMPI.png" />
+        <img class="boxImg" id="img" src="../../../assets/TIENDA GRUMPI.png" (contextmenu)="disableRightClick($event)"/>
       </div>
       <div class="container-fluid d-flex justify-content-center" id="info">
         <div class="row">

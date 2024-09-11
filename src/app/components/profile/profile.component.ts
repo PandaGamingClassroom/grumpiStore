@@ -74,6 +74,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   avatarSelected(avatar: any) {
     this.avatarService.setAvatar(avatar.imagen);
   }

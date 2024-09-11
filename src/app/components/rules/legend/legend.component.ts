@@ -9,4 +9,8 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './legend.component.html',
   styleUrl: './legend.component.scss',
 })
-export class LegendComponent {}
+export class LegendComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

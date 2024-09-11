@@ -60,6 +60,7 @@
                   src="{{ avatarSelect }}"
                   alt="Avatar"
                   class="img-fluid my-5"
+                  (contextmenu)="disableRightClick($event)"
                 />
               </div>
               <div class="row d-flex justify-content-center">
@@ -112,6 +113,7 @@
                         ><img
                           class="dolar"
                           src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                          (contextmenu)="disableRightClick($event)"
                         />Grumpidólares:
                       </strong>
                       <strong>{{ grumpidolar }} </strong>
@@ -183,7 +185,7 @@
             <li *ngFor="let avatar of avatar_list" class="mb-3">
               <div class="row row-avatar">
                 <div class="col-5">
-                  <img src="{{ avatar?.imagen }}" class="avatar-box" />
+                  <img src="{{ avatar?.imagen }}" class="avatar-box" (contextmenu)="disableRightClick($event)"/>
                 </div>
                 <div
                   class="col d-flex justify-content-center align-items-center"

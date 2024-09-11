@@ -9,4 +9,8 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './maps.component.html',
   styleUrl: './maps.component.scss',
 })
-export class MapsComponent {}
+export class MapsComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

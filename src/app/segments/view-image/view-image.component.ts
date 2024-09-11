@@ -47,6 +47,10 @@ export class ViewImageComponent implements OnInit {
     console.log('Data que se recibe: ', this.data);
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   detectedMedalName(data: any) {
     if (this.checkIsMedal(data)) {
       this.isNotAMedal = false;

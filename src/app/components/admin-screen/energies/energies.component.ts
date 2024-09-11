@@ -132,6 +132,10 @@ export class EnergiesComponent implements OnInit {
     }
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   modalConfirm(trainerNames: string[]) {
     const data = {
       title: '¡Energía asignada con éxito!',

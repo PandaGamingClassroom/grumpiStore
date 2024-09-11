@@ -10,4 +10,9 @@ import { FooterComponent } from '../footer/footer.component';
   templateUrl: './about-screen.component.html',
   styleUrl: './about-screen.component.scss',
 })
-export class AboutScreenComponent {}
+export class AboutScreenComponent {
+
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

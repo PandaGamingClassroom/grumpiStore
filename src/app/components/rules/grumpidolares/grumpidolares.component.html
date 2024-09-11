@@ -31,6 +31,7 @@
           class="dolar-box animacionPalpito"
           src="../../../../assets/MONEDA_GRUMPI_CARA.png"
           alt="Moneda Grumpi Cara"
+          (contextmenu)="disableRightClick($event)"
         />
       </div>
       <div class="col align-self-center">
@@ -50,6 +51,7 @@
           class="dolar-box-cruz animacionPalpito"
           src="../../../../assets/MONEDA_GRUMPI_CRUZ.png"
           alt="Moneda Grumpi Cruz"
+          (contextmenu)="disableRightClick($event)"
         />
         <button class="button-73">Grumpidólar cruz</button>
       </div>
@@ -82,10 +84,10 @@
   <div class="container mb-3">
     <div class="row text-center">
       <div class="col">
-        <img class="sizeIMG" src="../../../../assets/carteleria/grumpimonedasEF.png">
+        <img class="sizeIMG" src="../../../../assets/carteleria/grumpimonedasEF.png" (contextmenu)="disableRightClick($event)">
       </div>
       <div class="col">
-        <img class="sizeIMG" src="../../../../assets/carteleria/grumpimonedasMusica.png">
+        <img class="sizeIMG" src="../../../../assets/carteleria/grumpimonedasMusica.png" (contextmenu)="disableRightClick($event)">
       </div>
     </div>
   </div>
@@ -138,6 +140,6 @@
     </table>
   </div>
   <div class="container text-end">
-    <img class="dolar-box-cruz" src="../../../../assets/grumpis/Nifa.png" />
+    <img class="dolar-box-cruz" src="../../../../assets/grumpis/Nifa.png" (contextmenu)="disableRightClick($event)"/>
   </div>
 </div>

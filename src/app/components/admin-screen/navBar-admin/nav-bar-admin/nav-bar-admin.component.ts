@@ -9,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class NavBarAdminComponent {
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

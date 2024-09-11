@@ -80,7 +80,7 @@
         *ngIf="showLogo"
         class="container-fluid d-flex justify-content-center align-items-center"
       >
-        <img src="../../../assets/Logo_v0.1_sinFondo.png" />
+        <img src="../../../assets/Logo_v0.1_sinFondo.png" (contextmenu)="disableRightClick($event)"/>
       </div>
     </div>
 

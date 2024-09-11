@@ -19,4 +19,7 @@ export class ErrorLoginModalComponentComponent {
     this.dialogRef.close();
     // window.location.reload();
   }
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

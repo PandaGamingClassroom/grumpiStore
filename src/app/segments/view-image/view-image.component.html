@@ -53,24 +53,24 @@
   <div class="container">
     <!-- Se renderiza cuando la imagen proviene de un grumpi -->
     <div class="d-flex justify-content-center" *ngIf="isAGrumpi">
-      <img class="img-box" src="{{ data.img_conseguir }}" />
+      <img class="img-box" src="{{ data.img_conseguir }}" (contextmenu)="disableRightClick($event)"/>
     </div>
     <!-- Se renderiza cuando la imagen no proviene de un grumpi -->
     <div class="d-flex justify-content-center" *ngIf="data?.imagen">
-      <img class="img-box" src="{{ data.imagen }}" />
+      <img class="img-box" src="{{ data.imagen }}" (contextmenu)="disableRightClick($event)"/>
     </div>
     <!-- Se renderiza cuando la información solo consta de la imagen -->
     <div
       class="d-flex justify-content-center"
       *ngIf="!data.img && !data.imagen && !data.message"
     >
-      <img class="img-box" src="{{ data }}" />
+      <img class="img-box" src="{{ data }}" (contextmenu)="disableRightClick($event)"/>
     </div>
     <div
       class="d-flex justify-content-center"
       *ngIf="data.message"
     >
-      <img class="img-box" src="{{ data.message }}" />
+      <img class="img-box" src="{{ data.message }}" (contextmenu)="disableRightClick($event)"/>
     </div>
     <div class="container bg-box mt-3" *ngIf="data?.descripcion">
       <div class="container mt-3 mb-3">

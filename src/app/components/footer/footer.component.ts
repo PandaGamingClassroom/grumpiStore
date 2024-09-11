@@ -9,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

@@ -92,6 +92,10 @@ export class VerObjetosModalComponent implements OnInit {
     this.grumpiList = this.objetos?.grumpis || [];
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   /**
    * Función para contabilizar el total de objetos de combate que tiene en el inventario
    * el entrenador seleccionado.

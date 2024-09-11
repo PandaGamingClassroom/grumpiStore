@@ -9,4 +9,8 @@ import { NavBarComponent } from '../../nav-bar/nav-bar.component';
   templateUrl: './grumpidolares.component.html',
   styleUrl: './grumpidolares.component.scss',
 })
-export class GrumpidolaresComponent {}
+export class GrumpidolaresComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

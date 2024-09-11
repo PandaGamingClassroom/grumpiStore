@@ -10,4 +10,8 @@ import { FooterComponent } from '../footer/footer.component';
   templateUrl: './help-component.component.html',
   styleUrl: './help-component.component.scss',
 })
-export class HelpComponentComponent {}
+export class HelpComponentComponent {
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+}

@@ -103,6 +103,10 @@ export class StoreScreenComponent implements OnInit {
     console.log('Lista de iconos: ', this.iconListEnergy);
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   /**
    * Función para validar el contenido que se va a mostrar en la tienda Grumpi.
    *

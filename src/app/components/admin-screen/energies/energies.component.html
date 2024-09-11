@@ -12,7 +12,7 @@
           <div class="img-creature" *ngFor="let imageUrl of energies">
             <div class="row">
               <div class="col">
-                <img srcset="{{imageUrl.imagen}}" alt="{{imageUrl.nombre}}" />
+                <img srcset="{{imageUrl.imagen}}" alt="{{imageUrl.nombre}}" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="col">
                 <form

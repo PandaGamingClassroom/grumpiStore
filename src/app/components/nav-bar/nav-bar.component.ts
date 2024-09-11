@@ -19,4 +19,8 @@ export class NavBarComponent implements OnInit {
       this.avatarSelect = avatar;
     });
   }
+
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
 }

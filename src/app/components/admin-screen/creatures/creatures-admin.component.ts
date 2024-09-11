@@ -104,6 +104,10 @@ export class CreaturesAdminComponent implements OnInit {
     }
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   onSubmit(event: Event) {
     event.preventDefault();
     if (!this.selectedFile) {
