@@ -32,6 +32,11 @@ export class EditObjetosModalComponent implements OnInit {
   trainer_name: string = '';
 
   /**
+   * Lista de medallas del entrenador
+   */
+  medals_list: any[] = [];
+
+  /**
    * Variables para el recuento de objetos repetidos
    */
   uniqueCombatObjects: any[] = [];
@@ -85,6 +90,7 @@ export class EditObjetosModalComponent implements OnInit {
   ngOnInit(): void {
     console.log('Datos iniciales:', this.objetos);
     this.trainer_name = this.objetos?.name || '';
+    this.medals_list = JSON.parse(this.objetos?.medallas) || '';
     this.contadorObjetosCombate(this.objetos?.objetos_combate || []);
     this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos || []);
     this.contadorRecompensas(this.objetos?.recompensas || []);

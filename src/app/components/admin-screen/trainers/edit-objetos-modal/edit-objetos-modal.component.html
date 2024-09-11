@@ -69,9 +69,9 @@
         </h2>
         <div id="medalsCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div class="d-flex align-items-center mb-3" *ngFor="let medalla of uniqueMedals">
+            <div class="d-flex align-items-center mb-3" *ngFor="let medalla of medals_list">
               <div class="img-creature">
-                <img class="img-fluid me-3" srcset="medalla.url" alt="{{medalla.nombre}}" />
+                <img class="img-fluid me-3" srcset="{{medalla.imagen}}" alt="{{medalla.nombre}}" />
               </div>
               <div class="delete-options">
                 <input id="medal-{{ medalla.nombre }}" type="checkbox" [(ngModel)]="medalla.toDelete" />
