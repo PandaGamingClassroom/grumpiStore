@@ -26,6 +26,11 @@ export class VerObjetosModalComponent implements OnInit {
   trainer_name: string = '';
 
   /**
+   * Lista de medallas del entrenador
+   */
+  medals_list: any[] = [];
+
+  /**
    * Variables para el recuento de objetos repetidos
    */
   uniqueCombatObjects: any[] = [];
@@ -72,11 +77,12 @@ export class VerObjetosModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<VerObjetosModalComponent>,
     @Inject(MAT_DIALOG_DATA) public objetos: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     console.log('Datos iniciales:', this.objetos);
     this.trainer_name = this.objetos?.name || '';
+    this.medals_list = JSON.parse(this.objetos?.medallas) || '';
     this.contadorObjetosCombate(this.objetos?.objetos_combate || []);
     this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos || []);
     this.contadorRecompensas(this.objetos?.recompensas || []);
@@ -225,17 +231,17 @@ export class VerObjetosModalComponent implements OnInit {
    */
   contadorGrumpis(grumpis: any[]) {
     const grumpiCounts: { [nombre: string]: any } = {};
-  
+
     for (let grumpi of grumpis) {
       if (!grumpiCounts[grumpi.nombre]) {
         grumpiCounts[grumpi.nombre] = { ...grumpi, toDelete: false };
       }
     }
-  
+
     this.uniqueGrumpis = Object.values(grumpiCounts);
   }
 
-  
+
   /**
    * Función para cerrar la ventana emergente
    */

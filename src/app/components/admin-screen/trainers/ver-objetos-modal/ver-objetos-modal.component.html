@@ -20,7 +20,7 @@
           <div class="accordion-body">
             <div class="d-flex align-items-center mb-3" *ngFor="let grumpi of uniqueGrumpis">
               <div class="img-creature">
-                <img class="img-fluid me-3" [src]="grumpi.img_conseguir" alt="Grumpi" />
+                <img class="img-fluid me-3" srcset="{{grumpi.img_conseguir}}" alt="{{grumpi.nombre}}" />
               </div>
               <div class="delete-options">
                 <input id="grumpi-{{ grumpi.nombre }}" type="checkbox" [(ngModel)]="grumpi.toDelete" />
@@ -69,9 +69,9 @@
         </h2>
         <div id="medalsCollapse" class="accordion-collapse collapse" data-bs-parent="#inventoryAccordion">
           <div class="accordion-body">
-            <div class="d-flex align-items-center mb-3" *ngFor="let medalla of uniqueMedals">
+            <div class="d-flex align-items-center mb-3" *ngFor="let medalla of medals_list">
               <div class="img-creature">
-                <img class="img-fluid me-3" [src]="medalla.url" alt="Medalla" />
+                <img class="img-fluid me-3" srcset="{{medalla.imagen}}" alt="{{medalla.nombre}}" />
               </div>
               <div class="delete-options">
                 <input id="medal-{{ medalla.nombre }}" type="checkbox" [(ngModel)]="medalla.toDelete" />
