@@ -103,12 +103,12 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let medal of this.trainer?.data?.medallas">
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let medal of this.trainer?.medallas">
           <div class="img-creature">
-            <img class="img-fluid" src="{{ medal }}" alt="Medalla" (click)="openMedal(medal)" />
+            <img class="img-fluid" srcset="{{ medal.imagen }}" alt="{{medal.nombre}}" (click)="openMedal(medal)" />
           </div>
         </div>
-        <div *ngIf="trainer?.data?.medallas && trainer?.data?.medallas.length === 0">
+        <div *ngIf="trainer?.medallas && trainer?.medallas.length === 0">
           <p>Aún no tienes medallas.</p>
         </div>
       </div>
