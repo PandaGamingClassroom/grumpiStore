@@ -43,14 +43,14 @@
           <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="let creature of filteredCreaturesImages.slice(0, filteredCreaturesImages.length / 2)">
             <div class="img-creature" (click)="openGrumpi(creature)">
-              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" />
+              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" (contextmenu)="disableRightClick($event)"/>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
             *ngFor="let creature of filteredCreaturesImages.slice(filteredCreaturesImages.length / 2)">
             <div class="img-creature" (click)="openGrumpi(creature)">
-              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" />
+              <img class="img-fluid" [src]="creature.img_conseguir" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" (contextmenu)="disableRightClick($event)"/>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let reward of uniqueRewards">
           <div class="img-creature">
-            <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" />
+            <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" (contextmenu)="disableRightClick($event)"/>
             <p>Tienes un total de: {{reward.count}}</p>
           </div>
         </div>
@@ -87,7 +87,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let combatObject of uniqueCombatObjects">
           <div class="img-creature">
-            <img class="img-fluid me-3" src="{{ combatObject.imagen }}" alt="Objeto de Combate" (click)="openCombatObject(combatObject)" />
+            <img class="img-fluid me-3" src="{{ combatObject.imagen }}" alt="Objeto de Combate" (click)="openCombatObject(combatObject)" (contextmenu)="disableRightClick($event)"/>
             <p>Total conseguidos: {{ combatObject.count }}</p>
           </div>
         </div>
@@ -105,7 +105,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let medal of this.trainer?.medallas">
           <div class="img-creature">
-            <img class="img-fluid" srcset="{{ medal.imagen }}" alt="{{medal.nombre}}" (click)="openMedal(medal)" />
+            <img class="img-fluid" srcset="{{ medal.imagen }}" alt="{{medal.nombre}}" (click)="openMedal(medal)" (contextmenu)="disableRightClick($event)" (contextmenu)="disableRightClick($event)"/>
           </div>
         </div>
         <div *ngIf="trainer?.medallas && trainer?.medallas.length === 0">
@@ -122,7 +122,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let energy of uniqueEnergies">
           <div class="img-creature">
-            <img class="img-fluid me-3" src="{{ energy.imagen }}" alt="{{energy.nombre}}" (click)="openEnergy(energy)" />
+            <img class="img-fluid me-3" src="{{ energy.imagen }}" alt="{{energy.nombre}}" (click)="openEnergy(energy)" (contextmenu)="disableRightClick($event)"/>
             <p>Total conseguidas: {{ energy.count }}</p>
           </div>
         </div>

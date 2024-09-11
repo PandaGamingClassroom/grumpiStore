@@ -136,6 +136,10 @@ export class BagComponent implements OnInit {
     );
   }
   
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+  
   // Función para filtrar los Grumpis según el término de búsqueda
   get filteredCreaturesImages(): any[] {
     console.log('Trainer:', this.trainer);
