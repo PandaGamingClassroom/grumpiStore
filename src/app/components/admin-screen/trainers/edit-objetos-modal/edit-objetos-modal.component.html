@@ -71,7 +71,7 @@
           <div class="accordion-body">
             <div class="d-flex align-items-center mb-3" *ngFor="let medalla of uniqueMedals">
               <div class="img-creature">
-                <img class="img-fluid me-3" [src]="medalla.url" alt="Medalla" />
+                <img class="img-fluid me-3" srcset="medalla.url" alt="{{medalla.nombre}}" />
               </div>
               <div class="delete-options">
                 <input id="medal-{{ medalla.nombre }}" type="checkbox" [(ngModel)]="medalla.toDelete" />

@@ -219,7 +219,7 @@ export class EditObjetosModalComponent implements OnInit {
 
     for (let medalla of medallas) {
       if (!medallaCounts[medalla]) {
-        medallaCounts[medalla] = { url: medalla, toDelete: false };
+        medallaCounts[medalla] = { url: medalla.imagen, toDelete: false };
       }
     }
 
