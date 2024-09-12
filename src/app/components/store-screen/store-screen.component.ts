@@ -199,8 +199,9 @@ export class StoreScreenComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data;
+          console.log('Datos del entrenador en la tienda: ', this.trainer);
           this.grumpidolar = this.trainer.grumpidolar;
-          this.getEnergies(this.trainer, this.trainer.data.energies.tipo);
+          this.getEnergies(this.trainer, this.trainer.energies.tipo);
         }
       },
       (error) => {
@@ -620,8 +621,8 @@ export class StoreScreenComponent implements OnInit {
 
   getAllEnergies() {
     this.grumpiService.getImageEnergies().subscribe((result) => {
-      console.log('Lista de energías: ', result);
-      this.all_energies = result.imageUrls;
+      console.log('Lista de energías: ', result.energy_list);
+      this.energy_list = result.energy_list;
     });
   }
 
