@@ -129,13 +129,13 @@ export class ProfileComponent implements OnInit {
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+          console.log(data.message);
         } else {
           this.trainer = data;
           this.avatar = this.trainer.avatar;
           this.grumpidolar = this.trainer.grumpidolar;
           this.combatMarks = this.trainer.marca_combate;
-          this.getEnergies(this.trainer, this.trainer.energies.tipo);
+          this.getEnergies(this.trainer, this.trainer.energies);
           console.log('Datos del entrenador: ', this.trainer);
         }
       },
