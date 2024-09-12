@@ -242,3 +242,14 @@
 .row-avatar {
   align-items: center;
 }
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    position: fixed;
+    top: 0%;
+    left: 1%;
+    transform: translate(-50%, -50%);
+    max-height: 70%;
+    width: 95%;
+  }
+}
