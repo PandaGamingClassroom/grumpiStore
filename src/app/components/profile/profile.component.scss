@@ -254,7 +254,6 @@
 @media (max-width: 767px) {
   .modal-dialog {
     top: 0%;
-    left: 1%;
     transform: translate(-50%, 0);
     width: 97%;
     max-height: 70%;
@@ -264,13 +263,3 @@
     height: auto;
   }
 }
-
-/**@media (min-width: 767px) {
-  .modal-dialog {
-    position: fixed;
-    top: 0%;
-    left: 1%;
-    max-height: 70%;
-    width: 95%;
-  }
-}*/
