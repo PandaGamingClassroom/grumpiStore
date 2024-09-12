@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Profesor no encontrado"
+          console.log(data.message);
         } else {
           this.profesor = data.data;
           this.lastNameProfesor = data.data.apellidos;
@@ -105,7 +105,7 @@ export class ProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getAllProfesors(); // Actualiza la lista de entrenadores después de cerrar el modal
+      this.getAllProfesors();
     });
   }
 
