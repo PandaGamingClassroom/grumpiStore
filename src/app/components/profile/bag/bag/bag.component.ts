@@ -392,5 +392,4 @@ export class BagComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {});
   }
   
-  
 }

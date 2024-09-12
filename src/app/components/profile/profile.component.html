@@ -12,7 +12,7 @@
       </button>
     </div>
     <div class="col d-flex justify-content-end slide-in-top">
-      <button type="button" class="btn-out" (click)="logOut()">
+      <button type="button" class="btn-out" data-bs-toggle="modal" data-bs-target="#openOut">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
           viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -307,4 +307,31 @@
     </div>
   </div>
 </div>
+
+
+<!-- Aviso para salir de la aplicación -->
+<div class="modal fade" id="openOut" tabindex="-1" aria-labelledby="openOut" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="openOut">¡Cuidado!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Si continúas vas a salir de la aplicación y se cerrará la sesión.</p>
+        <p>Si estás deacuerdo, pulsa <strong>Aceptar</strong>.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button-73 me-3" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="button-73" data-bs-dismiss="modal" (click)="logOut()">
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <app-footer></app-footer>
