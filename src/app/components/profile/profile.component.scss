@@ -246,7 +246,6 @@
 @media (min-width: 767px) {
   .modal-dialog {
     top: 0%;
-    left: 1%;
     width: 95%;
   }
 }
@@ -254,6 +253,7 @@
 @media (max-width: 767px) {
   .modal-dialog {
     top: 0%;
+    left: 1%;
     transform: translate(-50%, 0);
     width: 97%;
     max-height: 70%;
