@@ -240,11 +240,6 @@ export class StoreScreenComponent implements OnInit {
     const price: number = this.selectedObject.precio;
     const trainerName: string = this.trainer.name;
   
-    this.confirmTitle = 'Compra realizada';
-    this.confirmMessage = 'La compra ha sido realizada correctamente.';
-    this.errorTitle = '¡Imposible realizar la compra!';
-    this.errorMessage = 'No dispones de suficientes Grumpidólares.';
-  
     if (price > grumpidolarTrainer) {
       this.openErrorModal(this.errorTitle, this.errorMessage);
     } else {
@@ -256,7 +251,6 @@ export class StoreScreenComponent implements OnInit {
           (response) => {
             console.log('Respuesta del servicio de actualización de los Grumpidólares:', response);
             this.assignCombatObjects();
-            this.openConfirmModal(this.confirmTitle, this.confirmMessage);
           },
           (error) => {
             console.error('Error:', error);
