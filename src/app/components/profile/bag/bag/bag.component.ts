@@ -124,10 +124,10 @@ export class BagComponent implements OnInit {
           this.rewards_list = this.trainer?.recompensas || [];
   
           this.contadorRecompensas(this.rewards_list);
-          this.contadorLosas(this.trainer?.data?.objetos_evolutivos || []);
-          this.contadorObjetosCombate(this.trainer?.data?.objetos_combate || []);
+          this.contadorLosas(this.trainer?.objetos_evolutivos || []);
+          this.contadorObjetosCombate(this.trainer?.objetos_combate || []);
           this.contadorEnergias(energyTrainer);
-          this.contadorMedallas(this.trainer?.data?.medallas || []);
+          this.contadorMedallas(this.trainer?.medallas || []);
         }
       },
       (error) => {
