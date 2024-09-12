@@ -238,7 +238,7 @@ export class StoreScreenComponent implements OnInit {
     let grumpidolarTrainer: any = this.grumpidolar;
     let price = this.selectedObject.precio;
     let finalCount: number = 0;
-    let trainerName = this.trainer.data.name;
+    let trainerName = this.trainer.name;
     this.confirmTitle = 'Compra realizada';
     this.confirmMessage = 'La compra ha sido realizada correctammente.';
     this.errorTitle = '¡Imposible realizar la compra!';
@@ -271,7 +271,7 @@ export class StoreScreenComponent implements OnInit {
     let price = this.selectedObject.precio;
     let requiredEnergyType = this.selectedObject.tipo;
     let evoObjectSelected = this.selectedObject;
-    let trainerName = this.trainer.data.name;
+    let trainerName = this.trainer.name;
     /**
      * Cantidades de energías de las que dispone el entrenador
      */
@@ -436,7 +436,7 @@ export class StoreScreenComponent implements OnInit {
    *
    */
   assignCombatObjects() {
-    let trainerName = this.trainer.data.name;
+    let trainerName = this.trainer.name;
     if (trainerName !== null && this.selectedObject !== null) {
       // Obtén el objeto de combate
       let combatObject = this.selectedObject;
@@ -507,7 +507,7 @@ export class StoreScreenComponent implements OnInit {
    * @param trainerData Obtiene los datos del entrenador
    */
   getEnergies(trainerData: any, typeEnergy: string) {
-    let energies = trainerData.data.energias;
+    let energies = trainerData.energies;
     for (let energia of energies) {
       if (energia.tipo == 'Agua') {
         this.cantidadEnergiaAgua++;
