@@ -146,164 +146,6 @@
   </div>
 </div>
 
-<div class="modal fade" id="desgloseEnergias" tabindex="-1" aria-labelledby="avatar" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="avatar">
-          Energías que has conseguido
-        </h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="scrollable-div">
-          <div class="col">
-            <div class="container">
-              <h2 class="box-text">
-                Mis energías: <strong>{{ cantidadTotal }}</strong>
-              </h2>
-              <hr />
-              <ul>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[0].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Agua: </strong>
-                        {{ cantidadEnergiaAgua }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[2].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Fuego: </strong>
-                        {{ cantidadEnergiaFuego }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[1].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Aire: </strong>
-                        {{ cantidadEnergiaAire }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[3].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Luz: </strong>
-                        {{ cantidadEnergiaLuz }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[4].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Normal: </strong>
-                        {{ cantidadEnergiaNormal }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[5].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Oscuridad: </strong>
-                        {{ cantidadEnergiaOscuridad }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[6].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Rayo: </strong>
-                        {{ cantidadEnergiaRayo }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[7].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Tierra: </strong>
-                        {{ cantidadEnergiaTierra }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[8].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Vida: </strong>
-                        {{ cantidadEnergiaVida }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cerrar
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- DESGLOSE DE ENERGÍAS -->
 <div class="modal fade" id="desgloseEnergias" tabindex="-1" aria-labelledby="avatar" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -322,134 +164,136 @@
                 Mis energías: <strong>{{ cantidadTotal }}</strong>
               </h2>
               <hr />
-              <ul>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[0].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
+              <div class="text-center">
+                <ul>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[0].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Agua: </strong>
+                          {{ cantidadEnergiaAgua }}
+                        </button>
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Agua: </strong>
-                        {{ cantidadEnergiaAgua }}
-                      </button>
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[2].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Fuego: </strong>
+                          {{ cantidadEnergiaFuego }}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[2].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[1].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Aire: </strong>
+                          {{ cantidadEnergiaAire }}
+                        </button>
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Fuego: </strong>
-                        {{ cantidadEnergiaFuego }}
-                      </button>
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[3].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Luz: </strong>
+                          {{ cantidadEnergiaLuz }}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[1].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[4].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Normal: </strong>
+                          {{ cantidadEnergiaNormal }}
+                        </button>
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Aire: </strong>
-                        {{ cantidadEnergiaAire }}
-                      </button>
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[5].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Oscuridad: </strong>
+                          {{ cantidadEnergiaOscuridad }}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[3].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[6].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Rayo: </strong>
+                          {{ cantidadEnergiaRayo }}
+                        </button>
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Luz: </strong>
-                        {{ cantidadEnergiaLuz }}
-                      </button>
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[7].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Tierra: </strong>
+                          {{ cantidadEnergiaTierra }}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[4].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
+                  </li>
+                  <li class="mb-1">
+                    <div class="row">
+                      <div class="col-2 boxIcon">
+                        <img class="iconImg" srcset="{{iconListEnergy[8].imagen}}"
+                          (contextmenu)="disableRightClick($event)" />
+                      </div>
+                      <div class="col-8">
+                        <button class="evoBox">
+                          <strong> Vida: </strong>
+                          {{ cantidadEnergiaVida }}
+                        </button>
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Normal: </strong>
-                        {{ cantidadEnergiaNormal }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[5].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Oscuridad: </strong>
-                        {{ cantidadEnergiaOscuridad }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[6].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Rayo: </strong>
-                        {{ cantidadEnergiaRayo }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[7].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Tierra: </strong>
-                        {{ cantidadEnergiaTierra }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-1">
-                  <div class="row">
-                    <div class="col-2 boxIcon">
-                      <img class="iconImg" srcset="{{iconListEnergy[8].imagen}}"
-                        (contextmenu)="disableRightClick($event)" />
-                    </div>
-                    <div class="col-8">
-                      <button class="evoBox">
-                        <strong> Vida: </strong>
-                        {{ cantidadEnergiaVida }}
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
