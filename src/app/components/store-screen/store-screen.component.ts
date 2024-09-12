@@ -200,7 +200,7 @@ export class StoreScreenComponent implements OnInit {
         } else {
           this.trainer = data;
           this.grumpidolar = this.trainer.grumpidolar;
-          this.getEnergies(this.trainer, this.trainer.energies.tipo);
+          this.getEnergies(this.trainer, this.trainer.data.energies.tipo);
         }
       },
       (error) => {
@@ -620,7 +620,7 @@ export class StoreScreenComponent implements OnInit {
 
   getAllEnergies() {
     this.grumpiService.getImageEnergies().subscribe((result) => {
-      console.log('Lista de energías: ', result.imageUrls);
+      console.log('Lista de energías: ', result);
       this.all_energies = result.imageUrls;
     });
   }
