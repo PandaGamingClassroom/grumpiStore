@@ -138,8 +138,10 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
-          <p> EN CONSTRUCCIÓN </p>
+        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let badgesLeague of this.trainer?.distintivos_liga">
+          <div class="img-creature">
+            <img class="img-fluid me-3" srcset="{{ badgesLeague }}" alt="Distintivo de liga" (click)="openEnergy(badgesLeague)" (contextmenu)="disableRightClick($event)"/>
+          </div>
         </div>
       </div>
     </div>
