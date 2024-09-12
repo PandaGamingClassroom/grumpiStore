@@ -159,6 +159,58 @@
 }
 
 
+/*********************************************************************
+*                                                                    *
+*  Configuración para la ventana modal de vistra previa de energías  *
+*                                                                    *
+*********************************************************************/
+.boxIcon {
+  background-color: #75b3ec;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #adcfff 0 -12px 6px inset;
+}
+.iconImg {
+  height: 45px;
+  width: 45px;
+}
+.evoBox {
+  height: 50px;
+  width: 200px;
+  appearance: none;
+  background-color: #ffffff;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #adcfff 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.evoBox:hover {
+  background-color: #ffc229;
+  box-shadow: #ff6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.evoBox:active {
+  transform: scale(1.025);
+}
+
 /*******************************************************************
 *                                                                  *
 *   Configuración para la ventana modal de selección de avatares   *
@@ -166,13 +218,20 @@
 *******************************************************************/
 .modal-dialog {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 0%;
+  left: 30%;
   transform: translate(-50%, -50%);
   max-height: 90%;
   width: 100%;
+  height: 80%;
 }
 
 .modal-content {
   height: 100%;
+}
+
+.scrollable-div-avatar {
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
