@@ -31,6 +31,7 @@ import { LeagueBadgesComponent } from './components/admin-screen/league-badges/l
 import { BattleGameComponent } from './components/battle-game/battle-game.component';
 import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.component';
 import { AboutTheAppComponent } from './components/about-the-app/about-the-app.component';
+import { BlogScreenComponent } from './components/admin-screen/profesor-admin/blog/blog-screen.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -84,6 +85,7 @@ export const routes: Routes = [
   { path: 'admin/medals', component: MedalsAdminScreenComponent },
   { path: 'admin/grumpidolars', component: GrumpidolarsComponent },
   { path: 'admin/energies', component: EnergiesComponent },
+  { path: 'admin/blog-admin', component: BlogScreenComponent },
   { path: 'help', component: HelpComponentComponent },
   { path: 'profile/bag', component: BagComponent },
   { path: 'game', component: BattleGameComponent },

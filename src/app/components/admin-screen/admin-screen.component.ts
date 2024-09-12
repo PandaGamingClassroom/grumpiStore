@@ -22,6 +22,7 @@ import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin
 import { RulesComponent } from '../rules/rules.component';
 import { ProfesorAdmin } from './profesor-admin/profesor-admin.component';
 import { ProfileComponent } from './profesor-admin/profile/profile-profesor.component';
+import { BlogScreenComponent } from './profesor-admin/blog/blog-screen.component';
 
 @Component({
   selector: 'app-admin-screen',
@@ -39,6 +40,7 @@ import { ProfileComponent } from './profesor-admin/profile/profile-profesor.comp
     GrumpidolarsComponent,
     EnergiesComponent,
     CreaturesAdminComponent,
+    BlogScreenComponent,
     RulesComponent,
     MatSidenavModule,
     MatListModule,
