@@ -84,7 +84,7 @@ export class StoreScreenComponent implements OnInit {
     private http: HttpClient,
     private trainersService: TrainerService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadImageUrls();
@@ -106,7 +106,7 @@ export class StoreScreenComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   /**
    * Función para validar el contenido que se va a mostrar en la tienda Grumpi.
    *
@@ -196,11 +196,11 @@ export class StoreScreenComponent implements OnInit {
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+          console.log(data.message);
         } else {
           this.trainer = data;
-          this.grumpidolar = this.trainer.data.grumpidolar;
-          this.getEnergies(this.trainer, this.trainer.data.energias.tipo);
+          this.grumpidolar = this.trainer.grumpidolar;
+          this.getEnergies(this.trainer, this.trainer.energies.tipo);
         }
       },
       (error) => {
@@ -213,7 +213,7 @@ export class StoreScreenComponent implements OnInit {
     this.grumpiService.getRewards().subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+          console.log(data.message);
         } else {
           this.rewards_list = data.rewardsList;
           console.log('Lista de recompensas: ', this.rewards_list);
@@ -263,6 +263,7 @@ export class StoreScreenComponent implements OnInit {
   }
 
   /**
+   * 
    * Función para comprar el objeto evolutivo seleccionado.
    *
    */
@@ -301,7 +302,6 @@ export class StoreScreenComponent implements OnInit {
         {
           if (requiredEnergyType == 'agua' && price <= agua) {
             console.log('Estas comprando losa de agua');
-            // Llamada al servicio para añadir el objeto al entrenador
             this.assingEvolutionObjects(trainerName, evoObjectSelected);
           } else {
             error = true;
@@ -429,6 +429,7 @@ export class StoreScreenComponent implements OnInit {
         }
       );
   }
+
   /**
    *
    * Función para asignar los objetos de combate comprados al entrenador

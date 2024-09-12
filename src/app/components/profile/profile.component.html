@@ -3,39 +3,22 @@
   <div class="row">
     <div class="col">
       <button type="button" class="button-73" routerLink="/home">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-arrow-left-circle-fill"
-          viewBox="0 0 16 16"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
           <path
-            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-          />
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
         </svg>
         Atrás
       </button>
     </div>
     <div class="col d-flex justify-content-end slide-in-top">
       <button type="button" class="btn-out" (click)="logOut()">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-box-arrow-left"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"
-          />
-          <path
-            fill-rule="evenodd"
-            d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"
-          />
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+          <path fill-rule="evenodd"
+            d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
         </svg>
         Salir
       </button>
@@ -48,31 +31,17 @@
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: 0.5rem">
           <div class="row g-0">
-            <div
-              class="col-md-4 gradient-custom text-center text-white"
-              style="
+            <div class="col-md-4 gradient-custom text-center text-white" style="
                 border-top-left-radius: 0.5rem;
                 border-bottom-left-radius: 0.5rem;
-              "
-            >
+              ">
               <div class="row d-flex justify-content-center">
-                <img
-                  src="{{ avatarSelect }}"
-                  alt="Avatar"
-                  class="img-fluid my-5"
-                  (contextmenu)="disableRightClick($event)"
-                />
+                <img src="{{ avatarSelect }}" alt="Avatar" class="img-fluid my-5"
+                  (contextmenu)="disableRightClick($event)" />
               </div>
               <div class="row d-flex justify-content-center">
-                <button
-                  type="button"
-                  class="changeAvatar"
-                  data-bs-toggle="modal"
-                  data-bs-target="#avatarModal"
-                >
-                  <i class="material-icons d-flex justify-content-center"
-                    >&#xe863;</i
-                  >
+                <button type="button" class="changeAvatar" data-bs-toggle="modal" data-bs-target="#avatarModal">
+                  <i class="material-icons d-flex justify-content-center">&#xe863;</i>
                 </button>
               </div>
               <br />
@@ -99,22 +68,15 @@
                         </h3>
                       </div>
                       <div class="col">
-                        <a
-                          data-bs-toggle="modal"
-                          data-bs-target="#desgloseEnergias"
-                          ><i class="material-icons">&#xe88f;</i></a
-                        >
+                        <a data-bs-toggle="modal" data-bs-target="#desgloseEnergias"><i
+                            class="material-icons">&#xe88f;</i></a>
                       </div>
                     </div>
                   </div>
                   <div class="col-6 mb-3">
                     <h3>
-                      <strong class="box-text"
-                        ><img
-                          class="dolar"
-                          src="../../../assets/MONEDA_GRUMPI_CARA.png"
-                          (contextmenu)="disableRightClick($event)"
-                        />Grumpidólares:
+                      <strong class="box-text"><img class="dolar" src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                          (contextmenu)="disableRightClick($event)" />Grumpidólares:
                       </strong>
                       <strong>{{ grumpidolar }} </strong>
                     </h3>
@@ -122,19 +84,12 @@
                 </div>
                 <p class="box-text">
                   <strong>Marcas de combate: </strong>
-                  <img
-                    *ngFor="let mark of getCombatMarksArray()"
-                    src="../../../assets/GrumpiVice.png"
-                    class="grumpivice"
-                  />
+                  <img *ngFor="let mark of getCombatMarksArray()" src="../../../assets/GrumpiVice.png"
+                    class="grumpivice" />
                 </p>
                 <hr class="mt-0 mb-4" />
                 <div class="justify-content-center d-flex mt-6">
-                  <button
-                    type="button"
-                    class="button-73"
-                    routerLink="/profile/bag"
-                  >
+                  <button type="button" class="button-73" routerLink="/profile/bag">
                     Ver mochila
                   </button>
                 </div>
@@ -159,25 +114,14 @@
 </div>
 
 <!-- Selección del Avatar -->
-<div
-  class="modal fade"
-  id="avatarModal"
-  tabindex="-1"
-  aria-labelledby="avatar"
-  aria-hidden="true"
->
+<div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatar" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="avatar">
           Selección del avatar del entrenador
         </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="scrollable-div">
@@ -185,17 +129,10 @@
             <li *ngFor="let avatar of avatar_list" class="mb-3">
               <div class="row row-avatar">
                 <div class="col-5">
-                  <img src="{{ avatar?.imagen }}" class="avatar-box" (contextmenu)="disableRightClick($event)"/>
+                  <img src="{{ avatar?.imagen }}" class="avatar-box" (contextmenu)="disableRightClick($event)" />
                 </div>
-                <div
-                  class="col d-flex justify-content-center align-items-center"
-                >
-                  <button
-                    type="button"
-                    class="button-avatar"
-                    data-bs-dismiss="modal"
-                    (click)="avatarSelected(avatar)"
-                  >
+                <div class="col d-flex justify-content-center align-items-center">
+                  <button type="button" class="button-avatar" data-bs-dismiss="modal" (click)="avatarSelected(avatar)">
                     Seleccionar
                   </button>
                 </div>
@@ -214,28 +151,145 @@
 </div>
 
 <!-- DESGLOSE DE ENERGÍAS -->
-<div
-  class="modal fade"
-  id="desgloseEnergias"
-  tabindex="-1"
-  aria-labelledby="avatar"
-  aria-hidden="true"
->
+<div class="modal fade" id="desgloseEnergias" tabindex="-1" aria-labelledby="avatar" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="avatar">
           Energías que has conseguido
         </h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="scrollable-div"></div>
+        <div class="scrollable-div">
+          <div class="col">
+            <div class="container scrollable-div">
+              <h2 class="box-text">
+                Mis energías: <strong>{{ cantidadTotal }}</strong>
+              </h2>
+              <hr />
+              <ul>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[0].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Agua: </strong>
+                        {{ cantidadEnergiaAgua }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[2].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Fuego: </strong>
+                        {{ cantidadEnergiaFuego }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[1].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Aire: </strong>
+                        {{ cantidadEnergiaAire }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[3].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Luz: </strong>
+                        {{ cantidadEnergiaLuz }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[4].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Normal: </strong>
+                        {{ cantidadEnergiaNormal }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[5].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Oscuridad: </strong>
+                        {{ cantidadEnergiaOscuridad }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[6].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Rayo: </strong>
+                        {{ cantidadEnergiaRayo }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[7].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Tierra: </strong>
+                        {{ cantidadEnergiaTierra }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[8].imagen}}" (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Vida: </strong>
+                        {{ cantidadEnergiaVida }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

@@ -15,6 +15,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { iconEnergy } from '../../models/energies';
 
 @Component({
   selector: 'app-profile',
@@ -45,6 +46,21 @@ export class ProfileComponent implements OnInit {
   grumpidolar: string = '';
   combatMarks: number = 0;
   avatar: any;
+  iconListEnergy = iconEnergy;
+
+  /**
+  * CANTIDADES DISPONIBLES DE LAS ENERGÍAS
+  */
+  cantidadEnergiaAgua: number = 0;
+  cantidadEnergiaAire: number = 0;
+  cantidadEnergiaLuz: number = 0;
+  cantidadEnergiaTierra: number = 0;
+  cantidadEnergiaFuego: number = 0;
+  cantidadEnergiaVida: number = 0;
+  cantidadEnergiaRayo: number = 0;
+  cantidadEnergiaNormal: number = 0;
+  cantidadEnergiaOscuridad: number = 0;
+  cantidadTotal: number = 0;
 
   /** Variables para la imagen que sube el entrenador */
   isTypeSelected: boolean = false;
@@ -55,7 +71,7 @@ export class ProfileComponent implements OnInit {
     private trainersService: TrainerService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.avatarService.loadAvatarFromStorage();
@@ -77,7 +93,7 @@ export class ProfileComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   avatarSelected(avatar: any) {
     this.avatarService.setAvatar(avatar.imagen);
   }
@@ -116,16 +132,57 @@ export class ProfileComponent implements OnInit {
           console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
         } else {
           this.trainer = data;
-          this.avatar = this.trainer.data.avatar;
-          this.grumpidolar = this.trainer.data.grumpidolar;
-          this.combatMarks = this.trainer.data.marca_combate;
-          console.log('Datos del entrenador: ', this.trainer.data);
+          this.avatar = this.trainer.avatar;
+          this.grumpidolar = this.trainer.grumpidolar;
+          this.combatMarks = this.trainer.marca_combate;
+          this.getEnergies(this.trainer, this.trainer.energies.tipo);
+          console.log('Datos del entrenador: ', this.trainer);
         }
       },
       (error) => {
         console.error('Error:', error);
       }
     );
+  }
+
+  /**
+  * Función para obtener la información de las energías del entrenador
+  *
+  * @param trainerData Obtiene los datos del entrenador
+  */
+  getEnergies(trainerData: any, typeEnergy: string) {
+    let energies = trainerData.energias;
+    for (let energia of energies) {
+      if (energia.tipo == 'Agua') {
+        this.cantidadEnergiaAgua++;
+      } else if (energia.tipo == 'Fuego') {
+        this.cantidadEnergiaFuego++;
+      } else if (energia.tipo == 'Aire') {
+        this.cantidadEnergiaAire++;
+      } else if (energia.tipo == 'Luz') {
+        this.cantidadEnergiaLuz++;
+      } else if (energia.tipo == 'Normal') {
+        this.cantidadEnergiaNormal++;
+      } else if (energia.tipo == 'Oscuridad') {
+        this.cantidadEnergiaOscuridad++;
+      } else if (energia.tipo == 'Rayo') {
+        this.cantidadEnergiaRayo++;
+      } else if (energia.tipo == 'Tierra') {
+        this.cantidadEnergiaTierra++;
+      } else if (energia.tipo == 'Vida') {
+        this.cantidadEnergiaVida++;
+      }
+    }
+    this.cantidadTotal =
+      this.cantidadEnergiaAgua +
+      this.cantidadEnergiaFuego +
+      this.cantidadEnergiaAire +
+      this.cantidadEnergiaLuz +
+      this.cantidadEnergiaNormal +
+      this.cantidadEnergiaOscuridad +
+      this.cantidadEnergiaRayo +
+      this.cantidadEnergiaTierra +
+      this.cantidadEnergiaVida;
   }
 
   getCombatMarksArray(): number[] {

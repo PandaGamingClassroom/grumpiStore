@@ -157,3 +157,22 @@
   height: 40px;
   width: 25px;
 }
+
+
+/*******************************************************************
+*                                                                  *
+*   Configuración para la ventana modal de selección de avatares   *
+*                                                                  *
+*******************************************************************/
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 90%;
+  width: 100%;
+}
+
+.modal-content {
+  height: 100%;
+}
