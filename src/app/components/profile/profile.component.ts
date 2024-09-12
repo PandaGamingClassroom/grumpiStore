@@ -151,7 +151,9 @@ export class ProfileComponent implements OnInit {
   * @param trainerData Obtiene los datos del entrenador
   */
   getEnergies(trainerData: any, typeEnergy: string) {
-    let energies = trainerData.energias;
+    console.log('Datos del entrenador para el recuento de medallas:', trainerData);
+    
+    let energies = trainerData.energies;
     for (let energia of energies) {
       if (energia.tipo == 'Agua') {
         this.cantidadEnergiaAgua++;
