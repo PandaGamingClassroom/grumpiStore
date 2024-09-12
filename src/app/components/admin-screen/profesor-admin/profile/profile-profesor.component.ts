@@ -80,6 +80,7 @@ export class ProfileComponent implements OnInit {
         if (data.message) {
           console.log(data.message);
         } else {
+          console.log('Perfil profesor: ', data);
           this.profesor = data.data;
           this.lastNameProfesor = data.data.apellidos;
           this.validateForm(this.profesor);
