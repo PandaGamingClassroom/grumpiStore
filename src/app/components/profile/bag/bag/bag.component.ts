@@ -120,14 +120,14 @@ export class BagComponent implements OnInit {
           
           this.cdr.detectChanges();
           
-          let energyTrainer = this.trainer?.energies || [];
-          this.rewards_list = this.trainer?.recompensas || [];
+          let energyTrainer = this.trainer?.energies;
+          this.rewards_list = this.trainer?.recompensas;
   
           this.contadorRecompensas(this.rewards_list);
-          this.contadorLosas(this.trainer?.objetos_evolutivos || []);
-          this.contadorObjetosCombate(this.trainer?.objetos_combate || []);
+          this.contadorLosas(this.trainer?.objetos_evolutivos);
+          this.contadorObjetosCombate(this.trainer?.objetos_combate);
           this.contadorEnergias(energyTrainer);
-          this.contadorMedallas(this.trainer?.medallas || []);
+          this.contadorMedallas(this.trainer?.medallas);
         }
       },
       (error) => {
@@ -142,20 +142,12 @@ export class BagComponent implements OnInit {
   
   // Función para filtrar los Grumpis según el término de búsqueda
   get filteredCreaturesImages(): any[] {
-    console.log('Trainer:', this.trainer);
-    console.log('Lista de Grumpis para filtrar:', this.grumpiList);
-  
-    // Verificar que trainer y grumpiList existan
     if (!this.trainer || !this.grumpiList) {
-      console.warn('Datos no disponibles para filtrar.');
       return [];
     }
-  
     const filtered = this.grumpiList.filter((creature: any) =>
       creature.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
-  
-    console.log('Filtered Creatures:', filtered);
     return filtered;
   }
   
