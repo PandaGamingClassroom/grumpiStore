@@ -199,9 +199,9 @@ export class StoreScreenComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data.data;
-          console.log('Datos del entrenador en la tienda: ', this.trainer);
           this.grumpidolar = this.trainer.grumpidolar;
           this.getEnergies(this.trainer, this.trainer.energies.tipo);
+          console.log('Datos del entrenador en la tienda: ', this.trainer);
         }
       },
       (error) => {
