@@ -243,13 +243,34 @@
   align-items: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
+  .modal-dialog {
+    top: 0%;
+    left: 1%;
+    width: 95%;
+  }
+}
+
+@media (max-width: 767px) {
+  .modal-dialog {
+    top: 0%;
+    left: 1%;
+    transform: translate(-50%, 0);
+    width: 97%;
+    max-height: 70%;
+  }
+
+  .modal-content {
+    height: auto;
+  }
+}
+
+/**@media (min-width: 767px) {
   .modal-dialog {
     position: fixed;
     top: 0%;
     left: 1%;
-    transform: translate(-50%, -50%);
     max-height: 70%;
     width: 95%;
   }
-}
+}*/
