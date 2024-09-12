@@ -118,8 +118,40 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
+        <h1 class="modal-title fs-5" id="avatar">Selección del avatar del entrenador</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="scrollable-div-avatar">
+          <ul>
+            <li *ngFor="let avatar of avatar_list" class="mb-3">
+              <div class="row row-avatar">
+                <div class="col-5">
+                  <img src="{{ avatar?.imagen }}" class="avatar-box" (contextmenu)="disableRightClick($event)" />
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                  <button type="button" class="button-avatar" data-bs-dismiss="modal" (click)="avatarSelected(avatar)">
+                    Seleccionar
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="desgloseEnergias" tabindex="-1" aria-labelledby="avatar" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
         <h1 class="modal-title fs-5" id="avatar">
-          Selección de avatares
+          Energías que has conseguido
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -127,16 +159,133 @@
         <div class="scrollable-div">
           <div class="col">
             <div class="container">
+              <h2 class="box-text">
+                Mis energías: <strong>{{ cantidadTotal }}</strong>
+              </h2>
+              <hr />
               <ul>
-                <li *ngFor="let avatar of avatar_list" class="mb-3">
-                  <div class="row row-avatar">
-                    <div class="col-5">
-                      <img src="{{ avatar?.imagen }}" class="avatar-box" (contextmenu)="disableRightClick($event)" />
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[0].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
                     </div>
-                    <div class="col d-flex justify-content-center align-items-center">
-                      <button type="button" class="button-avatar" data-bs-dismiss="modal"
-                        (click)="avatarSelected(avatar)">
-                        Seleccionar
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Agua: </strong>
+                        {{ cantidadEnergiaAgua }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[2].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Fuego: </strong>
+                        {{ cantidadEnergiaFuego }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[1].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Aire: </strong>
+                        {{ cantidadEnergiaAire }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[3].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Luz: </strong>
+                        {{ cantidadEnergiaLuz }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[4].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Normal: </strong>
+                        {{ cantidadEnergiaNormal }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[5].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Oscuridad: </strong>
+                        {{ cantidadEnergiaOscuridad }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[6].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Rayo: </strong>
+                        {{ cantidadEnergiaRayo }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[7].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Tierra: </strong>
+                        {{ cantidadEnergiaTierra }}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <div class="row">
+                    <div class="col-2 boxIcon">
+                      <img class="iconImg" srcset="{{iconListEnergy[8].imagen}}"
+                        (contextmenu)="disableRightClick($event)" />
+                    </div>
+                    <div class="col-8">
+                      <button class="evoBox">
+                        <strong> Vida: </strong>
+                        {{ cantidadEnergiaVida }}
                       </button>
                     </div>
                   </div>
@@ -154,8 +303,6 @@
     </div>
   </div>
 </div>
-
-
 
 <!-- DESGLOSE DE ENERGÍAS -->
 <div class="modal fade" id="desgloseEnergias" tabindex="-1" aria-labelledby="avatar" aria-hidden="true">
