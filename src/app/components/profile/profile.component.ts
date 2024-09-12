@@ -131,11 +131,11 @@ export class ProfileComponent implements OnInit {
         if (data.message) {
           console.log(data.message);
         } else {
-          this.trainer = data;
+          this.trainer = data.data;
           this.avatar = this.trainer.avatar;
           this.grumpidolar = this.trainer.grumpidolar;
           this.combatMarks = this.trainer.marca_combate;
-          this.getEnergies(this.trainer, this.trainer.energies);
+          this.getEnergies(this.trainer, this.trainer.energies.tipo);
           console.log('Datos del entrenador: ', this.trainer);
         }
       },
