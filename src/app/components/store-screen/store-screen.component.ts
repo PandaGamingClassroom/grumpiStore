@@ -239,12 +239,12 @@ export class StoreScreenComponent implements OnInit {
     const grumpidolarTrainer: number = Number(this.grumpidolar);
     const price: number = this.selectedObject.precio;
     const trainerName: string = this.trainer.name;
-  
+
     if (price > grumpidolarTrainer) {
       this.openErrorModal(this.errorTitle, this.errorMessage);
     } else {
       const finalCount: number = grumpidolarTrainer - price;
-  
+
       this.trainersService
         .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
         .subscribe(
@@ -258,10 +258,10 @@ export class StoreScreenComponent implements OnInit {
         );
     }
   }
-  
+
 
   /**
-   * 
+   *
    * Función para comprar el objeto evolutivo seleccionado.
    *
    */
@@ -633,22 +633,20 @@ export class StoreScreenComponent implements OnInit {
               'Energía asignada correctamente al entrenador:',
               response
             );
-            // Aquí puedes manejar la respuesta como desees
           },
           (error) => {
             console.error('Error al asignar la energía al entrenador:', error);
-            // Aquí puedes manejar el error como desees
           }
         );
     } else {
       console.error('No se ha seleccionado ningún entrenador o energía.');
-      // Aquí puedes manejar el caso donde no se haya seleccionado ningún entrenador o energía
     }
   }
 
   buyEnergy() {
     const priceEnergy: number = 10;
     let grumpidolarTrainer: any = this.grumpidolar;
+    const trainerName: string = this.trainer.name;
     let finalCount: number = 0;
     const errorTitle = '¡Cuidado!';
     const errorMessage =
@@ -662,13 +660,9 @@ export class StoreScreenComponent implements OnInit {
       this.assignEnergies();
       finalCount = grumpidolarTrainer - priceEnergy;
       this.trainersService
-        .assignGrumpidolaresAfterBuyToTrainer(
-          this.trainer.data.name,
-          finalCount
-        )
+        .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
         .subscribe(
           (response) => {
-            this.assignCombatObjects();
             this.openConfirmModal(this.confirmTitle, this.confirmMessage);
           },
           (error) => {
