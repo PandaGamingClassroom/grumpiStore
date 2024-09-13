@@ -19,10 +19,6 @@ export class CareerComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.hideElements = params['hideElements'] === 'true';
-    });
-
     const currentUrl = this.router.url.split('?')[0]; 
     /**
      *
@@ -30,10 +26,10 @@ export class CareerComponent implements OnInit{
      * para cambiar el botón que vuelve atrás.
      *
      */
-    if (currentUrl === '/career_admin') {
+    if (currentUrl === '/rules/career_admin') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
-    } else if (currentUrl === '/career') {
+    } else if (currentUrl === '/rules/career') {
       this.showBackBTNHome = true;
       this.showBackBTNAdmin = false;
     }

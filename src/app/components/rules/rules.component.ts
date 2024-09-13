@@ -25,10 +25,6 @@ export class RulesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.hideElements = params['hideElements'] === 'true';
-    });
-
     const currentUrl = this.router.url.split('?')[0]; 
     /**
      *
