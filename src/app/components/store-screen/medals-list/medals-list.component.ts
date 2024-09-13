@@ -7,12 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-medals-list',
   standalone: true,
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [TrainerService],
   templateUrl: './medals-list.component.html',
   styleUrls: ['./medals-list.component.scss'],
@@ -25,9 +20,9 @@ export class MedalsListComponent implements OnInit {
   trainer: any;
   username: string | null = '';
   energiesToSpend: { type: string; quantity: number }[] = [];
+  groupedEnergies: { type: string; quantity: number }[] = [];
 
-  constructor(
-    private trainersService: TrainerService) {}
+  constructor(private trainersService: TrainerService) {}
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
@@ -42,10 +37,12 @@ export class MedalsListComponent implements OnInit {
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+          console.log(data.message);
         } else {
           this.trainer = data;
-          this.groupedEnergies = this.groupEnergies(this.trainer.data.energias);
+          console.log('Datos del entrenador para obetener las energías: ', this.trainer);
+
+          this.groupedEnergies = this.groupEnergies(this.trainer.energias);
         }
       },
       (error) => {
@@ -53,8 +50,6 @@ export class MedalsListComponent implements OnInit {
       }
     );
   }
-
-  groupedEnergies: { type: string; quantity: number }[] = [];
 
   groupEnergies(energies: any[]): { type: string; quantity: number }[] {
     const grouped: { [type: string]: number } = {};
@@ -95,6 +90,4 @@ export class MedalsListComponent implements OnInit {
   confirmSelection(): void {
     this.energiesSelected.emit(this.energiesToSpend);
   }
-
-
 }
