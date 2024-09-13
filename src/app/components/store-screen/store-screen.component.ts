@@ -654,10 +654,10 @@ export class StoreScreenComponent implements OnInit {
   }
 
   buyEnergy() {
-    console.log('Objeto seleccionado para comprar: ', this.selectedObject);
+    console.log('Objeto seleccionado para comprar: ', this.selectedEnergie);
 
     const grumpidolarTrainer: number = Number(this.grumpidolar);
-    const price: number = this.selectedObject.precio;
+    const price: number = this.selectedEnergie.precio;
     const trainerName: string = this.trainer.name;
 
     if (price > grumpidolarTrainer) {
