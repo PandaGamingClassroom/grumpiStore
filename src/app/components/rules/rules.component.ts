@@ -32,6 +32,7 @@ export class RulesComponent implements OnInit {
      * para cambiar el botón que vuelve atrás.
      *
      */
+    console.log('Ruta actual: ', currentUrl);
     if (currentUrl === '/rules_admin') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;

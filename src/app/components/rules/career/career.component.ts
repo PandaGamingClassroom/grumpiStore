@@ -26,6 +26,7 @@ export class CareerComponent implements OnInit{
      * para cambiar el botón que vuelve atrás.
      *
      */
+    console.log('Ruta actual: ', currentUrl);
     if (currentUrl === '/rules/career_admin') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
