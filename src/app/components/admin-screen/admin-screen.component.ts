@@ -95,7 +95,7 @@ export class AdminScreenComponent implements OnInit {
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
-  
+
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -140,6 +140,7 @@ export class AdminScreenComponent implements OnInit {
       this.showLogo = false;
     }
     this.activeSection = section;
+    this.toggleSidebar();
     console.log('Active section set to:', this.activeSection);
     if (this.activeSection === 'guide') {
       this.navigateToRules();
