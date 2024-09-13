@@ -3,10 +3,17 @@
 <div class="header-container">
   <div class="btn-config">
     <button type="button" class="button-73" routerLink="/profile">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-left-circle-fill"
+        viewBox="0 0 16 16"
+      >
         <path
-          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+        />
       </svg>
       Atrás
     </button>
@@ -19,17 +26,66 @@
 
 <div class="container text-center bg-box">
   <div class="dropdown mt-2">
-    <button class="button-73 dropdown-toggle mt-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    <button
+      class="button-73 dropdown-toggle mt-2"
+      type="button"
+      id="dropdownMenuButton"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
       Selecciona una opción
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <li><button class="dropdown-item button-73" (click)="showContent('grumpis')">Grumpis</button></li>
-      <li><button class="dropdown-item button-73" (click)="showContent('rewards')">Recompensas</button></li>
-      <li><button class="dropdown-item button-73" (click)="showContent('combatObjects')">Objetos de combate</button></li>
-      <li><button class="dropdown-item button-73" (click)="showContent('medals')">Medallas</button></li>
-      <li><button class="dropdown-item button-73" (click)="showContent('energies')">Energías</button></li>
-      <li><button class="dropdown-item button-73" (click)="showContent('league')">Distintivos de liga</button></li>
-      <li><button class="dropdown-item button-73" (click)="showContent('evolution')">Objetos evolutivos</button></li>
+      <li>
+        <button
+          class="dropdown-item button-73"
+          (click)="showContent('grumpis')"
+        >
+          Grumpis
+        </button>
+      </li>
+      <li>
+        <button
+          class="dropdown-item button-73"
+          (click)="showContent('rewards')"
+        >
+          Recompensas
+        </button>
+      </li>
+      <li>
+        <button
+          class="dropdown-item button-73"
+          (click)="showContent('combatObjects')"
+        >
+          Objetos de combate
+        </button>
+      </li>
+      <li>
+        <button class="dropdown-item button-73" (click)="showContent('medals')">
+          Medallas
+        </button>
+      </li>
+      <li>
+        <button
+          class="dropdown-item button-73"
+          (click)="showContent('energies')"
+        >
+          Energías
+        </button>
+      </li>
+      <li>
+        <button class="dropdown-item button-73" (click)="showContent('league')">
+          Distintivos de liga
+        </button>
+      </li>
+      <li>
+        <button
+          class="dropdown-item button-73"
+          (click)="showContent('evolution')"
+        >
+          Objetos evolutivos
+        </button>
+      </li>
     </ul>
   </div>
 
@@ -37,20 +93,50 @@
     <h2 class="box-text"><strong>MIS GRUMPIS</strong></h2>
     <hr />
     <div class="container scrollable-div">
-      <input type="text" [(ngModel)]="searchTerm" placeholder="Escribe el nombre del Grumpi..." class="form-control mb-3" />
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Escribe el nombre del Grumpi..."
+        class="form-control mb-3"
+      />
       <div class="row">
         <div class="row" *ngIf="grumpiList && grumpiList.length > 0">
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let creature of filteredCreaturesImages.slice(0, filteredCreaturesImages.length / 2)">
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let creature of filteredCreaturesImages.slice(
+                0,
+                filteredCreaturesImages.length / 2
+              )
+            "
+          >
             <div class="img-creature" (click)="openGrumpi(creature)">
-              <img class="img-fluid" [src]="creature.img_general" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" (contextmenu)="disableRightClick($event)"/>
+              <img
+                class="img-fluid"
+                [src]="creature.img_general"
+                alt="{{ creature.nombre }}"
+                (error)="handleImageError(creature)"
+                (contextmenu)="disableRightClick($event)"
+              />
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-            *ngFor="let creature of filteredCreaturesImages.slice(filteredCreaturesImages.length / 2)">
+          <div
+            class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+            *ngFor="
+              let creature of filteredCreaturesImages.slice(
+                filteredCreaturesImages.length / 2
+              )
+            "
+          >
             <div class="img-creature" (click)="openGrumpi(creature)">
-              <img class="img-fluid" [src]="creature.img_general" alt="{{ creature.nombre }}" (error)="handleImageError(creature)" (contextmenu)="disableRightClick($event)"/>
+              <img
+                class="img-fluid"
+                [src]="creature.img_general"
+                alt="{{ creature.nombre }}"
+                (error)="handleImageError(creature)"
+                (contextmenu)="disableRightClick($event)"
+              />
             </div>
           </div>
         </div>
@@ -67,10 +153,19 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let reward of uniqueRewards">
+        <div
+          class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+          *ngFor="let reward of uniqueRewards"
+        >
           <div class="img-creature">
-            <img class="img-fluid me-3" src="{{ reward.img }}" alt="Recompensa" (click)="openReward(reward)" (contextmenu)="disableRightClick($event)"/>
-            <p>Tienes un total de: {{reward.count}}</p>
+            <img
+              class="img-fluid me-3"
+              src="{{ reward.img }}"
+              alt="Recompensa"
+              (click)="openReward(reward)"
+              (contextmenu)="disableRightClick($event)"
+            />
+            <p>Tienes un total de: {{ reward.count }}</p>
           </div>
         </div>
         <div *ngIf="uniqueRewards && uniqueRewards.length === 0">
@@ -85,9 +180,18 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let combatObject of uniqueCombatObjects">
+        <div
+          class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+          *ngFor="let combatObject of uniqueCombatObjects"
+        >
           <div class="img-creature">
-            <img class="img-fluid me-3" src="{{ combatObject.imagen }}" alt="Objeto de Combate" (click)="openCombatObject(combatObject)" (contextmenu)="disableRightClick($event)"/>
+            <img
+              class="img-fluid me-3"
+              src="{{ combatObject.imagen }}"
+              alt="Objeto de Combate"
+              (click)="openCombatObject(combatObject)"
+              (contextmenu)="disableRightClick($event)"
+            />
             <p>Total conseguidos: {{ combatObject.count }}</p>
           </div>
         </div>
@@ -103,9 +207,19 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let medal of this.trainer?.medallas">
+        <div
+          class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+          *ngFor="let medal of this.trainer?.medallas"
+        >
           <div class="img-creature">
-            <img class="img-fluid" srcset="{{ medal.imagen }}" alt="{{medal.nombre}}" (click)="openMedal(medal)" (contextmenu)="disableRightClick($event)" (contextmenu)="disableRightClick($event)"/>
+            <img
+              class="img-fluid"
+              srcset="{{ medal.imagen }}"
+              alt="{{ medal.nombre }}"
+              (click)="openMedal(medal)"
+              (contextmenu)="disableRightClick($event)"
+              (contextmenu)="disableRightClick($event)"
+            />
           </div>
         </div>
         <div *ngIf="trainer?.medallas && trainer?.medallas.length === 0">
@@ -120,9 +234,18 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let energy of uniqueEnergies">
+        <div
+          class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+          *ngFor="let energy of uniqueEnergies"
+        >
           <div class="img-creature">
-            <img class="img-fluid me-3" src="{{ energy.imagen }}" alt="{{energy.nombre}}" (click)="openEnergy(energy)" (contextmenu)="disableRightClick($event)"/>
+            <img
+              class="img-fluid me-3"
+              src="{{ energy.imagen }}"
+              alt="{{ energy.nombre }}"
+              (click)="openEnergy(energy)"
+              (contextmenu)="disableRightClick($event)"
+            />
             <p>Total conseguidas: {{ energy.count }}</p>
           </div>
         </div>
@@ -138,9 +261,18 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center" *ngFor="let badgesLeague of this.trainer?.distintivos_liga">
+        <div
+          class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+          *ngFor="let badgesLeague of this.trainer?.distintivos_liga"
+        >
           <div class="img-creature">
-            <img class="img-fluid me-3" srcset="{{ badgesLeague }}" alt="Distintivo de liga" (click)="openEnergy(badgesLeague)" (contextmenu)="disableRightClick($event)"/>
+            <img
+              class="img-fluid me-3"
+              srcset="{{ badgesLeague }}"
+              alt="Distintivo de liga"
+              (click)="openEnergy(badgesLeague)"
+              (contextmenu)="disableRightClick($event)"
+            />
           </div>
         </div>
       </div>
@@ -153,7 +285,22 @@
     <div class="container scrollable-div">
       <div class="row">
         <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
-          <p> EN CONSTRUCCIÓN </p>
+          <div class="row">
+            <div
+              class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+              *ngFor="let badgesLeague of uniqueEvolutionObjects"
+            >
+              <div class="img-creature">
+                <img
+                  class="img-fluid me-3"
+                  srcset="{{ badgesLeague.imagen }}"
+                  alt="{{badgesLeague.nombre}}"
+                  (click)="openEnergy(badgesLeague)"
+                  (contextmenu)="disableRightClick($event)"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -630,7 +630,7 @@ export class StoreScreenComponent implements OnInit {
           .spendEnergies(trainerName, this.selectedEnergies)
           .subscribe((data) => {
             this.totalEnergies = data.totalEnergies;
-            this.selectedEnergies = []; // Limpiar la lista de energías seleccionadas
+            this.selectedEnergies = [];
 
             if (this.selectedObject) {
               this.trainersService
