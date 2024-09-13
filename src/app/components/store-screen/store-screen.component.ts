@@ -84,7 +84,7 @@ export class StoreScreenComponent implements OnInit {
     private http: HttpClient,
     private trainersService: TrainerService,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadImageUrls();
@@ -249,7 +249,10 @@ export class StoreScreenComponent implements OnInit {
         .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
         .subscribe(
           (response) => {
-            console.log('Respuesta del servicio de actualización de los Grumpidólares:', response);
+            console.log(
+              'Respuesta del servicio de actualización de los Grumpidólares:',
+              response
+            );
             this.assignCombatObjects();
           },
           (error) => {
@@ -258,7 +261,6 @@ export class StoreScreenComponent implements OnInit {
         );
     }
   }
-
 
   /**
    *
@@ -623,54 +625,58 @@ export class StoreScreenComponent implements OnInit {
     });
   }
 
-  assignEnergies(): void {
-    if (this.username && this.selectedEnergie) {
-      this.trainersService
-        .assignEnergie(this.username, this.selectedEnergie)
-        .subscribe(
-          (response) => {
-            console.log(
-              'Energía asignada correctamente al entrenador:',
-              response
-            );
-          },
-          (error) => {
-            console.error('Error al asignar la energía al entrenador:', error);
-          }
-        );
+  assignEnergies() {
+    const titleError = 'Problema al realizar la compra';
+    const errorMessage = 'Error asignando la energía.';
+    let trainerName = this.trainer.name;
+    if (trainerName !== null && this.selectedObject !== null) {
+      let energieObj = this.selectedObject;
+
+      this.trainersService.assignEnergie(trainerName, energieObj).subscribe(
+        (response) => {
+          this.confirmTitle = 'Energía conseguida con éxito.';
+          this.confirmMessage =
+            'Has comprado la energía ' + energieObj.nombre + ' con éxito.';
+          this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+        },
+        (error) => {
+          console.error('Error asignando la energía:', error);
+
+          this.openErrorModal(titleError, errorMessage);
+        }
+      );
     } else {
-      console.error('No se ha seleccionado ningún entrenador o energía.');
+      this.confirmTitle = '¡Cuidado!';
+      this.confirmMessage =
+        'Por favor, selecciona un entrenador y un objeto de combate.';
+      this.openConfirmModal(this.confirmTitle, this.confirmMessage);
     }
   }
 
   buyEnergy() {
-    const priceEnergy: number = 10;
-    let grumpidolarTrainer: any = this.grumpidolar;
+    const grumpidolarTrainer: number = Number(this.grumpidolar);
+    const price: number = this.selectedObject.precio;
     const trainerName: string = this.trainer.name;
-    let finalCount: number = 0;
-    const errorTitle = '¡Cuidado!';
-    const errorMessage =
-      'No tienes suficientes Grumpidólares para comprar la energía.';
-    const okTitle = 'Compra realizada';
-    const okMessage = 'La compra de las energías ha sido realizada con éxito.';
 
-    if (grumpidolarTrainer < priceEnergy) {
-      this.openErrorModal(errorTitle, errorMessage);
+    if (price > grumpidolarTrainer) {
+      this.openErrorModal(this.errorTitle, this.errorMessage);
     } else {
-      this.assignEnergies();
-      finalCount = grumpidolarTrainer - priceEnergy;
+      const finalCount: number = grumpidolarTrainer - price;
+
       this.trainersService
         .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
         .subscribe(
           (response) => {
-            this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+            console.log(
+              'Respuesta del servicio de actualización de los Grumpidólares:',
+              response
+            );
+            this.assignEnergies();
           },
           (error) => {
             console.error('Error:', error);
           }
         );
-
-      this.openConfirmModal(okTitle, okMessage);
     }
   }
 }
