@@ -1,6 +1,6 @@
 .main-container {
-//  border-right: 3px solid black;
- margin-bottom: 3%;
+  /* border-right: 3px solid black; */
+  margin-bottom: 3%;
 }
 
 /* Estilos para el componente principal */
@@ -19,16 +19,10 @@
   background-color: burlywood;
 }
 
-.scrollable-div {
+.scrollable-div, .bigBox {
   overflow-y: auto;
   max-height: calc(100vh - 320px);
 }
-
-
-.bigBox {
-  max-height: calc(100vh - 320px);
-}
-/* Otros estilos específicos que puedas necesitar */
 
 .btns {
   height: 80px;
@@ -36,8 +30,6 @@
   font-size: medium;
   margin-bottom: 5%;
 }
-
-
 
 .prof_box {
   display: flex;
@@ -49,11 +41,9 @@
   padding: 20px; /* Relleno interno */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: antiquewhite;
-
 }
 
-
-// Configuración boton para salir de la sesión
+/* Configuración del botón para salir de la sesión */
 .btn-out {
   border-radius: 40em;
   appearance: none;
@@ -70,11 +60,9 @@
   margin: 0;
   outline: none;
   padding: 1rem 1.3rem;
-  quotes: auto;
   text-align: center;
   text-decoration: none;
   transition: all .15s;
-  touch-action: manipulation;
   height: 60px;
   width: 150px;
 }
@@ -100,15 +88,7 @@ a {
   cursor: pointer;
 }
 
-.nav-link{
-  color: #000000;
-}
-
-h1, h2, h3, p {
-  color: #000000;
-}
-
-.box-text, p, span, strong {
+.nav-link, h1, h2, h3, p, .box-text, p, span, strong {
   color: black; /* Color de la tipografía del texto en general */
 }
 
@@ -116,8 +96,6 @@ h1, h2, h3, p {
   color: black; /* Color de la tipografía del botón de salir */
   border-color: black; /* Bordes negros para el botón de salir */
 }
-
-
 
 .box {
   background-image: url("../../../assets/backgrounds/kids.jpg");
@@ -134,7 +112,6 @@ h1, h2, h3, p {
   width: 100px;
   height: 50px;
 }
-
 
 /* Estilos para el sidebar */
 .sidenav {
@@ -159,9 +136,6 @@ h1, h2, h3, p {
   font-size: 0.9rem; /* Tamaño de fuente del reloj */
   color: #333; /* Color del texto */
 }
-
-
-
 
 /* Ocultar el botón de menú en pantallas grandes */
 .btn-menu {
@@ -214,4 +188,30 @@ img {
 
 .container-fluid {
   padding: 0 15px;
+}
+
+/* Para pantallas pequeñas, habilitamos el scroll en el menú lateral */
+@media (max-width: 768px) {
+  .sidenav.open {
+    overflow-y: auto; /* Permitir scroll */
+    height: 100vh; /* Asegurar que ocupe toda la altura de la pantalla */
+  }
+
+  /* Ajustamos el contenido principal para que también tenga scroll */
+  .container-fluid {
+    overflow-y: auto;
+    max-height: calc(100vh - 60px); /* Resta un espacio para la cabecera */
+  }
+
+  .scrollable-div, .bigBox {
+    overflow-y: auto; /* Habilitar scroll */
+    max-height: calc(100vh - 160px); /* Ajustar altura para incluir el menú de navegación y otros elementos */
+  }
+
+  /* Ajustar el layout para pantallas pequeñas */
+  .container-fluid.d-flex {
+    flex-direction: column; /* Alinear los elementos uno debajo del otro */
+    flex-grow: 1;
+    overflow-y: auto;
+  }
 }
