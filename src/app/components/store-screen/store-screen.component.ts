@@ -664,7 +664,7 @@ export class StoreScreenComponent implements OnInit {
       this.openErrorModal(this.errorTitle, this.errorMessage);
     } else {
       const finalCount: number = grumpidolarTrainer - price;
-
+      this.assignEnergies();
       this.trainersService
         .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
         .subscribe(
@@ -673,7 +673,6 @@ export class StoreScreenComponent implements OnInit {
               'Respuesta del servicio de actualización de los Grumpidólares:',
               response
             );
-            this.assignEnergies();
           },
           (error) => {
             console.error('Error:', error);
