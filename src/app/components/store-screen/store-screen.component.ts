@@ -574,9 +574,14 @@ export class StoreScreenComponent implements OnInit {
       .afterClosed()
       .subscribe(
         (selectedEnergies: { type: string; quantity: number }[] | null) => {
+          console.log(
+            'Energías seleccionadas por el entrenador: ',
+            selectedEnergies
+          );
+
           if (selectedEnergies) {
-            this.selectedEnergies = selectedEnergies; // Guarda las energías seleccionadas
-            this.buyRewards(); // Llama a buyRewards después de cerrar el diálogo
+            this.selectedEnergies = selectedEnergies;
+            this.buyRewards();
           }
         }
       );
