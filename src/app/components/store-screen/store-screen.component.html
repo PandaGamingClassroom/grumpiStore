@@ -3,10 +3,17 @@
 <div class="header-container">
   <div class="btn-config">
     <button type="button" class="button-73" routerLink="/home">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-left-circle-fill"
+        viewBox="0 0 16 16"
+      >
         <path
-          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+        />
       </svg>
       Atrás
     </button>
@@ -19,18 +26,36 @@
 
 <div class="container text-center">
   <div class="d-flex justify-content-center">
-    <ul class="nav nav-pills mb-3 mt-3" id="pills-tabGrumpiDolar" role="tablist">
+    <ul
+      class="nav nav-pills mb-3 mt-3"
+      id="pills-tabGrumpiDolar"
+      role="tablist"
+    >
       <li class="nav-item" role="presentation">
-        <button class="nav-link button-73 me-3 active" id="pills-grumpiDolarContent-tab" data-bs-toggle="pill"
-          data-bs-target="#pills-grumpiDolarContent" type="button" aria-controls="pills-grumpiDolarContent"
-          aria-selected="true" (click)="seleccionarOpcion('grumpidolares')">
+        <button
+          class="nav-link button-73 me-3 active"
+          id="pills-grumpiDolarContent-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-grumpiDolarContent"
+          type="button"
+          aria-controls="pills-grumpiDolarContent"
+          aria-selected="true"
+          (click)="seleccionarOpcion('grumpidolares')"
+        >
           Comprar con Grumpidólares
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link button-73 me-3" id="pills-energy-tab" data-bs-toggle="pill"
-          data-bs-target="#pills-energy" type="button" aria-controls="pills-energies" aria-selected="false"
-          (click)="seleccionarOpcion('energias')">
+        <button
+          class="nav-link button-73 me-3"
+          id="pills-energy-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-energy"
+          type="button"
+          aria-controls="pills-energies"
+          aria-selected="false"
+          (click)="seleccionarOpcion('energias')"
+        >
           Comprar con Energías
         </button>
       </li>
@@ -40,18 +65,38 @@
 
 <div class="d-flex justify-content-center" *ngIf="withGDolar">
   <div class="d-flex justify-content-center">
-    <ul class="nav nav-pills mb-3 mt-3" id="pills-tabGrumpiDolar" role="tablist">
+    <ul
+      class="nav nav-pills mb-3 mt-3"
+      id="pills-tabGrumpiDolar"
+      role="tablist"
+    >
       <li class="nav-item" role="presentation">
-        <button class="nav-link button-73 me-3 active" id="pills-objects-tab" data-bs-toggle="pill"
-          data-bs-target="#pills-objects" type="button" role="tab" aria-controls="pills-objects" aria-selected="true"
-          (click)="seleccionarOpcion('objCombat')">
+        <button
+          class="nav-link button-73 me-3 active"
+          id="pills-objects-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-objects"
+          type="button"
+          role="tab"
+          aria-controls="pills-objects"
+          aria-selected="true"
+          (click)="seleccionarOpcion('objCombat')"
+        >
           Objetos de Combate
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link button-73 me-3" id="pills-energies-tab" data-bs-toggle="pill"
-          data-bs-target="#pills-energies" type="button" role="tab" aria-controls="pills-energies" aria-selected="false"
-          (click)="seleccionarOpcion('objEnergy')">
+        <button
+          class="nav-link button-73 me-3"
+          id="pills-energies-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-energies"
+          type="button"
+          role="tab"
+          aria-controls="pills-energies"
+          aria-selected="false"
+          (click)="seleccionarOpcion('objEnergy')"
+        >
           Energías
         </button>
       </li>
@@ -63,16 +108,32 @@
   <div class="d-flex justify-content-center">
     <ul class="nav nav-pills mb-3 mt-3" id="pills-tabEnergies" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link button-73 me-3 active" id="pills-rewards-profile-tab" data-bs-toggle="pill"
-          data-bs-target="#pills-rewards-profile" type="button" role="tab" aria-controls="pills-rewards-profile"
-          aria-selected="true" (click)="seleccionarOpcion('objRewards')">
+        <button
+          class="nav-link button-73 me-3 active"
+          id="pills-rewards-profile-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-rewards-profile"
+          type="button"
+          role="tab"
+          aria-controls="pills-rewards-profile"
+          aria-selected="true"
+          (click)="seleccionarOpcion('objRewards')"
+        >
           Recompensas
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link button-73 me-3" id="pills-obj-rewards-tab" data-bs-toggle="pill"
-          data-bs-target="#pills-obj-profile" type="button" role="tab" aria-controls="pills-obj-profile"
-          aria-selected="false" (click)="seleccionarOpcion('objEvol')">
+        <button
+          class="nav-link button-73 me-3"
+          id="pills-obj-rewards-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-obj-profile"
+          type="button"
+          role="tab"
+          aria-controls="pills-obj-profile"
+          aria-selected="false"
+          (click)="seleccionarOpcion('objEvol')"
+        >
           Objetos Evolutivos
         </button>
       </li>
@@ -81,7 +142,10 @@
 </div>
 
 <!-- OBJETOS DE COMBATE -->
-<div class="container text-center bg-box align-items-center" *ngIf="showCombatObject">
+<div
+  class="container text-center bg-box align-items-center"
+  *ngIf="showCombatObject"
+>
   <div class="row">
     <div class="col-6 d-flex justify-content-end align-items-center">
       <h2 class="box-text"><strong> OBJETOS DE COMBATE </strong></h2>
@@ -89,8 +153,11 @@
     <div class="col-6">
       <div class="container dolarbox">
         <button class="dolarinfo">
-          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/><strong> Mis Grumpidólares: </strong> {{
-          grumpidolar }}
+          <img
+            class="dolarImg"
+            src="../../../assets/MONEDA_GRUMPI_CARA.png"
+            (contextmenu)="disableRightClick($event)"
+          /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
         </button>
       </div>
     </div>
@@ -98,26 +165,41 @@
 
   <div class="container text-center align-items-center scrollable-div">
     <!-- Agrupar los elementos de a dos en una fila -->
-    <div class="row" *ngFor="
+    <div
+      class="row"
+      *ngFor="
         let pair of imageUrls | slice : 0 : imageUrls.length / 2;
         let i = index
-      ">
+      "
+    >
       <!-- Primera columna: imagen de la izquierda -->
       <div class="col-md-6">
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img srcset="{{ imageUrls[i * 2].imagen }}" class="img-fluid" (contextmenu)="disableRightClick($event)"/>
+              <img
+                srcset="{{ imageUrls[i * 2].imagen }}"
+                class="img-fluid"
+                (contextmenu)="disableRightClick($event)"
+              />
             </div>
             <div class="col">
-              <button type="button" class="button-73" (click)="selectedObject = imageUrls[i * 2]; buyCombatObjects()">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedObject = imageUrls[i * 2]; buyCombatObjects()"
+              >
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                        (contextmenu)="disableRightClick($event)"
+                      />
                     </div>
                     <div class="col">{{ imageUrls[i * 2].precio }}</div>
                   </div>
@@ -133,19 +215,31 @@
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img srcset="{{ imageUrls[i * 2 + 1].imagen }}" class="img-fluid" (contextmenu)="disableRightClick($event)"/>
+              <img
+                srcset="{{ imageUrls[i * 2 + 1].imagen }}"
+                class="img-fluid"
+                (contextmenu)="disableRightClick($event)"
+              />
             </div>
             <div class="col">
-              <button type="button" class="button-73" (click)="
+              <button
+                type="button"
+                class="button-73"
+                (click)="
                   selectedObject = imageUrls[i * 2 + 1]; buyCombatObjects()
-                ">
+                "
+              >
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                        (contextmenu)="disableRightClick($event)"
+                      />
                     </div>
                     <div class="col">{{ imageUrls[i * 2 + 1].precio }}</div>
                   </div>
@@ -160,7 +254,10 @@
 </div>
 
 <!-- ENERGIAS -->
-<div class="container text-center bg-box align-items-center" *ngIf="showEnergys">
+<div
+  class="container text-center bg-box align-items-center"
+  *ngIf="showEnergys"
+>
   <div class="row">
     <div class="col-6 d-flex justify-content-end align-items-center">
       <h2 class="box-text"><strong> ENERGÍAS </strong></h2>
@@ -168,18 +265,24 @@
     <div class="col-6">
       <div class="container dolarbox">
         <button class="dolarinfo">
-          <img class="dolarImg" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/><strong> Mis Grumpidólares: </strong> {{
-          grumpidolar }}
+          <img
+            class="dolarImg"
+            src="../../../assets/MONEDA_GRUMPI_CARA.png"
+            (contextmenu)="disableRightClick($event)"
+          /><strong> Mis Grumpidólares: </strong> {{ grumpidolar }}
         </button>
       </div>
     </div>
   </div>
   <div class="container text-center align-items-center scrollable-div">
     <!-- Agrupar los elementos de a dos en una fila -->
-    <div class="row" *ngFor="
+    <div
+      class="row"
+      *ngFor="
         let i = index;
         of: energy_list | slice : 0 : energy_list.length / 2
-      ">
+      "
+    >
       <!-- Primera columna: imagen de la izquierda -->
       <div class="col-md-6">
         <div class="img-creature mg-5">
@@ -188,14 +291,22 @@
               <img srcset="{{ energy_list[i * 2].imagen }}" class="img-fluid" />
             </div>
             <div class="col">
-              <button type="button" class="button-73" (click)="selectedEnergie = energy_list[i * 2]; buyEnergy()">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedEnergie = energy_list[i * 2]; buyEnergy()"
+              >
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                        (contextmenu)="disableRightClick($event)"
+                      />
                     </div>
                     <div class="col">10</div>
                   </div>
@@ -211,17 +322,29 @@
         <div class="img-creature mg-5">
           <div class="row">
             <div class="col">
-              <img srcset="{{ energy_list[i * 2 + 1].imagen }}" class="img-fluid" (contextmenu)="disableRightClick($event)"/>
+              <img
+                srcset="{{ energy_list[i * 2 + 1].imagen }}"
+                class="img-fluid"
+                (contextmenu)="disableRightClick($event)"
+              />
             </div>
             <div class="col">
-              <button type="button" class="button-73" (click)="selectedEnergie = energy_list[i * 2 + 1]; buyEnergy()">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedEnergie = energy_list[i * 2 + 1]; buyEnergy()"
+              >
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
                 <span class="price">
                   <div class="row">
                     <div class="col">
-                      <img class="grumpiTag" src="../../../assets/MONEDA_GRUMPI_CARA.png" (contextmenu)="disableRightClick($event)"/>
+                      <img
+                        class="grumpiTag"
+                        src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                        (contextmenu)="disableRightClick($event)"
+                      />
                     </div>
                     <div class="col">10</div>
                   </div>
@@ -236,29 +359,40 @@
 </div>
 
 <!-- RECOMPENSAS -->
-<div class="container text-center bg-box align-items-center" *ngIf="showRewards">
+<div
+  class="container text-center bg-box align-items-center"
+  *ngIf="showRewards"
+>
   <h2 class="box-text"><strong>RECOMPENSAS</strong></h2>
   <hr />
-  <div class="row">
-    <div class="col scrollable-div">
-      <div class="img-creature mg-5" *ngFor="let object of rewards_list">
-        <div class="row">
-          <div class="col"><img srcset="{{ object.img }}" (contextmenu)="disableRightClick($event)"/></div>
-          <div class="col">
-            <button type="button" class="button-73" (click)="selectedObject = object; openEnergiesTrainer();">
-              Lo quiero
-            </button>
-            <div class="price-tag mt-3">
-              <span class="price">
-                <div class="col">{{ object.condicion }} energías.</div>
-              </span>
-            </div>
-            <div *ngIf="object.condicion == '300'">✨</div>
+  <div class="scrollable-div">
+    <div class="img-creature mg-5" *ngFor="let object of rewards_list">
+      <div class="row">
+        <div class="col">
+          <img
+            srcset="{{ object.img }}"
+            (contextmenu)="disableRightClick($event)"
+          />
+        </div>
+        <div class="col">
+          <button
+            type="button"
+            class="button-73"
+            (click)="selectedObject = object; openEnergiesTrainer()"
+          >
+            Lo quiero
+          </button>
+          <div class="price-tag mt-3">
+            <span class="price">
+              <div class="col">{{ object.condicion }} energías.</div>
+            </span>
           </div>
+          <div *ngIf="object.condicion == '300'">✨</div>
         </div>
       </div>
     </div>
-    <!-- <div class="col scrollable-div">
+  </div>
+  <!-- <div class="col scrollable-div">
       <div class="container-fluid">
         <h2>Selección de energías</h2>
         <div class="row">
@@ -274,21 +408,35 @@
         </div>
       </div>
     </div> -->
-  </div>
 </div>
 
 <!-- OBJETOS EVOLUTIVOS -->
-<div class="container text-center bg-box align-items-center" *ngIf="showObjEvol">
+<div
+  class="container text-center bg-box align-items-center"
+  *ngIf="showObjEvol"
+>
   <h2 class="box-text"><strong>OBJETOS EVOLUTIVOS</strong></h2>
   <hr />
   <div class="row">
     <div class="col">
       <div class="container text-center align-items-center scrollable-div">
-        <div class="img-creature mg-5" *ngFor="let object of this.evolutionObjects">
+        <div
+          class="img-creature mg-5"
+          *ngFor="let object of this.evolutionObjects"
+        >
           <div class="row">
-            <div class="col"><img srcset="{{ object.imagen }}" (contextmenu)="disableRightClick($event)"/></div>
             <div class="col">
-              <button type="button" class="button-73" (click)="selectedObject = object; buyEvolutionObjects()">
+              <img
+                srcset="{{ object.imagen }}"
+                (contextmenu)="disableRightClick($event)"
+              />
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="button-73"
+                (click)="selectedObject = object; buyEvolutionObjects()"
+              >
                 Lo quiero
               </button>
               <div class="price-tag mt-3">
@@ -315,7 +463,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[0].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[0].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -328,7 +480,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[2].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[2].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -341,7 +497,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[1].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[1].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -354,7 +514,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[3].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[3].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -367,7 +531,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[4].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[4].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -380,7 +548,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[5].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[5].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -393,7 +565,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[6].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[6].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -406,7 +582,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[7].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[7].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -419,7 +599,11 @@
           <li class="mb-1">
             <div class="row">
               <div class="col-2 boxIcon">
-                <img class="iconImg" [src]="iconListEnergy[8].imagen" (contextmenu)="disableRightClick($event)"/>
+                <img
+                  class="iconImg"
+                  [src]="iconListEnergy[8].imagen"
+                  (contextmenu)="disableRightClick($event)"
+                />
               </div>
               <div class="col-8">
                 <button class="evoBox">
@@ -438,8 +622,15 @@
 <div class="container text-center bg-box">
   <div class="container-fluid">
     <div *ngIf="showLogo">
-      <div class="container-fluid d-flex justify-content-center align-items-center">
-        <img class="boxImg" id="img" src="../../../assets/TIENDA GRUMPI.png" (contextmenu)="disableRightClick($event)"/>
+      <div
+        class="container-fluid d-flex justify-content-center align-items-center"
+      >
+        <img
+          class="boxImg"
+          id="img"
+          src="../../../assets/TIENDA GRUMPI.png"
+          (contextmenu)="disableRightClick($event)"
+        />
       </div>
       <div class="container-fluid d-flex justify-content-center" id="info">
         <div class="row">
