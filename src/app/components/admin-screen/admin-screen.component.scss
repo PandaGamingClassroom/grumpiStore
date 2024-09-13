@@ -193,24 +193,24 @@ img {
 /* Para pantallas pequeñas, habilitamos el scroll en el menú lateral */
 @media (max-width: 768px) {
   .sidenav.open {
-    overflow-y: auto; /* Permitir scroll */
-    height: 100vh; /* Asegurar que ocupe toda la altura de la pantalla */
+    overflow-y: auto;
+    height: 100vh;
   }
 
   /* Ajustamos el contenido principal para que también tenga scroll */
   .container-fluid {
     overflow-y: auto;
-    max-height: calc(100vh - 60px); /* Resta un espacio para la cabecera */
+    max-height: calc(100vh - 180px); 
   }
 
   .scrollable-div, .bigBox {
-    overflow-y: auto; /* Habilitar scroll */
-    max-height: calc(100vh - 160px); /* Ajustar altura para incluir el menú de navegación y otros elementos */
+    overflow-y: auto;
+    max-height: calc(100vh - 160px);
   }
 
   /* Ajustar el layout para pantallas pequeñas */
   .container-fluid.d-flex {
-    flex-direction: column; /* Alinear los elementos uno debajo del otro */
+    flex-direction: column;
     flex-grow: 1;
     overflow-y: auto;
   }
