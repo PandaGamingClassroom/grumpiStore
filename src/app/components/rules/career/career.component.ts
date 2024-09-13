@@ -37,6 +37,7 @@ export class CareerComponent implements OnInit{
     }
   }
   
+  
 
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
