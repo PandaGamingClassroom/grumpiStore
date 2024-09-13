@@ -660,6 +660,10 @@ export class StoreScreenComponent implements OnInit {
     const price: number = this.selectedEnergie.precio;
     const trainerName: string = this.trainer.name;
 
+    console.log('Grumpidólares del entrenador: ', grumpidolarTrainer);
+    console.log('Precio de la energía seleccionada: ', price);
+    console.log('Entrenador que quiere comprar: ', trainerName);
+
     if (price > grumpidolarTrainer) {
       this.openErrorModal(this.errorTitle, this.errorMessage);
     } else {
