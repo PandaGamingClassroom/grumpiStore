@@ -25,13 +25,11 @@ export class RulesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // Suscribirse a los parámetros de consulta
     this.route.queryParams.subscribe((params) => {
       this.hideElements = params['hideElements'] === 'true';
     });
 
-    const currentUrl = this.router.url.split('?')[0]; // Obtener solo la ruta sin los parámetros de consulta
-
+    const currentUrl = this.router.url.split('?')[0]; 
     /**
      *
      * Se comprueba desde donde se accede a este componente
@@ -42,7 +40,6 @@ export class RulesComponent implements OnInit {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
     } else if (currentUrl === '/rules') {
-      // Aquí puedes manejar otros casos si es necesario
       this.showBackBTNHome = true;
       this.showBackBTNAdmin = false;
     }

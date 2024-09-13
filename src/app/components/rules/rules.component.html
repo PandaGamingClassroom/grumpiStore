@@ -95,7 +95,10 @@
       <div class="contenedorBotonera">
         <ul class="text-center">
           <li>
-            <button class="btn mb-3" routerLink="/rules/obtain-energies">
+            <button class="btn mb-3" routerLink="/rules/obtain-energies" *ngIf="showBackBTNHome">
+              Obtención de energías
+            </button>
+            <button class="btn mb-3" routerLink="/rules/obtain-energies_admin" *ngIf="showBackBTNAdmin">
               Obtención de energías
             </button>
           </li>
@@ -135,7 +138,10 @@
             </button>
           </li>
           <li>
-            <button class="btn mb-3" routerLink="/rules/career">
+            <button class="btn mb-3" routerLink="/rules/career" *ngIf="showBackBTNHome">
+              Carrera lectora
+            </button>
+            <button class="btn mb-3" routerLink="/rules/career_admin" *ngIf="showBackBTNAdmin">
               Carrera lectora
             </button>
           </li>
