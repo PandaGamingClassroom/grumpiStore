@@ -27,7 +27,7 @@ export class CareerComponent implements OnInit{
      *
      */
     console.log('Ruta actual: ', currentUrl);
-    if (currentUrl === '/rules/career_admin') {
+    if (currentUrl === '/rules_admin/career_admin') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
     } else if (currentUrl === '/rules/career') {
