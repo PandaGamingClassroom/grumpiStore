@@ -556,6 +556,21 @@ export class StoreScreenComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   * Función para abrir una ventana con
+   * el listado de energías para poder realizar
+   * la compra de los objetos.
+   *
+   */
+  openEnergiesTrainer() {
+   this.dialog.open(MedalsListComponent, {
+     width: '700px',
+     height: '600px',
+     data: this.selectedObject,
+   });
+  }
+
   handleClick(): void {
     this.isClicked = !this.isClicked;
   }

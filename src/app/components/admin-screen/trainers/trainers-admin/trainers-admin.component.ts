@@ -52,9 +52,9 @@ export class TrainersAdminComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * Función para obtener los datos del profesor.
-   * 
+   *
    * @param name Recibe el nombre del profesor
    */
   getDadataProfesor(name: string) {
@@ -70,27 +70,27 @@ export class TrainersAdminComponent implements OnInit {
       },
       (error) => {
         console.error('Error:', error);
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }
 
   /**
-   * 
+   *
    * Función para obtener la lista de entrenadores
    * del profesor que ha iniciado sesión.
-   * 
+   *
    * @param profesorId Recibe el id del profesor.
    */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data.data;
-        this.loading = false; 
+        this.loading = false;
       },
       (error) => {
         console.error('Error:', error);
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }
@@ -113,7 +113,7 @@ export class TrainersAdminComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
+      this.getEntrenadores(this.profesor.id);
     });
   }
 
@@ -147,7 +147,7 @@ export class TrainersAdminComponent implements OnInit {
       width: '700px',
       height: '600px',
     });
-  
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Nuevo entrenador añadido:', result);
@@ -155,7 +155,7 @@ export class TrainersAdminComponent implements OnInit {
       }
     });
   }
-  
+
 
   /**
    * Función para abrir una ventana emergente en la cual se elimina al entrenador seleccionado.
@@ -168,7 +168,7 @@ export class TrainersAdminComponent implements OnInit {
       height: '300px',
       data: trainer,
     });
-  
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Entrenador eliminado:', trainer);
@@ -176,5 +176,5 @@ export class TrainersAdminComponent implements OnInit {
       }
     });
   }
-  
+
 }

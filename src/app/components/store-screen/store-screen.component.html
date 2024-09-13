@@ -245,7 +245,7 @@
         <div class="row">
           <div class="col"><img srcset="{{ object.img }}" (contextmenu)="disableRightClick($event)"/></div>
           <div class="col">
-            <button type="button" class="button-73" (click)="selectedObject = object; seeRewards()">
+            <button type="button" class="button-73" (click)="selectedObject = object; openEnergiesTrainer()">
               Lo quiero
             </button>
             <div class="price-tag mt-3">
@@ -258,7 +258,7 @@
         </div>
       </div>
     </div>
-    <div class="col scrollable-div">
+    <!-- <div class="col scrollable-div">
       <div class="container-fluid">
         <h2>Selección de energías</h2>
         <div class="row">
@@ -273,7 +273,7 @@
           <app-medals-list *ngIf="isClicked" (energiesSelected)="onEnergiesSelected($event)"></app-medals-list>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 
