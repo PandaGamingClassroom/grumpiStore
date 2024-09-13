@@ -626,29 +626,26 @@ export class StoreScreenComponent implements OnInit {
   }
 
   assignEnergies() {
-    const titleError = 'Problema al realizar la compra';
-    const errorMessage = 'Error asignando la energía.';
     let trainerName = this.trainer.name;
-    if (trainerName !== null && this.selectedObject !== null) {
-      let energieObj = this.selectedObject;
+    if (trainerName !== null && this.selectedEnergie !== null) {
+      let energie = this.selectedEnergie;
 
-      this.trainersService.assignEnergie(trainerName, energieObj).subscribe(
+      this.trainersService.assignEnergie(trainerName, energie).subscribe(
         (response) => {
           this.confirmTitle = 'Energía conseguida con éxito.';
           this.confirmMessage =
-            'Has comprado la energía ' + energieObj.nombre + ' con éxito.';
+            'Has comprado la energía ' + energie.nombre + ' con éxito.';
           this.openConfirmModal(this.confirmTitle, this.confirmMessage);
         },
         (error) => {
           console.error('Error asignando la energía:', error);
-
-          this.openErrorModal(titleError, errorMessage);
+          alert('Error asignando la energía');
         }
       );
     } else {
       this.confirmTitle = '¡Cuidado!';
       this.confirmMessage =
-        'Por favor, selecciona un entrenador y un objeto de combate.';
+        'Por favor, selecciona un entrenador y una energía.';
       this.openConfirmModal(this.confirmTitle, this.confirmMessage);
     }
   }
