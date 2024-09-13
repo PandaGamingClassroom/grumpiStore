@@ -654,6 +654,8 @@ export class StoreScreenComponent implements OnInit {
   }
 
   buyEnergy() {
+    console.log('Objeto seleccionado para comprar: ', this.selectedObject);
+
     const grumpidolarTrainer: number = Number(this.grumpidolar);
     const price: number = this.selectedObject.precio;
     const trainerName: string = this.trainer.name;
