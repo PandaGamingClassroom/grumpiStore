@@ -246,8 +246,9 @@ export class TrainerService {
    * @returns
    */
   assignEnergie(trainerName: string, energie: any): Observable<any> {
-    const url = `${this.apiUrl}assign-energie`;
+    const url = this.apiUrl + 'assign-energie';
     const body = { trainerName, energie };
+
     return this.http.post<any>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 200 && error.error instanceof ProgressEvent) {
@@ -268,17 +269,6 @@ export class TrainerService {
   assignEnergieToTrainers(trainerNames: string[], energie: any) {
     const url = `${this.apiUrl}assign-energie`;
     return this.http.post<any>(url, { trainerNames, energie });
-  }
-
-  /**
-   * Función para que un entrenador pueda comprar energía
-   * @param trainerName
-   * @param energie
-   * @returns
-   */
-  buyEnergy(trainerName: string, energie: any): Observable<any> {
-    const url = `${this.apiUrl}buyEnergies`;
-    return this.http.post<any>(url, { trainerName, energie });
   }
 
   /**
