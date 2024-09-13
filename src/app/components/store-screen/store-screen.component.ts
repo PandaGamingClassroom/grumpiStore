@@ -564,11 +564,18 @@ export class StoreScreenComponent implements OnInit {
    *
    */
   openEnergiesTrainer() {
-   this.dialog.open(MedalsListComponent, {
-     width: '700px',
-     height: '600px',
-     data: this.selectedObject,
-   });
+    const dialogRef = this.dialog.open(MedalsListComponent, {
+      width: '700px',
+      height: '600px',
+      data: this.selectedObject,
+    });
+    dialogRef
+      .afterClosed()
+      .subscribe((selectedTrainerNames: string[] | null) => {
+        if (selectedTrainerNames && selectedTrainerNames.length > 0) {
+          this.buyRewards();
+        }
+      });
   }
 
   handleClick(): void {
