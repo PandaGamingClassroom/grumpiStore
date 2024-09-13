@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { NavBarAdminComponent } from '../../admin-screen/navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
@@ -11,15 +11,13 @@ import { NavBarAdminComponent } from '../../admin-screen/navBar-admin/nav-bar-ad
   styleUrl: './career.component.scss',
 })
 export class CareerComponent implements OnInit{
-  hideElements: boolean = false;
   showBackBTNHome: boolean = false;
   showBackBTNAdmin: boolean = false;
-  isClicked: boolean = false;
   
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private router: Router) { }
   
   ngOnInit(): void {
-    let currentUrl = this.router.url.split('?')[0].replace(/\/$/, ''); // Remover cualquier '/' al final
+    let currentUrl = this.router.url.split('?')[0];
   
     /**
      *
@@ -28,10 +26,10 @@ export class CareerComponent implements OnInit{
      *
      */
     console.log('Ruta actual: ', currentUrl);
-    if (currentUrl === '/rules_admin/career_admin') {
+    if (currentUrl === '/rules_admin') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
-    } else if (currentUrl === '/rules/career') {
+    } else if (currentUrl === '/rules') {
       this.showBackBTNHome = true;
       this.showBackBTNAdmin = false;
     }
