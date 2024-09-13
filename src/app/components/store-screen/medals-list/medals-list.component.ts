@@ -38,7 +38,6 @@ export class MedalsListComponent implements OnInit {
       }
     }
     console.log('Datos recibidos para las energías: ', this.data_receive);
-
   }
 
   getTrainerData(name: string): void {
@@ -105,6 +104,6 @@ export class MedalsListComponent implements OnInit {
 
   confirmSelection(): void {
     this.energiesSelected.emit(this.energiesToSpend);
-    this.dialogRef.close();
+    this.dialogRef.close(this.energiesToSpend);
   }
 }
