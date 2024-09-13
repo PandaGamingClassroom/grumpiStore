@@ -567,17 +567,20 @@ export class StoreScreenComponent implements OnInit {
     const dialogRef = this.dialog.open(MedalsListComponent, {
       width: '700px',
       height: '600px',
-      data: this.selectedObject,
+      data: this.selectedObject, // Asegúrate de que selectedObject tenga los datos necesarios
     });
+
     dialogRef
       .afterClosed()
-      .subscribe((selectedTrainerNames: string[] | null) => {
-        if (selectedTrainerNames && selectedTrainerNames.length > 0) {
-          this.buyRewards();
+      .subscribe(
+        (selectedEnergies: { type: string; quantity: number }[] | null) => {
+          if (selectedEnergies) {
+            this.selectedEnergies = selectedEnergies; // Guarda las energías seleccionadas
+            this.buyRewards(); // Llama a buyRewards después de cerrar el diálogo
+          }
         }
-      });
+      );
   }
-
   handleClick(): void {
     this.isClicked = !this.isClicked;
   }
@@ -622,7 +625,8 @@ export class StoreScreenComponent implements OnInit {
           .spendEnergies(trainerName, this.selectedEnergies)
           .subscribe((data) => {
             this.totalEnergies = data.totalEnergies;
-            this.selectedEnergies = [];
+            this.selectedEnergies = []; // Limpiar la lista de energías seleccionadas
+
             if (this.selectedObject) {
               this.trainersService
                 .assignReward(trainerName, this.selectedObject)
