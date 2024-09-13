@@ -206,3 +206,7 @@ ul {
   touch-action: manipulation;
 }
 
+.scrollable-div {
+  max-height: 550px;
+  overflow-y: auto;
+}
