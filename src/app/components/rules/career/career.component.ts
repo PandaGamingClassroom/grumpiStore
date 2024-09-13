@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { NavBarAdminComponent } from '../../admin-screen/navBar-admin/nav-bar-admin/nav-bar-admin.component';
-import { ChangeDetectorRef } from '@angular/core';
+import { RouterModule } from '@angular/router'; // Asegúrate de importar RouterModule
 
 @Component({
   selector: 'app-career',
   standalone: true,
-  imports: [RouterLink, NavBarComponent, NavBarAdminComponent],
+  imports: [NavBarComponent, NavBarAdminComponent, RouterModule], // Importa RouterModule aquí
   templateUrl: './career.component.html',
-  styleUrl: './career.component.scss',
+  styleUrls: ['./career.component.scss'],
 })
 export class CareerComponent implements OnInit {
   showBackBTNHome: boolean = false;
@@ -18,7 +19,7 @@ export class CareerComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    // Leer los parámetros de la URL
+    // Suscribirse a los parámetros de la URL
     this.route.queryParams.subscribe(params => {
       const from = params['from'];
       console.log('Parámetro "from":', from);
@@ -30,12 +31,17 @@ export class CareerComponent implements OnInit {
         this.showBackBTNHome = true;
         this.showBackBTNAdmin = false;
       } else {
+        // Por defecto, se asume que es un usuario si no se pasa el parámetro
         this.showBackBTNHome = true;
         this.showBackBTNAdmin = false;
       }
+      
+      // Detectar cambios para que Angular actualice la vista
+      this.cdr.detectChanges();
     });
   }
 
+  // Deshabilitar clic derecho (si es necesario)
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
