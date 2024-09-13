@@ -22,6 +22,7 @@ export class MedalsListComponent implements OnInit {
   username: string | null = '';
   energiesToSpend: { type: string; quantity: number }[] = [];
   groupedEnergies: { type: string; quantity: number }[] = [];
+  totalEnergiesSelected: number = 0; // Nueva propiedad para el total
 
   constructor(
     private trainersService: TrainerService,
@@ -45,7 +46,7 @@ export class MedalsListComponent implements OnInit {
         } else {
           this.trainer = data.data;
           console.log(
-            'Datos del entrenador para obetener las energías: ',
+            'Datos del entrenador para obtener las energías: ',
             this.trainer
           );
           this.groupedEnergies = this.groupEnergies(this.trainer.energies);
@@ -87,17 +88,20 @@ export class MedalsListComponent implements OnInit {
     } else if (quantity > 0) {
       this.energiesToSpend.push({ type, quantity });
     }
+
+    // Actualizar el total de energías seleccionadas
+    this.totalEnergiesSelected = this.energiesToSpend.reduce(
+      (sum, energy) => sum + energy.quantity,
+      0
+    );
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  /**
-   * Botón para confirmar la selección de energías que ha realizado el entrenador.
-   * Cuando se recibe esta información, se manda de vuelta al componente storeScreen.
-   */
   confirmSelection(): void {
     this.energiesSelected.emit(this.energiesToSpend);
+    this.dialogRef.close();
   }
 }

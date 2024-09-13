@@ -2,37 +2,49 @@
   <div class="modal-dialog modal-dialog-centered mainBoxAdminContent">
     <div class="modal-content d-flex flex-column h-100">
       <div class="modal-header d-flex justify-content-center mt-3">
-        <h1 class="modal-title fs-5">Selecciona un entrenador:</h1>
+        <h1 class="modal-title fs-5">MIS ENERGÍAS DISPONIBLES:</h1>
         <hr />
       </div>
 
       <div class="modal-body flex-grow-1 bg-box">
-        <ul>
-          <li *ngFor="let energyGroup of groupedEnergies">
-            <div class="row">
-              <div class="col mb-2">
-                <button class="evoBox">
-                  <strong>{{ energyGroup.type }}: </strong
-                  >{{ energyGroup.quantity }}
-                </button>
+        <div class="mt-3">
+          <ul>
+            <li *ngFor="let energyGroup of groupedEnergies">
+              <div class="row">
+                <div class="col mb-2">
+                  <button class="evoBox">
+                    <strong>{{ energyGroup.type }}: </strong
+                    >{{ energyGroup.quantity }}
+                  </button>
+                </div>
+                <div class="col align-items-center">
+                  <input
+                    type="number"
+                    class="form-control inputBox"
+                    aria-label="Selecciona las energías"
+                    (input)="onQuantityChange(energyGroup.type, $event)"
+                    min="1"
+                    max="{{ energyGroup.quantity }}"
+                  />
+                </div>
               </div>
-              <div class="col align-items-center">
-                <input
-                  type="number"
-                  class="form-control inputBox"
-                  aria-label="Selecciona las energías"
-                  (input)="onQuantityChange(energyGroup.type, $event)"
-                  min="1"
-                  max="{{ energyGroup.quantity }}"
-                />
-              </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-box">
+        <p>
+          Has seleccionado un total de: {{ totalEnergiesSelected }} energías.
+        </p>
       </div>
 
       <div class="modal-footer mt-3">
-        <button type="button" class="btn btn-secondary me-3" (click)="close()">
+        <button
+          type="button"
+          class="button-73 mt-3 mb-3 me-3"
+          (click)="close()"
+        >
           Cancelar
         </button>
         <button
