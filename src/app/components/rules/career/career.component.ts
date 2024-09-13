@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { NavBarAdminComponent } from '../../admin-screen/navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { ChangeDetectorRef } from '@angular/core';
@@ -14,20 +14,26 @@ import { ChangeDetectorRef } from '@angular/core';
 export class CareerComponent implements OnInit {
   showBackBTNHome: boolean = false;
   showBackBTNAdmin: boolean = false;
-  
-  constructor(private router: Router, private cdr: ChangeDetectorRef) { }
+  from: string = ''; // Guardará si viene desde el admin o el usuario
+
+  constructor(private router: Router, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    let currentUrl = this.router.url.split('?')[0];
-    console.log('Ruta actual: ', currentUrl);
+    // Obtener el parámetro "from" de la URL para saber desde dónde accedió
+    this.route.queryParams.subscribe(params => {
+      this.from = params['from'] || 'user'; // Valor por defecto: 'user'
+    });
 
-    if (currentUrl.startsWith('/rules_admin')) {
+    // Cambiar los botones según el valor de "from"
+    if (this.from === 'admin') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
-    } else if (currentUrl.startsWith('/rules')) {
+    } else if (this.from === 'user') {
       this.showBackBTNHome = true;
       this.showBackBTNAdmin = false;
     }
+
+    // Forzar detección de cambios
     this.cdr.detectChanges();
   }
 
