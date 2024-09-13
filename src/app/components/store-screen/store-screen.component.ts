@@ -581,14 +581,11 @@ export class StoreScreenComponent implements OnInit {
     );
     if (index > -1) {
       if (quantity === 0) {
-        // Si la cantidad es 0, elimina el objeto del array
         this.selectedEnergies.splice(index, 1);
       } else {
-        // Si el tipo de energía ya está en el array, actualiza la cantidad
         this.selectedEnergies[index].quantity = quantity;
       }
     } else if (quantity > 0) {
-      // Si el tipo de energía no está en el array y la cantidad es mayor que 0, agrégalo
       this.selectedEnergies.push({ type: energyType, quantity: quantity });
     }
   }
