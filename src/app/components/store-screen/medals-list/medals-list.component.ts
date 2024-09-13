@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-medals-list',
@@ -22,11 +22,12 @@ export class MedalsListComponent implements OnInit {
   username: string | null = '';
   energiesToSpend: { type: string; quantity: number }[] = [];
   groupedEnergies: { type: string; quantity: number }[] = [];
-  totalEnergiesSelected: number = 0; // Nueva propiedad para el total
+  totalEnergiesSelected: number = 0;
 
   constructor(
     private trainersService: TrainerService,
-    public dialogRef: MatDialogRef<MedalsListComponent>
+    public dialogRef: MatDialogRef<MedalsListComponent>,
+    @Inject(MAT_DIALOG_DATA) public data_receive: any
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +37,8 @@ export class MedalsListComponent implements OnInit {
         this.getTrainerData(username);
       }
     }
+    console.log('Datos recibidos para las energías: ', this.data_receive);
+
   }
 
   getTrainerData(name: string): void {
