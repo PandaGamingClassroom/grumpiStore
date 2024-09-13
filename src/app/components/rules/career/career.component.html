@@ -1,4 +1,5 @@
-<app-nav-bar></app-nav-bar>
+<app-nav-bar *ngIf="showBackBTNHome"></app-nav-bar>
+<app-nav-bar-admin *ngIf="showBackBTNAdmin"></app-nav-bar-admin>
 <div class="btn-config">
   <button type="button" class="button-73" routerLink="/rules" *ngIf="showBackBTNHome">
     <svg

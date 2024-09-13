@@ -7,11 +7,12 @@ import {
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
+import { NavBarAdminComponent } from '../admin-screen/navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
   selector: 'app-rules',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavBarComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, NavBarComponent, FooterComponent, NavBarAdminComponent],
   templateUrl: './rules.component.html',
   styleUrl: './rules.component.scss',
 })
@@ -25,7 +26,7 @@ export class RulesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const currentUrl = this.router.url.split('?')[0]; 
+    const currentUrl = this.router.url.split('?')[0];
     /**
      *
      * Se comprueba desde donde se accede a este componente
