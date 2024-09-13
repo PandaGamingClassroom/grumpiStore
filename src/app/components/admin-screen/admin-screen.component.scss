@@ -159,3 +159,59 @@ h1, h2, h3, p {
   font-size: 0.9rem; /* Tamaño de fuente del reloj */
   color: #333; /* Color del texto */
 }
+
+
+
+
+/* Ocultar el botón de menú en pantallas grandes */
+.btn-menu {
+  display: none;
+}
+
+/* Estilos para pantallas más pequeñas (móviles) */
+@media (max-width: 768px) {
+  .sidenav {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateX(-100%); /* Inicialmente oculto */
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidenav.collapsed {
+    transform: translateX(0); /* Mostrar el menú al activarlo */
+  }
+
+  .container-fluid.main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Mostrar el botón de menú en pantallas pequeñas */
+  .btn-menu {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* Ajustes para el contenido principal en móviles */
+  .scrollable-div, .bigBox {
+    max-height: calc(100vh - 200px);
+    padding: 10px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container-fluid {
+  padding: 0 15px;
+}

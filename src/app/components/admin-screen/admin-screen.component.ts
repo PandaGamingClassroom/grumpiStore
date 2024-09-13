@@ -66,6 +66,8 @@ export class AdminScreenComponent implements OnInit {
   showLogo: boolean = true;
   isAdminUser: boolean = false;
 
+  isSidebarCollapsed = true;
+
   currentTime: string = '';
   private timer: any;
 
@@ -90,6 +92,10 @@ export class AdminScreenComponent implements OnInit {
 
   }
 
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
+  
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
