@@ -1,21 +1,48 @@
-<div class="container-fluid content-box justify-content-center d-flex">
-  <h1 id="titulo">Energías disponibles</h1>
-  <p> Este es el listado de energías que tienes disponibles para realizar la compra</p>
-  <div class="content-list">
-    <ul>
-      <li *ngFor="let energyGroup of groupedEnergies">
-        <div class="row">
-          <div class="col mb-2">
-            <button class="evoBox">
-              <strong>{{ energyGroup.type }}: </strong>{{ energyGroup.quantity }}
-            </button>
-          </div>
-          <div class="col align-items-center">
-            <input type="number" class="form-control inputBox" aria-label="Selecciona las energías" (input)="onQuantityChange(energyGroup.type, $event)" min="1" max={{energyGroup.quantity}} />
-          </div>
-        </div>
-      </li>
-    </ul>
-    <button type="button" class="button-73 mt-3 mb-3" (click)="confirmSelection()">Confirmar Selección</button>
+<div class="container-fluid mainBoxAdmin">
+  <div class="modal-dialog modal-dialog-centered mainBoxAdminContent">
+    <div class="modal-content d-flex flex-column h-100">
+      <div class="modal-header d-flex justify-content-center mt-3">
+        <h1 class="modal-title fs-5">Selecciona un entrenador:</h1>
+        <hr />
+      </div>
+
+      <div class="modal-body flex-grow-1 bg-box">
+        <ul>
+          <li *ngFor="let energyGroup of groupedEnergies">
+            <div class="row">
+              <div class="col mb-2">
+                <button class="evoBox">
+                  <strong>{{ energyGroup.type }}: </strong
+                  >{{ energyGroup.quantity }}
+                </button>
+              </div>
+              <div class="col align-items-center">
+                <input
+                  type="number"
+                  class="form-control inputBox"
+                  aria-label="Selecciona las energías"
+                  (input)="onQuantityChange(energyGroup.type, $event)"
+                  min="1"
+                  max="{{ energyGroup.quantity }}"
+                />
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer mt-3">
+        <button type="button" class="btn btn-secondary me-3" (click)="close()">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="button-73 mt-3 mb-3"
+          (click)="confirmSelection()"
+        >
+          Confirmar Selección
+        </button>
+      </div>
+    </div>
   </div>
 </div>

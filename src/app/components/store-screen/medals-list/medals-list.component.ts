@@ -3,6 +3,7 @@ import { TrainerService } from '../../services/trainers/trainer.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-medals-list',
@@ -22,7 +23,10 @@ export class MedalsListComponent implements OnInit {
   energiesToSpend: { type: string; quantity: number }[] = [];
   groupedEnergies: { type: string; quantity: number }[] = [];
 
-  constructor(private trainersService: TrainerService) {}
+  constructor(
+    private trainersService: TrainerService,
+    public dialogRef: MatDialogRef<MedalsListComponent>
+  ) {}
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
@@ -40,7 +44,10 @@ export class MedalsListComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data.data;
-          console.log('Datos del entrenador para obetener las energías: ', this.trainer);
+          console.log(
+            'Datos del entrenador para obetener las energías: ',
+            this.trainer
+          );
           this.groupedEnergies = this.groupEnergies(this.trainer.energies);
         }
       },
@@ -80,6 +87,10 @@ export class MedalsListComponent implements OnInit {
     } else if (quantity > 0) {
       this.energiesToSpend.push({ type, quantity });
     }
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
   /**
