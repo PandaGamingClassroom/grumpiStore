@@ -39,10 +39,9 @@ export class MedalsListComponent implements OnInit {
         if (data.message) {
           console.log(data.message);
         } else {
-          this.trainer = data;
+          this.trainer = data.data;
           console.log('Datos del entrenador para obetener las energías: ', this.trainer);
-
-          this.groupedEnergies = this.groupEnergies(this.trainer.energias);
+          this.groupedEnergies = this.groupEnergies(this.trainer.energies);
         }
       },
       (error) => {
