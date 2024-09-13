@@ -7,7 +7,7 @@
       <div class="container creatures-box">
         <div class="img-creature" *ngFor="let imageUrl of distintivosImg">
           <div class="row">
-            <div class="col"><img srcset="{{imageUrl}}" alt="Imagen" (contextmenu)="disableRightClick($event)"/></div>
+            <div class="col"><img srcset="{{imageUrl.imagen}}" alt="{{imageUrl.nombre}}" (contextmenu)="disableRightClick($event)"/></div>
             <div class="col">
               <button
                 type="button"

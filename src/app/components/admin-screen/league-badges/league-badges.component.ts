@@ -45,7 +45,7 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
 })
 export class LeagueBadgesComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
-  distintivosImg: string[] = [];
+  distintivosImg: any[] = [];
   selectedBadgeName: string | null = null;
   selectedFile: File | null = null;
   uploadUrl: string = url_upload_leagueBadges;
@@ -101,8 +101,8 @@ export class LeagueBadgesComponent implements OnInit {
   obtenerDistintivos() {
     this.grumpiService.getDistintivos().subscribe(
       (response) => {
-        console.log('Distintivos: ', response);
-        this.distintivosImg = response.imageUrls;
+        console.log('Distintivos: ', response.leagueBadges_list);
+        this.distintivosImg = response.leagueBadges_list;
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -180,7 +180,7 @@ export class LeagueBadgesComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   /**
    * Función para asignar un distintivo de liga a varios entrenadores al mismo tiempo.
    *
