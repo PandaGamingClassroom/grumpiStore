@@ -268,8 +268,8 @@
           <div class="img-creature">
             <img
               class="img-fluid me-3"
-              srcset="{{ badgesLeague }}"
-              alt="Distintivo de liga"
+              srcset="{{ badgesLeague.imagen }}"
+              alt="{{ badgesLeague.nombre }}"
               (click)="openEnergy(badgesLeague)"
               (contextmenu)="disableRightClick($event)"
             />
