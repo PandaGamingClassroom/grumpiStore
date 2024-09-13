@@ -207,6 +207,6 @@ ul {
 }
 
 .scrollable-div {
-  max-height: 550px;
   overflow-y: auto;
+  max-height: calc(100vh - 600px);
 }
