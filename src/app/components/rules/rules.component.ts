@@ -21,7 +21,8 @@ export class RulesComponent implements OnInit {
   showBackBTNAdmin: boolean = false;
   isClicked: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) { }
+
 
   ngOnInit(): void {
     // Suscribirse a los parámetros de consulta
@@ -29,7 +30,7 @@ export class RulesComponent implements OnInit {
       this.hideElements = params['hideElements'] === 'true';
     });
 
-    const currentUrl = this.router.url;
+    const currentUrl = this.router.url.split('?')[0]; // Obtener solo la ruta sin los parámetros de consulta
 
     /**
      *
@@ -37,9 +38,13 @@ export class RulesComponent implements OnInit {
      * para cambiar el botón que vuelve atrás.
      *
      */
-    if (currentUrl === '/rules_admin?hideElements=true') {
+    if (currentUrl === '/rules_admin') {
       this.showBackBTNHome = false;
       this.showBackBTNAdmin = true;
+    } else if (currentUrl === '/rules') {
+      // Aquí puedes manejar otros casos si es necesario
+      this.showBackBTNHome = true;
+      this.showBackBTNAdmin = false;
     }
   }
 
