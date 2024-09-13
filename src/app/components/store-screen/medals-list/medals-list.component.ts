@@ -78,7 +78,21 @@ export class MedalsListComponent implements OnInit {
   }
 
   onQuantityChange(type: string, event: any): void {
-    const quantity = parseInt(event.target.value, 10);
+    let quantity = parseInt(event.target.value, 10);
+
+    // Si la cantidad es mayor que el valor máximo permitido, ajusta al máximo
+    const maxQuantity = event.target.max;
+    if (quantity > maxQuantity) {
+      quantity = maxQuantity;
+      event.target.value = maxQuantity; // Actualiza el valor en el input
+    }
+
+    // Si la cantidad es menor a 1, ajusta al valor mínimo
+    if (quantity < 1) {
+      quantity = 1;
+      event.target.value = 1; // Actualiza el valor en el input
+    }
+
     const energyIndex = this.energiesToSpend.findIndex((e) => e.type === type);
 
     if (energyIndex > -1) {
