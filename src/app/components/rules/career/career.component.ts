@@ -14,27 +14,26 @@ import { ChangeDetectorRef } from '@angular/core';
 export class CareerComponent implements OnInit {
   showBackBTNHome: boolean = false;
   showBackBTNAdmin: boolean = false;
-  from: string = ''; // Guardará si viene desde el admin o el usuario
 
   constructor(private router: Router, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    // Obtener el parámetro "from" de la URL para saber desde dónde accedió
+    // Leer los parámetros de la URL
     this.route.queryParams.subscribe(params => {
-      this.from = params['from'] || 'user'; // Valor por defecto: 'user'
+      const from = params['from'];
+      console.log('Parámetro "from":', from);
+
+      if (from === 'admin') {
+        this.showBackBTNHome = false;
+        this.showBackBTNAdmin = true;
+      } else if (from === 'user') {
+        this.showBackBTNHome = true;
+        this.showBackBTNAdmin = false;
+      } else {
+        this.showBackBTNHome = true;
+        this.showBackBTNAdmin = false;
+      }
     });
-
-    // Cambiar los botones según el valor de "from"
-    if (this.from === 'admin') {
-      this.showBackBTNHome = false;
-      this.showBackBTNAdmin = true;
-    } else if (this.from === 'user') {
-      this.showBackBTNHome = true;
-      this.showBackBTNAdmin = false;
-    }
-
-    // Forzar detección de cambios
-    this.cdr.detectChanges();
   }
 
   disableRightClick(event: MouseEvent) {

@@ -139,10 +139,10 @@
             </button>
           </li>
           <li>
-            <button class="btn mb-3" routerLink="/rules/career" *ngIf="showBackBTNHome">
+            <button class="btn mb-3" routerLink="/rules/career" [queryParams]="{ from: 'user' }" *ngIf="showBackBTNHome">
               Carrera lectora
             </button>
-            <button class="btn mb-3" routerLink="/rules_admin/career_admin" *ngIf="showBackBTNAdmin">
+            <button class="btn mb-3" routerLink="/rules_admin/career_admin" [queryParams]="{ from: 'admin' }" *ngIf="showBackBTNAdmin">
               Carrera lectora
             </button>
           </li>
