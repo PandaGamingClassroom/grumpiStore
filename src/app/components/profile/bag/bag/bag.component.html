@@ -284,23 +284,19 @@
     <hr />
     <div class="container scrollable-div">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center">
-          <div class="row">
-            <div
-              class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
-              *ngFor="let badgesLeague of uniqueEvolutionObjects"
-            >
-              <div class="img-creature">
-                <img
-                  class="img-fluid me-3"
-                  srcset="{{ badgesLeague.imagen }}"
-                  alt="{{badgesLeague.nombre}}"
-                  (click)="openEnergy(badgesLeague)"
-                  (contextmenu)="disableRightClick($event)"
-                />
-                <p>Total conseguidos: {{ badgesLeague.count }}</p>
-              </div>
-            </div>
+        <div
+          class="col-lg-3 col-md-6 mb-4 d-flex justify-content-center"
+          *ngFor="let badgesLeague of uniqueEvolutionObjects"
+        >
+          <div class="img-creature">
+            <img
+              class="img-fluid me-3"
+              srcset="{{ badgesLeague.imagen }}"
+              alt="{{ badgesLeague.nombre }}"
+              (click)="openEnergy(badgesLeague)"
+              (contextmenu)="disableRightClick($event)"
+            />
+            <p>Total conseguidos: {{ badgesLeague.count }}</p>
           </div>
         </div>
       </div>
