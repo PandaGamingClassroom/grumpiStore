@@ -53,11 +53,7 @@
   <div class="container">
     <!-- Se renderiza cuando la imagen proviene de un grumpi -->
     <div class="d-flex justify-content-center" *ngIf="isAGrumpi">
-      <img class="img-box" src="{{ data.img_conseguir }}" (contextmenu)="disableRightClick($event)"/>
-    </div>
-    <!-- Se renderiza cuando la imagen no proviene de un grumpi -->
-    <div class="d-flex justify-content-center" *ngIf="data?.imagen">
-      <img class="img-box" src="{{ data.imagen }}" (contextmenu)="disableRightClick($event)"/>
+      <img class="img-box" src="{{ data.img_general }}" (contextmenu)="disableRightClick($event)"/>
     </div>
     <!-- Se renderiza cuando la información solo consta de la imagen -->
     <div
