@@ -138,10 +138,6 @@ export class AdminScreenComponent implements OnInit {
     }
     this.activeSection = section;
     this.toggleSidebar();
-    console.log('Active section set to:', this.activeSection);
-    if (this.activeSection === 'guide') {
-      this.navigateToRules();
-    }
   }
 
   navigateToRules() {
