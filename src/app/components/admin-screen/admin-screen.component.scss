@@ -115,11 +115,13 @@ a {
 
 /* Estilos para el sidebar */
 .sidenav {
-  position: relative; /* Necesario para posicionar el footer dentro del sidenav */
-  width: 350px; /* Ajusta el ancho del sidenav según tu necesidad */
-  height: 100vh; /* Ocupa toda la altura de la ventana */
+  position: relative;
+  width: 350px;
+  height: 68vh;
   display: flex;
   flex-direction: column;
+  box-shadow: #424242 0 -6px 8px inset;
+  border-radius: 15px;
 }
 
 .sidenav-footer {
@@ -128,13 +130,13 @@ a {
   width: 100%;
   text-align: center;
   padding: 10px;
-  background-color: #f8f9fa; /* Fondo para el área del reloj */
-  border-top: 1px solid #dee2e6; /* Opcional: una línea superior */
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
 }
 
 .footer-time {
-  font-size: 0.9rem; /* Tamaño de fuente del reloj */
-  color: #333; /* Color del texto */
+  font-size: 0.9rem;
+  color: #333;
 }
 
 /* Ocultar el botón de menú en pantallas grandes */
@@ -149,13 +151,13 @@ a {
     left: 0;
     width: 100%;
     height: auto;
-    transform: translateX(-100%); /* Inicialmente oculto */
+    transform: translateX(-100%);
     transition: transform 0.3s ease;
     z-index: 1000;
   }
 
   .sidenav.collapsed {
-    transform: translateX(0); /* Mostrar el menú al activarlo */
+    transform: translateX(0);
   }
 
   .container-fluid.main-content {
@@ -179,37 +181,6 @@ a {
     max-height: calc(100vh - 200px);
     padding: 10px;
   }
-  .btn-out {
-    border-radius: 40em;
-    appearance: none;
-    background-color: #fa4747;
-    box-shadow: #743838 0 -12px 6px inset;
-    box-sizing: border-box;
-    color: #000000;
-    cursor: pointer;
-    display: inline-block;
-    font-family: -apple-system, sans-serif;
-    font-size: small;
-    font-weight: 600;
-    letter-spacing: -.24px;
-    margin: 0;
-    outline: none;
-    text-align: center;
-    text-decoration: none;
-    transition: all .15s;
-    height: 60px;
-    width: 150px;
-  }
-  
-  .btn-out:hover {
-    background-color: #FFC229;
-    box-shadow: #FF6314 0 -6px 8px inset;
-    transform: scale(1.125);
-  }
-  
-  .btn-out:active {
-    transform: scale(1.025);
-  }
 }
 
 img {
@@ -231,7 +202,7 @@ img {
   /* Ajustamos el contenido principal para que también tenga scroll */
   .container-fluid {
     overflow-y: auto;
-    max-height: calc(100vh - 180px); 
+    max-height: calc(100vh - 180px);
   }
 
   .scrollable-div, .bigBox {
@@ -244,37 +215,5 @@ img {
     flex-direction: column;
     flex-grow: 1;
     overflow-y: auto;
-  }
-
-  .btn-out {
-    border-radius: 40em;
-    appearance: none;
-    background-color: #fa4747;
-    box-shadow: #743838 0 -12px 6px inset;
-    box-sizing: border-box;
-    color: #000000;
-    cursor: pointer;
-    display: inline-block;
-    font-family: -apple-system, sans-serif;
-    font-size: small;
-    font-weight: 600;
-    letter-spacing: -.24px;
-    margin: 0;
-    outline: none;
-    text-align: center;
-    text-decoration: none;
-    transition: all .15s;
-    height: 60px;
-    width: 150px;
-  }
-  
-  .btn-out:hover {
-    background-color: #FFC229;
-    box-shadow: #FF6314 0 -6px 8px inset;
-    transform: scale(1.125);
-  }
-  
-  .btn-out:active {
-    transform: scale(1.025);
   }
 }
