@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
-  selector: 'app-energies',
+  selector: 'app-energies-admin',
   standalone: true,
   imports: [RouterLink, NavBarAdminComponent],
   templateUrl: './energies-admin.component.html',

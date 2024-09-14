@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 @Component({
-  selector: 'app-career',
+  selector: 'app-career-admin',
   standalone: true,
   imports: [NavBarAdminComponent, RouterModule],
   templateUrl: './career-admin.component.html',

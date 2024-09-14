@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
-  selector: 'app-grumpis',
+  selector: 'app-grumpis-admin',
   standalone: true,
   imports: [
     RouterLink,

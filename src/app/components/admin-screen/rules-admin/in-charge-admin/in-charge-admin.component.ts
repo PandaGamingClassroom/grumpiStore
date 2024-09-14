@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
-  selector: 'app-in-charge',
+  selector: 'app-in-charge-admin',
   standalone: true,
   imports: [RouterLink, NavBarAdminComponent],
   templateUrl: './in-charge-admin.component.html',

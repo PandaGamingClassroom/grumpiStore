@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { ViewImageComponent } from '../../../../segments/view-image/view-image.component';
 @Component({
-  selector: 'app-combats',
+  selector: 'app-combats-admin',
   standalone: true,
   imports: [RouterLink, NavBarAdminComponent],
   templateUrl: './combats-admin.component.html',

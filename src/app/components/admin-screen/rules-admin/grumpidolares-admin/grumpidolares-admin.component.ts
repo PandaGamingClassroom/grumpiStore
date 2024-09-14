@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
-  selector: 'app-grumpidolares',
+  selector: 'app-grumpidolares-admin',
   standalone: true,
   imports: [RouterLink, NavBarAdminComponent],
   templateUrl: './grumpidolares-admin.component.html',

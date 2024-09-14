@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  RouterLink,
-  Router
-} from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
-  selector: 'app-rules',
+  selector: 'app-rules-admin',
   standalone: true,
   imports: [CommonModule, RouterLink, FooterComponent, NavBarAdminComponent],
   templateUrl: './rules-admin.component.html',
@@ -18,11 +14,9 @@ import { FooterComponent } from '../../footer/footer.component';
 export class RulesAdminComponent implements OnInit {
   isClicked: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   handleClick(): void {
     this.isClicked = !this.isClicked;

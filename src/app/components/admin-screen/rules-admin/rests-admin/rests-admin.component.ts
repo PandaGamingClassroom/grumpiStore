@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
-  selector: 'app-rests',
+  selector: 'app-rests-admin',
   standalone: true,
   imports: [RouterLink, NavBarAdminComponent, CommonModule],
   templateUrl: './rests-admin.component.html',
