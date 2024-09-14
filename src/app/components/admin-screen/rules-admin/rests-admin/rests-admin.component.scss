@@ -1,0 +1,44 @@
+/**
+* SCROLL
+*/
+.scrollable-div {
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px solid #2d812d;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-div::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento vertical */
+  height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+.scrollable-div::-webkit-scrollbar-track {
+  background: #ffffff; /* Color de fondo de la pista */
+  border-radius: 10px; /* Radio de borde de la pista */
+}
+.scrollable-div::-webkit-scrollbar-thumb {
+  background: #197228; /* Color de la thumb */
+  border-radius: 10px; /* Radio de borde de la thumb */
+}
+.scrollable-div::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color de la thumb al pasar el ratón */
+}
+
+
+/**
+*
+*   Configuración para la vista desde móvil
+*
+*/
+@media (max-width: 576px) {
+  .boxSizing {
+    min-height: 2vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+}

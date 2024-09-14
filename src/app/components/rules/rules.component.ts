@@ -1,47 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  RouterLink,
-  Router
-} from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { NavBarAdminComponent } from '../admin-screen/navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 @Component({
   selector: 'app-rules',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavBarComponent, FooterComponent, NavBarAdminComponent],
+  imports: [CommonModule, RouterLink, NavBarComponent, FooterComponent],
   templateUrl: './rules.component.html',
   styleUrl: './rules.component.scss',
 })
 export class RulesComponent implements OnInit {
-  hideElements: boolean = false;
-  showBackBTNHome: boolean = false;
-  showBackBTNAdmin: boolean = false;
   isClicked: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
-
-  ngOnInit(): void {
-    const currentUrl = this.router.url.split('?')[0];
-    /**
-     *
-     * Se comprueba desde donde se accede a este componente
-     * para cambiar el botón que vuelve atrás.
-     *
-     */
-    console.log('Ruta actual: ', currentUrl);
-    if (currentUrl === '/rules_admin') {
-      this.showBackBTNHome = false;
-      this.showBackBTNAdmin = true;
-    } else if (currentUrl === '/rules') {
-      this.showBackBTNHome = true;
-      this.showBackBTNAdmin = false;
-    }
-  }
+  ngOnInit(): void {}
 
   handleClick(): void {
     this.isClicked = !this.isClicked;

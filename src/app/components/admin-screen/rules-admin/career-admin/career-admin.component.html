@@ -1,0 +1,53 @@
+<app-nav-bar-admin></app-nav-bar-admin>
+
+<div class="btn-config">
+  <button type="button" class="button-73" [routerLink]="['/rules_admin']">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+    </svg>
+    Atrás
+  </button>
+</div>
+
+
+<div class="container">
+  <h1 class="d-flex justify-content-center">
+    <strong>CARRERA LECTORA</strong>
+  </h1>
+  <hr />
+</div>
+<div class="container-md scrollable-div mb-6 bg-box">
+  <div class="capital">
+    <p class="mt-3">
+      Dentro del plan lector de nuestro aula tenemos como requisito el leer al
+      menos 300 páginas por trimestre, que pueden estar divididas en 3 libros de
+      100 páginas, dos libros de 150, un libro de 200 y otro de 100; o 1 libro
+      de 300.
+    </p>
+  </div>
+  <p>
+    Para ambientarlo a nuestros Grumpi, hemos creado un ampara a través del cual
+    iremos avanzando cuando vayamos leyendo. Cada apartado del mapa corresponde
+    con 100 páginas.
+  </p>
+  <p>
+    Una vez que hayamos llegado al final del recorrido, nos encontraremos con la
+    Torre de Batalla, en la que entrarán los lectores más ávidos de la clase.
+    Por cada 100 páginas leídas, extra a las obligatorias de clase, se irá
+    ascendiendo por estos niveles hasta llegar a la cima y poder alzarse como el
+    Campeón o Campeona lectora Grumpi de la clase.
+  </p>
+  <p>
+    Indicar, que al mejor o los mejores lectores de clase, al final de curso se
+    les dará una recompensa bastante especial
+  </p>
+  <div class="text-center">
+    <h2 class="box-text">
+      <strong>¿Serás tú, el afortunado o afortunada?</strong>
+    </h2>
+  </div>
+  <div class="text-center" id="borderImg">
+    <img src="../../../../assets/carreraLectora/CarreraLectoraCompleto.png" (contextmenu)="disableRightClick($event)">
+  </div>
+</div>

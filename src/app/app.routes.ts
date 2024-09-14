@@ -33,6 +33,22 @@ import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.compon
 import { AboutTheAppComponent } from './components/about-the-app/about-the-app.component';
 import { BlogScreenComponent } from './components/admin-screen/profesor-admin/blog/blog-screen.component';
 
+/**
+ * ADMINISTRADORs
+ */
+import { RulesAdminComponent } from './components/admin-screen/rules-admin/rules-admin.component';
+import { CareerAdminComponent } from './components/admin-screen/rules-admin/career-admin/career-admin.component';
+import { CombatsAdminComponent } from './components/admin-screen/rules-admin/combats-admin/combats-admin.component';
+import { ObtainEnergiesAdmin } from './components/admin-screen/rules-admin/energies-admin/energies-admin.component';
+import { GrumpidolaresAdminComponent } from './components/admin-screen/rules-admin/grumpidolares-admin/grumpidolares-admin.component';
+import { GrumpisAdminComponent } from './components/admin-screen/rules-admin/grumpis-admin/grumpis-admin.component';
+import { InChargeAdminComponent } from './components/admin-screen/rules-admin/in-charge-admin/in-charge-admin.component';
+import { LeagueAdminComponent } from './components/admin-screen/rules-admin/league-admin/league-admin.component';
+import { LegendAdminComponent } from './components/admin-screen/rules-admin/legend-admin/legend-admin.component';
+import { MapsAdminComponent } from './components/admin-screen/rules-admin/maps-admin/maps-admin.component';
+import { MedalsAdminComponent } from './components/admin-screen/rules-admin/medals-admin/medals-admin.component';
+import { RestsAdminComponent } from './components/admin-screen/rules-admin/rests-admin/rests-admin.component';
+
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
   { path: 'newUser', component: NewUserComponent },
@@ -59,18 +75,21 @@ export const routes: Routes = [
    * RUTAS DE GUÍA GRUMPI PARA EL ADMINISTRADOR
    *
    */
-  { path: 'rules_admin', component: RulesComponent },
-  { path: 'rules_admin/career_admin', component: CareerComponent },
-  { path: 'rules_admin/combats_admin', component: CombatsComponent },
-  { path: 'rules_admin/obtain-energies_admin', component: ObtainEnergies },
-  { path: 'rules_admin/grumpidolares_admin', component: GrumpidolaresComponent },
-  { path: 'rules_admin/grumpis_admin', component: GrumpisComponent },
-  { path: 'rules_admin/inCharge_admin', component: InChargeComponent },
-  { path: 'rules_admin/league_admin', component: LeagueComponent },
-  { path: 'rules_admin/legend_admin', component: LegendComponent },
-  { path: 'rules_admin/maps_admin', component: MapsComponent },
-  { path: 'rules_admin/medals_admin', component: MedalsComponent },
-  { path: 'rules_admin/rests_admin', component: RestsComponent },
+  { path: 'rules_admin', component: RulesAdminComponent },
+  { path: 'rules_admin/career_admin', component: CareerAdminComponent },
+  { path: 'rules_admin/combats_admin', component: CombatsAdminComponent },
+  { path: 'rules_admin/obtain-energies_admin', component: ObtainEnergiesAdmin },
+  {
+    path: 'rules_admin/grumpidolares_admin',
+    component: GrumpidolaresAdminComponent,
+  },
+  { path: 'rules_admin/grumpis_admin', component: GrumpisAdminComponent },
+  { path: 'rules_admin/inCharge_admin', component: InChargeAdminComponent },
+  { path: 'rules_admin/league_admin', component: LeagueAdminComponent },
+  { path: 'rules_admin/legend_admin', component: LegendAdminComponent },
+  { path: 'rules_admin/maps_admin', component: MapsAdminComponent },
+  { path: 'rules_admin/medals_admin', component: MedalsAdminComponent },
+  { path: 'rules_admin/rests_admin', component: RestsAdminComponent },
 
   { path: 'store/medals-store', component: MedalsStoreComponent },
   {

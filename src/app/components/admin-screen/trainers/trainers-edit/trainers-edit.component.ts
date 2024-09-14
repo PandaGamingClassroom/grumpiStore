@@ -78,6 +78,8 @@ export class TrainersEditComponent implements OnInit {
       medalsToRemove: this.selectedMedals,
     };
 
+    console.log('Datos del entrenador a modificar: ', updatedData);
+
     this.trainersService
       .updateTrainer(this.data.name, updatedData)
       .subscribe((response) => {

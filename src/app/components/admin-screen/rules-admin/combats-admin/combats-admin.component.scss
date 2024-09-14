@@ -1,0 +1,73 @@
+/**
+* SCROLL
+*/
+.scrollable-div {
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px solid #2d812d;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-div::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento vertical */
+  height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+.scrollable-div::-webkit-scrollbar-track {
+  background: #ffffff; /* Color de fondo de la pista */
+  border-radius: 10px; /* Radio de borde de la pista */
+}
+.scrollable-div::-webkit-scrollbar-thumb {
+  background: #197228; /* Color de la thumb */
+  border-radius: 10px; /* Radio de borde de la thumb */
+}
+.scrollable-div::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color de la thumb al pasar el ratón */
+}
+
+/**
+  PRIMERA LETRA CAPITAL DEL TEXTO
+*/
+.capital > p::first-letter {
+  font-size: 4em; /* Tamaño de la primera letra */
+  font-weight: bold; /* Negrita (opcional) */
+  color: rgb(0, 143, 7); /* Color de la primera letra */
+}
+
+.box-text {
+  color: #197228;
+}
+
+.grumpi-shadow {
+  height: 200px;
+  width: 150px;
+  top: -20px;
+  right: 10px;
+  z-index: 1;
+}
+
+.row .capital {
+  z-index: 2;
+}
+
+.box-instructions {
+  width: 90%;
+}
+
+.box-battleCamp {
+  height: 600px;
+  width: 800px;
+}
+
+.sizeBtn {
+  font-size: medium !important;
+  width: 200px;
+}
+
+.cajaEstados{
+  height: 700px;
+  width: auto;
+  border-radius: 10px;
+}

@@ -5,7 +5,6 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { GrumpidolarsComponent } from './grumpidolars/grumpidolars.component';
-import { MatDialog } from '@angular/material/dialog';
 import { EnergiesComponent } from './energies/energies.component';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { CommonModule } from '@angular/common';
@@ -19,10 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminUserService } from '../services/adminUser/adminUser.service';
 import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin.component';
-import { RulesComponent } from '../rules/rules.component';
 import { ProfesorAdmin } from './profesor-admin/profesor-admin.component';
 import { ProfileComponent } from './profesor-admin/profile/profile-profesor.component';
 import { BlogScreenComponent } from './profesor-admin/blog/blog-screen.component';
+import { RulesAdminComponent } from './rules-admin/rules-admin.component';
 
 @Component({
   selector: 'app-admin-screen',
@@ -41,7 +40,7 @@ import { BlogScreenComponent } from './profesor-admin/blog/blog-screen.component
     EnergiesComponent,
     CreaturesAdminComponent,
     BlogScreenComponent,
-    RulesComponent,
+    RulesAdminComponent,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
@@ -69,10 +68,8 @@ export class AdminScreenComponent implements OnInit {
   isSidebarCollapsed = true;
 
   currentTime: string = '';
-  private timer: any;
 
   constructor(
-    private dialog: MatDialog,
     private trainersService: TrainerService,
     private adminUserService: AdminUserService,
     private router: Router
@@ -122,7 +119,7 @@ export class AdminScreenComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
