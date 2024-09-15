@@ -1,4 +1,3 @@
-<!-- Lista de entrenadores -->
 <div class="container-fluid bg-box">
   <h3 class="d-flex justify-content-center">
     <strong> Lista de entrenadores </strong>
@@ -31,8 +30,8 @@
   <div *ngIf="!loading" class="d-flex justify-content-center mainBoxAdminContent ">
     <div class="list mt-3 box-trainer">
       <p *ngIf="getError">{{ errorGetTrainers }}</p>
-      <ul *ngIf="trainers.length > 0" class="scrollable-div">
-        <li *ngFor="let trainer of trainers">
+      <ul class="scrollable-div" cdkDropList (cdkDropListDropped)="onTrainersReordered($event)">
+        <li *ngFor="let trainer of trainers" cdkDrag>
           <div class="row">
             <div class="col" id="entrenador">
               <strong> {{ trainer.name }} </strong>

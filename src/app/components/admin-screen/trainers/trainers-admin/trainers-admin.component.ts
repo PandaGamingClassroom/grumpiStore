@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
 import { TrainerService } from '../../../services/trainers/trainer.service';
+import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
 import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
 import { DeleteTrainersComponent } from '../delete-trainers/delete-trainers.component';
 import { SeeTrainersComponent } from '../see-trainers/see-trainers.component';
@@ -17,13 +16,12 @@ import { FooterComponent } from '../../../footer/footer.component';
   selector: 'app-trainers-admin',
   standalone: true,
   imports: [
-    RouterLink,
-    NavBarAdminComponent,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
-    FooterComponent
+    DragDropModule,
+    NavBarAdminComponent,
+    FooterComponent,
   ],
   providers: [TrainerService],
   templateUrl: './trainers-admin.component.html',
@@ -51,12 +49,6 @@ export class TrainersAdminComponent implements OnInit {
     this.getDadataProfesor(this.nameProfesor);
   }
 
-  /**
-   *
-   * Función para obtener los datos del profesor.
-   *
-   * @param name Recibe el nombre del profesor
-   */
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -75,13 +67,6 @@ export class TrainersAdminComponent implements OnInit {
     );
   }
 
-  /**
-   *
-   * Función para obtener la lista de entrenadores
-   * del profesor que ha iniciado sesión.
-   *
-   * @param profesorId Recibe el id del profesor.
-   */
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
@@ -99,12 +84,15 @@ export class TrainersAdminComponent implements OnInit {
     this.trainerSelected = trainer;
   }
 
-  /**
-   * Función para abrir una ventana emergente en la cual se va a poder
-   * editar la información del entrenador seleccionado.
-   *
-   * @param trainer Recibe el entrenador seleccionado.
-   */
+  onTrainersReordered(event: CdkDragDrop<any[]>): void {
+    const prevIndex = this.trainers.findIndex((d) => d === event.item.data);
+    this.trainers.splice(prevIndex, 1);
+    this.trainers.splice(event.currentIndex, 0, event.item.data);
+
+    console.log('Entrenadores reordenados:', this.trainers);
+    // Puedes enviar el nuevo orden al backend aquí si es necesario
+  }
+
   openEditPage(trainer: any) {
     const dialogRef = this.dialog.open(TrainersEditComponent, {
       width: '700px',
@@ -117,15 +105,6 @@ export class TrainersAdminComponent implements OnInit {
     });
   }
 
-  /**
-   * Función para abrir la ventana modal en la que se va a mostrar la información
-   * de un entrenador seleccionado.ç
-   *
-   * En esta ventana solo se podrá visualizar la información
-   * No se va a poder editar nada.
-   *
-   * @param trainer Recibe el entrenador seleccionado.
-   */
   openSeeTrainers(trainer: any) {
     const dialogRef = this.dialog.open(SeeTrainersComponent, {
       width: '700px',
@@ -134,14 +113,10 @@ export class TrainersAdminComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getEntrenadores(this.profesor.id); // Actualiza la lista de entrenadores después de cerrar el modal
+      this.getEntrenadores(this.profesor.id);
     });
   }
 
-  /**
-   * Función para abrir una ventana emergente en la cual
-   * se puede añadir un entrenador nuevo a la lista de entrenadores del profesor.
-   */
   openAddTrainerModal(): void {
     const dialogRef = this.dialog.open(AddTrainersComponent, {
       width: '700px',
@@ -156,12 +131,6 @@ export class TrainersAdminComponent implements OnInit {
     });
   }
 
-
-  /**
-   * Función para abrir una ventana emergente en la cual se elimina al entrenador seleccionado.
-   *
-   * @param trainer Recibe el entrenador que se ha seleccionado
-   */
   openDeleteTrainerModal(trainer: any) {
     const dialogRef = this.dialog.open(DeleteTrainersComponent, {
       width: '400px',
@@ -176,5 +145,4 @@ export class TrainersAdminComponent implements OnInit {
       }
     });
   }
-
 }
