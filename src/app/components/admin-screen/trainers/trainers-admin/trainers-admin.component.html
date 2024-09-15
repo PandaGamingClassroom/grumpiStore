@@ -43,14 +43,15 @@
       >
         <li *ngFor="let trainer of trainers" cdkDrag [cdkDragData]="trainer">
           <div class="row">
-            <!-- Ícono de arrastre -->
-            <div class="col-1 align-content-center">
-              <i class="material-icons cdk-drag-handle">drag_indicator</i>
+            <div class="col-1">
+              <i class="material-icons cdk-drag-handle" cdkDragHandle
+                >drag_indicator</i
+              >
             </div>
-            <div class="col align-content-center" id="entrenador">
+            <div class="col" id="entrenador">
               <strong>{{ trainer.name }}</strong>
             </div>
-            <div class="col align-content-center">
+            <div class="col">
               <button
                 type="button"
                 class="btn btn-success btn-list"
