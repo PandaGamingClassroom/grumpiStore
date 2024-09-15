@@ -10,7 +10,10 @@
     </div>
   </div>
 
-  <div *ngIf="!loading" class="d-flex justify-content-center mainBoxAdminContent">
+  <div
+    *ngIf="!loading"
+    class="d-flex justify-content-center mainBoxAdminContent"
+  >
     <div class="row">
       <div class="col-2">
         <button
@@ -27,11 +30,18 @@
     </div>
   </div>
 
-  <div *ngIf="!loading" class="d-flex justify-content-center mainBoxAdminContent ">
+  <div
+    *ngIf="!loading"
+    class="d-flex justify-content-center mainBoxAdminContent"
+  >
     <div class="list mt-3 box-trainer">
       <p *ngIf="getError">{{ errorGetTrainers }}</p>
-      <ul class="scrollable-div" cdkDropList (cdkDropListDropped)="onTrainersReordered($event)">
-        <li *ngFor="let trainer of trainers" cdkDrag>
+      <ul
+        class="scrollable-div"
+        cdkDropList
+        (cdkDropListDropped)="onTrainersReordered($event)"
+      >
+        <li *ngFor="let trainer of trainers" cdkDrag [cdkDragData]="trainer">
           <div class="row">
             <div class="col" id="entrenador">
               <strong> {{ trainer.name }} </strong>
@@ -54,7 +64,9 @@
               <button
                 type="button"
                 class="btn btn-danger btn-list"
-                (click)="selectTrainer(trainer.name); openDeleteTrainerModal(trainer)"
+                (click)="
+                  selectTrainer(trainer.name); openDeleteTrainerModal(trainer)
+                "
               >
                 <i class="material-icons">&#xe872;</i>
               </button>
@@ -63,6 +75,7 @@
           <hr />
         </li>
       </ul>
+
       <p *ngIf="trainers.length === 0">No hay entrenadores disponibles.</p>
     </div>
   </div>
