@@ -86,10 +86,21 @@ export class TrainersAdminComponent implements OnInit {
 
   onTrainersReordered(event: CdkDragDrop<any[]>): void {
     const prevIndex = this.trainers.findIndex((d) => d === event.item.data);
-    this.trainers.splice(prevIndex, 1);
-    this.trainers.splice(event.currentIndex, 0, event.item.data);
+
+    // Verifica si prevIndex es válido
+    if (prevIndex === -1) {
+      console.error('Índice anterior no válido');
+      return;
+    }
+
+    // Elimina el elemento de la posición anterior
+    const [movedItem] = this.trainers.splice(prevIndex, 1);
+
+    // Inserta el elemento en la nueva posición
+    this.trainers.splice(event.currentIndex, 0, movedItem);
 
     console.log('Entrenadores reordenados:', this.trainers);
+
     // Puedes enviar el nuevo orden al backend aquí si es necesario
   }
 
