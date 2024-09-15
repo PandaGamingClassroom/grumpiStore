@@ -72,13 +72,15 @@ export class TrainersAdminComponent implements OnInit {
   }
 
   getEntrenadores(profesorId: number) {
+    console.log('Llamando a getEntrenadores con ID:', profesorId);
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
+        console.log('Datos obtenidos de entrenadores:', data);
         this.trainers = data.data;
         this.loading = false;
       },
       (error) => {
-        console.error('Error:', error);
+        console.error('Error al obtener entrenadores:', error);
         this.loading = false;
       }
     );
