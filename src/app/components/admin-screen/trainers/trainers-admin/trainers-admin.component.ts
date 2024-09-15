@@ -85,11 +85,18 @@ export class TrainersAdminComponent implements OnInit {
   }
 
   onTrainersReordered(event: CdkDragDrop<any[]>): void {
-    const prevIndex = this.trainers.findIndex((d) => d === event.item.data);
+    // Encuentra el índice del elemento movido usando el identificador único
+    const movedItemId = event.item.data.id;
+    const prevIndex = this.trainers.findIndex(
+      (trainer) => trainer.id === movedItemId
+    );
 
     // Verifica si prevIndex es válido
     if (prevIndex === -1) {
-      console.error('Índice anterior no válido');
+      console.error('Índice anterior no válido', {
+        movedItemId,
+        trainers: this.trainers,
+      });
       return;
     }
 
