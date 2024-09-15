@@ -39,7 +39,7 @@ export class DeleteTrainersComponent implements OnInit {
     public dialogRef: MatDialogRef<DeleteTrainersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.username = localStorage.getItem('username');
@@ -48,9 +48,9 @@ export class DeleteTrainersComponent implements OnInit {
     this.trainerSelected = this.data.name;
   }
   /**
-   * 
+   *
    * Función para obtener los datos de un profesor.
-   * 
+   *
    * @param name Recibe el nombre del profesor.
    */
   getDadataProfesor(name: string) {
@@ -71,9 +71,9 @@ export class DeleteTrainersComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * Función para eliminar el entrenador seleccionado.
-   * 
+   *
    * @returns Solo devuelve un error.
    */
   deleteTrainer() {
@@ -83,11 +83,6 @@ export class DeleteTrainersComponent implements OnInit {
       (trainer) => trainer.name === this.trainerSelected
     );
 
-    const data = {
-      title: '¡Eliminando entrenador!',
-      message: 'El entrenador se ha eliminado correctamente.',
-    };
-
     if (!trainerToDelete) {
       console.error('No se encontró el entrenador a eliminar');
       return;
@@ -95,13 +90,19 @@ export class DeleteTrainersComponent implements OnInit {
 
     this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
       () => {
-        this.dialog.open(ConfirmModalComponentComponent, {
-          width: '400px',
-          height: '300px',
-          data: data,
-        }).afterClosed().subscribe(() => {
-          this.dialogRef.close(true);
-        });
+        this.dialog
+          .open(ConfirmModalComponentComponent, {
+            width: '400px',
+            height: '300px',
+            data: {
+              title: '¡Eliminando entrenador!',
+              message: 'El entrenador se ha eliminado correctamente.',
+            },
+          })
+          .afterClosed()
+          .subscribe(() => {
+            this.dialogRef.close(true);
+          });
       },
       (error) => {
         console.error('Error al eliminar el registro:', error);
@@ -110,10 +111,10 @@ export class DeleteTrainersComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * Función para obtener la información de los entrenadores
    * de un profesor.
-   * 
+   *
    * @param profesorId Recibe el id del profesor.
    */
   getEntrenadores(profesorId: number) {
