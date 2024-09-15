@@ -47,6 +47,10 @@ export class TrainersAdminComponent implements OnInit {
     this.username = localStorage.getItem('username');
     this.nameProfesor = localStorage.getItem('nameUser');
     this.getDadataProfesor(this.nameProfesor);
+    this.loadTrainersFromLocalStorage();
+    if (!this.trainers.length) {
+      this.getEntrenadores(this.nameProfesor);
+    }
   }
 
   getDadataProfesor(name: string) {
@@ -85,35 +89,32 @@ export class TrainersAdminComponent implements OnInit {
   }
 
   onTrainersReordered(event: CdkDragDrop<any[]>): void {
-    // Asegúrate de que event.item.data esté definido
-    console.log('Evento: ', event.item);
-
     const movedItem = event.item.data;
-    if (!movedItem || !movedItem.id) {
-      console.error(
-        'Error: El elemento movido no tiene un ID válido',
-        movedItem
-      );
-      return;
-    }
 
     // Encuentra el índice del elemento movido
     const prevIndex = this.trainers.findIndex(
       (trainer) => trainer.id === movedItem.id
     );
 
-    // Verifica que el índice sea válido
-    if (prevIndex === -1) {
-      console.error('Error: El índice anterior no es válido', movedItem);
-      return;
-    }
-
-    // Realiza el reordenamiento
+    // Reordenar la lista en el front-end
     this.trainers.splice(prevIndex, 1);
     this.trainers.splice(event.currentIndex, 0, movedItem);
 
     console.log('Entrenadores reordenados:', this.trainers);
-    // Puedes enviar el nuevo orden al backend aquí si es necesario
+
+    // Guarda el nuevo orden en localStorage
+    this.saveNewOrderInLocalStorage(this.trainers);
+  }
+
+  saveNewOrderInLocalStorage(trainers: any[]): void {
+    localStorage.setItem('trainersOrder', JSON.stringify(trainers));
+  }
+
+  loadTrainersFromLocalStorage(): void {
+    const savedOrder = localStorage.getItem('trainersOrder');
+    if (savedOrder) {
+      this.trainers = JSON.parse(savedOrder);
+    }
   }
 
   openEditPage(trainer: any) {
