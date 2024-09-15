@@ -43,8 +43,12 @@
       >
         <li *ngFor="let trainer of trainers" cdkDrag [cdkDragData]="trainer">
           <div class="row">
+            <!-- Ícono de arrastre -->
+            <div class="col-1">
+              <i class="material-icons cdk-drag-handle">drag_indicator</i>
+            </div>
             <div class="col" id="entrenador">
-              <strong> {{ trainer.name }} </strong>
+              <strong>{{ trainer.name }}</strong>
             </div>
             <div class="col">
               <button

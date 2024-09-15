@@ -32,6 +32,14 @@
   padding-bottom: 5%;
 }
 
+.cdk-drag-handle {
+  cursor: grab; /* Cambia el cursor para indicar que el elemento se puede arrastrar */
+  font-size: 24px; /* Tamaño del ícono */
+  margin-right: 10px; /* Espacio entre el ícono y el contenido */
+  color: #000; /* Color del ícono, cámbialo según tu diseño */
+}
+
+
 h1,
 h2,
 h3,
