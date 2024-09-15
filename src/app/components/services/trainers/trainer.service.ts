@@ -456,4 +456,8 @@ export class TrainerService {
       reward,
     });
   }
+
+  saveNewOrder(trainers: any[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/trainers/order`, { trainers });
+  }
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -47,10 +51,6 @@ export class TrainersAdminComponent implements OnInit {
     this.username = localStorage.getItem('username');
     this.nameProfesor = localStorage.getItem('nameUser');
     this.getDadataProfesor(this.nameProfesor);
-    this.loadTrainersFromLocalStorage();
-    if (!this.trainers.length) {
-      this.getEntrenadores(this.nameProfesor);
-    }
   }
 
   getDadataProfesor(name: string) {
@@ -91,30 +91,30 @@ export class TrainersAdminComponent implements OnInit {
   onTrainersReordered(event: CdkDragDrop<any[]>): void {
     const movedItem = event.item.data;
 
-    // Encuentra el índice del elemento movido
+    if (!movedItem) {
+      console.error('Error: El elemento movido no está definido.');
+      return;
+    }
+
     const prevIndex = this.trainers.findIndex(
       (trainer) => trainer.id === movedItem.id
     );
 
-    // Reordenar la lista en el front-end
-    this.trainers.splice(prevIndex, 1);
-    this.trainers.splice(event.currentIndex, 0, movedItem);
-
-    console.log('Entrenadores reordenados:', this.trainers);
-
-    // Guarda el nuevo orden en localStorage
-    this.saveNewOrderInLocalStorage(this.trainers);
-  }
-
-  saveNewOrderInLocalStorage(trainers: any[]): void {
-    localStorage.setItem('trainersOrder', JSON.stringify(trainers));
-  }
-
-  loadTrainersFromLocalStorage(): void {
-    const savedOrder = localStorage.getItem('trainersOrder');
-    if (savedOrder) {
-      this.trainers = JSON.parse(savedOrder);
+    if (prevIndex === -1) {
+      console.error('Error: No se encontró el elemento movido en la lista.');
+      return;
     }
+
+    moveItemInArray(this.trainers, prevIndex, event.currentIndex);
+
+    this.trainersService.saveNewOrder(this.trainers).subscribe(
+      () => {
+        console.log('Nuevo orden guardado con éxito.');
+      },
+      (error) => {
+        console.error('Error al guardar el nuevo orden:', error);
+      }
+    );
   }
 
   openEditPage(trainer: any) {
