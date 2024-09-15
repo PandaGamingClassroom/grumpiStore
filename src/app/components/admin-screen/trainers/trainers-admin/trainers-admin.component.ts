@@ -86,6 +86,8 @@ export class TrainersAdminComponent implements OnInit {
 
   onTrainersReordered(event: CdkDragDrop<any[]>): void {
     // Asegúrate de que event.item.data esté definido
+    console.log('Evento: ', event.item);
+
     const movedItem = event.item.data;
     if (!movedItem || !movedItem.id) {
       console.error(
