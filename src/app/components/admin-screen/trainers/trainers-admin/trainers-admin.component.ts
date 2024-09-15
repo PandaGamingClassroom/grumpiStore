@@ -166,8 +166,8 @@ export class TrainersAdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Entrenador eliminado:', trainer);
         this.getEntrenadores(this.profesor.id);
+        window.location.reload();
       }
     });
   }
