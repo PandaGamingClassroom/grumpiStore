@@ -152,7 +152,7 @@ export class MedalsAdminScreenComponent implements OnInit {
       data: data,
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.modalAbierta = false; // Resetear estado después de cerrar
+      this.modalAbierta = false;
     });
     this.modalAbierta = true;
   }
@@ -168,7 +168,7 @@ export class MedalsAdminScreenComponent implements OnInit {
       data: data,
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.modalAbierta = false; // Resetear estado después de cerrar
+      this.modalAbierta = false;
     });
     this.modalAbierta = true;
   }
@@ -204,6 +204,7 @@ export class MedalsAdminScreenComponent implements OnInit {
   assignMedalToTrainer(trainerNames: string[]) {
     const titleError = '¡Cuidado!';
     let messageError = '';
+
     if (trainerNames.length > 0 && this.selectedMedalName) {
       const medal = this.selectedMedalName;
 
@@ -213,22 +214,26 @@ export class MedalsAdminScreenComponent implements OnInit {
 
       forkJoin(trainerRequests).subscribe(
         (trainersData) => {
+          const trainersWithExistingMedal: string[] = [];
+          const trainersWithoutMedal: string[] = [];
+
           trainersData.forEach((data: any) => {
-            if (data && data.medallas) {
-              this.trainerMedalsMap[data.nombre] = data.medals.map(
+            if (data && data.medals) {
+              const currentMedals = data.medals.map(
                 (medal: any) => medal.nombre
               );
+              this.trainerMedalsMap[data.nombre] = currentMedals;
+
+              if (currentMedals.includes(medal)) {
+                trainersWithExistingMedal.push(data.nombre);
+              } else {
+                trainersWithoutMedal.push(data.nombre);
+              }
             }
           });
 
-          const trainersWithMedal = trainerNames.filter(
-            (trainerName) =>
-              this.trainerMedalsMap[trainerName] &&
-              this.trainerMedalsMap[trainerName].includes(medal)
-          );
-
-          if (trainersWithMedal.length > 0) {
-            messageError = `La medalla ${medal} ya está asignada a los siguientes entrenadores: ${trainersWithMedal.join(
+          if (trainersWithExistingMedal.length > 0) {
+            messageError = `La medalla ${medal} ya está asignada a los siguientes entrenadores: ${trainersWithExistingMedal.join(
               ', '
             )}`;
 
@@ -236,18 +241,20 @@ export class MedalsAdminScreenComponent implements OnInit {
             return;
           }
 
-          this.trainersService
-            .assignMedalToTrainers(trainerNames, medal)
-            .subscribe(
-              (response) => {
-                console.log('Medalla asignada con éxito:', response);
-                this.openModal();
-              },
-              (error) => {
-                let errorMssg = 'Error asignando la medalla:' + error;
-                this.openErrorModal(titleError, errorMssg);
-              }
-            );
+          if (trainersWithoutMedal.length > 0) {
+            this.trainersService
+              .assignMedalToTrainers(trainersWithoutMedal, medal)
+              .subscribe(
+                (response) => {
+                  console.log('Medalla asignada con éxito:', response);
+                  this.openModal();
+                },
+                (error) => {
+                  let errorMssg = 'Error asignando la medalla:' + error;
+                  this.openErrorModal(titleError, errorMssg);
+                }
+              );
+          }
         },
         (error) => {
           console.error('Error al obtener datos de entrenadores:', error);
