@@ -78,26 +78,23 @@ export class EditObjetosModalComponent implements OnInit {
   energiaTierra: number = 0;
   energiaVida: number = 0;
 
-  grumpiList: any[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<EditObjetosModalComponent>,
     @Inject(MAT_DIALOG_DATA) public objetos: any,
     private trainersService: TrainerService,
     private http: HttpClient
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     console.log('Datos iniciales:', this.objetos);
     this.trainer_name = this.objetos?.name || '';
-    this.medals_list = JSON.parse(this.objetos?.medallas) || '';
-    this.contadorObjetosCombate(this.objetos?.objetos_combate || []);
-    this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos || []);
-    this.contadorRecompensas(this.objetos?.recompensas || []);
-    this.contadorEnergias(this.objetos?.energias || []);
-    this.contadorMedallas(this.objetos?.medallas || []);
-    this.contadorGrumpis(this.objetos?.grumpis || []);
-    this.grumpiList = this.objetos?.grumpis || [];
+    this.contadorObjetosCombate(JSON.parse(this.objetos?.objetos_combate));
+    this.contadorObjEvolutivos(JSON.parse(this.objetos?.objetos_evolutivos));
+    this.contadorRecompensas(JSON.parse(this.objetos?.recompensas));
+    this.contadorEnergias(JSON.parse(this.objetos?.energias));
+    this.contadorMedallas(JSON.parse(this.objetos?.medallas));
+    this.contadorGrumpis(JSON.parse(this.objetos?.grumpis));
   }
 
   /**
@@ -121,7 +118,7 @@ export class EditObjetosModalComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   /**
    * Función para contabilizar el total de objetos evolutivos que tiene en el inventario
    * el entrenador seleccionado.
@@ -228,8 +225,13 @@ export class EditObjetosModalComponent implements OnInit {
     const medallaCounts: { [key: string]: any } = {};
 
     for (let medalla of medallas) {
-      if (!medallaCounts[medalla]) {
-        medallaCounts[medalla] = { url: medalla.imagen, toDelete: false };
+      if (!medallaCounts[medalla.id]) {
+        medallaCounts[medalla.id] = {
+          id: medalla.id,
+          nombre: medalla.nombre,
+          imagen: medalla.imagen,
+          toDelete: false,
+        };
       }
     }
 
@@ -238,18 +240,18 @@ export class EditObjetosModalComponent implements OnInit {
 
   /**
    * Función para eliminar Grumpis de la lista del entrenador.
-   * 
+   *
    * @param grumpis Recibe el listado de Grumpis marcados para eliminar.
    */
   contadorGrumpis(grumpis: any[]) {
     const grumpiCounts: { [nombre: string]: any } = {};
-  
+
     for (let grumpi of grumpis) {
       if (!grumpiCounts[grumpi.nombre]) {
         grumpiCounts[grumpi.nombre] = { ...grumpi, toDelete: false };
       }
     }
-  
+
     this.uniqueGrumpis = Object.values(grumpiCounts);
   }
 
@@ -284,7 +286,7 @@ export class EditObjetosModalComponent implements OnInit {
       if (medalla.toDelete) {
         objetosAEliminar.push({
           tipo: 'medalla',
-          nombre: medalla.url,
+          nombre: medalla.nombre,
         });
       }
     }

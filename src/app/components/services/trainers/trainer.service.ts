@@ -105,8 +105,12 @@ export class TrainerService {
    * @returns
    */
   eliminarRegistro(trainerName: string) {
-    const url = `${this.apiUrl}user/${trainerName}`;
-    return this.http.delete(url);
+    return this.http.delete<any>(`${this.apiUrl}user/${trainerName}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error al eliminar el entrenador:', error);
+        return throwError(error);
+      })
+    );
   }
 
   /**
