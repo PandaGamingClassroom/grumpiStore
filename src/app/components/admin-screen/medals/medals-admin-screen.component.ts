@@ -186,7 +186,7 @@ export class MedalsAdminScreenComponent implements OnInit {
       .subscribe((selectedTrainerNames: string[] | null) => {
         if (selectedTrainerNames && selectedTrainerNames.length > 0) {
           this.selectedTrainerName = selectedTrainerNames.join(', ');
-          this.assignMedalToTrainer(selectedTrainerNames);
+          this.assignMedal();
         }
       });
   }
