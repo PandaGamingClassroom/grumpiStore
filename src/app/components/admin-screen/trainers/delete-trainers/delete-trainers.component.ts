@@ -11,6 +11,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { ErrorLoginModalComponentComponent } from '../../../../segments/error-login-modal-component/error-login-modal-component.component';
 
 @Component({
   selector: 'app-delete-trainers',
@@ -78,34 +79,36 @@ export class DeleteTrainersComponent implements OnInit {
    */
   deleteTrainer() {
     console.log('Entrenador a eliminar: ', this.trainerSelected);
+    const titleError = 'Algo ha salido mal';
+    const messageError = 'No se encontró el entrenador a eliminar';
 
     const trainerToDelete = this.trainers.find(
       (trainer) => trainer.name === this.trainerSelected
     );
 
     if (!trainerToDelete) {
-      console.error('No se encontró el entrenador a eliminar');
-      return;
+      this.openErrorModal(titleError, messageError);
     }
 
     this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
-      () => {
+      (response) => {
+        const data = {
+          title: '¡Correcto!',
+          message: `El entrenador se ha eliminado correctamente.`,
+        };
         this.dialog
           .open(ConfirmModalComponentComponent, {
             width: '400px',
-            height: '300px',
-            data: {
-              title: '¡Eliminando entrenador!',
-              message: 'El entrenador se ha eliminado correctamente.',
-            },
+            height: '250px',
+            data: data,
           })
           .afterClosed()
           .subscribe(() => {
-            this.dialogRef.close(true);
+            this.dialogRef.close(trainerToDelete);
           });
       },
       (error) => {
-        console.error('Error al eliminar el registro:', error);
+        console.error('Error al eliminar el entrenador:', error);
       }
     );
   }
@@ -130,5 +133,25 @@ export class DeleteTrainersComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  /**
+   *
+   * Función para mostrar ventana emergente con el error ocurrido.
+   *
+   * @param title Recibe el título para mostrar en la ventana de error.
+   * @param message Recibe el mensaje para mostrar en la ventana de error.
+   */
+  openErrorModal(title: string, message: string) {
+    const data = {
+      title: title,
+      message: message,
+    };
+    const dialogRef = this.dialog.open(ErrorLoginModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      data: data,
+    });
+    dialogRef.afterClosed().subscribe();
   }
 }

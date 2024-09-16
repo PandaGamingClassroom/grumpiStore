@@ -167,7 +167,6 @@ export class TrainersAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.getEntrenadores(this.profesor.id);
-        window.location.reload();
       }
     });
   }
