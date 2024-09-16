@@ -279,6 +279,8 @@ export class EditObjetosModalComponent implements OnInit {
     const objetosAEliminar: any[] = [];
 
     // Grumpis
+    console.log('UNIQUE_GRUMPIS', this.uniqueGrumpis);
+
     for (const grumpi of this.uniqueGrumpis) {
       if (grumpi.toDelete > 0) {
         objetosAEliminar.push({
@@ -290,6 +292,8 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Energías
+    console.log('UNIQUE_ENERGIES', this.uniqueEnergies);
+
     for (const energia of this.uniqueEnergies) {
       if (energia.quantityToDelete > 0) {
         objetosAEliminar.push({
@@ -301,6 +305,8 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Medallas
+    console.log('UNIQUE_MEDALLAS', this.uniqueMedals);
+
     for (const medalla of this.uniqueMedals) {
       if (medalla.toDelete) {
         objetosAEliminar.push({
@@ -311,6 +317,8 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Objetos de combate
+    console.log('UNIQUE_COMBATOBJECTS', this.uniqueCombatObjects);
+
     for (const objeto of this.uniqueCombatObjects) {
       if (objeto.quantityToDelete > 0) {
         objetosAEliminar.push({
@@ -322,6 +330,8 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Objetos evolutivos
+    console.log('UNIQUE_EVOOBJECTS', this.uniqueEvolutionObjects);
+
     for (const objeto of this.uniqueEvolutionObjects) {
       if (objeto.quantityToDelete > 0) {
         objetosAEliminar.push({
@@ -333,6 +343,8 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Recompensas
+    console.log('UNIQUE_REWARDS', this.uniqueRewards);
+
     for (const objeto of this.uniqueRewards) {
       if (objeto.quantityToDelete > 0) {
         objetosAEliminar.push({
