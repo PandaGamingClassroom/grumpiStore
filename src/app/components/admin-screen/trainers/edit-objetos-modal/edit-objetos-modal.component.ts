@@ -88,15 +88,20 @@ export class EditObjetosModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.trainer = JSON.parse(this.objetos);
-    console.log('MOCHILA DEL ENTRENADOR :',this.trainer);
+    this.trainer = this.objetos;
+    console.log('MOCHILA DEL ENTRENADOR :', this.trainer);
+
     this.trainer_name = this.trainer?.name || '';
-    this.contadorObjetosCombate(JSON.parse(this.trainer?.objetos_combate));
-    this.contadorObjEvolutivos(JSON.parse(this.trainer?.objetos_evolutivos));
-    this.contadorRecompensas(JSON.parse(this.trainer?.recompensas));
-    this.contadorEnergias(JSON.parse(this.trainer?.energias));
-    this.contadorMedallas(JSON.parse(this.trainer?.medallas));
-    this.contadorGrumpis(JSON.parse(this.trainer?.grumpis));
+    this.contadorObjetosCombate(
+      JSON.parse(this.trainer?.objetos_combate || '[]')
+    );
+    this.contadorObjEvolutivos(
+      JSON.parse(this.trainer?.objetos_evolutivos || '[]')
+    );
+    this.contadorRecompensas(JSON.parse(this.trainer?.recompensas || '[]'));
+    this.contadorEnergias(JSON.parse(this.trainer?.energias || '[]'));
+    this.contadorMedallas(JSON.parse(this.trainer?.medallas || '[]'));
+    this.contadorGrumpis(JSON.parse(this.trainer?.grumpis || '[]'));
   }
 
   /**
