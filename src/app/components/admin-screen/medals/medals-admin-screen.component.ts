@@ -207,23 +207,20 @@ export class MedalsAdminScreenComponent implements OnInit {
     if (trainerNames.length > 0 && this.selectedMedalName) {
       const medal = this.selectedMedalName;
 
-      // Obtener medallas de todos los entrenadores seleccionados
       const trainerRequests = trainerNames.map((trainerName) =>
         this.trainersService.getTrainerByName(trainerName).toPromise()
       );
 
       forkJoin(trainerRequests).subscribe(
         (trainersData) => {
-          // Actualizar el mapa de medallas
           trainersData.forEach((data: any) => {
-            if (data && data.medals) {
-              this.trainerMedalsMap[data.name] = data.medals.map(
+            if (data && data.medallas) {
+              this.trainerMedalsMap[data.nombre] = data.medals.map(
                 (medal: any) => medal.nombre
               );
             }
           });
 
-          // Verificar si la medalla ya está asignada
           const trainersWithMedal = trainerNames.filter(
             (trainerName) =>
               this.trainerMedalsMap[trainerName] &&
