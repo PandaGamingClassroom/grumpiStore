@@ -110,6 +110,7 @@ export class EditObjetosModalComponent implements OnInit {
    * @param combatObjects Recibe el listado de objetos de combate del entrenador seleccionado
    */
   contadorObjetosCombate(combatObjects: any) {
+    console.log('Lista de objetos de combate del entrenador: ', combatObjects);
     const objectCounts: { [key: string]: any } = {};
 
     for (let obj of combatObjects) {
@@ -132,6 +133,11 @@ export class EditObjetosModalComponent implements OnInit {
    * @param evolutionObjects Recibe el listado de objetos evolutivos del entrenador seleccionado
    */
   contadorObjEvolutivos(evolutionObjects: any) {
+    console.log(
+      'Lista de objetos evolutivos del entrenador: ',
+      evolutionObjects
+    );
+
     const objectCounts: { [key: string]: any } = {};
 
     for (let obj of evolutionObjects) {
@@ -182,6 +188,8 @@ export class EditObjetosModalComponent implements OnInit {
   }
 
   contadorEnergias(energies: any) {
+    console.log('Lista de energías del entrenador: ', energies);
+
     const energyCounts: { [key: string]: any } = {};
 
     for (let energy of energies) {
@@ -229,6 +237,8 @@ export class EditObjetosModalComponent implements OnInit {
 
   // Ajusta el contador de medallas para que cree objetos de medallas
   contadorMedallas(medallas: any[]) {
+    console.log('Lista de medallas del entrenador: ', medallas);
+
     const medallaCounts: { [key: string]: any } = {};
 
     for (let medalla of medallas) {
@@ -251,6 +261,8 @@ export class EditObjetosModalComponent implements OnInit {
    * @param grumpis Recibe el listado de Grumpis marcados para eliminar.
    */
   contadorGrumpis(grumpis: any[]) {
+    console.log('Lista de grumpis del entrenador: ', grumpis);
+
     const grumpiCounts: { [nombre: string]: any } = {};
 
     for (let grumpi of grumpis) {
