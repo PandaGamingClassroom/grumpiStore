@@ -78,6 +78,7 @@ export class EditObjetosModalComponent implements OnInit {
   energiaTierra: number = 0;
   energiaVida: number = 0;
 
+  trainer: any;
 
   constructor(
     public dialogRef: MatDialogRef<EditObjetosModalComponent>,
@@ -87,14 +88,15 @@ export class EditObjetosModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Datos iniciales:', JSON.parse(this.objetos));
-    this.trainer_name = this.objetos?.name || '';
-    this.contadorObjetosCombate(this.objetos?.objetos_combate);
-    this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos);
-    this.contadorRecompensas(this.objetos?.recompensas);
-    this.contadorEnergias(this.objetos?.energias);
-    this.contadorMedallas(this.objetos?.medallas);
-    this.contadorGrumpis(this.objetos?.grumpis);
+    this.trainer = JSON.parse(this.objetos);
+    console.log('MOCHILA DEL ENTRENADOR :',this.trainer);
+    this.trainer_name = this.trainer?.name || '';
+    this.contadorObjetosCombate(JSON.parse(this.trainer?.objetos_combate));
+    this.contadorObjEvolutivos(JSON.parse(this.trainer?.objetos_evolutivos));
+    this.contadorRecompensas(JSON.parse(this.trainer?.recompensas));
+    this.contadorEnergias(JSON.parse(this.trainer?.energias));
+    this.contadorMedallas(JSON.parse(this.trainer?.medallas));
+    this.contadorGrumpis(JSON.parse(this.trainer?.grumpis));
   }
 
   /**
