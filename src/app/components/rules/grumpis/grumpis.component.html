@@ -164,7 +164,7 @@
 
   <!-- LISTADO COMPLETO DE GRUMPIS -->
   <div
-    *ngIf="grumpi_list"
+    *ngIf="grumpi_list && this.isClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
     <div *ngFor="let grumpi of grumpi_list">
