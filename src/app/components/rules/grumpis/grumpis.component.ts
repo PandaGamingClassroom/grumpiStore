@@ -41,18 +41,11 @@ export class GrumpisComponent implements OnInit {
     this.grumpiService.getGrumpis().subscribe(
       (response) => {
         console.log('Listado de Grumpis: ', response.grumpis_list);
-
         this.grumpi_list = response.grumpis_list;
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
       }
-    );
-  }
-
-  get filteredCreaturesImages(): any[] {
-    return this.grumpi_list.filter((imageUrl) =>
-      imageUrl.nombre.toLowerCase()
     );
   }
 

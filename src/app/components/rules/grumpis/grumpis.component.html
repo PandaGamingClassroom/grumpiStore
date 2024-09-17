@@ -167,9 +167,9 @@
     *ngIf="grumpi_list && this.isClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let grumpi of filteredCreaturesImages">
+    <div *ngFor="let grumpi of grumpi_list">
       <img
-        class="tilt-in-fwd-tr"
+        
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
         (contextmenu)="disableRightClick($event)"
