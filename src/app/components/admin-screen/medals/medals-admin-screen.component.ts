@@ -152,7 +152,7 @@ export class MedalsAdminScreenComponent implements OnInit {
       data: data,
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.modalAbierta = false; // Resetear estado después de cerrar
+      this.modalAbierta = false;
     });
     this.modalAbierta = true;
   }
@@ -168,7 +168,7 @@ export class MedalsAdminScreenComponent implements OnInit {
       data: data,
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.modalAbierta = false; // Resetear estado después de cerrar
+      this.modalAbierta = false;
     });
     this.modalAbierta = true;
   }

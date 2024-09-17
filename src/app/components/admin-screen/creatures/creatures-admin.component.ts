@@ -302,7 +302,9 @@ export class CreaturesAdminComponent implements OnInit {
         height: '300px',
         data: data,
       });
-      dialogRef.afterClosed().subscribe();
+      dialogRef.afterClosed().subscribe(() => {
+        this.modalAbierta = false;
+      });
       this.modalAbierta = true;
     }
   }
