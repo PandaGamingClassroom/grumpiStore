@@ -23,7 +23,7 @@ import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-a
   styleUrl: './grumpis-admin.component.scss',
 })
 export class GrumpisAdminComponent implements OnInit {
-  imageUrls: string[] = [];
+  grumpi_list: any[] = [];
   isClicked: boolean = false;
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
@@ -38,9 +38,9 @@ export class GrumpisAdminComponent implements OnInit {
   }
 
   loadImageUrls() {
-    this.grumpiService.getImageUrls().subscribe(
+    this.grumpiService.getGrumpis().subscribe(
       (response) => {
-        this.imageUrls = response.imageUrls;
+        this.grumpi_list = response.grumpis_list;
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);

@@ -144,12 +144,14 @@
       Ocultar Grumpis
     </button>
   </div>
+
+  <!-- LISTADO DE GRUMPIS  -->
   <div
     *ngIf="this.isClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let image of imageUrls">
-      <img class="tilt-in-fwd-tr" [src]="image" alt="Imagen del Grumpi" (contextmenu)="disableRightClick($event)"/>
+    <div *ngFor="let image of grumpi_list">
+      <img class="tilt-in-fwd-tr" srcset="{{image.img_conseguir}}" alt="{{image.nombre}}" (contextmenu)="disableRightClick($event)"/>
       <button (click)="scrollToTop()" class="button-73 fixed-button">
         <i class="material-icons">&#xe5d8;</i>
       </button>
