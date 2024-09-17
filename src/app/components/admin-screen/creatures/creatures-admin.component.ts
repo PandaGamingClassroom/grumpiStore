@@ -226,23 +226,27 @@ export class CreaturesAdminComponent implements OnInit {
    *
    */
   openModal() {
-    if (!this.modalAbierta) {
-      const data = {
-        title: '¡Grumpi guardado correctamente!',
-        message: this.confirmMessage,
-      };
-      const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
-        width: '400px',
-        height: '300px',
-        panelClass: 'custom-modal',
-        disableClose: true,
-        autoFocus: true,
-        data: data,
-      });
-      dialogRef.afterClosed().subscribe();
-      this.modalAbierta = true;
-    }
+    const data = {
+      title: '¡Grumpi guardado correctamente!',
+      message: this.confirmMessage,
+    };
+  
+    const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      panelClass: 'custom-modal',
+      disableClose: true,
+      autoFocus: true,
+      data: data,
+    });
+  
+    dialogRef.afterClosed().subscribe(() => {
+      this.modalAbierta = false;
+    });
+  
+    this.modalAbierta = true;
   }
+  
 
   /**
    *
