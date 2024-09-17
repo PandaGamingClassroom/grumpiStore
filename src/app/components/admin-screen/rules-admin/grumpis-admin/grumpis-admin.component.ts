@@ -30,16 +30,18 @@ export class GrumpisAdminComponent implements OnInit {
   constructor(private grumpiService: GrumpiService) {}
 
   ngOnInit(): void {
-    this.loadImageUrls();
+    this.getGrumpis();
   }
 
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
 
-  loadImageUrls() {
+  getGrumpis() {
     this.grumpiService.getGrumpis().subscribe(
       (response) => {
+        console.log('Listado de Grumpis: ', response.grumpis_list);
+
         this.grumpi_list = response.grumpis_list;
       },
       (error) => {

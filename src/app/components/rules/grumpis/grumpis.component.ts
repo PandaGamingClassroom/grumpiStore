@@ -23,25 +23,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './grumpis.component.scss',
 })
 export class GrumpisComponent implements OnInit {
-  imageUrls: string[] = [];
+  grumpi_list: any[] = [];
   isClicked: boolean = false;
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
   constructor(private grumpiService: GrumpiService) {}
 
   ngOnInit(): void {
-    this.loadImageUrls();
+    this.getGrumpis();
   }
 
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
-  loadImageUrls() {
-    this.grumpiService.getImageUrls().subscribe(
-      (response) => {
-        this.imageUrls = response.imageUrls;
 
+  getGrumpis() {
+    this.grumpiService.getGrumpis().subscribe(
+      (response) => {
+        console.log('Listado de Grumpis: ', response.grumpis_list);
+
+        this.grumpi_list = response.grumpis_list;
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
