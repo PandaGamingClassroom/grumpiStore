@@ -167,7 +167,7 @@
     *ngIf="grumpi_list && this.isClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let grumpi of grumpi_list">
+    <div *ngFor="let grumpi of filteredCreaturesImages">
       <img
         class="tilt-in-fwd-tr"
         [src]="grumpi.img_conseguir"

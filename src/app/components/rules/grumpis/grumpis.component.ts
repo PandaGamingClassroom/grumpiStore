@@ -50,6 +50,12 @@ export class GrumpisComponent implements OnInit {
     );
   }
 
+  get filteredCreaturesImages(): any[] {
+    return this.grumpi_list.filter((imageUrl) =>
+      imageUrl.nombre.toLowerCase()
+    );
+  }
+
   handleClick(): void {
     this.isClicked = !this.isClicked;
   }
