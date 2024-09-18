@@ -146,6 +146,7 @@ export class AdminScreenComponent implements OnInit {
 
   logOut() {
     sessionStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['/']);
   }
 

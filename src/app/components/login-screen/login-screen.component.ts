@@ -131,8 +131,8 @@ export class LoginScreenComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('username');
+    localStorage.clear();
+    sessionStorage.clear();
     this.route.navigate(['/login']);
   }
 }

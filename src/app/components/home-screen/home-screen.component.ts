@@ -43,7 +43,7 @@ export class HomeScreenComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   /**
    * Función para mostrar un mensaje de bienvenida cuando
    * el usuario se ha conectado.
@@ -62,6 +62,7 @@ export class HomeScreenComponent implements OnInit {
   }
 
   logOut() {
+    sessionStorage.clear();
     sessionStorage.clear();
     this.router.navigate(['/']);
   }

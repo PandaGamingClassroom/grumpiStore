@@ -152,7 +152,7 @@ export class ProfileComponent implements OnInit {
   */
   getEnergies(trainerData: any, typeEnergy: string) {
     console.log('Datos del entrenador para el recuento de medallas:', trainerData);
-    
+
     let energies = trainerData.energies;
     for (let energia of energies) {
       if (energia.tipo == 'Agua') {
@@ -197,6 +197,7 @@ export class ProfileComponent implements OnInit {
   }
 
   logOut() {
+    sessionStorage.clear();
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
