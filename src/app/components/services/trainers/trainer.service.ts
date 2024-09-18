@@ -333,6 +333,15 @@ export class TrainerService {
   }
 
   /**
+   * Función para obtener un entrenador por su id
+   * @param id
+   * @returns
+   */
+  getTrainerById(id: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}trainer/${id}`);
+  }
+
+  /**
    * Función para asignar los grumpidólares a un entrenador
    */
   assignGrumpidolaresToTrainer(
