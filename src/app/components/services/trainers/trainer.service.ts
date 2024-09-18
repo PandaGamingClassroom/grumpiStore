@@ -363,11 +363,11 @@ export class TrainerService {
   }
 
   assignGrumpidolaresAfterBuyToTrainer(
-    trainerName: string,
+    trainer_id: number,
     grumpidolares: number
   ): Observable<any> {
     const url = `${this.apiUrl}assignGrumpidolares-after-buy`;
-    const body = { trainerName, grumpidolares };
+    const body = { trainer_id, grumpidolares };
 
     return this.http.post<any>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {

@@ -241,7 +241,7 @@ export class StoreScreenComponent implements OnInit {
   buyCombatObjects() {
     const grumpidolarTrainer: number = Number(this.grumpidolar);
     const price: number = this.selectedObject.precio;
-    const trainerName: string = this.trainer.name;
+    const trainer_id: number = this.trainer.id;
 
     if (price > grumpidolarTrainer) {
       this.openErrorModal(this.errorTitle, this.errorMessage);
@@ -249,7 +249,7 @@ export class StoreScreenComponent implements OnInit {
       const finalCount: number = grumpidolarTrainer - price;
 
       this.trainersService
-        .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
+        .assignGrumpidolaresAfterBuyToTrainer(trainer_id, finalCount)
         .subscribe(
           (response) => {
             console.log(
@@ -686,11 +686,11 @@ export class StoreScreenComponent implements OnInit {
 
     const grumpidolarTrainer: number = Number(this.grumpidolar);
     const price: number = this.selectedEnergie.precio;
-    const trainerName: string = this.trainer.name;
+    const trainer_id: number = this.trainer.name;
 
     console.log('Grumpidólares del entrenador: ', grumpidolarTrainer);
     console.log('Precio de la energía seleccionada: ', price);
-    console.log('Entrenador que quiere comprar: ', trainerName);
+    console.log('Entrenador que quiere comprar: ', trainer_id);
 
     if (price > grumpidolarTrainer) {
       this.openErrorModal(this.errorTitle, this.errorMessage);
@@ -698,7 +698,7 @@ export class StoreScreenComponent implements OnInit {
       const finalCount: number = grumpidolarTrainer - price;
 
       this.trainersService
-        .assignGrumpidolaresAfterBuyToTrainer(trainerName, finalCount)
+        .assignGrumpidolaresAfterBuyToTrainer(trainer_id, finalCount)
         .subscribe(
           (response) => {
             console.log(
