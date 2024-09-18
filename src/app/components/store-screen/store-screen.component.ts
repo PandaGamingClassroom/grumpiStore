@@ -659,7 +659,7 @@ export class StoreScreenComponent implements OnInit {
   }
 
   assignEnergies() {
-    let trainer_id = this.trainer.id;
+    let trainer_id: number = this.trainer.id;
     if (trainer_id !== null && this.selectedEnergie !== null) {
       let energie = this.selectedEnergie;
 
