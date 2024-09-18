@@ -80,6 +80,7 @@ export class BagComponent implements OnInit {
   uniqueMedals: any[] = [];
 
   searchTerm: string = '';
+  trainer_id: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -91,8 +92,9 @@ export class BagComponent implements OnInit {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       this.username = localStorage.getItem('username');
+      this.trainer_id = localStorage.getItem('id_trainer');
       if (this.username) {
-        this.getTrainerData(this.username);
+        this.getTrainerData(this.trainer_id);
         this.getEnergies();
         this.getRewards();
       }
@@ -107,8 +109,8 @@ export class BagComponent implements OnInit {
    * Función para obtener información sobre el entrenador que ha iniciado sesión
    * @param name recibe el nombre del entrenador
    */
-  getTrainerData(name: string): void {
-    this.trainersService.getTrainerByName(name).subscribe(
+  getTrainerData(id: number): void {
+    this.trainersService.getTrainerById(id).subscribe(
       (data) => {
         if (data.message) {
           console.log(data.message);

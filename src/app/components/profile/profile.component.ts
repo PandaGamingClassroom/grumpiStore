@@ -134,7 +134,6 @@ export class ProfileComponent implements OnInit {
 
   loadAvatarFromStorage() {
     if (typeof localStorage !== 'undefined') {
-      // Acceder a localStorage aquí
       const avatar = localStorage.getItem('avatar');
       if (avatar) {
         this.avatarService.setAvatar(avatar);
