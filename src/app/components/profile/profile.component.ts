@@ -151,8 +151,8 @@ export class ProfileComponent implements OnInit {
   getTrainerData(id: string): void {
     this.trainersService.getTrainerById(id).subscribe(
       (data) => {
-        if (data.message) {
-          console.log(data.message);
+        if (data.success === false) {
+          console.log(data.error);
         } else {
           this.trainer = data.data;
           this.avatar = this.trainer.avatar;
@@ -167,6 +167,8 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+
 
   /**
    * Función para obtener la información de las energías del entrenador
