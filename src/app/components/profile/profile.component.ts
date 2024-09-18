@@ -115,7 +115,7 @@ export class ProfileComponent implements OnInit {
           height: '300px',
           data: {
             title: '¡Correcto!',
-            message: 'El entrenador se ha editado correctamente.',
+            message: 'Se ha modificado el avatar correctamente.',
           },
         });
       });

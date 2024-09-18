@@ -79,6 +79,8 @@ export class StoreScreenComponent implements OnInit {
   showRewards: boolean = false;
   showObjEvol: boolean = false;
 
+  trainer_id: any;
+
   constructor(
     private grumpiService: GrumpiService,
     private http: HttpClient,
@@ -94,8 +96,9 @@ export class StoreScreenComponent implements OnInit {
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
-      if (this.username) {
-        this.getTrainerData(this.username);
+      this.trainer_id = localStorage.getItem('id_trainer');
+      if (this.trainer_id) {
+        this.getTrainerData(this.trainer_id);
       }
     }
     this.mostrarGrumpidolares = false;
@@ -192,8 +195,8 @@ export class StoreScreenComponent implements OnInit {
    * Función para obtener información sobre el entrenador que ha iniciado sesión
    * @param name recibe el nombre del entrenador
    */
-  getTrainerData(name: string): void {
-    this.trainersService.getTrainerByName(name).subscribe(
+  getTrainerData(id: number): void {
+    this.trainersService.getTrainerById(id).subscribe(
       (data) => {
         if (data.message) {
           console.log(data.message);
