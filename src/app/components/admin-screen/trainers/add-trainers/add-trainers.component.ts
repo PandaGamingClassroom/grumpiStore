@@ -52,7 +52,7 @@ export class AddTrainersComponent implements OnInit {
       trainer_lastName: ['', Validators.required],
       trainer_pass: ['', Validators.required],
       trainer_rol: ['', Validators.required],
-      usuario: ['', Validators.required]
+      usuario: ['', Validators.required],
     });
   }
 
@@ -116,44 +116,109 @@ export class AddTrainersComponent implements OnInit {
    * Se comprueba si es un entrenador o un profesor.
    */
   guardarEntrenador() {
-    const nuevoUsuario = this.isTrainer
-      ? {
-          avatar: this.myForm.get('avatar')?.value,
-          name: this.myForm.get('trainer_name')?.value,
-          password: this.myForm.get('trainer_pass')?.value,
-          rol: this.myForm.get('trainer_rol')?.value,
-          id_profesor: this.profesor.id,
+    const username = this.isTrainer
+      ? null
+      : this.myForm.get('trainer_name')?.value;
+
+    if (username) {
+      this.trainersService.getTrainerByName(username).subscribe((response) => {
+        if (response.exists) {
+          // Mostrar mensaje de error si el nombre de usuario ya existe
+          this.dialog.open(ConfirmModalComponentComponent, {
+            width: '400px',
+            height: '250px',
+            data: {
+              title: 'Error',
+              message:
+                'El nombre de usuario ya está en uso. Por favor, elige otro.',
+            },
+          });
+        } else {
+          // Si el nombre de usuario no existe, procede a guardar el nuevo usuario
+          const nuevoUsuario = this.isTrainer
+            ? {
+                avatar: this.myForm.get('avatar')?.value,
+                name: this.myForm.get('trainer_name')?.value,
+                password: this.myForm.get('trainer_pass')?.value,
+                rol: this.myForm.get('trainer_rol')?.value,
+                id_profesor: this.profesor.id,
+              }
+            : {
+                nombre: this.myForm.get('trainer_name')?.value,
+                apellidos: this.myForm.get('trainer_lastName')?.value,
+                usuario: this.myForm.get('usuario')?.value,
+                password: this.myForm.get('trainer_pass')?.value,
+                rol: this.myForm.get('trainer_rol')?.value,
+                id_profesor: this.profesor.id,
+              };
+
+          this.trainersService.postTrainer(nuevoUsuario).subscribe(
+            (response) => {
+              const stringMessage = this.isTrainer ? 'entrenador' : 'profesor';
+              const data = {
+                title: '¡Correcto!',
+                message: `El ${stringMessage} se ha añadido correctamente.`,
+              };
+              this.dialog
+                .open(ConfirmModalComponentComponent, {
+                  width: '400px',
+                  height: '250px',
+                  data: data,
+                })
+                .afterClosed()
+                .subscribe(() => {
+                  this.dialogRef.close(nuevoUsuario);
+                });
+            },
+            (error) => {
+              console.error('Error al agregar el entrenador:', error);
+            }
+          );
         }
-      : {
-          nombre: this.myForm.get('trainer_name')?.value,
-          apellidos: this.myForm.get('trainer_lastName')?.value,
-          usuario: this.myForm.get('usuario')?.value,
-          password: this.myForm.get('trainer_pass')?.value,
-          rol: this.myForm.get('trainer_rol')?.value,
-          id_profesor: this.profesor.id,
-        };
-  
-    this.trainersService.postTrainer(nuevoUsuario).subscribe(
-      (response) => {
-        const stringMessage = this.isTrainer ? 'entrenador' : 'profesor';
-        const data = {
-          title: '¡Correcto!',
-          message: `El ${stringMessage} se ha añadido correctamente.`,
-        };
-        this.dialog.open(ConfirmModalComponentComponent, {
-          width: '400px',
-          height: '250px',
-          data: data,
-        }).afterClosed().subscribe(() => {
-          this.dialogRef.close(nuevoUsuario);
-        });
-      },
-      (error) => {
-        console.error('Error al agregar el entrenador:', error);
-      }
-    );
+      });
+    } else {
+      // Si no es necesario verificar el nombre de usuario (por ejemplo, en el caso de un profesor), simplemente guarda el usuario
+      const nuevoUsuario = this.isTrainer
+        ? {
+            avatar: this.myForm.get('avatar')?.value,
+            name: this.myForm.get('trainer_name')?.value,
+            password: this.myForm.get('trainer_pass')?.value,
+            rol: this.myForm.get('trainer_rol')?.value,
+            id_profesor: this.profesor.id,
+          }
+        : {
+            nombre: this.myForm.get('trainer_name')?.value,
+            apellidos: this.myForm.get('trainer_lastName')?.value,
+            usuario: this.myForm.get('usuario')?.value,
+            password: this.myForm.get('trainer_pass')?.value,
+            rol: this.myForm.get('trainer_rol')?.value,
+            id_profesor: this.profesor.id,
+          };
+
+      this.trainersService.postTrainer(nuevoUsuario).subscribe(
+        (response) => {
+          const stringMessage = this.isTrainer ? 'entrenador' : 'profesor';
+          const data = {
+            title: '¡Correcto!',
+            message: `El ${stringMessage} se ha añadido correctamente.`,
+          };
+          this.dialog
+            .open(ConfirmModalComponentComponent, {
+              width: '400px',
+              height: '250px',
+              data: data,
+            })
+            .afterClosed()
+            .subscribe(() => {
+              this.dialogRef.close(nuevoUsuario);
+            });
+        },
+        (error) => {
+          console.error('Error al agregar el entrenador:', error);
+        }
+      );
+    }
   }
-  
 
   close() {
     this.getDataProfesor(this.nameProfesor);
