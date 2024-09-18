@@ -86,7 +86,7 @@ export class StoreScreenComponent implements OnInit {
     private http: HttpClient,
     private trainersService: TrainerService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadImageUrls();
@@ -501,6 +501,8 @@ export class StoreScreenComponent implements OnInit {
       width: '400px',
       height: '250px',
       data: data,
+    }).afterClosed().subscribe(result => {
+      window.location.reload();
     });
   }
 
