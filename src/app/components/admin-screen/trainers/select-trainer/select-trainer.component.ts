@@ -110,7 +110,7 @@ export class SelectTrainerComponent implements OnInit {
     if (selectedTrainers.length > 0) {
       if (this.data_receive === null) {
         const selectedTrainerNames = selectedTrainers.map(
-          (trainer) => trainer.name
+          (trainer) => trainer.id
         );
 
         this.selectedTrainerName.emit(selectedTrainerNames);
