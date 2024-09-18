@@ -20,7 +20,7 @@
           <div class="accordion-body">
             <div class="d-flex align-items-center mb-3" *ngFor="let grumpi of uniqueGrumpis">
               <div class="img-creature">
-                <img class="img-fluid me-3" srcset="{{grumpi.img_conseguir}}" alt="{{grumpi.nombre}}" (contextmenu)="disableRightClick($event)"/>
+                <img class="img-fluid me-3" srcset="{{grumpi.img_general}}" alt="{{grumpi.nombre}}" (contextmenu)="disableRightClick($event)"/>
               </div>
               <div class="delete-options">
                 <input id="grumpi-{{ grumpi.nombre }}" type="checkbox" [(ngModel)]="grumpi.toDelete" />
