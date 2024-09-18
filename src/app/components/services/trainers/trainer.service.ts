@@ -337,8 +337,8 @@ export class TrainerService {
    * @param id
    * @returns
    */
-  getTrainerById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}trainer/${id}`);
+  getTrainerById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}trainer_by_id/${id}`);
   }
 
   /**

@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
   isTypeSelected: boolean = false;
   selectedFile: File | null = null;
 
-  trainer_id: string | null = '';
+  trainer_id: any;
 
   constructor(
     private avatarService: AvatarService,
@@ -148,7 +148,7 @@ export class ProfileComponent implements OnInit {
    * Función para obtener información sobre el entrenador que ha iniciado sesión
    * @param name recibe el nombre del entrenador
    */
-  getTrainerData(id: string): void {
+  getTrainerData(id: number): void {
     this.trainersService.getTrainerById(id).subscribe(
       (data) => {
         if (data.success === false) {
