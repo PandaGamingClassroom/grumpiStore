@@ -16,7 +16,7 @@ import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-a
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NavBarAdminComponent
+    NavBarAdminComponent,
   ],
   providers: [GrumpiService],
   templateUrl: './grumpis-admin.component.html',
@@ -25,6 +25,7 @@ import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-a
 export class GrumpisAdminComponent implements OnInit {
   grumpi_list: any[] = [];
   isClicked: boolean = false;
+  searchTerm: string = '';
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
   constructor(private grumpiService: GrumpiService) {}
@@ -47,6 +48,12 @@ export class GrumpisAdminComponent implements OnInit {
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
       }
+    );
+  }
+
+  get filteredCreaturesImages(): any[] {
+    return this.grumpi_list.filter((imageUrl) =>
+      imageUrl.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 

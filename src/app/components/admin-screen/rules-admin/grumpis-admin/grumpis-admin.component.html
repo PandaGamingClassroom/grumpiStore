@@ -88,12 +88,18 @@
       legendarios?</strong
     >
   </p>
-    <div class="container d-flex justify-content-center mt-3" *ngIf="!this.isClicked">
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="!this.isClicked"
+  >
     <button #scrollTarget class="button-73 size" (click)="handleClick()">
       Ver Grumpis legendarios
     </button>
   </div>
-  <div class="container d-flex justify-content-center mt-3" *ngIf="this.isClicked">
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="this.isClicked"
+  >
     <button #scrollTarget class="button-73 size" (click)="handleClick()">
       Ocultar Grumpis legendarios
     </button>
@@ -114,16 +120,22 @@
       estar atentos a las actualizaciones que nos irán viniendo, ya que si se
       nos pasa el plazo, ya no podremos conseguirlo de ninguna otra forma.
     </p>
-      <div class="container d-flex justify-content-center mt-3" *ngIf="!this.isClicked">
-    <button #scrollTarget class="button-73 size" (click)="handleClick()">
-      Ver Grumpis de evento
-    </button>
-  </div>
-  <div class="container d-flex justify-content-center mt-3 mb-3" *ngIf="this.isClicked">
-    <button #scrollTarget class="button-73 size" (click)="handleClick()">
-      Ocultar Grumpis de evento
-    </button>
-  </div>
+    <div
+      class="container d-flex justify-content-center mt-3"
+      *ngIf="!this.isClicked"
+    >
+      <button #scrollTarget class="button-73 size" (click)="handleClick()">
+        Ver Grumpis de evento
+      </button>
+    </div>
+    <div
+      class="container d-flex justify-content-center mt-3 mb-3"
+      *ngIf="this.isClicked"
+    >
+      <button #scrollTarget class="button-73 size" (click)="handleClick()">
+        Ocultar Grumpis de evento
+      </button>
+    </div>
   </div>
   <div class="container text-center">
     <img
@@ -134,12 +146,18 @@
     />
   </div>
 
-  <div class="container d-flex justify-content-center mt-3" *ngIf="!this.isClicked">
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="!this.isClicked"
+  >
     <button #scrollTarget class="button-73 size" (click)="handleClick()">
       Ver Grumpis
     </button>
   </div>
-  <div class="container d-flex justify-content-center mt-3" *ngIf="this.isClicked">
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="this.isClicked"
+  >
     <button #scrollTarget class="button-73 size" (click)="handleClick()">
       Ocultar Grumpis
     </button>
@@ -150,8 +168,19 @@
     *ngIf="this.isClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let image of grumpi_list">
-      <img class="tilt-in-fwd-tr" srcset="{{image.img_conseguir}}" alt="{{image.nombre}}" (contextmenu)="disableRightClick($event)"/>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Introduce el nombre del Grumpi"
+      class="form-control"
+    />
+    <div *ngFor="let image of filteredCreaturesImages">
+      <img
+        class="tilt-in-fwd-tr"
+        srcset="{{image.img_conseguir}}"
+        alt="{{ image.nombre }}"
+        (contextmenu)="disableRightClick($event)"
+      />
       <button (click)="scrollToTop()" class="button-73 fixed-button">
         <i class="material-icons">&#xe5d8;</i>
       </button>
