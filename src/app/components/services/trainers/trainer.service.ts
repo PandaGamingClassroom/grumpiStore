@@ -104,8 +104,8 @@ export class TrainerService {
    * @param id
    * @returns
    */
-  eliminarRegistro(trainerName: string) {
-    return this.http.delete<any>(`${this.apiUrl}user/${trainerName}`).pipe(
+  eliminarRegistro(id: string) {
+    return this.http.delete<any>(`${this.apiUrl}user/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Error al eliminar el entrenador:', error);
         return throwError(error);

@@ -90,7 +90,7 @@ export class DeleteTrainersComponent implements OnInit {
       this.openErrorModal(titleError, messageError);
     }
 
-    this.trainersService.eliminarRegistro(trainerToDelete.name).subscribe(
+    this.trainersService.eliminarRegistro(trainerToDelete.id).subscribe(
       (response) => {
         const data = {
           title: '¡Correcto!',
