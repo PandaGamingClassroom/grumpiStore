@@ -119,8 +119,8 @@
           <div *ngIf="activeSection === 'dolars'" class="scrollable-div">
             <app-grumpidolars></app-grumpidolars>
           </div>
-          <div *ngIf="activeSection === 'guide'" class="scrollable-div">
-            <app-rules-admin></app-rules-admin>
+          <div routerLink="/rules_admin">
+            <!-- <app-rules-admin></app-rules-admin> -->
           </div>
           <div *ngIf="activeSection === 'blog'" class="scrollable-div">
             <app-blog-screen></app-blog-screen>
