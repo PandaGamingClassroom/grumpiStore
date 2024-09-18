@@ -100,6 +100,7 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('username', this.user);
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
+        localStorage.setItem('id_profesor', profe.id);
         if (profe.nombre === 'Pablo' && profe.apellidos === 'Moreno Ortega') {
           localStorage.setItem('isAdminUser', this.adminUser);
         } else {

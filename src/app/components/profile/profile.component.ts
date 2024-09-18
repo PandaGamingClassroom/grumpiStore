@@ -87,8 +87,8 @@ export class ProfileComponent implements OnInit {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       this.trainer_id = localStorage.getItem('id_trainer');
-      if (this.username) {
-        this.getTrainerData(this.username);
+      if (this.username && this.trainer_id) {
+        this.getTrainerData(this.trainer_id);
       }
     }
     this.myForm = this.formBuilder.group({
@@ -148,8 +148,8 @@ export class ProfileComponent implements OnInit {
    * Función para obtener información sobre el entrenador que ha iniciado sesión
    * @param name recibe el nombre del entrenador
    */
-  getTrainerData(name: string): void {
-    this.trainersService.getTrainerByName(name).subscribe(
+  getTrainerData(id: string): void {
+    this.trainersService.getTrainerById(id).subscribe(
       (data) => {
         if (data.message) {
           console.log(data.message);
