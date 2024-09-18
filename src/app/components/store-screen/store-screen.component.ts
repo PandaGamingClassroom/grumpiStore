@@ -439,14 +439,14 @@ export class StoreScreenComponent implements OnInit {
    *
    */
   assignCombatObjects() {
-    let trainerName = this.trainer.name;
-    if (trainerName !== null && this.selectedObject !== null) {
+    let trainer_id = this.trainer.id;
+    if (trainer_id !== null && this.selectedObject !== null) {
       // Obtén el objeto de combate
       let combatObject = this.selectedObject;
 
       // Llama al servicio para asignar la criatura al entrenador por su nombre
       this.trainersService
-        .assignCombatObjectsToTrainer(trainerName, combatObject)
+        .assignCombatObjectsToTrainer(trainer_id, combatObject)
         .subscribe(
           (response) => {
             this.confirmTitle = 'Objeto conseguido con éxito.';
