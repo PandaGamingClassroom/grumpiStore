@@ -659,11 +659,11 @@ export class StoreScreenComponent implements OnInit {
   }
 
   assignEnergies() {
-    let trainerName = this.trainer.name;
-    if (trainerName !== null && this.selectedEnergie !== null) {
+    let trainer_id = this.trainer.id;
+    if (trainer_id !== null && this.selectedEnergie !== null) {
       let energie = this.selectedEnergie;
 
-      this.trainersService.assignEnergie(trainerName, energie).subscribe(
+      this.trainersService.assignEnergie(trainer_id, energie).subscribe(
         (response) => {
           this.confirmTitle = 'Energía conseguida con éxito.';
           this.confirmMessage =

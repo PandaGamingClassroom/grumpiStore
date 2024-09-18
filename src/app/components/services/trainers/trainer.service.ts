@@ -245,13 +245,13 @@ export class TrainerService {
   /**
    * Función para asignar una energía a un entrenador
    *
-   * @param trainerName Recibe el nombre del entrenador
+   * @param trainer_id Recibe el nombre del entrenador
    * @param energieName Recibe el nombre de la energía
    * @returns
    */
-  assignEnergie(trainerName: string, energie: any): Observable<any> {
+  assignEnergie(trainer_id: number, energie: any): Observable<any> {
     const url = this.apiUrl + 'assign-energie';
-    const body = { trainerName, energie };
+    const body = { trainer_id, energie };
 
     return this.http.post<any>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {
