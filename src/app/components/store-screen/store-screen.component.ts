@@ -628,27 +628,38 @@ export class StoreScreenComponent implements OnInit {
     const errorMessage = 'No tienes energías suficientes.';
 
     if (requiredEnergies && totalSelectedEnergies >= requiredEnergies) {
-      const trainerName = localStorage.getItem('username');
-
-      if (trainerName) {
-        this.trainersService
-          .spendEnergies(trainerName, this.selectedEnergies)
-          .subscribe((data) => {
-            this.totalEnergies = data.totalEnergies;
-            this.selectedEnergies = [];
-
-            if (this.selectedObject) {
-              this.trainersService
-                .assignReward(trainerName, this.selectedObject)
-                .subscribe((response) => {
-                  console.log(response.message);
-                });
-            }
-          });
+      let trainer_id = localStorage.getItem('id_trainer');
+    
+      // Convertir trainer_id a número
+      if (trainer_id) {
+        const trainerIdNumber = Number(trainer_id); // O puedes usar parseInt(trainer_id, 10)
+    
+        // Verificar que trainerIdNumber es un número válido
+        if (!isNaN(trainerIdNumber)) {
+          this.trainersService
+            .spendEnergies(trainerIdNumber, this.selectedEnergies)
+            .subscribe((data) => {
+              this.totalEnergies = data.totalEnergies;
+              this.selectedEnergies = [];
+    
+              if (this.selectedObject) {
+                this.trainersService
+                  .assignReward(trainerIdNumber, this.selectedObject)
+                  .subscribe((response) => {
+                    console.log(response.message);
+                  });
+              }
+            });
+        } else {
+          this.openErrorModal('Error', 'ID de entrenador inválido.');
+        }
+      } else {
+        this.openErrorModal('Error', 'No se encontró ID de entrenador.');
       }
     } else {
       this.openErrorModal(errorTitle, errorMessage);
     }
+    
   }
 
   getAllEnergies() {

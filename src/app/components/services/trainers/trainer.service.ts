@@ -454,7 +454,7 @@ export class TrainerService {
   }
 
   spendEnergies(
-    trainerName: string,
+    trainerName: number,
     energiesToSpend: { type: string; quantity: number }[]
   ): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}spend-energies`, {
@@ -463,9 +463,9 @@ export class TrainerService {
     });
   }
 
-  assignReward(trainerName: string, reward: any): Observable<any> {
+  assignReward(trainer_id: number, reward: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}assign-rewards`, {
-      trainerName,
+      trainer_id,
       reward,
     });
   }
