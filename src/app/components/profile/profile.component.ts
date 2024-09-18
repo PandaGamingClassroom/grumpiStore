@@ -16,6 +16,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { iconEnergy } from '../../models/energies';
+import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -49,8 +51,8 @@ export class ProfileComponent implements OnInit {
   iconListEnergy = iconEnergy;
 
   /**
-  * CANTIDADES DISPONIBLES DE LAS ENERGÍAS
-  */
+   * CANTIDADES DISPONIBLES DE LAS ENERGÍAS
+   */
   cantidadEnergiaAgua: number = 0;
   cantidadEnergiaAire: number = 0;
   cantidadEnergiaLuz: number = 0;
@@ -70,8 +72,9 @@ export class ProfileComponent implements OnInit {
     private avatarService: AvatarService,
     private trainersService: TrainerService,
     private router: Router,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.avatarService.loadAvatarFromStorage();
@@ -95,7 +98,24 @@ export class ProfileComponent implements OnInit {
   }
 
   avatarSelected(avatar: any) {
+    const trainerData = {
+      avatar: avatar.imagen,
+    };
+    const username = this.username ?? '';
     this.avatarService.setAvatar(avatar.imagen);
+    this.trainersService
+      .updateTrainer(username, trainerData)
+      .subscribe((response) => {
+        console.log('Trainer updated', response);
+        this.dialog.open(ConfirmModalComponentComponent, {
+          width: '400px',
+          height: '300px',
+          data: {
+            title: '¡Correcto!',
+            message: 'El entrenador se ha editado correctamente.',
+          },
+        });
+      });
   }
 
   onFileSelected(event: any) {
@@ -146,12 +166,15 @@ export class ProfileComponent implements OnInit {
   }
 
   /**
-  * Función para obtener la información de las energías del entrenador
-  *
-  * @param trainerData Obtiene los datos del entrenador
-  */
+   * Función para obtener la información de las energías del entrenador
+   *
+   * @param trainerData Obtiene los datos del entrenador
+   */
   getEnergies(trainerData: any, typeEnergy: string) {
-    console.log('Datos del entrenador para el recuento de medallas:', trainerData);
+    console.log(
+      'Datos del entrenador para el recuento de medallas:',
+      trainerData
+    );
 
     let energies = trainerData.energies;
     for (let energia of energies) {
@@ -201,4 +224,5 @@ export class ProfileComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
+
 }
