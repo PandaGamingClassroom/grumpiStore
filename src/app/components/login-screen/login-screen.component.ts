@@ -117,6 +117,7 @@ export class LoginScreenComponent implements OnInit {
         this.error = false;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', this.user);
+        localStorage.setItem('id_trainer', trainer.id);
         this.route.navigate(['/home']);
         return;
       } else {
