@@ -127,7 +127,7 @@ export class GrumpidolarsComponent implements OnInit {
       .subscribe(
         (response) => {
           this.getDadataProfesor(this.nameProfesor);
-          this.grumpidolaresPorEntrenador[trainerName] = 0; // Limpiar el input
+          this.grumpidolaresPorEntrenador[trainerName] = 0;
         },
         (error) => {
           console.error('Error:', error);

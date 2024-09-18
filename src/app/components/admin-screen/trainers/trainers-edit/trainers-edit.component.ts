@@ -71,7 +71,7 @@ export class TrainersEditComponent implements OnInit {
 
   onSubmit() {
     console.log('Entrenador antes de modificar: ', this.data);
-    
+
     const updatedData = {
       name: this.myForm.get('trainer_name')?.value,
       password: this.myForm.get('trainer_pass')?.value,
@@ -83,7 +83,7 @@ export class TrainersEditComponent implements OnInit {
     console.log('Datos del entrenador a modificar: ', updatedData);
 
     this.trainersService
-      .updateTrainer(this.data.name, updatedData)
+      .updateTrainer(this.data.id, updatedData)
       .subscribe((response) => {
         console.log('Trainer updated', response);
         this.close();

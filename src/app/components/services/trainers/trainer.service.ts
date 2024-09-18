@@ -56,13 +56,13 @@ export class TrainerService {
   /**
    * Función para actualizar la información del entrenador.
    *
-   * @param trainerName
+   * @param trainerId
    * @param trainerData
    * @returns
    */
-  updateTrainer(trainerName: string, trainerData: any): Observable<any> {
+  updateTrainer(trainerId: string, trainerData: any): Observable<any> {
     return this.http.put(
-      `${this.apiUrl}trainers/update/${trainerName}`,
+      `${this.apiUrl}trainers/update/${trainerId}`,
       trainerData
     );
   }

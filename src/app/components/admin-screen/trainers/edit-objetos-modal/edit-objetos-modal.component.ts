@@ -29,7 +29,7 @@ export class EditObjetosModalComponent implements OnInit {
   /**
    * Nombre del entrenador
    */
-  trainer_name: string = '';
+  trainer_id: string = '';
 
   /**
    * Lista de medallas del entrenador
@@ -91,7 +91,7 @@ export class EditObjetosModalComponent implements OnInit {
     this.trainer = this.objetos;
     console.log('MOCHILA DEL ENTRENADOR :', this.trainer);
 
-    this.trainer_name = this.trainer?.name || '';
+    this.trainer_id = this.trainer?.id || '';
     this.contadorObjetosCombate(
       JSON.parse(this.trainer?.objetos_combate || '[]')
     );
@@ -359,7 +359,7 @@ export class EditObjetosModalComponent implements OnInit {
       console.log('Objetos a eliminar: ', objetosAEliminar);
 
       this.trainersService
-        .updateTrainer(this.trainer_name, {
+        .updateTrainer(this.trainer_id, {
           objetosAEliminar,
         })
         .subscribe(

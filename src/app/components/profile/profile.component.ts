@@ -68,6 +68,8 @@ export class ProfileComponent implements OnInit {
   isTypeSelected: boolean = false;
   selectedFile: File | null = null;
 
+  trainer_id: string | null = '';
+
   constructor(
     private avatarService: AvatarService,
     private trainersService: TrainerService,
@@ -84,6 +86,7 @@ export class ProfileComponent implements OnInit {
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
+      this.trainer_id = localStorage.getItem('id_trainer');
       if (this.username) {
         this.getTrainerData(this.username);
       }
@@ -101,10 +104,10 @@ export class ProfileComponent implements OnInit {
     const trainerData = {
       avatar: avatar.imagen,
     };
-    const username = this.username ?? '';
+    const user_id = this.trainer_id ?? '';
     this.avatarService.setAvatar(avatar.imagen);
     this.trainersService
-      .updateTrainer(username, trainerData)
+      .updateTrainer(user_id, trainerData)
       .subscribe((response) => {
         console.log('Trainer updated', response);
         this.dialog.open(ConfirmModalComponentComponent, {
@@ -224,5 +227,4 @@ export class ProfileComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
-
 }
