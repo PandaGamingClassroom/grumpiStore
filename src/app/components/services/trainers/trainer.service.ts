@@ -270,7 +270,7 @@ export class TrainerService {
    * @param energie
    * @returns
    */
-  assignEnergieToTrainers(trainerNames: string[], energie: any) {
+  assignEnergieToTrainers(trainerNames: number[], energie: any) {
     const url = `${this.apiUrl}assign-energie`;
     return this.http.post<any>(url, { trainerNames, energie });
   }

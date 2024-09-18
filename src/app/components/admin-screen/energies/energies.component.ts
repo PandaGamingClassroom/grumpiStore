@@ -39,7 +39,7 @@ export class EnergiesComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
   trainerList: any[] = [];
   selectedEnergie: Energies | null = null;
-  selectedTrainerNames: string[] = [];
+  selectedTrainerNames: number[] = [];
   energy_list: Energies[] = energias;
   energies: any;
   isAdminUser: boolean = false;
@@ -136,12 +136,10 @@ export class EnergiesComponent implements OnInit {
     event.preventDefault();
   }
   
-  modalConfirm(trainerNames: string[]) {
+  modalConfirm(trainerNames: number[]) {
     const data = {
       title: '¡Energía asignada con éxito!',
-      message: `La energía ha sido asignada correctamente a los entrenadores ${trainerNames.join(
-        ', '
-      )}`,
+      message: `La energía ha sido asignada correctamente a los entrenadores.`,
     };
     const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
       width: '400px',
@@ -159,7 +157,7 @@ export class EnergiesComponent implements OnInit {
 
     dialogRef
       .afterClosed()
-      .subscribe((selectedTrainerNames: string[] | null) => {
+      .subscribe((selectedTrainerNames: number[] | null) => {
         if (selectedTrainerNames && selectedTrainerNames.length > 0) {
           this.selectedTrainerNames = selectedTrainerNames;
           this.assignEnergies();
