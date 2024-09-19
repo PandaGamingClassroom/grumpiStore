@@ -23,6 +23,7 @@ export class MedalsListComponent implements OnInit {
   energiesToSpend: { type: string; quantity: number }[] = [];
   groupedEnergies: { type: string; quantity: number }[] = [];
   totalEnergiesSelected: number = 0;
+  trainer_id: any;
 
   constructor(
     private trainersService: TrainerService,
@@ -33,15 +34,16 @@ export class MedalsListComponent implements OnInit {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       const username = localStorage.getItem('username');
+      this.trainer_id = localStorage.getItem('id_trainer');
       if (username) {
-        this.getTrainerData(username);
+        this.getTrainerData(this.trainer_id);
       }
     }
     console.log('Datos recibidos para las energías: ', this.data_receive);
   }
 
-  getTrainerData(name: string): void {
-    this.trainersService.getTrainerByName(name).subscribe(
+  getTrainerData(id: number): void {
+    this.trainersService.getTrainerById(id).subscribe(
       (data) => {
         if (data.message) {
           console.log(data.message);
