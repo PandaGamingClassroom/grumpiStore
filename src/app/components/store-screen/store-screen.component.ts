@@ -626,6 +626,8 @@ export class StoreScreenComponent implements OnInit {
 
     const errorTitle = '¡Cuidado!';
     const errorMessage = 'No tienes energías suficientes.';
+    const confirmTitle = '¡Perfecto!';
+    const confirmMessage = 'Has adquirido la recompensa.';
 
     if (requiredEnergies && totalSelectedEnergies >= requiredEnergies) {
       let trainer_id = localStorage.getItem('id_trainer');
@@ -645,6 +647,7 @@ export class StoreScreenComponent implements OnInit {
                   .assignReward(trainerIdNumber, this.selectedObject)
                   .subscribe((response) => {
                     console.log(response.message);
+                    this.openConfirmModal(confirmTitle, confirmMessage);
                   });
               }
             });
