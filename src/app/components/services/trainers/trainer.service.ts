@@ -454,11 +454,11 @@ export class TrainerService {
   }
 
   spendEnergies(
-    trainerName: number,
+    trainer_id: number,
     energiesToSpend: { type: string; quantity: number }[]
   ): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}spend-energies`, {
-      trainerName,
+      trainer_id,
       energiesToSpend,
     });
   }
