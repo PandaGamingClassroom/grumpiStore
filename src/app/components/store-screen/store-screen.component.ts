@@ -572,7 +572,7 @@ export class StoreScreenComponent implements OnInit {
     const dialogRef = this.dialog.open(MedalsListComponent, {
       width: '700px',
       height: '600px',
-      data: this.selectedObject, // Asegúrate de que selectedObject tenga los datos necesarios
+      data: this.selectedObject,
     });
 
     dialogRef
@@ -622,6 +622,11 @@ export class StoreScreenComponent implements OnInit {
     const totalSelectedEnergies = this.selectedEnergies.reduce(
       (acc, curr) => acc + curr.quantity,
       0
+    );
+
+    console.log(
+      'Energías seleccionadas por el entrenador: ',
+      this.selectedEnergies
     );
 
     const errorTitle = '¡Cuidado!';
