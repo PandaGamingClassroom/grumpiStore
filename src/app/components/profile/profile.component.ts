@@ -98,9 +98,10 @@ export class ProfileComponent implements OnInit {
 
   obtenerListaAvatares() {
     this.trainersService.getAvatars().subscribe((response) => {
-      this.avatar_list = response;
+      this.avatar_list = response.avatars_list;
     })
   }
+
   avatarSelected(avatar: any) {
     const trainerData = {
       avatar: avatar.imagen,

@@ -478,7 +478,7 @@ export class TrainerService {
    * Obtiene la lista de avatares.
    * @returns Devuelve una lista de avatares
    */
-  getAvatars(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}getAvatars`);
+  getAvatars(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}getAvatars`);
   }
 }
