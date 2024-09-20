@@ -6,7 +6,6 @@ import { AvatarService } from '../services/avatar/avatar.service';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { FooterComponent } from '../footer/footer.component';
-import { Avatars, lista_avatares } from '../../models/avatars';
 import { BattleGameComponent } from '../battle-game/battle-game.component';
 import {
   FormBuilder,
@@ -37,8 +36,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ProfileComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
-  avatar_list: Avatars[] = lista_avatares;
-  avatarSelect = '';
+  avatar_list: any[] = [];
+  avatarSelect: any[] = [];
   username: string | null = '';
   trainerList: any[] = [];
   trainer: any;
@@ -79,10 +78,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.avatarService.loadAvatarFromStorage();
-    this.avatarService.avatar$.subscribe((avatar) => {
-      this.avatarSelect = avatar;
-    });
+    this.obtenerListaAvatares();
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
@@ -100,6 +96,11 @@ export class ProfileComponent implements OnInit {
     event.preventDefault();
   }
 
+  obtenerListaAvatares() {
+    this.trainersService.getAvatars().subscribe((response) => {
+      this.avatar_list = response;
+    })
+  }
   avatarSelected(avatar: any) {
     const trainerData = {
       avatar: avatar.imagen,
