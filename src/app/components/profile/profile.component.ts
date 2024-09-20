@@ -99,7 +99,7 @@ export class ProfileComponent implements OnInit {
   obtenerListaAvatares() {
     this.trainersService.getAvatars().subscribe((response) => {
       this.avatar_list = response.avatars_list;
-    })
+    });
   }
 
   avatarSelected(avatar: any) {
@@ -107,18 +107,25 @@ export class ProfileComponent implements OnInit {
       avatar: avatar.imagen,
     };
     const user_id = this.trainer_id ?? '';
+
+    // Actualiza el avatar localmente para que se muestre de inmediato
+    this.avatarSelect = avatar.imagen;
+
     this.avatarService.setAvatar(avatar.imagen);
     this.trainersService
       .updateTrainer(user_id, trainerData)
       .subscribe((response) => {
-        console.log('Trainer updated', response);
-        this.dialog.open(ConfirmModalComponentComponent, {
+        const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
           height: '300px',
           data: {
             title: '¡Correcto!',
             message: 'Se ha modificado el avatar correctamente.',
           },
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          // Elimina la recarga de página
+          // window.location.reload()
         });
       });
   }
@@ -169,8 +176,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-
 
   /**
    * Función para obtener la información de las energías del entrenador
