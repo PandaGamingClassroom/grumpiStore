@@ -121,37 +121,34 @@
     </p>
     <div
       class="container d-flex justify-content-center mt-3"
-      *ngIf="!this.isClicked"
+      *ngIf="!isClicked"
     >
-      <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      <button class="button-73 size" (click)="handleClick()">
         Ver Grumpis de evento
       </button>
     </div>
     <div
       class="container d-flex justify-content-center mt-3 mb-3"
-      *ngIf="this.isClicked"
+      *ngIf="isClicked"
     >
-      <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      <button class="button-73 size" (click)="handleClick()">
         Ocultar Grumpis de evento
       </button>
     </div>
     <div
-      *ngIf="grumpi_list && this.isClicked"
+      *ngIf="grumpi_event_list && isClicked"
       class="image-container d-flex justify-content-center mt-3"
     >
-      <div *ngFor="let grumpi of grumpi_list">
+      <div *ngFor="let grumpi of grumpi_event_list">
         <img
-          *ngIf="grumpi.clase === 'evento'"
           [src]="grumpi.img_conseguir"
           [alt]="grumpi.nombre"
           (contextmenu)="disableRightClick($event)"
         />
-        <button (click)="scrollToTop()" class="button-73 fixed-button">
-          <i class="material-icons">&#xe5d8;</i>
-        </button>
       </div>
     </div>
   </div>
+
   <div class="container text-center">
     <img
       class="box-secret animacionPalpito"

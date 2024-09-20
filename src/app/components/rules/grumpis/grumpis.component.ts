@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class GrumpisComponent implements OnInit {
   grumpi_list: any[] = [];
+  grumpi_event_list: any[] = [];
   isClicked: boolean = false;
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
@@ -31,6 +32,10 @@ export class GrumpisComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGrumpis();
+    // Filtrar la lista de Grumpis con clase 'evento'
+    this.grumpi_event_list = this.grumpi_list.filter(
+      (grumpi) => grumpi.clase === 'evento'
+    );
   }
 
   disableRightClick(event: MouseEvent) {
