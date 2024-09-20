@@ -135,6 +135,22 @@
         Ocultar Grumpis de evento
       </button>
     </div>
+    <div
+      *ngIf="grumpi_list && this.isClicked"
+      class="image-container d-flex justify-content-center mt-3"
+    >
+      <div *ngFor="let grumpi of grumpi_list">
+        <img
+          *ngIf="grumpi.clase === 'evento'"
+          [src]="grumpi.img_conseguir"
+          [alt]="grumpi.nombre"
+          (contextmenu)="disableRightClick($event)"
+        />
+        <button (click)="scrollToTop()" class="button-73 fixed-button">
+          <i class="material-icons">&#xe5d8;</i>
+        </button>
+      </div>
+    </div>
   </div>
   <div class="container text-center">
     <img
@@ -169,7 +185,6 @@
   >
     <div *ngFor="let grumpi of grumpi_list">
       <img
-        
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
         (contextmenu)="disableRightClick($event)"
