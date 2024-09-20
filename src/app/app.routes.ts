@@ -32,6 +32,7 @@ import { BattleGameComponent } from './components/battle-game/battle-game.compon
 import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.component';
 import { AboutTheAppComponent } from './components/about-the-app/about-the-app.component';
 import { BlogScreenComponent } from './components/admin-screen/profesor-admin/blog/blog-screen.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 /**
  * ADMINISTRADORs
@@ -70,6 +71,12 @@ export const routes: Routes = [
   { path: 'rules/medals', component: MedalsComponent },
   { path: 'rules/rests', component: RestsComponent },
 
+  { path: 'help', component: HelpComponentComponent },
+  { path: 'profile/bag', component: BagComponent },
+  { path: 'game', component: BattleGameComponent },
+  { path: 'virtual-pet', component: VirtualPetComponent },
+  { path: 'blog', component: BlogComponent },
+
   /**
    *
    * RUTAS DE GUÍA GRUMPI PARA EL ADMINISTRADOR
@@ -104,9 +111,6 @@ export const routes: Routes = [
   { path: 'admin/medals', component: MedalsAdminScreenComponent },
   { path: 'admin/grumpidolars', component: GrumpidolarsComponent },
   { path: 'admin/energies', component: EnergiesComponent },
-  { path: 'admin/blog-admin', component: BlogScreenComponent },
-  { path: 'help', component: HelpComponentComponent },
-  { path: 'profile/bag', component: BagComponent },
-  { path: 'game', component: BattleGameComponent },
-  { path: 'virtual-pet', component: VirtualPetComponent },
+  { path: 'admin/blog-admin', component: BlogScreenComponent }
+
 ];
