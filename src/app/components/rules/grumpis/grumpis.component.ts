@@ -25,10 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class GrumpisComponent implements OnInit {
   grumpi_list: any[] = [];
   grumpi_event_list: any[] = [];
-  grumpi_legend_list: any[] = [];
   isClicked: boolean = false;
   eventIsClicked: boolean = false;
-  legendariosIsClicked: boolean = false;
 
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
@@ -58,16 +56,12 @@ export class GrumpisComponent implements OnInit {
     );
   }
 
-  toggleGrumpis() {
+  handleClick(): void {
     this.isClicked = !this.isClicked;
   }
 
   toggleEventos() {
     this.eventIsClicked = !this.eventIsClicked;
-  }
-
-  toggleLegendarios() {
-    this.legendariosIsClicked = !this.legendariosIsClicked;
   }
 
   scrollToTop(): void {

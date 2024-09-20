@@ -1,6 +1,4 @@
 <app-nav-bar></app-nav-bar>
-
-<!-- Botón de regreso -->
 <div class="btn-config">
   <button type="button" class="button-73" routerLink="/rules">
     <svg
@@ -18,82 +16,139 @@
     Atrás
   </button>
 </div>
-
-<!-- Título y descripción -->
 <div class="container">
   <h1 class="d-flex justify-content-center" id="titulo">
     <strong> OBTENCIÓN DE CRIATURAS </strong>
   </h1>
   <hr />
 </div>
-
 <div class="container-md scrollable-div mb-6 bg-box">
   <div class="capital">
     <p class="mt-3">
-      Para capturar un Grumpi, hemos de leer la descripción de “cómo capturarlo”...
+      Para capturar un Grumpi, hemos de leer la descripción de “cómo
+      capturarlo”, descrito en cada una de las tarjetas que encontramos en clase
+      o en el presente documento. En ellas veremos retos de las diferentes
+      asignaturas, así como otras diferentes con aspectos lúdicos, como crear
+      juegos, para crear trabajos para el periódico escolar, etc.
     </p>
   </div>
 
-  <p>Una vez realizado el trabajo, se le entregará al profesor...</p>
-
-  <!-- Sección de evolución -->
+  <p>
+    Una vez realizado el trabajo, se le entregará al profesor y una vez
+    corregido nos dará al Grumpi que hayamos capturado.
+  </p>
   <h2 class="container d-flex justify-content-center mt-3 box-text">
     ¿Qué es una evolución? ¿Cómo evoluciono a mis Grumpi?
   </h2>
   <hr />
-  <p>Los Grumpi son criaturas especiales que tienen la capacidad de cambiar de forma...</p>
+  <p>
+    Los Grumpi son criaturas especiales que tienen la capacidad de cambiar de
+    forma y hacerse más fuerte gracias al esfuerzo de sus entrenadores, este
+    caso, gracias a vuestro trabajo.
+  </p>
+  <p>
+    Al evolucionar, los Grumpi se volverán más fuertes, adoptarán formas
+    variadas y temidas, por lo que nos ayudará a ser cada vez más fuertes y a
+    aumentar nuestro número de Grumpi conseguidos.
+  </p>
+  <p>
+    Para poder evolucionar a un Grumpi, hemos de poseer a la forma básica de la
+    que parten. Además, si tiene más de una evolución he de seguir toda la
+    cadena evolutiva, no puedo saltarme ninguna de ellas, ya que algunos Grumpi
+    cuentan con una evolución, otros con dos e incluso tenemos a Fox que cuenta
+    un mayor número de evoluciones, aunque este es un Grumpi algo especial.
+  </p>
+  <p>
+    La forma de evolucionar a cada Grumpi es diferente, estas se encuentran
+    descritas en la tarjeta de cada uno de los Grumpi.
+  </p>
 
-  <!-- Sección de Grumpis legendarios -->
   <h2 class="container d-flex justify-content-center mt-3 box-text">
-    Grumpi legendarios: ¿Cómo capturarlos?
+    ¿Qué son los Grumpi legendarios? ¿Cómo capturarlos?
   </h2>
   <hr />
-  <p>Los Grumpi legendarios son las criaturas más fuertes de lo habitual...</p>
-
-  <!-- Botón para mostrar u ocultar Grumpis legendarios -->
-  <div class="container d-flex justify-content-center mt-3">
-    <button class="button-73 size" (click)="toggleLegendarios()">
-      {{ legendariosIsClicked ? 'Ocultar Grumpis legendarios' : 'Ver Grumpis legendarios' }}
+  <div class="capital mt-3">
+    <p>
+      Los Grumpi legendarios son las criaturas más fuertes de lo habitual. Con
+      ellas en nuestro poder podremos ganar todos los combates que se nos
+      presenten. Eso si... para poder conseguirlas tendremos que cumplir unos
+      requisitos bastante duros, entre los que incluirán: haber superado cierto
+      número de gimnasios, haber superado la liga Grumpi e incluso tener un
+      número determinado de Grumpi.
+    </p>
+  </div>
+  <p>
+    La descripción de cómo conseguir cada uno, así como los requisitos para
+    poder capturarlos, se encuentran en las tarjetas de estas criaturas.
+  </p>
+  <p class="container d-flex justify-content-center mt-3 box-text">
+    <strong
+      >¿Quién se atreve a superar este reto? ¿Quién se hará con todos los Grumpi
+      legendarios?</strong
+    >
+  </p>
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="!this.isClicked"
+  >
+    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      Ver Grumpis legendarios
+    </button>
+  </div>
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="this.isClicked"
+  >
+    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      Ocultar Grumpis legendarios
     </button>
   </div>
 
-  <!-- Lista de Grumpis legendarios -->
-  <div *ngIf="grumpi_legend_list && legendariosIsClicked" class="image-container d-flex justify-content-center mt-3">
-    <div *ngFor="let grumpi of grumpi_legend_list">
-      <img
-        [src]="grumpi.img_conseguir"
-        [alt]="grumpi.nombre"
-        (contextmenu)="disableRightClick($event)"
-      />
-    </div>
-  </div>
-
-  <!-- Sección de Grumpis especiales y de evento -->
   <h2 class="container d-flex justify-content-center mt-3 box-text">
-    Grumpi especiales y de evento: ¿Qué son?
+    Grumpi especiales y de evento
   </h2>
   <hr />
-  <p>Los Grumpi especiales o de evento son criaturas que se podrán obtener de manera especial...</p>
+  <h2 class="container d-flex justify-content-center mt-3 box-text">
+    ¿Qué son?
+  </h2>
 
-  <!-- Botón para mostrar/ocultar Grumpis de evento -->
-  <div class="container d-flex justify-content-center mt-3">
-    <button class="button-73 size" (click)="toggleEventos()">
-      {{ eventIsClicked ? 'Ocultar Grumpis de evento' : 'Ver Grumpis de evento' }}
-    </button>
-  </div>
-
-  <!-- Lista de Grumpis de evento -->
-  <div *ngIf="grumpi_event_list && eventIsClicked" class="image-container d-flex justify-content-center mt-3">
-    <div *ngFor="let grumpi of grumpi_event_list">
-      <img
-        [src]="grumpi.img_conseguir"
-        [alt]="grumpi.nombre"
-        (contextmenu)="disableRightClick($event)"
-      />
+  <div class="capital mb-3">
+    <p>
+      Los Grumpi especiales o de evento, son criaturas que se podrán obtener de
+      manera especial o durante un tiempo limitado. Por lo que es muy importante
+      estar atentos a las actualizaciones que nos irán viniendo, ya que si se
+      nos pasa el plazo, ya no podremos conseguirlo de ninguna otra forma.
+    </p>
+    <div
+      class="container d-flex justify-content-center mt-3"
+      *ngIf="!isClicked"
+    >
+      <button class="button-73 size" (click)="handleClick()">
+        Ver Grumpis de evento
+      </button>
+    </div>
+    <div
+      class="container d-flex justify-content-center mt-3 mb-3"
+      *ngIf="eventIsClicked"
+    >
+      <button class="button-73 size" (click)="toggleEventos()">
+        Ocultar Grumpis de evento
+      </button>
+    </div>
+    <div
+      *ngIf="grumpi_event_list && eventIsClicked"
+      class="image-container d-flex justify-content-center mt-3"
+    >
+      <div *ngFor="let grumpi of grumpi_event_list">
+        <img
+          [src]="grumpi.img_conseguir"
+          [alt]="grumpi.nombre"
+          (contextmenu)="disableRightClick($event)"
+        />
+      </div>
     </div>
   </div>
 
-  <!-- Imagen Top Secret -->
   <div class="container text-center">
     <img
       class="box-secret animacionPalpito"
@@ -103,21 +158,37 @@
     />
   </div>
 
-  <!-- Botón para mostrar/ocultar todos los Grumpis -->
-  <div class="container d-flex justify-content-center mt-3">
-    <button class="button-73 size" (click)="toggleGrumpis()">
-      {{ isClicked ? 'Ocultar Grumpis' : 'Ver Grumpis' }}
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="!this.isClicked"
+  >
+    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      Ver Grumpis
+    </button>
+  </div>
+  <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="this.isClicked"
+  >
+    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+      Ocultar Grumpis
     </button>
   </div>
 
-  <!-- Listado completo de Grumpis -->
-  <div *ngIf="grumpi_list && isClicked" class="image-container d-flex justify-content-center mt-3">
+  <!-- LISTADO COMPLETO DE GRUMPIS -->
+  <div
+    *ngIf="grumpi_list && this.isClicked"
+    class="image-container d-flex justify-content-center mt-3"
+  >
     <div *ngFor="let grumpi of grumpi_list">
       <img
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
         (contextmenu)="disableRightClick($event)"
       />
+      <button (click)="scrollToTop()" class="button-73 fixed-button">
+        <i class="material-icons">&#xe5d8;</i>
+      </button>
     </div>
   </div>
 </div>
