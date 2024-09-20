@@ -26,6 +26,8 @@ export class GrumpisComponent implements OnInit {
   grumpi_list: any[] = [];
   grumpi_event_list: any[] = [];
   isClicked: boolean = false;
+  eventIsClicked: boolean = false;
+
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
   constructor(private grumpiService: GrumpiService) {}
@@ -56,6 +58,7 @@ export class GrumpisComponent implements OnInit {
 
   handleClick(): void {
     this.isClicked = !this.isClicked;
+    this.eventIsClicked = !this.eventIsClicked;
   }
 
   scrollToTop(): void {

@@ -121,7 +121,7 @@
     </p>
     <div
       class="container d-flex justify-content-center mt-3"
-      *ngIf="!isClicked"
+      *ngIf="!eventIsClicked"
     >
       <button class="button-73 size" (click)="handleClick()">
         Ver Grumpis de evento
@@ -129,14 +129,14 @@
     </div>
     <div
       class="container d-flex justify-content-center mt-3 mb-3"
-      *ngIf="isClicked"
+      *ngIf="eventIsClicked"
     >
       <button class="button-73 size" (click)="handleClick()">
         Ocultar Grumpis de evento
       </button>
     </div>
     <div
-      *ngIf="grumpi_event_list && isClicked"
+      *ngIf="grumpi_event_list && eventIsClicked"
       class="image-container d-flex justify-content-center mt-3"
     >
       <div *ngFor="let grumpi of grumpi_event_list">
