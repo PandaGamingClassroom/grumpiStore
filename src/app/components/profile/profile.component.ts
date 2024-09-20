@@ -159,6 +159,7 @@ export class ProfileComponent implements OnInit {
           this.avatar = this.trainer.avatar;
           this.grumpidolar = this.trainer.grumpidolar;
           this.combatMarks = this.trainer.marca_combate;
+          this.avatarSelect = this.trainer.avatar;
           this.getEnergies(this.trainer, this.trainer.energies.tipo);
           console.log('Datos del entrenador: ', this.trainer);
         }
