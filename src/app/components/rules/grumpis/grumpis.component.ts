@@ -34,10 +34,6 @@ export class GrumpisComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGrumpis();
-    // Filtrar la lista de Grumpis con clase 'evento'
-    this.grumpi_event_list = this.grumpi_list.filter(
-      (grumpi) => grumpi.clase === 'evento'
-    );
   }
 
   disableRightClick(event: MouseEvent) {
@@ -49,6 +45,9 @@ export class GrumpisComponent implements OnInit {
       (response) => {
         console.log('Listado de Grumpis: ', response.grumpis_list);
         this.grumpi_list = response.grumpis_list;
+        this.grumpi_event_list = this.grumpi_list.filter(
+          (grumpi) => grumpi.clase === 'evento'
+        );
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -60,7 +59,7 @@ export class GrumpisComponent implements OnInit {
     this.isClicked = !this.isClicked;
   }
 
-  toggleEventos() {
+  toggleEventos(): void {
     this.eventIsClicked = !this.eventIsClicked;
   }
 
