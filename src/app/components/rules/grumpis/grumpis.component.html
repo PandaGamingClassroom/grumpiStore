@@ -110,7 +110,7 @@
     *ngIf="grumpi_list && this.legendIsClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let grumpi of grumpi_legend_list">
+    <div *ngFor="let grumpi of grumpi_legend_list" (click)="openGrumpi(grumpi)">
       <img
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
@@ -160,7 +160,7 @@
       *ngIf="grumpi_event_list && this.eventIsClicked"
       class="image-container d-flex justify-content-center mt-3"
     >
-      <div *ngFor="let grumpi of grumpi_event_list">
+      <div *ngFor="let grumpi of grumpi_event_list" (click)="openGrumpi(grumpi)">
         <img
           [src]="grumpi.img_conseguir"
           [alt]="grumpi.nombre"
@@ -201,7 +201,7 @@
     *ngIf="grumpi_list && this.isClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let grumpi of grumpi_list">
+    <div *ngFor="let grumpi of grumpi_list" (click)="openGrumpi(grumpi)">
       <img
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"

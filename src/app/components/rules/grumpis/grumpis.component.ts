@@ -5,6 +5,8 @@ import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewImageComponent } from '../../../segments/view-image/view-image.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-grumpis',
@@ -32,7 +34,10 @@ export class GrumpisComponent implements OnInit {
 
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
-  constructor(private grumpiService: GrumpiService) {}
+  constructor(
+    private grumpiService: GrumpiService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getGrumpis();
@@ -96,5 +101,21 @@ export class GrumpisComponent implements OnInit {
         behavior: 'smooth',
       });
     }
+  }
+
+  /**
+   *
+   * Función para mostrar más detalle de la criatura seleccionada.
+   *
+   * @param creature Recibe la criatura seleccionada por el usuario.
+   */
+  openGrumpi(creature: any) {
+    const dialogRef = this.dialog.open(ViewImageComponent, {
+      width: '700px',
+      height: '600px',
+      data: creature,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
   }
 }
