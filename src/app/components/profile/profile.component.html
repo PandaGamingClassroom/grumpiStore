@@ -130,6 +130,10 @@
                 <div class="col-5">
                   <img [attr.src]="avatar?.imagen" loading="lazy" class="avatar-box" (contextmenu)="disableRightClick($event)" />
                 </div>
+                <!-- Skeleton Loader -->
+                <div *ngIf="!avatar_list">
+                  <div class="skeleton-avatar" *ngFor="let i of [1,2,3,4,5]"></div>
+                </div>
                 <div class="col d-flex justify-content-center align-items-center">
                   <button type="button" class="button-avatar" data-bs-dismiss="modal" (click)="avatarSelected(avatar)">
                     Seleccionar
