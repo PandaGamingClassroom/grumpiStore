@@ -25,8 +25,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class GrumpisComponent implements OnInit {
   grumpi_list: any[] = [];
   grumpi_event_list: any[] = [];
+  grumpi_legend_list: any[] = [];
   isClicked: boolean = false;
   eventIsClicked: boolean = false;
+  legendIsClicked: boolean = false;
 
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
@@ -36,17 +38,26 @@ export class GrumpisComponent implements OnInit {
     this.getGrumpis();
   }
 
+  /**
+   * Función para deshabilitar los clicks del ratón en las imágenes
+   * @param event
+   */
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
 
+  /**
+   * Función para obtener el listado completo de Grumpis
+   */
   getGrumpis() {
     this.grumpiService.getGrumpis().subscribe(
       (response) => {
-        console.log('Listado de Grumpis: ', response.grumpis_list);
         this.grumpi_list = response.grumpis_list;
         this.grumpi_event_list = this.grumpi_list.filter(
           (grumpi) => grumpi.clase === 'evento'
+        );
+        this.grumpi_legend_list = this.grumpi_list.filter(
+          (grumpi) => grumpi.clase === 'legendario'
         );
       },
       (error) => {
@@ -55,14 +66,30 @@ export class GrumpisComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para mostrar u ocultar la lista general de Grumpis
+   */
   handleClick(): void {
     this.isClicked = !this.isClicked;
   }
 
+  /**
+   * Función para mostrar u ocultar la lista de Grumpis de evento
+   */
   toggleEventos(): void {
     this.eventIsClicked = !this.eventIsClicked;
   }
 
+  /**
+   * Función para mostrar u ocultar la lista de Grumpis legendarios
+   */
+  legendClick() {
+    this.legendIsClicked = !this.legendIsClicked;
+  }
+
+  /**
+   * Función para hacer que vuelva a un punto de la pantalla
+   */
   scrollToTop(): void {
     if (this.scrollTarget) {
       this.scrollTarget.nativeElement.scrollIntoView({

@@ -87,25 +87,42 @@
       legendarios?</strong
     >
   </p>
+
   <!-- GRUMPIS LEGENDARIOS -->
   <div
     class="container d-flex justify-content-center mt-3"
-    *ngIf="!this.isClicked"
+    *ngIf="!this.legendIsClicked"
   >
-    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+    <button #scrollTarget class="button-73 size" (click)="legendClick()">
       Ver Grumpis legendarios
     </button>
   </div>
   <div
     class="container d-flex justify-content-center mt-3"
-    *ngIf="this.isClicked"
+    *ngIf="this.legendIsClicked"
   >
-    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+    <button #scrollTarget class="button-73 size" (click)="legendClick()">
       Ocultar Grumpis legendarios
     </button>
   </div>
 
+  <div
+    *ngIf="grumpi_list && this.legendIsClicked"
+    class="image-container d-flex justify-content-center mt-3"
+  >
+    <div *ngFor="let grumpi of grumpi_legend_list">
+      <img
+        [src]="grumpi.img_conseguir"
+        [alt]="grumpi.nombre"
+        (contextmenu)="disableRightClick($event)"
+      />
+      <button (click)="scrollToTop()" class="button-73 fixed-button">
+        <i class="material-icons">&#xe5d8;</i>
+      </button>
+    </div>
+  </div>
 
+  <!-- GRUMPIS DE EVENTO -->
   <h2 class="container d-flex justify-content-center mt-3 box-text">
     Grumpi especiales y de evento
   </h2>
