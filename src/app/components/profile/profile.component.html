@@ -128,7 +128,7 @@
             <li *ngFor="let avatar of avatar_list" class="mb-3">
               <div class="row row-avatar">
                 <div class="col-5">
-                  <img src="{{ avatar?.imagen }}" class="avatar-box" (contextmenu)="disableRightClick($event)" />
+                  <img [attr.src]="avatar?.imagen" loading="lazy" class="avatar-box" (contextmenu)="disableRightClick($event)" />
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
                   <button type="button" class="button-avatar" data-bs-dismiss="modal" (click)="avatarSelected(avatar)">

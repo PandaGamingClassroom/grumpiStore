@@ -97,8 +97,13 @@ export class ProfileComponent implements OnInit {
   }
 
   obtenerListaAvatares() {
-    this.trainersService.getAvatars().subscribe((response) => {
-      this.avatar_list = response.avatars_list;
+    this.trainersService.getAvatars().subscribe({
+      next: (response) => {
+        this.avatar_list = response.avatars_list;
+      },
+      error: (err) => {
+        console.error('Error al obtener la lista de avatares:', err);
+      },
     });
   }
 
