@@ -419,22 +419,20 @@ export class StoreScreenComponent implements OnInit {
       0
     );
 
-    // Validar si el total de energías seleccionadas es suficiente
     if (totalSelectedEnergies < requiredEnergies) {
       this.confirmTitle = 'Energías insuficientes';
       this.confirmMessage =
         'No tienes suficientes energías para comprar este objeto.';
       this.openConfirmModal(this.confirmTitle, this.confirmMessage);
-      return; // Termina la función si no hay suficientes energías
+      return;
     }
 
     this.trainersService
       .assignEvolutionObjectsToTrainer(trainerID, evoObjectSelected)
       .subscribe(
         (response) => {
-          // Si el objeto se asigna correctamente, proceder a gastar energías
           this.trainersService
-            .spendEnergies(trainerID, this.selectedEnergies) // Usa trainerID directamente
+            .spendEnergies(trainerID, evoObjectSelected.precio)
             .subscribe((data) => {
               this.confirmTitle = 'Objeto conseguido con éxito.';
               this.confirmMessage =
