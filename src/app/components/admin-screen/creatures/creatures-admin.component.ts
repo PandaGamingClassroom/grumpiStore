@@ -107,7 +107,7 @@ export class CreaturesAdminComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   onSubmit(event: Event) {
     event.preventDefault();
     if (!this.selectedFile) {
@@ -230,7 +230,7 @@ export class CreaturesAdminComponent implements OnInit {
       title: '¡Grumpi guardado correctamente!',
       message: this.confirmMessage,
     };
-  
+
     const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
       width: '400px',
       height: '300px',
@@ -239,14 +239,14 @@ export class CreaturesAdminComponent implements OnInit {
       autoFocus: true,
       data: data,
     });
-  
+
     dialogRef.afterClosed().subscribe(() => {
       this.modalAbierta = false;
     });
-  
+
     this.modalAbierta = true;
   }
-  
+
 
   /**
    *
@@ -386,7 +386,7 @@ export class CreaturesAdminComponent implements OnInit {
 
     dialogRef
       .afterClosed()
-      .subscribe((selectedTrainerNames: string[] | null) => {
+      .subscribe((selectedTrainerNames: number[] | null) => {
         if (selectedTrainerNames && selectedTrainerNames.length > 0) {
           this.selectedTrainerName = selectedTrainerNames.join(', ');
           this.assignCreaturesToTrainers(selectedTrainerNames);
@@ -399,7 +399,7 @@ export class CreaturesAdminComponent implements OnInit {
    *
    * @param trainerNames Lista de entrenadores seleciconados.
    */
-  assignCreaturesToTrainers(trainerNames: string[]) {
+  assignCreaturesToTrainers(trainerNames: number[]) {
     if (trainerNames.length > 0 && this.selectedCreatureName) {
       const creature = this.selectedCreatureName;
 

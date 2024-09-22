@@ -170,16 +170,16 @@ export class TrainerService {
   /**
    * Función para asignar un mismo Grumpi a varios entrenadores al mismo tiempo.
    *
-   * @param trainerNames Lista de entrenadores seleccionados.
+   * @param trainerIDs Lista de entrenadores seleccionados.
    * @param creature Grumpi que se ha seleccionado.
    * @returns
    */
   assignCreatureToTrainers(
-    trainerNames: string[],
+    trainerIDs: number[],
     creature: string
   ): Observable<any> {
     const url = this.apiUrl + 'assign-creature';
-    const body = { trainerNames, creature };
+    const body = { trainerIDs, creature };
 
     return this.http.post<any>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {

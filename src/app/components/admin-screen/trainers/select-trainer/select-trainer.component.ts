@@ -34,7 +34,7 @@ export class SelectTrainerComponent implements OnInit {
   lastNameProfesor: any;
   nameProfesor: any;
   username: any;
-  isLoading: boolean = true; // Estado de carga
+  isLoading: boolean = true;
   @Output() selectedTrainerName = new EventEmitter<any>();
 
   constructor(
@@ -53,9 +53,9 @@ export class SelectTrainerComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * Función para obtener los datos del profesor.
-   * 
+   *
    * @param name Recibe el nombre del profesor
    */
   getDadataProfesor(name: string) {
@@ -76,10 +76,10 @@ export class SelectTrainerComponent implements OnInit {
   }
 
  /**
-  * 
+  *
   * Función para obtener la lista de entrenadores
   * del profesor que ha iniciado sesión.
-  * 
+  *
   * @param profesorId Recibe el id del profesor.
   */
   getEntrenadores(profesorId: number) {
@@ -142,7 +142,7 @@ export class SelectTrainerComponent implements OnInit {
 
         if (canAddGrumpi) {
           const selectedTrainerNames = selectedTrainers.map(
-            (trainer) => trainer.name
+            (trainer) => trainer.id
           );
 
           this.selectedTrainerName.emit(selectedTrainerNames);
