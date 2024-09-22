@@ -382,16 +382,16 @@ export class TrainerService {
 
   /**
    * Función para asignar el objeto de evolución al entrenador.
-   * @param trainerName
+   * @param trainerID
    * @param evoObject
    * @returns
    */
   assignEvolutionObjectsToTrainer(
-    trainerName: string,
+    trainerID: number,
     evoObject: string
   ): Observable<any> {
     const url = `${this.apiUrl}assign-evo-objects`;
-    const body = { trainerName, evoObject };
+    const body = { trainerID, evoObject };
 
     return this.http.post<any>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {
