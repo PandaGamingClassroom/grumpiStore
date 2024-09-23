@@ -419,7 +419,7 @@ export class StoreScreenComponent implements OnInit {
       0
     );
 
-    console.log('Energías requeridas: ',requiredEnergies);
+    console.log('Energías requeridas: ', this.selectedObject);
 
     if (totalSelectedEnergies < requiredEnergies) {
       this.confirmTitle = 'Energías insuficientes';
