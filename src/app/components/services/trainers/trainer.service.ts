@@ -453,13 +453,26 @@ export class TrainerService {
     });
   }
 
-  spendEnergies(
+  spendEnergiesToRewards(
     trainer_id: number,
     energiesToSpend: { type: string; quantity: number }[]
   ): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}spend-energies`, {
       trainer_id,
+      energiesToSpend
+    });
+  }
+
+
+  spendEnergies(
+    trainer_id: number,
+    energiesToSpend: { type: string; quantity: number }[],
+    totalEnergies: any
+  ): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}spend-energies`, {
+      trainer_id,
       energiesToSpend,
+      totalEnergies,
     });
   }
 
