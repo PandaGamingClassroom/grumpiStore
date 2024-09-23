@@ -301,9 +301,9 @@ export class StoreScreenComponent implements OnInit {
     console.log(requiredEnergyType);
 
     switch (requiredEnergyType) {
-      case 'agua':
+      case 'Agua':
         {
-          if (requiredEnergyType == 'agua' && price <= agua) {
+          if (requiredEnergyType == 'Agua' && price <= agua) {
             console.log('Estas comprando losa de agua');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -311,9 +311,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'fuego':
+      case 'Fuego':
         {
-          if (requiredEnergyType == 'fuego' && price <= fuego) {
+          if (requiredEnergyType == 'Fuego' && price <= fuego) {
             console.log('Estas comprando losa de fuego');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -321,9 +321,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'aire':
+      case 'Aire':
         {
-          if (requiredEnergyType == 'aire' && price <= aire) {
+          if (requiredEnergyType == 'Aire' && price <= aire) {
             console.log('Estas comprando losa de aire');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -331,9 +331,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'luz':
+      case 'Luz':
         {
-          if (requiredEnergyType == 'luz' && price <= luz) {
+          if (requiredEnergyType == 'Luz' && price <= luz) {
             console.log('Estas comprando losa de luz');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -341,9 +341,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'normal':
+      case 'Normal':
         {
-          if (requiredEnergyType == 'normal' && price <= normal) {
+          if (requiredEnergyType == 'Normal' && price <= normal) {
             console.log('Estas comprando losa de normal');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -351,9 +351,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'oscuridad':
+      case 'Oscuridad':
         {
-          if (requiredEnergyType == 'oscuridad' && price <= oscuridad) {
+          if (requiredEnergyType == 'Oscuridad' && price <= oscuridad) {
             console.log('Estas comprando losa de oscuridad');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -361,9 +361,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'rayo':
+      case 'Rayo':
         {
-          if (requiredEnergyType == 'rayo' && price <= rayo) {
+          if (requiredEnergyType == 'Rayo' && price <= rayo) {
             console.log('Estas comprando losa de rayo');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -371,9 +371,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'tierra':
+      case 'Tierra':
         {
-          if (requiredEnergyType == 'tierra' && price <= tierra) {
+          if (requiredEnergyType == 'Tierra' && price <= tierra) {
             console.log('Estas comprando losa de tierra');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
@@ -381,9 +381,9 @@ export class StoreScreenComponent implements OnInit {
           }
         }
         break;
-      case 'vida':
+      case 'Vida':
         {
-          if (requiredEnergyType == 'vida' && price <= vida) {
+          if (requiredEnergyType == 'Vida' && price <= vida) {
             console.log('Estas comprando losa de vida');
             this.assignEvolutionObjects(trainer_id, evoObjectSelected);
           } else {
