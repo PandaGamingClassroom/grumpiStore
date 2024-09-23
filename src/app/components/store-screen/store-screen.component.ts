@@ -433,16 +433,29 @@ export class StoreScreenComponent implements OnInit {
       .assignEvolutionObjectsToTrainer(trainerID, evoObjectSelected)
       .subscribe(
         (response) => {
+          // Extraemos el tipo y la cantidad de energía desde el objeto seleccionado
+          const energiesToSpend = [
+            {
+              type: evoObjectSelected.tipo,
+              quantity: evoObjectSelected.precio,
+            },
+          ];
+
           this.trainersService
-            .spendEnergies(trainerID, evoObjectSelected.precio)
-            .subscribe((data) => {
-              this.confirmTitle = 'Objeto conseguido con éxito.';
-              this.confirmMessage =
-                'Has comprado el objeto ' +
-                evoObjectSelected.nombre +
-                ' con éxito.';
-              this.openConfirmModal(this.confirmTitle, this.confirmMessage);
-            });
+            .spendEnergies(trainerID, energiesToSpend)
+            .subscribe(
+              (data) => {
+                this.confirmTitle = 'Objeto conseguido con éxito';
+                this.confirmMessage = `Has comprado el objeto ${evoObjectSelected.nombre} con éxito.`;
+                this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+              },
+              (error) => {
+                this.confirmTitle = 'Error al gastar energías';
+                this.confirmMessage =
+                  'Hubo un problema al intentar gastar las energías.';
+                this.openConfirmModal(this.confirmTitle, this.confirmMessage);
+              }
+            );
         },
         (error) => {
           this.confirmTitle = '¡Cuidado!';
@@ -451,6 +464,7 @@ export class StoreScreenComponent implements OnInit {
           this.openConfirmModal(this.confirmTitle, this.confirmMessage);
         }
       );
+
   }
 
   /**
