@@ -419,6 +419,8 @@ export class StoreScreenComponent implements OnInit {
       0
     );
 
+    console.log('Energías requeridas: ',requiredEnergies);
+
     if (totalSelectedEnergies < requiredEnergies) {
       this.confirmTitle = 'Energías insuficientes';
       this.confirmMessage =
