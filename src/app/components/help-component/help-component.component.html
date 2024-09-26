@@ -28,6 +28,7 @@
         <img
           class="typeBox"
           src="../../../assets/carteleria/tiposEnergia.png"
+          (click)="openImageWindow('TiposEnergia')"
           (contextmenu)="disableRightClick($event)"
         />
       </div>
@@ -35,6 +36,7 @@
         <img
           class="typeBox"
           src="../../../assets/carteleria/comoConseguirEnergia.png"
+          (click)="openImageWindow('ConseguirEnergias')"
           (contextmenu)="disableRightClick($event)"
         />
       </div>
@@ -42,35 +44,36 @@
         <img
           class="typeBox2"
           src="../../../assets/carteleria/recompensa.png"
+          (click)="openImageWindow('Recompnensas')"
           (contextmenu)="disableRightClick($event)"
         />
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <img class="typeBox2" src="../../../assets/carteleria/grumpimonedasMusica.png" (contextmenu)="disableRightClick($event)">
+        <img class="typeBox2" src="../../../assets/carteleria/grumpimonedasMusica.png" (click)="openImageWindow('Grumpimonedas')" (contextmenu)="disableRightClick($event)">
       </div>
       <div class="col mb-3">
-        <img class="typeBox2" src="../../../assets/carteleria/grumpimonedasEF.png" (contextmenu)="disableRightClick($event)">
+        <img class="typeBox2" src="../../../assets/carteleria/grumpimonedasEF.png" (click)="openImageWindow('GrumpimonedasEF')" (contextmenu)="disableRightClick($event)">
       </div>
       <div class="col mb-3">
-        <img class="typeBox2" src="../../../assets/carteleria/Instrucciones de carta Grumpi.1.png.png" (contextmenu)="disableRightClick($event)">
-      </div>
-    </div>
-    <div class="row mb-3">
-      <div class="col mb-3">
-        <img class="typeBox2" src="../../../assets/carteleria/estados_alterados.jpg" (contextmenu)="disableRightClick($event)">
-      </div>
-      <div class="col mb-3">
-        <img class="typeBox2" src="../../../assets/carteleria/objCombate.png" (contextmenu)="disableRightClick($event)">
-      </div>
-      <div class="col mb-3">
-        <img class="typeBox2" src="../../../assets/carteleria/TIENDA_GRUMPI.png.png" (contextmenu)="disableRightClick($event)">
+        <img class="typeBox2" src="../../../assets/carteleria/Instrucciones de carta Grumpi.1.png.png" (click)="openImageWindow('instrucciones')" (contextmenu)="disableRightClick($event)">
       </div>
     </div>
     <div class="row mb-3">
       <div class="col mb-3">
-        <img class="typeBox2" src="../../../assets/carteleria/TIENDA_OBJETOSCOMBATE.png.png" (contextmenu)="disableRightClick($event)">
+        <img class="typeBox2" src="../../../assets/carteleria/estados_alterados.jpg" (click)="openImageWindow('estadosAlterados')" (contextmenu)="disableRightClick($event)">
+      </div>
+      <div class="col mb-3">
+        <img class="typeBox2" src="../../../assets/carteleria/objCombate.png" (click)="openImageWindow('objCombate')" (contextmenu)="disableRightClick($event)">
+      </div>
+      <div class="col mb-3">
+        <img class="typeBox2" src="../../../assets/carteleria/TIENDA_GRUMPI.png.png" (click)="openImageWindow('tienda')" (contextmenu)="disableRightClick($event)">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col mb-3">
+        <img class="typeBox2" src="../../../assets/carteleria/TIENDA_OBJETOSCOMBATE.png.png" (click)="openImageWindow('tienda')" (contextmenu)="disableRightClick($event)">
       </div>
     </div>
   </div>
