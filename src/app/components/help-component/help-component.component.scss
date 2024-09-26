@@ -1,25 +1,89 @@
+/* Ajustes generales para las imágenes */
 .typeBox {
-  width: 200px;
+  width: 100%;
   height: auto;
+  max-width: 200px;
   border-radius: 10px;
 }
 
 .typeBox2 {
-  width: 600px;
+  width: 100%;
   height: auto;
+  max-width: 600px;
   border-radius: 10px;
 }
 
 .imgGrumpi {
-  width: 200px;
-  height: 300px;
+  width: 100%;
+  height: auto;
+  max-width: 200px;
 }
 
-.scrollable-div {
-  overflow-y: auto;
-  max-height: calc(100vh - 215px);
+/* Para pantallas pequeñas, reorganizamos el diseño para ser más vertical */
+@media (max-width: 768px) {
+  .scrollable-div {
+    max-height: calc(100vh - 160px); /* Menos espacio para botones en móviles */
+    overflow-y: auto;
+  }
+
+  .typeBox,
+  .typeBox2 {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .col {
+    text-align: center;
+  }
+
+  .btnReport {
+    font-size: 14px;
+    width: 100%;
+  }
 }
 
-.btnReport{
+/* Ajustes para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .scrollable-div {
+    max-height: calc(100vh - 180px);
+  }
+
+  .typeBox {
+    max-width: 150px;
+  }
+
+  .typeBox2 {
+    max-width: 450px;
+  }
+
+  .btnReport {
+    width: 80%;
+    font-size: 16px;
+  }
+
+  .imgGrumpi {
+    max-width: 180px;
+  }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 1024px) {
+  .scrollable-div {
+    max-height: calc(100vh - 215px);
+  }
+
+  .btnReport {
+    font-size: 18px;
+    width: 300px;
+  }
+
+  .imgGrumpi {
+    max-width: 200px;
+  }
+}
+
+.btnReport {
   bottom: 0;
+  display: block;
+  text-align: center;
 }
