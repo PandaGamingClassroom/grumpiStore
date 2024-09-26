@@ -1,11 +1,52 @@
 <div class="container-fluid bg-box justify-content-center align-items-center d-flex">
   <div class="row">
     <div class="col form-group mt-3 container mb-3">
-      <button type="button" class="btn btn-success mt-3"> Nueva publicación </button>
+      <button type="button" class="btn btn-success mt-3" data-bs-toggle="newPost" data-bs-target="#newPost"> Nueva publicación </button>
     </div>
 
     <div class="col form-group mt-3 container mb-3">
-      <button type="button" class="btn btn-success mt-3 align-content-center"> Ver publicaciones </button>
+      <button type="button" class="btn btn-success mt-3 align-content-center" data-bs-toggle="post_list" data-bs-target="#post_list"> Ver publicaciones </button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL NUEVO POST -->
+<div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="newPostLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newPostLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> Formulario para crear un nuevo post para el blog </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL PARA LA LISTA DE POSTS PUBLICADOS -->
+<div class="modal fade" id="post_list" tabindex="-1" aria-labelledby="post_listLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="post_listLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> Lista de posts publicados </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>
