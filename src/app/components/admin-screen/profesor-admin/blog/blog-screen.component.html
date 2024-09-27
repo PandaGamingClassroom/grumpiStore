@@ -1,50 +1,155 @@
-<div class="container-fluid bg-box justify-content-center align-items-center d-flex">
+<div
+  class="container-fluid bg-box justify-content-center align-items-center d-flex"
+>
   <div class="row">
     <div class="col form-group mt-3 container mb-3">
-      <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#newPost"> Nueva publicación </button>
+      <button
+        type="button"
+        class="btn btn-success mt-3"
+        data-bs-toggle="modal"
+        data-bs-target="#newPost"
+      >
+        Nueva publicación
+      </button>
     </div>
 
     <div class="col form-group mt-3 container mb-3">
-      <button type="button" class="btn btn-success mt-3 align-content-center" data-bs-toggle="modal" data-bs-target="#post_list"> Ver publicaciones </button>
+      <button
+        type="button"
+        class="btn btn-success mt-3 align-content-center"
+        data-bs-toggle="modal"
+        data-bs-target="#post_list"
+      >
+        Ver publicaciones
+      </button>
     </div>
   </div>
 </div>
 
-
-
 <!-- MODAL NUEVO POST -->
-<div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="newPostLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="newPost"
+  tabindex="-1"
+  aria-labelledby="newPostLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="newPostLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <p> Formulario para crear un nuevo post para el blog </p>
+        <div class="post-form-container">
+          <form
+            [formGroup]="postForm"
+            (ngSubmit)="onSubmit()"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                formControlName="title"
+                placeholder="Enter title"
+                class="form-control"
+                required
+              />
+              <div
+                *ngIf="
+                  postForm.get('title')?.invalid &&
+                  postForm.get('title')?.touched
+                "
+                class="error"
+              >
+                Title is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea
+                id="content"
+                formControlName="content"
+                placeholder="Enter content"
+                class="form-control"
+                required
+              ></textarea>
+              <div
+                *ngIf="
+                  postForm.get('content')?.invalid &&
+                  postForm.get('content')?.touched
+                "
+                class="error"
+              >
+                Content is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input
+                type="file"
+                id="image"
+                (change)="onFileSelected($event)"
+                class="form-control"
+                accept="image/*"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="postForm.invalid"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 
-
 <!-- MODAL PARA LA LISTA DE POSTS PUBLICADOS -->
-<div class="modal fade" id="post_list" tabindex="-1" aria-labelledby="post_listLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="post_list"
+  tabindex="-1"
+  aria-labelledby="post_listLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="post_listLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <p> Lista de posts publicados </p>
+        <p>Lista de posts publicados</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
