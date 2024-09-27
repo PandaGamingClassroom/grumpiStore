@@ -473,7 +473,7 @@ export class StoreScreenComponent implements OnInit {
    *
    */
   assignCombatObjects() {
-    let trainer_id = this.trainer.id;
+    let trainer_id: [] = this.trainer.id;
     if (trainer_id !== null && this.selectedObject !== null) {
       // Obtén el objeto de combate
       let combatObject = this.selectedObject;
