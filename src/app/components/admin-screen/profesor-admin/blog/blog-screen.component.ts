@@ -44,11 +44,11 @@ export class BlogScreenComponent {
 
       this.http.post('YOUR_API_ENDPOINT/posts', formData).subscribe(
         (response) => {
-          console.log('Post created successfully!', response);
+          console.log('Post creado correctamente!', response);
           this.postForm.reset();
         },
         (error) => {
-          console.error('Error creating post', error);
+          console.error('Error creando el post', error);
         }
       );
     }
