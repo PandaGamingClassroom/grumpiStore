@@ -35,6 +35,10 @@ html, body {
 }
 
 
+
+
+
+/* CONFIGURACIÓN PARA EL FORMULARIO DE ENTRADA DEL BLOG */
 .post-form-container {
   max-width: 600px;
   margin: 0 auto;
@@ -47,10 +51,4 @@ html, body {
 .error {
   color: red;
   font-size: 0.9em;
-}
-
-button {
-  display: block;
-  width: 100%;
-  margin-top: 1rem;
 }
