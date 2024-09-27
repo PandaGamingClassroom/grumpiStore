@@ -308,11 +308,11 @@ export class TrainerService {
    * @returns
    */
   assignCombatObjectsToTrainer(
-    trainer_id: number[],
+    trainer_id: number,
     combatObject: string
   ): Observable<any> {
     const url = this.apiUrl + 'assign-combatObjects';
-    const body = { trainer_id, combatObject };
+    const body = { trainerIDs: [trainer_id], combatObject };
 
     return this.http.post<any>(url, body).pipe(
       catchError((error: HttpErrorResponse) => {
