@@ -308,7 +308,7 @@ export class TrainerService {
    * @returns
    */
   assignCombatObjectsToTrainer(
-    trainer_id: number,
+    trainer_id: number[],
     combatObject: string
   ): Observable<any> {
     const url = this.apiUrl + 'assign-combatObjects';
