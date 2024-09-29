@@ -15,6 +15,10 @@
       "dest": "https://grumpistoreserver.onrender.com"
     },
     {
+      "src": "/(.*)\\.(js|css|png|jpg|jpeg|ico|svg|webmanifest)",
+      "dest": "/$1"
+    },
+    {
       "handle": "filesystem"
     },
     {
