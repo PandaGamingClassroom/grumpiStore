@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavBarComponent } from '../../../nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../../services/trainers/trainer.service';
@@ -19,7 +18,6 @@ import { ViewImageComponent } from '../../../../segments/view-image/view-image.c
     NavBarComponent,
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
@@ -104,7 +102,7 @@ export class BagComponent implements OnInit {
   showContent(content: string) {
     this.selectedContent = content;
   }
-  
+
   /**
    * Función para obtener información sobre el entrenador que ha iniciado sesión
    * @param name recibe el nombre del entrenador
@@ -119,12 +117,12 @@ export class BagComponent implements OnInit {
           this.grumpiList = this.trainer?.grumpis || [];
           console.log('ENTRENADOR: ', this.trainer);
           console.log('Lista de grumpis del entrenador: ', this.grumpiList);
-          
+
           this.cdr.detectChanges();
-          
+
           let energyTrainer = this.trainer?.energies;
           this.rewards_list = this.trainer?.recompensas;
-  
+
           this.contadorRecompensas(this.rewards_list);
           this.contadorLosas(this.trainer?.objetos_evolutivos);
           this.contadorObjetosCombate(this.trainer?.objetos_combate);
@@ -137,11 +135,11 @@ export class BagComponent implements OnInit {
       }
     );
   }
-  
+
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   // Función para filtrar los Grumpis según el término de búsqueda
   get filteredCreaturesImages(): any[] {
     if (!this.trainer || !this.grumpiList) {
@@ -152,7 +150,7 @@ export class BagComponent implements OnInit {
     );
     return filtered;
   }
-  
+
   handleImageError(creature: any) {
     console.error('Error al cargar la imagen:', creature.img_conseguir);
   }
@@ -276,7 +274,7 @@ export class BagComponent implements OnInit {
   contadorEnergias(energies: any) {
     const energyCounts: { [key: string]: any } = {};
     console.log('Lista de energías del entrenador: ', energies);
-    
+
     for (let energy of energies) {
       if (!energyCounts[energy.nombre]) {
         energyCounts[energy.nombre] = { ...energy, count: 0 };
@@ -393,5 +391,5 @@ export class BagComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {});
   }
-  
+
 }

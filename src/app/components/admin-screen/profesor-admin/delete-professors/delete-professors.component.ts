@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
@@ -18,7 +17,6 @@ import { ConfirmModalComponentComponent } from '../../../../segments/confirm-mod
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
   ],

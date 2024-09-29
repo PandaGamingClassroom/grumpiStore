@@ -1,14 +1,13 @@
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-medals-list',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule,FormsModule, ReactiveFormsModule],
   providers: [TrainerService],
   templateUrl: './medals-list.component.html',
   styleUrls: ['./medals-list.component.scss'],

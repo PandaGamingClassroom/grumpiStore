@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { NavBarComponent } from '../../nav-bar/nav-bar.component';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewImageComponent } from '../../../segments/view-image/view-image.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +15,6 @@ import { MatDialog } from '@angular/material/dialog';
     NavBarComponent,
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
   ],

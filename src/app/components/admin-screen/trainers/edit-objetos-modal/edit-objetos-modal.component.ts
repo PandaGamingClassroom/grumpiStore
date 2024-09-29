@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDialogRef,
-  MAT_DIALOG_DATA,
   MatDialogModule,
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
@@ -16,7 +15,6 @@ import { TrainerService } from '../../../services/trainers/trainer.service';
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,

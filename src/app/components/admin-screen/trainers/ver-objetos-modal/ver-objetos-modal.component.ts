@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,7 +10,6 @@ import { RouterLink } from '@angular/router';
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
@@ -95,7 +93,7 @@ export class VerObjetosModalComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   /**
    * Función para contabilizar el total de objetos de combate que tiene en el inventario
    * el entrenador seleccionado.
@@ -230,7 +228,7 @@ export class VerObjetosModalComponent implements OnInit {
 
   /**
    * Función para eliminar Grumpis de la lista del entrenador.
-   * 
+   *
    * @param grumpis Recibe el listado de Grumpis marcados para eliminar.
    */
   contadorGrumpis(grumpis: any[]) {

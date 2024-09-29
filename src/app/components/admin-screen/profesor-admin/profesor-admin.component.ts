@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -20,7 +19,6 @@ import { DeleteProfessorsComponent } from './delete-professors/delete-professors
     RouterLink,
     NavBarAdminComponent,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     FooterComponent,

@@ -14,7 +14,6 @@ import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-
 import { FooterComponent } from '../../footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 
@@ -24,7 +23,6 @@ import { GrumpiService } from '../../services/grumpi/grumpi.service';
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
@@ -135,7 +133,7 @@ export class EnergiesComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   modalConfirm(trainerNames: number[]) {
     const data = {
       title: '¡Energía asignada con éxito!',

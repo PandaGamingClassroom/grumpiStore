@@ -4,7 +4,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { MedalsStoreComponent } from './medals-store/medals-store.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
@@ -22,7 +22,6 @@ import { Energies, energias, iconEnergy } from '../../models/energies';
     NavBarComponent,
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,

@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { GrumpiService } from '../../../services/grumpi/grumpi.service';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { ViewImageComponent } from '../../../../segments/view-image/view-image.component';
@@ -15,7 +14,6 @@ import { MatDialog } from '@angular/material/dialog';
     RouterLink,
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NavBarAdminComponent,

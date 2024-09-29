@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
@@ -15,7 +14,6 @@ import { RouterLink } from '@angular/router';
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
   ],
@@ -50,7 +48,7 @@ export class ViewImageComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   detectedMedalName(data: any) {
     if (this.checkIsMedal(data)) {
       this.isNotAMedal = false;

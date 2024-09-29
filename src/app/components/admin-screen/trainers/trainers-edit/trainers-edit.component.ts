@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -27,7 +26,6 @@ import { EditObjetosModalComponent } from '../edit-objetos-modal/edit-objetos-mo
     RouterLink,
     NavBarAdminComponent,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,

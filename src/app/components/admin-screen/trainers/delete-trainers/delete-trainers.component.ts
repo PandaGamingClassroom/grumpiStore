@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
@@ -16,16 +15,10 @@ import { ErrorLoginModalComponentComponent } from '../../../../segments/error-lo
 @Component({
   selector: 'app-delete-trainers',
   standalone: true,
-  imports: [
-    RouterLink,
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    MatDialogModule,
-  ],
+  imports: [RouterLink, CommonModule, FormsModule, MatDialogModule],
   providers: [TrainerService],
   templateUrl: './delete-trainers.component.html',
-  styleUrl: './delete-trainers.component.scss',
+  styleUrls: ['./delete-trainers.component.scss'],
 })
 export class DeleteTrainersComponent implements OnInit {
   trainerSelected: string = '';
@@ -48,12 +41,8 @@ export class DeleteTrainersComponent implements OnInit {
     this.getDadataProfesor(this.nameProfesor);
     this.trainerSelected = this.data.name;
   }
-  /**
-   *
-   * Función para obtener los datos de un profesor.
-   *
-   * @param name Recibe el nombre del profesor.
-   */
+
+  // Función para obtener los datos de un profesor.
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -71,12 +60,7 @@ export class DeleteTrainersComponent implements OnInit {
     );
   }
 
-  /**
-   *
-   * Función para eliminar el entrenador seleccionado.
-   *
-   * @returns Solo devuelve un error.
-   */
+  // Función para eliminar el entrenador seleccionado.
   deleteTrainer() {
     console.log('Entrenador a eliminar: ', this.trainerSelected);
     const titleError = 'Algo ha salido mal';
@@ -88,6 +72,7 @@ export class DeleteTrainersComponent implements OnInit {
 
     if (!trainerToDelete) {
       this.openErrorModal(titleError, messageError);
+      return; // Añadido: Terminar la función si no se encuentra el entrenador
     }
 
     this.trainersService.eliminarRegistro(trainerToDelete.id).subscribe(
@@ -113,13 +98,7 @@ export class DeleteTrainersComponent implements OnInit {
     );
   }
 
-  /**
-   *
-   * Función para obtener la información de los entrenadores
-   * de un profesor.
-   *
-   * @param profesorId Recibe el id del profesor.
-   */
+  // Función para obtener la información de los entrenadores de un profesor.
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
@@ -135,13 +114,7 @@ export class DeleteTrainersComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  /**
-   *
-   * Función para mostrar ventana emergente con el error ocurrido.
-   *
-   * @param title Recibe el título para mostrar en la ventana de error.
-   * @param message Recibe el mensaje para mostrar en la ventana de error.
-   */
+  // Función para mostrar ventana emergente con el error ocurrido.
   openErrorModal(title: string, message: string) {
     const data = {
       title: title,

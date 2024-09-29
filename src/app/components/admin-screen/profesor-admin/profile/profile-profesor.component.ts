@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -24,7 +23,6 @@ import { EditProfesorComponent } from '../edit-profesor/edit-profesor.component'
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
@@ -73,7 +71,7 @@ export class ProfileComponent implements OnInit {
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
-  
+
   getDadataProfesor(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {

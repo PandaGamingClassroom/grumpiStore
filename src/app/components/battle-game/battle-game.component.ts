@@ -3,7 +3,6 @@ import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
@@ -14,7 +13,6 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,

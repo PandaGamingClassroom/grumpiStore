@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -13,8 +9,7 @@ import {
 } from '@angular/forms';
 import {
   MatDialog,
-  MatDialogModule,
-  MatDialogRef,
+  MatDialogModule
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../services/trainers/trainer.service';
@@ -32,7 +27,6 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
   imports: [
     RouterLink,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,

@@ -10,11 +10,7 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { url_upload_grumpis } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { TrainerService } from '../../services/trainers/trainer.service';
@@ -32,7 +28,6 @@ import { MessageModalComponent } from '../../../segments/message-modal-component
     RouterLink,
     NavBarAdminComponent,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
