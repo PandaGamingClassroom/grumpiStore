@@ -67,7 +67,7 @@ export class CreaturesAdminComponent implements OnInit {
     private http: HttpClient,
     private dialog: MatDialog,
     private trainersService: TrainerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -242,7 +242,6 @@ export class CreaturesAdminComponent implements OnInit {
     this.modalAbierta = true;
   }
 
-
   /**
    *
    * Se abre una ventana modal para mostrar al profesor
@@ -414,7 +413,6 @@ export class CreaturesAdminComponent implements OnInit {
       alert('Por favor, selecciona al menos un entrenador y una criatura.');
     }
   }
-
 
   /**
    *

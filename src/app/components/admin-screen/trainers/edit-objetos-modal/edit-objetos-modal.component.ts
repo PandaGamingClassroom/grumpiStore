@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDialogRef,
   MatDialogModule,
+  MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
