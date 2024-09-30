@@ -396,11 +396,6 @@ export class CreaturesAdminComponent implements OnInit {
    */
   assignCreaturesToTrainers(trainerIds: number[]) {
     if (trainerIds.length > 0 && this.selectedCreatureName) {
-      // Verifica si selectedCreatureName es una cadena
-      if (typeof this.selectedCreatureName !== 'string') {
-        alert('El grumpi seleccionado no es válido.');
-        return;
-      }
 
       console.log('selectedCreatureName: ', this.selectedCreatureName);
 
