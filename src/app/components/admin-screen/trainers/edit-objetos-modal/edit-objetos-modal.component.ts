@@ -276,6 +276,7 @@ export class EditObjetosModalComponent implements OnInit {
   }
 
   eliminarGrumpi(grumpi: any) {
+    const objetosAEliminar: any[] = [];
     // Confirmación antes de eliminar
     if (confirm(`¿Seguro que deseas eliminar a ${grumpi.nombre}?`)) {
       // Filtra la lista de grumpis para eliminar el seleccionado
@@ -285,10 +286,39 @@ export class EditObjetosModalComponent implements OnInit {
 
       // Aquí puedes llamar a un servicio para eliminar el grumpi en el servidor si es necesario
       console.log(`Grumpi ${grumpi.nombre} eliminado`);
-      this.eliminarObjetos()
+      for (const grumpi of this.uniqueGrumpis) {
+        if (grumpi.toDelete > 0) {
+          objetosAEliminar.push({
+            tipo: 'grumpi',
+            nombre: grumpi.nombre,
+            cantidad: grumpi.quantityToDelete,
+          });
+        }
+      }
+      if (objetosAEliminar.length > 0) {
+        console.log('Objetos a eliminar: ', objetosAEliminar);
+
+        this.trainersService
+          .updateTrainer(this.trainer_id, {
+            objetosAEliminar,
+          })
+          .subscribe(
+            (response) => {
+              console.log(
+                'Objetos eliminados y entrenador actualizado correctamente:',
+                response
+              );
+              this.close();
+            },
+            (error) => {
+              console.error('Error al eliminar objetos:', error);
+            }
+          );
+      } else {
+        console.log('No hay objetos para eliminar.');
+      }
     }
   }
-
 
   // Ajusta la función para eliminar objetos
   eliminarObjetos() {
