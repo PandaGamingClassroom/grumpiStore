@@ -280,7 +280,7 @@ export class EditObjetosModalComponent implements OnInit {
 
     if (confirm(`¿Seguro que deseas eliminar a ${grumpi.nombre}?`)) {
       this.uniqueGrumpis = this.uniqueGrumpis.filter(
-        (item) => item.nombre !== grumpi.nombre
+        (item) => item.nombre === grumpi.nombre
       );
 
       console.log('uniqueGrumpis: ', this.uniqueGrumpis);
