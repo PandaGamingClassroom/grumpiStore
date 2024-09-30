@@ -408,6 +408,7 @@ export class CreaturesAdminComponent implements OnInit {
       forkJoin(trainerObservables).subscribe(
         (trainers) => {
           const validTrainerIds: number[] = [];
+          let alreadyHasCreature = false; // Variable para detectar si algún entrenador ya tiene la criatura
 
           trainers.forEach((trainer, index) => {
             // Asegurarse de que el campo grumpis esté definido y sea un array
@@ -418,13 +419,27 @@ export class CreaturesAdminComponent implements OnInit {
             const hasCreature = trainerGrumpis.some(
               (grumpi: any) => grumpi.nombre === creature
             );
-            console.log('Tiene la criatura: ', hasCreature);
+            console.log(
+              `El entrenador ${trainer.data.name} tiene la criatura:`,
+              hasCreature
+            );
 
-            // Si el entrenador no tiene la criatura, lo agregamos a la lista
-            if (!hasCreature) {
+            // Si el entrenador ya tiene la criatura, establecer el flag
+            if (hasCreature) {
+              alreadyHasCreature = true;
+            } else {
+              // Si no la tiene, agregarlo a la lista de entrenadores válidos
               validTrainerIds.push(trainerIds[index]);
             }
           });
+
+          // Si algún entrenador ya tiene la criatura, mostrar un mensaje de error y detener el proceso
+          if (alreadyHasCreature) {
+            alert(
+              'Uno o más entrenadores ya tienen esta criatura. No se puede asignar de nuevo.'
+            );
+            return;
+          }
 
           // Asignar la criatura solo a los entrenadores que no la tengan
           if (validTrainerIds.length > 0) {
