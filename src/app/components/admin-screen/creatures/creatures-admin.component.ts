@@ -404,12 +404,14 @@ export class CreaturesAdminComponent implements OnInit {
         this.trainersService.getTrainerById(trainerId).subscribe(
           (trainer) => {
             // Asegurarse de que el campo grumpis esté definido y sea un array
-            const trainerGrumpis = trainer.grumpis || []; // Si es undefined, lo inicializamos como un array vacío
+            const trainerGrumpis = trainer.grumpis; // Si es undefined, lo inicializamos como un array vacío
+            console.log('Lista de grumpis del entrenador: ', trainerGrumpis);
 
             // Verificar si el entrenador ya tiene el Grumpi
             const hasCreature = trainerGrumpis.some(
               (grumpi: any) => grumpi.nombre === creature
             );
+            console.log('Si tiene la criatura: ', hasCreature);
 
             if (!hasCreature) {
               validTrainerIds.push(trainerId); // Añadir el entrenador a la lista si no tiene el Grumpi
