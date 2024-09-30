@@ -277,31 +277,29 @@ export class EditObjetosModalComponent implements OnInit {
 
   eliminarGrumpi(grumpi: any) {
     const objetosAEliminar: any[] = [];
-    // Confirmación antes de eliminar
+
     if (confirm(`¿Seguro que deseas eliminar a ${grumpi.nombre}?`)) {
-      // Filtra la lista de grumpis para eliminar el seleccionado
       this.uniqueGrumpis = this.uniqueGrumpis.filter(
         (item) => item.nombre !== grumpi.nombre
       );
 
-      // Aquí puedes llamar a un servicio para eliminar el grumpi en el servidor si es necesario
-      console.log(`Grumpi ${grumpi.nombre} eliminado`);
+      console.log(`Grumpi ${grumpi.nombre} eliminado de la lista local.`);
+
       for (const grumpi of this.uniqueGrumpis) {
-        if (grumpi.toDelete > 0) {
+        if (grumpi.toDelete) {
           objetosAEliminar.push({
             tipo: 'grumpi',
             nombre: grumpi.nombre,
-            cantidad: grumpi.quantityToDelete,
+            cantidad: grumpi.quantityToDelete || 1,
           });
         }
       }
+
       if (objetosAEliminar.length > 0) {
         console.log('Objetos a eliminar: ', objetosAEliminar);
 
         this.trainersService
-          .updateTrainer(this.trainer_id, {
-            objetosAEliminar,
-          })
+          .updateTrainer(this.trainer_id, { objetosAEliminar })
           .subscribe(
             (response) => {
               console.log(
