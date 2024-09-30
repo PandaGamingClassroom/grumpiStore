@@ -396,7 +396,7 @@ export class CreaturesAdminComponent implements OnInit {
    */
   assignCreaturesToTrainers(trainerIds: number[]) {
     if (trainerIds.length > 0 && this.selectedCreatureName) {
-      const creature = this.selectedCreatureName;
+      const creature = this.selectedCreatureName.trim(); // Eliminar espacios en blanco
       const validTrainerIds: number[] = [];
 
       let checkedTrainersCount = 0; // Contador para saber cuándo hemos verificado todos los entrenadores
@@ -410,7 +410,8 @@ export class CreaturesAdminComponent implements OnInit {
 
             // Verificar si el entrenador ya tiene el Grumpi
             const hasCreature = trainerGrumpis.some(
-              (grumpi: any) => grumpi.nombre === creature
+              (grumpi: any) =>
+                grumpi.nombre.trim().toLowerCase() === creature.toLowerCase() // Compara ignorando mayúsculas
             );
             console.log(
               `El entrenador ${trainer.data.name} tiene la criatura:`,
