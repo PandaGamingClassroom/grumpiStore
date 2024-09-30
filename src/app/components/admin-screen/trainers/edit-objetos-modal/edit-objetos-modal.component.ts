@@ -276,48 +276,49 @@ export class EditObjetosModalComponent implements OnInit {
   }
 
   eliminarGrumpi(grumpi: any) {
-    const objetosAEliminar: any[] = [];
-
+    // Comprobar si el usuario confirma la eliminación
     if (confirm(`¿Seguro que deseas eliminar a ${grumpi.nombre}?`)) {
-      this.uniqueGrumpis = this.uniqueGrumpis.filter(
+      // Filtrar para obtener el grumpi que se va a eliminar
+      const grumpiAEliminar = this.uniqueGrumpis.find(
         (item) => item.nombre === grumpi.nombre
       );
 
-      console.log('uniqueGrumpis: ', this.uniqueGrumpis);
+      // Verificar si el grumpi existe en la lista
+      if (grumpiAEliminar) {
+        // Eliminar el grumpi de la lista local
+        this.uniqueGrumpis = this.uniqueGrumpis.filter(
+          (item) => item.nombre !== grumpi.nombre
+        );
 
-      console.log(`Grumpi ${grumpi.nombre} eliminado de la lista local.`);
+        console.log(`Grumpi ${grumpi.nombre} eliminado de la lista local.`);
 
-      for (const grumpi of this.uniqueGrumpis) {
-        if (grumpi.toDelete) {
-          objetosAEliminar.push({
+        // Preparar el objeto a eliminar
+        const objetosAEliminar = [
+          {
             tipo: 'grumpi',
-            nombre: grumpi.nombre,
-            cantidad: grumpi.quantityToDelete || 1,
-          });
-        }
-      }
+            nombre: grumpiAEliminar.nombre, // Usar el grumpi encontrado
+            cantidad: 1, // Suponiendo que quieres eliminar una sola instancia
+          },
+        ];
 
-      if (objetosAEliminar.length > 0) {
-        console.log('Objetos a eliminar: ', objetosAEliminar);
-
-        // Actualizar el entrenador con los objetos eliminados
+        // Enviar al servicio para eliminar el grumpi del entrenador
         this.trainersService
           .updateTrainer(this.trainer_id, { objetosAEliminar })
           .subscribe(
             (response) => {
               console.log(
-                'Objetos eliminados y entrenador actualizado correctamente:',
+                'Grumpi eliminado y entrenador actualizado correctamente:',
                 response
               );
               this.close(); // Cerrar modal o realizar acción adicional
             },
             (error) => {
-              console.error('Error al eliminar objetos:', error);
+              console.error('Error al eliminar el grumpi:', error);
             }
           );
       } else {
-        console.log('No hay objetos para eliminar.');
-        this.close(); // Cerrar modal o realizar acción adicional si no hay objetos
+        console.log(`El grumpi ${grumpi.nombre} no se encontró en la lista.`);
+        this.close(); // Cerrar modal o realizar acción adicional si no se encuentra el grumpi
       }
     }
   }
