@@ -109,6 +109,7 @@ export class TrainersAdminComponent implements OnInit {
 
     moveItemInArray(this.trainers, prevIndex, event.currentIndex);
 
+    // Actualiza el nuevo orden en el backend
     this.trainersService.saveNewOrder(this.trainers).subscribe(
       () => {
         console.log('Nuevo orden guardado con éxito.');
