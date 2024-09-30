@@ -110,10 +110,9 @@ export class AddTrainersComponent implements OnInit {
    */
   guardarEntrenador() {
     let exist = false;
-    const username = this.isTrainer
-      ? null
-      : this.myForm.get('trainer_name')?.value;
+    const username = this.myForm.get('trainer_name')?.value;
 
+    // Verifica si el nombre de usuario ya existe entre los entrenadores o profesores
     this.trainers.forEach((trainer) => {
       if (trainer.name === username) {
         exist = true;
@@ -129,15 +128,15 @@ export class AddTrainersComponent implements OnInit {
       }
     });
 
-    if (exist === false) {
-      // Si el nombre de usuario no existe, procede a guardar el nuevo usuario
+    // Si no existe, procede a guardar el nuevo usuario
+    if (!exist) {
       const nuevoUsuario = this.isTrainer
         ? {
             avatar: this.myForm.get('avatar')?.value,
-            name: this.myForm.get('trainer_name')?.value,
+            name: username,
             password: this.myForm.get('trainer_pass')?.value,
             rol: this.myForm.get('trainer_rol')?.value,
-            id_profesor: this.profesor.id,
+            id_profesor: this.profesor?.id || null,
           }
         : {
             nombre: this.myForm.get('trainer_name')?.value,
@@ -145,7 +144,7 @@ export class AddTrainersComponent implements OnInit {
             usuario: this.myForm.get('usuario')?.value,
             password: this.myForm.get('trainer_pass')?.value,
             rol: this.myForm.get('trainer_rol')?.value,
-            id_profesor: this.profesor.id,
+            id_profesor: this.profesor?.id || null,
           };
 
       this.trainersService.postTrainer(nuevoUsuario).subscribe(
