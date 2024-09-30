@@ -22,7 +22,6 @@ import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admi
 import { MessageModalComponent } from '../../../segments/message-modal-component/message-modal.component';
 import { forkJoin } from 'rxjs';
 
-
 @Component({
   selector: 'app-creatures-admin',
   standalone: true,
@@ -398,21 +397,15 @@ export class CreaturesAdminComponent implements OnInit {
   assignCreaturesToTrainers(trainerIds: number[]) {
     if (trainerIds.length > 0 && this.selectedCreatureName) {
       const creature = this.selectedCreatureName;
+      const validTrainerIds: number[] = [];
 
-      // Crear un array de observables para obtener los entrenadores por ID
-      const trainerObservables = trainerIds.map((trainerId) =>
-        this.trainersService.getTrainerById(trainerId)
-      );
+      let checkedTrainersCount = 0; // Contador para saber cuándo hemos verificado todos los entrenadores
+      let alreadyHasCreature = false; // Variable para detectar si algún entrenador ya tiene la criatura
 
-      // Ejecutar todas las solicitudes a la vez y esperar a que todas terminen
-      forkJoin(trainerObservables).subscribe(
-        (trainers) => {
-          const validTrainerIds: number[] = [];
-          let alreadyHasCreature = false; // Variable para detectar si algún entrenador ya tiene la criatura
-
-          trainers.forEach((trainer, index) => {
-            // Asegurarse de que el campo grumpis esté definido y sea un array
-            const trainerGrumpis = trainer.data.grumpis || []; // Si es undefined, lo inicializamos como un array vacío
+      trainerIds.forEach((trainerId) => {
+        this.trainersService.getTrainerById(trainerId).subscribe(
+          (trainer) => {
+            const trainerGrumpis = trainer.data.grumpis || []; // Inicializamos como un array vacío si es undefined
             console.log('Lista de grumpis del entrenador: ', trainerGrumpis);
 
             // Verificar si el entrenador ya tiene el Grumpi
@@ -429,43 +422,45 @@ export class CreaturesAdminComponent implements OnInit {
               alreadyHasCreature = true;
             } else {
               // Si no la tiene, agregarlo a la lista de entrenadores válidos
-              validTrainerIds.push(trainerIds[index]);
+              validTrainerIds.push(trainerId);
             }
-          });
 
-          // Si algún entrenador ya tiene la criatura, mostrar un mensaje de error y detener el proceso
-          if (alreadyHasCreature) {
-            alert(
-              'Uno o más entrenadores ya tienen esta criatura. No se puede asignar de nuevo.'
-            );
-            return;
-          }
+            // Incrementar el contador de entrenadores verificados
+            checkedTrainersCount++;
 
-          // Asignar la criatura solo a los entrenadores que no la tengan
-          if (validTrainerIds.length > 0) {
-            this.trainersService
-              .assignCreatureToTrainers(validTrainerIds, creature)
-              .subscribe(
-                (response) => {
-                  console.log('Criatura asignada con éxito:', response);
-                  this.openModal();
-                },
-                (error) => {
-                  console.error('Error asignando la criatura:', error);
-                  alert('Error asignando la criatura');
-                }
-              );
-          } else {
-            alert(
-              'Todos los entrenadores seleccionados ya tienen esta criatura.'
-            );
+            // Verificar si todos los entrenadores han sido procesados
+            if (checkedTrainersCount === trainerIds.length) {
+              // Si algún entrenador ya tiene la criatura, mostrar un mensaje de error y detener el proceso
+              if (alreadyHasCreature) {
+                alert(
+                  'Uno o más entrenadores ya tienen esta criatura. No se puede asignar de nuevo.'
+                );
+                return;
+              }
+
+              // Asignar la criatura solo a los entrenadores que no la tengan
+              if (validTrainerIds.length > 0) {
+                this.trainersService
+                  .assignCreatureToTrainers(validTrainerIds, creature)
+                  .subscribe(
+                    (response) => {
+                      console.log('Criatura asignada con éxito:', response);
+                      this.openModal();
+                    },
+                    (error) => {
+                      console.error('Error asignando la criatura:', error);
+                      alert('Error asignando la criatura');
+                    }
+                  );
+              }
+            }
+          },
+          (error) => {
+            console.error('Error obteniendo el entrenador:', error);
+            alert('Error al verificar los entrenadores.');
           }
-        },
-        (error) => {
-          console.error('Error obteniendo los entrenadores:', error);
-          alert('Error al verificar los entrenadores.');
-        }
-      );
+        );
+      });
     } else {
       alert('Por favor, selecciona al menos un entrenador y una criatura.');
     }
