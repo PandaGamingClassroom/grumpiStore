@@ -402,7 +402,9 @@ export class CreaturesAdminComponent implements OnInit {
         return;
       }
 
-      const creature = this.selectedCreatureName.trim(); // Eliminar espacios en blanco
+      console.log('selectedCreatureName: ', this.selectedCreatureName);
+
+      const creature = this.selectedCreatureName; // Eliminar espacios en blanco
       const validTrainerIds: number[] = [];
       let checkedTrainersCount = 0; // Contador para saber cuándo hemos verificado todos los entrenadores
       let alreadyHasCreature = false; // Variable para detectar si algún entrenador ya tiene la criatura
