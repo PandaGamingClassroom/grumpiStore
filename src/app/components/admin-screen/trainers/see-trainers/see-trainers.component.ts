@@ -15,6 +15,7 @@ import {
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { VerObjetosModalComponent } from '../ver-objetos-modal/ver-objetos-modal.component';
+import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component';
 
 @Component({
   selector: 'app-see-trainers',
@@ -75,5 +76,20 @@ export class SeeTrainersComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('La vista de los objetos se ha cerrado');
     });
+  }
+
+  /**
+   *
+   * Función para abrir la ventana de edición del entrenador.
+   *
+   * @param trainer Recibe los datos del entrenador seleccionado.
+   */
+  openEditPage(trainer: any) {
+    this.dialog.open(TrainersEditComponent, {
+      width: '700px',
+      height: '600px',
+      data: trainer,
+    });
+
   }
 }
