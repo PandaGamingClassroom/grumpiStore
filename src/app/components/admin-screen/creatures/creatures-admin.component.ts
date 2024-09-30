@@ -116,9 +116,11 @@ export class CreaturesAdminComponent implements OnInit {
 
     // Obtener los valores del formulario
     const formValues = this.myForm.value;
+    const title = '¡Algo ha salido mal!';
+    const message = 'El número de la Grumpidex, ya existe.';
     this.findNumberGrumpidex(formValues.numero);
     if (this.findNumberGrumpidex(formValues.numero)) {
-      this.openErrorModal();
+      this.openErrorModal(title, message);
     }
 
     const firstAttack = this.attacks_list.find(
@@ -286,11 +288,11 @@ export class CreaturesAdminComponent implements OnInit {
    * se muestra un mensaje de error al usuario
    *
    */
-  openErrorModal() {
+  openErrorModal(title: string, message: string) {
     if (!this.modalAbierta) {
       const data = {
-        title: '¡Algo ha salido mal!',
-        message: 'El número de la Grumpidex, ya existe.',
+        title: title,
+        message: message,
       };
       const dialogRef = this.dialog.open(ErrorLoginModalComponentComponent, {
         width: '400px',
@@ -399,25 +401,23 @@ export class CreaturesAdminComponent implements OnInit {
 
       console.log('selectedCreatureName: ', this.selectedCreatureName);
 
-      const creature = this.selectedCreatureName; // Eliminar espacios en blanco
+      const creature = this.selectedCreatureName;
       const validTrainerIds: number[] = [];
-      let checkedTrainersCount = 0; // Contador para saber cuándo hemos verificado todos los entrenadores
-      let alreadyHasCreature = false; // Variable para detectar si algún entrenador ya tiene la criatura
+      let checkedTrainersCount = 0;
+      let alreadyHasCreature = false;
 
-      console.log('Grumpi seleccionado:', creature); // Verificación del grumpi seleccionado
+      console.log('Grumpi seleccionado:', creature);
 
       trainerIds.forEach((trainerId) => {
         this.trainersService.getTrainerById(trainerId).subscribe(
           (trainer) => {
-            const trainerGrumpis = trainer.data.grumpis || []; // Inicializamos como un array vacío si es undefined
+            const trainerGrumpis = trainer.data.grumpis || [];
             console.log('Lista de grumpis del entrenador: ', trainerGrumpis);
 
-            // Mostrar nombres de los grumpis en la lista para depuración
             trainerGrumpis.forEach((grumpi: any) => {
               console.log('Nombre en la lista:', grumpi.nombre);
             });
 
-            // Verificar si el entrenador ya tiene el Grumpi
             const hasCreature = trainerGrumpis.some(
               (grumpi: any) =>
                 grumpi.nombre === creature.nombre
@@ -427,28 +427,23 @@ export class CreaturesAdminComponent implements OnInit {
               hasCreature
             );
 
-            // Si el entrenador ya tiene la criatura, establecer el flag
             if (hasCreature) {
               alreadyHasCreature = true;
             } else {
-              // Si no la tiene, agregarlo a la lista de entrenadores válidos
               validTrainerIds.push(trainerId);
             }
 
-            // Incrementar el contador de entrenadores verificados
             checkedTrainersCount++;
 
-            // Verificar si todos los entrenadores han sido procesados
             if (checkedTrainersCount === trainerIds.length) {
-              // Si algún entrenador ya tiene la criatura, mostrar un mensaje de error y detener el proceso
               if (alreadyHasCreature) {
-                alert(
-                  'Uno o más entrenadores ya tienen esta criatura. No se puede asignar de nuevo.'
-                );
+                const title = '¡Cuidado!';
+                const message =
+                  'Uno o más entrenadores ya tienen esta criatura. No se puede asignar de nuevo.';
+                this.openErrorModal(title, message);
                 return;
               }
 
-              // Asignar la criatura solo a los entrenadores que no la tengan
               if (validTrainerIds.length > 0) {
                 this.trainersService
                   .assignCreatureToTrainers(validTrainerIds, creature)
@@ -458,21 +453,26 @@ export class CreaturesAdminComponent implements OnInit {
                       this.openModal();
                     },
                     (error) => {
-                      console.error('Error asignando la criatura:', error);
-                      alert('Error asignando la criatura');
+                      const title = '¡Cuidado!';
+                      const message = 'Error asignando la criatura';
+                      this.openErrorModal(title, message);
                     }
                   );
               }
             }
           },
           (error) => {
-            console.error('Error obteniendo el entrenador:', error);
-            alert('Error al verificar los entrenadores.');
+            const title = '¡Cuidado!';
+            const message = 'Error al verificar los entrenadores.';
+            this.openErrorModal(title, message);
           }
         );
       });
     } else {
-      alert('Por favor, selecciona al menos un entrenador y una criatura.');
+      const title = '¡Cuidado!';
+      const message =
+        'Por favor, selecciona al menos un entrenador y una criatura.';
+      this.openErrorModal(title, message);
     }
   }
 
