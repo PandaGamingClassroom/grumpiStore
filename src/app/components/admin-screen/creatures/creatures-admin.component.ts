@@ -393,22 +393,50 @@ export class CreaturesAdminComponent implements OnInit {
    *
    * @param trainerNames Lista de entrenadores seleciconados.
    */
-  assignCreaturesToTrainers(trainerNames: number[]) {
-    if (trainerNames.length > 0 && this.selectedCreatureName) {
+  assignCreaturesToTrainers(trainerIds: number[]) {
+    if (trainerIds.length > 0 && this.selectedCreatureName) {
       const creature = this.selectedCreatureName;
 
-      this.trainersService
-        .assignCreatureToTrainers(trainerNames, creature)
-        .subscribe(
-          (response) => {
-            console.log('Criatura asignada con éxito:', response);
-            this.openModal();
+      const validTrainerIds: number[] = [];
+
+      trainerIds.forEach((trainerId, index) => {
+        this.trainersService.getTrainerById(trainerId).subscribe(
+          (trainer) => {
+            const hasCreature = trainer.grumpis.some(
+              (grumpi: any) => grumpi.nombre === creature
+            );
+
+            if (!hasCreature) {
+              validTrainerIds.push(trainerId);
+            }
+
+            if (index === trainerIds.length - 1) {
+              if (validTrainerIds.length > 0) {
+                this.trainersService
+                  .assignCreatureToTrainers(validTrainerIds, creature)
+                  .subscribe(
+                    (response) => {
+                      console.log('Criatura asignada con éxito:', response);
+                      this.openModal();
+                    },
+                    (error) => {
+                      console.error('Error asignando la criatura:', error);
+                      alert('Error asignando la criatura');
+                    }
+                  );
+              } else {
+                alert(
+                  'Todos los entrenadores seleccionados ya tienen esta criatura.'
+                );
+              }
+            }
           },
           (error) => {
-            console.error('Error asignando la criatura:', error);
-            alert('Error asignando la criatura');
+            console.error('Error obteniendo el entrenador:', error);
+            alert('Error al verificar los entrenadores.');
           }
         );
+      });
     } else {
       alert('Por favor, selecciona al menos un entrenador y una criatura.');
     }
