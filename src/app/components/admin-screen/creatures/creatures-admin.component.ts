@@ -420,7 +420,7 @@ export class CreaturesAdminComponent implements OnInit {
             // Verificar si el entrenador ya tiene el Grumpi
             const hasCreature = trainerGrumpis.some(
               (grumpi: any) =>
-                grumpi.nombre.trim().toLowerCase() === creature.nombre.toLowerCase() // Compara ignorando mayúsculas
+                grumpi.nombre === creature.nombre
             );
             console.log(
               `El entrenador ${trainer.data.name} tiene la criatura:`,
