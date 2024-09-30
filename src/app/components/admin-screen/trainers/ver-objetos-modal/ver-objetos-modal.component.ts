@@ -3,6 +3,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
+import { TrainerService } from '../../../services/trainers/trainer.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-ver-objetos-modal',
@@ -21,7 +23,7 @@ export class VerObjetosModalComponent implements OnInit {
   /**
    * Nombre del entrenador
    */
-  trainer_name: string = '';
+  trainer_id: string = '';
 
   /**
    * Lista de medallas del entrenador
@@ -70,28 +72,30 @@ export class VerObjetosModalComponent implements OnInit {
   energiaTierra: number = 0;
   energiaVida: number = 0;
 
-  grumpiList: any[] = [];
+  trainer: any;
 
   constructor(
     public dialogRef: MatDialogRef<VerObjetosModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public objetos: any
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public objetos: any,
+    private trainersService: TrainerService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
-    console.log('Datos iniciales:', this.objetos);
-    this.trainer_name = this.objetos?.name || '';
-    this.medals_list = JSON.parse(this.objetos?.medallas) || '';
-    this.contadorObjetosCombate(this.objetos?.objetos_combate || []);
-    this.contadorObjEvolutivos(this.objetos?.objetos_evolutivos || []);
-    this.contadorRecompensas(this.objetos?.recompensas || []);
-    this.contadorEnergias(this.objetos?.energias || []);
-    this.contadorMedallas(this.objetos?.medallas || []);
-    this.contadorGrumpis(this.objetos?.grumpis || []);
-    this.grumpiList = this.objetos?.grumpis || [];
-  }
+    this.trainer = this.objetos;
+    console.log('MOCHILA DEL ENTRENADOR :', this.trainer);
 
-  disableRightClick(event: MouseEvent) {
-    event.preventDefault();
+    this.trainer_id = this.trainer?.id || '';
+    this.contadorObjetosCombate(
+      JSON.parse(this.trainer?.objetos_combate || '[]')
+    );
+    this.contadorObjEvolutivos(
+      JSON.parse(this.trainer?.objetos_evolutivos || '[]')
+    );
+    this.contadorRecompensas(JSON.parse(this.trainer?.recompensas || '[]'));
+    this.contadorEnergias(JSON.parse(this.trainer?.energias || '[]'));
+    this.contadorMedallas(JSON.parse(this.trainer?.medallas || '[]'));
+    this.contadorGrumpis(JSON.parse(this.trainer?.grumpis || '[]'));
   }
 
   /**
@@ -100,6 +104,7 @@ export class VerObjetosModalComponent implements OnInit {
    * @param combatObjects Recibe el listado de objetos de combate del entrenador seleccionado
    */
   contadorObjetosCombate(combatObjects: any) {
+    console.log('Lista de objetos de combate del entrenador: ', combatObjects);
     const objectCounts: { [key: string]: any } = {};
 
     for (let obj of combatObjects) {
@@ -112,12 +117,21 @@ export class VerObjetosModalComponent implements OnInit {
     this.uniqueCombatObjects = Object.values(objectCounts);
   }
 
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+
   /**
    * Función para contabilizar el total de objetos evolutivos que tiene en el inventario
    * el entrenador seleccionado.
    * @param evolutionObjects Recibe el listado de objetos evolutivos del entrenador seleccionado
    */
   contadorObjEvolutivos(evolutionObjects: any) {
+    console.log(
+      'Lista de objetos evolutivos del entrenador: ',
+      evolutionObjects
+    );
+
     const objectCounts: { [key: string]: any } = {};
 
     for (let obj of evolutionObjects) {
@@ -168,6 +182,8 @@ export class VerObjetosModalComponent implements OnInit {
   }
 
   contadorEnergias(energies: any) {
+    console.log('Lista de energías del entrenador: ', energies);
+
     const energyCounts: { [key: string]: any } = {};
 
     for (let energy of energies) {
@@ -215,11 +231,18 @@ export class VerObjetosModalComponent implements OnInit {
 
   // Ajusta el contador de medallas para que cree objetos de medallas
   contadorMedallas(medallas: any[]) {
+    console.log('Lista de medallas del entrenador: ', medallas);
+
     const medallaCounts: { [key: string]: any } = {};
 
     for (let medalla of medallas) {
-      if (!medallaCounts[medalla]) {
-        medallaCounts[medalla] = { url: medalla, toDelete: false };
+      if (!medallaCounts[medalla.id]) {
+        medallaCounts[medalla.id] = {
+          id: medalla.id,
+          nombre: medalla.nombre,
+          imagen: medalla.imagen,
+          toDelete: false,
+        };
       }
     }
 
@@ -232,6 +255,8 @@ export class VerObjetosModalComponent implements OnInit {
    * @param grumpis Recibe el listado de Grumpis marcados para eliminar.
    */
   contadorGrumpis(grumpis: any[]) {
+    console.log('Lista de grumpis del entrenador: ', grumpis);
+
     const grumpiCounts: { [nombre: string]: any } = {};
 
     for (let grumpi of grumpis) {
@@ -243,6 +268,110 @@ export class VerObjetosModalComponent implements OnInit {
     this.uniqueGrumpis = Object.values(grumpiCounts);
   }
 
+  // Ajusta la función para eliminar objetos
+  eliminarObjetos() {
+    const objetosAEliminar: any[] = [];
+
+    // Grumpis
+    console.log('UNIQUE_GRUMPIS', this.uniqueGrumpis);
+
+    for (const grumpi of this.uniqueGrumpis) {
+      if (grumpi.toDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'grumpi',
+          nombre: grumpi.nombre,
+          cantidad: grumpi.quantityToDelete,
+        });
+      }
+    }
+
+    // Energías
+    console.log('UNIQUE_ENERGIES', this.uniqueEnergies);
+
+    for (const energia of this.uniqueEnergies) {
+      if (energia.quantityToDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'energia',
+          nombre: energia.nombre,
+          cantidad: energia.quantityToDelete,
+        });
+      }
+    }
+
+    // Medallas
+    console.log('UNIQUE_MEDALLAS', this.uniqueMedals);
+
+    for (const medalla of this.uniqueMedals) {
+      if (medalla.toDelete) {
+        objetosAEliminar.push({
+          tipo: 'medalla',
+          nombre: medalla.nombre,
+        });
+      }
+    }
+
+    // Objetos de combate
+    console.log('UNIQUE_COMBATOBJECTS', this.uniqueCombatObjects);
+
+    for (const objeto of this.uniqueCombatObjects) {
+      if (objeto.quantityToDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'combate',
+          nombre: objeto.nombre,
+          cantidad: objeto.quantityToDelete,
+        });
+      }
+    }
+
+    // Objetos evolutivos
+    console.log('UNIQUE_EVOOBJECTS', this.uniqueEvolutionObjects);
+
+    for (const objeto of this.uniqueEvolutionObjects) {
+      if (objeto.quantityToDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'evolutivo',
+          nombre: objeto.nombre,
+          cantidad: objeto.quantityToDelete,
+        });
+      }
+    }
+
+    // Recompensas
+    console.log('UNIQUE_REWARDS', this.uniqueRewards);
+
+    for (const objeto of this.uniqueRewards) {
+      if (objeto.quantityToDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'recompensa',
+          nombre: objeto.nombre,
+          cantidad: objeto.quantityToDelete,
+        });
+      }
+    }
+
+    if (objetosAEliminar.length > 0) {
+      console.log('Objetos a eliminar: ', objetosAEliminar);
+
+      this.trainersService
+        .updateTrainer(this.trainer_id, {
+          objetosAEliminar,
+        })
+        .subscribe(
+          (response) => {
+            console.log(
+              'Objetos eliminados y entrenador actualizado correctamente:',
+              response
+            );
+            this.close();
+          },
+          (error) => {
+            console.error('Error al eliminar objetos:', error);
+          }
+        );
+    } else {
+      console.log('No hay objetos para eliminar.');
+    }
+  }
 
   /**
    * Función para cerrar la ventana emergente
