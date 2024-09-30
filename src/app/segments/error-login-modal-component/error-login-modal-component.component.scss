@@ -8,11 +8,7 @@
 }
 
 .txt {
-  color: red;
-  border-radius: 40em;
-  box-shadow: #adcfff 0 -12px 6px inset;
-  background-color: #ffffff;
-  margin-top: 2%;
+  color: red;;
 }
 
 .btn-config{
@@ -24,4 +20,13 @@
   width: 100px;
   display: flex;
   margin-left: 40%;
+}
+
+#borderText {
+  border-radius: 3em;
+  border: 2px solid #2d812d;
+}
+
+.footerBtn {
+  bottom: 0;
 }
