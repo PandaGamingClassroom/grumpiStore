@@ -397,19 +397,25 @@ export class CreaturesAdminComponent implements OnInit {
     if (trainerIds.length > 0 && this.selectedCreatureName) {
       const creature = this.selectedCreatureName;
 
+      // Lista de IDs de entrenadores que aún no tienen la criatura
       const validTrainerIds: number[] = [];
 
       trainerIds.forEach((trainerId, index) => {
         this.trainersService.getTrainerById(trainerId).subscribe(
           (trainer) => {
-            const hasCreature = trainer.grumpis.some(
+            // Asegurarse de que el campo grumpis esté definido y sea un array
+            const trainerGrumpis = trainer.grumpis || []; // Si es undefined, lo inicializamos como un array vacío
+
+            // Verificar si el entrenador ya tiene el Grumpi
+            const hasCreature = trainerGrumpis.some(
               (grumpi: any) => grumpi.nombre === creature
             );
 
             if (!hasCreature) {
-              validTrainerIds.push(trainerId);
+              validTrainerIds.push(trainerId); // Añadir el entrenador a la lista si no tiene el Grumpi
             }
 
+            // Cuando se haya procesado la última consulta, hacer la asignación
             if (index === trainerIds.length - 1) {
               if (validTrainerIds.length > 0) {
                 this.trainersService
