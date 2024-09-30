@@ -484,7 +484,7 @@ export class TrainerService {
   }
 
   saveNewOrder(trainers: any[]): Observable<any> {
-    return this.http.post(`${this.apiUrl}trainers/order`, { trainers });
+    return this.http.post(`${this.apiUrl}trainers/updateOrder`, { trainers });
   }
 
   /**
