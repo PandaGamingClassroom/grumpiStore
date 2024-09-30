@@ -264,13 +264,18 @@ export class EditObjetosModalComponent implements OnInit {
 
     const grumpiCounts: { [nombre: string]: any } = {};
 
+    // Acumular grumpis únicos
     for (let grumpi of grumpis) {
       if (!grumpiCounts[grumpi.nombre]) {
         grumpiCounts[grumpi.nombre] = { ...grumpi, toDelete: false };
       }
     }
 
+    // Obtener grumpis únicos
     this.uniqueGrumpis = Object.values(grumpiCounts);
+
+    // Ordenar los grumpis por el número de Grumpidex
+    this.uniqueGrumpis.sort((a: any, b: any) => a.n_grumpidex - b.n_grumpidex);
   }
 
   // Ajusta la función para eliminar objetos
