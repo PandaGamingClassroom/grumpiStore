@@ -49,7 +49,7 @@ export class CreaturesAdminComponent implements OnInit {
   searchTerm: string = '';
   searchAttack: string = '';
   selectedTrainerName: string | null = null;
-  selectedCreatureName: string | null = null;
+  selectedCreatureName: any | null = null;
   trainers: any[] = [];
   grumpiList: any[] = [];
   isAdminUser: boolean = false;
@@ -420,7 +420,7 @@ export class CreaturesAdminComponent implements OnInit {
             // Verificar si el entrenador ya tiene el Grumpi
             const hasCreature = trainerGrumpis.some(
               (grumpi: any) =>
-                grumpi.nombre.trim().toLowerCase() === creature.toLowerCase() // Compara ignorando mayúsculas
+                grumpi.nombre.trim().toLowerCase() === creature.nombre.toLowerCase() // Compara ignorando mayúsculas
             );
             console.log(
               `El entrenador ${trainer.data.name} tiene la criatura:`,
