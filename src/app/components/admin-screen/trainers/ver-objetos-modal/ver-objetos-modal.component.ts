@@ -266,6 +266,8 @@ export class VerObjetosModalComponent implements OnInit {
     }
 
     this.uniqueGrumpis = Object.values(grumpiCounts);
+
+    this.uniqueGrumpis.sort((a: any, b: any) => a.n_grumpidex - b.n_grumpidex);
   }
 
   // Ajusta la función para eliminar objetos
