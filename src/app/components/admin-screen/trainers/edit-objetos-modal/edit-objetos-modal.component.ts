@@ -283,6 +283,8 @@ export class EditObjetosModalComponent implements OnInit {
         (item) => item.nombre !== grumpi.nombre
       );
 
+      console.log('uniqueGrumpis: ', this.uniqueGrumpis);
+
       console.log(`Grumpi ${grumpi.nombre} eliminado de la lista local.`);
 
       for (const grumpi of this.uniqueGrumpis) {
@@ -298,6 +300,7 @@ export class EditObjetosModalComponent implements OnInit {
       if (objetosAEliminar.length > 0) {
         console.log('Objetos a eliminar: ', objetosAEliminar);
 
+        // Actualizar el entrenador con los objetos eliminados
         this.trainersService
           .updateTrainer(this.trainer_id, { objetosAEliminar })
           .subscribe(
@@ -306,7 +309,7 @@ export class EditObjetosModalComponent implements OnInit {
                 'Objetos eliminados y entrenador actualizado correctamente:',
                 response
               );
-              this.close();
+              this.close(); // Cerrar modal o realizar acción adicional
             },
             (error) => {
               console.error('Error al eliminar objetos:', error);
@@ -314,6 +317,7 @@ export class EditObjetosModalComponent implements OnInit {
           );
       } else {
         console.log('No hay objetos para eliminar.');
+        this.close(); // Cerrar modal o realizar acción adicional si no hay objetos
       }
     }
   }
