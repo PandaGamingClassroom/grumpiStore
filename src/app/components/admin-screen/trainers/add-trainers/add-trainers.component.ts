@@ -109,27 +109,26 @@ export class AddTrainersComponent implements OnInit {
    * Se comprueba si es un entrenador o un profesor.
    */
   guardarEntrenador() {
-    let exist = false;
     const username = this.myForm.get('trainer_name')?.value;
 
-    // Verifica si el nombre de usuario ya existe entre los entrenadores o profesores
-    this.trainers.forEach((trainer) => {
-      if (trainer.name === username) {
-        exist = true;
-        this.dialog.open(ConfirmModalComponentComponent, {
-          width: '400px',
-          height: '250px',
-          data: {
-            title: 'Error',
-            message:
-              'El nombre de usuario ya está en uso. Por favor, elige otro.',
-          },
-        });
-      }
-    });
+    // Verifica si el nombre de usuario ya existe entre los entrenadores
+    const exist = this.trainers.some(
+      (trainer) => trainer.name.toLowerCase() === username.toLowerCase()
+    );
 
-    // Si no existe, procede a guardar el nuevo usuario
-    if (!exist) {
+    if (exist) {
+      // Si el nombre ya existe, muestra el error y no continua
+      this.dialog.open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '250px',
+        data: {
+          title: 'Error',
+          message:
+            'El nombre de usuario ya está en uso. Por favor, elige otro.',
+        },
+      });
+    } else {
+      // Si no existe, procede a guardar el nuevo usuario
       const nuevoUsuario = this.isTrainer
         ? {
             avatar: this.myForm.get('avatar')?.value,
