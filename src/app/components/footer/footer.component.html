@@ -1,6 +1,8 @@
 <footer class="footer-content">
   <div class="container">
-    <div class="row g-0 justify-content-center justify-content-md-between align-items-center">
+    <div
+      class="row g-0 justify-content-center justify-content-md-between align-items-center"
+    >
       <div class="col-auto mb-2 me-2 text-center">
         <img
           class="img-style"
@@ -10,10 +12,14 @@
         />
       </div>
       <div class="col-auto mb-2 me-2 text-center">
-        <a href="#" class="footer-link">Términos de uso</a>
+        <a data-bs-toggle="modal" data-bs-target="#terms" class="footer-link"
+          >Términos de uso</a
+        >
       </div>
       <div class="col-auto mb-2 d-flex align-items-center text-center">
-        <p class="text-muted">&copy; 2024 Grumpi-App. Todos los derechos reservados.</p>
+        <p class="text-muted">
+          &copy; 2024 Grumpi-App. Todos los derechos reservados.
+        </p>
       </div>
       <div class="col-auto mb-2 d-flex align-items-center text-center">
         <p class="text-muted">Creado por Daniel G.D. & Pablo M.O.</p>
@@ -29,3 +35,118 @@
     </div>
   </div>
 </footer>
+
+<!-- MODAL PARA LOS TÉRMINOS DE USO DE LA APP -->
+<div
+  class="modal fade"
+  id="terms"
+  tabindex="-1"
+  aria-labelledby="termsLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="termsLabel">Términos de uso</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <strong> 1. Introducción </strong>
+        <p>
+          Bienvenido a GrumpiApp, una aplicación educativa orientada a niños de
+          primaria que les permite participar en actividades escolares y recibir
+          recompensas virtuales. GrumpiApp es propiedad de [Nombre de la
+          Empresa/Desarrollador]. Al utilizar GrumpiApp, los profesores, alumnos
+          y padres aceptan estos términos de uso.
+        </p>
+
+        <strong> 2. Aceptación de los Términos </strong>
+        <p>
+          Al registrarse y utilizar GrumpiApp, los profesores aceptan estos
+          términos en nombre de sus alumnos. Los padres o tutores legales son
+          responsables de supervisar el uso de la aplicación por parte de los
+          niños.
+        </p>
+
+        <strong> 3. Registro y Creación de Cuentas </strong>
+        <p>
+          Los profesores son responsables de registrar a sus alumnos en
+          GrumpiApp utilizando un "nombre de entrenador" que proteja la
+          identidad del alumno. No se recopilan ni muestran datos personales de
+          los niños dentro de la aplicación. Solo se permite el uso de apodos o
+          nombres de fantasía para proteger la privacidad.
+        </p>
+
+        <strong> 4. Uso de GrumpiApp </strong>
+        <p>
+          GrumpiApp está diseñada para que los alumnos vean las recompensas
+          obtenidas por sus logros académicos y participen en una tienda virtual
+          donde pueden intercambiar "Grumpidólares" por recompensas dentro del
+          juego.
+        </p>
+        <p>
+          Los "Grumpidólares" son una moneda virtual exclusiva de GrumpiApp que
+          no tiene valor fuera de la aplicación y no puede ser intercambiada por
+          dinero real. El uso de la aplicación debe ser siempre con fines
+          educativos, bajo la supervisión del profesor o de los padres.
+        </p>
+        <strong> 5. Protección de Datos </strong>
+        <p>
+          GrumpiApp no recopila datos personales identificables de los alumnos.
+          Los profesores deben garantizar que la información proporcionada, como
+          el nombre de entrenador, no revele datos personales de los alumnos.
+          Los padres o tutores tienen derecho a solicitar la eliminación de las
+          cuentas en cualquier momento.
+        </p>
+
+        <strong> 6. Moneda Virtual y Recompensas </strong>
+        <p>
+          Los alumnos ganan "Grumpidólares" al completar actividades en la
+          aplicación, los cuales pueden ser utilizados para obtener recompensas
+          dentro de la tienda virtual. Los "Grumpidólares" no son transferibles
+          ni intercambiables por dinero real. GrumpiApp se reserva el derecho de
+          modificar, añadir o eliminar recompensas en cualquier momento.
+        </p>
+
+        <strong> 7. Propiedad Intelectual </strong>
+        <p>
+          Todos los derechos sobre el contenido, diseño, y funcionalidades de
+          GrumpiApp son propiedad de [Nombre de la Empresa]. Está prohibido el
+          uso no autorizado de cualquier material de la aplicación, incluidos
+          los nombres, logotipos, y diseños.
+        </p>
+
+        <strong> 8. Limitación de Responsabilidad </strong>
+        <p>
+          GrumpiApp no se hace responsable por cualquier pérdida o daño
+          resultante del uso incorrecto de la aplicación. Los profesores y
+          padres son responsables de supervisar el uso adecuado de la aplicación
+          por parte de los niños.
+        </p>
+
+        <strong> 9. Modificaciones a los Términos </strong>
+        <p>
+          Se reserva el derecho de modificar estos Términos de Uso en cualquier
+          momento. Los cambios serán notificados a través de la aplicación, y su
+          uso continuado implicará la aceptación de los mismos.
+        </p>
+
+        <strong> 10. Contacto </strong>
+        <p>
+          Si tienes preguntas o inquietudes sobre estos términos, puedes
+          contactarnos en [correo de soporte].
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
