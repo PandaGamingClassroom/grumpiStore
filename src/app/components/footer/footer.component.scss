@@ -31,6 +31,8 @@ footer {
   .footer-content {
     justify-content: center;
     text-align: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .img-style,
@@ -44,8 +46,6 @@ footer {
   }
 
   .col-auto {
-    flex: 1 1 100%;
-    display: flex;
-    justify-content: center;
+    margin-bottom: 10px;
   }
 }
