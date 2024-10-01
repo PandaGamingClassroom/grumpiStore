@@ -6,23 +6,20 @@ import { ApplicationRef } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 
 // Función para ocultar la pantalla de carga después de un tiempo
-function hideSplashScreen() {
+function hideLoadingAndSplashScreen() {
   const splashScreen = document.getElementById('splash-screen');
-  if (splashScreen) {
+  const loadingScreen = document.getElementById('loading');
+
+  // Comprueba si ambos elementos existen
+  if (splashScreen && loadingScreen) {
     setTimeout(() => {
-      splashScreen.style.display = 'none';
-    }, 3000);
+      // Asegúrate de que loadingScreen no es null antes de acceder a su propiedad style
+      (loadingScreen as HTMLElement).style.display = 'none'; // Oculta el spinner
+      (splashScreen as HTMLElement).style.display = 'none'; // Oculta el splash screen
+    }, 3000); // 3 segundos
   }
 }
 
-function hideLoadingScreen() {
-  const loadingScreen = document.getElementById('loading');
-  if (loadingScreen) {
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-    }, 3000);
-  }
-}
 
 // Función para activar y verificar actualizaciones usando `SwUpdate`
 function checkForUpdates(swUpdate: SwUpdate) {
@@ -60,8 +57,7 @@ bootstrapApplication(AppComponent, {
   providers: [provideHttpClient(), ...appConfig.providers],
 })
   .then((appRef: ApplicationRef) => {
-    hideSplashScreen();
-    hideLoadingScreen();
+    hideLoadingAndSplashScreen();
     const swUpdate = appRef.injector.get(SwUpdate, null);
     if (swUpdate?.isEnabled) {
       checkForUpdates(swUpdate);
