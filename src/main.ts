@@ -13,9 +13,10 @@ function hideLoadingAndSplashScreen() {
   // Comprueba si ambos elementos existen
   if (splashScreen && loadingScreen) {
     setTimeout(() => {
-      // Asegúrate de que loadingScreen no es null antes de acceder a su propiedad style
-      (loadingScreen as HTMLElement).style.display = 'none'; // Oculta el spinner
-      (splashScreen as HTMLElement).style.display = 'none'; // Oculta el splash screen
+      loadingScreen.style.display = 'none'; // Oculta el spinner
+      splashScreen.style.display = 'none'; // Oculta el splash screen
+      // Opcionalmente, puedes eliminar el background
+      splashScreen.style.backgroundImage = 'none'; // Elimina la imagen de fondo
     }, 3000); // 3 segundos
   }
 }
