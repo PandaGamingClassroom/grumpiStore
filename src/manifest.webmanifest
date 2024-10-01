@@ -1,6 +1,6 @@
 {
   "name": "GrumpiStore",
-  "short_name": "Grumpi",
+  "short_name": "GrumpiApp",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
