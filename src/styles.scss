@@ -396,12 +396,12 @@ body {
   position: absolute !important; // fuerza el contenedor a ser absoluto
 }
 
-/* Estilos para la pantalla de carga */
+/* Estilo por defecto */
 #splash-screen {
   background-image: url('./assets/logos/Splash.png');
-  background-size: cover; /* Hace que la imagen cubra toda la pantalla sin deformarse */
-  background-position: center; /* Centra la imagen en la pantalla */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -415,23 +415,27 @@ body {
   left: 0;
 }
 
-#splash-screen .spinner {
-  border: 6px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 6px solid #ffffff;
-  width: 40px;
-  height: 40px;
-  animation: spin 2s linear infinite;
+/* Para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+  #splash-screen {
+    background-image: url('./assets/logos/Splash.png');
+  }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+/* Para tabletas */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  #splash-screen {
+    background-image: url('./assets/logos/Splash.png');
   }
 }
+
+/* Para pantallas de escritorio */
+@media only screen and (min-width: 1025px) {
+  #splash-screen {
+    background-image: url('./assets/logos/Splash_pc.png');
+  }
+}
+
 
 /** CONFIGURACIÓN PARA ANIMACIONES DE MENÚ PRINCIPAL */ 
 .slide-in-elliptic-top-fwd {
