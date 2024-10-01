@@ -93,8 +93,6 @@ export class EditObjetosModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.trainer = this.objetos;
-    console.log('MOCHILA DEL ENTRENADOR :', this.trainer);
-
     this.trainer_id = this.trainer?.id || '';
     this.contadorObjetosCombate(
       JSON.parse(this.trainer?.objetos_combate || '[]')
@@ -114,7 +112,6 @@ export class EditObjetosModalComponent implements OnInit {
    * @param combatObjects Recibe el listado de objetos de combate del entrenador seleccionado
    */
   contadorObjetosCombate(combatObjects: any) {
-    console.log('Lista de objetos de combate del entrenador: ', combatObjects);
     const objectCounts: { [key: string]: any } = {};
 
     for (let obj of combatObjects) {
@@ -137,11 +134,6 @@ export class EditObjetosModalComponent implements OnInit {
    * @param evolutionObjects Recibe el listado de objetos evolutivos del entrenador seleccionado
    */
   contadorObjEvolutivos(evolutionObjects: any) {
-    console.log(
-      'Lista de objetos evolutivos del entrenador: ',
-      evolutionObjects
-    );
-
     const objectCounts: { [key: string]: any } = {};
 
     for (let obj of evolutionObjects) {
@@ -241,8 +233,6 @@ export class EditObjetosModalComponent implements OnInit {
 
   // Ajusta el contador de medallas para que cree objetos de medallas
   contadorMedallas(medallas: any[]) {
-    console.log('Lista de medallas del entrenador: ', medallas);
-
     const medallaCounts: { [key: string]: any } = {};
 
     for (let medalla of medallas) {
@@ -265,8 +255,6 @@ export class EditObjetosModalComponent implements OnInit {
    * @param grumpis Recibe el listado de Grumpis marcados para eliminar.
    */
   contadorGrumpis(grumpis: any[]) {
-    console.log('Lista de grumpis del entrenador: ', grumpis);
-
     const grumpiCounts: { [nombre: string]: any } = {};
 
     for (let grumpi of grumpis) {
@@ -287,7 +275,7 @@ export class EditObjetosModalComponent implements OnInit {
         height: '250px',
         data: {
           title: 'Vas a eliminar un Grumpi',
-          message: `¿Seguro que deseas eliminar a ${grumpi.nombre}?`, // Cambié a comillas invertidas
+          message: `¿Seguro que deseas eliminar a ${grumpi.nombre}?`,
         },
       })
       .afterClosed()
@@ -315,7 +303,7 @@ export class EditObjetosModalComponent implements OnInit {
                 (response) => {
                   const data = {
                     title: '¡Correcto!',
-                    message: `Grumpi eliminado y entrenador actualizado correctamente: ${response}`,
+                    message: `Grumpi eliminado y entrenador actualizado correctamente.`,
                   };
                   this.openConfirmModal(data);
                 },
@@ -441,14 +429,14 @@ export class EditObjetosModalComponent implements OnInit {
           (response) => {
             const data = {
               title: '¡Correcto!',
-              message: `Objetos eliminados y entrenador actualizado correctamente: ${response}`,
+              message: `Objetos eliminados y entrenador actualizado correctamente.`,
             };
             this.openConfirmModal(data);
           },
           (error) => {
             const data = {
               title: '¡Cuidado!',
-              message: `Error al eliminar objetos: ${error}`,
+              message: `Error al eliminar objetos.`,
             };
             this.openErrorModal(data);
           }
