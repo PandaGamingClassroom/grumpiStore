@@ -197,7 +197,7 @@ export class MedalsAdminScreenComponent implements OnInit {
    * @param trainerNames
    */
   assignMedalToTrainer(trainerNames: string[]) {
-    const titleError = '¡Cuidado!';
+    const titleError = '¡La medalla no se ha podido asignar!';
     let messageError = '';
     if (trainerNames.length > 0 && this.selectedMedalName) {
       const medal = this.selectedMedalName;
@@ -240,7 +240,8 @@ export class MedalsAdminScreenComponent implements OnInit {
                 this.openModal();
               },
               (error) => {
-                let errorMssg = 'Error asignando la medalla:' + error;
+                let errorMssg =
+                  'Hemos tenido un problema al asignar el distintivo al entrenador.';
                 this.openErrorModal(titleError, errorMssg);
               }
             );
