@@ -15,8 +15,11 @@ function hideLoadingAndSplashScreen() {
     setTimeout(() => {
       loadingScreen.style.display = 'none'; // Oculta el spinner
       splashScreen.style.display = 'none'; // Oculta el splash screen
-      // Opcionalmente, puedes eliminar el background
-      splashScreen.style.backgroundImage = 'none'; // Elimina la imagen de fondo
+      splashScreen.style.pointerEvents = 'none'; // Desactiva los eventos de puntero
+      
+      // Opcionalmente, elimina los elementos del DOM
+      loadingScreen.remove(); // Elimina el loading
+      splashScreen.remove(); // Elimina el splash screen
     }, 3000); // 3 segundos
   }
 }
