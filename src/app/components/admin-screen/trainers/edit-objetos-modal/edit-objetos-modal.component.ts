@@ -6,9 +6,13 @@ import {
   MatDialogRef,
   MatDialogModule,
   MAT_DIALOG_DATA,
+  MatDialog,
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
+import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
+import { ErrorLoginModalComponentComponent } from '../../../../segments/error-login-modal-component/error-login-modal-component.component';
+import { title } from 'process';
 
 @Component({
   selector: 'app-ver-objetos-modal',
@@ -83,7 +87,8 @@ export class EditObjetosModalComponent implements OnInit {
     public dialogRef: MatDialogRef<EditObjetosModalComponent>,
     @Inject(MAT_DIALOG_DATA) public objetos: any,
     private trainersService: TrainerService,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -276,51 +281,85 @@ export class EditObjetosModalComponent implements OnInit {
   }
 
   eliminarGrumpi(grumpi: any) {
-    // Comprobar si el usuario confirma la eliminación
-    if (confirm(`¿Seguro que deseas eliminar a ${grumpi.nombre}?`)) {
-      // Filtrar para obtener el grumpi que se va a eliminar
-      const grumpiAEliminar = this.uniqueGrumpis.find(
-        (item) => item.nombre === grumpi.nombre
-      );
-
-      // Verificar si el grumpi existe en la lista
-      if (grumpiAEliminar) {
-        // Eliminar el grumpi de la lista local
-        this.uniqueGrumpis = this.uniqueGrumpis.filter(
-          (item) => item.nombre !== grumpi.nombre
-        );
-
-        console.log(`Grumpi ${grumpi.nombre} eliminado de la lista local.`);
-
-        // Preparar el objeto a eliminar
-        const objetosAEliminar = [
-          {
-            tipo: 'grumpi',
-            nombre: grumpiAEliminar.nombre, // Usar el grumpi encontrado
-            cantidad: 1, // Suponiendo que quieres eliminar una sola instancia
-          },
-        ];
-
-        // Enviar al servicio para eliminar el grumpi del entrenador
-        this.trainersService
-          .updateTrainer(this.trainer_id, { objetosAEliminar })
-          .subscribe(
-            (response) => {
-              console.log(
-                'Grumpi eliminado y entrenador actualizado correctamente:',
-                response
-              );
-              this.close(); // Cerrar modal o realizar acción adicional
-            },
-            (error) => {
-              console.error('Error al eliminar el grumpi:', error);
-            }
+    this.dialog
+      .open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '250px',
+        data: {
+          title: 'Vas a eliminar un Grumpi',
+          message: `¿Seguro que deseas eliminar a ${grumpi.nombre}?`, // Cambié a comillas invertidas
+        },
+      })
+      .afterClosed()
+      .subscribe((confirmado) => {
+        if (confirmado) {
+          const grumpiAEliminar = this.uniqueGrumpis.find(
+            (item) => item.nombre === grumpi.nombre
           );
-      } else {
-        console.log(`El grumpi ${grumpi.nombre} no se encontró en la lista.`);
-        this.close(); // Cerrar modal o realizar acción adicional si no se encuentra el grumpi
-      }
-    }
+
+          if (grumpiAEliminar) {
+            this.uniqueGrumpis = this.uniqueGrumpis.filter(
+              (item) => item.nombre !== grumpi.nombre
+            );
+            const objetosAEliminar = [
+              {
+                tipo: 'grumpi',
+                nombre: grumpiAEliminar.nombre,
+                cantidad: 1,
+              },
+            ];
+
+            this.trainersService
+              .updateTrainer(this.trainer_id, { objetosAEliminar })
+              .subscribe(
+                (response) => {
+                  const data = {
+                    title: '¡Correcto!',
+                    message: `Grumpi eliminado y entrenador actualizado correctamente: ${response}`,
+                  };
+                  this.openConfirmModal(data);
+                },
+                (error) => {
+                  console.error('Error al eliminar el grumpi:', error);
+                }
+              );
+          } else {
+            console.log(
+              `El grumpi ${grumpi.nombre} no se encontró en la lista.`
+            );
+          }
+        }
+      });
+  }
+
+  /**
+   * Función para abrir ventana modal de confirmación.
+   * @param data recibe tanto el título como el mensaje.
+   */
+  openConfirmModal(data: any) {
+    this.dialog
+      .open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '250px',
+        data: data,
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.dialogRef.close();
+      });
+  }
+
+  /**
+   * Función para abrir ventana modal de mensaje de error.
+   * @param data Recibe tanto el título como el mensaje a mostrar.
+   */
+  openErrorModal(data: any) {
+    const dialogRef = this.dialog.open(ErrorLoginModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      data: data,
+    });
+    dialogRef.afterClosed().subscribe(() => {});
   }
 
   // Ajusta la función para eliminar objetos
@@ -328,8 +367,6 @@ export class EditObjetosModalComponent implements OnInit {
     const objetosAEliminar: any[] = [];
 
     // Grumpis
-    console.log('UNIQUE_GRUMPIS', this.uniqueGrumpis);
-
     for (const grumpi of this.uniqueGrumpis) {
       if (grumpi.toDelete > 0) {
         objetosAEliminar.push({
@@ -341,8 +378,6 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Energías
-    console.log('UNIQUE_ENERGIES', this.uniqueEnergies);
-
     for (const energia of this.uniqueEnergies) {
       if (energia.quantityToDelete > 0) {
         objetosAEliminar.push({
@@ -354,8 +389,6 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Medallas
-    console.log('UNIQUE_MEDALLAS', this.uniqueMedals);
-
     for (const medalla of this.uniqueMedals) {
       if (medalla.toDelete) {
         objetosAEliminar.push({
@@ -366,8 +399,6 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Objetos de combate
-    console.log('UNIQUE_COMBATOBJECTS', this.uniqueCombatObjects);
-
     for (const objeto of this.uniqueCombatObjects) {
       if (objeto.quantityToDelete > 0) {
         objetosAEliminar.push({
@@ -379,8 +410,6 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Objetos evolutivos
-    console.log('UNIQUE_EVOOBJECTS', this.uniqueEvolutionObjects);
-
     for (const objeto of this.uniqueEvolutionObjects) {
       if (objeto.quantityToDelete > 0) {
         objetosAEliminar.push({
@@ -392,8 +421,6 @@ export class EditObjetosModalComponent implements OnInit {
     }
 
     // Recompensas
-    console.log('UNIQUE_REWARDS', this.uniqueRewards);
-
     for (const objeto of this.uniqueRewards) {
       if (objeto.quantityToDelete > 0) {
         objetosAEliminar.push({
@@ -406,25 +433,32 @@ export class EditObjetosModalComponent implements OnInit {
 
     if (objetosAEliminar.length > 0) {
       console.log('Objetos a eliminar: ', objetosAEliminar);
-
       this.trainersService
         .updateTrainer(this.trainer_id, {
           objetosAEliminar,
         })
         .subscribe(
           (response) => {
-            console.log(
-              'Objetos eliminados y entrenador actualizado correctamente:',
-              response
-            );
-            this.close();
+            const data = {
+              title: '¡Correcto!',
+              message: `Objetos eliminados y entrenador actualizado correctamente: ${response}`,
+            };
+            this.openConfirmModal(data);
           },
           (error) => {
-            console.error('Error al eliminar objetos:', error);
+            const data = {
+              title: '¡Cuidado!',
+              message: `Error al eliminar objetos: ${error}`,
+            };
+            this.openErrorModal(data);
           }
         );
     } else {
-      console.log('No hay objetos para eliminar.');
+      const data = {
+        title: '¡Cuidado!',
+        message: 'No hay objetos para eliminar.',
+      };
+      this.openErrorModal(data);
     }
   }
 
