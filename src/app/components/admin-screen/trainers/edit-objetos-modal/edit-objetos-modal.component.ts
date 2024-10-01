@@ -292,43 +292,40 @@ export class EditObjetosModalComponent implements OnInit {
       })
       .afterClosed()
       .subscribe((confirmado) => {
-        if (confirmado) {
-          const grumpiAEliminar = this.uniqueGrumpis.find(
-            (item) => item.nombre === grumpi.nombre
+        const grumpiAEliminar = this.uniqueGrumpis.find(
+          (item) => item.nombre === grumpi.nombre
+        );
+
+        if (grumpiAEliminar) {
+          this.uniqueGrumpis = this.uniqueGrumpis.filter(
+            (item) => item.nombre !== grumpi.nombre
           );
+          const objetosAEliminar = [
+            {
+              tipo: 'grumpi',
+              nombre: grumpiAEliminar.nombre,
+              cantidad: 1,
+            },
+          ];
 
-          if (grumpiAEliminar) {
-            this.uniqueGrumpis = this.uniqueGrumpis.filter(
-              (item) => item.nombre !== grumpi.nombre
-            );
-            const objetosAEliminar = [
-              {
-                tipo: 'grumpi',
-                nombre: grumpiAEliminar.nombre,
-                cantidad: 1,
+          this.trainersService
+            .updateTrainer(this.trainer_id, { objetosAEliminar })
+            .subscribe(
+              (response) => {
+                const data = {
+                  title: '¡Correcto!',
+                  message: `Grumpi eliminado y entrenador actualizado correctamente: ${response}`,
+                };
+                this.openConfirmModal(data);
               },
-            ];
-
-            this.trainersService
-              .updateTrainer(this.trainer_id, { objetosAEliminar })
-              .subscribe(
-                (response) => {
-                  const data = {
-                    title: '¡Correcto!',
-                    message: `Grumpi eliminado y entrenador actualizado correctamente: ${response}`,
-                  };
-                  this.openConfirmModal(data);
-                },
-                (error) => {
-                  console.error('Error al eliminar el grumpi:', error);
-                }
-              );
-          } else {
-            console.log(
-              `El grumpi ${grumpi.nombre} no se encontró en la lista.`
+              (error) => {
+                console.error('Error al eliminar el grumpi:', error);
+              }
             );
-          }
+        } else {
+          console.log(`El grumpi ${grumpi.nombre} no se encontró en la lista.`);
         }
+        this.close();
       });
   }
 
