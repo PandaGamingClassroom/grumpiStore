@@ -17,6 +17,7 @@ function hideSplashScreen() {
 
 // Función para activar y verificar actualizaciones usando `SwUpdate`
 function checkForUpdates(swUpdate: SwUpdate) {
+  // Monitorizar eventos de actualizaciones de versiones
   swUpdate.versionUpdates.subscribe((event: VersionEvent) => {
     if (event.type === 'VERSION_READY') {
       if (confirm('Nueva versión disponible. ¿Actualizar ahora?')) {
@@ -24,16 +25,34 @@ function checkForUpdates(swUpdate: SwUpdate) {
       }
     }
   });
+
+  // Verificar manualmente si hay una actualización disponible
+  swUpdate.checkForUpdate().then(hasUpdate => {
+    if (hasUpdate) {
+      console.log('Nueva versión encontrada');
+    } else {
+      console.log('No hay nuevas actualizaciones disponibles');
+    }
+  }).catch(err => console.error('Error verificando actualizaciones:', err));
 }
 
-// Bootstrap de la aplicación Angular
+// Función para comprobar actualizaciones manualmente, que puedes conectar a un botón o similar
+function checkForManualUpdates(swUpdate: SwUpdate) {
+  swUpdate.checkForUpdate().then(hasUpdate => {
+    if (hasUpdate && confirm('Nueva versión disponible. ¿Actualizar ahora?')) {
+      window.location.reload();
+    } else {
+      console.log('No se encontraron nuevas actualizaciones');
+    }
+  }).catch(err => console.error('Error al buscar actualizaciones manualmente:', err));
+}
+
 bootstrapApplication(AppComponent, {
   providers: [provideHttpClient(), ...appConfig.providers],
 })
   .then((appRef: ApplicationRef) => {
     hideSplashScreen();
 
-    // Comprobar actualizaciones si hay soporte para service workers
     const swUpdate = appRef.injector.get(SwUpdate, null);
     if (swUpdate?.isEnabled) {
       checkForUpdates(swUpdate);
