@@ -14,6 +14,14 @@ export class ConfirmModalComponentComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
+  onConfirm(): void {
+    this.dialogRef.close(true); // Cerrar el modal y devolver true
+  }
+
+  onCancel(): void {
+    this.dialogRef.close(false); // Cerrar el modal y devolver false
+  }
+
   closeDialog() {
     this.dialogRef.close();
   }
