@@ -15,6 +15,15 @@ function hideSplashScreen() {
   }
 }
 
+function hideLoadingScreen() {
+  const loadingScreen = document.getElementById('loading');
+  if (loadingScreen) {
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+    }, 3000);
+  }
+}
+
 // Función para activar y verificar actualizaciones usando `SwUpdate`
 function checkForUpdates(swUpdate: SwUpdate) {
   // Monitorizar eventos de actualizaciones de versiones
@@ -52,7 +61,7 @@ bootstrapApplication(AppComponent, {
 })
   .then((appRef: ApplicationRef) => {
     hideSplashScreen();
-
+    hideLoadingScreen();
     const swUpdate = appRef.injector.get(SwUpdate, null);
     if (swUpdate?.isEnabled) {
       checkForUpdates(swUpdate);
