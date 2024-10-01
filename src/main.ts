@@ -13,14 +13,13 @@ function hideLoadingAndSplashScreen() {
   // Comprueba si ambos elementos existen
   if (splashScreen && loadingScreen) {
     setTimeout(() => {
-      loadingScreen.style.display = 'none'; // Oculta el spinner
-      splashScreen.style.display = 'none'; // Oculta el splash screen
-      splashScreen.style.pointerEvents = 'none'; // Desactiva los eventos de puntero
+      loadingScreen.style.display = 'none';
+      splashScreen.style.display = 'none'; 
+      splashScreen.style.pointerEvents = 'none';
       
-      // Opcionalmente, elimina los elementos del DOM
-      loadingScreen.remove(); // Elimina el loading
-      splashScreen.remove(); // Elimina el splash screen
-    }, 3000); // 3 segundos
+      loadingScreen.remove(); 
+      splashScreen.remove();
+    }, 3000);
   }
 }
 
