@@ -2,8 +2,8 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
-import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
-import { inject } from '@angular/core';
+import { ApplicationRef } from '@angular/core';
+import { SwUpdate, VersionEvent } from '@angular/service-worker';
 
 // Función para ocultar la pantalla de carga después de un tiempo
 function hideSplashScreen() {
@@ -11,13 +11,13 @@ function hideSplashScreen() {
   if (splashScreen) {
     setTimeout(() => {
       splashScreen.style.display = 'none';
-    }, 5000); // 2000 ms (2 segundos)
+    }, 3000);
   }
 }
 
-// Función para activar y verificar actualizaciones usando `versionUpdates`
+// Función para activar y verificar actualizaciones usando `SwUpdate`
 function checkForUpdates(swUpdate: SwUpdate) {
-  swUpdate.versionUpdates.subscribe((event) => {
+  swUpdate.versionUpdates.subscribe((event: VersionEvent) => {
     if (event.type === 'VERSION_READY') {
       if (confirm('Nueva versión disponible. ¿Actualizar ahora?')) {
         window.location.reload();
@@ -30,13 +30,13 @@ function checkForUpdates(swUpdate: SwUpdate) {
 bootstrapApplication(AppComponent, {
   providers: [provideHttpClient(), ...appConfig.providers],
 })
-  .then(() => {
+  .then((appRef: ApplicationRef) => {
     hideSplashScreen();
 
     // Comprobar actualizaciones si hay soporte para service workers
-    const swUpdate = inject(SwUpdate);
-    if (swUpdate.isEnabled) {
+    const swUpdate = appRef.injector.get(SwUpdate, null);
+    if (swUpdate?.isEnabled) {
       checkForUpdates(swUpdate);
     }
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error('Error al inicializar la aplicación:', err));
