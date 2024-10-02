@@ -487,6 +487,10 @@ export class TrainerService {
     return this.http.post(`${this.apiUrl}trainers/updateOrder`, { trainers });
   }
 
+  saveNewOrderProfesor(profesors: any[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}profesors/updateOrder`, { profesors });
+  }
+
   /**
    * Obtiene la lista de avatares.
    * @returns Devuelve una lista de avatares

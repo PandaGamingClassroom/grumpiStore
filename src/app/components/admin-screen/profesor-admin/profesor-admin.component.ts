@@ -202,8 +202,8 @@ export class ProfesorAdmin implements OnInit {
       return;
     }
 
-    const prevIndex = this.trainers.findIndex(
-      (trainer) => trainer.id === movedItem.id
+    const prevIndex = this.profesors.findIndex(
+      (profesor) => profesor.id === movedItem.id
     );
 
     if (prevIndex === -1) {
@@ -211,10 +211,10 @@ export class ProfesorAdmin implements OnInit {
       return;
     }
 
-    moveItemInArray(this.trainers, prevIndex, event.currentIndex);
+    moveItemInArray(this.profesors, prevIndex, event.currentIndex);
 
     // Actualiza el nuevo orden en el backend
-    this.trainersService.saveNewOrder(this.trainers).subscribe(
+    this.trainersService.saveNewOrderProfesor(this.profesors).subscribe(
       () => {
         console.log('Nuevo orden guardado con éxito.');
       },
