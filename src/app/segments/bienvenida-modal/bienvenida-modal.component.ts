@@ -11,7 +11,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class BienvenidaModalComponent implements OnInit {
 
   username: any;
-
+  avatar = localStorage.getItem('selectedAvatar');
+  
   constructor(
     public dialogRef: MatDialogRef<BienvenidaModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
