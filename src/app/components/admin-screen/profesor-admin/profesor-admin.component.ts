@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +25,7 @@ import { DeleteProfessorsComponent } from './delete-professors/delete-professors
     NavBarAdminComponent,
     CommonModule,
     FormsModule,
+    DragDropModule,
     MatDialogModule,
     FooterComponent,
   ],
@@ -159,6 +165,7 @@ export class ProfesorAdmin implements OnInit {
       if (result) {
         console.log('Nuevo profesor:', result);
         this.getEntrenadores(this.profesor.id);
+        this.getAllProfesors();
       }
     });
   }
@@ -181,5 +188,39 @@ export class ProfesorAdmin implements OnInit {
         this.getEntrenadores(this.profesor.id);
       }
     });
+  }
+
+  updateList() {
+    this.getAllProfesors();
+  }
+
+  onProfessorReordered(event: CdkDragDrop<any[]>): void {
+    const movedItem = event.item.data;
+
+    if (!movedItem) {
+      console.error('Error: El elemento movido no está definido.');
+      return;
+    }
+
+    const prevIndex = this.trainers.findIndex(
+      (trainer) => trainer.id === movedItem.id
+    );
+
+    if (prevIndex === -1) {
+      console.error('Error: No se encontró el elemento movido en la lista.');
+      return;
+    }
+
+    moveItemInArray(this.trainers, prevIndex, event.currentIndex);
+
+    // Actualiza el nuevo orden en el backend
+    this.trainersService.saveNewOrder(this.trainers).subscribe(
+      () => {
+        console.log('Nuevo orden guardado con éxito.');
+      },
+      (error) => {
+        console.error('Error al guardar el nuevo orden:', error);
+      }
+    );
   }
 }
