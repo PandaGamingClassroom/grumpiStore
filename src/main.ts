@@ -14,12 +14,12 @@ function hideLoadingAndSplashScreen() {
   if (splashScreen && loadingScreen) {
     setTimeout(() => {
       loadingScreen.style.display = 'none';
-      splashScreen.style.display = 'none'; 
+      splashScreen.style.display = 'none';
       splashScreen.style.pointerEvents = 'none';
-      
-      loadingScreen.remove(); 
+
+      loadingScreen.remove();
       splashScreen.remove();
-    }, 3000);
+    }, 2000);
   }
 }
 
