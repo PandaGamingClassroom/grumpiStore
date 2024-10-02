@@ -3,6 +3,8 @@ import { FooterComponent } from '../footer/footer.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { RouterLink } from '@angular/router';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
+import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-about-the-app',
@@ -11,13 +13,10 @@ import { SwUpdate, VersionEvent } from '@angular/service-worker';
   templateUrl: './about-the-app.component.html',
   styleUrls: ['./about-the-app.component.scss'],
 })
-export class AboutTheAppComponent implements OnInit{
+export class AboutTheAppComponent implements OnInit {
+  constructor(private swUpdate: SwUpdate, private dialog: MatDialog) {}
 
-  constructor(private swUpdate: SwUpdate) {}
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
@@ -43,10 +42,28 @@ export class AboutTheAppComponent implements OnInit{
         }
       }
     });
-    this.swUpdate.checkForUpdate().then(hasUpdate => {
-      if (!hasUpdate) {
-        console.log('No se encontraron nuevas actualizaciones.');
-      }
-    }).catch(err => console.error('Error al buscar actualizaciones manualmente:', err));
+    this.swUpdate
+      .checkForUpdate()
+      .then((hasUpdate) => {
+        if (!hasUpdate) {
+          this.openModal();
+        }
+      })
+      .catch((err) =>
+        console.error('Error al buscar actualizaciones manualmente:', err)
+      );
+  }
+
+  openModal() {
+    const data = {
+      title: '¡Actualizando GrumpiApp!',
+      message: 'No se encontraron nuevas actualizaciones.',
+    };
+
+    this.dialog.open(ConfirmModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      data: data,
+    });
   }
 }
