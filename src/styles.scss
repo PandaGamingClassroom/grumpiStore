@@ -398,7 +398,7 @@ body {
 
 /* Estilo por defecto */
 #splash-screen {
-  background-image: url('./assets/logos/Splash.png');
+  background-image: url("./assets/logos/Splash.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -418,64 +418,74 @@ body {
 /* Para dispositivos móviles */
 @media only screen and (max-width: 600px) {
   #splash-screen {
-    background-image: url('./assets/logos/Splash.png');
+    background-image: url("./assets/logos/Splash.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
 /* Para tabletas */
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
   #splash-screen {
-    background-image: url('./assets/logos/Splash.png');
+    background-image: url("./assets/logos/Splash.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
 /* Para pantallas de escritorio */
 @media only screen and (min-width: 1025px) {
   #splash-screen {
-    background-image: url('./assets/logos/Splash_pc.png');
+    background-image: url("./assets/logos/Splash_pc.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
-
-/** CONFIGURACIÓN PARA ANIMACIONES DE MENÚ PRINCIPAL */ 
+/** CONFIGURACIÓN PARA ANIMACIONES DE MENÚ PRINCIPAL */
 .slide-in-elliptic-top-fwd {
-	-webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-in-elliptic-top-fwd 0.7s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
 }
 /**
  * ----------------------------------------
  * animation slide-in-elliptic-top-fwd
  * ----------------------------------------
  */
- @-webkit-keyframes slide-in-elliptic-top-fwd {
+@-webkit-keyframes slide-in-elliptic-top-fwd {
   0% {
     -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    transform: translateY(-600px) rotateX(-30deg) scale(0);
     -webkit-transform-origin: 50% 100%;
-            transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
     opacity: 0;
   }
   100% {
     -webkit-transform: translateY(0) rotateX(0) scale(1);
-            transform: translateY(0) rotateX(0) scale(1);
+    transform: translateY(0) rotateX(0) scale(1);
     -webkit-transform-origin: 50% 1400px;
-            transform-origin: 50% 1400px;
+    transform-origin: 50% 1400px;
     opacity: 1;
   }
 }
 @keyframes slide-in-elliptic-top-fwd {
   0% {
     -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    transform: translateY(-600px) rotateX(-30deg) scale(0);
     -webkit-transform-origin: 50% 100%;
-            transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
     opacity: 0;
   }
   100% {
     -webkit-transform: translateY(0) rotateX(0) scale(1);
-            transform: translateY(0) rotateX(0) scale(1);
+    transform: translateY(0) rotateX(0) scale(1);
     -webkit-transform-origin: 50% 1400px;
-            transform-origin: 50% 1400px;
+    transform-origin: 50% 1400px;
     opacity: 1;
   }
 }
