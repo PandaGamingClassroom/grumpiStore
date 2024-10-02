@@ -81,6 +81,9 @@ export class DeleteTrainersComponent implements OnInit {
           title: '¡Correcto!',
           message: `El entrenador se ha eliminado correctamente.`,
         };
+        this.trainers = this.trainers.filter(
+          (trainer) => trainer.id !== trainerToDelete.id
+        );  // Aquí se actualiza la lista local
         this.dialog
           .open(ConfirmModalComponentComponent, {
             width: '400px',
@@ -97,6 +100,7 @@ export class DeleteTrainersComponent implements OnInit {
       }
     );
   }
+  
   
 
   // Función para obtener la información de los entrenadores de un profesor.
