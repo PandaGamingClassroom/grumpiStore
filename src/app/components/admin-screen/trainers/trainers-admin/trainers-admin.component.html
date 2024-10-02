@@ -27,9 +27,13 @@
       <div class="col d-flex align-items-center">
         <h2>Añadir nuevo entrenador</h2>
       </div>
-      <div class="col d-flex align-items-center">
-        <h4>Actualizar lista</h4>
-        <button type="button" class="btn btn-success me-1" (click)="updateList()">
+
+      <div class="col-2">
+        <button
+          type="button"
+          class="btn btn-success me-1"
+          (click)="updateList()"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -47,6 +51,11 @@
             />
           </svg>
         </button>
+      </div>
+      <div class="col d-flex align-items-center">
+        <h4>Actualizar lista</h4>
+      </div>
+      <div class="col-2">
         <button
           type="button"
           data-bs-toggle="modal"
