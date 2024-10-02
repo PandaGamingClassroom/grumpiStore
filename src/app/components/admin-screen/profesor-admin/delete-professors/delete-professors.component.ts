@@ -43,7 +43,7 @@ export class DeleteProfessorsComponent implements OnInit {
     this.username = localStorage.getItem('username');
     this.nameProfesor = localStorage.getItem('nameUser');
     this.getDataProfesor(this.nameProfesor); // Corregido
-    this.professorName = this.data.nombre;
+    this.professorName = this.data.id;
   }
 
   getDataProfesor(name: string) {
