@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { RouterLink } from '@angular/router';
@@ -11,9 +11,13 @@ import { SwUpdate, VersionEvent } from '@angular/service-worker';
   templateUrl: './about-the-app.component.html',
   styleUrls: ['./about-the-app.component.scss'],
 })
-export class AboutTheAppComponent {
-  
+export class AboutTheAppComponent implements OnInit{
+
   constructor(private swUpdate: SwUpdate) {}
+
+  ngOnInit(): void {
+
+  }
 
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
@@ -35,7 +39,7 @@ export class AboutTheAppComponent {
     this.swUpdate.versionUpdates.subscribe((event: VersionEvent) => {
       if (event.type === 'VERSION_READY') {
         if (confirm('Nueva versión disponible. ¿Actualizar ahora?')) {
-          window.location.reload(); 
+          window.location.reload();
         }
       }
     });
