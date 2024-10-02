@@ -28,7 +28,7 @@
         <h2>Añadir nuevo entrenador</h2>
       </div>
       <div class="col d-flex align-items-center">
-        <h2>Actualizar lista entrenadores</h2>
+        <h4>Actualizar lista</h4>
         <button type="button" class="btn btn-success" (click)="updateList()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +47,7 @@
             />
           </svg>
         </button>
+        <button type="button"><i class="bi bi-info-circle"></i></button>
       </div>
     </div>
   </div>
@@ -101,7 +102,6 @@
           <hr />
         </li>
       </ul>
-
       <p *ngIf="trainers.length === 0">No hay entrenadores disponibles.</p>
     </div>
   </div>
