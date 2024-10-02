@@ -214,7 +214,7 @@ export class ProfesorAdmin implements OnInit {
     moveItemInArray(this.profesors, prevIndex, event.currentIndex);
 
     // Actualiza el nuevo orden en el backend
-    this.trainersService.saveNewOrderProfesor(this.profesors).subscribe(
+    this.trainersService.saveNewOrder(this.profesors).subscribe(
       () => {
         console.log('Nuevo orden guardado con éxito.');
       },
