@@ -29,9 +29,9 @@ export class HelpComponentComponent implements OnInit {
     } else if (selectedObject === 'ConseguirEnergias') {
       urlImage = '../../../assets/carteleria/comoConseguirEnergia.png';
       titleImage = 'Como conseguir energías';
-    } else if (selectedObject === 'Recompensas') {
+    } else if (selectedObject === 'Recompnensas') {
       urlImage = '../../../assets/carteleria/recompensa.png';
-      titleImage = 'Recompensas';
+      titleImage = 'Recompnensas';
     } else if (selectedObject === 'Grumpimonedas') {
       urlImage = '../../../assets/carteleria/grumpimonedasMusica.pngg';
       titleImage = 'Grumpimonedas Música';
