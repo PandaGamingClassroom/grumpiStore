@@ -163,9 +163,12 @@ export class TrainersAdminComponent implements OnInit {
       height: '300px',
       data: trainer,
     });
-
+  
     dialogRef.afterClosed().subscribe((result) => {
-      this.getEntrenadores(this.profesor.id);
+      if (result) {
+        this.getEntrenadores(this.profesor.id);
+      }
     });
   }
+  
 }

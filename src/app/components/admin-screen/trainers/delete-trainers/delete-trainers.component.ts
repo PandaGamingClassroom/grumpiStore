@@ -89,9 +89,7 @@ export class DeleteTrainersComponent implements OnInit {
           })
           .afterClosed()
           .subscribe(() => {
-            // Refrescar la lista de entrenadores
-            this.getEntrenadores(this.profesor.id);
-            this.dialogRef.close(this.trainers);
+            this.dialogRef.close(true);
           });
       },
       (error) => {
