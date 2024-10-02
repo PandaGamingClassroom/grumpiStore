@@ -21,7 +21,7 @@
         <select formControlName="trainer_rol" class="form-control" (change)="selectedTrainerOrProfesor()">
           <option value="">Selecciona un rol de usuario</option>
           <option value="entrenador">Entrenador</option>
-          <option value="profesor">Profesor</option>
+          <option value="profesor" *ngIf="adminUser ==='administrador'">Profesor</option>
         </select>
         <div *ngIf="myForm.get('trainer_rol')?.touched && myForm.get('trainer_rol')?.invalid" class="text-danger">
           Selecciona un rol de usuario.

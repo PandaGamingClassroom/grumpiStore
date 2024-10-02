@@ -32,7 +32,7 @@ export class AddTrainersComponent implements OnInit {
   myForm: FormGroup;
   selectedRol: string | null = null;
   isTrainer: boolean = true;
-
+  adminUser: string | null = null;
   constructor(
     private formBuilder: FormBuilder,
     private trainersService: TrainerService,
@@ -50,6 +50,7 @@ export class AddTrainersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.adminUser = localStorage.getItem('isAdminUser');
     this.username = localStorage.getItem('username');
     this.nameProfesor = localStorage.getItem('nameUser');
     this.getDataProfesor(this.nameProfesor);
