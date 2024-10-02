@@ -206,6 +206,7 @@ ul {
 }
 
 .scrollable-div {
+  overflow-y: auto;
   max-height: calc(100vh - 300px);
 }
 
@@ -217,7 +218,6 @@ ul {
 
 .modal-body {
   flex-grow: 1;
-  overflow-y: auto;
 }
 
 .modal-footer {
