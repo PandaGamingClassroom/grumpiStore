@@ -19,6 +19,10 @@
   max-width: 200px;
 }
 
+.scrollable-div {
+  overflow-y: auto;
+}
+
 /* Para pantallas pequeñas, reorganizamos el diseño para ser más vertical */
 @media (max-width: 768px) {
   .scrollable-div {
