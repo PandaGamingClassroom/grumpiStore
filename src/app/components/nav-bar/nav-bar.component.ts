@@ -10,8 +10,8 @@ import { AvatarService } from '../services/avatar/avatar.service';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent implements OnInit {
-
   avatarSelect = '';
+  avatar = localStorage.getItem('selectedAvatar');
   constructor(private avatarService: AvatarService) {}
 
   ngOnInit(): void {
