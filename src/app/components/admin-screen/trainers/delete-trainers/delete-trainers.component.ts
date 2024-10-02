@@ -65,16 +65,16 @@ export class DeleteTrainersComponent implements OnInit {
     console.log('Entrenador a eliminar: ', this.trainerSelected);
     const titleError = 'Algo ha salido mal';
     const messageError = 'No se encontró el entrenador a eliminar';
-
+  
     const trainerToDelete = this.trainers.find(
       (trainer) => trainer.name === this.trainerSelected
     );
-
+  
     if (!trainerToDelete) {
       this.openErrorModal(titleError, messageError);
       return;
     }
-
+  
     this.trainersService.eliminarRegistro(trainerToDelete.id).subscribe(
       (response) => {
         const data = {
@@ -89,6 +89,8 @@ export class DeleteTrainersComponent implements OnInit {
           })
           .afterClosed()
           .subscribe(() => {
+            // Refrescar la lista de entrenadores
+            this.getEntrenadores(this.profesor.id);
             this.dialogRef.close(this.trainers);
           });
       },
@@ -97,6 +99,7 @@ export class DeleteTrainersComponent implements OnInit {
       }
     );
   }
+  
 
   // Función para obtener la información de los entrenadores de un profesor.
   getEntrenadores(profesorId: number) {
