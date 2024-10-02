@@ -78,13 +78,9 @@ export class TrainersEditComponent implements OnInit {
       medalsToRemove: this.selectedMedals,
     };
 
-    console.log('Datos del entrenador a modificar: ', updatedData);
-
     this.trainersService
       .updateTrainer(this.data.id, updatedData)
       .subscribe((response) => {
-        console.log('Trainer updated', response);
-        this.close();
         this.dialog.open(ConfirmModalComponentComponent, {
           width: '400px',
           height: '300px',
@@ -93,6 +89,7 @@ export class TrainersEditComponent implements OnInit {
             message: 'El entrenador se ha editado correctamente.',
           },
         });
+        this.close();
       });
   }
 
