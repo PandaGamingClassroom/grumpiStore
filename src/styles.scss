@@ -439,9 +439,13 @@ body {
 @media only screen and (min-width: 1025px) {
   #splash-screen {
     background-image: url("./assets/logos/Splash_pc.png");
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
   }
 }
 
