@@ -163,6 +163,9 @@ footer {
 #titulo {
   font-family: "Bangers";
   font-size: 3rem;
+  text-align: center;
+  flex-grow: 1;
+  margin: 0;
 }
 
 .scrollable-div::-webkit-scrollbar {
