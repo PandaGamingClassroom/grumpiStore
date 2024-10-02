@@ -37,16 +37,23 @@ export class AboutTheAppComponent implements OnInit {
   checkForManualUpdates() {
     this.swUpdate.versionUpdates.subscribe((event: VersionEvent) => {
       if (event.type === 'VERSION_READY') {
-        if (confirm('Nueva versión disponible. ¿Actualizar ahora?')) {
-          window.location.reload();
-        }
+        const data = {
+          title: '¡Actualizando GrumpiApp!',
+          message: 'Nueva versión disponible. ¿Actualizar ahora?',
+        };
+        this.openModal(data);
+        window.location.reload();
       }
     });
     this.swUpdate
       .checkForUpdate()
       .then((hasUpdate) => {
         if (!hasUpdate) {
-          this.openModal();
+          const data = {
+            title: '¡Actualizando GrumpiApp!',
+            message: 'No se encontraron nuevas actualizaciones.',
+          };
+          this.openModal(data);
         }
       })
       .catch((err) =>
@@ -54,12 +61,7 @@ export class AboutTheAppComponent implements OnInit {
       );
   }
 
-  openModal() {
-    const data = {
-      title: '¡Actualizando GrumpiApp!',
-      message: 'No se encontraron nuevas actualizaciones.',
-    };
-
+  openModal(data: any) {
     this.dialog.open(ConfirmModalComponentComponent, {
       width: '400px',
       height: '300px',
