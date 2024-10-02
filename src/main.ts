@@ -19,7 +19,7 @@ function hideLoadingAndSplashScreen() {
 
       loadingScreen.remove();
       splashScreen.remove();
-    }, 20000);
+    }, 2000000);
   }
 }
 
