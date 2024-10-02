@@ -1,20 +1,21 @@
 <div class="container-fluid mainBoxAdmin scroll">
-  <div class="modal-dialog modal-dialog-centered mainBoxAdminContent">
+  <div class="modal-dialog modal-dialog-centered mainBoxAdminContent h-100">
     <div class="modal-content d-flex flex-column h-100">
+      <!-- Modal Header -->
       <div class="modal-header d-flex justify-content-center mt-3">
         <h1 class="modal-title fs-5">MIS ENERGÍAS DISPONIBLES:</h1>
         <hr />
       </div>
 
-      <div class="modal-body flex-grow-1 bg-box">
+      <!-- Modal Body -->
+      <div class="modal-body flex-grow-1 bg-box scrollable-div">
         <div class="mt-3">
           <ul>
             <li *ngFor="let energyGroup of groupedEnergies">
               <div class="row">
                 <div class="col mb-2">
                   <button class="evoBox">
-                    <strong>{{ energyGroup.type }}: </strong
-                    >{{ energyGroup.quantity }}
+                    <strong>{{ energyGroup.type }}: </strong>{{ energyGroup.quantity }}
                   </button>
                 </div>
                 <div class="col align-items-center">
@@ -33,21 +34,20 @@
         </div>
       </div>
 
-      <div class="bg-box mt-3">
-        <div class="mt-3 p-3">
-          Estás comprando:
-          <ul>
-            <li>Objeto: {{ data_receive.nombre }} </li>
-            <li>Coste: {{ data_receive.condicion }} energías.</li>
-          </ul>
-        </div>
-        <hr />
-        <p class="mt-3 p-3">
+      <!-- Energy Information Section -->
+      <div class="bg-box p-3">
+        <p>Estás comprando:</p>
+        <ul>
+          <li>Objeto: {{ data_receive.nombre }} </li>
+          <li>Coste: {{ data_receive.condicion }} energías.</li>
+        </ul>
+        <p class="mt-3">
           Has seleccionado un total de: {{ totalEnergiesSelected }} energías.
         </p>
       </div>
 
-      <div class="modal-footer mt-3">
+      <!-- Modal Footer -->
+      <div class="modal-footer mt-auto">
         <button
           type="button"
           class="button-73 mt-3 mb-3 me-3"

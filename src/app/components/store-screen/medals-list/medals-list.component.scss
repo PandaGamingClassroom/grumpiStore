@@ -209,3 +209,19 @@ ul {
   overflow-y: auto;
   max-height: calc(100vh - 300px);
 }
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.modal-body {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  justify-content: center;
+  align-items: center;
+}
