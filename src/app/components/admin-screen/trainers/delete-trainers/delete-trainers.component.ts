@@ -72,7 +72,7 @@ export class DeleteTrainersComponent implements OnInit {
 
     if (!trainerToDelete) {
       this.openErrorModal(titleError, messageError);
-      return; // Añadido: Terminar la función si no se encuentra el entrenador
+      return;
     }
 
     this.trainersService.eliminarRegistro(trainerToDelete.id).subscribe(
@@ -89,7 +89,7 @@ export class DeleteTrainersComponent implements OnInit {
           })
           .afterClosed()
           .subscribe(() => {
-            this.dialogRef.close(trainerToDelete);
+            this.dialogRef.close(this.trainers);
           });
       },
       (error) => {
@@ -111,6 +111,7 @@ export class DeleteTrainersComponent implements OnInit {
   }
 
   close() {
+    this.getDadataProfesor(this.nameProfesor);
     this.dialogRef.close();
   }
 

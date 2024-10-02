@@ -152,7 +152,6 @@ export class TrainersAdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Nuevo entrenador añadido:', result);
         this.getEntrenadores(this.profesor.id);
       }
     });
