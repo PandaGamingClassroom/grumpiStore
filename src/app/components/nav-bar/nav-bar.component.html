@@ -26,20 +26,22 @@
           <a class="nav-link" routerLink="/about"> Sobre Nosotros </a>
         </li>
       </ul>
-      <div class="d-flex justify-content-end">
-          <div class="row">
-            <div class="col-1">
-              <img
-                [src]="avatar"
-                alt="Avatar"
-                style="height: 50px; width: 50px"
-                (contextmenu)="disableRightClick($event)"
-              />
-            </div>
-            <div class="col trainer-link">
-              <a class="nav-link" routerLink="/profile"> Perfil Entrenador </a>
-            </div>
+
+      <!-- Añadimos ms-auto aquí para empujar el contenido a la derecha -->
+      <div class="d-flex ms-auto">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <img
+              [src]="avatar"
+              alt="Avatar"
+              style="height: 50px; width: 50px"
+              (contextmenu)="disableRightClick($event)"
+            />
           </div>
+          <div class="col-auto trainer-link">
+            <a class="nav-link" routerLink="/profile">Perfil Entrenador</a>
+          </div>
+        </div>
       </div>
     </div>
 
