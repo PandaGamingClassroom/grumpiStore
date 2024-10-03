@@ -53,7 +53,7 @@
   <div class="container" *ngIf="data?.message && data?.title">
     <!-- Se renderiza cuando la imagen no proviene de un grumpi -->
     <div class="d-flex justify-content-center">
-      <img class="img-box-without-description" src="{{ data.message }}" (contextmenu)="disableRightClick($event)" />
+      <img class="img-box-help mt-fix" src="{{ data.message }}" (contextmenu)="disableRightClick($event)" />
     </div>
   </div>
 
