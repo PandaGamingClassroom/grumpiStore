@@ -8,9 +8,9 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule para ngMode
 @Component({
   selector: 'app-blog-screen',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule], // Asegúrate de importar FormsModule aquí
+  imports: [RouterLink, ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './blog-screen.component.html',
-  styleUrl: './blog-screen.component.scss',
+  styleUrls: ['./blog-screen.component.scss'],
 })
 export class BlogScreenComponent {
   postForm: FormGroup;
@@ -48,22 +48,35 @@ export class BlogScreenComponent {
       formData.append('title', this.postForm.get('title')?.value);
       formData.append('content', this.postForm.get('content')?.value);
 
-      if (this.selectedFiles[0]) {
-        formData.append('image1', this.selectedFiles[0]);
-      }
+      // Añadir las imágenes seleccionadas al formData
+      this.selectedFiles.forEach((file, index) => {
+        formData.append(`image${index + 1}`, file);
+      });
 
-      if (this.isTwoImages && this.selectedFiles[1]) {
-        formData.append('image2', this.selectedFiles[1]);
-      }
+      // Subir las imágenes a través del backend que subirá a Cloudinary
+      this.http.post('http://localhost:3000/upload', formData).subscribe(
+        (response: any) => {
+          console.log('Imágenes subidas a Cloudinary:', response);
 
-      this.http.post('YOUR_API_ENDPOINT/posts', formData).subscribe(
-        (response) => {
-          console.log('Post creado correctamente!', response);
-          this.postForm.reset();
-          this.selectedFiles = [];
+          // Guardar el post con las URLs de las imágenes devueltas
+          const postFormData = new FormData();
+          postFormData.append('title', this.postForm.get('title')?.value);
+          postFormData.append('content', this.postForm.get('content')?.value);
+          postFormData.append('imageUrls', JSON.stringify(response)); // Guardar las URLs
+
+          this.http.post('YOUR_API_ENDPOINT/posts', postFormData).subscribe(
+            (postResponse) => {
+              console.log('Post creado correctamente!', postResponse);
+              this.postForm.reset();
+              this.selectedFiles = [];
+            },
+            (error) => {
+              console.error('Error creando el post', error);
+            }
+          );
         },
         (error) => {
-          console.error('Error creando el post', error);
+          console.error('Error subiendo las imágenes', error);
         }
       );
     }
