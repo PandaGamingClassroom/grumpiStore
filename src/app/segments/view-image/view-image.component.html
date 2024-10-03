@@ -20,7 +20,9 @@
     <div class="d-flex justify-content-center" *ngIf="data?.imagen">
       <img class="img-box" src="{{ data.imagen }}" (contextmenu)="disableRightClick($event)" />
     </div>
-
+    <div class="d-flex justify-content-center" *ngIf="data?.img"></div>
+      <img class="img-box" src="{{ data.img }}" (contextmenu)="disableRightClick($event)" />
+    </div>
     <div class="d-flex justify-content-center" *ngIf="data.message">
       <img class="img-box" src="{{ data.message }}" (contextmenu)="disableRightClick($event)" />
     </div>
