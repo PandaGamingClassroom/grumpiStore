@@ -23,6 +23,7 @@
     "@angular/router": "^18.2.6",
     "@angular/service-worker": "^18.2.6",
     "@angular/ssr": "^18.2.6",
+    "@cloudinary/angular-5.x": "^1.5.4",
     "bootstrap": "^5.3.3",
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.38.1",
