@@ -2,17 +2,10 @@
 
 <div class="btn-config">
   <button type="button" class="button-73" routerLink="/rules_admin">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-arrow-left-circle-fill"
-      viewBox="0 0 16 16"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
       <path
-        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-      />
+        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
     </svg>
     Atrás
   </button>
@@ -64,6 +57,16 @@
     descritas en la tarjeta de cada uno de los Grumpi.
   </p>
 
+  <!-- LISTADO COMPLETO DE GRUMPIS -->
+  <div *ngIf="grumpi_list && this.isClicked" class="image-container d-flex justify-content-center mt-3">
+    <div *ngFor="let grumpi of grumpi_list" (click)="openGrumpi(grumpi)">
+      <img [src]="grumpi.img_conseguir" [alt]="grumpi.nombre" (contextmenu)="disableRightClick($event)" />
+      <button (click)="scrollToTop()" class="button-73 fixed-button">
+        <i class="material-icons">&#xe5d8;</i>
+      </button>
+    </div>
+  </div>
+
   <h2 class="container d-flex justify-content-center mt-3 box-text">
     ¿Qué son los Grumpi legendarios? ¿Cómo capturarlos?
   </h2>
@@ -83,40 +86,25 @@
     poder capturarlos, se encuentran en las tarjetas de estas criaturas.
   </p>
   <p class="container d-flex justify-content-center mt-3 box-text">
-    <strong
-      >¿Quién se atreve a superar este reto? ¿Quién se hará con todos los Grumpi
-      legendarios?</strong
-    >
+    <strong>¿Quién se atreve a superar este reto? ¿Quién se hará con todos los Grumpi
+      legendarios?</strong>
   </p>
 
   <!-- GRUMPIS LEGENDARIOS -->
-  <div
-    class="container d-flex justify-content-center mt-3"
-    *ngIf="!this.legendIsClicked"
-  >
+  <div class="container d-flex justify-content-center mt-3" *ngIf="!this.legendIsClicked">
     <button #scrollTarget class="button-73 size" (click)="legendClick()">
       Ver Grumpis legendarios
     </button>
   </div>
-  <div
-    class="container d-flex justify-content-center mt-3"
-    *ngIf="this.legendIsClicked"
-  >
+  <div class="container d-flex justify-content-center mt-3" *ngIf="this.legendIsClicked">
     <button #scrollTarget class="button-73 size" (click)="legendClick()">
       Ocultar Grumpis legendarios
     </button>
   </div>
 
-  <div
-    *ngIf="grumpi_list && this.legendIsClicked"
-    class="image-container d-flex justify-content-center mt-3"
-  >
+  <div *ngIf="grumpi_list && this.legendIsClicked" class="image-container d-flex justify-content-center mt-3">
     <div *ngFor="let grumpi of grumpi_legend_list" (click)="openGrumpi(grumpi)">
-      <img
-        [src]="grumpi.img_conseguir"
-        [alt]="grumpi.nombre"
-        (contextmenu)="disableRightClick($event)"
-      />
+      <img [src]="grumpi.img_conseguir" [alt]="grumpi.nombre" (contextmenu)="disableRightClick($event)" />
       <button (click)="scrollToTop()" class="button-73 fixed-button">
         <i class="material-icons">&#xe5d8;</i>
       </button>
@@ -141,76 +129,38 @@
     </p>
 
     <!-- VER GRUMPIS DE EVENTO -->
-    <div
-      class="container d-flex justify-content-center mt-3"
-      *ngIf="!this.eventIsClicked"
-    >
+    <div class="container d-flex justify-content-center mt-3" *ngIf="!this.eventIsClicked">
       <button class="button-73 size" (click)="toggleEventos()">
         Ver Grumpis de evento
       </button>
     </div>
-    <div
-      class="container d-flex justify-content-center mt-3 mb-3"
-      *ngIf="this.eventIsClicked"
-    >
+    <div class="container d-flex justify-content-center mt-3 mb-3" *ngIf="this.eventIsClicked">
       <button class="button-73 size" (click)="toggleEventos()">
         Ocultar Grumpis de evento
       </button>
     </div>
-    <div
-      *ngIf="grumpi_event_list && this.eventIsClicked"
-      class="image-container d-flex justify-content-center mt-3"
-    >
+    <div *ngIf="grumpi_event_list && this.eventIsClicked" class="image-container d-flex justify-content-center mt-3">
       <div *ngFor="let grumpi of grumpi_event_list" (click)="openGrumpi(grumpi)">
-        <img
-          [src]="grumpi.img_conseguir"
-          [alt]="grumpi.nombre"
-          (contextmenu)="disableRightClick($event)"
-        />
+        <img [src]="grumpi.img_conseguir" [alt]="grumpi.nombre" (contextmenu)="disableRightClick($event)" />
       </div>
     </div>
   </div>
 
   <div class="container text-center">
-    <img
-      class="box-secret animacionPalpito"
-      src="../../../../assets/TopSecret.png"
-      alt="Top Secret"
-      (contextmenu)="disableRightClick($event)"
-    />
+    <img class="box-secret animacionPalpito" src="../../../../assets/TopSecret.png" alt="Top Secret"
+      (contextmenu)="disableRightClick($event)" />
   </div>
 
-  <div
-    class="container d-flex justify-content-center mt-3"
-    *ngIf="!this.isClicked"
-  >
+  <div class="container d-flex justify-content-center mt-3" *ngIf="!this.isClicked">
     <button #scrollTarget class="button-73 size" (click)="handleClick()">
       Ver Grumpis
     </button>
   </div>
-  <div
-    class="container d-flex justify-content-center mt-3"
-    *ngIf="this.isClicked"
-  >
+  <div class="container d-flex justify-content-center mt-3" *ngIf="this.isClicked">
     <button #scrollTarget class="button-73 size" (click)="handleClick()">
       Ocultar Grumpis
     </button>
   </div>
 
-  <!-- LISTADO COMPLETO DE GRUMPIS -->
-  <div
-    *ngIf="grumpi_list && this.isClicked"
-    class="image-container d-flex justify-content-center mt-3"
-  >
-    <div *ngFor="let grumpi of grumpi_list" (click)="openGrumpi(grumpi)">
-      <img
-        [src]="grumpi.img_conseguir"
-        [alt]="grumpi.nombre"
-        (contextmenu)="disableRightClick($event)"
-      />
-      <button (click)="scrollToTop()" class="button-73 fixed-button">
-        <i class="material-icons">&#xe5d8;</i>
-      </button>
-    </div>
-  </div>
+
 </div>
