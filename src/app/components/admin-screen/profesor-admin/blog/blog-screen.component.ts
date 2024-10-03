@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 export class BlogScreenComponent {
   postForm: FormGroup;
   selectedFile: File | null = null;
+  isTwoImages: boolean = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.postForm = this.fb.group({
@@ -24,8 +25,12 @@ export class BlogScreenComponent {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+    const selectedType = event.target.value;
     if (file) {
       this.selectedFile = file;
+    }
+    if (selectedType === "dos") {
+      this.isTwoImages = true;
     }
   }
 
@@ -40,6 +45,8 @@ export class BlogScreenComponent {
       formData.append('content', this.postForm.get('content')?.value);
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
+        formData.append('image1', this.selectedFile);
+        formData.append('image2', this.selectedFile);
       }
 
       this.http.post('YOUR_API_ENDPOINT/posts', formData).subscribe(
