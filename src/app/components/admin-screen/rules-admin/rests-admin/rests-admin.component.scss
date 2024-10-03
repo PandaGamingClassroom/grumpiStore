@@ -42,3 +42,24 @@
     flex-direction: column;
   }
 }
+
+.box_medals {
+  height: 100%;
+  z-index: 2;
+}
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 58%;
+  opacity: .1;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.medals-content {
+  position: relative;
+  z-index: 2;
+}
