@@ -94,20 +94,20 @@
 
 <!-- Lista de posts -->
 <div class="modal fade" id="post_list" tabindex="-1" aria-labelledby="post_listLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="post_listLabel">Listado de posts publicados</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body d-flex align-items-center">
         <div class="card mb-3" style="width: 18rem;" *ngFor="let post of posts">
           <img src="{{post.image_one}}" class="card-img-top" alt="Imagen del post">
           <div class="card-body">
             <h5 class="card-title">
               {{post.title}}
             </h5>
-            <div class="d-flex justify-content-center">
+            <div class="">
               <a class="btn btn-primary" data-bs-dismiss="modal" (click)="openDetailsPost(post)">Ver mas</a>
               <a class="btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#post_delete">Borrar</a>
             </div>
@@ -123,7 +123,7 @@
 
 <!-- Eliminar post -->
 <div class="modal fade" id="post_delete" tabindex="-1" aria-labelledby="post_deleteLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="post_deleteLabel"> Eliminar post </h1>
