@@ -513,7 +513,7 @@ export class TrainerService {
     return this.http.post(`${this.apiUrl}create_post`, postData);
   }
 
-  obtenerPost(profesorId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}get_posts/${profesorId}`);
+  obtenerPost(id_profesor: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}get_posts/${id_profesor}`);
   }
 }
