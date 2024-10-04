@@ -24,7 +24,6 @@ export class BlogScreenComponent implements OnInit {
   profesor: any;
   posts: any[] = [];
   isLoading = false;
-  selectedPost: any;
 
   constructor(private fb: FormBuilder,
     private http: HttpClient,
