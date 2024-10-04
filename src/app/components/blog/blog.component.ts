@@ -61,7 +61,7 @@ export class BlogComponent implements OnInit{
         if (data.message) {
           console.log(data.message);
         } else {
-          this.profesor = data.data;
+          this.profesor = data;
           console.log('Datos del profesor: ', this.profesor);
         }
       },
