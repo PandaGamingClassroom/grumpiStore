@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class BlogComponent implements OnInit{
 
-  id_trainer: string | null = '';
+  id_trainer: any | null = '';
   trainer: any;
   profesor: any;
   loading: boolean = true;
@@ -26,7 +26,7 @@ export class BlogComponent implements OnInit{
 
   ngOnInit(): void {
     this.id_trainer = localStorage.getItem('id_trainer');
-    this.getTrainerData(Number(this.id_trainer));
+    this.getTrainerData(this.id_trainer);
     this.getDadataProfesor(this.profesorID);
     this.obtenerPosts();
   }
