@@ -514,6 +514,6 @@ export class TrainerService {
   }
 
   obtenerPost(profesorId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/get_posts/${profesorId}`);
+    return this.http.get(`${this.apiUrl}get_posts/${profesorId}`);
   }
 }
