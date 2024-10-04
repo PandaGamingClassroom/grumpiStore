@@ -149,10 +149,10 @@ a {
   .sidenav {
     position: absolute;
     left: 0;
-    width: 100%;
+    width: 62%;
     height: auto;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    transform: translate(-100%);
+    transition: transform .3s ease;
     z-index: 1000;
   }
 
@@ -175,7 +175,7 @@ a {
     font-size: 1.5rem;
     cursor: pointer;
     border-radius: 40em;
-    box-shadow: #198754 0 9px 25px in
+    box-shadow: #198754 0 9px 25px inset;
   }
 
   /* Ajustes para el contenido principal en móviles */
