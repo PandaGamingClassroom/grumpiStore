@@ -17,8 +17,15 @@
   </button>
 </div>
 <div class="container">
-  <div class="text-center bg-box mt-3">
-    <p>Pronto tendremos novedades por aquí</p>
+  <h1 class="text-center mt-4">Blog</h1>
+  <div *ngFor="let post of posts" class="post">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <div class="post-images">
+      <img *ngIf="post.image_one" [src]="post.image_one" alt="Imagen del post" />
+      <img *ngIf="post.two" [src]="post.two" alt="Imagen del post" />
+    </div>
+    <hr />
   </div>
 </div>
 <app-footer></app-footer>
