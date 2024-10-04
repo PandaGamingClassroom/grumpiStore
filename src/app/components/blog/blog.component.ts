@@ -26,7 +26,6 @@ export class BlogComponent implements OnInit{
   ngOnInit(): void {
     this.id_trainer = localStorage.getItem('id_trainer');
     this.getTrainerData(this.id_trainer);
-    this.obtenerPosts();
   }
 
   /**
@@ -62,6 +61,7 @@ export class BlogComponent implements OnInit{
           console.log(data.message);
         } else {
           this.profesor = data;
+          this.obtenerPosts();
           console.log('Datos del profesor: ', this.profesor);
         }
       },
@@ -76,7 +76,7 @@ export class BlogComponent implements OnInit{
    * Se obtienen los posts creados por un profesor
    */
   obtenerPosts() {
-    this.trainersService.obtenerPost(this.profesor).subscribe(
+    this.trainersService.obtenerPost(this.profesor.id).subscribe(
       (data) => {
         this.posts = data;
       },
