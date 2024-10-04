@@ -498,4 +498,19 @@ export class TrainerService {
   getAvatars(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}getAvatars`);
   }
+
+  // Función para subir las imágenes a través del backend
+  uploadImages(images: File[]) {
+    const formData = new FormData();
+    images.forEach((file, index) => {
+      formData.append(`images`, file);
+    });
+
+    return this.http.post(`${this.apiUrl}/upload_images_post`, formData);
+  }
+
+  // Función para crear el post con las URLs de las imágenes subidas
+  createPost(postData: any) {
+    return this.http.post(`${this.apiUrl}/create_post`, postData);
+  }
 }
