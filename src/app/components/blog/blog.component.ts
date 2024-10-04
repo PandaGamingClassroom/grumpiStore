@@ -20,6 +20,7 @@ export class BlogComponent implements OnInit{
   profesor: any;
   loading: boolean = true;
   posts: any[] = [];
+  isLoading = false;
 
   constructor(private trainersService: TrainerService){}
 
@@ -76,12 +77,15 @@ export class BlogComponent implements OnInit{
    * Se obtienen los posts creados por un profesor
    */
   obtenerPosts() {
+    this.isLoading = true;
     this.trainersService.obtenerPost(this.profesor.id).subscribe(
       (data) => {
         this.posts = data;
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error al obtener los posts', error);
+        this.isLoading = false;
       }
     );
   }
