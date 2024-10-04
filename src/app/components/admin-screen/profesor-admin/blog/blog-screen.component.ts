@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule para ngModel
 import { TrainerService } from '../../../services/trainers/trainer.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BlogDetailsComponent } from './blog-details/blog-details.component' ;
 
 @Component({
   selector: 'app-blog-screen',
@@ -14,7 +16,7 @@ import { TrainerService } from '../../../services/trainers/trainer.service';
   templateUrl: './blog-screen.component.html',
   styleUrls: ['./blog-screen.component.scss'],
 })
-export class BlogScreenComponent implements OnInit{
+export class BlogScreenComponent implements OnInit {
   postForm: FormGroup;
   selectedFiles: File[] = [];
   isTwoImages: boolean = false;
@@ -23,7 +25,11 @@ export class BlogScreenComponent implements OnInit{
   posts: any[] = [];
   isLoading = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private trainersService: TrainerService) {
+  constructor(private fb: FormBuilder,
+    private http: HttpClient,
+    private trainersService: TrainerService, 
+    private dialog: MatDialog
+  ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
@@ -92,6 +98,14 @@ export class BlogScreenComponent implements OnInit{
         console.error('Error al obtener los posts', error);
       }
     );
+  }
+
+  openDetailsPost(post: any) {
+    const dialogRef = this.dialog.open(BlogDetailsComponent, {
+      width: '700px',
+      height: '600px',
+      data: post,
+    });
   }
 
 }
