@@ -21,7 +21,7 @@
                     <img src="{{data.image_one}}" class="card-img-top" alt="Imagen del post">
                 </div>
                 <div class="col">
-                    <img src="{{data.image_one}}" class="card-img-top" alt="Imagen del post">
+                    <img *ngIf="data?.image_two" src="{{data.image_two}}" class="card-img-top" alt="Imagen del post">
                 </div>
             </div>
         </div>
