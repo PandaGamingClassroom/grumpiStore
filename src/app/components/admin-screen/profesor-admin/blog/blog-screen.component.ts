@@ -47,8 +47,8 @@ export class BlogScreenComponent {
   onSubmit() {
     if (this.postForm.valid) {
       const postFormData = new FormData();
-      postFormData.append('title', this.postForm.get('title')?.value);
-      postFormData.append('content', this.postForm.get('content')?.value);
+      postFormData.append('titulo', this.postForm.get('titulo')?.value);
+      postFormData.append('contenido', this.postForm.get('contenido')?.value);
       postFormData.append('order', this.postForm.get('order')?.value || '');
 
       // Si hay archivos seleccionados, adjuntar las imágenes
