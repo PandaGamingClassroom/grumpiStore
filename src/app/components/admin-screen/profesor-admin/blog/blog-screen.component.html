@@ -1,24 +1,14 @@
 <div class="container-fluid bg-box justify-content-center align-items-center d-flex">
   <div class="row">
     <div class="col form-group mt-3 container mb-3">
-      <button
-        type="button"
-        class="btn btn-success mt-3"
-        data-bs-toggle="modal"
-        data-bs-target="#newPost"
-      >
+      <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#newPost">
         Nueva publicación
       </button>
     </div>
 
     <div class="col form-group align-content-center mt-3 container mb-3">
-      <button
-        type="button"
-        class="btn btn-success mt-3 align-content-center"
-        data-bs-toggle="modal"
-        data-bs-target="#post_list"
-        (click)="obtenerPosts()"
-      >
+      <button type="button" class="btn btn-success mt-3 align-content-center" data-bs-toggle="modal"
+        data-bs-target="#post_list" (click)="obtenerPosts()">
         Ver publicaciones
       </button>
     </div>
@@ -38,14 +28,8 @@
           <form [formGroup]="postForm" (ngSubmit)="crearPost()" enctype="multipart/form-data">
             <div class="form-group">
               <label for="title">Título <strong>*</strong></label>
-              <input
-                type="text"
-                id="title"
-                formControlName="title"
-                placeholder="Incluye un título"
-                class="form-control"
-                required
-              />
+              <input type="text" id="title" formControlName="title" placeholder="Incluye un título" class="form-control"
+                required />
               <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="error">
                 El título es obligatorio.
               </div>
@@ -53,13 +37,8 @@
 
             <div class="form-group">
               <label for="content">Contenido <strong>*</strong></label>
-              <textarea
-                id="content"
-                formControlName="content"
-                placeholder="Incluye el contenido del post"
-                class="form-control"
-                required
-              ></textarea>
+              <textarea id="content" formControlName="content" placeholder="Incluye el contenido del post"
+                class="form-control" required></textarea>
               <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched" class="error">
                 El contenido es obligatorio.
               </div>
@@ -67,7 +46,8 @@
 
             <div class="form-group">
               <label for="imageCount">¿Vas a subir una imagen o dos?</label>
-              <select class="form-control" [(ngModel)]="imageCount" name="imageCount" (change)="onImageCountChange($event)">
+              <select class="form-control" [(ngModel)]="imageCount" name="imageCount"
+                (change)="onImageCountChange($event)">
                 <option value="una">Una imagen</option>
                 <option value="dos">Dos imágenes</option>
               </select>
@@ -76,35 +56,20 @@
             <!-- Input para una imagen -->
             <div class="form-group" *ngIf="imageCount === 'una'">
               <label for="image">Imagen</label>
-              <input
-                type="file"
-                id="image"
-                class="form-control"
-                accept="image/*"
-                (change)="onFileSelected($event, 1)"
-              />
+              <input type="file" id="image" class="form-control" accept="image/*"
+                (change)="onFileSelected($event, 1)" />
             </div>
 
             <!-- Inputs para dos imágenes -->
             <div class="form-group" *ngIf="imageCount === 'dos'">
               <label for="image1">Imagen 1</label>
-              <input
-                type="file"
-                id="image1"
-                class="form-control"
-                accept="image/*"
-                (change)="onFileSelected($event, 1)"
-              />
+              <input type="file" id="image1" class="form-control" accept="image/*"
+                (change)="onFileSelected($event, 1)" />
             </div>
             <div class="form-group" *ngIf="imageCount === 'dos'">
               <label for="image2">Imagen 2</label>
-              <input
-                type="file"
-                id="image2"
-                class="form-control"
-                accept="image/*"
-                (change)="onFileSelected($event, 2)"
-              />
+              <input type="file" id="image2" class="form-control" accept="image/*"
+                (change)="onFileSelected($event, 2)" />
             </div>
             <!-- Spinner de carga -->
             <div class="text-center" *ngIf="isLoading">
@@ -113,7 +78,8 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary justify-content-center" [disabled]="postForm.invalid || isLoading">
+            <button type="submit" class="btn btn-primary justify-content-center"
+              [disabled]="postForm.invalid || isLoading">
               Añadir post
             </button>
           </form>
@@ -145,7 +111,27 @@
             </h5>
             <div class="d-flex justify-content-center">
               <a class="btn btn-primary" data-bs-dismiss="modal" (click)="openDetailsPost(post)">Ver mas</a>
-              <a class="btn btn-danger ms-3">Borrar</a>
+              <a class="btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#post_delete">Borrar</a>
+            </div>
+
+            <!-- Eliminar post -->
+            <div class="modal fade" id="post_delete" tabindex="-1" aria-labelledby="post_deleteLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="post_deleteLabel"> Eliminar post </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p> Estás a punto de borrar el post {{ post.title }}. ¿Quieres continuar? </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
