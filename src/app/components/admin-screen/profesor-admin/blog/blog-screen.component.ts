@@ -44,7 +44,7 @@ export class BlogScreenComponent {
     event.preventDefault();
   }
 
-  onSubmit() {
+  crearPost() {
     if (this.postForm.valid) {
       const postFormData = new FormData();
       postFormData.append('title', this.postForm.get('title')?.value);
@@ -54,7 +54,7 @@ export class BlogScreenComponent {
       // Si hay archivos seleccionados, adjuntar las imágenes
       if (this.selectedFiles.length > 0) {
         this.selectedFiles.forEach((file, index) => {
-          postFormData.append('images', file); // Agrega las imágenes como 'images'
+          postFormData.append('images', file);
         });
       }
 
@@ -70,6 +70,10 @@ export class BlogScreenComponent {
         }
       );
     }
+  }
+
+  obtenerPost() {
+    
   }
 
 }
