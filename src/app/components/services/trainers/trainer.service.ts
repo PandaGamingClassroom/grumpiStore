@@ -459,10 +459,9 @@ export class TrainerService {
   ): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}spend-energies`, {
       trainer_id,
-      energiesToSpend
+      energiesToSpend,
     });
   }
-
 
   spendEnergies(
     trainer_id: number,
@@ -512,5 +511,18 @@ export class TrainerService {
   // Función para crear el post con las URLs de las imágenes subidas
   createPost(postData: any) {
     return this.http.post(`${this.apiUrl}create_post`, postData);
+  }
+
+  /**
+   * Función para obtener todos los posts
+   * @returns
+   */
+  getPosts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}get_posts`).pipe(
+      catchError((error) => {
+        console.error('Error al obtener los posts:', error);
+        throw error;
+      })
+    );
   }
 }
