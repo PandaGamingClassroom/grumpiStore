@@ -35,6 +35,13 @@ html, body {
 }
 
 
+.ajuste_cards {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
 
 
 
