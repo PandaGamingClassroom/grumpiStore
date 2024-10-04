@@ -427,7 +427,7 @@ export class TrainerService {
    * @returns
    */
   getProfesor(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}profesor/${id}`);
+    return this.http.get<any>(`${this.apiUrl}get_profesor/${id}`);
   }
 
   /**
