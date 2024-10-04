@@ -506,11 +506,11 @@ export class TrainerService {
       formData.append(`images`, file);
     });
 
-    return this.http.post(`${this.apiUrl}/upload_images_post`, formData);
+    return this.http.post(`${this.apiUrl}upload_images_post`, formData);
   }
 
   // Función para crear el post con las URLs de las imágenes subidas
   createPost(postData: any) {
-    return this.http.post(`${this.apiUrl}/create_post`, postData);
+    return this.http.post(`${this.apiUrl}create_post`, postData);
   }
 }
