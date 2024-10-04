@@ -17,6 +17,7 @@
         class="btn btn-success mt-3 align-content-center"
         data-bs-toggle="modal"
         data-bs-target="#post_list"
+        (click)="obtenerPosts()"
       >
         Ver publicaciones
       </button>
@@ -105,8 +106,14 @@
                 (change)="onFileSelected($event, 2)"
               />
             </div>
+            <!-- Spinner de carga -->
+            <div class="text-center" *ngIf="isLoading">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+            </div>
 
-            <button type="submit" class="btn btn-primary justify-content-center" [disabled]="postForm.invalid">
+            <button type="submit" class="btn btn-primary justify-content-center" [disabled]="postForm.invalid || isLoading">
               Añadir post
             </button>
           </form>
@@ -123,20 +130,21 @@
 
 <!-- Lista de posts -->
 <div class="modal fade" id="post_list" tabindex="-1" aria-labelledby="post_listLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="post_listLabel">Listado de posts publicados</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="card" style="width: 18rem;" *ngFor="let post of posts">
+        <div class="card mb-3" style="width: 18rem;" *ngFor="let post of posts">
           <img src="{{post.image_one}}" class="card-img-top" alt="Imagen del post">
           <div class="card-body">
             <h5 class="card-title">
               {{post.title}}
             </h5>
             <a class="btn btn-primary">Ver mas</a>
+            <a class="btn btn-danger">Borrar</a>
           </div>
         </div>
       </div>

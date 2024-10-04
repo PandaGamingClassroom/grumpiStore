@@ -21,6 +21,7 @@ export class BlogScreenComponent implements OnInit{
   imageCount: string = 'una';
   profesor: any;
   posts: any[] = [];
+  isLoading = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private trainersService: TrainerService) {
     this.postForm = this.fb.group({
@@ -32,7 +33,6 @@ export class BlogScreenComponent implements OnInit{
 
   ngOnInit(): void {
     this.profesor = localStorage.getItem('id_profesor');
-    this.obtenerPosts();
   }
 
   onImageCountChange(event: any) {
@@ -52,6 +52,7 @@ export class BlogScreenComponent implements OnInit{
   }
 
   crearPost() {
+    this.isLoading = true;
     if (this.postForm.valid) {
       const postFormData = new FormData();
       postFormData.append('title', this.postForm.get('title')?.value);
@@ -70,11 +71,13 @@ export class BlogScreenComponent implements OnInit{
       this.trainersService.createPost(postFormData).subscribe(
         (postResponse) => {
           console.log('Post creado correctamente!', postResponse);
+          this.isLoading = false;
           this.postForm.reset();
           this.selectedFiles = [];
         },
         (error) => {
           console.error('Error creando el post', error);
+          this.isLoading = false;
         }
       );
     }
