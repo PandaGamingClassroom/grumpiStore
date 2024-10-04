@@ -17,11 +17,12 @@ import { TrainerService } from '../services/trainers/trainer.service';
   imports: [RouterLink, FormsModule, ReactiveFormsModule, MatDialogModule],
   providers: [TrainerService],
   templateUrl: './login-screen.component.html',
-  styleUrl: './login-screen.component.scss',
+  styleUrls: ['./login-screen.component.scss',
+    // Cambié 'styleUrl' a 'styleUrls' por typo
+  ],
 })
 export class LoginScreenComponent implements OnInit {
   myForm!: FormGroup;
-
   adminName: string = '';
   adminPassword: string = '';
   trainers: any[] = [];
@@ -31,7 +32,6 @@ export class LoginScreenComponent implements OnInit {
   pass: string = '';
   adminUser = 'administrador';
   profesor = 'profesor';
-
   errorLogin: string = 'Nombre de entrenador o contraseña incorrectos.';
 
   constructor(
@@ -39,30 +39,38 @@ export class LoginScreenComponent implements OnInit {
     private route: Router,
     private trainerService: TrainerService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
       password: ['', Validators.required],
+      check: [false], // Inicializa el checkbox como false
     });
 
     this.getTrainers();
     this.getProfesores();
+
+    // Recuperar datos si "Recuérdame" estaba marcado
+    const savedTrainerName = localStorage.getItem('username');
+    const savedPassword = localStorage.getItem('password');
+    const rememberMe = localStorage.getItem('remember_me') === 'true';
+
+    if (rememberMe && savedTrainerName) {
+      this.myForm.patchValue({
+        trainer_name: savedTrainerName,
+        password: savedPassword,
+        check: rememberMe,
+      });
+    }
   }
 
-  /**
-   * Función para obtener los datos de los entrenadores
-   */
   getTrainers() {
     this.trainerService.getTrainers().subscribe((data: any) => {
       this.trainers = data.trainer_list;
     });
   }
 
-  /**
-   * Función para obtener los datos de los profesores
-   */
   getProfesores() {
     this.trainerService.getProfesores().subscribe((data: any) => {
       this.profesors = data.profesoresList;
@@ -89,22 +97,29 @@ export class LoginScreenComponent implements OnInit {
   onSubmit() {
     this.user = this.myForm.value.trainer_name;
     this.pass = this.myForm.value.password;
+    const rememberMe = this.myForm.value.check;
 
+    // Comprobar profesores
     for (const profe of this.profesors) {
-      if (
-        profe.usuario === this.user &&
-        profe.password == this.pass
-      ) {
+      if (profe.usuario === this.user && profe.password === this.pass) {
         this.error = false;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', this.user);
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
         localStorage.setItem('id_profesor', profe.id);
-        if (profe.nombre === 'Pablo' && profe.apellidos === 'Moreno Ortega') {
+        if (profe.nombre === 'Pablo' && profe.apelidos === 'Moreno Ortega') {
           localStorage.setItem('isAdminUser', this.adminUser);
         } else {
           localStorage.setItem('isAdminUser', this.profesor);
+        }
+        // Guardar la contraseña si el checkbox está marcado
+        if (rememberMe) {
+          localStorage.setItem('password', this.pass);
+          localStorage.setItem('remember_me', 'true');
+        } else {
+          localStorage.removeItem('password');
+          localStorage.removeItem('remember_me');
         }
         this.route.navigate(['/admin']);
         return;
@@ -113,12 +128,21 @@ export class LoginScreenComponent implements OnInit {
       }
     }
 
+    // Comprobar entrenadores
     for (const trainer of this.trainers) {
       if (trainer.name === this.user && trainer.password === this.pass) {
         this.error = false;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', this.user);
         localStorage.setItem('id_trainer', trainer.id);
+        // Guardar la contraseña si el checkbox está marcado
+        if (rememberMe) {
+          localStorage.setItem('password', this.pass);
+          localStorage.setItem('remember_me', 'true');
+        } else {
+          localStorage.removeItem('password');
+          localStorage.removeItem('remember_me');
+        }
         this.route.navigate(['/home']);
         return;
       } else {
