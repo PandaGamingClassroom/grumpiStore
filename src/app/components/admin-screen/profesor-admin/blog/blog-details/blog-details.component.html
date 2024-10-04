@@ -11,16 +11,20 @@
     </div>
 
     <div class="container">
-        <h3 class="d-flex justify-content-center"> {{ data.title }} </h3>
+        <h3 class="d-flex justify-content-center"> <strong> - Título: </strong>{{ data.title }} </h3>
         <div class="container">
             <div class="row mb-3">
-                <p> {{ data.content }} </p>
+                <p><strong> - Contenido: </strong> {{ data.content }} </p>
             </div>
             <div class="row mb-3">
                 <div class="col">
+                    <strong> - Imagen: </strong>
+                    <br>
                     <img src="{{data.image_one}}" class="card-img-top" alt="Imagen del post">
                 </div>
                 <div class="col">
+                    <strong> - Imagen: </strong>
+                    <br>
                     <img *ngIf="data?.image_two" src="{{data.image_two}}" class="card-img-top" alt="Imagen del post">
                 </div>
             </div>
