@@ -40,9 +40,10 @@ export class BlogComponent implements OnInit{
     this.trainersService.getTrainerById(id).subscribe(
       (data) => {
         if (data.success === false) {
-          this.profesorID = data.id_profesor;
           console.log(data.error);
         } else {
+          this.profesorID = data.data.id_profesor;
+          this.trainer = data.data;
           console.log('Datos del entrenador: ', this.trainer);
         }
       },
