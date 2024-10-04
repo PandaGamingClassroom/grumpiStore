@@ -20,6 +20,7 @@ export class BlogScreenComponent implements OnInit{
   isTwoImages: boolean = false;
   imageCount: string = 'una';
   profesor: any;
+  posts: any[] = [];
 
   constructor(private fb: FormBuilder, private http: HttpClient, private trainersService: TrainerService) {
     this.postForm = this.fb.group({
@@ -31,6 +32,7 @@ export class BlogScreenComponent implements OnInit{
 
   ngOnInit(): void {
     this.profesor = localStorage.getItem('id_profesor');
+    this.obtenerPosts();
   }
 
   onImageCountChange(event: any) {
@@ -78,8 +80,15 @@ export class BlogScreenComponent implements OnInit{
     }
   }
 
-  obtenerPost() {
-
+  obtenerPosts() {
+    this.trainersService.obtenerPost(this.profesor).subscribe(
+      (data) => {
+        this.posts = data;
+      },
+      (error) => {
+        console.error('Error al obtener los posts', error);
+      }
+    );
   }
 
 }

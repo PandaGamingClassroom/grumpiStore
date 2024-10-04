@@ -513,16 +513,7 @@ export class TrainerService {
     return this.http.post(`${this.apiUrl}create_post`, postData);
   }
 
-  /**
-   * Función para obtener todos los posts
-   * @returns
-   */
-  getPosts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}get_posts`).pipe(
-      catchError((error) => {
-        console.error('Error al obtener los posts:', error);
-        throw error;
-      })
-    );
+  obtenerPost(profesorId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/get_posts/${profesorId}`);
   }
 }

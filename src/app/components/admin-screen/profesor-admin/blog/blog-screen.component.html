@@ -11,7 +11,7 @@
       </button>
     </div>
 
-    <div class="col form-group mt-3 container mb-3">
+    <div class="col form-group align-content-center mt-3 container mb-3">
       <button
         type="button"
         class="btn btn-success mt-3 align-content-center"
@@ -130,7 +130,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p> Lista de posts </p>
+        <div class="card" style="width: 18rem;" *ngFor="let post of posts">
+          <img src="{{post.image_one}}" class="card-img-top" alt="Imagen del post">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{post.title}}
+            </h5>
+            <a class="btn btn-primary">Ver mas</a>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
