@@ -19,7 +19,6 @@ export class BlogComponent implements OnInit{
   trainer: any;
   profesor: any;
   loading: boolean = true;
-  profesorID: string = '';
   posts: any[] = [];
 
   constructor(private trainersService: TrainerService){}
@@ -27,7 +26,6 @@ export class BlogComponent implements OnInit{
   ngOnInit(): void {
     this.id_trainer = localStorage.getItem('id_trainer');
     this.getTrainerData(this.id_trainer);
-    this.getDadataProfesor(this.profesorID);
     this.obtenerPosts();
   }
 
@@ -42,8 +40,8 @@ export class BlogComponent implements OnInit{
         if (data.success === false) {
           console.log(data.error);
         } else {
-          this.profesorID = data.data.id_profesor;
           this.trainer = data.data;
+          this.getDadataProfesor(data.data.id_profesor)
           console.log('Datos del entrenador: ', this.trainer);
         }
       },
@@ -57,13 +55,14 @@ export class BlogComponent implements OnInit{
    * Se obtienen los datos del profesor para este entrenador
    * @param name 
    */
-  getDadataProfesor(name: string) {
-    this.trainersService.getProfesorByName(name).subscribe(
+  getDadataProfesor(id: number) {
+    this.trainersService.getProfesor(id).subscribe(
       (data) => {
         if (data.message) {
           console.log(data.message);
         } else {
           this.profesor = data.data;
+          console.log('Datos del profesor: ', this.profesor);
         }
       },
       (error) => {
