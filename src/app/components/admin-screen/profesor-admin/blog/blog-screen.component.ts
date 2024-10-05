@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule para ngModel
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { MatDialog } from '@angular/material/dialog';
-import { BlogDetailsComponent } from './blog-details/blog-details.component' ;
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
 
 @Component({
   selector: 'app-blog-screen',
@@ -23,17 +23,20 @@ export class BlogScreenComponent implements OnInit {
   imageCount: string = 'una';
   profesor: any;
   posts: any[] = [];
-  isLoading = false;
+  isLoading: boolean = false;
+  background: boolean = false;
 
   constructor(private fb: FormBuilder,
     private http: HttpClient,
-    private trainersService: TrainerService, 
+    private trainersService: TrainerService,
     private dialog: MatDialog
   ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      imageCount: ['una']
+      imageCount: ['una'],
+      backgroundImage: [null],
+      useBackgroundImage: [false]
     });
   }
 
@@ -44,6 +47,10 @@ export class BlogScreenComponent implements OnInit {
   onImageCountChange(event: any) {
     this.isTwoImages = event.target.value === 'dos';
     this.selectedFiles = [];
+  }
+
+  onBackgorundSelected(event: any) {
+
   }
 
   onFileSelected(event: any, index: number) {
@@ -73,6 +80,14 @@ export class BlogScreenComponent implements OnInit {
         });
       }
 
+      // Adjuntar la imagen de fondo solo si el checkbox está marcado
+      if (this.postForm.get('useBackgroundImage')?.value) {
+        const backgroundImage = this.postForm.get('backgroundImage')?.value;
+        if (backgroundImage) {
+          postFormData.append('backgroundImage', backgroundImage);
+        }
+      }
+
       // Enviar el formulario al backend
       this.trainersService.createPost(postFormData).subscribe(
         (postResponse) => {
@@ -98,6 +113,13 @@ export class BlogScreenComponent implements OnInit {
         console.error('Error al obtener los posts', error);
       }
     );
+  }
+
+  onBackgroundImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.postForm.patchValue({ backgroundImage: file });
+    }
   }
 
   openDetailsPost(post: any) {
