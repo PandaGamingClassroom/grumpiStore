@@ -31,8 +31,8 @@
     </div>
   </div>
 
-  <div class="container">
-    <div *ngFor="let post of posts" class="post">
+  <div *ngFor="let post of posts" class="post" [ngStyle]="{ 'background-image': 'url(' + post.background + ')' }">
+    <div class="post-content">
       <h2>{{ post.title }}</h2>
       <p>{{ post.content }}</p>
       <div class="post-images">
@@ -43,4 +43,5 @@
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>
