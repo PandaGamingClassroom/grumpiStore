@@ -19,12 +19,12 @@
 }
 
 .scrollable-container {
-    max-height: calc(100vh - 90px);
+    max-height: calc(60vh - 90px);
     overflow-y: auto;
 }
 
 @media (max-width: 768px) {
     .scrollable-container {
-        max-height: calc(100vh - 70px);
+        max-height: calc(75vh - 70px);
     }
 }
