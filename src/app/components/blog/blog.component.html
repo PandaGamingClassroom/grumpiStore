@@ -1,30 +1,46 @@
 <app-nav-bar></app-nav-bar>
-<div class="btn-config">
-  <button type="button" class="button-73" routerLink="/home">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-      class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-      <path
-        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
-    </svg>
-    Atrás
-  </button>
+<div class="header-container mt-3 mb-3">
+  <div class="btn-config">
+    <button type="button" class="button-73" routerLink="/home">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-left-circle-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+        />
+      </svg>
+      Atrás
+    </button>
+  </div>
+
+  <h1 id="titulo">
+    <strong> BLOG </strong>
+  </h1>
 </div>
-<div class="container scrollable-div">
-  <h1 id="titulo" class="text-center mt-4">Blog</h1>
+
+<div class="container">
   <!-- Spinner de carga -->
   <div class="text-center" *ngIf="isLoading">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Cargando...</span>
     </div>
   </div>
-  <div *ngFor="let post of posts" class="post">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p>
-    <div class="post-images">
-      <img *ngIf="post.image_one" [src]="post.image_one" alt="Imagen del post" />
-      <img *ngIf="post.two" [src]="post.two" alt="Imagen del post" />
+  <div class="scrollable-container">
+    <div *ngFor="let post of posts" class="post">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.content }}</p>
+      <div class="post-images">
+        <img *ngIf="post.image_one" [src]="post.image_one" alt="Imagen del post" />
+        <img *ngIf="post.two" [src]="post.two" alt="Imagen del post" />
+      </div>
+      <hr />
     </div>
-    <hr />
   </div>
+
 </div>
 <app-footer></app-footer>
