@@ -72,12 +72,14 @@
                 (change)="onFileSelected($event, 2)" />
             </div>
             <!-- Checkbox para seleccionar si se usa la imagen de fondo -->
-            <label>
-              <input type="checkbox" formControlName="useBackgroundImage"> Usar imagen de fondo para el post
-            </label>
-            <!-- Input para seleccionar la imagen de fondo solo si el checkbox está marcado -->
-            <input type="file" (change)="onBackgroundImageSelected($event)"
-              *ngIf="postForm.get('useBackgroundImage')?.value">
+            <div class="form-group">
+              <label>
+                <input type="checkbox" formControlName="useBackgroundImage"> Usar imagen de fondo para el post
+              </label>
+              <!-- Input para seleccionar la imagen de fondo solo si el checkbox está marcado -->
+              <input type="file" class="form-control" (change)="onBackgroundImageSelected($event)"
+                *ngIf="postForm.get('useBackgroundImage')?.value">
+            </div>
 
             <!-- Spinner de carga -->
             <div class="text-center" *ngIf="isLoading">
