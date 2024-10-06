@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div *ngFor="let post of posts">
+  <div *ngFor="let post of posts" class="m-4">
     <div class="post-content mb-3 mt-3" [ngStyle]="{ 'background-image': 'url(' + post.background + ')' }">
       <h2>{{ post.title }}</h2>
       <p>{{ post.content }}</p>
