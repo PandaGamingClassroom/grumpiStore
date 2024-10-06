@@ -41,7 +41,7 @@
         <p>{{ post.content }}</p>
       </div>
 
-      <div class="post-images">
+      <div class="post-images" *ngIf="post.image_one || post.image_two">
         <img
           *ngIf="post.image_one"
           [src]="post.image_one"
@@ -50,6 +50,17 @@
         <img
           *ngIf="post.image_two"
           [src]="post.image_two"
+          alt="Imagen del post"
+        />
+      </div>
+
+      <div
+        class="post-images d-flex justify-content-center"
+        *ngIf="post.image_one && !post.image_two"
+      >
+        <img
+          *ngIf="post.image_one"
+          [src]="post.image_one"
           alt="Imagen del post"
         />
       </div>
