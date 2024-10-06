@@ -516,4 +516,9 @@ export class TrainerService {
   obtenerPost(id_profesor: number): Observable<any> {
     return this.http.get(`${this.apiUrl}get_posts/${id_profesor}`);
   }
+
+    // Función para eliminar un post por su ID
+    eliminarPost(postId: number): Observable<any> {
+      return this.http.delete(`${this.apiUrl}delete_post/${postId}`);
+    }
 }

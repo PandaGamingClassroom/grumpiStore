@@ -25,6 +25,7 @@ export class BlogScreenComponent implements OnInit {
   posts: any[] = [];
   isLoading: boolean = false;
   background: boolean = false;
+  selectedPostId: number | null = null;
 
   constructor(private fb: FormBuilder,
     private http: HttpClient,
@@ -129,5 +130,21 @@ export class BlogScreenComponent implements OnInit {
       data: post,
     });
   }
+
+  eliminarPost(postId: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este post?')) {
+      this.trainersService.eliminarPost(postId).subscribe(
+        () => {
+          console.log('Post eliminado correctamente');
+          // Actualizar la lista de posts después de eliminar
+          this.obtenerPosts();
+        },
+        (error) => {
+          console.error('Error al eliminar el post', error);
+        }
+      );
+    }
+  }
+  
 
 }
