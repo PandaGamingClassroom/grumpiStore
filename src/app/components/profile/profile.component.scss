@@ -3,10 +3,18 @@
   background: #f6d365;
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+  background: -webkit-linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+  background: linear-gradient(
+    to right bottom,
+    rgba(246, 211, 101, 1),
+    rgba(253, 160, 133, 1)
+  );
 }
 
 .config-spaces {
@@ -30,14 +38,14 @@
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
 }
 
 .changeAvatar:hover {
-  background-color: #3e8e41
+  background-color: #3e8e41;
 }
 
 .changeAvatar:active {
@@ -65,22 +73,22 @@
   font-family: -apple-system, sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: -.24px;
+  letter-spacing: -0.24px;
   margin: 0;
   outline: none;
   padding: 1rem 1.3rem;
   quotes: auto;
   text-align: center;
   text-decoration: none;
-  transition: all .15s;
+  transition: all 0.15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
 .btn-out:hover {
-  background-color: #FFC229;
-  box-shadow: #FF6314 0 -6px 8px inset;
+  background-color: #ffc229;
+  box-shadow: #ff6314 0 -6px 8px inset;
   transform: scale(1.125);
 }
 
@@ -91,17 +99,16 @@
 @media (min-width: 768px) {
   .btn-out {
     font-size: 1.5rem;
-    padding: .75rem 2rem;
+    padding: 0.75rem 2rem;
   }
 }
 
-
 .button-avatar {
   appearance: none;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 40em;
   border-style: none;
-  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-shadow: #adcfff 0 -12px 6px inset;
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
@@ -109,22 +116,22 @@
   font-family: -apple-system, sans-serif;
   font-size: 15px !important;
   font-weight: 600;
-  letter-spacing: -.24px;
+  letter-spacing: -0.24px;
   margin: 0;
   outline: none;
   padding: 1rem 1.3rem;
   quotes: auto;
   text-align: center;
   text-decoration: none;
-  transition: all .15s;
+  transition: all 0.15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
 .button-avatar:hover {
-  background-color: #FFC229;
-  box-shadow: #FF6314 0 -6px 8px inset;
+  background-color: #ffc229;
+  box-shadow: #ff6314 0 -6px 8px inset;
   transform: scale(1.125);
 }
 
@@ -135,17 +142,18 @@
 @media (min-width: 768px) {
   .button-avatar {
     font-size: 1.5rem;
-    padding: .75rem 2rem;
+    padding: 0.75rem 2rem;
   }
 }
 
-.row-avatar{
+.row-avatar {
   margin-right: 0% !important;
 }
 
 .avatar-box {
   height: 120px;
   width: 100px;
+  border-radius: 15px;
 }
 
 .dolar {
@@ -157,7 +165,6 @@
   height: 40px;
   width: 25px;
 }
-
 
 /*********************************************************************
 *                                                                    *
@@ -221,8 +228,8 @@
   top: 0%;
   left: 30%;
   transform: translate(-50%, -50%);
-  max-height: 70%; 
-  width: 60%; 
+  max-height: 70%;
+  width: 60%;
 }
 
 .modal-content {
@@ -236,7 +243,8 @@
 
 .avatar-box {
   max-width: 100%;
-  max-height: 100px; 
+  border-radius: 15px;
+  max-height: 100px;
 }
 
 .row-avatar {
