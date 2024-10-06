@@ -41,7 +41,7 @@
         <p>{{ post.content }}</p>
       </div>
 
-      <div class="post-images" *ngIf="post.image_one || post.image_two">
+      <div class="post-images" *ngIf="post.image_one && post.image_two">
         <img
           *ngIf="post.image_one"
           [src]="post.image_one"
