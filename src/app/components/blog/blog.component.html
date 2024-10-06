@@ -32,12 +32,26 @@
   </div>
 
   <div *ngFor="let post of posts" class="m-4">
-    <div class="post-content mb-3 mt-3" [ngStyle]="{ 'background-image': 'url(' + post.background + ')' }">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.content }}</p>
+    <div
+      class="post-content mb-3 mt-3"
+      [ngStyle]="{ 'background-image': 'url(' + post.background + ')' }"
+    >
+      <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+      </div>
+
       <div class="post-images">
-        <img *ngIf="post.image_one" [src]="post.image_one" alt="Imagen del post" />
-        <img *ngIf="post.image_two" [src]="post.image_two" alt="Imagen del post" />
+        <img
+          *ngIf="post.image_one"
+          [src]="post.image_one"
+          alt="Imagen del post"
+        />
+        <img
+          *ngIf="post.image_two"
+          [src]="post.image_two"
+          alt="Imagen del post"
+        />
       </div>
       <hr />
     </div>
