@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
 
 .scrollable-container {
-  max-height: calc(100vh - 90px); 
+  max-height: calc(100vh - 90px);
   overflow-y: auto;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .container {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 @media (max-width: 576px) {
@@ -53,12 +53,12 @@
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system, sans-serif;
-  font-size: 1rem; 
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.24px;
   margin: 0;
   outline: none;
-  padding: 0.8rem 1.2rem; 
+  padding: 0.8rem 1.2rem;
   quotes: auto;
   text-align: center;
   text-decoration: none;
@@ -79,12 +79,12 @@
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system, sans-serif;
-  font-size: 1rem; 
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.24px;
   margin: 0;
   outline: none;
-  padding: 0.8rem 1.2rem; 
+  padding: 0.8rem 1.2rem;
   quotes: auto;
   text-align: center;
   text-decoration: none;
@@ -95,13 +95,23 @@
   width: 300px;
 }
 
-.button-73:hover, .btn-out:hover, .menuBTN:hover {
+.button-73:hover, .btn-out:hover {
   background-color: #ffc229;
   box-shadow: #ff6314 0 -6px 8px inset;
   transform: scale(1.125);
 }
 
-.button-73:active, .btn-out:active, .menuBTN:active {
+.menuBTN:hover {
+  background-color: #ffc229;
+  box-shadow: #ff6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button-73:active, .btn-out:active {
+  transform: scale(1.025);
+}
+
+.menuBTN:active {
   transform: scale(1.025);
 }
 
@@ -127,8 +137,8 @@
   background-color: white;
   padding: 10px;
   margin: 10px;
-  width: 100%; 
-  max-width: 300px; 
+  width: 100%;
+  max-width: 300px;
 }
 
 .dropdown-menu::before {
