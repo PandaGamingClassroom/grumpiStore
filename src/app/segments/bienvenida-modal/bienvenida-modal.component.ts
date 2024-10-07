@@ -12,16 +12,20 @@ import { trigger, style, animate, transition } from '@angular/animations';
   animations: [
     trigger('fadeInOut', [
       transition(':enter', [
-        // Al entrar en la vista
-        style({ opacity: 0 }),
-        animate('500ms ease-in', style({ opacity: 1 })),
+        style({ opacity: 0, transform: 'scale(0.9) translateY(20px)' }),
+        animate(
+          '800ms cubic-bezier(0.25, 0.8, 0.25, 1)',
+          style({ opacity: 1, transform: 'scale(1) translateY(0)' })
+        ),
       ]),
       transition(':leave', [
-        // Al salir de la vista
-        animate('500ms ease-out', style({ opacity: 0 })),
+        animate(
+          '500ms ease-in-out',
+          style({ opacity: 0, transform: 'scale(0.9) translateY(20px)' })
+        ),
       ]),
     ]),
-  ],
+  ]
 })
 export class BienvenidaModalComponent implements OnInit {
   username: any;
