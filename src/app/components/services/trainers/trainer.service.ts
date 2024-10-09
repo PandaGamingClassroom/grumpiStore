@@ -523,8 +523,8 @@ export class TrainerService {
   }
 
   // Actualizar última conexión del profesor
-  updateProfessorConnection(name: string, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}profesors/update/${name}`, data);
+  updateProfessorConnection(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}profesors/update/${id}`, data);
   }
 
   // Actualizar última conexión del entrenador
