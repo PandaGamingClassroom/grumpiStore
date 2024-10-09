@@ -127,6 +127,7 @@ export class LoginScreenComponent implements OnInit {
 
         // Actualizar última conexión y número de conexiones para el profesor
         const updateData = {
+          nombre: this.user,
           last_conection: new Date().toISOString(),
           connection_count: (profe.connection_count || 0) + 1,
         };
@@ -166,6 +167,7 @@ export class LoginScreenComponent implements OnInit {
 
         // Actualizar última conexión y número de conexiones para el entrenador
         const updateData = {
+          name: this.user,
           last_conection: new Date().toISOString(),
           connection_count: (trainer.connection_count || 0) + 1, // Incrementa el contador de conexiones
         };
