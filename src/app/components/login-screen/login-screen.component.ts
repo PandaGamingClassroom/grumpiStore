@@ -132,7 +132,7 @@ export class LoginScreenComponent implements OnInit {
           connection_count: (profe.connection_count || 0) + 1,
         };
         this.trainerService
-          .updateProfessorConnection(this.user, updateData)
+          .updateProfessorConnection(profe.id, updateData)
           .subscribe({
             next: () =>
               console.log(
