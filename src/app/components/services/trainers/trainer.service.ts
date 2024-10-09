@@ -517,8 +517,18 @@ export class TrainerService {
     return this.http.get(`${this.apiUrl}get_posts/${id_profesor}`);
   }
 
-    // Función para eliminar un post por su ID
-    eliminarPost(postId: number): Observable<any> {
-      return this.http.delete(`${this.apiUrl}delete_post/${postId}`);
-    }
+  // Función para eliminar un post por su ID
+  eliminarPost(postId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}delete_post/${postId}`);
+  }
+
+  // Actualizar última conexión del profesor
+  updateProfessorConnection(name: string, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}profesors/update/${name}`, data);
+  }
+
+  // Actualizar última conexión del entrenador
+  updateTrainerConnection(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}trainers/update/${id}`, data);
+  }
 }

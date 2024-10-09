@@ -17,7 +17,8 @@ import { TrainerService } from '../services/trainers/trainer.service';
   imports: [RouterLink, FormsModule, ReactiveFormsModule, MatDialogModule],
   providers: [TrainerService],
   templateUrl: './login-screen.component.html',
-  styleUrls: ['./login-screen.component.scss',
+  styleUrls: [
+    './login-screen.component.scss',
     // Cambié 'styleUrl' a 'styleUrls' por typo
   ],
 })
@@ -39,13 +40,13 @@ export class LoginScreenComponent implements OnInit {
     private route: Router,
     private trainerService: TrainerService,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
       trainer_name: ['', Validators.required],
       password: ['', Validators.required],
-      check: [false], // Inicializa el checkbox como false
+      check: [false],
     });
 
     this.getTrainers();
@@ -108,11 +109,13 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('nameUser', profe.nombre);
         localStorage.setItem('lastNameUser', profe.apelidos);
         localStorage.setItem('id_profesor', profe.id);
+
         if (profe.nombre === 'Pablo' && profe.apelidos === 'Moreno Ortega') {
           localStorage.setItem('isAdminUser', this.adminUser);
         } else {
           localStorage.setItem('isAdminUser', this.profesor);
         }
+
         // Guardar la contraseña si el checkbox está marcado
         if (rememberMe) {
           localStorage.setItem('password', this.pass);
@@ -121,6 +124,23 @@ export class LoginScreenComponent implements OnInit {
           localStorage.removeItem('password');
           localStorage.removeItem('remember_me');
         }
+
+        // Actualizar última conexión y número de conexiones para el profesor
+        const updateData = {
+          last_connection: new Date().toISOString(),
+          connection_count: (profe.connection_count || 0) + 1, // Incrementa el contador de conexiones
+        };
+        this.trainerService
+          .updateProfessorConnection(this.user, updateData)
+          .subscribe({
+            next: () =>
+              console.log(
+                'Última conexión y contador de profesor actualizados.'
+              ),
+            error: (error) =>
+              console.error('Error al actualizar datos del profesor:', error),
+          });
+
         this.route.navigate(['/admin']);
         return;
       } else {
@@ -135,7 +155,7 @@ export class LoginScreenComponent implements OnInit {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', this.user);
         localStorage.setItem('id_trainer', trainer.id);
-        // Guardar la contraseña si el checkbox está marcado
+
         if (rememberMe) {
           localStorage.setItem('password', this.pass);
           localStorage.setItem('remember_me', 'true');
@@ -143,6 +163,23 @@ export class LoginScreenComponent implements OnInit {
           localStorage.removeItem('password');
           localStorage.removeItem('remember_me');
         }
+
+        // Actualizar última conexión y número de conexiones para el entrenador
+        const updateData = {
+          last_connection: new Date().toISOString(),
+          connection_count: (trainer.connection_count || 0) + 1, // Incrementa el contador de conexiones
+        };
+        this.trainerService
+          .updateTrainerConnection(trainer.id, updateData)
+          .subscribe({
+            next: () =>
+              console.log(
+                'Última conexión y contador de entrenador actualizados.'
+              ),
+            error: (error) =>
+              console.error('Error al actualizar datos del entrenador:', error),
+          });
+
         this.route.navigate(['/home']);
         return;
       } else {
@@ -150,6 +187,7 @@ export class LoginScreenComponent implements OnInit {
       }
     }
 
+    // Mostrar mensaje de error si no se encontraron coincidencias
     if (this.error) {
       this.openModal();
     }
