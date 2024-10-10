@@ -33,6 +33,7 @@ import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.compon
 import { AboutTheAppComponent } from './components/about-the-app/about-the-app.component';
 import { BlogScreenComponent } from './components/admin-screen/profesor-admin/blog/blog-screen.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { WebScreenComponent } from './components/web-screen/web-screen.component'
 
 /**
  * ADMINISTRADORs
@@ -76,6 +77,8 @@ export const routes: Routes = [
   { path: 'game', component: BattleGameComponent },
   { path: 'virtual-pet', component: VirtualPetComponent },
   { path: 'blog', component: BlogComponent },
+
+  { path: 'web', component: WebScreenComponent },
 
   /**
    *
