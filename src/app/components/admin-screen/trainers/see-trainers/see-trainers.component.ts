@@ -45,7 +45,7 @@ export class SeeTrainersComponent implements OnInit {
       grumpidolar: [''],
       combatMark: [''],
       connection_count: [''],
-      last_conection: ['']
+      last_conection: [''],
     });
   }
 
@@ -56,7 +56,7 @@ export class SeeTrainersComponent implements OnInit {
       grumpidolar: this.data.grumpidolar || '',
       combatMark: this.data.marca_combate,
       connection_count: this.data.connection_count,
-      last_conection: this.data.last_conection
+      last_conection: this.formatDate(this.data.last_conection),
     });
   }
 
@@ -94,6 +94,13 @@ export class SeeTrainersComponent implements OnInit {
       height: '600px',
       data: trainer,
     });
+  }
 
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexed
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
   }
 }
