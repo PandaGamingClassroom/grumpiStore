@@ -1,8 +1,88 @@
-.box {
-  padding: 5%;
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* Asegúrate de que la caja sea responsive */
+.box {
+  padding: 5%;
+  width: 100%; /* Hacer que ocupe el 100% del contenedor */
+  max-width: 800px; /* Ancho máximo para pantallas grandes */
+  margin: auto; /* Centrar la caja */
+}
+
+/* Para la imagen */
+.container img {
+  max-width: 100%; /* La imagen no debe exceder el ancho del contenedor */
+  height: auto; /* Mantener la relación de aspecto */
+}
+
+/* Botón hacia atrás */
+.btn-config {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.button-73 {
+  display: inline-flex;
+  align-items: center; /* Alinear icono y texto verticalmente */
+  padding: 10px 15px; /* Espaciado interno */
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none;
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.button-73:hover {
+  background-color: #0056b3; /* Color al pasar el ratón */
+}
+
+/* Estilos para el contenedor de texto */
+.container-fluid {
+  padding: 0 15px; /* Espaciado lateral */
+}
+
+/* Scrollable div */
 .scrollable-div {
   overflow-y: auto;
-   max-height: calc(100vh - 215px);
+  max-height: calc(100vh - 215px); /* Ajustar el máximo de altura */
+  padding: 0 10px; /* Espaciado lateral */
+}
+
+/* Estilo del título */
+#titulo {
+  font-size: 1.5rem; /* Tamaño de fuente para títulos */
+  text-align: center; /* Centrar el texto */
+}
+
+/* Estilo para párrafos */
+p {
+  line-height: 1.6; /* Espaciado entre líneas */
+  margin-bottom: 15px; /* Espaciado entre párrafos */
+}
+
+/* Media Queries para dispositivos más pequeños */
+@media (max-width: 768px) {
+  .btn-config {
+    justify-content: center; /* Centrar el botón en pantallas pequeñas */
+    margin-bottom: 10px; /* Espaciado inferior reducido */
+  }
+
+  .box {
+    padding: 3%; /* Menos padding en pantallas pequeñas */
+  }
+
+  #titulo {
+    font-size: 1.25rem; /* Reducir tamaño de fuente en pantallas pequeñas */
+  }
+
+  /* Ajustar los márgenes de los párrafos para pantallas más pequeñas */
+  p {
+    margin-bottom: 10px; /* Espaciado entre párrafos reducido */
+  }
 }
