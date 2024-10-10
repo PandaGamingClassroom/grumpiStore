@@ -27,7 +27,11 @@
       ⚠️​ <strong>Atención!</strong> Aquí estos datos solo se pueden visualizar,
       para modificarlos debes ir al apartado de "editar entrenador" o botón del
       lápiz
-      <button type="button" class="btn btn-primary btn-list" (click)="openEditPage(this.data)">
+      <button
+        type="button"
+        class="btn btn-primary btn-list"
+        (click)="openEditPage(this.data)"
+      >
         <i class="material-icons">&#xe254;</i>
       </button>
       que aparece junto al nombre del entrenador
@@ -73,10 +77,41 @@
         formControlName="combatMark"
         readonly
       />
+
+      <div class="form-group">
+        <label for="connection_count" class="form-label"
+          >Nº de conexiones:
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="connection_count"
+          formControlName="connection_count"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="last_conection" class="form-label">Última conexión: </label>
+        <input
+          type="text"
+          class="form-control"
+          id="last_conection"
+          formControlName="last_conection"
+          readonly
+        />
+      </div>
+
       <div class="row mt-2">
         <div class="col">
           <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" (click)="verInventario()">Ver inventario</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="verInventario()"
+            >
+              Ver inventario
+            </button>
           </div>
         </div>
       </div>

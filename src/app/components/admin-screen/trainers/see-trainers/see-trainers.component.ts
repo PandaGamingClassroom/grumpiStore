@@ -44,6 +44,8 @@ export class SeeTrainersComponent implements OnInit {
       trainer_pass: ['', Validators.required],
       grumpidolar: [''],
       combatMark: [''],
+      connection_count: [''],
+      last_conection: ['']
     });
   }
 
@@ -51,8 +53,10 @@ export class SeeTrainersComponent implements OnInit {
     this.myForm.patchValue({
       trainer_name: this.data.name,
       trainer_pass: this.data.password,
-      grumpidolar: this.data.grumpidolar || '', // Si no hay grumpidolar, se establece como cadena vacía
+      grumpidolar: this.data.grumpidolar || '',
       combatMark: this.data.marca_combate,
+      connection_count: this.data.connection_count,
+      last_conection: this.data.last_conection
     });
   }
 
