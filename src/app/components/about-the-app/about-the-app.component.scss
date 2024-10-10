@@ -6,3 +6,72 @@
   overflow-y: auto;
    max-height: calc(100vh - 215px);
 }
+
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Asegúrate de que la caja sea responsive */
+.box {
+  padding: 5%;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Para la imagen */
+.container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Botón hacia atrás */
+.btn-config {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+
+/* Estilos para el contenedor de texto */
+.container-fluid {
+  padding: 0 15px;
+}
+
+/* Scrollable div */
+.scrollable-div {
+  overflow-y: auto;
+  max-height: calc(100vh - 215px);
+  padding: 0 10px;
+}
+
+
+/* Estilo para párrafos */
+p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Media Queries para dispositivos más pequeños */
+@media (max-width: 768px) {
+  .btn-config {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .box {
+    padding: 3%;
+  }
+
+  #titulo {
+    font-size: 1.25rem;
+  }
+
+  /* Ajustar los márgenes de los párrafos para pantallas más pequeñas */
+  p {
+    margin-bottom: 10px;
+  }
+}
