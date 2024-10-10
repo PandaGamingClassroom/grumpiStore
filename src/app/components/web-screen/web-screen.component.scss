@@ -26,21 +26,6 @@ body {
   margin-bottom: 20px; /* Espaciado inferior */
 }
 
-.button-73 {
-  display: inline-flex;
-  align-items: center; /* Alinear icono y texto verticalmente */
-  padding: 10px 15px; /* Espaciado interno */
-  background-color: #007bff; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none;
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  transition: background-color 0.3s; /* Transición suave */
-}
-
-.button-73:hover {
-  background-color: #0056b3; /* Color al pasar el ratón */
-}
 
 /* Estilos para el contenedor de texto */
 .container-fluid {
@@ -54,11 +39,6 @@ body {
   padding: 0 10px; /* Espaciado lateral */
 }
 
-/* Estilo del título */
-#titulo {
-  font-size: 1.5rem; /* Tamaño de fuente para títulos */
-  text-align: center; /* Centrar el texto */
-}
 
 /* Estilo para párrafos */
 p {
