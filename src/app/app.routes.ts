@@ -88,6 +88,7 @@ export const routes: Routes = [
    *
    */
   { path: 'rules_admin', component: RulesAdminComponent },
+  { path: 'rules_admin/intro_admin', component: IntroComponent },
   { path: 'rules_admin/career_admin', component: CareerAdminComponent },
   { path: 'rules_admin/combats_admin', component: CombatsAdminComponent },
   { path: 'rules_admin/obtain-energies_admin', component: ObtainEnergiesAdmin },
@@ -116,6 +117,5 @@ export const routes: Routes = [
   { path: 'admin/medals', component: MedalsAdminScreenComponent },
   { path: 'admin/grumpidolars', component: GrumpidolarsComponent },
   { path: 'admin/energies', component: EnergiesComponent },
-  { path: 'admin/blog-admin', component: BlogScreenComponent }
-
+  { path: 'admin/blog-admin', component: BlogScreenComponent },
 ];
