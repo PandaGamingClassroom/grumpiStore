@@ -59,4 +59,13 @@
   .scrollable-container {
     max-height: calc(75vh - 70px);
   }
+  .post-content[_ngcontent-ng-c701974550] {
+    position: relative;
+    z-index: 2;
+    background: #00000040;
+    padding: 10px;
+    border-radius: 30px;
+    color: #fff;
+    width: 100%;
+  }
 }
