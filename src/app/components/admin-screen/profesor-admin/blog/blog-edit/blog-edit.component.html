@@ -1,120 +1,124 @@
-<div class="post-form-container">
-  <form
-    [formGroup]="postForm"
-    (ngSubmit)="editarPost()"
-    enctype="multipart/form-data"
-  >
-    <div class="form-group">
-      <label for="title">Título <strong>*</strong></label>
-      <input
-        type="text"
-        id="title"
-        formControlName="title"
-        placeholder="Incluye un título"
-        class="form-control"
-        required
-      />
-      <div
-        *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched"
-        class="error"
-      >
-        El título es obligatorio.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="content">Contenido <strong>*</strong></label>
-      <textarea
-        id="content"
-        formControlName="content"
-        placeholder="Incluye el contenido del post"
-        class="form-control"
-        required
-      ></textarea>
-      <div
-        *ngIf="
-          postForm.get('content')?.invalid && postForm.get('content')?.touched
-        "
-        class="error"
-      >
-        El contenido es obligatorio.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="imageCount">¿Vas a subir una imagen o dos?</label>
-      <select
-        class="form-control"
-        [(ngModel)]="imageCount"
-        name="imageCount"
-        (change)="onImageCountChange($event)"
-      >
-        <option value="una">Una imagen</option>
-        <option value="dos">Dos imágenes</option>
-      </select>
-    </div>
-
-    <!-- Input para una imagen -->
-    <div class="form-group" *ngIf="imageCount === 'una'">
-      <label for="image">Imagen</label>
-      <input
-        type="file"
-        id="image"
-        class="form-control"
-        accept="image/*"
-        (change)="onFileSelected($event, 1)"
-      />
-    </div>
-
-    <!-- Inputs para dos imágenes -->
-    <div class="form-group" *ngIf="imageCount === 'dos'">
-      <label for="image1">Imagen 1</label>
-      <input
-        type="file"
-        id="image1"
-        class="form-control"
-        accept="image/*"
-        (change)="onFileSelected($event, 1)"
-      />
-    </div>
-    <div class="form-group" *ngIf="imageCount === 'dos'">
-      <label for="image2">Imagen 2</label>
-      <input
-        type="file"
-        id="image2"
-        class="form-control"
-        accept="image/*"
-        (change)="onFileSelected($event, 2)"
-      />
-    </div>
-    <!-- Checkbox para seleccionar si se usa la imagen de fondo -->
-    <div class="form-group">
-      <label>
-        <input type="checkbox" formControlName="useBackgroundImage" /> Usar
-        imagen de fondo para el post
-      </label>
-      <!-- Input para seleccionar la imagen de fondo solo si el checkbox está marcado -->
-      <input
-        type="file"
-        class="form-control"
-        (change)="onBackgroundImageSelected($event)"
-        *ngIf="postForm.get('useBackgroundImage')?.value"
-      />
-    </div>
-
-    <!-- Spinner de carga -->
-    <div class="text-center" *ngIf="isLoading">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Cargando...</span>
-      </div>
-    </div>
-
-    <button
-      type="submit"
-      class="btn btn-primary justify-content-center"
-      [disabled]="postForm.invalid || isLoading"
+<div class="container p-1">
+  <div class="post-form-container">
+    <form
+      [formGroup]="postForm"
+      (ngSubmit)="editarPost()"
+      enctype="multipart/form-data"
     >
-      Guardar
-    </button>
-  </form>
+      <div class="form-group">
+        <label for="title">Título <strong>*</strong></label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="Incluye un título"
+          class="form-control"
+          required
+        />
+        <div
+          *ngIf="
+            postForm.get('title')?.invalid && postForm.get('title')?.touched
+          "
+          class="error"
+        >
+          El título es obligatorio.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Contenido <strong>*</strong></label>
+        <textarea
+          id="content"
+          formControlName="content"
+          placeholder="Incluye el contenido del post"
+          class="form-control"
+          required
+        ></textarea>
+        <div
+          *ngIf="
+            postForm.get('content')?.invalid && postForm.get('content')?.touched
+          "
+          class="error"
+        >
+          El contenido es obligatorio.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imageCount">¿Vas a subir una imagen o dos?</label>
+        <select
+          class="form-control"
+          [(ngModel)]="imageCount"
+          name="imageCount"
+          (change)="onImageCountChange($event)"
+        >
+          <option value="una">Una imagen</option>
+          <option value="dos">Dos imágenes</option>
+        </select>
+      </div>
+
+      <!-- Input para una imagen -->
+      <div class="form-group" *ngIf="imageCount === 'una'">
+        <label for="image">Imagen</label>
+        <input
+          type="file"
+          id="image"
+          class="form-control"
+          accept="image/*"
+          (change)="onFileSelected($event, 1)"
+        />
+      </div>
+
+      <!-- Inputs para dos imágenes -->
+      <div class="form-group" *ngIf="imageCount === 'dos'">
+        <label for="image1">Imagen 1</label>
+        <input
+          type="file"
+          id="image1"
+          class="form-control"
+          accept="image/*"
+          (change)="onFileSelected($event, 1)"
+        />
+      </div>
+      <div class="form-group" *ngIf="imageCount === 'dos'">
+        <label for="image2">Imagen 2</label>
+        <input
+          type="file"
+          id="image2"
+          class="form-control"
+          accept="image/*"
+          (change)="onFileSelected($event, 2)"
+        />
+      </div>
+      <!-- Checkbox para seleccionar si se usa la imagen de fondo -->
+      <div class="form-group">
+        <label>
+          <input type="checkbox" formControlName="useBackgroundImage" /> Usar
+          imagen de fondo para el post
+        </label>
+        <!-- Input para seleccionar la imagen de fondo solo si el checkbox está marcado -->
+        <input
+          type="file"
+          class="form-control"
+          (change)="onBackgroundImageSelected($event)"
+          *ngIf="postForm.get('useBackgroundImage')?.value"
+        />
+      </div>
+
+      <!-- Spinner de carga -->
+      <div class="text-center" *ngIf="isLoading">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary justify-content-center"
+        [disabled]="postForm.invalid || isLoading"
+      >
+        Guardar
+      </button>
+    </form>
+  </div>
 </div>
