@@ -13,8 +13,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
 })
-export class BlogComponent implements OnInit{
-
+export class BlogComponent implements OnInit {
   id_trainer: any | null = '';
   trainer: any;
   profesor: any;
@@ -22,7 +21,7 @@ export class BlogComponent implements OnInit{
   posts: any[] = [];
   isLoading = false;
 
-  constructor(private trainersService: TrainerService){}
+  constructor(private trainersService: TrainerService) {}
 
   ngOnInit(): void {
     this.id_trainer = localStorage.getItem('id_trainer');
@@ -31,8 +30,8 @@ export class BlogComponent implements OnInit{
 
   /**
    * Se obtienen los datos del entrenador
-   * 
-   * @param id 
+   *
+   * @param id
    */
   getTrainerData(id: number): void {
     this.trainersService.getTrainerById(id).subscribe(
@@ -41,7 +40,7 @@ export class BlogComponent implements OnInit{
           console.log(data.error);
         } else {
           this.trainer = data.data;
-          this.getDadataProfesor(data.data.id_profesor)
+          this.getDadataProfesor(data.data.id_profesor);
           console.log('Datos del entrenador: ', this.trainer);
         }
       },
@@ -53,7 +52,7 @@ export class BlogComponent implements OnInit{
 
   /**
    * Se obtienen los datos del profesor para este entrenador
-   * @param name 
+   * @param name
    */
   getDadataProfesor(id: number) {
     this.trainersService.getProfesor(id).subscribe(
@@ -80,7 +79,10 @@ export class BlogComponent implements OnInit{
     this.isLoading = true;
     this.trainersService.obtenerPost(this.profesor.id).subscribe(
       (data) => {
-        this.posts = data;
+        // Ordena los posts del más nuevo al más viejo
+        this.posts = data.sort(
+          (a: any, b: any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
+        );
         this.isLoading = false;
       },
       (error) => {
