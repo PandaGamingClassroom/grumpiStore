@@ -50,9 +50,6 @@ export class BlogScreenComponent implements OnInit {
     this.selectedFiles = [];
   }
 
-  onBackgorundSelected(event: any) {
-
-  }
 
   onFileSelected(event: any, index: number) {
     const file: File = event.target.files[0];
@@ -145,6 +142,6 @@ export class BlogScreenComponent implements OnInit {
       );
     }
   }
-  
+
 
 }
