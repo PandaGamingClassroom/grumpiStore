@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule para ngMode
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
 
 @Component({
   selector: 'app-blog-screen',
@@ -27,7 +28,8 @@ export class BlogScreenComponent implements OnInit {
   background: boolean = false;
   selectedPostId: number | null = null;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private http: HttpClient,
     private trainersService: TrainerService,
     private dialog: MatDialog
@@ -37,7 +39,7 @@ export class BlogScreenComponent implements OnInit {
       content: ['', Validators.required],
       imageCount: ['una'],
       backgroundImage: [null],
-      useBackgroundImage: [false]
+      useBackgroundImage: [false],
     });
   }
 
@@ -49,7 +51,6 @@ export class BlogScreenComponent implements OnInit {
     this.isTwoImages = event.target.value === 'dos';
     this.selectedFiles = [];
   }
-
 
   onFileSelected(event: any, index: number) {
     const file: File = event.target.files[0];
@@ -143,5 +144,12 @@ export class BlogScreenComponent implements OnInit {
     }
   }
 
+  openEditPost(post: any) {
+    const dialogRef = this.dialog.open(BlogEditComponent, {
+      width: '700px',
+      height: '600px',
+      data: post,
+    });
+  }
 
 }
