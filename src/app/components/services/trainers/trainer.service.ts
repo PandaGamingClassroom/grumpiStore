@@ -522,6 +522,12 @@ export class TrainerService {
     return this.http.delete(`${this.apiUrl}delete_post/${postId}`);
   }
 
+  // Función para editar un post por su id
+  editPost(postId: number, postFormData: FormData): Observable<any> {
+    const url = `${this.apiUrl}/edit_post/${postId}`;
+    return this.http.put(url, postFormData);
+  }
+
   // Actualizar última conexión del profesor
   updateProfessorConnection(id: number, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}profesors/update/${id}`, data);

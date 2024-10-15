@@ -20,7 +20,7 @@
   <div class="post-form-container">
     <form
       [formGroup]="postForm"
-      (ngSubmit)="editarPost()"
+      (ngSubmit)="editarPost(data.id)"
       enctype="multipart/form-data"
     >
       <div class="form-group">
