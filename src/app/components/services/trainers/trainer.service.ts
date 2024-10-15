@@ -524,7 +524,7 @@ export class TrainerService {
 
   // Función para editar un post por su id
   editPost(postId: number, postFormData: FormData): Observable<any> {
-    const url = `${this.apiUrl}/edit_post/${postId}`;
+    const url = `${this.apiUrl}edit_post/${postId}`;
     return this.http.put(url, postFormData);
   }
 
