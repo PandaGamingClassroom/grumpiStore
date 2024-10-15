@@ -33,7 +33,8 @@ import { VirtualPetComponent } from './components/virtual-pet/virtual-pet.compon
 import { AboutTheAppComponent } from './components/about-the-app/about-the-app.component';
 import { BlogScreenComponent } from './components/admin-screen/profesor-admin/blog/blog-screen.component';
 import { BlogComponent } from './components/blog/blog.component';
-import { WebScreenComponent } from './components/web-screen/web-screen.component'
+import { WebScreenComponent } from './components/web-screen/web-screen.component';
+import { IntroComponent } from './components/rules/intro/intro.component';
 
 /**
  * ADMINISTRADORs
@@ -60,6 +61,7 @@ export const routes: Routes = [
   { path: 'about-the-app', component: AboutTheAppComponent },
   { path: '', component: LoginScreenComponent },
   { path: 'rules', component: RulesComponent },
+  { path: 'rules/intro', component: IntroComponent },
   { path: 'rules/career', component: CareerComponent },
   { path: 'rules/combats', component: CombatsComponent },
   { path: 'rules/obtain-energies', component: ObtainEnergies },
