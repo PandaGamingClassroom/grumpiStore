@@ -43,6 +43,10 @@ export class BlogEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.profesor = localStorage.getItem('id_profesor');
+    this.postForm.patchValue({
+      title: this.data.title,
+      content: this.data.content,
+    });
   }
 
   disableRightClick(event: MouseEvent) {
