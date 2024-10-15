@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px; 
+  padding: 0 15px;
 }
 
 .btn-config {
-  position: absolute;
+  // position: absolute;
   left: 0;
 }
 
@@ -21,9 +21,9 @@
 }
 
 .dropdown-menu {
-  border: 2px solid green; 
+  border: 2px solid green;
   background-color: #b9d6f3;
-  border-radius: 4px; 
+  border-radius: 4px;
   padding: 10px;
 }
 
