@@ -1,33 +1,58 @@
 <div class="container" tabindex="-1">
-    <div class="btn-config mt-3 mainBoxAdminContent">
-        <button type="button" class="btn" (click)="close()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                <path
-                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
-            </svg>
-            Atrás
-        </button>
-    </div>
+  <div class="btn-config mt-3 mainBoxAdminContent">
+    <button type="button" class="btn" (click)="close()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-left-circle-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+        />
+      </svg>
+      Atrás
+    </button>
+  </div>
 
-    <div class="container">
-        <h3 class="d-flex justify-content-center"> <strong> - Título: </strong>{{ data.title }} </h3>
-        <div class="container">
-            <div class="row mb-3">
-                <p><strong> - Contenido: </strong> {{ data.content }} </p>
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <strong> - Imagen: </strong>
-                    <br>
-                    <img src="{{data.image_one}}" class="card-img-top" alt="Imagen del post">
-                </div>
-                <div class="col">
-                    <strong> - Imagen: </strong>
-                    <br>
-                    <img *ngIf="data?.image_two" src="{{data.image_two}}" class="card-img-top" alt="Imagen del post">
-                </div>
-            </div>
+  <div class="container">
+    <div class="m-4 d-flex justify-content-center">
+      <div
+        class="post-content mb-3 mt-3"
+        [ngStyle]="{ 'background-image': 'url(' + data.background + ')' }"
+      >
+        <div class="post p-4">
+          <h2>{{ data.title }}</h2>
+          <p>{{ data.content }}</p>
         </div>
+
+        <div class="post-images" *ngIf="data.image_one && data.image_two">
+          <img
+            *ngIf="data.image_one"
+            [src]="data.image_one"
+            alt="Imagen del post"
+          />
+          <img
+            *ngIf="data.image_two"
+            [src]="data.image_two"
+            alt="Imagen del post"
+          />
+        </div>
+
+        <div
+          class="post-images d-flex justify-content-center"
+          *ngIf="data.image_one && !data.image_two"
+        >
+          <img
+            *ngIf="data.image_one"
+            [src]="data.image_one"
+            alt="Imagen del post"
+          />
+        </div>
+        <hr />
+      </div>
     </div>
+  </div>
 </div>
