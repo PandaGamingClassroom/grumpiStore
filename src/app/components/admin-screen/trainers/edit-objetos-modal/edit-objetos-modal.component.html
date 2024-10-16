@@ -49,16 +49,24 @@
                 <label for="grumpi-{{ grumpi.nombre }}" class="form-label me-2">
                   Eliminar
                 </label>
-                <i class="material-icons text-danger cursor-pointer" (click)="eliminarGrumpi(grumpi)">&#xe872;</i>
+                <i
+                  class="material-icons text-danger cursor-pointer"
+                  (click)="eliminarGrumpi(grumpi)"
+                  >&#xe872;</i
+                >
               </div>
             </div>
           </div>
+          <div class="container text-center mb-3">
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="eliminarObjetos()"
+            >
+              Confirmar cambios
+            </button>
+          </div>
         </div>
-            <div class="container text-center mb-3">
-      <button type="button" class="btn btn-light" (click)="eliminarObjetos()">
-        Confirmar cambios
-      </button>
-    </div>
       </div>
 
       <div class="accordion-item">
@@ -357,6 +365,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
