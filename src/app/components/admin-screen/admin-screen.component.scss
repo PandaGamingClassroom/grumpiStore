@@ -21,8 +21,9 @@
 
 .scrollable-div, .bigBox {
   overflow-y: auto;
-  max-height: calc(100vh - 320px);
+  max-height: calc(100vh - 200px);
 }
+
 
 .btns {
   height: 80px;
