@@ -11,14 +11,10 @@
         <a class="nav-link" (click)="showSection('profile')">Perfil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showSection('trainers')"
-          >Lista de entrenadores</a
-        >
+        <a class="nav-link" (click)="showSection('trainers')">Lista de entrenadores</a>
       </li>
       <li class="nav-item" *ngIf="isAdminUser">
-        <a class="nav-link" (click)="showSection('profesorado')"
-          >Lista de profesores</a
-        >
+        <a class="nav-link" (click)="showSection('profesorado')">Lista de profesores</a>
       </li>
       <hr />
       <h3 class="d-flex justify-content-center">
@@ -31,9 +27,7 @@
         <a class="nav-link" (click)="showSection('medals')">Medallas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showSection('distintivos')"
-          >Distintivos de liga</a
-        >
+        <a class="nav-link" (click)="showSection('distintivos')">Distintivos de liga</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('energies')">Energía</a>
@@ -56,38 +50,48 @@
 
   <!-- Contenido principal -->
   <div class="container-fluid main-content">
-    <div class="row mb-3 prof_box mt-2">
-      <div class="col">
-        <p class="box-text">
-          <span>👍</span> Bienvenido
-          <strong>{{ nameProfesor }} {{ lastNameProfesor }}</strong> a la
-          GrumpiApp.
-        </p>
-        <p>
-          En este espacio podrá gestionar toda la información referente a sus
-          alumnos para poder comenzar con los Grumpi.
-        </p>
-      </div>
-      <div class="col-2">
-        <div class="row d-flex justify-content-center">
-          <button type="button" class="btn-out btns" (click)="logOut()">
-            Salir
-          </button>
+
+    <p class="d-inline-flex gap-1">
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample">
+        Hola {{ nameProfesor }}
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <div class="row mb-3 prof_box mt-2">
+          <div class="col">
+            <p class="box-text">
+              <span>👍</span> Bienvenido/a
+              <strong>{{ nameProfesor }} {{ lastNameProfesor }}</strong> a la
+              GrumpiApp.
+            </p>
+            <p>
+              En este espacio podrá gestionar toda la información referente a sus
+              alumnos para poder comenzar con los Grumpi.
+            </p>
+          </div>
+          <div class="col-2">
+            <div class="row d-flex justify-content-center">
+              <button type="button" class="btn-out btns" (click)="logOut()">
+                Salir
+              </button>
+            </div>
+          </div>
+          <hr />
+          <p class="d-flex justify-content-center">
+            A tu izquierda encontrarás una selección de opciones y a la derecha se
+            mostrará el contenido de la opción seleccionada.
+          </p>
         </div>
       </div>
-      <hr />
-      <p class="d-flex justify-content-center">
-        A tu izquierda encontrarás una selección de opciones y a la derecha se
-        mostrará el contenido de la opción seleccionada.
-      </p>
     </div>
 
+
+
     <div class="container-fluid">
-      <div
-        *ngIf="showLogo"
-        class="container-fluid d-flex justify-content-center align-items-center"
-      >
-        <img src="../../../assets/Logo_v0.1_sinFondo.png" (contextmenu)="disableRightClick($event)"/>
+      <div *ngIf="showLogo" class="container-fluid d-flex justify-content-center align-items-center">
+        <img src="../../../assets/Logo_v0.1_sinFondo.png" (contextmenu)="disableRightClick($event)" />
       </div>
     </div>
 
@@ -121,9 +125,9 @@
           </div>
           <div *ngIf="activeSection === 'guide'" class="scrollable-div">
             <!-- <app-rules-admin></app-rules-admin> -->
-             <div class="text-center">
+            <div class="text-center">
               <button type="button" class="btn btn-success" routerLink="/rules_admin">Acceder a la Guía Grumpi </button>
-             </div>
+            </div>
           </div>
           <div *ngIf="activeSection === 'blog'" class="scrollable-div">
             <app-blog-screen></app-blog-screen>
