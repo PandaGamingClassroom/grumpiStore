@@ -104,7 +104,7 @@ export class EditObjetosModalComponent implements OnInit {
       JSON.parse(this.trainer?.objetos_evolutivos || '[]')
     );
     this.contadorRecompensas(JSON.parse(this.trainer?.recompensas || '[]'));
-    this.contadorEnergias(JSON.parse(this.trainer?.energias || '[]'));
+    this.contadorEnergias(JSON.parse(this.trainer?.energies || '[]'));
     this.contadorMedallas(JSON.parse(this.trainer?.medallas || '[]'));
     this.contadorGrumpis(JSON.parse(this.trainer?.grumpis || '[]'));
 
