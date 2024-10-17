@@ -200,19 +200,19 @@ export class MedalsAdminScreenComponent implements OnInit {
     const titleError = '¡La medalla no se ha podido asignar!';
     let messageError = '';
 
-    console.log('Nombres del entrenador: ', trainerNames);
-    console.log('Medalla seleccionada: ', this.selectedMedalName);
-
     if (trainerNames.length > 0 && this.selectedMedalName) {
       const medal = this.selectedMedalName;
       const validTrainerNames: string[] = [];
       let checkedTrainersCount = 0;
       let alreadyHasMedal = false;
-
+      console.log('Nombres del entrenador: ', trainerNames);
+      console.log('Medalla seleccionada: ', this.selectedMedalName);
       // Obtener medallas de todos los entrenadores seleccionados
       trainerNames.forEach((trainerName) => {
         this.trainersService.getTrainerByName(trainerName).subscribe(
           (data: any) => {
+            console.log('DATA: ', data);
+
             if (data && data.medallas) {
               const trainerMedals = data.medals.map((m: any) => m.nombre);
               console.log('Medallas del entrenador:', trainerMedals);
