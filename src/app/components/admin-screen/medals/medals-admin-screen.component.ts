@@ -210,11 +210,11 @@ export class MedalsAdminScreenComponent implements OnInit {
       // Obtener medallas de todos los entrenadores seleccionados
       trainerNames.forEach((trainerName) => {
         this.trainersService.getTrainerById(trainerName).subscribe(
-          (data: any) => {
-            console.log('DATA: ', data);
+          (trainer: any) => {
+            console.log('DATA: ', trainer.data.medallas);
 
-            if (data && data.medallas) {
-              const trainerMedals = data.medallas.map((m: any) => m.nombre);
+            if (trainer && trainer.data.medallas) {
+              const trainerMedals = trainer.data.medallas.map((m: any) => m.nombre);
               console.log('Medallas del entrenador:', trainerMedals);
 
               // Verifica si el entrenador ya tiene la medalla
