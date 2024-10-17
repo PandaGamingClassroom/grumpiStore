@@ -200,6 +200,9 @@ export class MedalsAdminScreenComponent implements OnInit {
     const titleError = '¡La medalla no se ha podido asignar!';
     let messageError = '';
 
+    console.log('Nombres del entrenador: ', trainerNames);
+    console.log('Medalla seleccionada: ', this.selectedMedalName);
+
     if (trainerNames.length > 0 && this.selectedMedalName) {
       const medal = this.selectedMedalName;
       const validTrainerNames: string[] = [];
