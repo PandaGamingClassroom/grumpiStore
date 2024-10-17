@@ -41,7 +41,7 @@ export class MedalsAdminScreenComponent implements OnInit {
   modalAbierta = false;
   confirmMessage: string = 'Medalla añadida correctamente.';
   searchTerm: string = '';
-  selectedMedalName: string | null = null;
+  selectedMedalName: any | null = null;
   selectedTrainerName: string | null = null;
   trainerList: any[] = [];
   isAdminUser: boolean = false;
@@ -214,13 +214,18 @@ export class MedalsAdminScreenComponent implements OnInit {
             console.log('DATA: ', trainer.data.medallas);
 
             if (trainer && trainer.data.medallas) {
-              const trainerMedals = trainer.data.medallas.map((m: any) => m.nombre);
+              const trainerMedals = trainer.data.medallas || [];
               console.log('Medallas del entrenador:', trainerMedals);
 
-              // Verifica si el entrenador ya tiene la medalla
-              const hasMedal = trainerMedals.includes(medal);
+              trainerMedals.forEach((medalla: any) => {
+                console.log('Nombre en la lista:', medalla.nombre);
+              });
+
+              const hasMedal = trainerMedals.some(
+                (medalla: any) => medalla.nombre === medal.nombre
+              );
               console.log(
-                `El entrenador ${trainerName} tiene la medalla:`,
+                `El entrenador ${trainer.data.name} tiene la medalla:`,
                 hasMedal
               );
 
@@ -233,7 +238,6 @@ export class MedalsAdminScreenComponent implements OnInit {
 
             checkedTrainersCount++;
 
-            // Verificar si se han revisado todos los entrenadores
             if (checkedTrainersCount === trainerNames.length) {
               if (alreadyHasMedal) {
                 messageError = `Uno o más entrenadores ya tienen la medalla ${medal}. No se puede asignar de nuevo.`;
