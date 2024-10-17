@@ -185,19 +185,21 @@ export class LeagueBadgesComponent implements OnInit {
         this.trainersService.getTrainerById(trainerID).subscribe((trainer) => {
           const trainerBadges = trainer.data.distintivos_liga || [];
           console.log(
-            'Lista de distintivos de liga del entrenador: ',
+            'Lista de distintivos de liga del entrenador:',
             trainerBadges
           );
 
           trainerBadges.forEach((badge: any) => {
             console.log('Nombre en la lista:', badge.nombre);
           });
-          console.log('Distintivo seleccionado: ', badgeName);
-          const hasBadge = trainerBadges.some((badge: any) => {
-            badge.nombre.split(' ') === badgeName.nombre.split(' ');
-          });
+          console.log('Distintivo seleccionado:', badgeName);
+
+          // Verificar si el entrenador ya tiene el distintivo
+          const hasBadge = trainerBadges.some(
+            (badge: any) => badge.nombre === badgeName
+          );
           console.log(
-            `El entrenador ${trainer.data.name} tiene la criatura:`,
+            `El entrenador ${trainer.data.name} tiene el distintivo:`,
             hasBadge
           );
 
