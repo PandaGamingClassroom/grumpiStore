@@ -226,17 +226,16 @@ export class MedalsAdminScreenComponent implements OnInit {
               } else {
                 validTrainerNames.push(trainerName);
               }
+            }
 
-              checkedTrainersCount++;
+            checkedTrainersCount++;
 
-              // Verificar si se han revisado todos los entrenadores
-              if (checkedTrainersCount === trainerNames.length) {
-                if (alreadyHasMedal) {
-                  messageError = `Uno o más entrenadores ya tienen la medalla ${medal}. No se puede asignar de nuevo.`;
-                  this.openErrorModal(titleError, messageError);
-                  return;
-                }
-
+            // Verificar si se han revisado todos los entrenadores
+            if (checkedTrainersCount === trainerNames.length) {
+              if (alreadyHasMedal) {
+                messageError = `Uno o más entrenadores ya tienen la medalla ${medal}. No se puede asignar de nuevo.`;
+                this.openErrorModal(titleError, messageError);
+              } else {
                 // Asignar la medalla a los entrenadores válidos
                 if (validTrainerNames.length > 0) {
                   this.trainersService
@@ -247,7 +246,7 @@ export class MedalsAdminScreenComponent implements OnInit {
                         this.openModal();
                       },
                       (error) => {
-                        let errorMsg =
+                        const errorMsg =
                           'Hemos tenido un problema al asignar la medalla al entrenador.';
                         this.openErrorModal(titleError, errorMsg);
                       }
