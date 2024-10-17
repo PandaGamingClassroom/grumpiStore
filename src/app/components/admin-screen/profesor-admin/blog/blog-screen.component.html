@@ -103,20 +103,18 @@
 </div>
 
 <!-- Lista de posts -->
-<div class="modal fade" id="post_list" tabindex="-1" aria-labelledby="post_listLabel" aria-hidden="true" style="width: 700px; height: 600px;">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
+<div class="modal fade" id="post_list" tabindex="-1" aria-labelledby="post_listLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 700px; height: 600px;">
+    <div class="modal-content" style="height: 100%;">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="post_listLabel">Listado de posts publicados</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body ajuste_cards">
+      <div class="modal-body ajuste_cards" style="overflow-y: auto;">
         <div class="card mb-3" style="width: 18rem;" *ngFor="let post of posts">
           <img src="{{post.image_one}}" class="card-img-top" alt="Imagen del post">
           <div class="card-body">
-            <h5 class="card-title">
-              {{post.title}}
-            </h5>
+            <h5 class="card-title">{{post.title}}</h5>
             <div class="">
               <a class="btn btn-primary" data-bs-dismiss="modal" (click)="openDetailsPost(post)">Ver mas</a>
               <a class="btn btn-warning" data-bs-dismiss="modal" (click)="openEditPost(post)">Editar</a>
@@ -131,6 +129,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Eliminar post -->
 <div class="modal fade" id="post_delete" tabindex="-1" aria-labelledby="post_deleteLabel" aria-hidden="true">

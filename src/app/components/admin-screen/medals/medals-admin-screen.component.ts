@@ -214,7 +214,7 @@ export class MedalsAdminScreenComponent implements OnInit {
             console.log('DATA: ', data);
 
             if (data && data.medallas) {
-              const trainerMedals = data.medals.map((m: any) => m.nombre);
+              const trainerMedals = data.medallas.map((m: any) => m.nombre);
               console.log('Medallas del entrenador:', trainerMedals);
 
               // Verifica si el entrenador ya tiene la medalla
