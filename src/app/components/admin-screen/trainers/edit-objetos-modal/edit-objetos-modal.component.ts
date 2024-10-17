@@ -375,6 +375,7 @@ export class EditObjetosModalComponent implements OnInit {
         objetosAEliminar.push({
           tipo: 'energia',
           nombre: energia.nombre,
+          tipo_energia: energia.tipo,
           cantidad: energia.quantityToDelete,
         });
       }
