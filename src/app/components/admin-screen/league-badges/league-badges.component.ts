@@ -189,7 +189,9 @@ export class LeagueBadgesComponent implements OnInit {
             trainerBadges
           );
 
-          trainerBadges.forEach((badge: any) => {});
+          trainerBadges.forEach((badge: any) => {
+            console.log('Nombre en la lista:', badge.nombre);
+          });
 
           const hasBadge = trainerBadges.some((badge: any) => {
             badge.nombre === badgeName.nombre;
