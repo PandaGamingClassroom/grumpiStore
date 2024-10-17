@@ -199,59 +199,73 @@ export class MedalsAdminScreenComponent implements OnInit {
   assignMedalToTrainer(trainerNames: string[]) {
     const titleError = '¡La medalla no se ha podido asignar!';
     let messageError = '';
+
     if (trainerNames.length > 0 && this.selectedMedalName) {
       const medal = this.selectedMedalName;
+      const validTrainerNames: string[] = [];
+      let checkedTrainersCount = 0;
+      let alreadyHasMedal = false;
 
       // Obtener medallas de todos los entrenadores seleccionados
-      const trainerRequests = trainerNames.map((trainerName) =>
-        this.trainersService.getTrainerByName(trainerName).toPromise()
-      );
-
-      forkJoin(trainerRequests).subscribe(
-        (trainersData) => {
-          trainersData.forEach((data: any) => {
+      trainerNames.forEach((trainerName) => {
+        this.trainersService.getTrainerByName(trainerName).subscribe(
+          (data: any) => {
             if (data && data.medallas) {
-              this.trainerMedalsMap[data.nombre] = data.medals.map(
-                (medal: any) => medal.nombre
+              const trainerMedals = data.medals.map((m: any) => m.nombre);
+              console.log('Medallas del entrenador:', trainerMedals);
+
+              // Verifica si el entrenador ya tiene la medalla
+              const hasMedal = trainerMedals.includes(medal);
+              console.log(
+                `El entrenador ${trainerName} tiene la medalla:`,
+                hasMedal
               );
-            }
-          });
 
-          const trainersWithMedal = trainerNames.filter(
-            (trainerName) =>
-              this.trainerMedalsMap[trainerName] &&
-              this.trainerMedalsMap[trainerName].includes(medal)
-          );
-
-          if (trainersWithMedal.length > 0) {
-            messageError = `La medalla ${medal} ya está asignada a los siguientes entrenadores: ${trainersWithMedal.join(
-              ', '
-            )}`;
-
-            this.openErrorModal(titleError, messageError);
-            return;
-          }
-
-          this.trainersService
-            .assignMedalToTrainers(trainerNames, medal)
-            .subscribe(
-              (response) => {
-                console.log('Medalla asignada con éxito:', response);
-                this.openModal();
-              },
-              (error) => {
-                let errorMssg =
-                  'Hemos tenido un problema al asignar el distintivo al entrenador.';
-                this.openErrorModal(titleError, errorMssg);
+              if (hasMedal) {
+                alreadyHasMedal = true;
+              } else {
+                validTrainerNames.push(trainerName);
               }
-            );
-        },
-        (error) => {
-          console.error('Error al obtener datos de entrenadores:', error);
-        }
-      );
+
+              checkedTrainersCount++;
+
+              // Verificar si se han revisado todos los entrenadores
+              if (checkedTrainersCount === trainerNames.length) {
+                if (alreadyHasMedal) {
+                  messageError = `Uno o más entrenadores ya tienen la medalla ${medal}. No se puede asignar de nuevo.`;
+                  this.openErrorModal(titleError, messageError);
+                  return;
+                }
+
+                // Asignar la medalla a los entrenadores válidos
+                if (validTrainerNames.length > 0) {
+                  this.trainersService
+                    .assignMedalToTrainers(validTrainerNames, medal)
+                    .subscribe(
+                      (response) => {
+                        console.log('Medalla asignada con éxito:', response);
+                        this.openModal();
+                      },
+                      (error) => {
+                        let errorMsg =
+                          'Hemos tenido un problema al asignar la medalla al entrenador.';
+                        this.openErrorModal(titleError, errorMsg);
+                      }
+                    );
+                }
+              }
+            }
+          },
+          (error) => {
+            const errorMsg = 'Error al obtener datos del entrenador.';
+            this.openErrorModal(titleError, errorMsg);
+          }
+        );
+      });
     } else {
-      alert('Por favor, selecciona al menos un entrenador y una medalla.');
+      const message =
+        'Por favor, selecciona al menos un entrenador y una medalla.';
+      this.openErrorModal(titleError, message);
     }
   }
 }
