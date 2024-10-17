@@ -194,7 +194,7 @@ export class LeagueBadgesComponent implements OnInit {
           });
           console.log('Distintivo seleccionado: ', badgeName);
           const hasBadge = trainerBadges.some((badge: any) => {
-            badge.nombre === badgeName.nombre;
+            badge.nombre.split(' ') === badgeName.nombre.split(' ');
           });
           console.log(
             `El entrenador ${trainer.data.name} tiene la criatura:`,
