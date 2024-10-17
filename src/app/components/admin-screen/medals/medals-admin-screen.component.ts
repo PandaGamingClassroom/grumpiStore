@@ -240,7 +240,7 @@ export class MedalsAdminScreenComponent implements OnInit {
 
             if (checkedTrainersCount === trainerNames.length) {
               if (alreadyHasMedal) {
-                messageError = `Uno o más entrenadores ya tienen la medalla ${medal}. No se puede asignar de nuevo.`;
+                messageError = `Uno o más entrenadores ya tienen la medalla. No se puede asignar de nuevo.`;
                 this.openErrorModal(titleError, messageError);
               } else {
                 // Asignar la medalla a los entrenadores válidos
