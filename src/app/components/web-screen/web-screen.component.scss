@@ -26,7 +26,6 @@ body {
   margin-bottom: 20px;
 }
 
-
 /* Estilos para el contenedor de texto */
 .container-fluid {
   padding: 0 15px;
@@ -38,7 +37,6 @@ body {
   max-height: calc(100vh - 215px);
   padding: 0 10px;
 }
-
 
 /* Estilo para párrafos */
 p {
@@ -70,4 +68,6 @@ p {
 video {
   max-width: 100%;
   height: auto;
+  border-radius: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
