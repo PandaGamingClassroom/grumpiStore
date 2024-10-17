@@ -200,7 +200,7 @@ export class TrainerService {
    * @returns
    */
   assignMedalToTrainers(
-    trainerNames: string[],
+    trainerNames: number[],
     medal: string
   ): Observable<any> {
     const url = this.apiUrl + 'assign-medal';

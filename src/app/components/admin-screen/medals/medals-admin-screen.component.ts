@@ -177,7 +177,7 @@ export class MedalsAdminScreenComponent implements OnInit {
     });
     dialogRef
       .afterClosed()
-      .subscribe((selectedTrainerNames: string[] | null) => {
+      .subscribe((selectedTrainerNames: number[] | null) => {
         if (selectedTrainerNames && selectedTrainerNames.length > 0) {
           this.selectedTrainerName = selectedTrainerNames.join(', ');
           this.assignMedalToTrainer(selectedTrainerNames);
@@ -196,20 +196,20 @@ export class MedalsAdminScreenComponent implements OnInit {
    *
    * @param trainerNames
    */
-  assignMedalToTrainer(trainerNames: string[]) {
+  assignMedalToTrainer(trainerNames: number[]) {
     const titleError = '¡La medalla no se ha podido asignar!';
     let messageError = '';
 
     if (trainerNames.length > 0 && this.selectedMedalName) {
       const medal = this.selectedMedalName;
-      const validTrainerNames: string[] = [];
+      const validTrainerNames: number[] = [];
       let checkedTrainersCount = 0;
       let alreadyHasMedal = false;
       console.log('Nombres del entrenador: ', trainerNames);
       console.log('Medalla seleccionada: ', this.selectedMedalName);
       // Obtener medallas de todos los entrenadores seleccionados
       trainerNames.forEach((trainerName) => {
-        this.trainersService.getTrainerByName(trainerName).subscribe(
+        this.trainersService.getTrainerById(trainerName).subscribe(
           (data: any) => {
             console.log('DATA: ', data);
 
