@@ -271,26 +271,26 @@ export class EditObjetosModalComponent implements OnInit {
     this.uniqueGrumpis.sort((a: any, b: any) => a.n_grumpidex - b.n_grumpidex);
   }
 
-  eliminarObjeto(grumpi: any) {
+  eliminarObjeto(objeto: any) {
     this.dialog
       .open(ConfirmModalComponentComponent, {
         width: '400px',
         height: '250px',
         data: {
           title: 'Vas a eliminar un objeto',
-          message: `¿Seguro que deseas eliminar a ${grumpi.nombre}?`,
+          message: `¿Seguro que deseas eliminar a ${objeto.nombre}?`,
         },
       })
       .afterClosed()
       .subscribe((confirmado) => {
         if (confirmado) {
           const grumpiAEliminar = this.uniqueGrumpis.find(
-            (item) => item.nombre === grumpi.nombre
+            (item) => item.nombre === objeto.nombre
           );
 
           if (grumpiAEliminar) {
             this.uniqueGrumpis = this.uniqueGrumpis.filter(
-              (item) => item.nombre !== grumpi.nombre
+              (item) => item.nombre !== objeto.nombre
             );
             const objetosAEliminar = [
               {
@@ -311,12 +311,12 @@ export class EditObjetosModalComponent implements OnInit {
                   this.openConfirmModal(data);
                 },
                 (error) => {
-                  console.error('Error al eliminar el grumpi:', error);
+                  console.error('Error al eliminar el objeto:', error);
                 }
               );
           } else {
             console.log(
-              `El grumpi ${grumpi.nombre} no se encontró en la lista.`
+              `El grumpi ${objeto.nombre} no se encontró en la lista.`
             );
           }
         }
