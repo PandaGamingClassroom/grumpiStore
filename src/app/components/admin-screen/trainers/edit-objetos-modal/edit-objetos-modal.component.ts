@@ -426,6 +426,7 @@ export class EditObjetosModalComponent implements OnInit {
     for (const badge of this.distintivos_liga) {
       if (badge.toDelete > 0) {
         objetosAEliminar.push({
+          id: badge.id,
           tipo: 'distintivos_liga',
           nombre: badge.nombre,
           cantidad: badge.quantityToDelete,
