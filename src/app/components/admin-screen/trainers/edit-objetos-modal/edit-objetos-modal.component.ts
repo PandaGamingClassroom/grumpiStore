@@ -271,6 +271,58 @@ export class EditObjetosModalComponent implements OnInit {
     this.uniqueGrumpis.sort((a: any, b: any) => a.n_grumpidex - b.n_grumpidex);
   }
 
+  eliminarDistintivo(objeto: any) {
+    this.dialog
+      .open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '250px',
+        data: {
+          title: 'Vas a eliminar un objeto',
+          message: `¿Seguro que deseas eliminar a ${objeto.nombre}?`,
+        },
+      })
+      .afterClosed()
+      .subscribe((confirmado) => {
+        if (confirmado) {
+          const distintivoAEliminar = this.distintivos_liga.find(
+            (item: any) => item.nombre === objeto.nombre
+          );
+
+          if (distintivoAEliminar) {
+            this.uniqueGrumpis = this.uniqueGrumpis.filter(
+              (item) => item.nombre !== objeto.nombre
+            );
+            const objetosAEliminar = [
+              {
+                tipo: 'distintivos_liga',
+                nombre: distintivoAEliminar.nombre,
+                id: distintivoAEliminar.id,
+              },
+            ];
+
+            this.trainersService
+              .updateTrainer(this.trainer_id, { objetosAEliminar })
+              .subscribe(
+                (response) => {
+                  const data = {
+                    title: '¡Correcto!',
+                    message: `Distintivo de liga eliminado y entrenador actualizado correctamente.`,
+                  };
+                  this.openConfirmModal(data);
+                },
+                (error) => {
+                  console.error('Error al eliminar el objeto:', error);
+                }
+              );
+          } else {
+            console.log(
+              `El distintivo de liga ${objeto.nombre} no se encontró en la lista.`
+            );
+          }
+        }
+      });
+  }
+
   eliminarObjeto(objeto: any) {
     this.dialog
       .open(ConfirmModalComponentComponent, {
