@@ -184,7 +184,7 @@ export class LeagueBadgesComponent implements OnInit {
    */
   assignBadges(trainerIds: number[]) {
     if (trainerIds.length > 0 && this.selectedBadgeName) {
-      const badgeId = this.selectedBadgeName.id;
+      const badge_selected = this.selectedBadgeName;
       const validTrainerIds: number[] = [];
       let checkedTrainersCount = 0;
       let alreadyHasBadge = false;
@@ -199,7 +199,7 @@ export class LeagueBadgesComponent implements OnInit {
             );
 
             const hasBadge = trainerBadges.some(
-              (badge: any) => badge.id === badgeId
+              (badge: any) => badge.id === badge_selected.id
             );
             console.log(
               `El entrenador ${trainer.data.name} tiene el distintivo:`,
@@ -225,7 +225,7 @@ export class LeagueBadgesComponent implements OnInit {
 
               if (validTrainerIds.length > 0) {
                 this.trainersService
-                  .assignBadgeToTrainers(validTrainerIds, badgeId)
+                  .assignBadgeToTrainers(validTrainerIds, badge_selected)
                   .subscribe(
                     (response) => {
                       console.log('Distintivo asignado con éxito:', response);
