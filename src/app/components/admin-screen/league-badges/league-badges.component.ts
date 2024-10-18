@@ -170,7 +170,6 @@ export class LeagueBadgesComponent implements OnInit {
         data: data,
       });
       dialogRef.afterClosed().subscribe((result) => {});
-      this.modalAbierta = true;
     }
   }
 
@@ -185,66 +184,69 @@ export class LeagueBadgesComponent implements OnInit {
    */
   assignBadges(trainerIds: number[]) {
     if (trainerIds.length > 0 && this.selectedBadgeName) {
-      const badgeName = this.selectedBadgeName.id;
+      const badgeId = this.selectedBadgeName.id;
       const validTrainerIds: number[] = [];
       let checkedTrainersCount = 0;
       let alreadyHasBadge = false;
 
-      trainerIds.forEach((trainerID) => {
-        this.trainersService.getTrainerById(trainerID).subscribe((trainer) => {
-          const trainerBadges = trainer.data.distintivos_liga || [];
-          console.log(
-            'Lista de distintivos de liga del entrenador:',
-            trainerBadges
-          );
+      trainerIds.forEach((trainerId) => {
+        this.trainersService.getTrainerById(trainerId).subscribe(
+          (trainer) => {
+            const trainerBadges = trainer.data.distintivos_liga || [];
+            console.log(
+              'Lista de distintivos de liga del entrenador: ',
+              trainerBadges
+            );
 
-          trainerBadges.forEach((badge: any) => {
-            console.log('Nombre en la lista:', badge.nombre);
-          });
+            const hasBadge = trainerBadges.some(
+              (badge: any) => badge.id === badgeId
+            );
+            console.log(
+              `El entrenador ${trainer.data.name} tiene el distintivo:`,
+              hasBadge
+            );
 
-          const hasBadge = trainerBadges.some(
-            (badge: any) => badge.id === badgeName
-          );
-          console.log(
-            `El entrenador ${trainer.data.name} tiene el distintivo:`,
-            hasBadge
-          );
-
-          if (hasBadge) {
-            alreadyHasBadge = true;
-          } else {
-            validTrainerIds.push(trainerID);
-          }
-
-          checkedTrainersCount++;
-
-          if (checkedTrainersCount === trainerIds.length) {
-            if (alreadyHasBadge) {
-              const title = '¡Cuidado!';
-              const message =
-                'Uno o más entrenadores ya tienen este distintivo de liga. No se puede asignar de nuevo.';
-              this.openErrorModal(title, message);
-              return;
+            if (hasBadge) {
+              alreadyHasBadge = true;
+            } else {
+              validTrainerIds.push(trainerId);
             }
 
-            if (validTrainerIds.length > 0) {
-              this.trainersService
-                .assignBadgeToTrainers(validTrainerIds, badgeName)
-                .subscribe(
-                  (response) => {
-                    console.log('Distintivo asignado con éxito:', response);
-                    this.openModal();
-                  },
-                  (error) => {
-                    const title = '¡Cuidado!';
-                    const message = 'Error asignando el distintivo de liga';
-                    console.error('Error asignando el distintivo:', error);
-                    this.openErrorModal(title, message);
-                  }
-                );
+            checkedTrainersCount++;
+
+            if (checkedTrainersCount === trainerIds.length) {
+              if (alreadyHasBadge) {
+                const title = '¡Cuidado!';
+                const message =
+                  'Uno o más entrenadores ya tienen este distintivo de liga. No se puede asignar de nuevo.';
+                this.openErrorModal(title, message);
+                return;
+              }
+
+              if (validTrainerIds.length > 0) {
+                this.trainersService
+                  .assignBadgeToTrainers(validTrainerIds, badgeId)
+                  .subscribe(
+                    (response) => {
+                      console.log('Distintivo asignado con éxito:', response);
+                      this.openModal();
+                    },
+                    (error) => {
+                      const title = '¡Cuidado!';
+                      const message = 'Error asignando el distintivo de liga';
+                      console.error('Error asignando el distintivo:', error);
+                      this.openErrorModal(title, message);
+                    }
+                  );
+              }
             }
+          },
+          (error) => {
+            const title = '¡Cuidado!';
+            const message = 'Error al verificar los entrenadores.';
+            this.openErrorModal(title, message);
           }
-        });
+        );
       });
     } else {
       const title = '¡Cuidado!';
