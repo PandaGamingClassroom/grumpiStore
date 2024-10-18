@@ -74,6 +74,8 @@ export class VerObjetosModalComponent implements OnInit {
 
   trainer: any;
 
+  distintivos_liga: any;
+
   constructor(
     public dialogRef: MatDialogRef<VerObjetosModalComponent>,
     @Inject(MAT_DIALOG_DATA) public objetos: any,
@@ -83,9 +85,8 @@ export class VerObjetosModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.trainer = this.objetos;
-    console.log('MOCHILA DEL ENTRENADOR :', this.trainer);
-
     this.trainer_id = this.trainer?.id || '';
+    this.distintivos_liga = JSON.parse(this.trainer?.distintivos_liga || '[]');
     this.contadorObjetosCombate(
       JSON.parse(this.trainer?.objetos_combate || '[]')
     );
@@ -93,7 +94,7 @@ export class VerObjetosModalComponent implements OnInit {
       JSON.parse(this.trainer?.objetos_evolutivos || '[]')
     );
     this.contadorRecompensas(JSON.parse(this.trainer?.recompensas || '[]'));
-    this.contadorEnergias(JSON.parse(this.trainer?.energias || '[]'));
+    this.contadorEnergias(JSON.parse(this.trainer?.energies || '[]'));
     this.contadorMedallas(JSON.parse(this.trainer?.medallas || '[]'));
     this.contadorGrumpis(JSON.parse(this.trainer?.grumpis || '[]'));
   }
