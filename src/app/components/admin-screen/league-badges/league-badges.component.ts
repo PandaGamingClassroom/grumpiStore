@@ -159,18 +159,16 @@ export class LeagueBadgesComponent implements OnInit {
    * @param message Recibe el mensaje para la ventana
    */
   openErrorModal(title: string, message: string) {
-    if (!this.modalAbierta) {
-      const data = {
-        title: title,
-        message: message,
-      };
-      const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
-        width: '400px',
-        height: '300px',
-        data: data,
-      });
-      dialogRef.afterClosed().subscribe((result) => {});
-    }
+    const data = {
+      title: title,
+      message: message,
+    };
+    const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      data: data,
+    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   disableRightClick(event: MouseEvent) {
