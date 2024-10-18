@@ -176,7 +176,7 @@ export class LeagueBadgesComponent implements OnInit {
    */
   assignBadges(trainerIds: number[]) {
     if (trainerIds.length > 0 && this.selectedBadgeName) {
-      const badgeName = this.selectedBadgeName;
+      const badgeName = this.selectedBadgeName.id;
       const validTrainerIds: number[] = [];
       let checkedTrainersCount = 0;
       let alreadyHasBadge = false;
@@ -196,7 +196,7 @@ export class LeagueBadgesComponent implements OnInit {
 
           // Verificar si el entrenador ya tiene el distintivo
           const hasBadge = trainerBadges.some(
-            (badge: any) => badge.nombre === badgeName
+            (badge: any) => badge.id === badgeName
           );
           console.log(
             `El entrenador ${trainer.data.name} tiene el distintivo:`,
