@@ -346,7 +346,7 @@ export class EditObjetosModalComponent implements OnInit {
             );
             const objetosAEliminar = [
               {
-                tipo: 'objetos_evolutivos',
+                tipo: 'evolutivo',
                 nombre: objEvolutivoAEliminar.nombre,
                 id: objEvolutivoAEliminar.id,
               },
@@ -480,18 +480,6 @@ export class EditObjetosModalComponent implements OnInit {
           nombre: energia.nombre,
           tipo_energia: energia.tipo,
           cantidad: energia.quantityToDelete,
-        });
-      }
-    }
-
-    //Objetos evolutivos
-    for (const objetoEvolutivo of this.uniqueEvolutionObjects) {
-      if (objetoEvolutivo.quantityToDelete > 0) {
-        objetosAEliminar.push({
-          tipo: 'objetos_evolutivos',
-          nombre: objetoEvolutivo.nombre,
-          tipo_energia: objetoEvolutivo.tipo,
-          cantidad: objetoEvolutivo.quantityToDelete,
         });
       }
     }
