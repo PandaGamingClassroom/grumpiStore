@@ -107,7 +107,6 @@ export class EditObjetosModalComponent implements OnInit {
     this.contadorEnergias(JSON.parse(this.trainer?.energies || '[]'));
     this.contadorMedallas(JSON.parse(this.trainer?.medallas || '[]'));
     this.contadorGrumpis(JSON.parse(this.trainer?.grumpis || '[]'));
-
   }
 
   /**
@@ -272,13 +271,13 @@ export class EditObjetosModalComponent implements OnInit {
     this.uniqueGrumpis.sort((a: any, b: any) => a.n_grumpidex - b.n_grumpidex);
   }
 
-  eliminarGrumpi(grumpi: any) {
+  eliminarObjeto(grumpi: any) {
     this.dialog
       .open(ConfirmModalComponentComponent, {
         width: '400px',
         height: '250px',
         data: {
-          title: 'Vas a eliminar un Grumpi',
+          title: 'Vas a eliminar un objeto',
           message: `¿Seguro que deseas eliminar a ${grumpi.nombre}?`,
         },
       })
@@ -420,6 +419,16 @@ export class EditObjetosModalComponent implements OnInit {
           tipo: 'recompensa',
           nombre: objeto.nombre,
           cantidad: objeto.quantityToDelete,
+        });
+      }
+    }
+
+    for (const badge of this.distintivos_liga) {
+      if (badge.toDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'distintivos_liga',
+          nombre: badge.nombre,
+          cantidad: badge.quantityToDelete,
         });
       }
     }
