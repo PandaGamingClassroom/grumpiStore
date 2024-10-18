@@ -132,23 +132,32 @@ export class LeagueBadgesComponent implements OnInit {
     );
   }
 
+  /**
+   *
+   * Abre la ventana modal en la que se muestra
+   * un mensaje de confirmación.
+   *
+   */
   openModal() {
-    if (!this.modalAbierta) {
-      const data = {
-        title: '¡Distintivo añadido!',
-        message: this.confirmMessage,
-      };
+    const data = {
+      title: '¡Distintivo añadido!',
+      message: this.confirmMessage,
+    };
 
-      const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
-        width: '400px',
-        height: '300px',
-        data: data,
-      });
-      dialogRef.afterClosed().subscribe((result) => {});
-      this.modalAbierta = true;
-    }
+    const dialogRef = this.dialog.open(ConfirmModalComponentComponent, {
+      width: '400px',
+      height: '300px',
+      data: data,
+    });
+    dialogRef.afterClosed().subscribe((result) => {});
+    this.modalAbierta = true;
   }
 
+  /**
+   * Función para abrir la ventana modal de error.
+   * @param title Recibe el título para la ventana
+   * @param message Recibe el mensaje para la ventana
+   */
   openErrorModal(title: string, message: string) {
     if (!this.modalAbierta) {
       const data = {
@@ -192,9 +201,7 @@ export class LeagueBadgesComponent implements OnInit {
           trainerBadges.forEach((badge: any) => {
             console.log('Nombre en la lista:', badge.nombre);
           });
-          console.log('Distintivo seleccionado:', badgeName);
 
-          // Verificar si el entrenador ya tiene el distintivo
           const hasBadge = trainerBadges.some(
             (badge: any) => badge.id === badgeName
           );
