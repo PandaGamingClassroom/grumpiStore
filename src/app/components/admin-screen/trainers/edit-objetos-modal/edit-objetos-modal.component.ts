@@ -289,8 +289,8 @@ export class EditObjetosModalComponent implements OnInit {
           );
 
           if (distintivoAEliminar) {
-            this.uniqueGrumpis = this.uniqueGrumpis.filter(
-              (item) => item.nombre !== objeto.nombre
+            this.distintivos_liga = this.distintivos_liga.filter(
+              (item: any) => item.nombre !== objeto.nombre
             );
             const objetosAEliminar = [
               {
@@ -317,6 +317,58 @@ export class EditObjetosModalComponent implements OnInit {
           } else {
             console.log(
               `El distintivo de liga ${objeto.nombre} no se encontró en la lista.`
+            );
+          }
+        }
+      });
+  }
+
+  eliminarObjEvolutivo(objeto: any) {
+    this.dialog
+      .open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '250px',
+        data: {
+          title: 'Vas a eliminar un objeto',
+          message: `¿Seguro que deseas eliminar a ${objeto.nombre}?`,
+        },
+      })
+      .afterClosed()
+      .subscribe((confirmado) => {
+        if (confirmado) {
+          const objEvolutivoAEliminar = this.uniqueEvolutionObjects.find(
+            (item: any) => item.nombre === objeto.nombre
+          );
+
+          if (objEvolutivoAEliminar) {
+            this.uniqueEvolutionObjects = this.uniqueEvolutionObjects.filter(
+              (item) => item.nombre !== objeto.nombre
+            );
+            const objetosAEliminar = [
+              {
+                tipo: 'objetos_evolutivos',
+                nombre: objEvolutivoAEliminar.nombre,
+                id: objEvolutivoAEliminar.id,
+              },
+            ];
+
+            this.trainersService
+              .updateTrainer(this.trainer_id, { objetosAEliminar })
+              .subscribe(
+                (response) => {
+                  const data = {
+                    title: '¡Correcto!',
+                    message: `Objeto evolutivo eliminado y entrenador actualizado correctamente.`,
+                  };
+                  this.openConfirmModal(data);
+                },
+                (error) => {
+                  console.error('Error al eliminar el objeto:', error);
+                }
+              );
+          } else {
+            console.log(
+              `El objeto evolutivo ${objeto.nombre} no se encontró en la lista.`
             );
           }
         }
@@ -428,6 +480,18 @@ export class EditObjetosModalComponent implements OnInit {
           nombre: energia.nombre,
           tipo_energia: energia.tipo,
           cantidad: energia.quantityToDelete,
+        });
+      }
+    }
+
+    //Objetos evolutivos
+    for (const objetoEvolutivo of this.uniqueEvolutionObjects) {
+      if (objetoEvolutivo.quantityToDelete > 0) {
+        objetosAEliminar.push({
+          tipo: 'objetos_evolutivos',
+          nombre: objetoEvolutivo.nombre,
+          tipo_energia: objetoEvolutivo.tipo,
+          cantidad: objetoEvolutivo.quantityToDelete,
         });
       }
     }
