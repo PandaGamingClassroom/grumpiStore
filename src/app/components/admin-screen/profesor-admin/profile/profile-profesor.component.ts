@@ -124,4 +124,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+  uploadImage(){}
 }
