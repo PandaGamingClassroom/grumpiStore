@@ -51,6 +51,7 @@ import { LegendAdminComponent } from './components/admin-screen/rules-admin/lege
 import { MapsAdminComponent } from './components/admin-screen/rules-admin/maps-admin/maps-admin.component';
 import { MedalsAdminComponent } from './components/admin-screen/rules-admin/medals-admin/medals-admin.component';
 import { RestsAdminComponent } from './components/admin-screen/rules-admin/rests-admin/rests-admin.component';
+import { IntroAdminComponent } from './components/admin-screen/rules-admin/intro-admin/intro-admin.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -88,7 +89,7 @@ export const routes: Routes = [
    *
    */
   { path: 'rules_admin', component: RulesAdminComponent },
-  { path: 'rules_admin/intro_admin', component: IntroComponent },
+  { path: 'rules_admin/intro_admin', component: IntroAdminComponent },
   { path: 'rules_admin/career_admin', component: CareerAdminComponent },
   { path: 'rules_admin/combats_admin', component: CombatsAdminComponent },
   { path: 'rules_admin/obtain-energies_admin', component: ObtainEnergiesAdmin },
