@@ -382,7 +382,7 @@ export class EditObjetosModalComponent implements OnInit {
         width: '400px',
         height: '250px',
         data: {
-          title: 'Vas a eliminar un objeto',
+          title: 'Vas a eliminar un Grumpi',
           message: `¿Seguro que deseas eliminar a ${objeto.nombre}?`,
         },
       })
@@ -422,6 +422,64 @@ export class EditObjetosModalComponent implements OnInit {
           } else {
             console.log(
               `El grumpi ${objeto.nombre} no se encontró en la lista.`
+            );
+          }
+        }
+      });
+  }
+
+  /**
+   * Función para eliminar las recompensas
+   * @param objeto Recibe la recompensa
+   */
+  eliminarRecompensa(objeto: any) {
+    this.dialog
+      .open(ConfirmModalComponentComponent, {
+        width: '400px',
+        height: '250px',
+        data: {
+          title: 'Vas a eliminar las recompensas',
+          message: `¿Seguro que deseas eliminar todas las recompensas con el nombre ${objeto.nombre}?`,
+        },
+      })
+      .afterClosed()
+      .subscribe((confirmado) => {
+        if (confirmado) {
+          // Filtrar todas las recompensas coincidentes
+          const recompensasAEliminar = this.uniqueRewards.filter(
+            (item) => item.nombre === objeto.nombre
+          );
+
+          if (recompensasAEliminar.length > 0) {
+            // Eliminar todas las recompensas coincidentes del front-end
+            this.uniqueRewards = this.uniqueRewards.filter(
+              (item) => item.nombre !== objeto.nombre
+            );
+
+            // Crear la lista de objetos a eliminar para enviar al servidor
+            const objetosAEliminar = recompensasAEliminar.map((recompensa) => ({
+              tipo: 'recompensa',
+              nombre: recompensa.nombre,
+            }));
+
+            // Enviar la lista de recompensas a eliminar al servidor
+            this.trainersService
+              .updateTrainer(this.trainer_id, { objetosAEliminar })
+              .subscribe(
+                (response) => {
+                  const data = {
+                    title: '¡Correcto!',
+                    message: `Recompensas eliminadas y entrenador actualizado correctamente.`,
+                  };
+                  this.openConfirmModal(data);
+                },
+                (error) => {
+                  console.error('Error al eliminar las recompensas:', error);
+                }
+              );
+          } else {
+            console.log(
+              `La recompensa ${objeto.nombre} no se encontró en la lista.`
             );
           }
         }
