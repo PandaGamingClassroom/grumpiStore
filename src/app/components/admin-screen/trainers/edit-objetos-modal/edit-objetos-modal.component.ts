@@ -349,6 +349,7 @@ export class EditObjetosModalComponent implements OnInit {
                 tipo: 'evolutivo',
                 nombre: objEvolutivoAEliminar.nombre,
                 id: objEvolutivoAEliminar.id,
+                cantidad: objEvolutivoAEliminar.quantityToDelete,
               },
             ];
 
