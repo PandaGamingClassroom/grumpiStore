@@ -12,7 +12,8 @@
           class="img-fluid imgProfile"
           (contextmenu)="disableRightClick($event)"
         />
-        <button type="button"
+        <button
+          type="button"
           class="btn btn-primary btn-upload-image"
           (click)="uploadImage()"
         >
@@ -21,18 +22,18 @@
       </div>
       <div class="col mt-3">
         <div class="row">
-          <div class="col-3  align-content-center">
+          <div class="col-3 d-flex align-items-center">
             <div class="mb-3">
-              <label for="nombre" class="form-label"
-                ><strong>Nombre:</strong> {{ profesor?.nombre }}</label
-              >
+              <label for="nombre" class="form-label">
+                <strong>Nombre:</strong> {{ profesor?.nombre }}
+              </label>
             </div>
           </div>
-          <div class="col">
+          <div class="col d-flex align-items-center">
             <div class="mb-3">
-              <label for="apellidos" class="form-label"
-                ><strong>Apellidos:</strong> {{ profesor?.apellidos }}</label
-              >
+              <label for="apellidos" class="form-label">
+                <strong>Apellidos:</strong> {{ profesor?.apellidos }}
+              </label>
             </div>
           </div>
         </div>
@@ -42,14 +43,14 @@
     <div class="row">
       <div class="container">
         <div class="mb-3">
-          <label for="usuario" class="form-label"
-            ><strong>Usuario:</strong> {{ profesor?.usuario }}</label
-          >
+          <label for="usuario" class="form-label">
+            <strong>Usuario:</strong> {{ profesor?.usuario }}
+          </label>
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label"
-            ><strong>Contraseña actual:</strong> {{ profesor?.password }}</label
-          >
+          <label for="password" class="form-label">
+            <strong>Contraseña actual:</strong> {{ profesor?.password }}
+          </label>
         </div>
         <div class="mb-3 text-center">
           <button
