@@ -4,8 +4,8 @@
       <div class="col-2 mt-3">
         <img
           [src]="
-            profesor?.foto
-              ? profesor.foto
+            profesor?.img_profile
+              ? profesor.img_profile
               : '../../../../../assets/avatars/predefinido.png'
           "
           alt="Foto del Profesor"
@@ -15,8 +15,15 @@
         <input
           type="file"
           (change)="onFileSelected($event)"
-          class="form-control-file"
+          class="form-control-file mt-2"
         />
+        <button
+          type="button"
+          class="btn btn-primary btn-upload-image mt-2"
+          (click)="uploadImage()"
+        >
+          Subir Imagen
+        </button>
       </div>
       <div class="col mt-3">
         <div class="row">
