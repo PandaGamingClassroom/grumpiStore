@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit {
   nameProfesor: any;
   lastNameProfesor: any;
   profesors: any[] = [];
+  selectedFile: File | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -125,5 +126,28 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  uploadImage(){}
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+    }
+  }
+
+  uploadImage() {
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('image', this.selectedFile);
+
+      this.trainersService.uploadProfileImage(formData).subscribe(
+        (response) => {
+          // Actualiza la URL de la imagen una vez que la subida se haya completado
+          this.profesor.foto = response.imageUrl; // `imageUrl` viene del servidor como respuesta de Cloudinary
+        },
+        (error) => {
+          console.error('Error subiendo la imagen:', error);
+        }
+      );
+    } else {
+      console.error('No se ha seleccionado ningún archivo');
+    }
+  }
 }

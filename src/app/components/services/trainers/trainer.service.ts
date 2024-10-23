@@ -537,4 +537,12 @@ export class TrainerService {
   updateTrainerConnection(id: number, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}trainers/update/${id}`, data);
   }
+
+  // Añadir una imagen de perfil para el profesor
+  uploadProfileImage(imageData: FormData): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}upload_profile_image`,
+      imageData
+    );
+  }
 }
