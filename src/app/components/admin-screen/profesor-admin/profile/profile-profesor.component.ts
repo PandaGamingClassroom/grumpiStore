@@ -11,7 +11,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogModule,
   MatDialogRef,
-  MatDialog
+  MatDialog,
 } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
@@ -137,10 +137,25 @@ export class ProfileComponent implements OnInit {
       const formData = new FormData();
       formData.append('image', this.selectedFile);
 
+      const updatedData = {
+        img_profile: this.selectedFile,
+      };
+
       this.trainersService.uploadProfileImage(formData).subscribe(
         (response) => {
-          // Actualiza la URL de la imagen una vez que la subida se haya completado
-          this.profesor.foto = response.imageUrl; // `imageUrl` viene del servidor como respuesta de Cloudinary
+          this.profesor.img_profile = response.imageUrl; // Guarda la URL de Cloudinary
+
+          // Llama a la función que actualiza los datos del profesor
+          this.trainersService
+            .updateAllDataProfessor(this.profesor.name, updatedData)
+            .subscribe(
+              () => {
+                console.log('Perfil actualizado correctamente');
+              },
+              (error) => {
+                console.error('Error actualizando el perfil:', error);
+              }
+            );
         },
         (error) => {
           console.error('Error subiendo la imagen:', error);
