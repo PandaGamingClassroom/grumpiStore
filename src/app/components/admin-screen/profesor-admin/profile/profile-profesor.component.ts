@@ -129,13 +129,13 @@ export class ProfileComponent implements OnInit {
       const formData = new FormData();
       formData.append('image', this.selectedFile);
 
-      const updatedData = {
-        img_profile: this.profesor.img_profile,
-      };
-
       this.trainersService.uploadProfileImage(formData).subscribe(
         (response) => {
           this.profesor.img_profile = response.imageUrl;
+
+          const updatedData = {
+            img_profile: this.profesor.img_profile,
+          };
           this.trainersService
             .updateIMGProfileProfessor(this.profesor.id, updatedData)
             .subscribe(
