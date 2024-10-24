@@ -16,6 +16,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { EditProfesorComponent } from '../edit-profesor/edit-profesor.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-profile-profesor',
@@ -26,11 +27,11 @@ import { EditProfesorComponent } from '../edit-profesor/edit-profesor.component'
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    ReactiveFormsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [TrainerService],
   templateUrl: './profile-profesor.component.html',
-  styleUrl: './profile-profesor.component.scss',
+  styleUrls: ['./profile-profesor.component.scss'],
 })
 export class ProfileComponent implements OnInit {
   myForm: FormGroup;
@@ -40,6 +41,7 @@ export class ProfileComponent implements OnInit {
   lastNameProfesor: any;
   profesors: any[] = [];
   selectedFile: File | null = null;
+  isLoading: boolean = false; // Variable para mostrar el spinner
 
   constructor(
     private formBuilder: FormBuilder,
@@ -91,12 +93,6 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  /**
-   * Función para abrir una ventana emergente en la cual se va a poder
-   * editar la información del entrenador seleccionado.
-   *
-   * @param trainer Recibe el entrenador seleccionado.
-   */
   openEditPage(trainer: any) {
     const dialogRef = this.dialog.open(EditProfesorComponent, {
       width: '400px',
@@ -109,15 +105,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  /**
-   * Función para obtener el listado completo de profesores
-   * que están dados de alta.
-   */
   getAllProfesors() {
     this.trainersService.getProfesores().subscribe(
       (data: any) => {
         console.log('Listado de profesores: ', data);
-
         this.profesors = data.profesoresList;
       },
       (error) => {
@@ -134,30 +125,29 @@ export class ProfileComponent implements OnInit {
 
   uploadImage() {
     if (this.selectedFile) {
+      this.isLoading = true; // Activar el spinner
       const formData = new FormData();
       formData.append('image', this.selectedFile);
-
-      const updatedData = {
-        img_profile: formData,
-      };
 
       this.trainersService.uploadProfileImage(formData).subscribe(
         (response) => {
           this.profesor.img_profile = response.imageUrl;
-          console.log('Profesor a actualizar: ', this.profesor);
           this.trainersService
-            .updateAllDataProfessor(this.profesor.id, updatedData)
+            .updateAllDataProfessor(this.profesor.id, this.profesor.img_profile)
             .subscribe(
               () => {
                 console.log('Perfil actualizado correctamente');
+                this.isLoading = false; // Desactivar el spinner
               },
               (error) => {
                 console.error('Error actualizando el perfil:', error);
+                this.isLoading = false; // Desactivar el spinner
               }
             );
         },
         (error) => {
           console.error('Error subiendo la imagen:', error);
+          this.isLoading = false; // Desactivar el spinner
         }
       );
     } else {
