@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
   lastNameProfesor: any;
   profesors: any[] = [];
   selectedFile: File | null = null;
-  isLoading: boolean = false; // Variable para mostrar el spinner
+  isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -125,7 +125,7 @@ export class ProfileComponent implements OnInit {
 
   uploadImage() {
     if (this.selectedFile) {
-      this.isLoading = true; // Activar el spinner
+      this.isLoading = true;
       const formData = new FormData();
       formData.append('image', this.selectedFile);
 
@@ -133,21 +133,24 @@ export class ProfileComponent implements OnInit {
         (response) => {
           this.profesor.img_profile = response.imageUrl;
           this.trainersService
-            .updateAllDataProfessor(this.profesor.id, this.profesor.img_profile)
+            .updateIMGProfileProfessor(
+              this.profesor.id,
+              this.profesor.img_profile
+            )
             .subscribe(
               () => {
                 console.log('Perfil actualizado correctamente');
-                this.isLoading = false; // Desactivar el spinner
+                this.isLoading = false;
               },
               (error) => {
                 console.error('Error actualizando el perfil:', error);
-                this.isLoading = false; // Desactivar el spinner
+                this.isLoading = false;
               }
             );
         },
         (error) => {
           console.error('Error subiendo la imagen:', error);
-          this.isLoading = false; // Desactivar el spinner
+          this.isLoading = false;
         }
       );
     } else {

@@ -98,6 +98,16 @@ export class TrainerService {
     );
   }
 
+  updateIMGProfileProfessor(
+    professorID: number,
+    professorData: any
+  ): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}profesors/update_img_profile/${professorID}`,
+      professorData
+    );
+  }
+
   /**
    * Función para eliminar un entrenador.
    *
