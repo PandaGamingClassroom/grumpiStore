@@ -84,16 +84,16 @@ export class TrainerService {
   /**
    * Función para actualizar todos los datos del profesor.
    *
-   * @param professorName
+   * @param professorID
    * @param professorData
    * @returns
    */
   updateAllDataProfessor(
-    professorName: string,
+    professorID: number,
     professorData: any
   ): Observable<any> {
     return this.http.put(
-      `${this.apiUrl}profesors/update_all_data/${professorName}`,
+      `${this.apiUrl}profesors/update_all_data/${professorID}`,
       professorData
     );
   }
@@ -540,9 +540,6 @@ export class TrainerService {
 
   // Añadir una imagen de perfil para el profesor
   uploadProfileImage(imageData: FormData): Observable<any> {
-    return this.http.post<any>(
-      `${this.apiUrl}upload_profile_image`,
-      imageData
-    );
+    return this.http.post<any>(`${this.apiUrl}upload_profile_image`, imageData);
   }
 }

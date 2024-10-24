@@ -71,7 +71,7 @@ export class EditCompleteDataProfesorComponent implements OnInit {
       password: this.myForm.get('password')?.value,
     };
     this.trainersService
-      .updateAllDataProfessor(this.data.nombre, updatedData)
+      .updateAllDataProfessor(this.data.id, updatedData)
       .subscribe((response) => {
         console.log('Profesor actualizado correctamente.', response);
         this.close();

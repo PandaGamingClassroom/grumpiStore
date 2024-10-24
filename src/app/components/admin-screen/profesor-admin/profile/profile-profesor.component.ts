@@ -144,9 +144,9 @@ export class ProfileComponent implements OnInit {
       this.trainersService.uploadProfileImage(formData).subscribe(
         (response) => {
           this.profesor.img_profile = response.imageUrl;
-
+          console.log('Profesor a actualizar: ', this.profesor);
           this.trainersService
-            .updateAllDataProfessor(this.profesor.name, updatedData)
+            .updateAllDataProfessor(this.profesor.id, updatedData)
             .subscribe(
               () => {
                 console.log('Perfil actualizado correctamente');
