@@ -138,7 +138,7 @@ export class ProfileComponent implements OnInit {
       formData.append('image', this.selectedFile);
 
       const updatedData = {
-        img_profile: this.selectedFile,
+        img_profile: formData,
       };
 
       this.trainersService.uploadProfileImage(formData).subscribe(
@@ -146,7 +146,7 @@ export class ProfileComponent implements OnInit {
           this.profesor.img_profile = response.imageUrl;
 
           this.trainersService
-            .updateAllDataProfessor(this.profesor.name, formData)
+            .updateAllDataProfessor(this.profesor.name, updatedData)
             .subscribe(
               () => {
                 console.log('Perfil actualizado correctamente');
