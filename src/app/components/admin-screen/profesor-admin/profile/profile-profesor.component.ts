@@ -143,11 +143,10 @@ export class ProfileComponent implements OnInit {
 
       this.trainersService.uploadProfileImage(formData).subscribe(
         (response) => {
-          this.profesor.img_profile = response.imageUrl; // Guarda la URL de Cloudinary
+          this.profesor.img_profile = response.imageUrl;
 
-          // Llama a la función que actualiza los datos del profesor
           this.trainersService
-            .updateAllDataProfessor(this.profesor.name, updatedData)
+            .updateAllDataProfessor(this.profesor.name, formData)
             .subscribe(
               () => {
                 console.log('Perfil actualizado correctamente');
