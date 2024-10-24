@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
   profesors: any[] = [];
   selectedFile: File | null = null;
   isLoading: boolean = false;
+  isCharge: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -120,6 +121,7 @@ export class ProfileComponent implements OnInit {
   onFileSelected(event: any) {
     if (event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
+      this.isCharge = true;
     }
   }
 
@@ -140,8 +142,8 @@ export class ProfileComponent implements OnInit {
             .updateIMGProfileProfessor(this.profesor.id, updatedData)
             .subscribe(
               () => {
-                console.log('Perfil actualizado correctamente');
                 this.isLoading = false;
+                this.isCharge = false;
               },
               (error) => {
                 console.error('Error actualizando el perfil:', error);
