@@ -103,10 +103,15 @@ export class BlogScreenComponent implements OnInit {
     }
   }
 
+  /**
+   * Obtención de los post que ha creado el profesor
+   */
   obtenerPosts() {
     this.trainersService.obtenerPost(this.profesor).subscribe(
       (data) => {
-        this.posts = data;
+        this.posts = data.sort(
+          (a: { id: number }, b: { id: number }) => b.id - a.id
+        );
       },
       (error) => {
         console.error('Error al obtener los posts', error);
@@ -121,6 +126,10 @@ export class BlogScreenComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para abrir ventana modal y ver los detalles del post seleccioando.
+   * @param post
+   */
   openDetailsPost(post: any) {
     const dialogRef = this.dialog.open(BlogDetailsComponent, {
       width: '700px',
@@ -129,6 +138,10 @@ export class BlogScreenComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para eliminar un post seleccionado.
+   * @param postId
+   */
   eliminarPost(postId: number) {
     if (confirm('¿Estás seguro de que deseas eliminar este post?')) {
       this.trainersService.eliminarPost(postId).subscribe(

@@ -79,7 +79,6 @@ export class BlogComponent implements OnInit {
     this.isLoading = true;
     this.trainersService.obtenerPost(this.profesor.id).subscribe(
       (data) => {
-        // Ordena los posts del más nuevo al más viejo usando el `id`
         this.posts = data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
         this.isLoading = false;
       },
