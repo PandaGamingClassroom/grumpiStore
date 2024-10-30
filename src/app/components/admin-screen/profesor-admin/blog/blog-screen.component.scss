@@ -33,6 +33,10 @@ body {
   }
 }
 
+.modal-body .card {
+  margin-bottom: 1.5rem; /* Aplica margen solo en las tarjetas dentro del modal */
+}
+
 .container-md.bg-box {
   max-height: 75vh;
   overflow-y: auto;
@@ -41,7 +45,7 @@ body {
 .ajuste_cards {
   height: 18rem;
   width: 18rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 /* CONFIGURACIÓN PARA EL FORMULARIO DE ENTRADA DEL BLOG */
