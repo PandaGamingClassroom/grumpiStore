@@ -111,12 +111,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="overflow-y: auto;">
-        <div class="card mb-3 ajuste_cards"*ngFor="let post of posts">
+        <div class="card mb-4 ajuste_cards" *ngFor="let post of posts">
           <img src="{{post.image_one}}" class="card-img-top" alt="Imagen del post">
           <div class="card-body">
             <h5 class="card-title">{{post.title}}</h5>
             <div class="">
-              <a class="btn btn-primary" data-bs-dismiss="modal" (click)="openDetailsPost(post)">Ver mas</a>
+              <a class="btn btn-primary" data-bs-dismiss="modal" (click)="openDetailsPost(post)">Ver más</a>
               <a class="btn btn-warning ms-2" data-bs-dismiss="modal" (click)="openEditPost(post)">Editar</a>
               <a class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#post_delete" (click)="selectedPostId = post.id">Borrar</a>
             </div>
