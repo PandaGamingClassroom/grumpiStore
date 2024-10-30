@@ -111,9 +111,9 @@ export class BattleGameComponent implements OnInit {
 
   playerAttack(atk: any) {
     if (this.playerTurn) {
-      this.randomGrumpi.hp -= atk.damage;
+      this.randomGrumpi.PS -= atk.efecto;
       this.log.push(
-        `Player's ${this.selectedGrumpi.nombre} used ${atk.nombre} and dealt ${atk.damage} damage!`
+        `Player's ${this.selectedGrumpi.nombre} used ${atk.nombre} and dealt ${atk.efecto} damage!`
       );
       this.checkBattleStatus();
     }
@@ -125,19 +125,19 @@ export class BattleGameComponent implements OnInit {
         this.randomGrumpi.ataques[
           Math.floor(Math.random() * this.randomGrumpi.ataques.length)
         ];
-      this.selectedGrumpi.hp -= randomAttack.damage;
+      this.selectedGrumpi.PS -= randomAttack.damage;
       this.log.push(
-        `Opponent's ${this.randomGrumpi.nombre} used ${randomAttack.nombre} and dealt ${randomAttack.damage} damage!`
+        `Opponent's ${this.randomGrumpi.nombre} used ${randomAttack.nombre} and dealt ${randomAttack.efecto} damage!`
       );
       this.checkBattleStatus();
     }
   }
 
   checkBattleStatus() {
-    if (this.selectedGrumpi.hp <= 0) {
+    if (this.selectedGrumpi.PS <= 0) {
       this.log.push(`Player's ${this.selectedGrumpi.nombre} has fainted!`);
       this.endBattle();
-    } else if (this.randomGrumpi.hp <= 0) {
+    } else if (this.randomGrumpi.PS <= 0) {
       this.log.push(`Opponent's ${this.randomGrumpi.nombre} has fainted!`);
       this.endBattle();
     } else {

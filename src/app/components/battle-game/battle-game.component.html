@@ -25,7 +25,7 @@
           <div class="info">
             <div class="text">
               <h2>Nombre: {{ selectedGrumpi?.nombre }}</h2>
-              <p>HP: {{ selectedGrumpi?.hp }}</p>
+              <p>HP: {{ selectedGrumpi?.PS }}</p>
             </div>
             <img
               *ngIf="selectedGrumpi?.img"
@@ -48,11 +48,11 @@
             <div class="text">
               <h3>GRUMPI OPONENTE</h3>
               <h2>Nombre: {{ randomGrumpi?.nombre }}</h2>
-              <p>HP: {{ randomGrumpi?.hp }}</p>
+              <p>HP: {{ randomGrumpi?.PS }}</p>
             </div>
             <img
-              *ngIf="randomGrumpi?.img"
-              [src]="randomGrumpi.img"
+              *ngIf="randomGrumpi?.img_general"
+              [src]="randomGrumpi.img_general"
               alt="{{ randomGrumpi?.nombre }}"
               class="img-fluid img-small"
             />
@@ -81,8 +81,8 @@
           <ul>
             <li class="d-flex justify-content-center align-items-center">
               <img
-                *ngIf="grumpi?.img"
-                [src]="grumpi.img"
+                *ngIf="grumpi?.img_general"
+                [src]="grumpi.img_general"
                 alt="{{ grumpi?.nombre }}"
                 class="img-thumbnail img-small"
               />
