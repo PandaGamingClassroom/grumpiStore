@@ -29,7 +29,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 })
 export class BienvenidaModalComponent implements OnInit {
   username: any;
-  avatar = localStorage.getItem('selectedAvatar');
+  avatar: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<BienvenidaModalComponent>,
@@ -40,6 +40,7 @@ export class BienvenidaModalComponent implements OnInit {
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
+      this.avatar = this.data.data.avatar;
     }
   }
   closeDialog() {
