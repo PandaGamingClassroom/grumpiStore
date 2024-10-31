@@ -49,11 +49,11 @@
                 class="img-fluid img-small"
               />
             </div>
-            <div class="attacks">
+            <div class="d-flex justify-content-center mt-1">
               <div *ngFor="let atk of selectedGrumpi?.ataques">
                 <button
                   type="button"
-                  class="btn"
+                  class="btn ms-2 me-2"
                   (click)="playerAttack(atk)"
                   [disabled]="!playerTurn"
                 >
@@ -68,6 +68,7 @@
             <div class="info">
               <div class="text">
                 <label>GRUMPI OPONENTE</label>
+                <br>
                 <label>Nombre: {{ randomGrumpi?.nombre }}</label>
                 <br>
                 <label>HP: {{ randomGrumpi?.PS }}</label>
