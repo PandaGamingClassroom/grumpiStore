@@ -65,6 +65,27 @@
 
           <!-- Grumpi Oponente -->
           <div class="row grumpi opponent align-items-center">
+            <div class="info d-flex justify-content-between">
+              <img
+                *ngIf="randomGrumpi?.img_general"
+                [src]="randomGrumpi.img_general"
+                alt="{{ randomGrumpi?.nombre }}"
+                class="img-fluid img-small"
+              />
+              <div class="text">
+                <label>Nombre: {{ randomGrumpi?.nombre }}</label>
+                <br />
+                <label>HP: {{ randomGrumpi?.PS }}</label>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mt-1">
+              <div *ngFor="let atk of randomGrumpi?.ataques">
+                <button type="button" class="btn ms-3 me-3">{{ atk.nombre }}</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row grumpi opponent align-items-center">
             <img
               *ngIf="randomGrumpi?.img_general"
               [src]="randomGrumpi.img_general"
@@ -85,7 +106,7 @@
                 <button type="button" class="btn ms-3 me-3">{{ atk.nombre }}</button>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- Registro de batalla -->
           <div class="log" #logContainer>
