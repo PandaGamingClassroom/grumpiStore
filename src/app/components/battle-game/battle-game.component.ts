@@ -24,7 +24,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 })
 export class BattleGameComponent implements OnInit {
   log: string[] = [];
-  grumpiList: any;
+  grumpiList: any[] = [];
   username: string | null = '';
   trainer: any;
   selectedGrumpi: any | null = null;
@@ -46,7 +46,6 @@ export class BattleGameComponent implements OnInit {
         this.getTrainerData(this.username);
       }
     }
-    this.startBattle();
   }
 
   getTrainerData(name: string): void {
@@ -56,9 +55,9 @@ export class BattleGameComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data;
-          this.grumpiList = data.data;
-          console.log('Datos del entrenador: ', this.trainer.data);
-          console.log('Grumpis del entrenador: ', this.grumpiList.data.grumpis);
+          this.grumpiList = data.data.grumpis || [];
+          console.log('Datos del entrenador: ', this.trainer);
+          console.log('Grumpis del entrenador: ', this.grumpiList);
         }
       },
       (error) => {
@@ -79,16 +78,20 @@ export class BattleGameComponent implements OnInit {
     );
   }
 
-  // Función para obtener un Grumpi aleatorio de la lista cargada
   getRandomGrumpi() {
     if (!this.grumpiList || this.grumpiList.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * this.grumpiList.length);
     return this.grumpiList[randomIndex];
   }
 
+  selectCreature(grumpi: any) {
+    this.selectedGrumpi = grumpi;
+    console.log('Grumpi seleccionado: ', this.selectedGrumpi);
+    this.startBattle();
+  }
+
   startBattle() {
     this.log = [];
-
     if (!this.selectedGrumpi) {
       this.updateLog(
         'Por favor, selecciona un Grumpi para comenzar el combate.'
@@ -104,9 +107,6 @@ export class BattleGameComponent implements OnInit {
     if (!this.playerTurn) {
       this.opponentAttack();
     }
-  }
-  selectCreature() {
-    console.log('Grumpi seleccionado: ', this.selectedGrumpi);
   }
 
   playerAttack(atk: any) {

@@ -127,7 +127,7 @@
                   <div class="battle-list-creatures scrollable-div">
                     <div
                       class="grumpi player"
-                      *ngFor="let grumpi of this.grumpiList?.grumpis"
+                      *ngFor="let grumpi of grumpiList"
                     >
                       <ul>
                         <li
@@ -142,7 +142,7 @@
                           <button
                             type="button"
                             class="btn"
-                            (click)="selectedGrumpi = grumpi; selectCreature()"
+                            (click)="selectCreature(grumpi)"
                             data-bs-dismiss="modal"
                           >
                             {{ grumpi?.nombre }}
