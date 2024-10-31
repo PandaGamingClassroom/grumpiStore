@@ -137,7 +137,7 @@ export class BattleGameComponent implements OnInit {
 
     this.playerTurn = Math.random() < 0.5;
     this.updateLog(
-      this.playerTurn ? `¡Comienza ${this.username}!` : '¡Comienza el oponente!'
+      this.playerTurn ? `¡Comienza el combate ${this.username}!` : '¡Comienza el oponente!'
     );
 
     if (!this.playerTurn) {
