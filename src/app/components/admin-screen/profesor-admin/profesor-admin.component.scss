@@ -28,3 +28,18 @@
 h1, h2, h3, p, label, input, li{
   color: #000000;
 }
+
+.custom-spinner {
+  width: 50px; /* Ajusta el tamaño según tus necesidades */
+  height: 50px;
+  animation: spin 1.5s linear infinite; /* Efecto de rotación */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
