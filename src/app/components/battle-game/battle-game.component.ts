@@ -55,7 +55,7 @@ export class BattleGameComponent implements OnInit {
           console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
         } else {
           this.trainer = data;
-          this.grumpiList = data;
+          this.grumpiList = data.data;
           console.log('Datos del entrenador: ', this.trainer.data);
           console.log('Grumpis del entrenador: ', this.grumpiList.data.grumpis);
         }

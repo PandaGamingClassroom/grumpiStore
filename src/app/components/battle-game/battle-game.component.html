@@ -88,12 +88,13 @@
 
           <!-- Registro de batalla -->
           <div class="log">
-            <h3>Battle Log</h3>
+            <h3>Registro del combate</h3>
             <div *ngFor="let entry of log">{{ entry }}</div>
           </div>
         </div>
       </div>
 
+      <!-- Ventana de selección de grumpis del entrenador -->
       <div
         class="modal fade"
         id="openCreaturesList"
@@ -125,7 +126,7 @@
                   <div class="battle-list-creatures scrollable-div">
                     <div
                       class="grumpi player"
-                      *ngFor="let grumpi of this.grumpiList.data.grumpis"
+                      *ngFor="let grumpi of grumpiList?.grumpis"
                     >
                       <ul>
                         <li
@@ -160,8 +161,6 @@
         </div>
       </div>
 
-      <!-- Lista de Grumpis para seleccionar -->
-      <div class="col-12 col-md-4"></div>
     </div>
   </div>
 </div>
