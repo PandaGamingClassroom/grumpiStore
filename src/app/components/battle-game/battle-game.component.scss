@@ -170,6 +170,17 @@ p {
   font-size: smaller;
 }
 
+.floating_btn_music_box{
+  position: fixed;
+  bottom: 15px;
+  right: 339px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-size: smaller;
+}
+
 .result-message {
   position: fixed;
   top: 50%;
