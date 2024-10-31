@@ -1,8 +1,8 @@
 /* Contenedor de la arena de batalla */
 .battle-arena {
-  background-image: url('../../../assets/game/backggrounds/Plain.png');
+  background-image: url("../../../assets/game/backggrounds/Plain.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   max-width: 100%;
   background-color: #f0f0f0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -13,10 +13,10 @@
 }
 
 .grumpi {
-  background-color: #c0ffc0;
+  background-color: #c0ffc069;
   margin: 20px auto;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px #ffffff80;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
