@@ -40,8 +40,8 @@
           <div class="row grumpi player align-items-center">
             <div class="info">
               <div class="text">
-                <h2>Nombre: {{ selectedGrumpi?.nombre }}</h2>
-                <p>HP: {{ selectedGrumpi?.PS }}</p>
+                <label>Nombre: {{ selectedGrumpi?.nombre }}</label>
+                <label>HP: {{ selectedGrumpi?.PS }}</label>
               </div>
               <img
                 *ngIf="selectedGrumpi?.img_general"
@@ -68,9 +68,9 @@
           <div class="row grumpi opponent align-items-center">
             <div class="info">
               <div class="text">
-                <h3>GRUMPI OPONENTE</h3>
-                <h2>Nombre: {{ randomGrumpi?.nombre }}</h2>
-                <p>HP: {{ randomGrumpi?.PS }}</p>
+                <label>GRUMPI OPONENTE</label>
+                <label>Nombre: {{ randomGrumpi?.nombre }}</label>
+                <label>HP: {{ randomGrumpi?.PS }}</label>
               </div>
               <img
                 *ngIf="randomGrumpi?.img_general"
@@ -88,7 +88,7 @@
 
           <!-- Registro de batalla -->
           <div class="log">
-            <h3>Registro del combate</h3>
+            <label>Registro del combate</label>
             <div *ngFor="let entry of log">{{ entry }}</div>
           </div>
         </div>
