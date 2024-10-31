@@ -96,7 +96,7 @@
           <!-- Div flotante para mostrar el resultado -->
           <div class="result-message" *ngIf="battleFinished" [ngClass]="{'won': playerWon, 'lost': !playerWon}">
             <p>{{ resultMessage }}</p>
-            <button class="btn" (click)="resetBattle()">Cerrar</button>
+            <button type="button" class="btn" (click)="resetBattle()">Cerrar</button>
           </div>
         </div>
       </div>
