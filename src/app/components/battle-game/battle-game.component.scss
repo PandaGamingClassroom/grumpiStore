@@ -109,12 +109,30 @@ p {
   }
 
   .grumpi .info {
-    flex-direction: column;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .grumpi img {
+    max-width: 80px;
+    height: auto;
   }
 
-  .grumpi img {
-    margin: 0 auto;
+  .grumpi .text {
+    flex: 1;
+    text-align: left; /* Alineación a la izquierda para el jugador */
+  }
+  .opponent .text {
+    text-align: right; /* Alineación a la derecha para el oponente */
+  }
+
+  .player .info {
+    flex-direction: row; /* Alinear en fila */
+  }
+
+  .opponent .info {
+    flex-direction: row-reverse; /* Invertir el orden para el oponente */
   }
 }
 
@@ -145,7 +163,7 @@ p {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  z-index: 1000; /* Asegura que el div esté por encima de otros elementos */
+  z-index: 1000;
   text-align: center;
 
   &.won {

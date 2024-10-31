@@ -154,11 +154,11 @@ export class BattleGameComponent implements OnInit {
 
   endBattle(playerWon: boolean) {
     this.playerTurn = false;
-    this.playerWon = playerWon; // Guardar si el jugador ganó
-    this.battleFinished = true; // Marcar que la batalla ha terminado
+    this.playerWon = playerWon;
+    this.battleFinished = true;
     this.resultMessage = playerWon
       ? '¡Has ganado el combate!'
-      : 'Has perdido el combate.'; // Mensaje correspondiente
+      : 'Has perdido el combate.';
     this.updateLog(this.resultMessage);
   }
 
@@ -171,8 +171,8 @@ export class BattleGameComponent implements OnInit {
   }
 
   resetBattle() {
-    this.battleFinished = false; // Reiniciar el estado de la batalla
-    this.log = []; // Limpiar el registro de batalla
-    this.loadGrumpis(); // Cargar nuevos Grumpis para la siguiente batalla si es necesario
+    this.battleFinished = false;
+    this.log = [];
+    this.loadGrumpis();
   }
 }
