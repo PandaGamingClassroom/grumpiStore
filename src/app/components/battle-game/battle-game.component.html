@@ -155,6 +155,10 @@
             <p>{{ resultMessage }}</p>
             <button type="button" class="btn" (click)="resetBattle()">Cerrar</button>
           </div>
+
+          <div *ngIf="loading" class="d-flex justify-content-center mt-4">
+            <img src="../../../../assets/game/asstets_game/animado.png" alt="Cargando..." class="custom-spinner" />
+          </div>
         </div>
       </div>
 

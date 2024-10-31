@@ -276,3 +276,19 @@ p {
     transform: translateX(-6px) rotate(-1.2deg);
   }
 }
+
+.custom-spinner {
+  width: 50px;
+  height: 50px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

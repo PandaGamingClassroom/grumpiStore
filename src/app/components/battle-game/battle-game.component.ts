@@ -35,6 +35,7 @@ export class BattleGameComponent implements OnInit {
   playerWon: boolean = false;
   pause_music: boolean = true;
   audio: HTMLAudioElement;
+  loading: boolean = true;
 
   @ViewChild('logContainer') logContainer!: ElementRef;
 
@@ -101,6 +102,7 @@ export class BattleGameComponent implements OnInit {
   selectCreature(grumpi: any) {
     this.selectedGrumpi = grumpi;
     console.log('Grumpi seleccionado: ', this.selectedGrumpi);
+    this.loading = false;
     this.startBattle();
   }
 
