@@ -98,7 +98,7 @@ export class BattleGameComponent implements OnInit {
     this.log = [];
     this.playerTurn = Math.random() < 0.5;
     this.log.push(
-      this.playerTurn ? 'Player starts first!' : 'Opponent starts first!'
+      this.playerTurn ? '¡Comienza el jugador!' : '¡Comienza el oponente!'
     );
     if (!this.playerTurn) {
       this.opponentAttack();
@@ -110,40 +110,38 @@ export class BattleGameComponent implements OnInit {
   }
 
   playerAttack(atk: any) {
-    if (this.playerTurn) {
+    if (this.playerTurn && this.selectedGrumpi && this.randomGrumpi) {
       this.randomGrumpi.PS -= atk.efecto;
       this.log.push(
-        `Player's ${this.selectedGrumpi.nombre} used ${atk.nombre} and dealt ${atk.efecto} damage!`
+        `Tu ${this.selectedGrumpi.nombre} usó ${atk.nombre}, causando ${atk.efecto} de daño.`
       );
       this.checkBattleStatus();
     }
   }
 
   opponentAttack() {
-    if (!this.playerTurn) {
+    if (!this.playerTurn && this.selectedGrumpi && this.randomGrumpi) {
       const randomAttack =
         this.randomGrumpi.ataques[
           Math.floor(Math.random() * this.randomGrumpi.ataques.length)
         ];
-      this.selectedGrumpi.PS -= randomAttack.damage;
+      this.selectedGrumpi.PS -= randomAttack.efecto;
       this.log.push(
-        `Opponent's ${this.randomGrumpi.nombre} used ${randomAttack.nombre} and dealt ${randomAttack.efecto} damage!`
+        `El ${this.randomGrumpi.nombre} usó ${randomAttack.nombre}, causando ${randomAttack.efecto} de daño.`
       );
       this.checkBattleStatus();
     }
   }
 
   checkBattleStatus() {
-    if (this.selectedGrumpi.PS <= 0) {
-      this.log.push(`Player's ${this.selectedGrumpi.nombre} has fainted!`);
-      this.endBattle(false); // La batalla termina en derrota para el jugador
-    } else if (this.randomGrumpi.PS <= 0) {
-      this.log.push(`Opponent's ${this.randomGrumpi.nombre} has fainted!`);
-      this.endBattle(true); // La batalla termina en victoria para el jugador
+    if (this.randomGrumpi.PS <= 0) {
+      this.log.push(`¡Has ganado el combate!`);
+    } else if (this.selectedGrumpi.PS <= 0) {
+      this.log.push(`Has perdido el combate.`);
     } else {
-      this.playerTurn = !this.playerTurn; // Cambia de turno
+      this.playerTurn = !this.playerTurn;
       if (!this.playerTurn) {
-        setTimeout(() => this.opponentAttack(), 1000); // Ataque del oponente después de 1s
+        setTimeout(() => this.opponentAttack(), 1000);
       }
     }
   }
