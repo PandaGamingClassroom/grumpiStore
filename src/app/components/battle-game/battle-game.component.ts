@@ -34,12 +34,12 @@ export class BattleGameComponent implements OnInit {
   constructor(
     private grumpiService: GrumpiService,
     private trainersService: TrainerService
-  ) {}
+  ) {
+    this.loadGrumpis();
+  }
 
   ngOnInit() {
-    this.loadGrumpis();
     if (typeof window !== 'undefined') {
-      // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       if (this.username) {
         this.getTrainerData(this.username);
