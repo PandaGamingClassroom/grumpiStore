@@ -202,6 +202,16 @@ p {
   width: 15px;
 }
 
+.floating-arrow {
+  position: fixed;
+  bottom: 499px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-size: smaller;
+}
 
 .arrow_animation {
 	-webkit-animation: arrow_animation 3s infinite both;
