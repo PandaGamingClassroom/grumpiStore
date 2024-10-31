@@ -48,7 +48,10 @@ p {
   margin: 0;
   color: #000;
 }
-
+.scrollable-container {
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+}
 /* Registro de batalla */
 .log {
   background-color: #c0ffc0;
@@ -61,9 +64,9 @@ p {
 }
 
 .scrollable-div {
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  max-height: calc(100vh - 60px); /* Ajustar según la altura de la navbar */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
+  overflow-x: hidden; /* Evitar desplazamiento horizontal */
 }
 
 .battle-list-creatures {
