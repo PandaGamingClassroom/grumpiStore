@@ -20,11 +20,18 @@
   </div>
 
   <!-- Botón flotante visible solo en dispositivos móviles -->
-  <button class="floating-btn d-md-none" (click)="selectCreature()">
+  <button
+    type="button"
+    class="floating-btn d-md-none"
+    data-bs-toggle="modal"
+    data-bs-target="#openCreaturesList"
+  >
     <i class="bi bi-list"></i> Seleccionar Grumpi
   </button>
 
-  <div class="container-fluid d-flex justify-content-center align-items-center scrollable-div">
+  <div
+    class="container-fluid d-flex justify-content-center align-items-center scrollable-div"
+  >
     <div class="row justify-content-center">
       <!-- Sección de batalla con los Grumpis -->
       <div class="col-12 col-md-6">
@@ -45,7 +52,12 @@
             </div>
             <div class="attacks">
               <div *ngFor="let atk of selectedGrumpi?.ataques">
-                <button type="button" class="btn" (click)="playerAttack(atk)" [disabled]="!playerTurn">
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="playerAttack(atk)"
+                  [disabled]="!playerTurn"
+                >
                   {{ atk.nombre }}
                 </button>
               </div>
@@ -82,29 +94,74 @@
         </div>
       </div>
 
-      <!-- Lista de Grumpis para seleccionar -->
-      <div class="col-12 col-md-4">
-        <div class="battle-list-creatures scrollable-div">
-          <div
-            class="grumpi player"
-            *ngFor="let grumpi of grumpiList?.data?.grumpis"
-          >
-            <ul>
-              <li class="d-flex justify-content-center align-items-center">
-                <img
-                  *ngIf="grumpi?.img_general"
-                  [src]="grumpi.img_general"
-                  alt="{{ grumpi?.nombre }}"
-                  class="img-thumbnail img-small"
-                />
-                <button type="button" class="btn" (click)="selectedGrumpi = grumpi; selectCreature()">
-                  {{ grumpi?.nombre }}
-                </button>
-              </li>
-            </ul>
+      <div
+        class="modal fade"
+        id="openCreaturesList"
+        tabindex="-1"
+        aria-labelledby="openCreaturesList"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="openCreaturesList">GRUMPIDEX</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div style="width: 100%">
+                <div
+                  style="
+                    position: relative;
+                    padding-bottom: 50%;
+                    padding-top: 0;
+                    height: 0;
+                  "
+                >
+                  <div class="battle-list-creatures scrollable-div">
+                    <div
+                      class="grumpi player"
+                      *ngFor="let grumpi of grumpiList?.data?.grumpis"
+                    >
+                      <ul>
+                        <li
+                          class="d-flex justify-content-center align-items-center"
+                        >
+                          <img
+                            *ngIf="grumpi?.img_general"
+                            [src]="grumpi.img_general"
+                            alt="{{ grumpi?.nombre }}"
+                            class="img-thumbnail img-small"
+                          />
+                          <button
+                            type="button"
+                            class="btn"
+                            (click)="selectedGrumpi = grumpi; selectCreature()"
+                          >
+                            {{ grumpi?.nombre }}
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="button-73" data-bs-dismiss="modal">
+                Cerrar
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Lista de Grumpis para seleccionar -->
+      <div class="col-12 col-md-4"></div>
     </div>
   </div>
 </div>
