@@ -92,6 +92,12 @@
             <label>Registro del combate</label>
             <div *ngFor="let entry of log">{{ entry }}</div>
           </div>
+
+          <!-- Div flotante para mostrar el resultado -->
+          <div class="result-message" *ngIf="battleFinished" [ngClass]="{'won': playerWon, 'lost': !playerWon}">
+            <p>{{ resultMessage }}</p>
+            <button class="btn" (click)="resetBattle()">Cerrar</button>
+          </div>
         </div>
       </div>
 

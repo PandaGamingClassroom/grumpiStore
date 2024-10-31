@@ -30,6 +30,10 @@ export class BattleGameComponent implements OnInit {
   selectedGrumpi: any | null = null;
   randomGrumpi: any | null = null;
   playerTurn: boolean = false;
+  battleFinished: boolean = false;
+  resultMessage: string = '';
+  playerWon: boolean = false;
+
   @ViewChild('logContainer') logContainer!: ElementRef;
 
   constructor(
@@ -150,9 +154,12 @@ export class BattleGameComponent implements OnInit {
 
   endBattle(playerWon: boolean) {
     this.playerTurn = false;
-    this.updateLog(
-      playerWon ? '¡Has ganado el combate!' : 'Has perdido el combate.'
-    );
+    this.playerWon = playerWon; // Guardar si el jugador ganó
+    this.battleFinished = true; // Marcar que la batalla ha terminado
+    this.resultMessage = playerWon
+      ? '¡Has ganado el combate!'
+      : 'Has perdido el combate.'; // Mensaje correspondiente
+    this.updateLog(this.resultMessage);
   }
 
   updateLog(entry: string) {
@@ -161,5 +168,11 @@ export class BattleGameComponent implements OnInit {
       this.logContainer.nativeElement.scrollTop =
         this.logContainer.nativeElement.scrollHeight;
     }, 0);
+  }
+
+  resetBattle() {
+    this.battleFinished = false; // Reiniciar el estado de la batalla
+    this.log = []; // Limpiar el registro de batalla
+    this.loadGrumpis(); // Cargar nuevos Grumpis para la siguiente batalla si es necesario
   }
 }
