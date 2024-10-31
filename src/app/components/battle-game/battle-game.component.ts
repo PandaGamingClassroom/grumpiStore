@@ -33,7 +33,7 @@ export class BattleGameComponent implements OnInit {
   battleFinished: boolean = false;
   resultMessage: string = '';
   playerWon: boolean = false;
-  pause_music: boolean = false;
+  pause_music: boolean = true;
   audio: HTMLAudioElement;
 
   @ViewChild('logContainer') logContainer!: ElementRef;
