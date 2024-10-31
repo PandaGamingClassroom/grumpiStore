@@ -87,15 +87,24 @@ export class BattleGameComponent implements OnInit {
 
   startBattle() {
     this.log = [];
+
+    // Comprobar si el jugador ha seleccionado un Grumpi
+    if (!this.selectedGrumpi) {
+      this.updateLog(
+        'Por favor, selecciona un Grumpi para comenzar el combate.'
+      );
+      return; // Detener la función si no hay Grumpi seleccionado
+    }
+
     this.playerTurn = Math.random() < 0.5;
     this.updateLog(
       this.playerTurn ? '¡Comienza el jugador!' : '¡Comienza el oponente!'
     );
+
     if (!this.playerTurn) {
       this.opponentAttack();
     }
   }
-
   selectCreature() {
     console.log('Grumpi seleccionado: ', this.selectedGrumpi);
   }
