@@ -124,18 +124,15 @@ p {
 
   .grumpi .text {
     flex: 1;
-    text-align: left; /* Alineación a la izquierda para el jugador */
-  }
-  .opponent .text {
-    text-align: right; /* Alineación a la derecha para el oponente */
+    text-align: left;
   }
 
   .player .info {
-    flex-direction: row; /* Alinear en fila */
+    flex-direction: row;
   }
 
   .opponent .info {
-    flex-direction: row-reverse; /* Invertir el orden para el oponente */
+    flex-direction: row-reverse;
   }
 }
 
