@@ -33,7 +33,8 @@ export class BattleGameComponent implements OnInit {
   battleFinished: boolean = false;
   resultMessage: string = '';
   playerWon: boolean = false;
-  pause_music: boolean = false;
+  pause_music: boolean = true;
+  audio: HTMLAudioElement;
 
   @ViewChild('logContainer') logContainer!: ElementRef;
 
@@ -42,6 +43,8 @@ export class BattleGameComponent implements OnInit {
     private trainersService: TrainerService
   ) {
     this.loadGrumpis();
+    this.audio = new Audio('../../../assets/game/audio_game/Grumpi.mp3');
+    this.audio.loop = true;
   }
 
   ngOnInit() {
@@ -163,8 +166,8 @@ export class BattleGameComponent implements OnInit {
     this.updateLog(this.resultMessage);
   }
 
-  updateLog(entry: string) {
-    this.log.push(entry);
+  updateLog(message: string) {
+    this.log.push(message);
     setTimeout(() => {
       this.logContainer.nativeElement.scrollTop =
         this.logContainer.nativeElement.scrollHeight;
@@ -175,5 +178,18 @@ export class BattleGameComponent implements OnInit {
     this.battleFinished = false;
     this.log = [];
     this.loadGrumpis();
+  }
+
+  toggleMusic() {
+    this.pause_music = !this.pause_music;
+    if (this.pause_music) {
+      // Pausa la música
+      this.audio.pause();
+      console.log('Música pausada');
+    } else {
+      // Reproduce la música
+      this.audio.play();
+      console.log('Música reproduciéndose');
+    }
   }
 }

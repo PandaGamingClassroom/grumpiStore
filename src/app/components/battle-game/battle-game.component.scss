@@ -1,5 +1,8 @@
 /* Contenedor de la arena de batalla */
 .battle-arena {
+  background-image: url('../../../assets/game/backggrounds/Plain.png');
+  background-repeat: no-repeat;
+  background-size: contain;
   max-width: 100%;
   background-color: #f0f0f0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
