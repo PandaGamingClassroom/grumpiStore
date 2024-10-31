@@ -1,20 +1,20 @@
+/* Contenedor de la arena de batalla */
 .battle-arena {
-  width: 400px;
+  max-width: 100%;
   background-color: #f0f0f0;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 20px;
   margin-top: 10%;
-  transform: scale(1.2); /* Escalar el contenido */
+  transform: scale(1); /* Ajuste para pantallas pequeñas */
 }
 
 .grumpi {
   background-color: #c0ffc0;
   border: 1px solid #000;
-  margin: 20px auto; /* Centramos el div horizontalmente y añadimos espacio vertical */
+  margin: 20px auto;
   padding: 20px;
-  width: 100%; /* Ajusta el tamaño según tus necesidades */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Agrega sombra para destacar los bordes blancos */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,90 +23,90 @@
 .grumpi .info {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* Permite que los elementos se reorganicen en pantallas pequeñas */
   width: 100%;
 }
 
 .grumpi img {
-  order: 2; /* Mover la imagen a la derecha */
+  max-width: 80px; /* Ajusta el tamaño en pantallas pequeñas */
   margin-left: 10px;
 }
 
-.grumpi .text {
-  flex-grow: 1;
-}
-
 .grumpi .attacks {
-  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
 
-.player {
+.player,
+.opponent {
   text-align: left;
 }
 
-.opponent {
-  text-align: left; /* Cambiar de right a left */
-}
-
-h2, p {
+h2,
+p {
   margin: 0;
   color: #000;
 }
 
+/* Registro de batalla */
 .log {
   background-color: #c0ffc0;
   border: 1px solid #000;
   padding: 10px;
   height: 100px;
   overflow-y: auto;
-}
-
-.log div {
-  margin-bottom: 5px;
-  color: #000;
+  margin-bottom: 20px;
 }
 
 .scrollable-div {
-  max-height: calc(100% - 60px);
+  max-height: calc(100vh - 60px); /* Se ajusta al 100% de la altura de la ventana */
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .battle-list-creatures {
-  width: 400px;
-  height: 400px;
+  max-width: 100%;
   background-color: #f0f0f0;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 20px;
   margin-top: 10%;
-  margin-left: 50px; /* Aumentar el espacio a la izquierda */
+  margin-left: 0; /* Ajuste para que no dependa de un margen fijo */
 }
 
 .img-small {
-  max-width: 100px; /* Ajusta el tamaño según tus necesidades */
-  height: auto; /* Mantiene la proporción de la imagen */
-  margin-right: 10px; /* Espaciado entre la imagen y el texto */
+  max-width: 80px;
+  height: auto;
+  margin-right: 10px;
 }
 
 .battle-arena img {
-  max-width: 100px; /* Ajusta este valor según el diseño de tu battle-arena */
-  height: auto; /* Mantiene la proporción de la imagen */
+  max-width: 80px;
+  height: auto;
 }
 
-.battle-arena .grumpi {
-  margin-bottom: 20px; /* Espacio entre las secciones de Pokémon */
-}
+@media (max-width: 768px) {
+  .battle-arena {
+    transform: scale(1); /* Sin escalado en pantallas pequeñas */
+  }
 
-.battle-arena .grumpi .col-4,
-.battle-arena .grumpi .col-8 {
-  display: flex;
-  align-items: center;
-}
+  .battle-list-creatures {
+    margin-top: 5%; /* Reduce margen superior en móviles */
+  }
 
-.battle-arena .grumpi .col-8 {
-  flex-direction: column;
-  align-items: flex-start;
+  .scrollable-div,
+  .battle-list-creatures {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .grumpi .info {
+    flex-direction: column; /* Apila los elementos en móviles */
+    text-align: center;
+  }
+
+  .grumpi img {
+    margin: 0 auto; /* Centra la imagen */
+  }
 }
