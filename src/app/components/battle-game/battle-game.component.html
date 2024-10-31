@@ -1,5 +1,6 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid">
+  <!-- Botón de regreso al perfil -->
   <div class="btn-config">
     <button type="button" class="button-73" routerLink="/profile">
       <svg
@@ -17,80 +18,91 @@
       Atrás
     </button>
   </div>
+
+  <!-- Botón flotante visible solo en dispositivos móviles -->
+  <button class="floating-btn d-md-none" (click)="selectCreature()">
+    <i class="bi bi-list"></i> Seleccionar Grumpi
+  </button>
+
   <div class="container-fluid d-flex justify-content-center align-items-center scrollable-div">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6">
-      <div class="battle-arena mt-3 text-center">
-        <div class="row grumpi player align-items-center">
-          <div class="info">
-            <div class="text">
-              <h2>Nombre: {{ selectedGrumpi?.nombre }}</h2>
-              <p>HP: {{ selectedGrumpi?.PS }}</p>
+    <div class="row justify-content-center">
+      <!-- Sección de batalla con los Grumpis -->
+      <div class="col-12 col-md-6">
+        <div class="battle-arena mt-3 text-center">
+          <!-- Grumpi del Jugador -->
+          <div class="row grumpi player align-items-center">
+            <div class="info">
+              <div class="text">
+                <h2>Nombre: {{ selectedGrumpi?.nombre }}</h2>
+                <p>HP: {{ selectedGrumpi?.PS }}</p>
+              </div>
+              <img
+                *ngIf="selectedGrumpi?.img"
+                [src]="selectedGrumpi.img"
+                alt="{{ selectedGrumpi?.nombre }}"
+                class="img-fluid img-small"
+              />
             </div>
-            <img
-              *ngIf="selectedGrumpi?.img"
-              [src]="selectedGrumpi.img"
-              alt="{{ selectedGrumpi?.nombre }}"
-              class="img-fluid img-small"
-            />
-          </div>
-          <div class="attacks">
-            <div *ngFor="let atk of selectedGrumpi?.ataques">
-              <button (click)="playerAttack(atk)" [disabled]="!playerTurn">
-                {{ atk.nombre }}
-              </button>
+            <div class="attacks">
+              <div *ngFor="let atk of selectedGrumpi?.ataques">
+                <button type="button" class="btn" (click)="playerAttack(atk)" [disabled]="!playerTurn">
+                  {{ atk.nombre }}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="row grumpi opponent align-items-center">
-          <div class="info">
-            <div class="text">
-              <h3>GRUMPI OPONENTE</h3>
-              <h2>Nombre: {{ randomGrumpi?.nombre }}</h2>
-              <p>HP: {{ randomGrumpi?.PS }}</p>
+          <!-- Grumpi Oponente -->
+          <div class="row grumpi opponent align-items-center">
+            <div class="info">
+              <div class="text">
+                <h3>GRUMPI OPONENTE</h3>
+                <h2>Nombre: {{ randomGrumpi?.nombre }}</h2>
+                <p>HP: {{ randomGrumpi?.PS }}</p>
+              </div>
+              <img
+                *ngIf="randomGrumpi?.img_general"
+                [src]="randomGrumpi.img_general"
+                alt="{{ randomGrumpi?.nombre }}"
+                class="img-fluid img-small"
+              />
             </div>
-            <img
-              *ngIf="randomGrumpi?.img_general"
-              [src]="randomGrumpi.img_general"
-              alt="{{ randomGrumpi?.nombre }}"
-              class="img-fluid img-small"
-            />
-          </div>
-          <div class="attacks">
-            <div *ngFor="let atk of randomGrumpi?.ataques">
-              <button>{{ atk.nombre }}</button>
+            <div class="attacks">
+              <div *ngFor="let atk of randomGrumpi?.ataques">
+                <button type="button" class="btn">{{ atk.nombre }}</button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="log">
-          <h3>Battle Log</h3>
-          <div *ngFor="let entry of log">{{ entry }}</div>
+          <!-- Registro de batalla -->
+          <div class="log">
+            <h3>Battle Log</h3>
+            <div *ngFor="let entry of log">{{ entry }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-
-    <div class="col-12 col-md-4">
-      <div class="battle-list-creatures scrollable-div">
-        <div
-          class="grumpi player"
-          *ngFor="let grumpi of grumpiList?.data?.grumpis"
-        >
-          <ul>
-            <li class="d-flex justify-content-center align-items-center">
-              <img
-                *ngIf="grumpi?.img_general"
-                [src]="grumpi.img_general"
-                alt="{{ grumpi?.nombre }}"
-                class="img-thumbnail img-small"
-              />
-              <button (click)="selectedGrumpi = grumpi; selectCreature()">
-                {{ grumpi?.nombre }}
-              </button>
-            </li>
-          </ul>
+      <!-- Lista de Grumpis para seleccionar -->
+      <div class="col-12 col-md-4">
+        <div class="battle-list-creatures scrollable-div">
+          <div
+            class="grumpi player"
+            *ngFor="let grumpi of grumpiList?.data?.grumpis"
+          >
+            <ul>
+              <li class="d-flex justify-content-center align-items-center">
+                <img
+                  *ngIf="grumpi?.img_general"
+                  [src]="grumpi.img_general"
+                  alt="{{ grumpi?.nombre }}"
+                  class="img-thumbnail img-small"
+                />
+                <button type="button" class="btn" (click)="selectedGrumpi = grumpi; selectCreature()">
+                  {{ grumpi?.nombre }}
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

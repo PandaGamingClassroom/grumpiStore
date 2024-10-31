@@ -16,7 +16,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    NavBarComponent
+    NavBarComponent,
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './battle-game.component.html',
@@ -136,20 +136,21 @@ export class BattleGameComponent implements OnInit {
   checkBattleStatus() {
     if (this.selectedGrumpi.PS <= 0) {
       this.log.push(`Player's ${this.selectedGrumpi.nombre} has fainted!`);
-      this.endBattle();
+      this.endBattle(false); // La batalla termina en derrota para el jugador
     } else if (this.randomGrumpi.PS <= 0) {
       this.log.push(`Opponent's ${this.randomGrumpi.nombre} has fainted!`);
-      this.endBattle();
+      this.endBattle(true); // La batalla termina en victoria para el jugador
     } else {
-      this.playerTurn = !this.playerTurn;
+      this.playerTurn = !this.playerTurn; // Cambia de turno
       if (!this.playerTurn) {
-        setTimeout(() => this.opponentAttack(), 1000); // Give a short delay for the opponent's turn
+        setTimeout(() => this.opponentAttack(), 1000); // Ataque del oponente después de 1s
       }
     }
   }
 
-  endBattle() {
-    this.log.push('Battle is over!');
-    // Additional logic to handle the end of the battle
+  endBattle(playerWon: boolean) {
+    this.log.push(playerWon ? 'You won the battle!' : 'You lost the battle.');
+    this.playerTurn = false; // Desactiva los turnos cuando la batalla termina
+    // Puedes añadir una lógica adicional, como la opción de reiniciar la batalla o volver al menú principal
   }
 }
