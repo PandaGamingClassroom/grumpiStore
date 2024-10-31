@@ -93,9 +93,13 @@ p {
     margin-top: 5%;
   }
 
-  .scrollable-div,
   .battle-list-creatures {
-    max-height: 25vh;
+    max-height: 25;
+    overflow-y: auto;
+  }
+
+  .scrollable-div {
+    max-height: 100vh;
     overflow-y: auto;
   }
 
