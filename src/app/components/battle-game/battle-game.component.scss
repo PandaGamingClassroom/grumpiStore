@@ -59,9 +59,7 @@ p {
 }
 
 .scrollable-div {
-  max-height: calc(
-    100vh - 60px
-  );
+  max-height: calc(100vh - 60px);
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -115,14 +113,15 @@ p {
   position: fixed;
   bottom: 15px;
   right: 15px;
-  background-color: #007bff;
+  background-color: #3f51b5;
   color: #fff;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 20%;
+  height: 12%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px #0003;
   z-index: 1000;
+  font-size: smaller;
 }

@@ -26,7 +26,7 @@
     data-bs-toggle="modal"
     data-bs-target="#openCreaturesList"
   >
-    <i class="bi bi-list"></i> Seleccionar Grumpi
+    Seleccionar Grumpi
   </button>
 
   <div
@@ -44,8 +44,8 @@
                 <p>HP: {{ selectedGrumpi?.PS }}</p>
               </div>
               <img
-                *ngIf="selectedGrumpi?.img"
-                [src]="selectedGrumpi.img"
+                *ngIf="selectedGrumpi?.img_general"
+                [src]="selectedGrumpi.img_general"
                 alt="{{ selectedGrumpi?.nombre }}"
                 class="img-fluid img-small"
               />
