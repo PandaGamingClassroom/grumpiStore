@@ -40,7 +40,7 @@ export class BienvenidaModalComponent implements OnInit {
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
-      this.avatar = this.data.data.avatar;
+      this.avatar = this.data.avatar;
     }
   }
   closeDialog() {
