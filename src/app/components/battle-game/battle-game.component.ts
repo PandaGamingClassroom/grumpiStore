@@ -63,6 +63,10 @@ export class BattleGameComponent implements OnInit {
     }
   }
 
+  /**
+   * Obtiene los datos del entrenador que ha iniciado sesión
+   * @param name
+   */
   getTrainerData(name: string): void {
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
@@ -81,6 +85,9 @@ export class BattleGameComponent implements OnInit {
     );
   }
 
+  /**
+   * Obtiene el listado completo de Grumpis en BBDD
+   */
   loadGrumpis() {
     this.grumpiService.getGrumpis().subscribe(
       (response) => {
@@ -93,12 +100,21 @@ export class BattleGameComponent implements OnInit {
     );
   }
 
+  /**
+   * Selecciona un Grumpi aleatorio de toda la lista.
+   *
+   * @returns
+   */
   getRandomGrumpi() {
     if (!this.grumpiList || this.grumpiList.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * this.grumpiList.length);
     return this.grumpiList[randomIndex];
   }
 
+  /**
+   * Selecciona el grumpi que ha marcado el entrenador
+   * @param grumpi
+   */
   selectCreature(grumpi: any) {
     this.selectedGrumpi = grumpi;
     console.log('Grumpi seleccionado: ', this.selectedGrumpi);
@@ -106,6 +122,10 @@ export class BattleGameComponent implements OnInit {
     this.startBattle();
   }
 
+  /**
+   * Función para validar el comienzo del combate
+   * @returns
+   */
   startBattle() {
     this.log = [];
     if (!this.selectedGrumpi) {
@@ -117,7 +137,7 @@ export class BattleGameComponent implements OnInit {
 
     this.playerTurn = Math.random() < 0.5;
     this.updateLog(
-      this.playerTurn ? '¡Comienza el jugador!' : '¡Comienza el oponente!'
+      this.playerTurn ? `¡Comienza ${this.username}!` : '¡Comienza el oponente!'
     );
 
     if (!this.playerTurn) {
@@ -125,6 +145,9 @@ export class BattleGameComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para seleccionar el ataque que marca el entrenador.
+   */
   playerAttack(atk: any) {
     if (this.playerTurn && this.selectedGrumpi && this.randomGrumpi) {
       this.randomGrumpi.PS -= atk.efecto;
@@ -135,6 +158,9 @@ export class BattleGameComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para elegir aleatoriamente el ataque del Grumpi enemigo
+   */
   opponentAttack() {
     if (!this.playerTurn && this.selectedGrumpi && this.randomGrumpi) {
       const randomAttack =
@@ -149,6 +175,9 @@ export class BattleGameComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para obtener el estado del combate
+   */
   checkBattleStatus() {
     if (this.randomGrumpi.PS <= 0) {
       this.updateLog(`¡Tu Grumpi ganó el combate!`);
@@ -164,6 +193,10 @@ export class BattleGameComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para señalar el final del combate
+   * @param playerWon
+   */
   endBattle(playerWon: boolean) {
     this.playerTurn = false;
     this.playerWon = playerWon;
@@ -174,6 +207,11 @@ export class BattleGameComponent implements OnInit {
     this.updateLog(this.resultMessage);
   }
 
+
+  /**
+   * Función para actualizar el mensaje de estado del combate
+   * @param message
+   */
   updateLog(message: string) {
     this.log.push(message);
     setTimeout(() => {
@@ -182,12 +220,20 @@ export class BattleGameComponent implements OnInit {
     }, 0);
   }
 
+
+  /**
+   * Función para resetear el combate
+   */
   resetBattle() {
     this.battleFinished = false;
     this.log = [];
     this.loadGrumpis();
   }
 
+
+  /**
+   * Función para manejar la música durante el combate
+   */
   toggleMusic() {
     this.pause_music = !this.pause_music;
     if (this.pause_music) {
