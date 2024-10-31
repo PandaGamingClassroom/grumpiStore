@@ -52,6 +52,12 @@ export class BattleGameComponent implements OnInit {
       this.username = localStorage.getItem('username');
       if (this.username) {
         this.getTrainerData(this.username);
+        this.audio.play().catch((error) => {
+          console.log(
+            'Reproducción pausada hasta que el usuario interactúe.',
+            error
+          );
+        });
       }
     }
   }
@@ -183,12 +189,12 @@ export class BattleGameComponent implements OnInit {
   toggleMusic() {
     this.pause_music = !this.pause_music;
     if (this.pause_music) {
-      // Pausa la música
       this.audio.pause();
       console.log('Música pausada');
     } else {
-      // Reproduce la música
-      this.audio.play();
+      this.audio.play().catch((error) => {
+        console.log('Error al reproducir la música:', error);
+      });
       console.log('Música reproduciéndose');
     }
   }
