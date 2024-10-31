@@ -104,7 +104,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="openCreaturesList">GRUMPIDEX</h1>
+              <h1 class="modal-title fs-5" id="openCreaturesList">Mis Grumpis</h1>
               <button
                 type="button"
                 class="btn-close"
@@ -125,7 +125,7 @@
                   <div class="battle-list-creatures scrollable-div">
                     <div
                       class="grumpi player"
-                      *ngFor="let grumpi of grumpiList?.data?.grumpis"
+                      *ngFor="let grumpi of this.grumpiList.data.grumpis"
                     >
                       <ul>
                         <li

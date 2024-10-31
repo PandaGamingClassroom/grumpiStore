@@ -6,7 +6,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 20px;
   margin-top: 10%;
-  transform: scale(1); /* Ajuste para pantallas pequeñas */
+  transform: scale(1);
+  border-radius: 15px;
 }
 
 .grumpi {
@@ -18,6 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  border-radius: 15px;
 }
 
 .grumpi .info {
@@ -60,7 +62,9 @@ p {
 }
 
 .scrollable-div {
-  max-height: calc(100vh - 60px); /* Se ajusta al 100% de la altura de la ventana */
+  max-height: calc(
+    100vh - 60px
+  ); /* Se ajusta al 100% de la altura de la ventana */
   overflow-y: auto;
   overflow-x: hidden;
 }
