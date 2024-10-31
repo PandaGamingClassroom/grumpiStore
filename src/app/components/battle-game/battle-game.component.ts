@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { RouterLink } from '@angular/router';
@@ -30,6 +30,7 @@ export class BattleGameComponent implements OnInit {
   selectedGrumpi: any | null = null;
   randomGrumpi: any | null = null;
   playerTurn: boolean = false;
+  @ViewChild('logContainer') logContainer!: ElementRef;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -52,7 +53,7 @@ export class BattleGameComponent implements OnInit {
     this.trainersService.getTrainerByName(name).subscribe(
       (data) => {
         if (data.message) {
-          console.log(data.message); // Maneja el mensaje de "Entrenador no encontrado"
+          console.log(data.message);
         } else {
           this.trainer = data;
           this.grumpiList = data.data;
@@ -88,12 +89,11 @@ export class BattleGameComponent implements OnInit {
   startBattle() {
     this.log = [];
 
-    // Comprobar si el jugador ha seleccionado un Grumpi
     if (!this.selectedGrumpi) {
       this.updateLog(
         'Por favor, selecciona un Grumpi para comenzar el combate.'
       );
-      return; // Detener la función si no hay Grumpi seleccionado
+      return;
     }
 
     this.playerTurn = Math.random() < 0.5;
@@ -149,7 +149,7 @@ export class BattleGameComponent implements OnInit {
   }
 
   endBattle(playerWon: boolean) {
-    this.playerTurn = false; // Finaliza los turnos
+    this.playerTurn = false;
     this.updateLog(
       playerWon ? '¡Has ganado el combate!' : 'Has perdido el combate.'
     );
@@ -157,5 +157,9 @@ export class BattleGameComponent implements OnInit {
 
   updateLog(entry: string) {
     this.log.push(entry);
+    setTimeout(() => {
+      this.logContainer.nativeElement.scrollTop =
+        this.logContainer.nativeElement.scrollHeight;
+    }, 0);
   }
 }

@@ -52,10 +52,12 @@ p {
 /* Registro de batalla */
 .log {
   background-color: #c0ffc0;
-  padding: 10px;
-  height: 100px;
-  overflow-y: auto;
-  margin-bottom: 20px;
+  max-height: 200px; /* Altura máxima para el log */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
+  border: 1px solid #ccc; /* Borde para distinguir el área */
+  padding: 10px; /* Espaciado interno */
+  background-color: #f9f9f9; /* Color de fondo */
+  border-radius: 15px; /* Esquinas redondeadas */
 }
 
 .scrollable-div {
