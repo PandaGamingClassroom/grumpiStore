@@ -70,34 +70,25 @@ export class BattleGameComponent implements OnInit {
     this.grumpiService.getGrumpis().subscribe(
       (response) => {
         this.grumpiList = response.grumpis_list;
-        console.log('Lista de Grumpis: ', this.grumpiList);
-        this.randomGrumpi = this.getRandomGrumpi(); // Llamar a getRandomGrumpi después de cargar los Grumpis
+        this.randomGrumpi = this.getRandomGrumpi();
       },
       (error) => {
-        console.error('Error al obtener las URLs de las imágenes:', error);
+        console.error('Error al obtener la lista de Grumpis:', error);
       }
     );
   }
 
   // Función para obtener un Grumpi aleatorio de la lista cargada
   getRandomGrumpi() {
-    if (!this.grumpiList || this.grumpiList.length === 0) {
-      console.error(
-        'La lista de Grumpis está vacía. Asegúrese de haber llamado a loadGrumpis primero.'
-      );
-      return null;
-    }
-
+    if (!this.grumpiList || this.grumpiList.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * this.grumpiList.length);
-    const randomGrumpi = this.grumpiList[randomIndex];
-    console.log('Grumpi aleatorio seleccionado: ', randomGrumpi);
-    return randomGrumpi;
+    return this.grumpiList[randomIndex];
   }
 
   startBattle() {
     this.log = [];
     this.playerTurn = Math.random() < 0.5;
-    this.log.push(
+    this.updateLog(
       this.playerTurn ? '¡Comienza el jugador!' : '¡Comienza el oponente!'
     );
     if (!this.playerTurn) {
@@ -112,7 +103,7 @@ export class BattleGameComponent implements OnInit {
   playerAttack(atk: any) {
     if (this.playerTurn && this.selectedGrumpi && this.randomGrumpi) {
       this.randomGrumpi.PS -= atk.efecto;
-      this.log.push(
+      this.updateLog(
         `Tu ${this.selectedGrumpi.nombre} usó ${atk.nombre}, causando ${atk.efecto} de daño.`
       );
       this.checkBattleStatus();
@@ -126,7 +117,7 @@ export class BattleGameComponent implements OnInit {
           Math.floor(Math.random() * this.randomGrumpi.ataques.length)
         ];
       this.selectedGrumpi.PS -= randomAttack.efecto;
-      this.log.push(
+      this.updateLog(
         `El ${this.randomGrumpi.nombre} usó ${randomAttack.nombre}, causando ${randomAttack.efecto} de daño.`
       );
       this.checkBattleStatus();
@@ -135,9 +126,11 @@ export class BattleGameComponent implements OnInit {
 
   checkBattleStatus() {
     if (this.randomGrumpi.PS <= 0) {
-      this.log.push(`¡Has ganado el combate!`);
+      this.updateLog(`¡Tu Grumpi ganó el combate!`);
+      this.endBattle(true);
     } else if (this.selectedGrumpi.PS <= 0) {
-      this.log.push(`Has perdido el combate.`);
+      this.updateLog(`Tu Grumpi fue derrotado. El oponente ganó el combate.`);
+      this.endBattle(false);
     } else {
       this.playerTurn = !this.playerTurn;
       if (!this.playerTurn) {
@@ -147,8 +140,13 @@ export class BattleGameComponent implements OnInit {
   }
 
   endBattle(playerWon: boolean) {
-    this.log.push(playerWon ? 'You won the battle!' : 'You lost the battle.');
-    this.playerTurn = false; // Desactiva los turnos cuando la batalla termina
-    // Puedes añadir una lógica adicional, como la opción de reiniciar la batalla o volver al menú principal
+    this.playerTurn = false; // Finaliza los turnos
+    this.updateLog(
+      playerWon ? '¡Has ganado el combate!' : 'Has perdido el combate.'
+    );
+  }
+
+  updateLog(entry: string) {
+    this.log.push(entry);
   }
 }
