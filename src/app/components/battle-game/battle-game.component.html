@@ -81,6 +81,8 @@
     <button
       type="button"
       class="floating_btn_menu d-md-none"
+      data-bs-toggle="modal"
+      data-bs-target="#open_menu_game"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
@@ -229,6 +231,39 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="button-73" data-bs-dismiss="modal">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="open_menu_game"
+        tabindex="-1"
+        aria-labelledby="open_menu_game"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="open_menu_game">Menú</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex justify-content-center align-items-center">
+                <button type="button" class="btn">Rendirse</button>
+                <button type="button" class="btn">Salir</button>
               </div>
             </div>
             <div class="modal-footer">
