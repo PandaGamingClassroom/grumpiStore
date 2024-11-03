@@ -243,7 +243,6 @@ export class BattleGameComponent implements OnInit, OnDestroy {
     this.pause_music = !this.pause_music;
     if (this.pause_music) {
       this.audio.pause();
-      console.log('Música pausada');
     } else {
       this.audio.play().catch((error) => {
         console.log('Error al reproducir la música:', error);
