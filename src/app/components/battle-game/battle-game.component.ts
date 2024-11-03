@@ -59,12 +59,6 @@ export class BattleGameComponent implements OnInit, OnDestroy {
       this.username = localStorage.getItem('username');
       if (this.username) {
         this.getTrainerData(this.username);
-        // this.audio.play().catch((error) => {
-        //   console.log(
-        //     'Reproducción pausada hasta que el usuario interactúe.',
-        //     error
-        //   );
-        // });
       }
     }
   }
@@ -212,6 +206,7 @@ export class BattleGameComponent implements OnInit, OnDestroy {
     this.resultMessage = playerWon
       ? '¡Has ganado el combate!'
       : 'Has perdido el combate.';
+    this.selectedGrumpi = null;
     this.updateLog(this.resultMessage);
   }
 
