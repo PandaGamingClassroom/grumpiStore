@@ -170,10 +170,39 @@ p {
   font-size: smaller;
 }
 
+.floating_btn_menu {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: #3f51b5;
+  color: #fff;
+  border-radius: 50%;
+  width: 12%;
+  height: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px #0003;
+  z-index: 1000;
+  font-size: smaller;
+}
+
 .floating_btn_music_box {
   position: fixed;
   bottom: 32px;
   right: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-size: smaller;
+  color: white;
+}
+
+.floating_btn_menu_box {
+  position: fixed;
+  bottom: 32px;
+  right: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
