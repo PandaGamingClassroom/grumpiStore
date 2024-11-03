@@ -59,7 +59,7 @@ export class BienvenidaModalComponent implements OnInit {
           console.log(data.message);
         } else {
           this.trainer = data;
-          this.avatar = data.avatar;
+          this.avatar = data.data.avatar;
           console.log('Datos del entrenador: ', this.trainer);
         }
       },
