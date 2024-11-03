@@ -41,7 +41,7 @@ export class BienvenidaModalComponent implements OnInit {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       this.avatar = this.data.avatar;
-      console.log('Avatar del entrenador: ', this.avatar);
+      console.log('Avatar del entrenador: ', this.data);
 
     }
   }
