@@ -147,7 +147,7 @@
               <label><strong>Ataques: </strong></label>
               <br>
               <div *ngFor="let atk of randomGrumpi?.ataques">
-                <button type="button" class="btn btn_game ms-3 me-3">{{ atk.nombre }}</button>
+                <button type="button" class="btn ms-3 me-3">{{ atk.nombre }}</button>
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@
         aria-labelledby="openCreaturesList"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="openCreaturesList">Mis Grumpis</h1>
@@ -249,7 +249,7 @@
         aria-labelledby="open_menu_game"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="open_menu_game">Menú</h1>
@@ -262,8 +262,8 @@
             </div>
             <div class="modal-body">
               <div class="d-flex justify-content-center align-items-center">
-                <button type="button" class="btn">Rendirse</button>
-                <button type="button" class="btn">Salir</button>
+                <button type="button" class="me-3 ms-3 button-73">Rendirse</button>
+                <button type="button" class="me-3 ms-3 button-73">Salir</button>
               </div>
             </div>
             <div class="modal-footer">
