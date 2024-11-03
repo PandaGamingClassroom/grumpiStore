@@ -222,6 +222,12 @@ p {
   font-size: smaller;
 }
 
+.btn_game {
+  font-size: smaller;
+  border: 1px solid green;
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.3);
+}
+
 .arrow_animation {
   -webkit-animation: arrow_animation 3s infinite both;
   animation: arrow_animation 3s infinite both;

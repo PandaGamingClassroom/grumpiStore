@@ -101,7 +101,7 @@
               <div *ngFor="let atk of selectedGrumpi?.ataques">
                 <button
                   type="button"
-                  class="btn ms-2 me-2"
+                  class="btn btn_game ms-2 me-2"
                   (click)="playerAttack(atk)"
                   [disabled]="!playerTurn"
                 >
@@ -132,7 +132,7 @@
               <label><strong>Ataques: </strong></label>
               <br>
               <div *ngFor="let atk of randomGrumpi?.ataques">
-                <button type="button" class="btn ms-3 me-3">{{ atk.nombre }}</button>
+                <button type="button" class="btn btn_game ms-3 me-3">{{ atk.nombre }}</button>
               </div>
             </div>
           </div>

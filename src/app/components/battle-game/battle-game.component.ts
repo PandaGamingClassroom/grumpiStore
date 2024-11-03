@@ -53,12 +53,12 @@ export class BattleGameComponent implements OnInit {
       this.username = localStorage.getItem('username');
       if (this.username) {
         this.getTrainerData(this.username);
-        this.audio.play().catch((error) => {
-          console.log(
-            'Reproducción pausada hasta que el usuario interactúe.',
-            error
-          );
-        });
+        // this.audio.play().catch((error) => {
+        //   console.log(
+        //     'Reproducción pausada hasta que el usuario interactúe.',
+        //     error
+        //   );
+        // });
       }
     }
   }
