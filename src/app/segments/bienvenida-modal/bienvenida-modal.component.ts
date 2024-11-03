@@ -1,12 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { TrainerService } from '../../components/services/trainers/trainer.service';
 
 
 @Component({
   selector: 'app-bienvenida-modal',
   standalone: true,
   imports: [],
+  providers: [TrainerService],
   templateUrl: './bienvenida-modal.component.html',
   styleUrl: './bienvenida-modal.component.scss',
   animations: [
@@ -25,26 +27,48 @@ import { trigger, style, animate, transition } from '@angular/animations';
         ),
       ]),
     ]),
-  ]
+  ],
 })
 export class BienvenidaModalComponent implements OnInit {
   username: any;
   avatar: string = '';
+  trainer: any;
 
   constructor(
     public dialogRef: MatDialogRef<BienvenidaModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private trainersService: TrainerService
   ) {}
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
-      this.avatar = this.data.avatar;
-      console.log('Avatar del entrenador: ', this.data);
-
+        this.getTrainerData(this.username);
     }
   }
+
+  /**
+   * Obtiene los datos del entrenador que ha iniciado sesión
+   * @param name
+   */
+  getTrainerData(name: string): void {
+    this.trainersService.getTrainerByName(name).subscribe(
+      (data) => {
+        if (data.message) {
+          console.log(data.message);
+        } else {
+          this.trainer = data;
+          this.avatar = data.avatar;
+          console.log('Datos del entrenador: ', this.trainer);
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
   closeDialog() {
     this.dialogRef.close();
   }
