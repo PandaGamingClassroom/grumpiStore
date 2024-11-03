@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { GrumpiService } from '../services/grumpi/grumpi.service';
 import { RouterLink } from '@angular/router';
@@ -22,7 +28,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
   templateUrl: './battle-game.component.html',
   styleUrls: ['./battle-game.component.scss'],
 })
-export class BattleGameComponent implements OnInit {
+export class BattleGameComponent implements OnInit, OnDestroy {
   log: string[] = [];
   grumpiList: any[] = [];
   username: string | null = '';
@@ -137,7 +143,9 @@ export class BattleGameComponent implements OnInit {
 
     this.playerTurn = Math.random() < 0.5;
     this.updateLog(
-      this.playerTurn ? `¡Comienza el combate ${this.username}!` : '¡Comienza el oponente!'
+      this.playerTurn
+        ? `¡Comienza el combate ${this.username}!`
+        : '¡Comienza el oponente!'
     );
 
     if (!this.playerTurn) {
@@ -207,7 +215,6 @@ export class BattleGameComponent implements OnInit {
     this.updateLog(this.resultMessage);
   }
 
-
   /**
    * Función para actualizar el mensaje de estado del combate
    * @param message
@@ -220,7 +227,6 @@ export class BattleGameComponent implements OnInit {
     }, 0);
   }
 
-
   /**
    * Función para resetear el combate
    */
@@ -229,7 +235,6 @@ export class BattleGameComponent implements OnInit {
     this.log = [];
     this.loadGrumpis();
   }
-
 
   /**
    * Función para manejar la música durante el combate
@@ -244,6 +249,12 @@ export class BattleGameComponent implements OnInit {
         console.log('Error al reproducir la música:', error);
       });
       console.log('Música reproduciéndose');
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.audio && !this.audio.paused) {
+      this.audio.pause();
     }
   }
 }
