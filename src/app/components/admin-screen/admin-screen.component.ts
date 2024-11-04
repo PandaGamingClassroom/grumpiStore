@@ -104,7 +104,7 @@ export class AdminScreenComponent implements OnInit {
   }
 
   // Inicializa datos del usuario desde localStorage
-  private initializeUserData() {
+  initializeUserData() {
     if (typeof window !== 'undefined') {
       this.username = localStorage.getItem('username');
       this.nameProfesor = localStorage.getItem('nameUser');
@@ -167,7 +167,7 @@ export class AdminScreenComponent implements OnInit {
   }
 
   // Obtiene los datos del profesor y los entrenadores asociados
-  private fetchProfessorData(name: string) {
+  fetchProfessorData(name: string) {
     this.isLoading = true;
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
@@ -193,7 +193,7 @@ export class AdminScreenComponent implements OnInit {
   }
 
   // Obtiene la lista de entrenadores asignados al profesor
-  private getTrainers(profesorId: number) {
+  getTrainers(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data;
