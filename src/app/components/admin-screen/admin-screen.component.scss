@@ -283,6 +283,7 @@ img {
   position: relative;
   font-size: 1.5rem;
 }
+
 .notification-count {
   position: absolute;
   top: -5px;
@@ -297,7 +298,8 @@ img {
 .notification-container {
   position: relative;
   display: inline-block;
-  margin-left: 380px;
+  margin-left: 90%;
+  margin-top: 2%;
 }
 
 .btn-notification {
