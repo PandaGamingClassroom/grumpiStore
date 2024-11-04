@@ -441,12 +441,12 @@ export class TrainerService {
 
     return this.http.post<any>(url, body).pipe(
       switchMap((response) => {
-        const professorId = id_profesor;
+        const professor_id = id_profesor;
         const message = `El entrenador con ID ${trainer_id} ha recibido un nuevo objeto de combate: ${combatObject}.`; // Personaliza el mensaje según sea necesario
 
         return this.http
           .post<any>(`${this.apiUrl}notify-professor`, {
-            professorId,
+            professor_id,
             message,
           })
           .pipe(
