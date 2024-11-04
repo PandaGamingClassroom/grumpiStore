@@ -95,12 +95,12 @@ export class AdminScreenComponent implements OnInit {
 
   clearNotifications() {
     this.notificationService.clearNotifications();
-    this.loadNotifications(); // Refrescar la lista de notificaciones
+    this.loadNotifications();
   }
 
   triggerNotification() {
     this.notificationService.addNotification('Nueva actualización disponible');
-    this.loadNotifications(); // Refrescar la lista de notificaciones
+    this.loadNotifications();
   }
 
   // Inicializa datos del usuario desde localStorage
@@ -119,9 +119,7 @@ export class AdminScreenComponent implements OnInit {
   }
 
   loadNotifications() {
-    console.log('Datos del profesor: ', this.profesor);
-
-    if (this.profesor.data.id) {
+    if (this.profesor && this.profesor.data && this.profesor.data.id) {
       this.notificationService
         .getNotificationsFromServer(this.profesor.data.id)
         .subscribe(
@@ -133,6 +131,8 @@ export class AdminScreenComponent implements OnInit {
             console.error('Error al cargar notificaciones:', error);
           }
         );
+    } else {
+      console.warn('Datos del profesor no disponibles aún.');
     }
   }
 
@@ -142,7 +142,7 @@ export class AdminScreenComponent implements OnInit {
         serverPublicKey: this.VAPID_PUBLIC_KEY,
       })
       .then((subscription) => {
-        console.log('Suscripción creada:', subscription); // Verifica que se muestra la suscripción en consola
+        console.log('Suscripción creada:', subscription);
         this.saveSubscription(subscription);
       })
       .catch((err) =>
@@ -151,7 +151,7 @@ export class AdminScreenComponent implements OnInit {
   }
 
   saveSubscription(subscription: PushSubscription) {
-    const professorId = this.profesor?.data.id; // Añade ? para evitar posibles errores
+    const professorId = this.profesor?.data.id;
 
     this.http
       .post('/save-subscription', { subscription, professorId })
@@ -181,8 +181,9 @@ export class AdminScreenComponent implements OnInit {
           this.isLoading = false;
           console.log('Datos del profesor que inicia sesión: ', this.profesor);
 
-          // Obtiene la lista de entrenadores asociados al profesor
           this.getTrainers(data.data.id);
+
+          this.loadNotifications();
         }
       },
       (error) => {
