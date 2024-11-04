@@ -140,6 +140,7 @@ export class AdminScreenComponent implements OnInit {
         serverPublicKey: this.VAPID_PUBLIC_KEY,
       })
       .then((subscription) => {
+        console.log('Suscripción creada:', subscription); // Verifica que se muestra la suscripción en consola
         this.saveSubscription(subscription);
       })
       .catch((err) =>
