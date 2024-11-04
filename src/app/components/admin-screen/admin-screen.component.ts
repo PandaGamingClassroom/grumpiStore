@@ -86,7 +86,6 @@ export class AdminScreenComponent implements OnInit {
   ngOnInit() {
     this.initializeUserData();
     this.loadNotifications();
-    this.requestNotificationPermission();
   }
 
   toggleNotifications() {
@@ -101,21 +100,6 @@ export class AdminScreenComponent implements OnInit {
   triggerNotification() {
     this.notificationService.addNotification('Nueva actualización disponible');
     this.loadNotifications();
-  }
-
-  // Inicializa datos del usuario desde localStorage
-  initializeUserData() {
-    if (typeof window !== 'undefined') {
-      this.username = localStorage.getItem('username');
-      this.nameProfesor = localStorage.getItem('nameUser');
-      this.lastNameProfesor = localStorage.getItem('lastNameUser');
-      this.adminUser = localStorage.getItem('isAdminUser');
-      this.isAdminUser = this.adminUser === 'administrador';
-
-      if (this.nameProfesor) {
-        this.fetchProfessorData(this.nameProfesor);
-      }
-    }
   }
 
   loadNotifications() {
@@ -166,6 +150,21 @@ export class AdminScreenComponent implements OnInit {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
+  // Inicializa datos del usuario desde localStorage
+  initializeUserData() {
+    if (typeof window !== 'undefined') {
+      this.username = localStorage.getItem('username');
+      this.nameProfesor = localStorage.getItem('nameUser');
+      this.lastNameProfesor = localStorage.getItem('lastNameUser');
+      this.adminUser = localStorage.getItem('isAdminUser');
+      this.isAdminUser = this.adminUser === 'administrador';
+
+      if (this.nameProfesor) {
+        this.fetchProfessorData(this.nameProfesor);
+      }
+    }
+  }
+
   // Obtiene los datos del profesor y los entrenadores asociados
   fetchProfessorData(name: string) {
     this.isLoading = true;
@@ -183,6 +182,7 @@ export class AdminScreenComponent implements OnInit {
 
           this.getTrainers(data.data.id);
 
+          this.requestNotificationPermission();
           this.loadNotifications();
         }
       },
