@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { GrumpidolarsComponent } from './grumpidolars/grumpidolars.component';
@@ -22,6 +19,7 @@ import { ProfesorAdmin } from './profesor-admin/profesor-admin.component';
 import { ProfileComponent } from './profesor-admin/profile/profile-profesor.component';
 import { BlogScreenComponent } from './profesor-admin/blog/blog-screen.component';
 import { RulesAdminComponent } from './rules-admin/rules-admin.component';
+import { NotificationService } from '../../components/services/notification.service';
 
 @Component({
   selector: 'app-admin-screen',
@@ -49,51 +47,80 @@ import { RulesAdminComponent } from './rules-admin/rules-admin.component';
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './admin-screen.component.html',
-  styleUrl: './admin-screen.component.scss',
+  styleUrls: ['./admin-screen.component.scss'],
 })
 export class AdminScreenComponent implements OnInit {
   userData: any;
-  username: any;
+  username: string | null = null;
   modalAbierta = false;
   confirmMessage: string = 'Grumpi añadido correctamente.';
   profesor: any;
   trainers: any[] = [];
-  nameProfesor: any;
-  lastNameProfesor: any;
-  adminUser: any;
+  nameProfesor: string | null = null;
+  lastNameProfesor: string | null = null;
+  adminUser: string | null = null;
   activeSection: string | null = null;
   showLogo: boolean = true;
   isAdminUser: boolean = false;
-
   isSidebarCollapsed = true;
+
+  notifications: string[] = [];
+  showNotifications = false;
+  notificationCount = 0;
 
   currentTime: string = '';
 
   constructor(
     private trainersService: TrainerService,
     private adminUserService: AdminUserService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
-    // Obtener los datos de la ruta
+    this.initializeUserData();
+    this.notifications = this.notificationService.getNotifications();
+    this.notificationCount = this.notifications.length;
+  }
+
+  toggleNotifications() {
+    this.showNotifications = !this.showNotifications;
+  }
+
+  clearNotifications() {
+    this.notificationService.clearNotifications();
+    this.notifications = [];
+    this.notificationCount = 0;
+  }
+
+  // Método para simular una notificación (puedes reemplazarlo con eventos reales)
+  triggerNotification() {
+    this.notificationService.addNotification('Nueva actualización disponible');
+    this.notificationCount++;
+  }
+
+  // Inicializa datos del usuario desde localStorage
+  private initializeUserData() {
     if (typeof window !== 'undefined') {
-      // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
       this.nameProfesor = localStorage.getItem('nameUser');
       this.lastNameProfesor = localStorage.getItem('lastNameUser');
       this.adminUser = localStorage.getItem('isAdminUser');
       this.isAdminUser = this.adminUser === 'administrador';
-      this.getDadataProfesor(this.nameProfesor);
-    }
 
+      if (this.nameProfesor) {
+        this.fetchProfessorData(this.nameProfesor);
+      }
+    }
   }
 
+  // Alterna el estado de la barra lateral
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
-  getDadataProfesor(name: string) {
+  // Obtiene los datos del profesor y los entrenadores asociados
+  private fetchProfessorData(name: string) {
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
@@ -101,13 +128,13 @@ export class AdminScreenComponent implements OnInit {
         } else {
           this.profesor = data;
           this.lastNameProfesor = data.data.apellidos;
-          if (this.profesor.data.rol === 'administrador') {
-            this.adminUserService.setAdminUser(true);
-          } else {
-            this.adminUserService.setAdminUser(false);
-          }
+          this.isAdminUser = data.data.rol === 'administrador';
+          this.adminUserService.setAdminUser(this.isAdminUser);
+
           console.log('Datos del profesor que inicia sesión: ', this.profesor);
-          this.getEntrenadores(data.data.id);
+
+          // Obtiene la lista de entrenadores asociados al profesor
+          this.getTrainers(data.data.id);
         }
       },
       (error) => {
@@ -116,11 +143,8 @@ export class AdminScreenComponent implements OnInit {
     );
   }
 
-  disableRightClick(event: MouseEvent) {
-    event.preventDefault();
-  }
-
-  getEntrenadores(profesorId: number) {
+  // Obtiene la lista de entrenadores asignados al profesor
+  private getTrainers(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data;
@@ -131,23 +155,28 @@ export class AdminScreenComponent implements OnInit {
     );
   }
 
+  // Deshabilita el clic derecho
+  disableRightClick(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  // Muestra la sección activa y colapsa la barra lateral
   showSection(section: string) {
     console.log('Navigating to section:', section);
-    if (section) {
-      this.showLogo = false;
-    }
+    this.showLogo = section === null;
     this.activeSection = section;
     this.toggleSidebar();
   }
 
+  // Navega a la pantalla de reglas de administrador
   navigateToRules() {
     this.router.navigate(['/rules_admin']);
   }
 
+  // Cierra la sesión del usuario
   logOut() {
     sessionStorage.clear();
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['/']);
   }
-
 }
