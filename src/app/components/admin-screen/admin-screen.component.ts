@@ -152,7 +152,7 @@ export class AdminScreenComponent implements OnInit {
 
   saveSubscription(subscription: PushSubscription) {
     const professorId = this.profesor?.data.id;
-    console.log('Professor ID:', professorId);
+    console.log('Professor ID:', this.profesor);
     const url = 'https://grumpistoreserver.onrender.com/save-subscription';
 
     this.http.post(url, { subscription, professor_id: professorId }).subscribe({
