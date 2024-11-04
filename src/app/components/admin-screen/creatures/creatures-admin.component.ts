@@ -48,7 +48,7 @@ export class CreaturesAdminComponent implements OnInit {
   confirmMessage: string = 'Grumpi añadido correctamente.';
   searchTerm: string = '';
   searchAttack: string = '';
-  selectedTrainerName: string | null = null;
+  selectedTrainerName: number | null = null;
   selectedCreatureName: any | null = null;
   trainers: any[] = [];
   grumpiList: any[] = [];
@@ -385,7 +385,7 @@ export class CreaturesAdminComponent implements OnInit {
       .afterClosed()
       .subscribe((selectedTrainerNames: number[] | null) => {
         if (selectedTrainerNames && selectedTrainerNames.length > 0) {
-          this.selectedTrainerName = selectedTrainerNames.join(', ');
+          // this.selectedTrainerName = selectedTrainerNames.join(', ');
           this.assignCreaturesToTrainers(selectedTrainerNames);
         }
       });
