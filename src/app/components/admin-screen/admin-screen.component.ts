@@ -119,8 +119,19 @@ export class AdminScreenComponent implements OnInit {
   }
 
   loadNotifications() {
-    this.notifications = this.notificationService.getNotifications();
-    this.notificationCount = this.notifications.length;
+    if (this.profesor.data.id) {
+      this.notificationService
+        .getNotificationsFromServer(this.profesor.data.id)
+        .subscribe(
+          (data) => {
+            this.notifications = data;
+            this.notificationCount = this.notifications.length;
+          },
+          (error) => {
+            console.error('Error al cargar notificaciones:', error);
+          }
+        );
+    }
   }
 
   requestNotificationPermission() {
