@@ -139,14 +139,20 @@ export class AdminScreenComponent implements OnInit {
     console.log('Professor ID:', this.profesor);
     const url = 'https://grumpistoreserver.onrender.com/save-subscription';
 
-    this.http.post(url, { subscription, professor_id: professorId }).subscribe({
-      next: (response) => {
-        console.log('Suscripción guardada con éxito:', response);
-      },
-      error: (err) => {
-        console.error('Error al guardar la suscripción', err);
-      },
-    });
+    this.http
+      .post(
+        url,
+        { subscription, professor_id: professorId },
+        { responseType: 'text' }
+      )
+      .subscribe({
+        next: (response) => {
+          console.log('Suscripción guardada con éxito:', response);
+        },
+        error: (err) => {
+          console.error('Error al guardar la suscripción', err);
+        },
+      });
   }
 
   // Alterna el estado de la barra lateral
