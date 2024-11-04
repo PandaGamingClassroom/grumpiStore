@@ -14,12 +14,15 @@
 </div>
 
 <div *ngIf="showNotifications" class="notification-dropdown">
-  <h4>Notificaciones</h4>
-  <button
-    type="button"
-    class="btn-close"
-    (click)="toggleNotifications()"
-  ></button>
+  <div class="notification-header">
+    <h4>Notificaciones</h4>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="toggleNotifications()"
+      aria-label="Cerrar"
+    ></button>
+  </div>
   <ul>
     <li *ngFor="let notification of notifications">{{ notification }}</li>
   </ul>

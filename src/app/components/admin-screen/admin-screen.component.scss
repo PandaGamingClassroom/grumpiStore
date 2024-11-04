@@ -309,6 +309,19 @@ img {
   cursor: pointer;
 }
 
+.notification-header {
+  display: flex;
+  justify-content: space-between; /* Espacio entre el título y el botón */
+  align-items: center; /* Alinear verticalmente */
+}
+
+.btn-close {
+  border: none; /* Sin borde */
+  background: transparent; /* Fondo transparente */
+  cursor: pointer; /* Cambiar cursor al pasar el ratón */
+  font-size: 1.2rem; /* Ajustar el tamaño del botón */
+}
+
 .notification-dropdown {
   position: absolute;
   top: 50px;
