@@ -442,7 +442,7 @@ export class TrainerService {
     return this.http.post<any>(url, body).pipe(
       switchMap((response) => {
         const professor_id = id_profesor;
-        const message = `El entrenador con ID ${trainer_id} ha recibido un nuevo objeto de combate: ${combatObject}.`; // Personaliza el mensaje según sea necesario
+        const message = `El entrenador con ID ${trainer_id} ha recibido un nuevo objeto de combate: ${combatObject}.`;
 
         return this.http
           .post<any>(`${this.apiUrl}notify-professor`, {
@@ -451,21 +451,24 @@ export class TrainerService {
           })
           .pipe(
             map((notificationResponse) => ({
-              assignResponse: response, // La respuesta de asignación de objeto de combate
-              notificationResponse: notificationResponse, // La respuesta de notificación
+              assignResponse: response,
+              notificationResponse: notificationResponse,
             })),
-            catchError((err) => {
-              console.error('Error al enviar la notificación', err);
-              return of({ assignResponse: response, notificationError: err });
+            catchError((notificationError) => {
+              console.error(
+                'Error al enviar la notificación',
+                notificationError
+              );
+              return of({
+                assignResponse: response,
+                notificationError: notificationError,
+              });
             })
           );
       }),
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 200 && error.error instanceof ProgressEvent) {
-          return throwError('Error al procesar la respuesta del servidor.');
-        } else {
-          return throwError(error);
-        }
+        console.error('Error al asignar objeto de combate', error);
+        return throwError(error);
       })
     );
   }
