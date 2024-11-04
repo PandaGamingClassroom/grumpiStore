@@ -119,9 +119,11 @@ export class AdminScreenComponent implements OnInit {
   }
 
   loadNotifications() {
+    console.log('Datos del profesor: ', this.profesor);
+
     if (this.profesor.data.id) {
       this.notificationService
-        .getNotificationsFromServer(this.profesor.id)
+        .getNotificationsFromServer(this.profesor.data.id)
         .subscribe(
           (data) => {
             this.notifications = data;
