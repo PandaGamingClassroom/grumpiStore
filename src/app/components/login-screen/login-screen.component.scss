@@ -20,6 +20,17 @@ body {
   padding-top: 20px; /* Añade espacio en la parte superior */
 }
 
+.scrollable-container {
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .scrollable-container {
+    max-height: calc(100vh - 90px);
+  }
+}
+
 .logo {
   display: flex;
   justify-content: center;
@@ -47,15 +58,15 @@ body {
   width: 100%;
   padding: 20px;
   background: #ffffff66;
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgba(255, 255, 255, 0.4);
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
