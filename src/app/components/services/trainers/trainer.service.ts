@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, of, switchMap, throwError } from 'rxjs';
 import { environmentProd } from '../../../../environments/environment';
 
 @Injectable({
@@ -159,18 +159,35 @@ export class TrainerService {
       );
   }
 
-  assignCreatureToTrainer(trainerName: string, creature: any): Observable<any> {
+  assignCreatureToTrainer(trainer_id: number, creature: any): Observable<any> {
     const url = this.apiUrl + 'assign-creature';
-    const body = { trainerName, creature };
+    const body = { trainer_id, creature };
 
     return this.http.post<any>(url, body).pipe(
+      switchMap((response) => {
+        const professorId = response.professorId; // Asegúrate de que esto esté disponible en la respuesta
+        const message = `El entrenador con ID ${trainer_id} ha recibido una nueva criatura: ${creature.name}.`; // Personaliza el mensaje según sea necesario
+
+        return this.http
+          .post<any>(`${this.apiUrl}notify-professor`, {
+            professorId,
+            message,
+          })
+          .pipe(
+            map((notificationResponse) => ({
+              assignResponse: response, // La respuesta de asignación de criatura
+              notificationResponse: notificationResponse, // La respuesta de notificación
+            })),
+            catchError((err) => {
+              console.error('Error al enviar la notificación', err);
+              return of({ assignResponse: response, notificationError: err });
+            })
+          );
+      }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 200 && error.error instanceof ProgressEvent) {
-          // El error se produce debido a que no se pudo analizar la respuesta como JSON
-          // Maneja este caso aquí, por ejemplo, mostrando un mensaje de error adecuado al usuario
           return throwError('Error al procesar la respuesta del servidor.');
         } else {
-          // El error es de otro tipo, por lo que simplemente lo relanzamos
           return throwError(error);
         }
       })
@@ -264,6 +281,26 @@ export class TrainerService {
     const body = { trainer_id, energie };
 
     return this.http.post<any>(url, body).pipe(
+      switchMap((response) => {
+        const professorId = response.professorId; // Asegúrate de que esto esté disponible en la respuesta
+        const message = `El entrenador con ID ${trainer_id} ha recibido una nueva energía: ${energie.name}.`; // Personaliza el mensaje según sea necesario
+
+        return this.http
+          .post<any>(`${this.apiUrl}notify-professor`, {
+            professorId,
+            message,
+          })
+          .pipe(
+            map((notificationResponse) => ({
+              assignResponse: response, // La respuesta de asignación de energía
+              notificationResponse: notificationResponse, // La respuesta de notificación
+            })),
+            catchError((err) => {
+              console.error('Error al enviar la notificación', err);
+              return of({ assignResponse: response, notificationError: err });
+            })
+          );
+      }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 200 && error.error instanceof ProgressEvent) {
           return throwError('Error al procesar la respuesta del servidor.');
@@ -280,9 +317,44 @@ export class TrainerService {
    * @param energie
    * @returns
    */
-  assignEnergieToTrainers(trainerNames: number[], energie: any) {
+  assignEnergieToTrainers(
+    trainerNames: number[],
+    energie: any
+  ): Observable<any> {
     const url = `${this.apiUrl}assign-energie`;
-    return this.http.post<any>(url, { trainerNames, energie });
+    const body = { trainerNames, energie };
+
+    return this.http.post<any>(url, body).pipe(
+      switchMap((response) => {
+        const professorId = response.professorId; // Asegúrate de que esto esté disponible en la respuesta
+        const message = `Los entrenadores con IDs ${trainerNames.join(
+          ', '
+        )} han recibido una nueva energía: ${energie.name}.`; // Personaliza el mensaje según sea necesario
+
+        return this.http
+          .post<any>(`${this.apiUrl}notify-professor`, {
+            professorId,
+            message,
+          })
+          .pipe(
+            map((notificationResponse) => ({
+              assignResponse: response, // La respuesta de asignación de energía
+              notificationResponse: notificationResponse, // La respuesta de notificación
+            })),
+            catchError((err) => {
+              console.error('Error al enviar la notificación', err);
+              return of({ assignResponse: response, notificationError: err });
+            })
+          );
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 200 && error.error instanceof ProgressEvent) {
+          return throwError('Error al procesar la respuesta del servidor.');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
   }
 
   /**
@@ -300,6 +372,26 @@ export class TrainerService {
     const body = { trainerName, medalName };
 
     return this.http.post<any>(url, body).pipe(
+      switchMap((response) => {
+        const professorId = response.professorId; // Asegúrate de que esto esté disponible en la respuesta
+        const message = `El entrenador ${trainerName} ha recibido una nueva medalla: ${medalName}.`; // Personaliza el mensaje según sea necesario
+
+        return this.http
+          .post<any>(`${this.apiUrl}notify-professor`, {
+            professorId,
+            message,
+          })
+          .pipe(
+            map((notificationResponse) => ({
+              assignResponse: response, // La respuesta de asignación de medalla
+              notificationResponse: notificationResponse, // La respuesta de notificación
+            })),
+            catchError((err) => {
+              console.error('Error al enviar la notificación', err);
+              return of({ assignResponse: response, notificationError: err });
+            })
+          );
+      }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 200 && error.error instanceof ProgressEvent) {
           return throwError('Error al procesar la respuesta del servidor.');
@@ -325,6 +417,26 @@ export class TrainerService {
     const body = { trainerIDs: [trainer_id], combatObject };
 
     return this.http.post<any>(url, body).pipe(
+      switchMap((response) => {
+        const professorId = response.professorId; // Asegúrate de que esto esté disponible en la respuesta
+        const message = `El entrenador con ID ${trainer_id} ha recibido un nuevo objeto de combate: ${combatObject}.`; // Personaliza el mensaje según sea necesario
+
+        return this.http
+          .post<any>(`${this.apiUrl}notify-professor`, {
+            professorId,
+            message,
+          })
+          .pipe(
+            map((notificationResponse) => ({
+              assignResponse: response, // La respuesta de asignación de objeto de combate
+              notificationResponse: notificationResponse, // La respuesta de notificación
+            })),
+            catchError((err) => {
+              console.error('Error al enviar la notificación', err);
+              return of({ assignResponse: response, notificationError: err });
+            })
+          );
+      }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 200 && error.error instanceof ProgressEvent) {
           return throwError('Error al procesar la respuesta del servidor.');
@@ -486,10 +598,39 @@ export class TrainerService {
   }
 
   assignReward(trainer_id: number, reward: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}assign-rewards`, {
-      trainer_id,
-      reward,
-    });
+    // Llama a la API para asignar la recompensa al entrenador
+    return this.http
+      .post<any>(`${this.apiUrl}assign-rewards`, {
+        trainer_id,
+        reward,
+      })
+      .pipe(
+        // Encadenar el siguiente llamado a la función de notificación
+        switchMap((response) => {
+          // Suponiendo que el response incluye el professorId del entrenador
+          const professorId = response.professorId; // Asegúrate de que esto esté disponible en la respuesta
+          const message = `El entrenador con ID ${trainer_id} ha recibido una nueva recompensa: ${reward.name}.`; // Personaliza el mensaje según sea necesario
+
+          // Llama al API para enviar la notificación
+          return this.http
+            .post<any>(`${this.apiUrl}notify-professor`, {
+              professorId,
+              message,
+            })
+            .pipe(
+              // Retorna la respuesta final
+              map((notificationResponse) => ({
+                assignResponse: response, // La respuesta de asignación de recompensa
+                notificationResponse: notificationResponse, // La respuesta de notificación
+              })),
+              catchError((err) => {
+                console.error('Error al enviar la notificación', err);
+                // Puedes optar por manejar el error de la notificación aquí o lanzar el error
+                return of({ assignResponse: response, notificationError: err });
+              })
+            );
+        })
+      );
   }
 
   saveNewOrder(trainers: any[]): Observable<any> {
@@ -551,5 +692,28 @@ export class TrainerService {
   // Añadir una imagen de perfil para el profesor
   uploadProfileImage(imageData: FormData): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}upload_profile_image`, imageData);
+  }
+
+  // Método para notificar al profesor
+  notifyProfessor(trainerId: number, reward: string) {
+    // Obtener el ID del profesor del entrenador
+    this.http.get(`/get-trainer/${trainerId}`).subscribe((trainer: any) => {
+      const professorId = trainer.professorId; // Asegúrate de que esto esté disponible
+
+      // Enviar la notificación
+      this.http
+        .post('/notify-professor', {
+          professorId,
+          message: `El entrenador ha recibido la recompensa: ${reward}`,
+        })
+        .subscribe(
+          () => {
+            console.log('Notificación enviada al profesor');
+          },
+          (error) => {
+            console.error('Error al enviar la notificación', error);
+          }
+        );
+    });
   }
 }

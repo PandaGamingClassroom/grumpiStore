@@ -73,6 +73,7 @@ export class AdminScreenComponent implements OnInit {
   notificationCount = 0;
 
   currentTime: string = '';
+  isLoading = false;
 
   constructor(
     private trainersService: TrainerService,
@@ -99,7 +100,6 @@ export class AdminScreenComponent implements OnInit {
     this.notificationCount = 0;
   }
 
-  // Método para simular una notificación (puedes reemplazarlo con eventos reales)
   triggerNotification() {
     this.notificationService.addNotification('Nueva actualización disponible');
     this.notificationCount++;
@@ -126,21 +126,21 @@ export class AdminScreenComponent implements OnInit {
         serverPublicKey: this.VAPID_PUBLIC_KEY,
       })
       .then((subscription) => {
-        // Envía la suscripción al servidor para almacenarla
         this.saveSubscription(subscription);
       })
       .catch((err) =>
-        console.error('Could not subscribe to notifications', err)
+        console.error('No se pudo suscribir a las notificaciones', err)
       );
   }
 
   saveSubscription(subscription: PushSubscription) {
-    // Envía la suscripción al servidor para almacenarla en la base de datos
+    const professorId = this.profesor.data.id;
+
     this.http
-      .post('/api/save-subscription', { subscription, professorId: '12345' })
+      .post('/save-subscription', { subscription, professorId })
       .subscribe({
-        next: () => console.log('Subscription saved successfully.'),
-        error: (err) => console.error('Error saving subscription', err),
+        next: () => console.log('Suscripción guardada con éxito.'),
+        error: (err) => console.error('Error al guardar la suscripción', err),
       });
   }
 
@@ -151,6 +151,7 @@ export class AdminScreenComponent implements OnInit {
 
   // Obtiene los datos del profesor y los entrenadores asociados
   private fetchProfessorData(name: string) {
+    this.isLoading = true;
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
         if (data.message) {
@@ -160,7 +161,7 @@ export class AdminScreenComponent implements OnInit {
           this.lastNameProfesor = data.data.apellidos;
           this.isAdminUser = data.data.rol === 'administrador';
           this.adminUserService.setAdminUser(this.isAdminUser);
-
+          this.isLoading = false;
           console.log('Datos del profesor que inicia sesión: ', this.profesor);
 
           // Obtiene la lista de entrenadores asociados al profesor
@@ -168,6 +169,7 @@ export class AdminScreenComponent implements OnInit {
         }
       },
       (error) => {
+        this.isLoading = false;
         console.error('Error:', error);
       }
     );
