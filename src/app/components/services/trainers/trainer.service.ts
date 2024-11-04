@@ -433,14 +433,15 @@ export class TrainerService {
    */
   assignCombatObjectsToTrainer(
     trainer_id: number,
-    combatObject: string
+    combatObject: string,
+    id_profesor: number
   ): Observable<any> {
     const url = this.apiUrl + 'assign-combatObjects';
     const body = { trainerIDs: [trainer_id], combatObject };
 
     return this.http.post<any>(url, body).pipe(
       switchMap((response) => {
-        const professorId = response.professorId; // Asegúrate de que esto esté disponible en la respuesta
+        const professorId = id_profesor; // Asegúrate de que esto esté disponible en la respuesta
         const message = `El entrenador con ID ${trainer_id} ha recibido un nuevo objeto de combate: ${combatObject}.`; // Personaliza el mensaje según sea necesario
 
         return this.http

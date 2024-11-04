@@ -479,7 +479,11 @@ export class StoreScreenComponent implements OnInit {
 
       // Llama al servicio para asignar la criatura al entrenador por su nombre
       this.trainersService
-        .assignCombatObjectsToTrainer(trainer_id, combatObject)
+        .assignCombatObjectsToTrainer(
+          trainer_id,
+          combatObject,
+          this.trainer.id_profesor
+        )
         .subscribe(
           (response) => {
             this.confirmTitle = 'Objeto conseguido con éxito.';
