@@ -45,7 +45,6 @@ import { HttpClient } from '@angular/common/http';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    FooterComponent,
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './admin-screen.component.html',
@@ -86,8 +85,8 @@ export class AdminScreenComponent implements OnInit {
 
   ngOnInit() {
     this.initializeUserData();
-    this.notifications = this.notificationService.getNotifications();
-    this.notificationCount = this.notifications.length;
+    this.loadNotifications();
+    this.requestNotificationPermission();
   }
 
   toggleNotifications() {
@@ -96,13 +95,12 @@ export class AdminScreenComponent implements OnInit {
 
   clearNotifications() {
     this.notificationService.clearNotifications();
-    this.notifications = [];
-    this.notificationCount = 0;
+    this.loadNotifications(); // Refrescar la lista de notificaciones
   }
 
   triggerNotification() {
     this.notificationService.addNotification('Nueva actualización disponible');
-    this.notificationCount++;
+    this.loadNotifications(); // Refrescar la lista de notificaciones
   }
 
   // Inicializa datos del usuario desde localStorage
@@ -120,6 +118,11 @@ export class AdminScreenComponent implements OnInit {
     }
   }
 
+  loadNotifications() {
+    this.notifications = this.notificationService.getNotifications();
+    this.notificationCount = this.notifications.length;
+  }
+
   requestNotificationPermission() {
     this.swPush
       .requestSubscription({
@@ -134,7 +137,7 @@ export class AdminScreenComponent implements OnInit {
   }
 
   saveSubscription(subscription: PushSubscription) {
-    const professorId = this.profesor.data.id;
+    const professorId = this.profesor?.data.id; // Añade ? para evitar posibles errores
 
     this.http
       .post('/save-subscription', { subscription, professorId })
@@ -148,7 +151,6 @@ export class AdminScreenComponent implements OnInit {
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
-
 
   // Obtiene los datos del profesor y los entrenadores asociados
   private fetchProfessorData(name: string) {
