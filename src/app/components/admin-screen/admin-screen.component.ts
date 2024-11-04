@@ -149,6 +149,7 @@ export class AdminScreenComponent implements OnInit {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
+
   // Obtiene los datos del profesor y los entrenadores asociados
   private fetchProfessorData(name: string) {
     this.isLoading = true;

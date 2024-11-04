@@ -1,34 +1,70 @@
 <app-nav-bar-admin></app-nav-bar-admin>
 
 <div class="notification-container">
-  <button type="button" class="btn-notification" (click)="toggleNotifications()">
-    🔔 <span *ngIf="notificationCount > 0" class="notification-count">{{ notificationCount }}</span>
+  <button
+    type="button"
+    class="btn-notification"
+    (click)="toggleNotifications()"
+  >
+    🔔
+    <span *ngIf="notificationCount > 0" class="notification-count">{{
+      notificationCount
+    }}</span>
   </button>
 </div>
 
 <div *ngIf="showNotifications" class="notification-dropdown">
   <h4>Notificaciones</h4>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="toggleNotifications()"
+  ></button>
   <ul>
     <li *ngFor="let notification of notifications">{{ notification }}</li>
   </ul>
-  <button type="button" (click)="clearNotifications()">Limpiar Notificaciones</button>
+  <button type="button" (click)="clearNotifications()">
+    Limpiar Notificaciones
+  </button>
 </div>
 
-<button type="button" class="btn-menu d-md-none" (click)="toggleSidebar()">☰ Menú</button>
+<button
+  type="button"
+  class="btn-menu d-md-none"
+  *ngIf="isSidebarCollapsed"
+  (click)="toggleSidebar()"
+>
+  ☰ Menú
+</button>
+<button
+  type="button"
+  class="btn-menu d-md-none"
+  *ngIf="!isSidebarCollapsed"
+  (click)="toggleSidebar()"
+>
+  X
+</button>
 
 <!-- Main Content Container -->
 <div class="container-fluid d-flex">
   <!-- Sidebar -->
-  <div class="bg-light border-end sidenav mt-2" [class.collapsed]="!isSidebarCollapsed">
+  <div
+    class="bg-light border-end sidenav mt-2"
+    [class.collapsed]="!isSidebarCollapsed"
+  >
     <ul class="nav flex-column mt-3">
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('profile')">Perfil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showSection('trainers')">Lista de entrenadores</a>
+        <a class="nav-link" (click)="showSection('trainers')"
+          >Lista de entrenadores</a
+        >
       </li>
       <li class="nav-item" *ngIf="isAdminUser">
-        <a class="nav-link" (click)="showSection('profesorado')">Lista de profesores</a>
+        <a class="nav-link" (click)="showSection('profesorado')"
+          >Lista de profesores</a
+        >
       </li>
       <hr />
       <h3 class="d-flex justify-content-center">
@@ -41,7 +77,9 @@
         <a class="nav-link" (click)="showSection('medals')">Medallas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showSection('distintivos')">Distintivos de liga</a>
+        <a class="nav-link" (click)="showSection('distintivos')"
+          >Distintivos de liga</a
+        >
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('energies')">Energía</a>
@@ -50,7 +88,9 @@
         <a class="nav-link" (click)="showSection('dolars')">Grumpidólares</a>
       </li>-->
       <hr />
-      <h3 class="d-flex justify-content-center"><strong>Administración del blog</strong></h3>
+      <h3 class="d-flex justify-content-center">
+        <strong>Administración del blog</strong>
+      </h3>
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('blog')">Blog</a>
       </li>
@@ -64,15 +104,30 @@
 
   <!-- Contenido principal -->
   <div class="container-fluid main-content">
-
     <p class="d-flex justify-content-center mt-4">
-      <button class="button-73" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-        aria-expanded="false" aria-controls="collapseExample">
-        Hola {{ nameProfesor }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-          class="bi bi-info-circle" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+      <button
+        class="button-73"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Hola {{ nameProfesor }}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-info-circle"
+          viewBox="0 0 16 16"
+        >
           <path
-            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+          />
+          <path
+            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
+          />
         </svg>
       </button>
     </p>
@@ -86,8 +141,8 @@
               GrumpiApp.
             </p>
             <p>
-              En este espacio podrá gestionar toda la información referente a sus
-              alumnos para poder comenzar con los Grumpi.
+              En este espacio podrá gestionar toda la información referente a
+              sus alumnos para poder comenzar con los Grumpi.
             </p>
           </div>
           <div class="col-2">
@@ -99,18 +154,22 @@
           </div>
           <hr />
           <p class="d-flex justify-content-center">
-            A tu izquierda encontrarás una selección de opciones y a la derecha se
-            mostrará el contenido de la opción seleccionada.
+            A tu izquierda encontrarás una selección de opciones y a la derecha
+            se mostrará el contenido de la opción seleccionada.
           </p>
         </div>
       </div>
     </div>
 
-
-
     <div class="container-fluid">
-      <div *ngIf="showLogo" class="container-fluid d-flex justify-content-center align-items-center">
-        <img src="../../../assets/Logo_v0.1_sinFondo.png" (contextmenu)="disableRightClick($event)" />
+      <div
+        *ngIf="showLogo"
+        class="container-fluid d-flex justify-content-center align-items-center"
+      >
+        <img
+          src="../../../assets/Logo_v0.1_sinFondo.png"
+          (contextmenu)="disableRightClick($event)"
+        />
       </div>
     </div>
 
@@ -145,7 +204,13 @@
           <div *ngIf="activeSection === 'guide'" class="scrollable-div">
             <!-- <app-rules-admin></app-rules-admin> -->
             <div class="text-center bg-box">
-              <button type="button" class="btn btn-success mt-4 mb-4" routerLink="/rules_admin">Acceder a la Guía Grumpi </button>
+              <button
+                type="button"
+                class="btn btn-success mt-4 mb-4"
+                routerLink="/rules_admin"
+              >
+                Acceder a la Guía Grumpi
+              </button>
             </div>
           </div>
           <div *ngIf="activeSection === 'blog'" class="scrollable-div">
