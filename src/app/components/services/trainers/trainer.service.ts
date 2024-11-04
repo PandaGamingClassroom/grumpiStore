@@ -209,6 +209,28 @@ export class TrainerService {
     const body = { trainerIDs, creature };
 
     return this.http.post<any>(url, body).pipe(
+      switchMap((response) => {
+        const professorId = response.professorId;
+        const message = `Los entrenadores con IDs ${trainerIDs.join(
+          ', '
+        )} han recibido una nueva criatura: ${creature}.`;
+
+        return this.http
+          .post<any>(`${this.apiUrl}notify-professor`, {
+            professorId,
+            message,
+          })
+          .pipe(
+            map((notificationResponse) => ({
+              assignResponse: response, // La respuesta de asignación de criatura
+              notificationResponse: notificationResponse, // La respuesta de notificación
+            })),
+            catchError((err) => {
+              console.error('Error al enviar la notificación', err);
+              return of({ assignResponse: response, notificationError: err });
+            })
+          );
+      }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 200 && error.error instanceof ProgressEvent) {
           return throwError('Error al procesar la respuesta del servidor.');
