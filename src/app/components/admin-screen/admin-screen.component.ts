@@ -20,6 +20,8 @@ import { ProfileComponent } from './profesor-admin/profile/profile-profesor.comp
 import { BlogScreenComponent } from './profesor-admin/blog/blog-screen.component';
 import { RulesAdminComponent } from './rules-admin/rules-admin.component';
 import { NotificationService } from '../../components/services/notification.service';
+import { SwPush } from '@angular/service-worker';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-screen',
@@ -50,6 +52,8 @@ import { NotificationService } from '../../components/services/notification.serv
   styleUrls: ['./admin-screen.component.scss'],
 })
 export class AdminScreenComponent implements OnInit {
+  readonly VAPID_PUBLIC_KEY =
+    'BFD_VPxiPRpJzte77znqB9zm3v6acV1fQUSyFo-jdOQNi_GKhxVgaKJfvCFSrAdX9XTa-5NrBbYhSbIKkeyPRPs';
   userData: any;
   username: string | null = null;
   modalAbierta = false;
@@ -74,7 +78,9 @@ export class AdminScreenComponent implements OnInit {
     private trainersService: TrainerService,
     private adminUserService: AdminUserService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private swPush: SwPush,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -112,6 +118,30 @@ export class AdminScreenComponent implements OnInit {
         this.fetchProfessorData(this.nameProfesor);
       }
     }
+  }
+
+  requestNotificationPermission() {
+    this.swPush
+      .requestSubscription({
+        serverPublicKey: this.VAPID_PUBLIC_KEY,
+      })
+      .then((subscription) => {
+        // Envía la suscripción al servidor para almacenarla
+        this.saveSubscription(subscription);
+      })
+      .catch((err) =>
+        console.error('Could not subscribe to notifications', err)
+      );
+  }
+
+  saveSubscription(subscription: PushSubscription) {
+    // Envía la suscripción al servidor para almacenarla en la base de datos
+    this.http
+      .post('/api/save-subscription', { subscription, professorId: '12345' })
+      .subscribe({
+        next: () => console.log('Subscription saved successfully.'),
+        error: (err) => console.error('Error saving subscription', err),
+      });
   }
 
   // Alterna el estado de la barra lateral
