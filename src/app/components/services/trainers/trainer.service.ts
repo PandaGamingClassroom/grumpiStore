@@ -432,17 +432,20 @@ export class TrainerService {
    * @returns
    */
   assignCombatObjectsToTrainer(
+    trainer_name: string,
     trainer_id: number,
     combatObject: string,
     id_profesor: number
   ): Observable<any> {
     const url = this.apiUrl + 'assign-combatObjects';
-    const body = { trainerIDs: [trainer_id], combatObject };
+    const body = { trainerIDs: [trainer_id], trainer_name, combatObject };
+
+    console.log('OBJETO DE COMBATE: ', combatObject);
 
     return this.http.post<any>(url, body).pipe(
       switchMap((response) => {
         const professor_id = id_profesor;
-        const message = `El entrenador con ID ${trainer_id} ha recibido un nuevo objeto de combate: ${combatObject}.`;
+        const message = `${trainer_name} ha recibido un nuevo objeto de combate: ${combatObject}.`;
 
         return this.http
           .post<any>(`${this.apiUrl}notify-professor`, {

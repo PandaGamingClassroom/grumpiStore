@@ -480,6 +480,7 @@ export class StoreScreenComponent implements OnInit {
       // Llama al servicio para asignar la criatura al entrenador por su nombre
       this.trainersService
         .assignCombatObjectsToTrainer(
+          this.trainer.name,
           trainer_id,
           combatObject,
           this.trainer.id_profesor
