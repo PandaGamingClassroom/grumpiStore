@@ -20,14 +20,10 @@ body {
   padding-top: 20px; /* Añade espacio en la parte superior */
 }
 
-.scrollable-container {
-  max-height: calc(100vh - 90px);
-  overflow-y: auto;
-}
-
 @media (min-width: 768px) {
   .scrollable-container {
-    max-height: calc(100vh - 90px);
+    max-height: calc(80vh - -71px);
+    overflow-y: auto;
   }
 }
 
