@@ -108,6 +108,7 @@ export class AdminScreenComponent implements OnInit {
         .getNotificationsFromServer(this.profesor.data.id)
         .subscribe(
           (data) => {
+            console.log('NOTIFICACIONES DEL PROFESOR: ', data);
             this.notifications = data;
             this.notificationCount = this.notifications.length;
           },
