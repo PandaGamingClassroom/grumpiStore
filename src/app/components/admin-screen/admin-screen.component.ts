@@ -67,7 +67,7 @@ export class AdminScreenComponent implements OnInit {
   isAdminUser: boolean = false;
   isSidebarCollapsed = true;
 
-  notifications: string[] = [];
+  notifications: any[] = [];
   showNotifications = false;
   notificationCount = 0;
 
@@ -137,7 +137,6 @@ export class AdminScreenComponent implements OnInit {
 
   saveSubscription(subscription: PushSubscription) {
     const professorId = this.profesor?.data.id;
-    console.log('Professor ID:', this.profesor);
     const url = 'https://grumpistoreserver.onrender.com/save-subscription';
 
     this.http
@@ -181,20 +180,12 @@ export class AdminScreenComponent implements OnInit {
     this.isLoading = true;
     this.trainersService.getProfesorByName(name).subscribe(
       (data) => {
-        if (data.message) {
-          console.log(data.message);
-        } else {
-          this.profesor = data;
-          this.lastNameProfesor = data.data.apellidos;
-          this.isAdminUser = data.data.rol === 'administrador';
-          this.adminUserService.setAdminUser(this.isAdminUser);
-          this.isLoading = false;
-          console.log('Datos del profesor que inicia sesión: ', this.profesor);
+        this.profesor = data;
+        this.isLoading = false;
 
-          this.getTrainers(data.data.id);
-
+        if (this.profesor && this.profesor.data && this.profesor.data.id) {
           this.requestNotificationPermission();
-          this.loadNotifications();
+          this.loadNotifications(); // Cargar notificaciones después de obtener los datos del profesor
         }
       },
       (error) => {

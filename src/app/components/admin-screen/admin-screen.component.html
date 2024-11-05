@@ -24,7 +24,9 @@
     ></button>
   </div>
   <ul>
-    <li *ngFor="let notification of notifications">{{ notification }}</li>
+    <li *ngFor="let notification of notifications">
+      {{ notification.message ? notification.message : notification }}
+    </li>
   </ul>
   <button type="button" (click)="clearNotifications()">
     Limpiar Notificaciones
