@@ -1,13 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { TrainerService } from '../../components/services/trainers/trainer.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-bienvenida-modal',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule, MatDialogModule, ReactiveFormsModule],
   providers: [TrainerService],
   templateUrl: './bienvenida-modal.component.html',
   styleUrl: './bienvenida-modal.component.scss',
@@ -33,6 +35,7 @@ export class BienvenidaModalComponent implements OnInit {
   username: any;
   avatar: string = '';
   trainer: any;
+  isImageLoaded: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<BienvenidaModalComponent>,
@@ -44,7 +47,7 @@ export class BienvenidaModalComponent implements OnInit {
     if (typeof window !== 'undefined') {
       // Verifica si `window` está definido
       this.username = localStorage.getItem('username');
-        this.getTrainerData(this.username);
+      this.getTrainerData(this.username);
     }
   }
 
@@ -69,9 +72,14 @@ export class BienvenidaModalComponent implements OnInit {
     );
   }
 
+  onImageLoad(): void {
+    this.isImageLoaded = true;
+  }
+
   closeDialog() {
     this.dialogRef.close();
   }
+
   disableRightClick(event: MouseEvent) {
     event.preventDefault();
   }
