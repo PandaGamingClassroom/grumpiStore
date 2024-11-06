@@ -25,10 +25,14 @@
   </div>
   <ul>
     <li *ngFor="let notification of notifications">
-      {{ notification.message ? notification.message : notification }}
+      <span
+        *ngIf="!notification.read"
+        class="unread-indicator"
+      ></span>
+      {{ notification.message }}
     </li>
   </ul>
-  <button type="button" class="btn" (click)="clearNotifications()">
+  <button type="button" class="btn btn-outline-light" (click)="clearNotifications()">
     Limpiar Notificaciones
   </button>
 </div>
