@@ -22,7 +22,7 @@ body {
 
 @media (min-width: 768px) {
   .scrollable-container {
-    max-height: calc(80vh - -71px);
+    // max-height: calc(80vh - -71px);
     overflow-y: auto;
   }
 }
