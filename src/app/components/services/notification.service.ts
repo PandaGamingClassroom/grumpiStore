@@ -39,7 +39,7 @@ export class NotificationService {
         tap((notifications) => this.notificationsSubject.next(notifications)),
         catchError((error) => {
           console.error('Error al obtener notificaciones del servidor:', error);
-          return of([]); // Regresar un arreglo vacío en caso de error
+          return of([]);
         })
       );
   }
