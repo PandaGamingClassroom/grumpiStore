@@ -349,3 +349,13 @@ img {
   height: 30%;
   overflow-y: auto;
 }
+
+
+.unread-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  background-color: rgb(87, 87, 255);
+  border-radius: 50%;
+}
