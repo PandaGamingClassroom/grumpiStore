@@ -1,6 +1,6 @@
 .imgProfile {
-  height: 100px;
-  width: 100px;
+  height: 60%;
+  width: 100%;
   box-shadow: 0 0 10px #00000080;
   border-radius: 40em;
   object-fit: cover;
@@ -27,4 +27,14 @@ label {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .imgProfile {
+    height: 99px;
+    width: 35%;
+    box-shadow: 0 0 10px #00000080;
+    border-radius: 40em;
+    object-fit: cover;
+  }
 }
