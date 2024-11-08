@@ -90,8 +90,42 @@
     </button>
   </div>
 
+  <div class="container" *ngIf="deviceType === 'desktop'">
+    <div class="battle-container">
+      <!-- Opponent Section -->
+      <div class="opponent-section">
+        <div class="opponent-info">
+          <strong>Opponent: Pikachu</strong>
+          <div class="opponent-health-bar">
+            <div class="opponent-health" style="width: 70%;"></div>
+          </div>
+          <p>HP: 35/50</p>
+        </div>
+      </div>
 
-  <div class="container-fluid d-flex justify-content-center align-items-center scrollable-container">
+      <!-- Player Section -->
+      <div class="player-section">
+        <div class="player-info">
+          <strong>Your Grumpi: Bulbasaur</strong>
+          <div class="player-health-bar">
+            <div class="player-health" style="width: 60%;"></div>
+          </div>
+          <p>HP: 30/50</p>
+        </div>
+      </div>
+
+      <!-- Attack Options -->
+      <div class="attack-section">
+        <strong>Choose Attack:</strong>
+        <div class="attack">Vine Whip</div>
+        <div class="attack">Tackle</div>
+        <div class="attack">Growl</div>
+        <div class="attack">Leech Seed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid d-flex justify-content-center align-items-center scrollable-container" *ngIf="deviceType === 'mobile'">
     <div class="row justify-content-center">
       <!-- Sección de batalla con los Grumpis -->
       <div class="col-12 col-md-6">
