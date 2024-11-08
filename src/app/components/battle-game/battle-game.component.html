@@ -189,6 +189,74 @@
         <div class="attack">{{ atk.nombre }}</div>
       </div>
     </div>
+          <div
+        class="modal fade"
+        id="openCreaturesList"
+        tabindex="-1"
+        aria-labelledby="openCreaturesList"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="openCreaturesList">
+                Mis Grumpis
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div style="width: 100%">
+                <div
+                  style="
+                    position: relative;
+                    padding-bottom: 50%;
+                    padding-top: 0;
+                    height: 0;
+                  "
+                >
+                  <div class="battle-list-creatures scrollable-div">
+                    <div
+                      class="grumpi player"
+                      *ngFor="let grumpi of grumpiList"
+                    >
+                      <ul>
+                        <li
+                          class="d-flex justify-content-center align-items-center"
+                        >
+                          <img
+                            *ngIf="grumpi?.img_general"
+                            [src]="grumpi.img_general"
+                            alt="{{ grumpi?.nombre }}"
+                            class="img-thumbnail img-small"
+                          />
+                          <button
+                            type="button"
+                            class="btn"
+                            (click)="selectCreature(grumpi)"
+                            data-bs-dismiss="modal"
+                          >
+                            {{ grumpi?.nombre }}
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="button-73" data-bs-dismiss="modal">
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 
   <div
