@@ -462,13 +462,13 @@ p {
 
 /* Imagen de Grumpi */
 .grumpi-image {
-  width: 15vw;
+  width: 16vw;
   height: auto;
   position: fixed;
-  bottom: 31vh;
-  right: 62vw;
+  bottom: 30vh;
+  right: 59vw;
   display: flex;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px #00000080;
   z-index: 1000;
 }
 
@@ -483,13 +483,14 @@ p {
   background-size: cover;
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
 }
 
 /* Section for Opponent */
 .opponent-section {
   position: absolute;
-  top: 5vh;
-  right: 5vw;
+  top: 1vh;
+  right: 1vw;
   width: 35vw;
   text-align: right;
 }
@@ -529,13 +530,16 @@ p {
 }
 
 .player-info {
-  background-color: #ffffff;
+  background-color: #fff;
   border: 2px solid #000;
   padding: 1vh 1vw;
   border-radius: 5px;
   display: flex;
   align-items: center;
   width: 100%;
+  bottom: -4vh;
+  position: absolute;
+  right: 4vw;
 }
 
 .player-details {
@@ -561,10 +565,10 @@ p {
 /* Attack Section */
 .attack-section {
   position: absolute;
-  bottom: 5vh;
-  right: 5vw;
-  width: 35vw;
-  background-color: #ffffff;
+  bottom: 1vh;
+  right: 1vw;
+  width: 23vw;
+  background-color: #fff;
   border: 2px solid #000;
   padding: 1vh 1vw;
   border-radius: 5px;
@@ -584,10 +588,10 @@ p {
   width: 15vw;
   height: auto;
   position: fixed;
-  bottom: 32vh;
-  right: 32vw;
+  bottom: 27vh;
+  right: 27vw;
   display: flex;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px #00000080;
   z-index: 1000;
 }
 
@@ -596,12 +600,12 @@ p {
   height: 8vh;
   position: fixed;
   bottom: 20vh;
-  right: 30vw;
+  right: 21vw;
   border-radius: 50%;
   background-color: #00ff7f;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px #00000080;
   z-index: 1002;
 }
