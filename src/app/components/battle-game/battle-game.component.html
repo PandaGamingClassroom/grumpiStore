@@ -95,6 +95,7 @@
       <!-- Opponent Section -->
       <div class="opponent-section">
         <div class="opponent-info">
+          <img [src]="randomGrumpi?.imagen" alt="Oponente Grumpi" class="grumpi-image">
           <strong>Oponente: {{ randomGrumpi?.nombre }}</strong>
           <div class="opponent-health-bar">
             <div class="opponent-health" style="width: 70%;"></div>
@@ -106,6 +107,7 @@
       <!-- Player Section -->
       <div class="player-section">
         <div class="player-info">
+          <img [src]="selectedGrumpi?.imagen" alt="Tu Grumpi" class="grumpi-image">
           <strong>Tu Grumpi: {{ selectedGrumpi?.nombre }}</strong>
           <div class="player-health-bar">
             <div class="player-health" style="width: 60%;"></div>
@@ -121,6 +123,7 @@
       </div>
     </div>
   </div>
+
 
   <div class="container-fluid d-flex justify-content-center align-items-center scrollable-container" *ngIf="deviceType === 'mobile'">
     <div class="row justify-content-center">

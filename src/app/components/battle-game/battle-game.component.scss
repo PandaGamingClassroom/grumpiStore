@@ -460,114 +460,122 @@ p {
   }
 }
 
+/* Imagen de Grumpi */
+.grumpi-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
 
+/* Rest of the styles (unchanged) */
 
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
 
-    .battle-container {
-      width: 80%;
-      max-width: 600px;
-      height: 400px;
-      border: 4px solid #000;
-      background-color: #a8d0e6;
-      position: relative;
-      overflow: hidden;
-    }
+.battle-container {
+  width: 80%;
+  max-width: 600px;
+  height: 400px;
+  border: 4px solid #000;
+  background-color: #a8d0e6;
+  position: relative;
+  overflow: hidden;
+}
 
-    /* Section for Opponent */
-    .opponent-section {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 45%;
-      text-align: right;
-    }
+/* Section for Opponent */
+.opponent-section {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45%;
+  text-align: right;
+}
 
-    .opponent-info {
-      background-color: #ffffff;
-      border: 2px solid #000;
-      padding: 10px;
-      border-radius: 5px;
-      display: inline-block;
-      width: 100%;
-    }
+.opponent-info {
+  background-color: #ffffff;
+  border: 2px solid #000;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  width: 100%;
+}
 
-    .opponent-health-bar {
-      height: 10px;
-      width: 100%;
-      background-color: #ddd;
-      border: 1px solid #000;
-      margin-top: 5px;
-      border-radius: 5px;
-      overflow: hidden;
-    }
+.opponent-health-bar {
+  height: 10px;
+  width: 100%;
+  background-color: #ddd;
+  border: 1px solid #000;
+  margin-top: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
 
-    .opponent-health {
-      height: 100%;
-      width: 80%; /* Health percentage */
-      background-color: #3cc;
-    }
+.opponent-health {
+  height: 100%;
+  width: 80%; /* Health percentage */
+  background-color: #3cc;
+}
 
-    /* Section for Player */
-    .player-section {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      width: 45%;
-      text-align: left;
-    }
+/* Section for Player */
+.player-section {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 45%;
+  text-align: left;
+}
 
-    .player-info {
-      background-color: #ffffff;
-      border: 2px solid #000;
-      padding: 10px;
-      border-radius: 5px;
-      display: inline-block;
-      width: 100%;
-    }
+.player-info {
+  background-color: #ffffff;
+  border: 2px solid #000;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  width: 100%;
+}
 
-    .player-health-bar {
-      height: 10px;
-      width: 100%;
-      background-color: #ddd;
-      border: 1px solid #000;
-      margin-top: 5px;
-      border-radius: 5px;
-      overflow: hidden;
-    }
+.player-health-bar {
+  height: 10px;
+  width: 100%;
+  background-color: #ddd;
+  border: 1px solid #000;
+  margin-top: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
 
-    .player-health {
-      height: 100%;
-      width: 60%; /* Health percentage */
-      background-color: #3cc;
-    }
+.player-health {
+  height: 100%;
+  width: 60%; /* Health percentage */
+  background-color: #3cc;
+}
 
-    /* Attack Section */
-    .attack-section {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      width: 45%;
-      background-color: #ffffff;
-      border: 2px solid #000;
-      padding: 10px;
-      border-radius: 5px;
-      text-align: left;
-    }
+/* Attack Section */
+.attack-section {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 45%;
+  background-color: #ffffff;
+  border: 2px solid #000;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: left;
+}
 
-    .attack {
-      margin: 5px 0;
-      padding: 5px;
-      background-color: #f3f3f3;
-      border: 1px solid #000;
-      border-radius: 3px;
-      cursor: pointer;
-    }
+.attack {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #f3f3f3;
+  border: 1px solid #000;
+  border-radius: 3px;
+  cursor: pointer;
+}
