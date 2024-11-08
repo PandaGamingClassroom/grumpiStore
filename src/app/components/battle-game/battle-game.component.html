@@ -186,16 +186,14 @@
       <!-- Attack Options -->
       <div class="attack-section" *ngFor="let atk of selectedGrumpi?.ataques">
         <strong>Selecciona un ataque:</strong>
-        <div class="attack">
-          <button
-            type="button"
-            class="btn btn_game ms-2 me-2"
-            (click)="playerAttack(atk)"
-            [disabled]="!playerTurn"
-          >
-            {{ atk.nombre }}
-          </button>
-        </div>
+        <button
+          type="button"
+          class="btn btn_game ms-2 me-2"
+          (click)="playerAttack(atk)"
+          [disabled]="!playerTurn"
+        >
+          {{ atk.nombre }}
+        </button>
       </div>
     </div>
     <!-- MODAL PARA LA SELECCIÓN DE GRUMPIS DESKTOP -->

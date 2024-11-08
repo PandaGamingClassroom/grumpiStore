@@ -462,15 +462,15 @@ p {
 
 /* Imagen de Grumpi */
 .grumpi-image {
-  width: 24%;
+  width: 20%;
   height: 52%;
   position: fixed;
   margin-bottom: 10px;
   z-index: 1000;
   bottom: 31%;
-  right: 65%;
+  right: 62%;
   display: flex;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px #00000080;
 }
 
 .battle-container {
@@ -581,29 +581,28 @@ p {
 }
 
 .grumpi-image-right {
-  width: 20%;
-  height: 41%;
+  width: 15%;
+  height: 39%;
   position: fixed;
   margin-bottom: 10px;
   z-index: 1000;
   bottom: 32%;
-  right: 31%;
+  right: 32%;
   display: flex;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px #00000080;
 }
 
 .bag_desktop {
-  width: 5%;
+  width: 4%;
   height: 8%;
   position: fixed;
   margin-bottom: 10px;
   z-index: 1002;
   bottom: 20%;
-  right: 25%;
-  display: flex;
+  right: 30%;
   box-shadow: 0 0 10px #00000080;
   border-radius: 60%;
-  background-color: springgreen;
+  background-color: #00ff7f;
   display: flex;
   align-items: center;
   justify-content: center;
