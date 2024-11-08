@@ -29,6 +29,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
   styleUrls: ['./battle-game.component.scss'],
 })
 export class BattleGameComponent implements OnInit, OnDestroy {
+  deviceType: 'mobile' | 'tablet' | 'desktop' = 'desktop';
   log: string[] = [];
   grumpiList: any[] = [];
   username: string | null = '';
@@ -55,12 +56,30 @@ export class BattleGameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.detectDeviceType();
     if (typeof window !== 'undefined') {
       this.username = localStorage.getItem('username');
       if (this.username) {
         this.getTrainerData(this.username);
       }
     }
+  }
+
+  detectDeviceType() {
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const isTablet = window.matchMedia(
+      '(min-width: 768px) and (max-width: 1024px)'
+    ).matches;
+
+    if (isMobile) {
+      this.deviceType = 'mobile';
+    } else if (isTablet) {
+      this.deviceType = 'tablet';
+    } else {
+      this.deviceType = 'desktop';
+    }
+
+    console.log('Tipo de dispositivo detectado:', this.deviceType);
   }
 
   /**
