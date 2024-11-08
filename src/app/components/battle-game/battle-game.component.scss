@@ -72,6 +72,11 @@ p {
   overflow-x: hidden; /* Evitar desplazamiento horizontal */
 }
 
+.scroll_log {
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
 .battle-list-creatures {
   max-width: 100%;
   background-color: #f0f0f0;
