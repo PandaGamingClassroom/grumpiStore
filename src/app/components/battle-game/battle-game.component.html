@@ -107,12 +107,14 @@
       <!-- Player Section -->
       <div class="player-section">
         <div class="player-info">
-          <img [src]="selectedGrumpi?.imagen" alt="Tu Grumpi" class="grumpi-image">
-          <strong>Tu Grumpi: {{ selectedGrumpi?.nombre }}</strong>
-          <div class="player-health-bar">
-            <div class="player-health" style="width: 60%;"></div>
+          <div class="player-details">
+            <strong>Tu Grumpi: {{ selectedGrumpi?.nombre }}</strong>
+            <div class="player-health-bar">
+              <div class="player-health" style="width: 60%;"></div>
+            </div>
+            <p>HP: {{ selectedGrumpi?.PS }}</p>
           </div>
-          <p>HP: {{ selectedGrumpi?.PS }}</p>
+          <img [src]="selectedGrumpi?.imagen" alt="Tu Grumpi" class="grumpi-image-right">
         </div>
       </div>
 
@@ -123,6 +125,7 @@
       </div>
     </div>
   </div>
+
 
 
   <div class="container-fluid d-flex justify-content-center align-items-center scrollable-container" *ngIf="deviceType === 'mobile'">
