@@ -12,6 +12,7 @@
   border-radius: 15px;
 }
 
+/* Estilos para cada Grumpi */
 .grumpi {
   background-color: #c0ffc069;
   margin: 20px auto;
@@ -46,32 +47,36 @@
   text-align: left;
 }
 
+/* Textos generales */
 h2,
 p {
   margin: 0;
   color: #000;
 }
+
+/* Contenedor desplazable */
 .scrollable-container {
   max-height: calc(100vh - 90px);
   overflow-y: auto;
 }
+
 /* Registro de batalla */
 .log {
-  background-color: #c0ffc0;
-  max-height: 200px; /* Altura máxima para el log */
-  overflow-y: auto; /* Permitir desplazamiento vertical */
-  border: 1px solid #ccc; /* Borde para distinguir el área */
-  padding: 10px; /* Espaciado interno */
-  background-color: #f9f9f9; /* Color de fondo */
-  border-radius: 15px; /* Esquinas redondeadas */
+  background-color: #f9f9f9;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 .scrollable-div {
-  max-height: calc(100vh - 60px); /* Ajustar según la altura de la navbar */
-  overflow-y: auto; /* Permitir desplazamiento vertical */
-  overflow-x: hidden; /* Evitar desplazamiento horizontal */
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
+/* Lista de criaturas de batalla */
 .battle-list-creatures {
   max-width: 100%;
   background-color: #f0f0f0;
@@ -92,6 +97,7 @@ p {
   height: auto;
 }
 
+/* Estilos para pantallas pequeñas */
 @media (max-width: 768px) {
   .battle-arena {
     transform: scale(1);
@@ -99,27 +105,21 @@ p {
 
   .battle-list-creatures {
     margin-top: 5%;
-  }
-
-  .battle-list-creatures {
     max-height: 25vh;
     overflow-y: auto;
   }
 
   .scrollable-div {
     max-height: 20vh;
-    overflow-y: auto;
   }
 
   .grumpi .info {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
   }
+
   .grumpi img {
     max-width: 107px;
-    height: auto;
   }
 
   .grumpi .text {
@@ -136,6 +136,7 @@ p {
   }
 }
 
+/* Botones flotantes */
 .floating-btn {
   position: fixed;
   bottom: 80%;
@@ -153,15 +154,12 @@ p {
   font-size: smaller;
 }
 
-.floating-btn-music {
+.floating-btn-music,
+.floating_btn_menu {
   position: fixed;
-  bottom: 15px;
-  right: 339px;
   background-color: #3f51b5;
   color: #fff;
   border-radius: 50%;
-  width: 12%;
-  height: 6%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,26 +169,16 @@ p {
 }
 
 .floating_btn_menu {
-  position: fixed;
   bottom: 15px;
   right: 15px;
   background-color: #fbfbfb;
   color: #000;
-  border-radius: 40%;
-  width: 12%;
-  height: 6%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  font-size: smaller;
 }
 
+.floating-arrow,
+.floating_btn_menu_box,
 .floating_btn_music_box {
   position: fixed;
-  bottom: 32px;
-  right: 155px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,18 +187,7 @@ p {
   color: white;
 }
 
-.floating_btn_menu_box {
-  position: fixed;
-  bottom: 32px;
-  right: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  font-size: smaller;
-  color: white;
-}
-
+/* Mensajes de resultado */
 .result-message {
   position: fixed;
   top: 50%;
@@ -223,104 +200,44 @@ p {
   box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   text-align: center;
-
-  &.won {
-    border: 2px solid green;
-    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.3);
-  }
-
-  &.lost {
-    border: 2px solid red;
-    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
-  }
 }
 
-.arrow {
-  height: 30px;
-  width: 30px;
-}
-
-.floating-arrow {
-  position: fixed;
-  bottom: 86%;
-  right: 126px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  font-size: smaller;
-}
-
-.btn_game {
-  font-size: smaller;
-  border: 1px solid green;
+.result-message.won {
+  border: 2px solid green;
   box-shadow: 0 4px 8px rgba(0, 128, 0, 0.3);
 }
 
-.arrow_animation {
-  -webkit-animation: arrow_animation 3s infinite both;
-  animation: arrow_animation 3s infinite both;
+.result-message.lost {
+  border: 2px solid red;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
 }
-@-webkit-keyframes arrow_animation {
-  0%,
-  100% {
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-  }
-  15% {
-    -webkit-transform: translateX(-30px) rotate(-6deg);
-    transform: translateX(-30px) rotate(-6deg);
-  }
-  30% {
-    -webkit-transform: translateX(15px) rotate(6deg);
-    transform: translateX(15px) rotate(6deg);
-  }
-  45% {
-    -webkit-transform: translateX(-15px) rotate(-3.6deg);
-    transform: translateX(-15px) rotate(-3.6deg);
-  }
-  60% {
-    -webkit-transform: translateX(9px) rotate(2.4deg);
-    transform: translateX(9px) rotate(2.4deg);
-  }
-  75% {
-    -webkit-transform: translateX(-6px) rotate(-1.2deg);
-    transform: translateX(-6px) rotate(-1.2deg);
-  }
+
+/* Animación de flecha */
+.arrow_animation {
+  animation: arrow_animation 3s infinite both;
 }
 
 @keyframes arrow_animation {
-  0%,
-  100% {
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-  }
-  15% {
-    -webkit-transform: translateX(-30px) rotate(-6deg);
-    transform: translateX(-30px) rotate(-6deg);
-  }
-  30% {
-    -webkit-transform: translateX(15px) rotate(6deg);
-    transform: translateX(15px) rotate(6deg);
-  }
-  45% {
-    -webkit-transform: translateX(-15px) rotate(-3.6deg);
-    transform: translateX(-15px) rotate(-3.6deg);
-  }
-  60% {
-    -webkit-transform: translateX(9px) rotate(2.4deg);
-    transform: translateX(9px) rotate(2.4deg);
-  }
-  75% {
-    -webkit-transform: translateX(-6px) rotate(-1.2deg);
-    transform: translateX(-6px) rotate(-1.2deg);
-  }
+  0%, 100% { transform: translateX(0%); transform-origin: 50% 50%; }
+  15% { transform: translateX(-30px) rotate(-6deg); }
+  30% { transform: translateX(15px) rotate(6deg); }
+  45% { transform: translateX(-15px) rotate(-3.6deg); }
+  60% { transform: translateX(9px) rotate(2.4deg); }
+  75% { transform: translateX(-6px) rotate(-1.2deg); }
 }
 
+/* Animación de Grumpi */
+.grumpi_animation {
+  animation: grumpi_animation 0.9s both;
+}
+
+@keyframes grumpi_animation {
+  0% { transform: translateY(-45px); animation-timing-function: ease-in; opacity: 1; }
+  25%, 55%, 75%, 87% { transform: translateY(0px); animation-timing-function: ease-out; }
+  100% { transform: translateY(0px); animation-timing-function: ease-out; opacity: 1; }
+}
+
+/* Spinner personalizado */
 .custom-spinner {
   width: 50px;
   height: 50px;
@@ -328,14 +245,11 @@ p {
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
+/* Spinner de carga */
 .spinnerCharge {
   position: fixed;
   top: 50%;
@@ -349,114 +263,3 @@ p {
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
-
-.grumpi_animation {
-  -webkit-animation: grumpi_animation 0.9s both;
-  animation: grumpi_animation 0.9s both;
-}
-
-@-webkit-keyframes grumpi_animation {
-  0% {
-    -webkit-transform: translateY(-45px);
-    transform: translateY(-45px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 1;
-  }
-  24% {
-    opacity: 1;
-  }
-  40% {
-    -webkit-transform: translateY(-24px);
-    transform: translateY(-24px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  65% {
-    -webkit-transform: translateY(-12px);
-    transform: translateY(-12px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  82% {
-    -webkit-transform: translateY(-6px);
-    transform: translateY(-6px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  93% {
-    -webkit-transform: translateY(-4px);
-    transform: translateY(-4px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  25%,
-  55%,
-  75%,
-  87% {
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  100% {
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-}
-@keyframes grumpi_animation {
-  0% {
-    -webkit-transform: translateY(-45px);
-    transform: translateY(-45px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 1;
-  }
-  24% {
-    opacity: 1;
-  }
-  40% {
-    -webkit-transform: translateY(-24px);
-    transform: translateY(-24px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  65% {
-    -webkit-transform: translateY(-12px);
-    transform: translateY(-12px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  82% {
-    -webkit-transform: translateY(-6px);
-    transform: translateY(-6px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  93% {
-    -webkit-transform: translateY(-4px);
-    transform: translateY(-4px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  25%,
-  55%,
-  75%,
-  87% {
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  100% {
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-}
-
