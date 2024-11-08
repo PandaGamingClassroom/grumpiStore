@@ -581,9 +581,15 @@ p {
 }
 
 .grumpi-image-right {
-  width: 100px;
-  height: auto;
-  margin-left: 15px;
+  width: 20%;
+  height: 41%;
+  position: fixed;
+  margin-bottom: 10px;
+  z-index: 1000;
+  bottom: 32%;
+  right: 31%;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .bag_desktop {
