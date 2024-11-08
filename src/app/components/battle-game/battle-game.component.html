@@ -260,6 +260,13 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="log" #logContainer>
+        <label><strong>Registro del combate</strong></label>
+        <hr />
+        <div *ngFor="let entry of log">{{ entry }}</div>
+      </div>
+    </div>
   </div>
 
   <div
