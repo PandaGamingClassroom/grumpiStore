@@ -585,3 +585,15 @@ p {
   height: auto;
   margin-left: 15px; /* Espacio entre la información y la imagen */
 }
+
+.bag_desktop {
+  width: 24%;
+  height: 52%;
+  position: fixed;
+  margin-bottom: 10px;
+  z-index: 1000;
+  bottom: 31%;
+  right: 65%;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
