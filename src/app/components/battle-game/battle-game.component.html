@@ -138,6 +138,11 @@
   </div>
 
   <div class="container" *ngIf="deviceType === 'desktop'">
+    <!--
+
+        BOTONERA DE JUEGO
+
+    -->
     <button
       type="button"
       class="bag_desktop"
@@ -145,6 +150,27 @@
       data-bs-target="#openCreaturesList"
     >
       Mochila
+    </button>
+
+    <button
+      type="button"
+      class="menu_desktop"
+      data-bs-toggle="modal"
+      data-bs-target="#open_menu_desktop"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-list"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+        />
+      </svg>
     </button>
     <div class="battle-container">
       <!-- Opponent Section -->
@@ -197,7 +223,22 @@
           {{ atk.nombre }}
         </button>
       </div>
+      <div *ngIf="loading" class="spinnerCharge">
+        <img
+          src="../../../../assets/game/asstets_game/animado.png"
+          alt="Cargando..."
+          class="custom-spinner"
+        />
+        <label>Pulsa start para comenzar</label>
+        <button type="button" class="button-73">START</button>
+      </div>
     </div>
+
+    <!--
+
+        VENTANAS MODALES
+
+    -->
     <!-- MODAL PARA LA SELECCIÓN DE GRUMPIS DESKTOP -->
     <div
       class="modal fade"
@@ -263,6 +304,51 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL PARA MENÚ DEL JUEGO DESKTOP -->
+    <div
+      class="modal fade"
+      id="open_menu_desktop"
+      tabindex="-1"
+      aria-labelledby="open_menu_desktop"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="open_menu_desktop">Menú</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="row">
+                <button type="button" class="me-3 ms-3 button-73">
+                  Rendirse
+                </button>
+              </div>
+              <div class="row">
+                <button type="button" class="me-3 ms-3 button-73">Ayuda</button>
+              </div>
+              <div class="row">
+                <button type="button" class="me-3 ms-3 button-73">Salir</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="button-73" data-bs-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOG DEL COMBATE -->
     <div class="container mt-3">
       <div class="log scroll_log" #logContainer>
         <label><strong>Registro del combate</strong></label>

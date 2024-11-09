@@ -614,3 +614,18 @@ p {
   box-shadow: 0 0 10px #00000080;
   z-index: 1002;
 }
+
+.menu_desktop {
+  width: 4vw;
+  height: 8vh;
+  position: fixed;
+  bottom: 30vh;
+  right: 21vw;
+  border-radius: 50%;
+  background-color: #a0a0a0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px #00000080;
+  z-index: 1002;
+}
