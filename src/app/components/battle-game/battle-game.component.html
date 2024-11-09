@@ -139,9 +139,7 @@
 
   <div class="container" *ngIf="deviceType === 'desktop'">
     <!--
-
         BOTONERA DE JUEGO
-
     -->
     <button
       type="button"
@@ -193,9 +191,11 @@
         <img
           *ngIf="randomGrumpi?.img_general"
           [src]="randomGrumpi.img_general"
+          [ngClass]="{'damage-animation': !playerTurn && randomGrumpi.PS < randomGrumpi.maxPS}"
           (load)="onImageLoad()"
           alt="{{ randomGrumpi?.nombre }}"
           class="grumpi-image grumpi_animation"
+          #opponentElement
         />
       </div>
 
@@ -211,23 +211,21 @@
               ></div>
             </div>
             <div *ngIf="selectedGrumpi">
-              {{ selectedGrumpi.nombre }} - Salud: {{ selectedGrumpi.PS }}/{{
+              Salud: {{ selectedGrumpi.PS }}/{{
                 selectedGrumpi.maxPS
               }}
             </div>
-            <!-- <div class="player-health-bar">
-              <div class="player-health" style="width: 60%"></div>
-            </div> -->
-            <!-- <p>HP: {{ selectedGrumpi?.PS }}</p> -->
           </div>
         </div>
       </div>
       <img
         *ngIf="selectedGrumpi?.img_general"
         [src]="selectedGrumpi.img_general"
+        [ngClass]="{'damage-animation': playerTurn && selectedGrumpi.PS < selectedGrumpi.maxPS}"
         (load)="onImageLoad()"
         alt="{{ selectedGrumpi?.nombre }}"
         class="grumpi-image-right grumpi_animation"
+        #playerElement
       />
       <!-- Attack Options -->
       <div class="attack-section" *ngFor="let atk of selectedGrumpi?.ataques">
@@ -358,7 +356,7 @@
           <div class="modal-body">
             <div class="justify-content-center">
               <div class="row">
-                <button type="button" class="button-73">Rendirse</button>
+                <button type="button" class="button-73" (click)="surrender()">Rendirse</button>
               </div>
               <div class="row">
                 <button type="button" class="button-73">Ayuda</button>

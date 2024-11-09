@@ -47,6 +47,8 @@ export class BattleGameComponent implements OnInit, OnDestroy {
   grumpis_trainer: any[] = [];
 
   @ViewChild('logContainer') logContainer!: ElementRef;
+  @ViewChild('playerElement') playerElement!: ElementRef;
+  @ViewChild('opponentElement') opponentElement!: ElementRef;
 
   constructor(
     private grumpiService: GrumpiService,
@@ -288,6 +290,29 @@ export class BattleGameComponent implements OnInit, OnDestroy {
 
   onImageLoad(): void {
     this.isImageLoaded = true;
+  }
+
+  surrender() {
+    this.battleFinished = true;
+    this.resultMessage = 'Has decidido rendirte';
+    this.playerWon = false;
+  }
+
+  triggerDamageAnimation(grumpi: 'player' | 'opponent') {
+    const element =
+      grumpi === 'player'
+        ? this.playerElement.nativeElement
+        : this.opponentElement.nativeElement;
+    element.classList.add('damage-animation');
+    setTimeout(() => element.classList.remove('damage-animation'), 500); // Tiempo en ms
+  }
+  scrollLogToBottom() {
+    try {
+      this.logContainer.nativeElement.scrollTop =
+        this.logContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error('Error al hacer scroll en el registro:', err);
+    }
   }
 
   ngOnDestroy(): void {
