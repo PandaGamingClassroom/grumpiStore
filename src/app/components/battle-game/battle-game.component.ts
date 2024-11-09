@@ -166,6 +166,10 @@ export class BattleGameComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // Inicializa la salud completa de ambos Grumpis al comenzar el combate
+    this.selectedGrumpi.PS = this.selectedGrumpi.maxPS;
+    this.randomGrumpi.PS = this.randomGrumpi.maxPS;
+
     this.playerTurn = Math.random() < 0.5;
     this.updateLog(
       this.playerTurn
