@@ -160,6 +160,7 @@
         <img
           *ngIf="randomGrumpi?.img_general"
           [src]="randomGrumpi.img_general"
+          (load)="onImageLoad()"
           alt="{{ randomGrumpi?.nombre }}"
           class="grumpi-image grumpi_animation"
         />
@@ -180,6 +181,7 @@
       <img
         *ngIf="selectedGrumpi?.img_general"
         [src]="selectedGrumpi.img_general"
+        (load)="onImageLoad()"
         alt="{{ selectedGrumpi?.nombre }}"
         class="grumpi-image-right grumpi_animation"
       />
@@ -234,6 +236,7 @@
                         <img
                           *ngIf="grumpi?.img_general"
                           [src]="grumpi.img_general"
+                          (load)="onImageLoad()"
                           alt="{{ grumpi?.nombre }}"
                           class="img-thumbnail img-small"
                         />
@@ -290,6 +293,7 @@
               <img
                 *ngIf="selectedGrumpi?.img_general"
                 [src]="selectedGrumpi.img_general"
+                (load)="onImageLoad()"
                 alt="{{ selectedGrumpi?.nombre }}"
                 class="img-fluid img-small grumpi_animation"
               />
@@ -318,6 +322,7 @@
               <img
                 *ngIf="randomGrumpi?.img_general"
                 [src]="randomGrumpi.img_general"
+                (load)="onImageLoad()"
                 alt="{{ randomGrumpi?.nombre }}"
                 class="img-fluid img-small grumpi_animation"
               />
@@ -413,6 +418,7 @@
                           <img
                             *ngIf="grumpi?.img_general"
                             [src]="grumpi.img_general"
+                            (load)="onImageLoad()"
                             alt="{{ grumpi?.nombre }}"
                             class="img-thumbnail img-small"
                           />

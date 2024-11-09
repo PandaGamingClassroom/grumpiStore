@@ -43,6 +43,7 @@ export class BattleGameComponent implements OnInit, OnDestroy {
   pause_music: boolean = true;
   audio: HTMLAudioElement;
   loading: boolean = true;
+  isImageLoaded: boolean = false;
 
   @ViewChild('logContainer') logContainer!: ElementRef;
 
@@ -263,6 +264,10 @@ export class BattleGameComponent implements OnInit, OnDestroy {
       });
       console.log('Música reproduciéndose');
     }
+  }
+
+  onImageLoad(): void {
+    this.isImageLoaded = true;
   }
 
   ngOnDestroy(): void {
