@@ -230,7 +230,15 @@
           class="custom-spinner"
         />
         <label>Pulsa start para comenzar</label>
-        <button type="button" class="button-73">START</button>
+        <br />
+        <button
+          type="button"
+          class="button-73"
+          data-bs-toggle="modal"
+          data-bs-target="#openCreaturesList"
+        >
+          START
+        </button>
       </div>
     </div>
 
@@ -263,13 +271,13 @@
               <div
                 style="
                   position: relative;
-                  padding-bottom: 50%;
+                  padding-bottom: 60%;
                   padding-top: 0;
                   height: 0;
                 "
               >
-                <div class="battle-list-creatures scrollable-div">
-                  <div class="grumpi player" *ngFor="let grumpi of grumpiList">
+                <div class="battle-list-creatures scrollable_grumpiList_desktop">
+                  <div class="grumpi player" *ngFor="let grumpi of grumpis_trainer">
                     <ul>
                       <li
                         class="d-flex justify-content-center align-items-center"
@@ -325,17 +333,15 @@
             ></button>
           </div>
           <div class="modal-body">
-            <div class="d-flex justify-content-center align-items-center">
+            <div class="justify-content-center">
               <div class="row">
-                <button type="button" class="me-3 ms-3 button-73">
-                  Rendirse
-                </button>
+                <button type="button" class="button-73">Rendirse</button>
               </div>
               <div class="row">
-                <button type="button" class="me-3 ms-3 button-73">Ayuda</button>
+                <button type="button" class="button-73">Ayuda</button>
               </div>
               <div class="row">
-                <button type="button" class="me-3 ms-3 button-73">Salir</button>
+                <button type="button" class="button-73">Salir</button>
               </div>
             </div>
           </div>

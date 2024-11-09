@@ -44,6 +44,7 @@ export class BattleGameComponent implements OnInit, OnDestroy {
   audio: HTMLAudioElement;
   loading: boolean = true;
   isImageLoaded: boolean = false;
+  grumpis_trainer: any[] = [];
 
   @ViewChild('logContainer') logContainer!: ElementRef;
 
@@ -94,7 +95,7 @@ export class BattleGameComponent implements OnInit, OnDestroy {
           console.log(data.message);
         } else {
           this.trainer = data;
-          this.grumpiList = data.data.grumpis || [];
+          this.grumpis_trainer = data.data.grumpis || [];
           console.log('Datos del entrenador: ', this.trainer);
           console.log('Grumpis del entrenador: ', this.grumpiList);
         }

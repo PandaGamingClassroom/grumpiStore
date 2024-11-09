@@ -629,3 +629,9 @@ p {
   box-shadow: 0 0 10px #00000080;
   z-index: 1002;
 }
+
+.scrollable_grumpiList_desktop {
+  max-height: calc(100vh - 677px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
