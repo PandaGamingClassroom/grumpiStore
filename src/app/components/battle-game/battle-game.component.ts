@@ -122,6 +122,16 @@ export class BattleGameComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Calcula el porcentaje de salud de un Grumpi
+   * @param grumpi
+   * @returns number
+   */
+  getHealthPercentage(grumpi: any): number {
+    if (!grumpi || grumpi.maxPS <= 0) return 0;
+    return (grumpi.PS / grumpi.maxPS) * 100;
+  }
+
+  /**
    * Selecciona un Grumpi aleatorio de toda la lista.
    *
    * @returns
@@ -173,7 +183,8 @@ export class BattleGameComponent implements OnInit, OnDestroy {
    */
   playerAttack(atk: any) {
     if (this.playerTurn && this.selectedGrumpi && this.randomGrumpi) {
-      this.randomGrumpi.PS -= atk.efecto;
+      // Resta la salud del Grumpi enemigo
+      this.randomGrumpi.PS = Math.max(this.randomGrumpi.PS - atk.efecto, 0);
       this.updateLog(
         `Tu ${this.selectedGrumpi.nombre} usó ${atk.nombre}, causando ${atk.efecto} de daño.`
       );
@@ -190,7 +201,11 @@ export class BattleGameComponent implements OnInit, OnDestroy {
         this.randomGrumpi.ataques[
           Math.floor(Math.random() * this.randomGrumpi.ataques.length)
         ];
-      this.selectedGrumpi.PS -= randomAttack.efecto;
+      // Resta la salud del Grumpi del jugador
+      this.selectedGrumpi.PS = Math.max(
+        this.selectedGrumpi.PS - randomAttack.efecto,
+        0
+      );
       this.updateLog(
         `El ${this.randomGrumpi.nombre} usó ${randomAttack.nombre}, causando ${randomAttack.efecto} de daño.`
       );

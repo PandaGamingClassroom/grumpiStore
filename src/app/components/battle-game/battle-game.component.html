@@ -177,10 +177,17 @@
       <div class="opponent-section">
         <div class="opponent-info">
           <strong>Oponente: {{ randomGrumpi?.nombre }}</strong>
-          <div class="opponent-health-bar">
-            <div class="opponent-health" style="width: 70%"></div>
+          <div class="health-bar-container">
+            <div
+              class="health-bar"
+              [style.width.%]="getHealthPercentage(randomGrumpi)"
+            ></div>
           </div>
-          <p>HP: {{ randomGrumpi?.PS }}</p>
+          <div *ngIf="randomGrumpi">
+            {{ randomGrumpi.nombre }} - Salud: {{ randomGrumpi.PS }}/{{
+              randomGrumpi.maxPS
+            }}
+          </div>
         </div>
 
         <img
@@ -197,9 +204,20 @@
         <div class="player-info">
           <div class="player-details">
             <strong>Tu Grumpi: {{ selectedGrumpi?.nombre }}</strong>
-            <div class="player-health-bar">
-              <div class="player-health" style="width: 60%"></div>
+            <div class="health-bar-container">
+              <div
+                class="health-bar"
+                [style.width.%]="getHealthPercentage(selectedGrumpi)"
+              ></div>
             </div>
+            <div *ngIf="selectedGrumpi">
+              {{ selectedGrumpi.nombre }} - Salud: {{ selectedGrumpi.PS }}/{{
+                selectedGrumpi.maxPS
+              }}
+            </div>
+            <!-- <div class="player-health-bar">
+              <div class="player-health" style="width: 60%"></div>
+            </div> -->
             <p>HP: {{ selectedGrumpi?.PS }}</p>
           </div>
         </div>
@@ -276,8 +294,13 @@
                   height: 0;
                 "
               >
-                <div class="battle-list-creatures scrollable_grumpiList_desktop">
-                  <div class="grumpi player" *ngFor="let grumpi of grumpis_trainer">
+                <div
+                  class="battle-list-creatures scrollable_grumpiList_desktop"
+                >
+                  <div
+                    class="grumpi player"
+                    *ngFor="let grumpi of grumpis_trainer"
+                  >
                     <ul>
                       <li
                         class="d-flex justify-content-center align-items-center"
