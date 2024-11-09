@@ -303,9 +303,14 @@ export class BattleGameComponent implements OnInit, OnDestroy {
       grumpi === 'player'
         ? this.playerElement.nativeElement
         : this.opponentElement.nativeElement;
+
     element.classList.add('damage-animation');
-    setTimeout(() => element.classList.remove('damage-animation'), 500); // Tiempo en ms
+
+    setTimeout(() => {
+      element.classList.remove('damage-animation');
+    }, 500); // Duración de la animación
   }
+
   scrollLogToBottom() {
     try {
       this.logContainer.nativeElement.scrollTop =
