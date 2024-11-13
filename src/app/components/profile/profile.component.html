@@ -37,7 +37,7 @@
               ">
               <div class="row d-flex justify-content-center">
                 <img [src]="avatarSelect" alt="Avatar" class="img-fluid mb-3 mt-5"
-                  (contextmenu)="disableRightClick($event)" />
+                  (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
               </div>
               <div class="row d-flex justify-content-center">
                 <button type="button" class="changeAvatar" data-bs-toggle="modal" data-bs-target="#avatarModal">
@@ -76,7 +76,7 @@
                   </div>
                   <div class="col-6 mb-3">
                     <h3>
-                      <strong class="box-text"><img class="dolar" src="../../../assets/MONEDA_GRUMPI_CARA.png"
+                      <strong class="box-text"><img class="dolar" (load)="onImageLoad()" src="../../../assets/MONEDA_GRUMPI_CARA.png"
                           (contextmenu)="disableRightClick($event)" />Grumpidólares:
                       </strong>
                       <strong>{{ grumpidolar }} </strong>
@@ -85,7 +85,7 @@
                 </div>
                 <p class="box-text">
                   <strong>Marcas de combate: </strong>
-                  <img *ngFor="let mark of getCombatMarksArray()" src="../../../assets/GrumpiVice.png"
+                  <img *ngFor="let mark of getCombatMarksArray()" (load)="onImageLoad()" src="../../../assets/GrumpiVice.png"
                     class="grumpivice" />
                 </p>
                 <hr class="mt-0 mb-4" />
@@ -128,7 +128,7 @@
             <li *ngFor="let avatar of avatar_list" class="mb-3">
               <div class="row row-avatar">
                 <div class="col-5">
-                  <img [attr.src]="avatar?.imagen" loading="lazy" class="avatar-box" (contextmenu)="disableRightClick($event)" />
+                  <img [attr.src]="avatar?.imagen" loading="lazy" class="avatar-box" (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                 </div>
                 <!-- Skeleton Loader -->
                 <div *ngIf="!avatar_list">
@@ -175,7 +175,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[0].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()" />
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -189,7 +189,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[2].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -203,7 +203,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[1].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -217,7 +217,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[3].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -231,7 +231,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[4].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -245,7 +245,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[5].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -259,7 +259,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[6].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -273,7 +273,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[7].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">
@@ -287,7 +287,7 @@
                     <div class="row">
                       <div class="col-2 boxIcon">
                         <img class="iconImg" srcset="{{iconListEnergy[8].imagen}}"
-                          (contextmenu)="disableRightClick($event)" />
+                          (contextmenu)="disableRightClick($event)" (load)="onImageLoad()"/>
                       </div>
                       <div class="col-8">
                         <button class="evoBox">

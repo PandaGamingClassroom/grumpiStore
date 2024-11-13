@@ -35,6 +35,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent implements OnInit {
+  isImageLoaded: boolean = false;
   myForm: FormGroup = new FormGroup({});
   avatar_list: any[] = [];
   avatarSelect: any[] = [];
@@ -234,6 +235,10 @@ export class ProfileComponent implements OnInit {
       combatMarksArray.push(i);
     }
     return combatMarksArray;
+  }
+
+  onImageLoad(): void {
+    this.isImageLoaded = true;
   }
 
   logOut() {

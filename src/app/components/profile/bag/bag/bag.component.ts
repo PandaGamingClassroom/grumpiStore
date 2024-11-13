@@ -28,6 +28,7 @@ import { ViewImageComponent } from '../../../../segments/view-image/view-image.c
   styleUrl: './bag.component.scss',
 })
 export class BagComponent implements OnInit {
+  isImageLoaded: boolean = false;
   marcasCombate: any;
   username: string | null = '';
   trainer: any;
@@ -318,9 +319,8 @@ export class BagComponent implements OnInit {
     }
   }
 
-  contadorMedallas(medals: any){
+  contadorMedallas(medals: any) {
     console.log('Medallas del entrenador: ', medals);
-
   }
 
   /**
@@ -390,6 +390,10 @@ export class BagComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {});
+  }
+
+  onImageLoad(): void {
+    this.isImageLoaded = true;
   }
 
 }

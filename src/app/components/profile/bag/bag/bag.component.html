@@ -115,6 +115,7 @@
                 class="img-fluid"
                 [src]="creature.img_general"
                 alt="{{ creature.nombre }}"
+                (load)="onImageLoad()"
                 (error)="handleImageError(creature)"
                 (contextmenu)="disableRightClick($event)"
               />
@@ -134,6 +135,7 @@
                 class="img-fluid"
                 [src]="creature.img_general"
                 alt="{{ creature.nombre }}"
+                (load)="onImageLoad()"
                 (error)="handleImageError(creature)"
                 (contextmenu)="disableRightClick($event)"
               />
@@ -162,6 +164,7 @@
               class="img-fluid me-3"
               src="{{ reward.img }}"
               alt="Recompensa"
+              (load)="onImageLoad()"
               (click)="openReward(reward)"
               (contextmenu)="disableRightClick($event)"
             />
@@ -189,6 +192,7 @@
               class="img-fluid me-3"
               src="{{ combatObject.imagen }}"
               alt="Objeto de Combate"
+              (load)="onImageLoad()"
               (click)="openCombatObject(combatObject)"
               (contextmenu)="disableRightClick($event)"
             />
@@ -216,6 +220,7 @@
               class="img-fluid"
               srcset="{{ medal.imagen }}"
               alt="{{ medal.nombre }}"
+              (load)="onImageLoad()"
               (click)="openMedal(medal)"
               (contextmenu)="disableRightClick($event)"
               (contextmenu)="disableRightClick($event)"
@@ -243,6 +248,7 @@
               class="img-fluid me-3"
               src="{{ energy.imagen }}"
               alt="{{ energy.nombre }}"
+              (load)="onImageLoad()"
               (click)="openEnergy(energy)"
               (contextmenu)="disableRightClick($event)"
             />
@@ -270,6 +276,7 @@
               class="img-fluid me-3"
               srcset="{{ badgesLeague.imagen }}"
               alt="{{ badgesLeague.nombre }}"
+              (load)="onImageLoad()"
               (click)="openEnergy(badgesLeague)"
               (contextmenu)="disableRightClick($event)"
             />
@@ -293,6 +300,7 @@
               class="img-fluid me-3"
               srcset="{{ badgesLeague.imagen }}"
               alt="{{ badgesLeague.nombre }}"
+              (load)="onImageLoad()"
               (click)="openEnergy(badgesLeague)"
               (contextmenu)="disableRightClick($event)"
             />
