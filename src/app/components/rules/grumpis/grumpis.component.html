@@ -66,15 +66,25 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="!this.evolutionIsClicked"
   >
-    <button type="button" #scrollTarget class="button-73 size" (click)="evolutionClick()">
+    <button
+      type="button"
+      #scrollTarget
+      class="button-73 size"
+      (click)="evolutionClick()"
+    >
       Ver evoluciones Grumpi
     </button>
   </div>
-    <div
+  <div
     class="container d-flex justify-content-center mt-3"
     *ngIf="this.evolutionIsClicked"
   >
-    <button type="button" #scrollTarget class="button-73 size" (click)="evolutionClick()">
+    <button
+      type="button"
+      #scrollTarget
+      class="button-73 size"
+      (click)="evolutionClick()"
+    >
       Ocultar evoluciones Grumpi
     </button>
   </div>
@@ -83,7 +93,14 @@
     *ngIf="grumpi_evolution_list && this.evolutionIsClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let grumpi of grumpi_evolution_list" (click)="openGrumpi(grumpi)">
+    <div
+      *ngFor="let grumpi of grumpi_evolution_list"
+      (click)="openGrumpi(grumpi)"
+    >
+      <!-- Spinner de carga -->
+      <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
       <img
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
@@ -128,7 +145,12 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="!this.legendIsClicked"
   >
-    <button type="button" #scrollTarget class="button-73 size" (click)="legendClick()">
+    <button
+      type="button"
+      #scrollTarget
+      class="button-73 size"
+      (click)="legendClick()"
+    >
       Ver Grumpis legendarios
     </button>
   </div>
@@ -136,7 +158,12 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="this.legendIsClicked"
   >
-    <button type="button" #scrollTarget class="button-73 size" (click)="legendClick()">
+    <button
+      type="button"
+      #scrollTarget
+      class="button-73 size"
+      (click)="legendClick()"
+    >
       Ocultar Grumpis legendarios
     </button>
   </div>
@@ -146,6 +173,10 @@
     class="image-container d-flex justify-content-center mt-3"
   >
     <div *ngFor="let grumpi of grumpi_legend_list" (click)="openGrumpi(grumpi)">
+      <!-- Spinner de carga -->
+      <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
       <img
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
@@ -197,6 +228,10 @@
         *ngFor="let grumpi of grumpi_event_list"
         (click)="openGrumpi(grumpi)"
       >
+        <!-- Spinner de carga -->
+        <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
         <img
           [src]="grumpi.img_conseguir"
           [alt]="grumpi.nombre"
@@ -208,6 +243,10 @@
   </div>
 
   <div class="container text-center">
+    <!-- Spinner de carga -->
+    <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
     <img
       class="box-secret animacionPalpito"
       src="../../../../assets/TopSecret.png"
@@ -221,7 +260,12 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="!this.isClicked"
   >
-    <button type="button" #scrollTarget class="button-73 size" (click)="handleClick()">
+    <button
+      type="button"
+      #scrollTarget
+      class="button-73 size"
+      (click)="handleClick()"
+    >
       Ver Grumpis
     </button>
   </div>
@@ -229,7 +273,12 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="this.isClicked"
   >
-    <button type="button" #scrollTarget class="button-73 size" (click)="handleClick()">
+    <button
+      type="button"
+      #scrollTarget
+      class="button-73 size"
+      (click)="handleClick()"
+    >
       Ocultar Grumpis
     </button>
   </div>

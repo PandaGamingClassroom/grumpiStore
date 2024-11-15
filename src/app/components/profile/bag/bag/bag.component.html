@@ -38,6 +38,7 @@
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <li>
         <button
+          type="button"
           class="dropdown-item button-73"
           (click)="showContent('grumpis')"
         >
@@ -46,6 +47,7 @@
       </li>
       <li>
         <button
+          type="button"
           class="dropdown-item button-73"
           (click)="showContent('rewards')"
         >
@@ -54,6 +56,7 @@
       </li>
       <li>
         <button
+          type="button"
           class="dropdown-item button-73"
           (click)="showContent('combatObjects')"
         >
@@ -61,12 +64,17 @@
         </button>
       </li>
       <li>
-        <button class="dropdown-item button-73" (click)="showContent('medals')">
+        <button
+          type="button"
+          class="dropdown-item button-73"
+          (click)="showContent('medals')"
+        >
           Medallas
         </button>
       </li>
       <li>
         <button
+          type="button"
           class="dropdown-item button-73"
           (click)="showContent('energies')"
         >
@@ -74,12 +82,17 @@
         </button>
       </li>
       <li>
-        <button class="dropdown-item button-73" (click)="showContent('league')">
+        <button
+          type="button"
+          class="dropdown-item button-73"
+          (click)="showContent('league')"
+        >
           Distintivos de liga
         </button>
       </li>
       <li>
         <button
+          type="button"
           class="dropdown-item button-73"
           (click)="showContent('evolution')"
         >
@@ -111,6 +124,10 @@
             "
           >
             <div class="img-creature" (click)="openGrumpi(creature)">
+              <!-- Spinner de carga -->
+              <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
               <img
                 class="img-fluid"
                 [src]="creature.img_general"
@@ -131,6 +148,10 @@
             "
           >
             <div class="img-creature" (click)="openGrumpi(creature)">
+              <!-- Spinner de carga -->
+              <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
               <img
                 class="img-fluid"
                 [src]="creature.img_general"
@@ -160,6 +181,10 @@
           *ngFor="let reward of uniqueRewards"
         >
           <div class="img-creature">
+            <!-- Spinner de carga -->
+            <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
             <img
               class="img-fluid me-3"
               src="{{ reward.img }}"
@@ -188,6 +213,10 @@
           *ngFor="let combatObject of uniqueCombatObjects"
         >
           <div class="img-creature">
+            <!-- Spinner de carga -->
+            <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
             <img
               class="img-fluid me-3"
               src="{{ combatObject.imagen }}"
@@ -216,6 +245,10 @@
           *ngFor="let medal of this.trainer?.medallas"
         >
           <div class="img-creature">
+            <!-- Spinner de carga -->
+            <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
             <img
               class="img-fluid"
               srcset="{{ medal.imagen }}"
@@ -244,6 +277,10 @@
           *ngFor="let energy of uniqueEnergies"
         >
           <div class="img-creature">
+            <!-- Spinner de carga -->
+            <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
             <img
               class="img-fluid me-3"
               src="{{ energy.imagen }}"
@@ -272,6 +309,10 @@
           *ngFor="let badgesLeague of this.trainer?.distintivos_liga"
         >
           <div class="img-creature">
+            <!-- Spinner de carga -->
+            <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
             <img
               class="img-fluid me-3"
               srcset="{{ badgesLeague.imagen }}"
@@ -296,6 +337,10 @@
           *ngFor="let badgesLeague of uniqueEvolutionObjects"
         >
           <div class="img-creature">
+            <!-- Spinner de carga -->
+            <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
             <img
               class="img-fluid me-3"
               srcset="{{ badgesLeague.imagen }}"
