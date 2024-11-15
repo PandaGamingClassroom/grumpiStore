@@ -62,13 +62,28 @@
     La forma de evolucionar a cada Grumpi es diferente, estas se encuentran
     descritas en la tarjeta de cada uno de los Grumpi.
   </p>
-
-  <!-- LISTADO COMPLETO DE GRUMPIS -->
   <div
-    *ngIf="grumpi_list && this.isClicked"
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="!this.evolutionIsClicked"
+  >
+    <button type="button" #scrollTarget class="button-73 size" (click)="evolutionClick()">
+      Ver evoluciones Grumpi
+    </button>
+  </div>
+    <div
+    class="container d-flex justify-content-center mt-3"
+    *ngIf="this.evolutionIsClicked"
+  >
+    <button type="button" #scrollTarget class="button-73 size" (click)="evolutionClick()">
+      Ocultar evoluciones Grumpi
+    </button>
+  </div>
+  <!-- LISTADO DE GRUMPIS EVOLUCIONADOS -->
+  <div
+    *ngIf="grumpi_evolution_list && this.evolutionIsClicked"
     class="image-container d-flex justify-content-center mt-3"
   >
-    <div *ngFor="let grumpi of grumpi_list" (click)="openGrumpi(grumpi)">
+    <div *ngFor="let grumpi of grumpi_evolution_list" (click)="openGrumpi(grumpi)">
       <img
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
@@ -78,7 +93,7 @@
   </div>
 
   <!-- Botón de scrollToTop separado -->
-  <button (click)="scrollToTop()" class="button-73 fixed-button">
+  <button type="button" (click)="scrollToTop()" class="button-73 fixed-button">
     <i class="material-icons">&#xe5d8;</i>
   </button>
 
@@ -112,7 +127,7 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="!this.legendIsClicked"
   >
-    <button #scrollTarget class="button-73 size" (click)="legendClick()">
+    <button type="button" #scrollTarget class="button-73 size" (click)="legendClick()">
       Ver Grumpis legendarios
     </button>
   </div>
@@ -120,7 +135,7 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="this.legendIsClicked"
   >
-    <button #scrollTarget class="button-73 size" (click)="legendClick()">
+    <button type="button" #scrollTarget class="button-73 size" (click)="legendClick()">
       Ocultar Grumpis legendarios
     </button>
   </div>
@@ -135,9 +150,6 @@
         [alt]="grumpi.nombre"
         (contextmenu)="disableRightClick($event)"
       />
-      <button (click)="scrollToTop()" class="button-73 fixed-button">
-        <i class="material-icons">&#xe5d8;</i>
-      </button>
     </div>
   </div>
 
@@ -163,7 +175,7 @@
       class="container d-flex justify-content-center mt-3"
       *ngIf="!this.eventIsClicked"
     >
-      <button class="button-73 size" (click)="toggleEventos()">
+      <button type="button" class="button-73 size" (click)="toggleEventos()">
         Ver Grumpis de evento
       </button>
     </div>
@@ -171,7 +183,7 @@
       class="container d-flex justify-content-center mt-3 mb-3"
       *ngIf="this.eventIsClicked"
     >
-      <button class="button-73 size" (click)="toggleEventos()">
+      <button type="button" class="button-73 size" (click)="toggleEventos()">
         Ocultar Grumpis de evento
       </button>
     </div>
@@ -205,7 +217,7 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="!this.isClicked"
   >
-    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+    <button type="button" #scrollTarget class="button-73 size" (click)="handleClick()">
       Ver Grumpis
     </button>
   </div>
@@ -213,7 +225,7 @@
     class="container d-flex justify-content-center mt-3"
     *ngIf="this.isClicked"
   >
-    <button #scrollTarget class="button-73 size" (click)="handleClick()">
+    <button type="button" #scrollTarget class="button-73 size" (click)="handleClick()">
       Ocultar Grumpis
     </button>
   </div>

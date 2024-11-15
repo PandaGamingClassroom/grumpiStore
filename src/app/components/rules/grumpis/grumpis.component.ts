@@ -26,9 +26,11 @@ export class GrumpisComponent implements OnInit {
   grumpi_list: any[] = [];
   grumpi_event_list: any[] = [];
   grumpi_legend_list: any[] = [];
+  grumpi_evolution_list: any[] = [];
   isClicked: boolean = false;
   eventIsClicked: boolean = false;
   legendIsClicked: boolean = false;
+  evolutionIsClicked: boolean = false;
 
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
@@ -62,6 +64,9 @@ export class GrumpisComponent implements OnInit {
         this.grumpi_legend_list = this.grumpi_list.filter(
           (grumpi) => grumpi.clase === 'legendario'
         );
+        this.grumpi_evolution_list = this.grumpi_list.filter(
+          (grumpi) => grumpi.clase === 'evolucion'
+        );
       },
       (error) => {
         console.error('Error al obtener las URLs de las imágenes:', error);
@@ -88,6 +93,10 @@ export class GrumpisComponent implements OnInit {
    */
   legendClick() {
     this.legendIsClicked = !this.legendIsClicked;
+  }
+
+  evolutionClick() {
+    this.evolutionIsClicked = !this.evolutionIsClicked;
   }
 
   /**
