@@ -88,6 +88,7 @@
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
         (contextmenu)="disableRightClick($event)"
+        (load)="onImageLoad()"
       />
     </div>
   </div>
@@ -149,6 +150,7 @@
         [src]="grumpi.img_conseguir"
         [alt]="grumpi.nombre"
         (contextmenu)="disableRightClick($event)"
+        (load)="onImageLoad()"
       />
     </div>
   </div>
@@ -199,6 +201,7 @@
           [src]="grumpi.img_conseguir"
           [alt]="grumpi.nombre"
           (contextmenu)="disableRightClick($event)"
+          (load)="onImageLoad()"
         />
       </div>
     </div>
@@ -210,6 +213,7 @@
       src="../../../../assets/TopSecret.png"
       alt="Top Secret"
       (contextmenu)="disableRightClick($event)"
+      (load)="onImageLoad()"
     />
   </div>
 

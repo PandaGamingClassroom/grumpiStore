@@ -31,6 +31,7 @@ export class GrumpisComponent implements OnInit {
   eventIsClicked: boolean = false;
   legendIsClicked: boolean = false;
   evolutionIsClicked: boolean = false;
+  isImageLoaded: boolean = false;
 
   @ViewChild('scrollTarget') scrollTarget: ElementRef | undefined;
 
@@ -124,5 +125,9 @@ export class GrumpisComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {});
+  }
+
+  onImageLoad(): void {
+    this.isImageLoaded = true;
   }
 }
