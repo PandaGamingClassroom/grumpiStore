@@ -52,6 +52,7 @@ import { MapsAdminComponent } from './components/admin-screen/rules-admin/maps-a
 import { MedalsAdminComponent } from './components/admin-screen/rules-admin/medals-admin/medals-admin.component';
 import { RestsAdminComponent } from './components/admin-screen/rules-admin/rests-admin/rests-admin.component';
 import { IntroAdminComponent } from './components/admin-screen/rules-admin/intro-admin/intro-admin.component';
+import { DashboardComponent } from './components/admin-screen/dashbard/dashboard.component.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -119,4 +120,5 @@ export const routes: Routes = [
   { path: 'admin/grumpidolars', component: GrumpidolarsComponent },
   { path: 'admin/energies', component: EnergiesComponent },
   { path: 'admin/blog-admin', component: BlogScreenComponent },
+  { path: 'admin/dashboard', component: DashboardComponent }
 ];

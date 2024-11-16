@@ -80,6 +80,9 @@
         <strong>Administración del entrenador</strong>
       </h3>
       <li class="nav-item">
+        <a class="nav-link" (click)="showSection('dashboard')">Dashboard</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" (click)="showSection('creatures')">Grumpis</a>
       </li>
       <li class="nav-item">
@@ -200,6 +203,9 @@
           </div>
           <div *ngIf="activeSection === 'creatures'" class="scrollable-div">
             <app-creatures-admin></app-creatures-admin>
+          </div>
+          <div *ngIf="activeSection === 'dashboard'" class="scrollable-div">
+            <app-dashboard-screen></app-dashboard-screen>
           </div>
           <div *ngIf="activeSection === 'distintivos'" class="scrollable-div">
             <app-league-badges></app-league-badges>

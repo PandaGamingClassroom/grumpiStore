@@ -1,0 +1,66 @@
+.energy-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px auto;
+}
+
+.energy-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.energy-table thead th {
+  background-color: #c6e69d;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border: 1px solid #ccc;
+}
+
+.energy-table tbody td {
+  background-color: #f8d6e4;
+  border: 1px solid #ccc;
+}
+
+.energy-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.energy-input button {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.energy-input input {
+  width: 50px;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.actions button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.actions button:first-child {
+  background-color: #85c785;
+  border: none;
+  color: white;
+}
+
+.actions button:last-child {
+  background-color: #f57373;
+  border: none;
+  color: white;
+}
