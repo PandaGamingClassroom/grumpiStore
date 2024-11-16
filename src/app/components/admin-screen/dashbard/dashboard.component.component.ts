@@ -50,6 +50,8 @@ export class DashboardComponent implements OnInit {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data;
+        console.log('Entrenadores: ', data);
+
       },
       (error) => {
         console.error('Error:', error);
