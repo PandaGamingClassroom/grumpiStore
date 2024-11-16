@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
   getTrainers(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainers = data;
+        this.trainers = data.data;
         console.log('Entrenadores: ', data);
 
       },
