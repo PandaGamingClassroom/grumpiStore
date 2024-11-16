@@ -120,5 +120,5 @@ export const routes: Routes = [
   { path: 'admin/grumpidolars', component: GrumpidolarsComponent },
   { path: 'admin/energies', component: EnergiesComponent },
   { path: 'admin/blog-admin', component: BlogScreenComponent },
-  { path: 'admin/dashboard', component: DashboardComponent }
+  { path: 'admin/dashboard', component: DashboardComponent },
 ];
