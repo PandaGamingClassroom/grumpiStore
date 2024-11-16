@@ -2,7 +2,7 @@
   <table class="energy-table">
     <thead>
       <tr>
-        <th rowspan="2">ALUMNOS</th>
+        <th rowspan="2">ENTRENADORES</th>
         <th colspan="8">ENERGÍAS</th>
       </tr>
       <tr>
@@ -17,24 +17,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let alumno of alumnos">
+      <tr *ngFor="let alumno of trainers">
         <td>{{ alumno.name }}</td>
-        <td *ngFor="let energia of alumno.energias">
+        <td *ngFor="let energia of alumno.energies">
           <div class="energy-input">
-            <button (click)="decrementEnergy(alumno.id, energia.tipo)">-</button>
+            <button type="button" (click)="decrementEnergy(alumno.id, energia.tipo)">-</button>
             <input
               type="number"
               [value]="energia.cantidad"
               (change)="updateEnergy(alumno.id, energia.tipo, $event)"
             />
-            <button (click)="incrementEnergy(alumno.id, energia.tipo)">+</button>
+            <button type="button" (click)="incrementEnergy(alumno.id, energia.tipo)">+</button>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div class="actions">
-    <button (click)="guardarCambios()">Guardar cambios</button>
-    <button (click)="cancelarCambios()">Cancelar cambios</button>
+    <button type="button" (click)="guardarCambios()">Guardar cambios</button>
+    <button type="button" (click)="cancelarCambios()">Cancelar cambios</button>
   </div>
 </div>

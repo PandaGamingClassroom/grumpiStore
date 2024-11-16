@@ -41,7 +41,6 @@ import { DashboardComponent } from "./dashbard/dashboard.component.component";
     EnergiesComponent,
     CreaturesAdminComponent,
     BlogScreenComponent,
-    RulesAdminComponent,
     MatSidenavModule,
     MatListModule,
     MatIconModule,

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -10,19 +9,11 @@ import {
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
-import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-grumpidolars',
   standalone: true,
-  imports: [
-    RouterLink,
-    CommonModule,
-    FormsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    FooterComponent
-  ],
+  imports: [CommonModule, FormsModule, MatDialogModule, ReactiveFormsModule],
   providers: [TrainerService, AdminUserService],
   templateUrl: './grumpidolars.component.html',
   styleUrls: ['./grumpidolars.component.scss'],
@@ -120,16 +111,14 @@ export class GrumpidolarsComponent implements OnInit {
       return;
     }
 
-    this.trainersService
-      .updateTrainer(trainerName, updatedData)
-      .subscribe(
-        (response) => {
-          this.getDadataProfesor(this.nameProfesor);
-          this.grumpidolaresPorEntrenador[trainerName] = 0;
-        },
-        (error) => {
-          console.error('Error:', error);
-        }
-      );
+    this.trainersService.updateTrainer(trainerName, updatedData).subscribe(
+      (response) => {
+        this.getDadataProfesor(this.nameProfesor);
+        this.grumpidolaresPorEntrenador[trainerName] = 0;
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
 }
