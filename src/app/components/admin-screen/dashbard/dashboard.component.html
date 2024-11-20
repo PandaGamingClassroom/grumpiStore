@@ -6,14 +6,14 @@
         <th colspan="8">ENERGÍAS</th>
       </tr>
       <tr>
-        <th><img src="ruta/icono-agua.png" alt="Agua"></th>
-        <th><img src="ruta/icono-fuego.png" alt="Fuego"></th>
-        <th><img src="ruta/icono-sol.png" alt="Sol"></th>
-        <th><img src="ruta/icono-luna.png" alt="Luna"></th>
-        <th><img src="ruta/icono-sombra.png" alt="Sombra"></th>
-        <th><img src="ruta/icono-rayo.png" alt="Rayo"></th>
-        <th><img src="ruta/icono-hoja.png" alt="Hoja"></th>
-        <th><img src="ruta/icono-roca.png" alt="Roca"></th>
+        <th><img src="ruta/icono-agua.png" alt="Agua" /></th>
+        <th><img src="ruta/icono-fuego.png" alt="Fuego" /></th>
+        <th><img src="ruta/icono-sol.png" alt="Sol" /></th>
+        <th><img src="ruta/icono-luna.png" alt="Luna" /></th>
+        <th><img src="ruta/icono-sombra.png" alt="Sombra" /></th>
+        <th><img src="ruta/icono-rayo.png" alt="Rayo" /></th>
+        <th><img src="ruta/icono-hoja.png" alt="Hoja" /></th>
+        <th><img src="ruta/icono-roca.png" alt="Roca" /></th>
       </tr>
     </thead>
     <tbody>
@@ -21,13 +21,23 @@
         <td>{{ trainer.name }}</td>
         <td *ngFor="let energia of trainer.energies">
           <div class="energy-input">
-            <button type="button" (click)="decrementEnergy(trainer.id, energia.tipo)">-</button>
+            <button
+              type="button"
+              (click)="decrementEnergy(trainer.id, energia.tipo)"
+            >
+              -
+            </button>
             <input
               type="number"
               [value]="energia.cantidad"
               (change)="updateEnergy(trainer.id, energia.tipo, $event)"
             />
-            <button type="button" (click)="incrementEnergy(trainer.id, energia.tipo)">+</button>
+            <button
+              type="button"
+              (click)="incrementEnergy(trainer.id, energia.tipo)"
+            >
+              +
+            </button>
           </div>
         </td>
       </tr>
