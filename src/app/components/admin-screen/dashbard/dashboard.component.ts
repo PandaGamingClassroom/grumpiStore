@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrainerService } from '../../services/trainers/trainer.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-screen',
@@ -17,7 +18,10 @@ export class DashboardComponent implements OnInit {
   lastNameProfesor: any;
   profesor: any;
   id_profesor: any;
-  constructor(private trainersService: TrainerService) {}
+  constructor(
+    private trainersService: TrainerService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     if (typeof window !== 'undefined') {
@@ -26,12 +30,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-
   // Obtiene la lista de entrenadores asignados al profesor
   getTrainers(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         this.trainers = data.data;
+        this.cdr.detectChanges(); // Forzar actualización de la vista
         console.log('Entrenadores: ', data);
       },
       (error) => {
