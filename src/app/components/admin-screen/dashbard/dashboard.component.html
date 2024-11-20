@@ -72,9 +72,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trainer of trainers; trackBy: trackById">
+      <tr *ngFor="let trainer of trainers;">
         <td>{{ trainer.name }}</td>
-        <td *ngFor="let energia of trainer.energies">
+        <!-- <td *ngFor="let energia of trainer.energies">
           <div class="energy-input">
             <button
               type="button"
@@ -94,7 +94,7 @@
               +
             </button>
           </div>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
