@@ -22,7 +22,7 @@ import { RulesAdminComponent } from './rules-admin/rules-admin.component';
 import { NotificationService } from '../../components/services/notification.service';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient } from '@angular/common/http';
-import { DashboardComponent } from "./dashbard/dashboard.component.component";
+import { DashboardComponent } from "./dashbard/dashboard.component";
 
 @Component({
   selector: 'app-admin-screen',

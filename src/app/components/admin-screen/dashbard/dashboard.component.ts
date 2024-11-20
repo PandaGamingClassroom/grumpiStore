@@ -27,20 +27,17 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  getDadataProfesor(name: string) {
-    this.trainersService.getProfesorByName(name).subscribe(
+  getDadataProfesor(profesorId: number) {
+    this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        if (data.message) {
-          console.log(data.message);
+        if (data && data.data) {
+          this.trainers = data.data;
         } else {
-          this.profesor = data;
-          console.log('Profesor: ', this.profesor);
-          this.lastNameProfesor = data.data.apellidos;
-          this.getTrainers(data.data.id);
+          console.error('Datos incompletos o no válidos:', data);
         }
       },
       (error) => {
-        console.error('Error:', error);
+        console.error('Error al obtener entrenadores:', error);
       }
     );
   }
@@ -51,7 +48,6 @@ export class DashboardComponent implements OnInit {
       (data) => {
         this.trainers = data.data;
         console.log('Entrenadores: ', data);
-
       },
       (error) => {
         console.error('Error:', error);

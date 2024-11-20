@@ -52,7 +52,7 @@ import { MapsAdminComponent } from './components/admin-screen/rules-admin/maps-a
 import { MedalsAdminComponent } from './components/admin-screen/rules-admin/medals-admin/medals-admin.component';
 import { RestsAdminComponent } from './components/admin-screen/rules-admin/rests-admin/rests-admin.component';
 import { IntroAdminComponent } from './components/admin-screen/rules-admin/intro-admin/intro-admin.component';
-import { DashboardComponent } from './components/admin-screen/dashbard/dashboard.component.component';
+import { DashboardComponent } from './components/admin-screen/dashbard/dashboard.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
