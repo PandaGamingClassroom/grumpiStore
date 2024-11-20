@@ -34,14 +34,17 @@ export class DashboardComponent implements OnInit {
   getTrainers(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainers = data.data;
-        this.cdr.detectChanges(); // Forzar actualización de la vista
-        console.log('Entrenadores: ', data);
+        this.trainers = [...data.data]; // Reemplaza el array completo
+        console.log('Entrenadores: ', this.trainers);
       },
       (error) => {
         console.error('Error:', error);
       }
     );
+  }
+
+  trackById(index: number, item: any): number {
+    return item.id;
   }
 
   incrementEnergy(alumnoId: number, tipo: string) {

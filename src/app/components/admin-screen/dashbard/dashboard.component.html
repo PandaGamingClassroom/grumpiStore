@@ -6,19 +6,73 @@
         <th colspan="9">ENERGÍAS</th>
       </tr>
       <tr>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Agua2.0.PNG" alt="Agua" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Fuego2.0.PNG" alt="Fuego" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Aire2.0.PNG" alt="Aire" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Luz2.0.PNG" alt="Luz" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Normal2.0.PNG" alt="Normal" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Oscuridad2.0.PNG" alt="Oscuridad" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Rayo2.0.PNG" alt="Rayo" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Tierra2.0.PNG" alt="Tierra" /></th>
-        <th><img class="imgEnergy" src="../../../../assets/iconEnergies/Vida2.0.PNG" alt="Vida" /></th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Agua2.0.PNG"
+            alt="Agua"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Fuego2.0.PNG"
+            alt="Fuego"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Aire2.0.PNG"
+            alt="Aire"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Luz2.0.PNG"
+            alt="Luz"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Normal2.0.PNG"
+            alt="Normal"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Oscuridad2.0.PNG"
+            alt="Oscuridad"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Rayo2.0.PNG"
+            alt="Rayo"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Tierra2.0.PNG"
+            alt="Tierra"
+          />
+        </th>
+        <th>
+          <img
+            class="imgEnergy"
+            src="../../../../assets/iconEnergies/Vida2.0.PNG"
+            alt="Vida"
+          />
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trainer of trainers">
+      <tr *ngFor="let trainer of trainers; trackBy: trackById">
         <td>{{ trainer.name }}</td>
         <td *ngFor="let energia of trainer.energies">
           <div class="energy-input">
