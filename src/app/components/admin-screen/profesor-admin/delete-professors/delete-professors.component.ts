@@ -15,7 +15,6 @@ import { ConfirmModalComponentComponent } from '../../../../segments/confirm-mod
   selector: 'app-delete-trainers',
   standalone: true,
   imports: [
-    RouterLink,
     CommonModule,
     FormsModule,
     MatDialogModule,

@@ -16,31 +16,16 @@ export class DashboardComponent implements OnInit {
   username: any;
   lastNameProfesor: any;
   profesor: any;
-
+  id_profesor: any;
   constructor(private trainersService: TrainerService) {}
 
   ngOnInit() {
     if (typeof window !== 'undefined') {
-      this.username = localStorage.getItem('username');
-      this.nameProfesor = localStorage.getItem('nameUser');
-      this.getDadataProfesor(this.nameProfesor);
+      this.id_profesor = localStorage.getItem('id_profesor');
+      this.getTrainers(this.id_profesor);
     }
   }
 
-  getDadataProfesor(profesorId: number) {
-    this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
-      (data) => {
-        if (data && data.data) {
-          this.trainers = data.data;
-        } else {
-          console.error('Datos incompletos o no válidos:', data);
-        }
-      },
-      (error) => {
-        console.error('Error al obtener entrenadores:', error);
-      }
-    );
-  }
 
   // Obtiene la lista de entrenadores asignados al profesor
   getTrainers(profesorId: number) {
