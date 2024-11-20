@@ -17,17 +17,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let alumno of trainers">
-        <td>{{ alumno.name }}</td>
-        <td *ngFor="let energia of alumno.energies">
+      <tr *ngFor="let trainer of trainers | slice:0:10">
+        <td>{{ trainer.name }}</td>
+        <td *ngFor="let energia of trainer.energies">
           <div class="energy-input">
-            <button type="button" (click)="decrementEnergy(alumno.id, energia.tipo)">-</button>
+            <button type="button" (click)="decrementEnergy(trainer.id, energia.tipo)">-</button>
             <input
               type="number"
               [value]="energia.cantidad"
-              (change)="updateEnergy(alumno.id, energia.tipo, $event)"
+              (change)="updateEnergy(trainer.id, energia.tipo, $event)"
             />
-            <button type="button" (click)="incrementEnergy(alumno.id, energia.tipo)">+</button>
+            <button type="button" (click)="incrementEnergy(trainer.id, energia.tipo)">+</button>
           </div>
         </td>
       </tr>
