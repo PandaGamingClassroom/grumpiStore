@@ -21,18 +21,28 @@
       class="btn-close"
       (click)="toggleNotifications()"
       aria-label="Cerrar"
-    ></button>
+    >
+      x
+    </button>
   </div>
   <ul>
     <li *ngFor="let notification of notifications">
-      <span
-        *ngIf="!notification.read"
-        class="unread-indicator"
-      ></span>
+      <span *ngIf="!notification.read" class="unread-indicator"></span>
       {{ notification.message }}
+      <button
+        type="button"
+        *ngIf="!notification.read"
+        (click)="markNotificationAsRead(notification.id)"
+      >
+        Marcar como leída
+      </button>
     </li>
   </ul>
-  <button type="button" class="btn btn-outline-light" (click)="clearNotifications()">
+  <button
+    type="button"
+    class="btn btn-outline-light"
+    (click)="clearNotifications()"
+  >
     Limpiar Notificaciones
   </button>
 </div>

@@ -45,8 +45,8 @@ import { DashboardComponent } from "./dashbard/dashboard.component";
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    DashboardComponent
-],
+    DashboardComponent,
+  ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './admin-screen.component.html',
   styleUrls: ['./admin-screen.component.scss'],
@@ -133,6 +133,29 @@ export class AdminScreenComponent implements OnInit {
       })
       .catch((err) =>
         console.error('No se pudo suscribir a las notificaciones', err)
+      );
+  }
+
+  // Marca una notificación como leída
+  markNotificationAsRead(notificationId: number) {
+    if (!this.profesor?.data?.id) {
+      console.error(
+        'ID del profesor no disponible para actualizar notificaciones.'
+      );
+      return;
+    }
+
+    this.notificationService
+      .markNotificationAsRead(notificationId, this.profesor.data.id)
+      .subscribe(
+        (response) => {
+          console.log('Notificación marcada como leída:', response);
+          // Actualiza la lista de notificaciones después de marcarla como leída
+          this.loadNotifications();
+        },
+        (error) => {
+          console.error('Error al marcar notificación como leída:', error);
+        }
       );
   }
 

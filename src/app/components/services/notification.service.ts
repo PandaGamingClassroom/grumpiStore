@@ -43,4 +43,9 @@ export class NotificationService {
         })
       );
   }
+
+  markNotificationAsRead(notificationId: number, professorId: number) {
+    const url = `https://grumpistoreserver.onrender.com/notifications/read`;
+    return this.http.post(url, { notificationId, professorId });
+  }
 }
