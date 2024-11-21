@@ -31,6 +31,7 @@
       {{ notification.message }}
       <button
         type="button"
+        class="btn btn-light btn-read"
         *ngIf="!notification.read"
         (click)="markNotificationAsRead(notification.id)"
       >
