@@ -303,8 +303,12 @@ export class CreaturesAdminComponent implements OnInit {
   }
 
   get filteredCreaturesImages(): any[] {
-    return this.grumpiList.filter((imageUrl) =>
-      imageUrl.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+    const searchTermLower = this.searchTerm.toLowerCase();
+
+    return this.grumpiList.filter(
+      (grumpi) =>
+        grumpi.nombre.toLowerCase().includes(searchTermLower) ||
+        grumpi.n_grumpidex.toString().includes(searchTermLower)
     );
   }
 
@@ -394,7 +398,6 @@ export class CreaturesAdminComponent implements OnInit {
    */
   assignCreaturesToTrainers(trainerIds: number[]) {
     if (trainerIds.length > 0 && this.selectedCreatureName) {
-
       console.log('selectedCreatureName: ', this.selectedCreatureName);
 
       const creature = this.selectedCreatureName;
@@ -415,8 +418,7 @@ export class CreaturesAdminComponent implements OnInit {
             });
 
             const hasCreature = trainerGrumpis.some(
-              (grumpi: any) =>
-                grumpi.nombre === creature.nombre
+              (grumpi: any) => grumpi.nombre === creature.nombre
             );
             console.log(
               `El entrenador ${trainer.data.name} tiene la criatura:`,
