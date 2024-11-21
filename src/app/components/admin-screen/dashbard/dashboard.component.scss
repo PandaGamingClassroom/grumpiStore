@@ -2,7 +2,7 @@
   width: 100%;
   overflow-x: auto;
   margin: 20px auto;
-  height: 570px;
+  height: 510px;
   border-radius: 5px;
 }
 
@@ -22,11 +22,13 @@
   top: 0;
   z-index: 1;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .energy-table tbody td {
   background-color: #f8d6e4;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .energy-input {
@@ -40,6 +42,8 @@
   border: 1px solid #ccc;
   cursor: pointer;
   padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #00000080;
 }
 
 .energy-input input {
