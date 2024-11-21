@@ -42,8 +42,7 @@
   border: 1px solid #ccc;
   cursor: pointer;
   padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #00000080;
+
 }
 
 .energy-input input {
@@ -61,6 +60,8 @@
   padding: 10px 20px;
   margin: 0 10px;
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #00000080;
 }
 
 .actions button:first-child {
