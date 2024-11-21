@@ -24,7 +24,6 @@ import { MessageModalComponent } from '../../../segments/message-modal-component
   selector: 'app-creatures-admin',
   standalone: true,
   imports: [
-    RouterLink,
     CommonModule,
     FormsModule,
     MatDialogModule,
