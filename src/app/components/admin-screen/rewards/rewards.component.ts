@@ -50,6 +50,7 @@ export class RewardsComponent implements OnInit {
       this.isAdminUser = this.adminUser === 'administrador';
     }
     this.getTrainers();
+    this.getRewards();
   }
 
   /**
