@@ -11,23 +11,17 @@ import { Energies, energias } from '../../../models/energies';
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
-import { FooterComponent } from '../../footer/footer.component';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 
 @Component({
   selector: 'app-energies',
   standalone: true,
   imports: [
-    RouterLink,
     CommonModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    NavBarAdminComponent,
-    FooterComponent,
   ],
   providers: [TrainerService, AdminUserService, GrumpiService],
   templateUrl: './energies.component.html',

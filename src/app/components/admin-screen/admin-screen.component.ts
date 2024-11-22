@@ -23,6 +23,7 @@ import { NotificationService } from '../../components/services/notification.serv
 import { SwPush } from '@angular/service-worker';
 import { HttpClient } from '@angular/common/http';
 import { DashboardComponent } from "./dashbard/dashboard.component";
+import { RewardsComponent } from './rewards/rewards.component';
 
 @Component({
   selector: 'app-admin-screen',
@@ -46,6 +47,7 @@ import { DashboardComponent } from "./dashbard/dashboard.component";
     MatIconModule,
     MatButtonModule,
     DashboardComponent,
+    RewardsComponent
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './admin-screen.component.html',

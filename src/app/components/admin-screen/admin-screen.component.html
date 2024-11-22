@@ -117,6 +117,9 @@
       <li class="nav-item">
         <a class="nav-link" (click)="showSection('energies')">Energía</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="showSection('rewards')">Recompensas</a>
+      </li>
       <!--<li class="nav-item">
         <a class="nav-link" (click)="showSection('dolars')">Grumpidólares</a>
       </li>-->
@@ -251,6 +254,9 @@
           </div>
           <div *ngIf="activeSection === 'blog'" class="scrollable-div">
             <app-blog-screen></app-blog-screen>
+          </div>
+          <div *ngIf="activeSection === 'rewards'" class="scrollable-div">
+            <app-rewards></app-rewards>
           </div>
         </div>
       </div>

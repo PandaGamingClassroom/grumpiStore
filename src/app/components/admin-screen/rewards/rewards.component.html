@@ -1,0 +1,263 @@
+<div class="container-fluid bg-box">
+  <div class="row">
+    <div class="col design-column">
+      <div class="row container">
+        <div class="col mt-3"><h2>Lista de Recompensas</h2></div>
+        <div class="col mt-3" *ngIf="seeAllRewards">
+          <button type="button" class="btn btn-success" (click)="verRecompensas()">
+            Ocultar Recompensas
+          </button>
+        </div>
+        <div class="col mt-3" *ngIf="!seeAllRewards">
+          <button type="button" class="btn btn-success" (click)="verRecompensas()">
+            Cargar Recompensas
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="container creatures-box m-3 d-flex justify-content-center align-items-center"
+        *ngIf="!seeAllRewards"
+      >
+        <div class="text-center">
+          <p>
+            Pulsa
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="verRecompensas()"
+            >
+              Cargar Recompensas
+            </button>
+            para ver el listado completo de todas las recompensas
+          </p>
+        </div>
+      </div>
+
+      <div class="container creatures-box" *ngIf="seeAllRewards">
+        <div class="search-bar mb-3 sticky-top">
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Introduce el nombre de la recompensa"
+            class="form-control"
+          />
+        </div>
+
+        <div
+          class="img-creature"
+          *ngFor="let reward of filteredRewardsImages"
+        >
+          <div class="row">
+            <div class="col">
+              <img [src]="reward.img" alt="Imagen" (contextmenu)="disableRightClick($event)"/>
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="selectedRewardsName = reward; openTrainers()"
+              >
+                Asignar a
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+
+    <div class="col form-group mt-3 container mb-3" *ngIf="isAdminUser">
+      <h2> Apartado en construcción </h2>
+      <!-- <h2>Añadir una recompensa nueva</h2> -->
+      <!-- <form
+        [formGroup]="myForm"
+        (ngSubmit)="onSubmit($event)"
+        (change)="onFileSelected($event)"
+      >
+        <div class="row">
+          <div class="col-4">
+            <label for="imagen" class="form-label"
+              ><strong>Selecciona la imagen de la recompensa:</strong></label
+            >
+          </div>
+          <div class="col">
+            <input
+              type="file"
+              id="imagen"
+              name="imagen"
+              class="form-control"
+              formControlName="imagen"
+              required
+            />
+          </div>
+        </div>
+        <hr />
+
+        <h2>Datos del Grumpi</h2>
+        <div class="container-fluid me-3">
+          <ul>
+            <li>
+              <div class="row">
+                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+                <div class="col-4"><label for="nombre">Nombre:</label></div>
+                <div class="col">
+                  <input
+                    type="text"
+                    id="nombre"
+                    class="form-control"
+                    formControlName="nombre"
+                    required
+                  />
+                </div>
+              </div>
+            </li>
+            <br />
+            <li>
+              <div class="row">
+                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+                <div class="col-4">
+                  <label for="numero">Número de la Grumpidex:</label>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    id="numero"
+                    class="form-control"
+                    formControlName="numero"
+                    required
+                  />
+                </div>
+              </div>
+            </li>
+            <br />
+            <li>
+              <div class="row">
+                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+                <div class="col-4"><label for="tipo">Tipo:</label></div>
+                <div class="col">
+                  <select
+                    id="tipo"
+                    class="form-select"
+                    formControlName="tipo"
+                    required
+                  >
+                    <option selected disabled>Selecciona un tipo</option>
+                    <option
+                      *ngFor="let attack of typesAttacks"
+                      [value]="attack.tipo"
+                    >
+                      {{ attack.tipo }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </li>
+            <br />
+            <li>
+              <div class="row">
+                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+                <div class="col-4">
+                  <label for="descripcion">Descripción:</label>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    id="descripcion"
+                    class="form-control"
+                    formControlName="descripcion"
+                  />
+                </div>
+              </div>
+            </li>
+            <br />
+            <li>
+              <div class="row">
+                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+                <div class="col-4">
+                  <label for="firstAttack">Ataque principal:</label>
+                  <button
+                    type="button"
+                    class="btn"
+                    (click)="openHelpMessage('ataquePrincipal')"
+                  >
+                    ❓​
+                  </button>
+                </div>
+                <div class="col">
+                  <select
+                    id="firstAttack"
+                    class="form-select"
+                    formControlName="firstAttack"
+                    required
+                  >
+                    <option selected disabled>Selecciona un ataque</option>
+                    <option
+                      *ngFor="let atq of attacks_list"
+                      [value]="atq.nombre"
+                    >
+                      {{ atq.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </li>
+            <br />
+            <li>
+              <div class="row">
+                <div class="col-1"><i class="material-icons">&#xe5c8;</i></div>
+                <div class="col-4">
+                  <label for="specialAttack">Ataque especial:</label>
+                  <button
+                    type="button"
+                    class="btn"
+                    (click)="openHelpMessage('special')"
+                  >
+                    ❓
+                  </button>
+                </div>
+                <div class="col">
+                  <select
+                    id="specialAttack"
+                    class="form-select"
+                    formControlName="tipo"
+                    required
+                  >
+                    <option disabled>Selecciona un tipo:</option>
+                    <option
+                      *ngFor="let attack of typesAttacks"
+                      [value]="attack.tipo"
+                    >
+                      {{ attack.tipo }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="col" *ngIf="isTypeSelected">
+                  <select
+                    id="specialAttack"
+                    class="form-select"
+                    formControlName="specialAttack"
+                    required
+                  >
+                    <option selected disabled>Selecciona un ataque</option>
+                    <option
+                      *ngFor="let attack of filteredListAttacks"
+                      [value]="attack.nombre"
+                    >
+                      {{ attack.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="container mt-3 d-flex justify-content-center">
+          <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+      </form> -->
+    </div>
+  </div>
+</div>

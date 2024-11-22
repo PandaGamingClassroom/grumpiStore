@@ -53,6 +53,8 @@ import { MedalsAdminComponent } from './components/admin-screen/rules-admin/meda
 import { RestsAdminComponent } from './components/admin-screen/rules-admin/rests-admin/rests-admin.component';
 import { IntroAdminComponent } from './components/admin-screen/rules-admin/intro-admin/intro-admin.component';
 import { DashboardComponent } from './components/admin-screen/dashbard/dashboard.component';
+import { RewardsComponent } from './components/admin-screen/rewards/rewards.component';
+
 
 export const routes: Routes = [
   { path: 'home', component: HomeScreenComponent },
@@ -121,4 +123,5 @@ export const routes: Routes = [
   { path: 'admin/energies', component: EnergiesComponent },
   { path: 'admin/blog-admin', component: BlogScreenComponent },
   { path: 'admin/dashboard', component: DashboardComponent },
+  { path: 'admin/rewards-admin', component: RewardsComponent },
 ];
