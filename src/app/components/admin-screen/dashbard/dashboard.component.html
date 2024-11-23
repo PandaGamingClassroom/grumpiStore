@@ -1,3 +1,20 @@
+<div class="floating_btn_menu_box d-md-none">
+  <button type="button" class="floating_btn_menu d-md-none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-list"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+      />
+    </svg>
+  </button>
+</div>
 <div class="energy-table-container">
   <table class="energy-table">
     <thead>
@@ -72,7 +89,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trainer of trainers;">
+      <tr *ngFor="let trainer of trainers">
         <td>{{ trainer.name }}</td>
         <!-- <td *ngFor="let energia of trainer.energies">
           <div class="energy-input">

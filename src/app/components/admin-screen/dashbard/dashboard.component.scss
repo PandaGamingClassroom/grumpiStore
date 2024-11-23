@@ -75,3 +75,32 @@
   border: none;
   color: white;
 }
+
+.floating_btn_menu {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: #fbfbfb;
+  color: #000;
+  border-radius: 40%;
+  width: 12%;
+  height: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-size: smaller;
+}
+
+.floating_btn_menu_box {
+  position: fixed;
+  bottom: 32px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-size: smaller;
+  color: white;
+}
