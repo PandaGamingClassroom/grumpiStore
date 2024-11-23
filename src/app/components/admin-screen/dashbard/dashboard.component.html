@@ -1,5 +1,10 @@
 <div class="floating_btn_menu_box">
-  <button type="button" class="floating_btn_menu">
+  <button
+    type="button"
+    class="floating_btn_menu"
+    data-bs-toggle="modal"
+    data-bs-target="#open_menu_game"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -14,6 +19,43 @@
       />
     </svg>
   </button>
+</div>
+
+<div
+  class="modal fade"
+  id="open_menu_game"
+  tabindex="-1"
+  aria-labelledby="open_menu_game"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="open_menu_game">Menú entrenador</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="button" class="me-3 ms-3 button-73">Grumpis</button>
+          <button type="button" class="me-3 ms-3 button-73">Recompensas</button>
+          <button type="button" class="me-3 ms-3 button-73">Objetos evolutivos</button>
+          <button type="button" class="me-3 ms-3 button-73">Medallas</button>
+          <button type="button" class="me-3 ms-3 button-73">Distintivos de liga</button>
+          <button type="button" class="me-3 ms-3 button-73">Energías</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button-73" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="energy-table-container">
