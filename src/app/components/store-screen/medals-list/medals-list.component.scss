@@ -8,6 +8,9 @@
   margin-top: 9%;
 }
 
+.mainBoxAdminContent {
+  max-height: 100%;
+}
 
 .img-config {
   height: 350px;
@@ -88,8 +91,8 @@ ul {
   text-align: center;
   text-decoration: none;
   transition: all 0.15s;
-  user-select: none;
   -webkit-user-select: none;
+  user-select: none;
   touch-action: manipulation;
 }
 
@@ -113,22 +116,15 @@ ul {
 .price-tag {
   display: inline-block;
   background-color: #ffcc00;
-  /* Color de fondo */
   padding: 5px 10px;
-  /* Espaciado interno */
   border-radius: 5px;
-  /* Bordes redondeados */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Sombra */
 }
 
 .price {
   font-size: 18px;
-  /* Tamaño de fuente */
   font-weight: bold;
-  /* Negrita */
   color: #333;
-  /* Color de texto */
 }
 
 .grumpiTag {
@@ -206,6 +202,7 @@ ul {
 }
 
 .scrollable-div {
+  overflow-y: auto;
   max-height: calc(100vh - 300px);
 }
 
@@ -217,6 +214,8 @@ ul {
 
 .modal-body {
   flex-grow: 1;
+  overflow-y: auto;
+  max-height: 300px;
 }
 
 .modal-footer {
