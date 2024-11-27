@@ -10,6 +10,7 @@
 
 .mainBoxAdminContent {
   max-height: 100%;
+  overflow-x: hidden;
 }
 
 .img-config {
@@ -203,6 +204,7 @@ ul {
 
 .scrollable-div {
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: calc(100vh - 300px);
 }
 
@@ -215,6 +217,7 @@ ul {
 .modal-body {
   flex-grow: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 300px;
 }
 
