@@ -66,7 +66,9 @@ export class GrumpisComponent implements OnInit {
           (grumpi) => grumpi.clase === 'legendario'
         );
         this.grumpi_evolution_list = this.grumpi_list.filter(
-          (grumpi) => grumpi.clase === 'evolucion' && grumpi.clase === 'basico'
+          (grumpi) =>
+            grumpi.clase.includes('evolucion') &&
+            grumpi.clase.includes('basico')
         );
       },
       (error) => {
