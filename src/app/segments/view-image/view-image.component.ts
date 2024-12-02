@@ -12,7 +12,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-view-image',
   standalone: true,
   imports: [
-    RouterLink,
     CommonModule,
     FormsModule,
     MatDialogModule,
