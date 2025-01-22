@@ -26,7 +26,6 @@ import { MatDialog } from '@angular/material/dialog';
     NavBarComponent,
     CommonModule,
     FooterComponent,
-    BattleGameComponent,
     FormsModule,
     ReactiveFormsModule,
   ],
