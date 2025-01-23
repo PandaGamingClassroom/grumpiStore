@@ -1,0 +1,16 @@
+{
+  "APP_NAME": "GRUMPIAPP",
+  "GRUMPI_SHOP": "Grumpi Store",
+  "PROFILE": "Trainer Profile",
+  "GUIDE": "Grumpi Guide",
+  "GRUMPIDEX": "Grumpidex",
+  "GRUMPI_BLOG": "Grumpi Blog",
+  "LOGOUT": "Log Out",
+  "CLOSE": "Close",
+  "ACCEPT": "Accept",
+  "MODAL": {
+    "CLOSE_SESSION": "If you continue, you will log out of the application and your session will be closed.",
+    "RRSS_TITLE": "Social Media",
+    "RRSS_INFO": "Here you can find access to the social media of Los Grumpis. Remember that to have an account or access, you must be of the appropriate age and comply with the rules set by the applications, always using them with the help of an adult."
+  }
+}

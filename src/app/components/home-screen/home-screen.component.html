@@ -5,7 +5,7 @@
   <div class="box">
     <div class="container">
       <h1 class="d-flex justify-content-center mt-2 text-focus-in" id="titulo">
-        {{ 'APP_NAME' | translate }}
+        {{ "APP_NAME" | translate }}
       </h1>
       <div class="d-flex justify-content-center tilt-in-fwd-tr">
         <img
@@ -23,7 +23,7 @@
             class="menuBTN slide-in-elliptic-top-fwd"
             routerLink="/store"
           >
-            Tienda Grumpi
+            {{ "GRUMPI_SHOP" | translate }}
           </button>
         </div>
       </div>
@@ -34,7 +34,7 @@
             class="menuBTN slide-in-elliptic-top-fwd"
             routerLink="/profile"
           >
-            Perfil Entrenador
+            {{ "PROFILE" | translate }}
           </button>
         </div>
       </div>
@@ -45,7 +45,7 @@
             class="menuBTN slide-in-elliptic-top-fwd"
             routerLink="/rules"
           >
-            Guía Grumpi
+            {{ "GUIDE" | translate }}
           </button>
         </div>
       </div>
@@ -57,7 +57,7 @@
             data-bs-toggle="modal"
             data-bs-target="#openMessage"
           >
-            Grumpidex
+            {{ "GRUMPIDEX" | translate }}
           </button>
         </div>
       </div>
@@ -69,7 +69,7 @@
             class="menuBTN slide-in-elliptic-top-fwd"
             routerLink="/blog"
           >
-            Grumpi Blog
+            {{ "GRUMPI_BLOG" | translate }}
           </button>
         </div>
       </div>
@@ -98,7 +98,7 @@
               d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"
             />
           </svg>
-          Salir
+          {{ "LOGOUT" | translate }}
         </button>
       </div>
     </div>
@@ -153,7 +153,9 @@
   <div class="modal-dialog grumpidex_modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="openMessage"> GRUMPIDEX </h1>
+        <h1 class="modal-title fs-5" id="openMessage">
+          {{ "GRUMPIDEX" | translate }}
+        </h1>
         <button
           type="button"
           class="btn-close"
@@ -195,7 +197,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="button-73" data-bs-dismiss="modal">
-          Cerrar
+          {{ "CLOSE" | translate }}
         </button>
       </div>
     </div>
@@ -222,12 +224,11 @@
         ></button>
       </div>
       <div class="modal-body">
-        <p>Si continúas vas a salir de la aplicación y se cerrará la sesión.</p>
-        <p>Si estás deacuerdo, pulsa <strong>Aceptar</strong>.</p>
+        <p>{{ "MODAL.CLOSE_SESSION" | translate }}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="button-73 me-3" data-bs-dismiss="modal">
-          Cerrar
+          {{ "CLOSE" | translate }}
         </button>
         <button
           type="button"
@@ -235,7 +236,7 @@
           data-bs-dismiss="modal"
           (click)="logOut()"
         >
-          Aceptar
+          {{ "ACCEPT" | translate }}
         </button>
       </div>
     </div>
@@ -252,7 +253,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="openSocial">Redes sociales</h1>
+        <h1 class="modal-title fs-5" id="openSocial">
+          {{ "MODAL.RRSS_TITLE" | translate }}
+        </h1>
         <button
           type="button"
           class="btn-close"
@@ -262,10 +265,7 @@
       </div>
       <div class="modal-body">
         <p>
-          Aquí podemos encontrar el acceso a las redes sociales de Los Grumpis.
-          Recordad que para tener cuenta o acceder debéis de tener la edad y
-          cumplir las normas que las aplicaciones establecen, usándolas siempre
-          con la ayuda de un adulto.
+          {{ "MODAL.RRSS_INFO" | translate }}
         </p>
         <ul class="">
           <li class="text-center mb-2">
@@ -339,7 +339,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="button-73 me-3" data-bs-dismiss="modal">
-          Cerrar
+          {{ "CLOSE" | translate }}
         </button>
       </div>
     </div>

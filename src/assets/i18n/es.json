@@ -1,3 +1,16 @@
 {
-  "APP_NAME": "GRUMPIAPP"
+  "APP_NAME": "GRUMPIAPP",
+  "GRUMPI_SHOP": "Tienda Grumpi",
+  "PROFILE": "Perfil Entrenador",
+  "GUIDE": "Guía Grumpi",
+  "GRUMPIDEX": "Grumpidex",
+  "GRUMPI_BLOG": "Grumpi Blog",
+  "LOGOUT": "Salir",
+  "CLOSE": "Cerrar",
+  "ACCEPT": "Aceptar",
+  "MODAL": {
+    "CLOSE_SESSION": "Si continúas vas a salir de la aplicación y se cerrará la sesión.",
+    "RRSS_TITLE": "Redes sociales",
+    "RRSS_INFO": "Aquí podemos encontrar el acceso a las redes sociales de Los Grumpis. Recordad que para tener cuenta o acceder debéis de tener la edad y cumplir las normas que las aplicaciones establecen, usándolas siempre con la ayuda de un adulto."
+  }
 }

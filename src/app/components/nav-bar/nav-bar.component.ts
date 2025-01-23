@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../services/trainers/trainer.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,14 +12,16 @@ import { TrainerService } from '../services/trainers/trainer.service';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent implements OnInit {
-
   avatarSelect = '';
   avatar = localStorage.getItem('selectedAvatar');
   trainer: any;
   username: string | null = '';
   trainer_id: any;
 
-  constructor(private trainersService: TrainerService) {}
+  constructor(
+    private trainersService: TrainerService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
@@ -45,6 +48,11 @@ export class NavBarComponent implements OnInit {
         console.error('Error:', error);
       }
     );
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem('language', lang);
   }
 
   disableRightClick(event: MouseEvent) {

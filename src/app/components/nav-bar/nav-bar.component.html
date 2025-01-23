@@ -37,6 +37,43 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/about"> Sobre Nosotros </a>
         </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link active dropdown-toggle d-flex align-items-center"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            aria-current="page"
+          >
+            <span class="material-symbols-outlined"> language </span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                type="button"
+                class="dropdown-item"
+                (click)="changeLanguage('es')"
+                ><img
+                  src="../../../assets/flags/espana.png"
+                  class="flag-icon"
+                />
+                Español</a
+              >
+            </li>
+            <li>
+              <a
+                type="button"
+                class="dropdown-item"
+                (click)="changeLanguage('en')"
+                ><img
+                  src="../../../assets/flags/reino-unido.png"
+                  class="flag-icon"
+                />
+                Inglés</a
+              >
+            </li>
+          </ul>
+        </li>
       </ul>
 
       <!-- Añadimos ms-auto aquí para empujar el contenido a la derecha -->
@@ -56,7 +93,5 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </nav>
