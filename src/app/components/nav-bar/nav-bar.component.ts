@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TrainerService } from '../services/trainers/trainer.service';
 import { TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   providers: [TrainerService],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
@@ -17,6 +18,7 @@ export class NavBarComponent implements OnInit {
   trainer: any;
   username: string | null = '';
   trainer_id: any;
+  menuOpen = false;
 
   constructor(
     private trainersService: TrainerService,
@@ -53,6 +55,10 @@ export class NavBarComponent implements OnInit {
   changeLanguage(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('language', lang);
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 
   disableRightClick(event: MouseEvent) {

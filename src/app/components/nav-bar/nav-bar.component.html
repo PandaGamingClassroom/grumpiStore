@@ -18,8 +18,11 @@
       aria-controls="navbarNav"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      (click)="toggleMenu()"
     >
-      <span class="navbar-toggler-icon"></span>
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <i class="bi bi-list" *ngIf="!menuOpen"></i>
+      <i class="bi bi-x" *ngIf="menuOpen"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
