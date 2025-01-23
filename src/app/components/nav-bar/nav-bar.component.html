@@ -25,8 +25,12 @@
     </button>
     <button
       type="button"
-      class="btn-close"
-      aria-label="Close"
+      class="btn-close navbar-toggler"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
       (click)="toggleMenu()"
       *ngIf="menuOpen"
     ></button>
