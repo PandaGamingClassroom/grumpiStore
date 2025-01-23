@@ -19,12 +19,17 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
       (click)="toggleMenu()"
+      *ngIf="!menuOpen"
     >
-      <!-- <span class="navbar-toggler-icon"></span> -->
-      <i class="bi bi-list" *ngIf="!menuOpen"></i>
-      <i class="bi bi-x" *ngIf="menuOpen"></i>
+      <span class="navbar-toggler-icon"></span>
     </button>
-
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="toggleMenu()"
+      *ngIf="menuOpen"
+    ></button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
