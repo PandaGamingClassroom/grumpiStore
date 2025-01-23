@@ -299,24 +299,24 @@
 }
 
 .custom-modal {
-  position: fixed; /* Mantiene el modal centrado en relación con la ventana */
+  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Céntralo en ambas direcciones */
-  width: 90vw; /* Ancho máximo para móviles */
-  max-width: 500px; /* Limita el ancho máximo para pantallas más grandes */
-  max-height: 90vh; /* Limita la altura máxima para evitar que se salga de la pantalla */
-  padding: 20px; /* Añade un margen interno */
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 500px;
+  max-height: 90vh;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background-color: white; /* Establece un fondo blanco */
-  overflow-y: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+  background-color: white;
+  overflow-y: auto;
 }
 
 @media (min-width: 768px) {
   .custom-modal {
-    width: 500px; /* Ajuste del tamaño para pantallas más grandes */
-    height: auto; /* La altura se ajustará según el contenido */
+    width: 500px;
+    height: auto;
   }
 }
 
@@ -327,5 +327,5 @@
 }
 
 .grumpidex_modal {
-  width: 700vw !important;
+  width: 255vw !important;
 }
