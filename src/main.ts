@@ -1,9 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { AppComponent, HttpLoaderFactory } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationRef } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
+import { importProvidersFrom } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 // Función para ocultar la pantalla de carga después de un tiempo
 function hideLoadingAndSplashScreen() {
@@ -57,7 +60,20 @@ function checkForManualUpdates(swUpdate: SwUpdate) {
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [provideHttpClient(), ...appConfig.providers],
+  providers: [
+    provideHttpClient(),
+    ...appConfig.providers,
+    importProvidersFrom(
+      HttpClientModule,
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient],
+        },
+      })
+    ),
+  ],
 })
   .then((appRef: ApplicationRef) => {
     hideLoadingAndSplashScreen();

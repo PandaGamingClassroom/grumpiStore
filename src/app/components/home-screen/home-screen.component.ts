@@ -4,22 +4,17 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { BienvenidaModalComponent } from '../../segments/bienvenida-modal/bienvenida-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-screen',
   standalone: true,
-  imports: [
-    RouterLink,
-    NavBarComponent,
-    FooterComponent,
-    BienvenidaModalComponent
-  ],
+  imports: [RouterLink, NavBarComponent, FooterComponent, TranslateModule],
   templateUrl: './home-screen.component.html',
   styleUrl: './home-screen.component.scss',
 })
 export class HomeScreenComponent implements OnInit {
-  constructor(private dialog: MatDialog,
-    private router: Router) { }
+  constructor(private dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
     this.checkAndShowWelcomeDialog();
@@ -36,7 +31,6 @@ export class HomeScreenComponent implements OnInit {
         this.openWelcomeDialog();
         sessionStorage.setItem('welcomeShown', 'true');
       }
-
     }
   }
 
