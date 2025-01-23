@@ -282,4 +282,21 @@
       Ocultar Grumpis
     </button>
   </div>
+  <div
+    *ngIf="grumpi_list && this.isClicked"
+    class="image-container d-flex justify-content-center mt-3"
+  >
+    <div *ngFor="let grumpi of grumpi_list" (click)="openGrumpi(grumpi)">
+      <!-- Spinner de carga -->
+      <div *ngIf="!isImageLoaded" class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <img
+        [src]="grumpi.img_conseguir"
+        [alt]="grumpi.nombre"
+        (contextmenu)="disableRightClick($event)"
+        (load)="onImageLoad()"
+      />
+    </div>
+  </div>
 </div>
