@@ -34,22 +34,8 @@
       (click)="toggleMenu()"
       *ngIf="menuOpen"
     ></button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/home">
-            Inicio
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about-the-app">
-            ¿Qué son Los Grumpi?
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about"> Sobre Nosotros </a>
-        </li>
-        <li class="nav-item dropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
           <a
             class="nav-link active dropdown-toggle d-flex align-items-center"
             role="button"
@@ -98,6 +84,23 @@
             </li>
           </ul>
         </li>
+    </ul>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/home">
+            Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-the-app">
+            ¿Qué son Los Grumpi?
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about"> Sobre Nosotros </a>
+        </li>
+
       </ul>
 
       <!-- Añadimos ms-auto aquí para empujar el contenido a la derecha -->
