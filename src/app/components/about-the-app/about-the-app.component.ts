@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about-the-app',
   standalone: true,
-  imports: [RouterLink, NavBarComponent, FooterComponent],
+  imports: [RouterLink, NavBarComponent, FooterComponent, TranslateModule],
   templateUrl: './about-the-app.component.html',
   styleUrls: ['./about-the-app.component.scss'],
 })

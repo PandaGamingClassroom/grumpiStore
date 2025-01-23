@@ -1,16 +1,70 @@
 {
   "APP_NAME": "GRUMPIAPP",
-  "GRUMPI_SHOP": "Grumpi Store",
+  "GRUMPI_SHOP": "Grumpi Shop",
   "PROFILE": "Trainer Profile",
   "GUIDE": "Grumpi Guide",
   "GRUMPIDEX": "Grumpidex",
   "GRUMPI_BLOG": "Grumpi Blog",
-  "LOGOUT": "Log Out",
+  "LOGOUT": "Log out",
   "CLOSE": "Close",
   "ACCEPT": "Accept",
+  "BACK": "Back",
+  "SELECTION": "Select",
+  "CANCEL": "Cancel",
+  "CAREFULL": "Careful!",
   "MODAL": {
-    "CLOSE_SESSION": "If you continue, you will log out of the application and your session will be closed.",
+    "CLOSE_SESSION": "If you continue, you will leave the app, and your session will be closed.",
     "RRSS_TITLE": "Social Media",
-    "RRSS_INFO": "Here you can find access to the social media of Los Grumpis. Remember that to have an account or access, you must be of the appropriate age and comply with the rules set by the applications, always using them with the help of an adult."
+    "RRSS_INFO": "Here you can access the social media of Los Grumpis. Remember that to have an account or access these, you must meet the age requirements and follow the rules of the platforms, always using them with adult supervision."
+  },
+
+  "ABOUT_SCREEN": {
+    "TITLE": "Who are we?",
+    "NAME": "Name: ",
+    "PABLO_NAME": "Pablo M. O.",
+    "DANI_NAME": "Dani G. D.",
+    "JOB": "Profession: ",
+    "PABLO_JOB": "Primary school teacher.",
+    "DANI_JOB": "Application developer.",
+    "DESCRIPTION": "Description: ",
+    "DESCRIPTION_CONTENT_PABLO": "Teacher and geek who loves video games and wants to bring them to his classroom. The initial idea was to create a gamification project on paper for the class so students could learn while having fun. However, the project evolved into the creation of the Los Grumpi world, both physically and in this app.",
+    "DESCRIPTION_CONTENT_DANI": "A little IT guy, geek, and animal lover. One of the collaborators in the creation of 'Los Grumpi.' Creator of many of the creatures, visual graphic design, and especially the application."
+  },
+
+  "ABOUT_THE_APP": {
+    "TITLE": "What is Los Grumpi?",
+    "P1": "Gamification is a methodology that integrates aspects related to games with education in the classroom.",
+    "P2": "The gamification project we present acts as a complementary element to the teaching-learning process. It aims to deepen and reinforce various aspects worked on in the classroom. To do this, different tasks are proposed, which can be done independently or in groups, related to the different knowledge areas proposed by the educational curriculum, as well as others linked to emotional intelligence. Specifically, this project is based on a system of invented creatures, bearing certain similarities to Pokémon or Temtem. In other words, a game that involves capturing creatures, overcoming challenges, and even becoming the champion by facing even greater challenges.",
+    "P3": "Both for capturing and overcoming the various challenges, students will have to complete tasks or activities, which we can use to reinforce or expand what we have worked on. Among these tasks is reading various books, to include this activity in our reading plan. Of course, they will receive rewards such as the miniature Grumpi they captured, the medal symbolizing the completed challenge, or even the winner’s cup, which they will add to their trainer profile, allowing them to track their progress and that of their classmates.",
+    "P4": "Linked to all this are the classroom leaders, who aim to give students autonomy and responsibility. Their goal is to oversee task completion, ensure classroom silence, note down assignments in agendas, and so on. These leaders, of course, are also tied to the fictional world we present, finding roles such as Team Star, professors, trainers, nurses, and the Grumpi police.",
+    "P5": "Moreover, to progress in the game, evolve, or battle with our Grumpis, we will need energy. Energy will serve as currency for these purposes, or for those less interested in the game, it can be exchanged for other rewards, such as playtime, bonus grades, or exemption from copying tasks. This energy is linked to the different types of Grumpi. It will be earned weekly by working well throughout the week, paying attention in class, completing tasks, etc.",
+    "P6": "Another currency introduced is Grumpidollars, which are earned by completing voluntary tasks that arise daily or in physical education and music areas. These can be used to obtain different items or energy to continue progressing in the game or mastering battles.",
+    "P7": "As you can see, this is an ambitious project that has proven to be highly motivating for students during past courses. It encourages participation from the first day. Furthermore, receiving physical rewards like Grumpi miniatures, energy, medals, etc., awakens their collector's drive to gather as many as possible. Similarly, wanting to compete with classmates to be the first to complete challenges makes them even more committed to achieving them. They work while playing.",
+    "P8": "Finally, note that the project is being carried out in 5th and 6th grades, as it is designed to span two school years. However, it could be reduced to one school year by removing the weekly challenge limit. Similarly, it could be adapted to other grades.",
+    "SUGGESTIONS": "Suggestions",
+    "UPDATE_APP": "Update App"
+  },
+
+  "PROFILE_COMPONENT": {
+    "TITLE": "MY PROFILE",
+    "TOTAL_ENERGIES": "Total Energies: ",
+    "GRUMPIDOLARS": "Grumpidollars: ",
+    "COMBATS_MARKS": "Combat Marks: ",
+    "SEE_BAG": "View Bag",
+    "GAME": "Game",
+    "AVATAR_SELECTION": "Trainer Avatar Selection",
+    "ENERGIES_GET": "Energies You Have Earned",
+    "TOTAL_ENERGIES_MINE": "Total My Energies: ",
+    "ENERGIES": {
+      "WATER": "Water: ",
+      "FIRE": "Fire: ",
+      "WIND": "Wind: ",
+      "LIGHT": "Light: ",
+      "NORMAL": "Normal: ",
+      "DARKNESS": "Darkness: ",
+      "LIGHTNING": "Lightning: ",
+      "EARTH": "Earth: ",
+      "LIFE": "Life: "
+    }
   }
 }

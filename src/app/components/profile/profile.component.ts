@@ -17,6 +17,7 @@ import {
 import { iconEnergy } from '../../models/energies';
 import { ConfirmModalComponentComponent } from '../../segments/confirm-modal-component/confirm-modal-component.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +29,7 @@ import { MatDialog } from '@angular/material/dialog';
     FooterComponent,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './profile.component.html',

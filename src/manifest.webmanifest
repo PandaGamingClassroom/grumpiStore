@@ -3,6 +3,7 @@
   "short_name": "GrumpiApp",
   "start_url": "/index.html",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#8a1671",
   "icons": [
