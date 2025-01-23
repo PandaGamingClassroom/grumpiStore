@@ -15,3 +15,18 @@
   border-radius: 8px;
   margin-right: 8%;
 }
+
+.navbar {
+  position: relative;
+  z-index: 10;
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 0;
+    transform: translateY(0);
+    z-index: 1050;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  }
+}
