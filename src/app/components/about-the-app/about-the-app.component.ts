@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FooterComponent } from '../footer/footer.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { RouterLink } from '@angular/router';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
@@ -10,7 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-about-the-app',
   standalone: true,
-  imports: [RouterLink, NavBarComponent, FooterComponent, TranslateModule],
+  imports: [RouterLink, NavBarComponent, TranslateModule],
   templateUrl: './about-the-app.component.html',
   styleUrls: ['./about-the-app.component.scss'],
 })
