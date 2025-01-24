@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-rules',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavBarComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, NavBarComponent],
   templateUrl: './rules.component.html',
   styleUrl: './rules.component.scss',
 })

@@ -26,7 +26,6 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterLink,
     NavBarComponent,
     CommonModule,
-    FooterComponent,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule

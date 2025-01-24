@@ -21,7 +21,6 @@ import { ViewImageComponent } from '../../../../segments/view-image/view-image.c
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    FooterComponent,
   ],
   providers: [TrainerService, GrumpiService],
   templateUrl: './bag.component.html',
