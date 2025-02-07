@@ -24,8 +24,7 @@ import { Energies, energias, iconEnergy } from '../../models/energies';
     CommonModule,
     FormsModule,
     MatDialogModule,
-    ReactiveFormsModule,
-    FooterComponent,
+    ReactiveFormsModule
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './store-screen.component.html',
