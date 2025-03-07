@@ -60,20 +60,7 @@
     ></button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/home">
-            Inicio
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about-the-app">
-            ¿Qué son Los Grumpi?
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about"> Sobre Nosotros </a>
-        </li>
+      <ul class="dropdown-menu">
         <li>
           <a type="button" class="dropdown-item" (click)="changeLanguage('es')"
             ><img src="../../../assets/flags/espana.png" class="flag-icon" />
@@ -90,7 +77,6 @@
           >
         </li>
       </ul>
-      <!-- <ul class="dropdown-menu"></ul> -->
 
       <!-- Añadimos ms-auto aquí para empujar el contenido a la derecha -->
       <div class="d-flex ms-auto">
