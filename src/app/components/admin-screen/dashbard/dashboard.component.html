@@ -131,32 +131,29 @@
         </th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let trainer of trainers">
-        <td>{{ trainer.name }}</td>
-        <!-- <td *ngFor="let energia of trainer.energies">
-          <div class="energy-input">
-            <button
-              type="button"
-              (click)="decrementEnergy(trainer.id, energia.tipo)"
-            >
-              -
-            </button>
-            <input
-              type="number"
-              [value]="energia.cantidad"
-              (change)="updateEnergy(trainer.id, energia.tipo, $event)"
-            />
-            <button
-              type="button"
-              (click)="incrementEnergy(trainer.id, energia.tipo)"
-            >
-              +
-            </button>
-          </div>
-        </td> -->
-      </tr>
-    </tbody>
+<tbody>
+  <tr *ngFor="let trainer of trainers">
+    <td>{{ trainer.name }}</td>
+    <td *ngFor="let energia of trainer?.energies">
+      <div class="energy-input">
+        <button
+          type="button"
+          (click)="decrementEnergy(trainer, energia.tipo)"
+        >-</button>
+        <input
+          type="number"
+          [value]="trainer.energies[energia.tipo]"
+          (change)="updateEnergy(trainer, energia.tipo, $event)"
+          min="0"
+        />
+        <button
+          type="button"
+          (click)="incrementEnergy(trainer, energia.tipo)"
+        >+</button>
+      </div>
+    </td>
+  </tr>
+</tbody>
   </table>
   <div class="actions">
     <button type="button" (click)="guardarCambios()">Guardar cambios</button>
