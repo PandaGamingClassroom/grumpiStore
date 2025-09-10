@@ -34,7 +34,15 @@ export class DashboardComponent implements OnInit {
   getTrainers(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainers = [...data.data]; // Reemplaza el array completo
+        this.trainers = data.data.map((trainer: any) => ({
+          ...trainer,
+          energies: Object.entries(trainer.energies).map(
+            ([tipo, cantidad]) => ({
+              tipo,
+              cantidad,
+            })
+          ),
+        }));
         console.log('Entrenadores: ', this.trainers);
       },
       (error) => {
@@ -50,7 +58,7 @@ export class DashboardComponent implements OnInit {
   incrementEnergy(alumnoId: number, tipo: string) {
     const alumno = this.trainers.find((a) => a.id === alumnoId);
     if (alumno) {
-      const energia = alumno.energias.find((e: any) => e.tipo === tipo);
+      const energia = alumno.energies.find((e: any) => e.tipo === tipo);
       if (energia) energia.cantidad++;
     }
   }
@@ -58,7 +66,7 @@ export class DashboardComponent implements OnInit {
   decrementEnergy(alumnoId: number, tipo: string) {
     const alumno = this.trainers.find((a) => a.id === alumnoId);
     if (alumno) {
-      const energia = alumno.energias.find((e: any) => e.tipo === tipo);
+      const energia = alumno.energies.find((e: any) => e.tipo === tipo);
       if (energia && energia.cantidad > 0) energia.cantidad--;
     }
   }
@@ -67,19 +75,29 @@ export class DashboardComponent implements OnInit {
     const value = Number(event.target.value);
     const alumno = this.trainers.find((a) => a.id === alumnoId);
     if (alumno) {
-      const energia = alumno.energias.find((e: any) => e.tipo === tipo);
+      const energia = alumno.energies.find((e: any) => e.tipo === tipo);
       if (energia) energia.cantidad = value > 0 ? value : 0;
     }
   }
 
   guardarCambios() {
     console.log('Guardar cambios:', this.trainers);
-    // Aquí iría la lógica para guardar en el servidor
+
+    this.trainers.forEach((trainer) => {
+      this.trainersService
+        .updateTrainer(trainer.id, { energies: trainer.energies })
+        .subscribe(
+          (res) => console.log(`Energías de ${trainer.name} guardadas`, res),
+          (err) => console.error(`Error guardando ${trainer.name}`, err)
+        );
+    });
   }
 
   cancelarCambios() {
-    console.log('Cambios cancelados');
-    // Aquí iría la lógica para restaurar valores iniciales
+    if (this.id_profesor) {
+      this.getTrainers(this.id_profesor); // volvemos a cargar los datos originales del servidor
+      console.log('Cambios cancelados, datos restaurados.');
+    }
   }
 
   disableRightClick(event: MouseEvent) {

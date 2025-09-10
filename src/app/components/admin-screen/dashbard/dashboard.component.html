@@ -43,9 +43,13 @@
         <div class="d-flex justify-content-center align-items-center">
           <button type="button" class="me-3 ms-3 button-73">Grumpis</button>
           <button type="button" class="me-3 ms-3 button-73">Recompensas</button>
-          <button type="button" class="me-3 ms-3 button-73">Objetos evolutivos</button>
+          <button type="button" class="me-3 ms-3 button-73">
+            Objetos evolutivos
+          </button>
           <button type="button" class="me-3 ms-3 button-73">Medallas</button>
-          <button type="button" class="me-3 ms-3 button-73">Distintivos de liga</button>
+          <button type="button" class="me-3 ms-3 button-73">
+            Distintivos de liga
+          </button>
           <button type="button" class="me-3 ms-3 button-73">Energías</button>
         </div>
       </div>
@@ -131,29 +135,23 @@
         </th>
       </tr>
     </thead>
-<tbody>
-  <tr *ngFor="let trainer of trainers">
-    <td>{{ trainer.name }}</td>
-    <td *ngFor="let energia of trainer?.energies">
-      <div class="energy-input">
-        <button
-          type="button"
-          (click)="decrementEnergy(trainer, energia.tipo)"
-        >-</button>
-        <input
-          type="number"
-          [value]="trainer.energies[energia.tipo]"
-          (change)="updateEnergy(trainer, energia.tipo, $event)"
-          min="0"
-        />
-        <button
-          type="button"
-          (click)="incrementEnergy(trainer, energia.tipo)"
-        >+</button>
-      </div>
-    </td>
-  </tr>
-</tbody>
+    <tbody>
+      <tr *ngFor="let trainer of trainers">
+        <td>{{ trainer.name }}</td>
+        <td *ngFor="let energia of trainer?.energies">
+          <div class="energy-input">
+            <button type="button" (click)="decrementEnergy(trainer, energia.tipo)">-</button>
+            <input
+              type="number"
+              [value]="energia.cantidad"
+              (change)="updateEnergy(trainer, energia.tipo, $event)"
+              min="0"
+            />
+            <button type="button" (click)="incrementEnergy(trainer, energia.tipo)">+</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
   </table>
   <div class="actions">
     <button type="button" (click)="guardarCambios()">Guardar cambios</button>
