@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
         if (res.success && Array.isArray(res.data)) {
           this.trainers = res.data.map((trainer: any, index: number) => ({
             ...trainer,
-            id: trainer.id ?? index,
+            id: trainer.id ?? `trainer-${index}`,
             energies: Array.isArray(trainer.energies)
               ? trainer.energies
               : Object.entries(trainer.energies || {}).map(
@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
                   })
                 ),
           }));
-          this.cdr.detectChanges(); // fuerza actualización
+          this.cdr.detectChanges();
           console.log('Entrenadores cargados:', this.trainers);
         } else {
           this.trainers = [];
@@ -65,19 +65,22 @@ export class DashboardComponent implements OnInit {
   }
 
   incrementEnergy(alumno: any, tipo: string) {
-    const energia = alumno.energies.find((e: any) => e.tipo === tipo);
-    if (energia) energia.cantidad++;
+    alumno.energies = alumno.energies.map((e: any) =>
+      e.tipo === tipo ? { ...e, cantidad: e.cantidad + 1 } : e
+    );
   }
 
   decrementEnergy(alumno: any, tipo: string) {
-    const energia = alumno.energies.find((e: any) => e.tipo === tipo);
-    if (energia && energia.cantidad > 0) energia.cantidad--;
+    alumno.energies = alumno.energies.map((e: any) =>
+      e.tipo === tipo && e.cantidad > 0 ? { ...e, cantidad: e.cantidad - 1 } : e
+    );
   }
 
   updateEnergy(alumno: any, tipo: string, event: any) {
     const value = Number(event.target.value);
-    const energia = alumno.energies.find((e: any) => e.tipo === tipo);
-    if (energia) energia.cantidad = value > 0 ? value : 0;
+    alumno.energies = alumno.energies.map((e: any) =>
+      e.tipo === tipo ? { ...e, cantidad: value > 0 ? value : 0 } : e
+    );
   }
 
   guardarCambios() {
