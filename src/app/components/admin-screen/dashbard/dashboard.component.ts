@@ -33,20 +33,27 @@ export class DashboardComponent implements OnInit {
   // Obtiene la lista de entrenadores asignados al profesor
   getTrainers(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
-      (data) => {
-        this.trainers = data.data.map((trainer: any) => ({
-          ...trainer,
-          energies: Object.entries(trainer.energies).map(
-            ([tipo, cantidad]) => ({
-              tipo,
-              cantidad,
-            })
-          ),
-        }));
-        console.log('Entrenadores: ', this.trainers);
+      (res: any) => {
+        if (res.success && Array.isArray(res.data)) {
+          this.trainers = res.data.map((trainer: any) => ({
+            ...trainer,
+            energies: Array.isArray(trainer.energies)
+              ? trainer.energies
+              : Object.entries(trainer.energies || {}).map(
+                  ([tipo, cantidad]: any) => ({
+                    tipo,
+                    cantidad,
+                  })
+                ),
+          }));
+          console.log('Entrenadores cargados:', this.trainers);
+        } else {
+          this.trainers = [];
+        }
       },
       (error) => {
-        console.error('Error:', error);
+        console.error('Error obteniendo entrenadores:', error);
+        this.trainers = [];
       }
     );
   }
