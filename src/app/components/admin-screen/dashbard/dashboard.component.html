@@ -5,63 +5,39 @@
     data-bs-toggle="modal"
     data-bs-target="#open_menu_game"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-list"
-      viewBox="0 0 16 16"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-      />
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
     </svg>
   </button>
 </div>
 
-<div
-  class="modal fade"
-  id="open_menu_game"
-  tabindex="-1"
-  aria-labelledby="open_menu_game"
-  aria-hidden="true"
->
+<!-- Modal Menú -->
+<div class="modal fade" id="open_menu_game" tabindex="-1" aria-labelledby="open_menu_game" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="open_menu_game">Menú entrenador</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="d-flex justify-content-center align-items-center">
-          <button type="button" class="me-3 ms-3 button-73">Grumpis</button>
-          <button type="button" class="me-3 ms-3 button-73">Recompensas</button>
-          <button type="button" class="me-3 ms-3 button-73">
-            Objetos evolutivos
-          </button>
-          <button type="button" class="me-3 ms-3 button-73">Medallas</button>
-          <button type="button" class="me-3 ms-3 button-73">
-            Distintivos de liga
-          </button>
-          <button type="button" class="me-3 ms-3 button-73">Energías</button>
+        <div class="d-flex justify-content-center align-items-center flex-wrap">
+          <button type="button" class="me-2 mb-2 button-73">Grumpis</button>
+          <button type="button" class="me-2 mb-2 button-73">Recompensas</button>
+          <button type="button" class="me-2 mb-2 button-73">Objetos evolutivos</button>
+          <button type="button" class="me-2 mb-2 button-73">Medallas</button>
+          <button type="button" class="me-2 mb-2 button-73">Distintivos de liga</button>
+          <button type="button" class="me-2 mb-2 button-73">Energías</button>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="button-73" data-bs-dismiss="modal">
-          Cerrar
-        </button>
+        <button type="button" class="button-73" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Tabla de energías -->
 <div class="energy-table-container">
   <table class="energy-table">
     <thead>
@@ -70,75 +46,15 @@
         <th colspan="9">ENERGÍAS</th>
       </tr>
       <tr>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Agua2.0.PNG"
-            alt="Agua"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Fuego2.0.PNG"
-            alt="Fuego"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Aire2.0.PNG"
-            alt="Aire"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Luz2.0.PNG"
-            alt="Luz"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Normal2.0.PNG"
-            alt="Normal"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Oscuridad2.0.PNG"
-            alt="Oscuridad"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Rayo2.0.PNG"
-            alt="Rayo"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Tierra2.0.PNG"
-            alt="Tierra"
-          />
-        </th>
-        <th>
-          <img
-            class="imgEnergy"
-            src="../../../../assets/iconEnergies/Vida2.0.PNG"
-            alt="Vida"
-          />
+        <th *ngFor="let energyIcon of energyIcons">
+          <img class="imgEnergy" [src]="energyIcon.src" [alt]="energyIcon.alt" />
         </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let trainer of trainers; trackBy: trackById">
         <td>{{ trainer.name }}</td>
-        <td *ngFor="let energia of trainer?.energies">
+        <td *ngFor="let energia of trainer.energies">
           <div class="energy-input">
             <button type="button" (click)="decrementEnergy(trainer, energia.tipo)">-</button>
             <input
@@ -153,8 +69,9 @@
       </tr>
     </tbody>
   </table>
-  <div class="actions">
-    <button type="button" (click)="guardarCambios()">Guardar cambios</button>
-    <button type="button" (click)="cancelarCambios()">Cancelar cambios</button>
+
+  <div class="actions mt-3">
+    <button type="button" class="button-73 me-2" (click)="guardarCambios()">Guardar cambios</button>
+    <button type="button" class="button-73" (click)="cancelarCambios()">Cancelar cambios</button>
   </div>
 </div>
