@@ -65,10 +65,7 @@ export class DashboardComponent implements OnInit {
             energies: Array.isArray(trainer.energies)
               ? trainer.energies
               : Object.entries(trainer.energies || {}).map(
-                  ([tipo, cantidad]) => ({
-                    tipo,
-                    cantidad,
-                  })
+                  ([tipo, cantidad]) => ({ tipo, cantidad })
                 ),
           }));
           // Creamos copia para cancelar cambios
@@ -86,8 +83,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  trackById(index: number, trainer: Trainer): string | number {
-    return trainer.id;
+  trackById(index: number, item: any): string {
+    return item.id?.toString() ?? index.toString();
   }
 
   incrementEnergy(trainer: Trainer, tipo: string) {
