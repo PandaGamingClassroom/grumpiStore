@@ -55,29 +55,20 @@ export class DashboardComponent implements OnInit {
     return item.id;
   }
 
-  incrementEnergy(alumnoId: number, tipo: string) {
-    const alumno = this.trainers.find((a) => a.id === alumnoId);
-    if (alumno) {
-      const energia = alumno.energies.find((e: any) => e.tipo === tipo);
-      if (energia) energia.cantidad++;
-    }
+  incrementEnergy(alumno: any, tipo: string) {
+    const energia = alumno.energies.find((e: any) => e.tipo === tipo);
+    if (energia) energia.cantidad++;
   }
 
-  decrementEnergy(alumnoId: number, tipo: string) {
-    const alumno = this.trainers.find((a) => a.id === alumnoId);
-    if (alumno) {
-      const energia = alumno.energies.find((e: any) => e.tipo === tipo);
-      if (energia && energia.cantidad > 0) energia.cantidad--;
-    }
+  decrementEnergy(alumno: any, tipo: string) {
+    const energia = alumno.energies.find((e: any) => e.tipo === tipo);
+    if (energia && energia.cantidad > 0) energia.cantidad--;
   }
 
-  updateEnergy(alumnoId: number, tipo: string, event: any) {
+  updateEnergy(alumno: any, tipo: string, event: any) {
     const value = Number(event.target.value);
-    const alumno = this.trainers.find((a) => a.id === alumnoId);
-    if (alumno) {
-      const energia = alumno.energies.find((e: any) => e.tipo === tipo);
-      if (energia) energia.cantidad = value > 0 ? value : 0;
-    }
+    const energia = alumno.energies.find((e: any) => e.tipo === tipo);
+    if (energia) energia.cantidad = value > 0 ? value : 0;
   }
 
   guardarCambios() {
@@ -95,7 +86,7 @@ export class DashboardComponent implements OnInit {
 
   cancelarCambios() {
     if (this.id_profesor) {
-      this.getTrainers(this.id_profesor); // volvemos a cargar los datos originales del servidor
+      this.getTrainers(this.id_profesor);
       console.log('Cambios cancelados, datos restaurados.');
     }
   }

@@ -136,7 +136,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trainer of trainers">
+      <tr *ngFor="let trainer of trainers; trackBy: trackById">
         <td>{{ trainer.name }}</td>
         <td *ngFor="let energia of trainer?.energies">
           <div class="energy-input">

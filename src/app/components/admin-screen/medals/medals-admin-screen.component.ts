@@ -8,26 +8,22 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
 import { GrumpiService } from '../../services/grumpi/grumpi.service';
 import { url_upload_medals } from '../../../models/urls';
 import { ConfirmModalComponentComponent } from '../../../segments/confirm-modal-component/confirm-modal-component.component';
-import { TrainerService } from '../../services/trainers/trainer.service';
+
 import { SelectTrainerComponent } from '../trainers/select-trainer/select-trainer.component';
 import { AdminUserService } from '../../services/adminUser/adminUser.service';
-import { FooterComponent } from '../../footer/footer.component';
-import { forkJoin } from 'rxjs';
+import { TrainerService } from '../../services/trainers/trainer.service';
 
 @Component({
   selector: 'app-medals-admin-screen',
   standalone: true,
   imports: [
-    RouterLink,
     CommonModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,
-    FooterComponent,
   ],
   providers: [GrumpiService, TrainerService],
   templateUrl: './medals-admin-screen.component.html',
