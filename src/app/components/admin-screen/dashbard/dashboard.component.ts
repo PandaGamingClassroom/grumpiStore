@@ -35,8 +35,9 @@ export class DashboardComponent implements OnInit {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (res: any) => {
         if (res.success && Array.isArray(res.data)) {
-          this.trainers = res.data.map((trainer: any) => ({
+          this.trainers = res.data.map((trainer: any, index: number) => ({
             ...trainer,
+            id: trainer.id ?? index,
             energies: Array.isArray(trainer.energies)
               ? trainer.energies
               : Object.entries(trainer.energies || {}).map(
@@ -46,6 +47,7 @@ export class DashboardComponent implements OnInit {
                   })
                 ),
           }));
+          this.cdr.detectChanges(); // fuerza actualización
           console.log('Entrenadores cargados:', this.trainers);
         } else {
           this.trainers = [];
@@ -59,7 +61,7 @@ export class DashboardComponent implements OnInit {
   }
 
   trackById(index: number, item: any): number {
-    return item.id;
+    return item.id ?? index;
   }
 
   incrementEnergy(alumno: any, tipo: string) {
