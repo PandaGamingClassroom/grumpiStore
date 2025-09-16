@@ -47,7 +47,7 @@ import { RewardsComponent } from './rewards/rewards.component';
     MatIconModule,
     MatButtonModule,
     DashboardComponent,
-    RewardsComponent
+    RewardsComponent,
   ],
   providers: [TrainerService, AdminUserService],
   templateUrl: './admin-screen.component.html',
@@ -241,8 +241,13 @@ export class AdminScreenComponent implements OnInit {
   // Muestra la sección activa y colapsa la barra lateral
   showSection(section: string) {
     console.log('Navigating to section:', section);
-    this.showLogo = section === null;
-    this.activeSection = section;
+
+    if (section) {
+      this.router.navigate([`/admin/${section}`]);
+    } else {
+      this.showLogo = true;
+    }
+
     this.toggleSidebar();
   }
 
