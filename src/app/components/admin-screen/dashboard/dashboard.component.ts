@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { FormsModule } from '@angular/forms';
+import { NavBarAdminComponent } from "../navBar-admin/nav-bar-admin/nav-bar-admin.component";
 
 interface Energia {
   tipo: string;
@@ -22,7 +23,7 @@ interface Trainer {
 @Component({
   selector: 'app-dashboard-screen',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NavBarAdminComponent],
   providers: [TrainerService],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
