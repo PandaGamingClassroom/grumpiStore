@@ -2,8 +2,14 @@
 <div class="container mt-4">
   <!-- Selección del tipo de objeto -->
   <div class="mb-3">
-    <label for="objectType"><strong>Selecciona el objeto a asignar:</strong></label>
-    <select id="objectType" class="form-select" [(ngModel)]="selectedObjectType">
+    <label for="objectType"
+      ><strong>Selecciona el objeto a asignar:</strong></label
+    >
+    <select
+      id="objectType"
+      class="form-select"
+      [(ngModel)]="selectedObjectType"
+    >
       <option value="grumpis">Grumpis</option>
       <option value="medallas">Medallas</option>
       <option value="distintivos">Distintivos de liga</option>
@@ -26,27 +32,34 @@
         <tr *ngFor="let trainer of profesor.entrenadores">
           <td>{{ trainer.name }}</td>
           <td>
-            <!-- Mostramos dinámicamente según el objeto -->
             <ng-container [ngSwitch]="selectedObjectType">
               <ul *ngSwitchCase="'grumpis'">
-                <li *ngFor="let grumpi of trainer.grumpis">{{ grumpi.nombre }}</li>
+                <li *ngFor="let grumpi of trainer.grumpis">
+                  {{ grumpi.nombre }}
+                </li>
               </ul>
-
               <ul *ngSwitchCase="'medallas'">
-                <li *ngFor="let medal of trainer.medallas">{{ medal.nombre }}</li>
+                <li *ngFor="let medal of trainer.medallas">
+                  {{ medal.nombre }}
+                </li>
               </ul>
-
               <ul *ngSwitchCase="'distintivos'">
-                <li *ngFor="let badge of trainer.distintivos_liga">{{ badge.nombre }}</li>
+                <li *ngFor="let badge of trainer.distintivos_liga">
+                  {{ badge.nombre }}
+                </li>
               </ul>
-
               <ul *ngSwitchCase="'recompensas'">
-                <li *ngFor="let reward of trainer.recompensas">{{ reward.nombre }}</li>
+                <li *ngFor="let reward of trainer.recompensas">
+                  {{ reward.nombre }}
+                </li>
               </ul>
             </ng-container>
           </td>
           <td>
-            <button class="btn btn-primary btn-sm" (click)="openAssignModal(trainer)">
+            <button
+              class="btn btn-primary btn-sm"
+              (click)="openAssignModal(trainer)"
+            >
               Asignar {{ selectedObjectType }}
             </button>
           </td>

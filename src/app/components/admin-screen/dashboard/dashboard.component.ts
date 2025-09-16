@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { FormsModule } from '@angular/forms';
-import { NavBarAdminComponent } from "../navBar-admin/nav-bar-admin/nav-bar-admin.component";
+import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
 
 interface Energia {
   tipo: string;
@@ -71,6 +71,12 @@ export class DashboardComponent implements OnInit {
       .subscribe((data) => {
         this.trainers = data;
         this.originalTrainers = JSON.parse(JSON.stringify(data));
+
+        // Unificamos la estructura: profesores siempre tiene al menos 1
+        this.profesores = [
+          { id: id_profesor, name: 'Profesor actual', entrenadores: data },
+        ];
+
         this.cdr.detectChanges();
       });
   }
