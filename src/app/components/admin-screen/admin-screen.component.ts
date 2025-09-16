@@ -18,11 +18,10 @@ import { NavBarAdminComponent } from './navBar-admin/nav-bar-admin/nav-bar-admin
 import { ProfesorAdmin } from './profesor-admin/profesor-admin.component';
 import { ProfileComponent } from './profesor-admin/profile/profile-profesor.component';
 import { BlogScreenComponent } from './profesor-admin/blog/blog-screen.component';
-import { RulesAdminComponent } from './rules-admin/rules-admin.component';
 import { NotificationService } from '../../components/services/notification.service';
 import { SwPush } from '@angular/service-worker';
 import { HttpClient } from '@angular/common/http';
-import { DashboardComponent } from "./dashbard/dashboard.component";
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { RewardsComponent } from './rewards/rewards.component';
 
 @Component({

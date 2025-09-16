@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
   originalTrainers: Trainer[] = [];
   id_profesor: number | string | null = null;
   profesores: any[] = [];
-  selectedObjectType: string = 'grumpis'; // por defecto mostramos grumpis
+  selectedObjectType: string = 'grumpis';
 
   // 🔹 Iconos de energías
   energyIcons = [
