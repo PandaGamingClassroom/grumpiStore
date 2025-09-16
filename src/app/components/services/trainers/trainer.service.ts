@@ -274,7 +274,7 @@ export class TrainerService {
    * @returns
    */
   assignBadgeToTrainers(
-    trainerNames: number[],
+    trainerNames: string[],
     badge: string
   ): Observable<any> {
     const url = this.apiUrl + 'assign-badge';

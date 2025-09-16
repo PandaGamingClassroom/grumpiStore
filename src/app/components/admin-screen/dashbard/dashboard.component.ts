@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrainerService } from '../../services/trainers/trainer.service';
-import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 interface Energia {
   tipo: string;
@@ -9,16 +9,20 @@ interface Energia {
 }
 
 interface Trainer {
-  id: number | string;
+  id: number;
   name: string;
   energies: Energia[];
-  [key: string]: any; // Para otros campos dinámicos del backend
+  grumpis?: any[];
+  medallas?: any[];
+  distintivos_liga?: any[];
+  recompensas?: any[];
+  [key: string]: any; // otros campos dinámicos del backend
 }
 
 @Component({
   selector: 'app-dashboard-screen',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   providers: [TrainerService],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
@@ -27,7 +31,10 @@ export class DashboardComponent implements OnInit {
   trainers: Trainer[] = [];
   originalTrainers: Trainer[] = [];
   id_profesor: number | string | null = null;
+  profesores: any[] = [];
+  selectedObjectType: string = 'grumpis'; // por defecto mostramos grumpis
 
+  // 🔹 Iconos de energías
   energyIcons = [
     { src: '../../../../assets/iconEnergies/Agua2.0.PNG', alt: 'Agua' },
     { src: '../../../../assets/iconEnergies/Fuego2.0.PNG', alt: 'Fuego' },
@@ -52,41 +59,42 @@ export class DashboardComponent implements OnInit {
     if (typeof window !== 'undefined') {
       this.id_profesor = localStorage.getItem('id_profesor');
       if (this.id_profesor) this.loadTrainers(Number(this.id_profesor));
+      else this.loadProfesores();
     }
   }
 
-  private loadTrainers(profesorId: number) {
-    this.trainerService.getEntrenadoresByProfesorId(profesorId).subscribe({
-      next: (res: any) => {
-        if (res.success && Array.isArray(res.data)) {
-          this.trainers = res.data.map((trainer: any, idx: number) => ({
-            ...trainer,
-            id: trainer.id ?? `trainer-${idx}`,
-            energies: Array.isArray(trainer.energies)
-              ? trainer.energies
-              : Object.entries(trainer.energies || {}).map(
-                  ([tipo, cantidad]) => ({ tipo, cantidad })
-                ),
-          }));
-          // Creamos copia para cancelar cambios
-          this.originalTrainers = JSON.parse(JSON.stringify(this.trainers));
-          this.cdr.detectChanges();
-          console.log('Entrenadores cargados:', this.trainers);
-        } else {
-          this.trainers = [];
-        }
-      },
-      error: (err) => {
-        console.error('Error obteniendo entrenadores:', err);
-        this.trainers = [];
-      },
+  // 🔹 Cargar entrenadores de un profesor
+  loadTrainers(id_profesor: number) {
+    this.trainerService
+      .getEntrenadoresByProfesorId(id_profesor)
+      .subscribe((data) => {
+        this.trainers = data;
+        this.originalTrainers = JSON.parse(JSON.stringify(data));
+        this.cdr.detectChanges();
+      });
+  }
+
+  // 🔹 Cargar profesores y sus entrenadores
+  loadProfesores() {
+    this.trainerService.getProfesores().subscribe((profes) => {
+      this.profesores = profes;
+
+      this.profesores.forEach((prof) => {
+        this.trainerService
+          .getEntrenadoresByProfesorId(prof.id)
+          .subscribe((entrenadores) => {
+            prof.entrenadores = entrenadores;
+          });
+      });
     });
   }
 
+  // 🔹 Renderización eficiente en *ngFor
   trackById(index: number, item: any): string {
     return item.id?.toString() ?? index.toString();
   }
 
+  // 🔹 Modificación de energías
   incrementEnergy(trainer: Trainer, tipo: string) {
     trainer.energies = trainer.energies.map((e) =>
       e.tipo === tipo ? { ...e, cantidad: e.cantidad + 1 } : e
@@ -106,6 +114,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  // 🔹 Guardar cambios de energías
   guardarCambios(): void {
     if (!this.trainers.length) return;
 
@@ -120,13 +129,53 @@ export class DashboardComponent implements OnInit {
         });
     });
 
-    // Actualizamos copia original
     this.originalTrainers = JSON.parse(JSON.stringify(this.trainers));
   }
 
   cancelarCambios() {
     this.trainers = JSON.parse(JSON.stringify(this.originalTrainers));
     console.log('Cambios cancelados, datos restaurados.');
+  }
+
+  // 🔹 Asignar objetos a un entrenador
+  assignObjectToTrainer(trainer: Trainer, objeto: any) {
+    switch (this.selectedObjectType) {
+      case 'grumpis':
+        this.trainerService
+          .assignCreatureToTrainer(trainer.id, objeto)
+          .subscribe(() => this.loadTrainers(Number(this.id_profesor)));
+        break;
+
+      case 'medallas':
+        this.trainerService
+          .assignMedalToTrainer(trainer.name, objeto)
+          .subscribe(() => this.loadTrainers(Number(this.id_profesor)));
+        break;
+
+      case 'distintivos':
+        this.trainerService
+          .assignBadgeToTrainers([trainer.name], objeto)
+          .subscribe(() => this.loadTrainers(Number(this.id_profesor)));
+        break;
+
+      case 'recompensas':
+        this.trainerService
+          .assignReward(trainer.id, objeto)
+          .subscribe(() => this.loadTrainers(Number(this.id_profesor)));
+        break;
+    }
+  }
+
+  // Abrir modal (placeholder por ahora)
+  openAssignModal(trainer: Trainer) {
+    // De momento pedimos el objeto en un prompt (o lo recibiremos desde un modal más adelante)
+    const objeto = prompt(
+      `Introduce el ${this.selectedObjectType} que quieres asignar a ${trainer.name}:`
+    );
+
+    if (objeto) {
+      this.assignObjectToTrainer(trainer, { nombre: objeto });
+    }
   }
 
   disableRightClick(event: MouseEvent) {
