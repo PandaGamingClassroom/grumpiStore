@@ -273,10 +273,7 @@ export class TrainerService {
    * @param badge --> Distintivo de liga seleccionado
    * @returns
    */
-  assignBadgeToTrainers(
-    trainerNames: any[],
-    badge: string
-  ): Observable<any> {
+  assignBadgeToTrainers(trainerNames: any[], badge: string): Observable<any> {
     const url = this.apiUrl + 'assign-badge';
     const body = { trainerNames, badge };
 
@@ -590,10 +587,27 @@ export class TrainerService {
     return this.http.get<any>(`${this.apiUrl}profesor/${nombre}`);
   }
 
-  getEntrenadoresByProfesorId(profesorId: number): Observable<any> {
-    return this.http.get<any>(
-      `${this.apiUrl}profesor/${profesorId}/entrenadores`
-    );
+  getEntrenadoresByProfesorId(profesorId: number): Observable<any[]> {
+    return this.http
+      .get<any[]>(`${this.apiUrl}profesor/${profesorId}/entrenadores`)
+      .pipe(
+        map((trainers) =>
+          trainers.map((tr) => ({
+            ...tr,
+            energies: Array.isArray(tr.energies) ? tr.energies : [],
+            grumpis: Array.isArray(tr.grumpis) ? tr.grumpis : [],
+            medallas: Array.isArray(tr.medallas) ? tr.medallas : [],
+            distintivos_liga: Array.isArray(tr.distintivos_liga)
+              ? tr.distintivos_liga
+              : [],
+            recompensas: Array.isArray(tr.recompensas) ? tr.recompensas : [],
+          }))
+        ),
+        catchError((error) => {
+          console.error('Error al obtener los entrenadores:', error);
+          return throwError(() => error);
+        })
+      );
   }
 
   // Añade este método para usar las energías seleccionadas
