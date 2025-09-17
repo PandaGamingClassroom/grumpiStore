@@ -79,21 +79,26 @@ export class DashboardComponent implements OnInit {
   loadTrainers(id_profesor: number) {
     this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe(
       (data: any) => {
-        console.log('Valor de data recibido del servicio:', data);
+        console.log('--- DEBUG ---');
+        console.log('Valor de data recibido:', data);
+        console.log('Tipo de data:', typeof data);
+        console.log('Es array?', Array.isArray(data));
+        console.log('Tiene data.trainers?', data?.trainers);
 
+        // Asegurarnos de que siempre sea un array
         let trainersArray: any[] = [];
-
         if (Array.isArray(data)) {
           trainersArray = data;
         } else if (Array.isArray(data?.trainers)) {
           trainersArray = data.trainers;
         } else {
           console.warn(
-            'El backend no devolvió un array de entrenadores:',
-            data
+            'Backend no devolvió un array válido. Se usará array vacío.'
           );
           trainersArray = [];
         }
+
+        console.log('TrainersArray final que se mapeará:', trainersArray);
 
         this.trainers = trainersArray.map((trainer: any) => ({
           ...trainer,
