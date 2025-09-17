@@ -81,12 +81,19 @@ export class DashboardComponent implements OnInit {
       (data: any) => {
         console.log('Valor de data recibido del servicio:', data);
 
-        // Suponiendo que el servicio devuelve { trainers: [...] }
-        const trainersArray = Array.isArray(data)
-          ? data
-          : Array.isArray(data?.trainers)
-          ? data.trainers
-          : [];
+        let trainersArray: any[] = [];
+
+        if (Array.isArray(data)) {
+          trainersArray = data;
+        } else if (Array.isArray(data?.trainers)) {
+          trainersArray = data.trainers;
+        } else {
+          console.warn(
+            'El backend no devolvió un array de entrenadores:',
+            data
+          );
+          trainersArray = [];
+        }
 
         this.trainers = trainersArray.map((trainer: any) => ({
           ...trainer,
