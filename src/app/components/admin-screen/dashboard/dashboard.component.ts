@@ -59,6 +59,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       this.id_profesor = localStorage.getItem('id_profesor');
+      console.log('Id del profesor: ', this.id_profesor);
       if (this.id_profesor) this.loadTrainers(Number(this.id_profesor));
       else this.loadProfesores();
     }
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit {
   loadTrainers(id_profesor: number) {
     this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe(
       (data: any) => {
+        console.log('Lista de entrenadores obtenidos: ', data);
         const trainersArray = Array.isArray(data)
           ? data
           : Array.isArray(data?.data)
