@@ -65,12 +65,12 @@ export class DashboardComponent implements OnInit {
       const idNum = Number(this.id_profesor);
       console.log('Id del profesor convertido a número:', idNum);
 
+      // Llamar siempre a loadProfesores para depurar
+      this.loadProfesores();
+
+      // Solo si quieres cargar trainers individuales
       if (idNum) {
-        console.log('Llamando a loadTrainers...');
         this.loadTrainers(idNum);
-      } else {
-        console.log('No hay id_profesor válido, cargando profesores...');
-        this.loadProfesores();
       }
     }
   }
@@ -118,12 +118,11 @@ export class DashboardComponent implements OnInit {
   loadProfesores() {
     this.trainerService.getProfesores().subscribe((profes) => {
       this.profesores = profes;
-
+      console.log('Profesores cargados:', this.profesores);
       this.profesores.forEach((prof) => {
         this.trainerService
           .getEntrenadoresByProfesorId(prof.id)
           .subscribe((entrenadores) => {
-            console.log('Respuesta del backend:', entrenadores);
             prof.entrenadores = entrenadores;
           });
       });
