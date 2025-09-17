@@ -79,16 +79,20 @@ export class DashboardComponent implements OnInit {
   loadTrainers(id_profesor: number) {
     this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe(
       (data: any) => {
-        console.log('Lista de entrenadores obtenidos: ', data);
+        console.log('Valor de data recibido del servicio:', data);
+
+        // Suponiendo que el servicio devuelve { trainers: [...] }
         const trainersArray = Array.isArray(data)
           ? data
-          : Array.isArray(data?.data)
-          ? data.data
+          : Array.isArray(data?.trainers)
+          ? data.trainers
           : [];
+
         this.trainers = trainersArray.map((trainer: any) => ({
           ...trainer,
           energies: Array.isArray(trainer.energies) ? trainer.energies : [],
         }));
+
         console.log('Trainers cargados:', this.trainers);
       },
       (error) => {
