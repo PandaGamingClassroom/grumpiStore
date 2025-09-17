@@ -68,17 +68,19 @@ export class DashboardComponent implements OnInit {
   loadTrainers(id_profesor: number) {
     this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe(
       (data: any) => {
-        if (Array.isArray(data)) {
-          this.trainers = data;
-        } else if (Array.isArray(data.data)) {
-          this.trainers = data.data;
-        } else {
-          this.trainers = [];
-          console.warn('La respuesta del backend no tiene formato esperado');
-        }
+        const trainersArray = Array.isArray(data)
+          ? data
+          : Array.isArray(data?.data)
+          ? data.data
+          : [];
+        this.trainers = trainersArray.map((trainer: any) => ({
+          ...trainer,
+          energies: Array.isArray(trainer.energies) ? trainer.energies : [],
+        }));
+        console.log('Trainers cargados:', this.trainers);
       },
       (error) => {
-        console.error('Error:', error);
+        console.error('Error al obtener los entrenadores:', error);
         this.trainers = [];
       }
     );
