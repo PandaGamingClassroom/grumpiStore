@@ -57,11 +57,21 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('ngOnInit ejecutado');
     if (typeof window !== 'undefined') {
       this.id_profesor = localStorage.getItem('id_profesor');
-      console.log('Id del profesor: ', this.id_profesor);
-      if (this.id_profesor) this.loadTrainers(Number(this.id_profesor));
-      else this.loadProfesores();
+      console.log('Id del profesor desde localStorage:', this.id_profesor);
+
+      const idNum = Number(this.id_profesor);
+      console.log('Id del profesor convertido a número:', idNum);
+
+      if (idNum) {
+        console.log('Llamando a loadTrainers...');
+        this.loadTrainers(idNum);
+      } else {
+        console.log('No hay id_profesor válido, cargando profesores...');
+        this.loadProfesores();
+      }
     }
   }
 
