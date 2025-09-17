@@ -90,6 +90,7 @@ export class DashboardComponent implements OnInit {
         this.trainerService
           .getEntrenadoresByProfesorId(prof.id)
           .subscribe((entrenadores) => {
+            console.log('Respuesta del backend:', entrenadores);
             prof.entrenadores = entrenadores;
           });
       });
