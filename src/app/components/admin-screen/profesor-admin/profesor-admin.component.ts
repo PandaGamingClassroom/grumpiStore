@@ -4,15 +4,12 @@ import {
   DragDropModule,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { AddTrainersComponent } from '../trainers/add-trainers/add-trainers.component';
-import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
-import { FooterComponent } from '../../footer/footer.component';
 import { SeeProfesorsComponent } from './see-profesor/see-profesors.component';
 import { EditCompleteDataProfesorComponent } from './edit-complete-dataProfesor/edit-complete-dataProfesor.component';
 import { DeleteProfessorsComponent } from './delete-professors/delete-professors.component';
@@ -21,13 +18,10 @@ import { DeleteProfessorsComponent } from './delete-professors/delete-professors
   selector: 'app-profesor-admin',
   standalone: true,
   imports: [
-    RouterLink,
-    NavBarAdminComponent,
     CommonModule,
     FormsModule,
     DragDropModule,
     MatDialogModule,
-    FooterComponent,
   ],
   providers: [TrainerService],
   templateUrl: './profesor-admin.component.html',
@@ -98,7 +92,7 @@ export class ProfesorAdmin implements OnInit {
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainers = data.data;
+        this.trainers = data;
         this.loading = false;
       },
       (error) => {

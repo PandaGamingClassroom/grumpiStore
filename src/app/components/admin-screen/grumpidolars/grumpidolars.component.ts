@@ -92,7 +92,7 @@ export class GrumpidolarsComponent implements OnInit {
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainerList = data.data;
+        this.trainerList = data;
         console.log('Entrenadores del profesor: ', this.trainerList);
       },
       (error) => {

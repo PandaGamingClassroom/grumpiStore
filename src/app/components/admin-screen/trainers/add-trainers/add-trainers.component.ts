@@ -8,14 +8,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 
 @Component({
   selector: 'app-add-trainers',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   providers: [TrainerService],
   templateUrl: './add-trainers.component.html',
   styleUrls: ['./add-trainers.component.scss'],
@@ -97,7 +96,7 @@ export class AddTrainersComponent implements OnInit {
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainers = data.data;
+        this.trainers = data;
       },
       (error) => {
         console.error('Error:', error);

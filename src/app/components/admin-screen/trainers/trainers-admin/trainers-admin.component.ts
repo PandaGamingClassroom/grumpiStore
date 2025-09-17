@@ -13,8 +13,6 @@ import { TrainersEditComponent } from '../trainers-edit/trainers-edit.component'
 import { AddTrainersComponent } from '../add-trainers/add-trainers.component';
 import { DeleteTrainersComponent } from '../delete-trainers/delete-trainers.component';
 import { SeeTrainersComponent } from '../see-trainers/see-trainers.component';
-import { NavBarAdminComponent } from '../../navBar-admin/nav-bar-admin/nav-bar-admin.component';
-import { FooterComponent } from '../../../footer/footer.component';
 
 @Component({
   selector: 'app-trainers-admin',
@@ -23,9 +21,7 @@ import { FooterComponent } from '../../../footer/footer.component';
     CommonModule,
     FormsModule,
     MatDialogModule,
-    DragDropModule,
-    NavBarAdminComponent,
-    FooterComponent,
+    DragDropModule
   ],
   providers: [TrainerService],
   templateUrl: './trainers-admin.component.html',
@@ -76,7 +72,7 @@ export class TrainersAdminComponent implements OnInit {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
         console.log('Datos obtenidos de entrenadores:', data);
-        this.trainers = data.data;
+        this.trainers = data;
         this.loading = false;
       },
       (error) => {

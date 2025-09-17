@@ -7,7 +7,6 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { MessageModalComponent } from '../../../../segments/message-modal-component/message-modal.component';
 
@@ -15,7 +14,6 @@ import { MessageModalComponent } from '../../../../segments/message-modal-compon
   selector: 'app-select-trainer',
   standalone: true,
   imports: [
-    RouterLink,
     CommonModule,
     FormsModule,
     MatDialogModule,
@@ -83,7 +81,7 @@ export class SelectTrainerComponent implements OnInit {
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainerList = data.data;
+        this.trainerList = data;
         this.isLoading = false;
         console.log('Entrenadores del profesor: ', this.trainerList);
       },
