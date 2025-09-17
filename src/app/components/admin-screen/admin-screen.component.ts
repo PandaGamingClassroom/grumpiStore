@@ -240,7 +240,8 @@ export class AdminScreenComponent implements OnInit {
   // Muestra la sección activa y colapsa la barra lateral
   showSection(section: string) {
     console.log('Navigating to section:', section);
-
+    this.showLogo = section === null;
+    this.activeSection = section;
     if (section) {
       this.router.navigate([`/admin/${section}`]);
     } else {
