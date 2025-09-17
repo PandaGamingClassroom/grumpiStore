@@ -116,16 +116,20 @@ export class DashboardComponent implements OnInit {
 
   // Cargar profesores y sus entrenadores
   loadProfesores() {
-    this.trainerService.getProfesores().subscribe((profes) => {
-      this.profesores = profes;
-      console.log('Profesores cargados:', this.profesores);
+    this.trainerService.getProfesores().subscribe((profes: any) => {
+      // Tomar directamente el array de profesores
+      this.profesores = profes.profesoresList || [];
+
+      // Cargar entrenadores de cada profesor
       this.profesores.forEach((prof) => {
         this.trainerService
           .getEntrenadoresByProfesorId(prof.id)
           .subscribe((entrenadores) => {
-            prof.entrenadores = entrenadores;
+            prof.entrenadores = entrenadores || [];
           });
       });
+
+      console.log('Profesores finales cargados:', this.profesores);
     });
   }
 
