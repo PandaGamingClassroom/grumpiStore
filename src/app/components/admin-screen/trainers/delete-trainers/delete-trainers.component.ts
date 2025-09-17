@@ -7,7 +7,6 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
 import { TrainerService } from '../../../services/trainers/trainer.service';
 import { ConfirmModalComponentComponent } from '../../../../segments/confirm-modal-component/confirm-modal-component.component';
 import { ErrorLoginModalComponentComponent } from '../../../../segments/error-login-modal-component/error-login-modal-component.component';
@@ -15,7 +14,7 @@ import { ErrorLoginModalComponentComponent } from '../../../../segments/error-lo
 @Component({
   selector: 'app-delete-trainers',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule, MatDialogModule],
+  imports: [CommonModule, FormsModule, MatDialogModule],
   providers: [TrainerService],
   templateUrl: './delete-trainers.component.html',
   styleUrls: ['./delete-trainers.component.scss'],
@@ -65,16 +64,16 @@ export class DeleteTrainersComponent implements OnInit {
     console.log('Entrenador a eliminar: ', this.trainerSelected);
     const titleError = 'Algo ha salido mal';
     const messageError = 'No se encontró el entrenador a eliminar';
-  
+
     const trainerToDelete = this.trainers.find(
       (trainer) => trainer.name === this.trainerSelected
     );
-  
+
     if (!trainerToDelete) {
       this.openErrorModal(titleError, messageError);
       return;
     }
-  
+
     this.trainersService.eliminarRegistro(trainerToDelete.id).subscribe(
       (response) => {
         const data = {
@@ -100,14 +99,14 @@ export class DeleteTrainersComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
 
   // Función para obtener la información de los entrenadores de un profesor.
   getEntrenadores(profesorId: number) {
     this.trainersService.getEntrenadoresByProfesorId(profesorId).subscribe(
       (data) => {
-        this.trainers = data.data;
+        this.trainers = data;
       },
       (error) => {
         console.error('Error:', error);
