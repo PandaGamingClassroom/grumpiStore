@@ -64,24 +64,27 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // 🔹 Cargar entrenadores de un profesor
+  // Cargar entrenadores de un profesor
   loadTrainers(id_profesor: number) {
-    this.trainerService
-      .getEntrenadoresByProfesorId(id_profesor)
-      .subscribe((data) => {
-        this.trainers = data;
-        this.originalTrainers = JSON.parse(JSON.stringify(data));
-
-        // Unificamos la estructura: profesores siempre tiene al menos 1
-        this.profesores = [
-          { id: id_profesor, name: 'Profesor actual', entrenadores: data },
-        ];
-
-        this.cdr.detectChanges();
-      });
+    this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe(
+      (data: any) => {
+        if (Array.isArray(data)) {
+          this.trainers = data;
+        } else if (Array.isArray(data.data)) {
+          this.trainers = data.data;
+        } else {
+          this.trainers = [];
+          console.warn('La respuesta del backend no tiene formato esperado');
+        }
+      },
+      (error) => {
+        console.error('Error:', error);
+        this.trainers = [];
+      }
+    );
   }
 
-  // 🔹 Cargar profesores y sus entrenadores
+  // Cargar profesores y sus entrenadores
   loadProfesores() {
     this.trainerService.getProfesores().subscribe((profes) => {
       this.profesores = profes;
@@ -97,12 +100,12 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // 🔹 Renderización eficiente en *ngFor
+  // Renderización eficiente en *ngFor
   trackById(index: number, item: any): string {
     return item.id?.toString() ?? index.toString();
   }
 
-  // 🔹 Modificación de energías
+  // Modificación de energías
   incrementEnergy(trainer: Trainer, tipo: string) {
     trainer.energies = trainer.energies.map((e) =>
       e.tipo === tipo ? { ...e, cantidad: e.cantidad + 1 } : e
@@ -122,7 +125,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  // 🔹 Guardar cambios de energías
+  // Guardar cambios de energías
   guardarCambios(): void {
     if (!this.trainers.length) return;
 
@@ -145,7 +148,7 @@ export class DashboardComponent implements OnInit {
     console.log('Cambios cancelados, datos restaurados.');
   }
 
-  // 🔹 Asignar objetos a un entrenador
+  // Asignar objetos a un entrenador
   assignObjectToTrainer(trainer: Trainer, objeto: any) {
     switch (this.selectedObjectType) {
       case 'grumpis':
