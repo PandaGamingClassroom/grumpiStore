@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit {
   loadProfesor(id: any){
     this.trainerService.getProfesor(id).subscribe((profesor: any) => {
       this.profesor = profesor;
+      this.cargarEntrenadoresProfesor(this.profesor.id);
     });
   }
 
