@@ -592,18 +592,8 @@ export class TrainerService {
       .get<any>(`${this.apiUrl}profesor/${profesorId}/entrenadores`)
       .pipe(
         map((res) => {
-          // Normalizar siempre a array
-          let trainers: any[] = [];
-          if (Array.isArray(res)) {
-            trainers = res;
-          } else if (Array.isArray(res?.trainers)) {
-            trainers = res.trainers;
-          } else {
-            console.warn('El backend no devolvió un array válido:', res);
-            trainers = [];
-          }
+          const trainers: any[] = Array.isArray(res?.data) ? res.data : [];
 
-          // Mapear asegurando arrays en cada propiedad
           return trainers.map((tr) => ({
             ...tr,
             energies: Array.isArray(tr.energies) ? tr.energies : [],
