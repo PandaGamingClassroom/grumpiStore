@@ -29,7 +29,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trainer of trainers; trackBy: trackById">
+        {{ trainers | json}}
+        <!-- <tr *ngFor="let trainer of trainers; trackBy: trackById">
           <td>{{ trainer.name }}</td>
           <td>
             <ng-container [ngSwitch]="selectedObjectType">
@@ -55,7 +56,7 @@
               </ul>
             </ng-container>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
