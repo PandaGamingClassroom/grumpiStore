@@ -16,14 +16,12 @@
     </select>
   </div>
 
-  <!-- Tabla de entrenadores por profesor -->
-  <div *ngFor="let profesor of profesores">
-    <!-- 👇 DEBUG: ver profesor completo -->
+  <div *ngIf="profesor">
     <pre>{{ profesor | json }}</pre>
 
     <h4 class="mt-3">{{ profesor.nombre }} {{ profesor.apellidos }}</h4>
 
-    <table class="table table-bordered" *ngIf="profesor.entrenadores?.length">
+    <table class="table table-bordered" *ngIf="trainers?.length">
       <thead>
         <tr>
           <th>Entrenador</th>
@@ -31,7 +29,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trainer of profesor.entrenadores; trackBy: trackById">
+        <tr *ngFor="let trainer of trainers; trackBy: trackById">
           <td>{{ trainer.name }}</td>
           <td>
             <ng-container [ngSwitch]="selectedObjectType">

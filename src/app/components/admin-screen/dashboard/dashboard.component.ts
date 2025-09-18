@@ -31,7 +31,7 @@ interface Trainer {
 })
 export class DashboardComponent implements OnInit {
   trainers: Trainer[] = [];
-  profesores: any[] = [];
+  profesor: any;
   selectedObjectType: string = 'grumpis';
   id_profesor: number | string | null = null;
 
@@ -45,53 +45,27 @@ export class DashboardComponent implements OnInit {
     console.log('id_profesor desde localStorage:', this.id_profesor);
 
     // Cargar todos los profesores + sus entrenadores
-    this.loadProfesores();
+    this.loadProfesor(this.id_profesor);
   }
 
-  // Cargar profesores y sus entrenadores
-  loadProfesores() {
-    this.trainerService.getProfesores().subscribe((profes: any) => {
-      // Normalizar la lista de profesores
-      this.profesores = profes?.profesoresList || [];
-      console.log('Profesores crudos:', profes);
+  /**
+   * Función para obtener los datos del profesor que ha iniciado sesión.
+   * @param id Id del profesor que ha iniciado
+   */
+  loadProfesor(id: any){
+    this.trainerService.getProfesor(id).subscribe((profesor: any) => {
+      this.profesor = profesor;
+    });
+  }
 
-      // Para cada profesor, cargar sus entrenadores
-      this.profesores.forEach((prof) => {
-        this.trainerService
-          .getEntrenadoresByProfesorId(prof.id)
-          .subscribe((res: any) => {
-            console.log(`Entrenadores crudos de prof ${prof.id}:`, res);
-
-            // Normalizar a array
-            let entrenadoresArray: any[] = [];
-            if (Array.isArray(res)) {
-              entrenadoresArray = res;
-            } else if (Array.isArray(res?.trainers)) {
-              entrenadoresArray = res.trainers;
-            } else {
-              console.warn('El backend no devolvió un array válido:', res);
-              entrenadoresArray = [];
-            }
-
-            // Mapear asegurando arrays en cada campo
-            prof.entrenadores = entrenadoresArray.map((trainer: any) => ({
-              ...trainer,
-              energies: Array.isArray(trainer.energies) ? trainer.energies : [],
-              grumpis: Array.isArray(trainer.grumpis) ? trainer.grumpis : [],
-              medallas: Array.isArray(trainer.medallas) ? trainer.medallas : [],
-              distintivos_liga: Array.isArray(trainer.distintivos_liga)
-                ? trainer.distintivos_liga
-                : [],
-              recompensas: Array.isArray(trainer.recompensas)
-                ? trainer.recompensas
-                : [],
-            }));
-
-            this.cdr.detectChanges(); // forzar actualización en la vista
-          });
-      });
-
-      this.cdr.detectChanges();
+  /**
+   * Función para obtener los entrenadores del profesor que ha iniciado sesión.
+   * @param id_profesor ID del profesor.
+   */
+  cargarEntrenadoresProfesor(id_profesor: any) {
+    this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe((entrenadores: any) => {
+      console.log('Lista de entrenadores del profesor: ', entrenadores);
+      this.trainers = entrenadores;
     });
   }
 
