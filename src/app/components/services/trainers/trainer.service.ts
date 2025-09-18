@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, switchMap, throwError } from 'rxjs';
 import { environmentProd } from '../../../../environments/environment';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -760,5 +761,77 @@ export class TrainerService {
           }
         );
     });
+  }
+
+  /**
+   * Asigna un objeto a múltiples entrenadores según el tipo de objeto.
+   *
+   * @param trainerIds IDs de los entrenadores
+   * @param object El objeto a asignar
+   * @param objectType Tipo de objeto: 'grumpis' | 'grumpidolares' | 'medallas' | 'distintivos' | 'recompensas' | 'energias' | 'objetos_combate'
+   */
+  assignObjectToTrainers(
+    trainerIds: number[],
+    object: any,
+    objectType: string
+  ): Observable<any> {
+    let url = '';
+    let body: any = {};
+
+    switch (objectType) {
+      case 'grumpis':
+        url = `${this.apiUrl}assign-creature`;
+        body = { trainerIDs: trainerIds, creature: object };
+        break;
+      case 'grumpidolares':
+        url = `${this.apiUrl}assign-grumpidolares`;
+        body = { trainerIDs: trainerIds, grumpidolares: object };
+        break;
+      case 'medallas':
+        url = `${this.apiUrl}assign-medal`;
+        body = { trainerIDs: trainerIds, medal: object };
+        break;
+      case 'distintivos':
+        url = `${this.apiUrl}assign-badge`;
+        body = { trainerIDs: trainerIds, badge: object };
+        break;
+      case 'recompensas':
+        url = `${this.apiUrl}assign-rewards`;
+        body = { trainerIDs: trainerIds, reward: object };
+        break;
+      case 'energias':
+        url = `${this.apiUrl}assign-energie`;
+        body = { trainerIDs: trainerIds, energie: object };
+        break;
+      case 'objetos_combate':
+        url = `${this.apiUrl}assign-combatObjects`;
+        body = { trainerIDs: trainerIds, combatObject: object };
+        break;
+      default:
+        console.warn('Tipo de objeto no soportado:', objectType);
+        return throwError(() => new Error('Tipo de objeto no soportado'));
+    }
+
+    return this.http.post<any>(url, body).pipe(
+      catchError((error) => {
+        console.error(`Error al asignar ${objectType} a entrenadores`, error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  updateTrainerMultiple(
+    trainerIds: number[],
+    trainerData: any
+  ): Observable<any[]> {
+    const updates = trainerIds.map((id) =>
+      this.updateTrainer(id.toString(), trainerData)
+    );
+    return forkJoin(updates); // Ejecuta todas las actualizaciones en paralelo y devuelve un array de respuestas
+  }
+
+  assignRewardToTrainers(trainerIds: number[], reward: any): Observable<any[]> {
+    const assignments = trainerIds.map((id) => this.assignReward(id, reward));
+    return forkJoin(assignments);
   }
 }
