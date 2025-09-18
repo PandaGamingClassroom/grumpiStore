@@ -29,34 +29,33 @@
         </tr>
       </thead>
       <tbody>
-        {{ trainers | json}}
-        <!-- <tr *ngFor="let trainer of trainers; trackBy: trackById">
+        <tr *ngFor="let trainer of trainers || []; trackBy: trackById">
           <td>{{ trainer.name }}</td>
           <td>
             <ng-container [ngSwitch]="selectedObjectType">
               <ul *ngSwitchCase="'grumpis'">
-                <li *ngFor="let grumpi of trainer.grumpis">
+                <li *ngFor="let grumpi of trainer.grumpis || []">
                   {{ grumpi.nombre }}
                 </li>
               </ul>
               <ul *ngSwitchCase="'medallas'">
-                <li *ngFor="let medal of trainer.medallas">
+                <li *ngFor="let medal of trainer.medallas || []">
                   {{ medal.nombre }}
                 </li>
               </ul>
               <ul *ngSwitchCase="'distintivos'">
-                <li *ngFor="let badge of trainer.distintivos_liga">
+                <li *ngFor="let badge of trainer.distintivos_liga || []">
                   {{ badge.nombre }}
                 </li>
               </ul>
               <ul *ngSwitchCase="'recompensas'">
-                <li *ngFor="let reward of trainer.recompensas">
+                <li *ngFor="let reward of trainer.recompensas || []">
                   {{ reward.nombre }}
                 </li>
               </ul>
             </ng-container>
           </td>
-        </tr> -->
+        </tr>
       </tbody>
     </table>
   </div>
