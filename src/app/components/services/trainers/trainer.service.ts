@@ -589,10 +589,22 @@ export class TrainerService {
 
   getEntrenadoresByProfesorId(profesorId: number): Observable<any[]> {
     return this.http
-      .get<any[]>(`${this.apiUrl}profesor/${profesorId}/entrenadores`)
+      .get<any>(`${this.apiUrl}profesor/${profesorId}/entrenadores`)
       .pipe(
-        map((trainers) =>
-          trainers.map((tr) => ({
+        map((res) => {
+          // Normalizar siempre a array
+          let trainers: any[] = [];
+          if (Array.isArray(res)) {
+            trainers = res;
+          } else if (Array.isArray(res?.trainers)) {
+            trainers = res.trainers;
+          } else {
+            console.warn('El backend no devolvió un array válido:', res);
+            trainers = [];
+          }
+
+          // Mapear asegurando arrays en cada propiedad
+          return trainers.map((tr) => ({
             ...tr,
             energies: Array.isArray(tr.energies) ? tr.energies : [],
             grumpis: Array.isArray(tr.grumpis) ? tr.grumpis : [],
@@ -601,8 +613,8 @@ export class TrainerService {
               ? tr.distintivos_liga
               : [],
             recompensas: Array.isArray(tr.recompensas) ? tr.recompensas : [],
-          }))
-        ),
+          }));
+        }),
         catchError((error) => {
           console.error('Error al obtener los entrenadores:', error);
           return throwError(() => error);
