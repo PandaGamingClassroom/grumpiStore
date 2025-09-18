@@ -3,7 +3,9 @@
 <div class="container mt-4">
   <!-- Selección del tipo de objeto -->
   <div class="mb-3">
-    <label for="objectType"><strong>Selecciona el objeto a asignar:</strong></label>
+    <label for="objectType"
+      ><strong>Selecciona el objeto a asignar:</strong></label
+    >
     <select
       id="objectType"
       class="form-select"
@@ -17,46 +19,109 @@
   </div>
 
   <div *ngIf="profesor">
-    <pre>{{ profesor | json }}</pre>
+    <div class="table-responsive" style="max-height: 400px; overflow-y: auto">
+      <table class="table table-bordered" *ngIf="trainers?.length">
+        <thead class="table-light">
+          <tr>
+            <th><input type="checkbox" disabled /> Entrenador</th>
+            <th>{{ selectedObjectType | titlecase }}</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trainer of trainers || []; trackBy: trackById">
+            <td>
+              <input
+                type="checkbox"
+                (change)="toggleTrainerSelection(trainer, $event)"
+              />
+              {{ trainer.name }}
+            </td>
+            <td>
+              <ng-container [ngSwitch]="selectedObjectType">
+                <ul *ngSwitchCase="'grumpis'">
+                  <li *ngFor="let grumpi of trainer.grumpis || []">
+                    {{ grumpi.nombre }}
+                  </li>
+                </ul>
+                <ul *ngSwitchCase="'medallas'">
+                  <li *ngFor="let medal of trainer.medallas || []">
+                    {{ medal.nombre }}
+                  </li>
+                </ul>
+                <ul *ngSwitchCase="'distintivos'">
+                  <li *ngFor="let badge of trainer.distintivos_liga || []">
+                    {{ badge.nombre }}
+                  </li>
+                </ul>
+                <ul *ngSwitchCase="'recompensas'">
+                  <li *ngFor="let reward of trainer.recompensas || []">
+                    {{ reward.nombre }}
+                  </li>
+                </ul>
+              </ng-container>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm btn-primary"
+                (click)="openAssignModal(trainer)"
+              >
+                Asignar {{ selectedObjectType }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Botón global para asignar a todos los seleccionados -->
+  <div class="mt-3">
+    <button
+      class="btn btn-success"
+      [disabled]="selectedTrainers.length === 0 || !selectedObject"
+      (click)="assignObjectToSelectedTrainers(selectedObject)"
+    >
+      Asignar {{ selectedObjectType }} a todos los seleccionados
+    </button>
+  </div>
+</div>
 
-    <h4 class="mt-3">{{ profesor.nombre }} {{ profesor.apellidos }}</h4>
+<div class="modal fade" id="assignModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Asignar {{ selectedObjectType | titlecase }} a
+          {{ selectedTrainer?.name }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Aquí un selector de objetos según el tipo -->
+        <div *ngIf="selectedObjectType === 'grumpis'">
+          <label>Selecciona un Grumpi:</label>
+          <select class="form-select" [(ngModel)]="selectedObject">
+            <option *ngFor="let g of grumpisDisponibles" [ngValue]="g">
+              {{ g.nombre }}
+            </option>
+          </select>
+        </div>
 
-    <table class="table table-bordered" *ngIf="trainers?.length">
-      <thead>
-        <tr>
-          <th>Entrenador</th>
-          <th>{{ selectedObjectType | titlecase }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let trainer of trainers || []; trackBy: trackById">
-          <td>{{ trainer.name }}</td>
-          <td>
-            <ng-container [ngSwitch]="selectedObjectType">
-              <ul *ngSwitchCase="'grumpis'">
-                <li *ngFor="let grumpi of trainer.grumpis || []">
-                  {{ grumpi.nombre }}
-                </li>
-              </ul>
-              <ul *ngSwitchCase="'medallas'">
-                <li *ngFor="let medal of trainer.medallas || []">
-                  {{ medal.nombre }}
-                </li>
-              </ul>
-              <ul *ngSwitchCase="'distintivos'">
-                <li *ngFor="let badge of trainer.distintivos_liga || []">
-                  {{ badge.nombre }}
-                </li>
-              </ul>
-              <ul *ngSwitchCase="'recompensas'">
-                <li *ngFor="let reward of trainer.recompensas || []">
-                  {{ reward.nombre }}
-                </li>
-              </ul>
-            </ng-container>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <!-- Similar para medallas, distintivos, recompensas -->
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-primary"
+          (click)="assignObjectToTrainer(selectedObject)"
+          data-bs-dismiss="modal"
+        >
+          Asignar
+        </button>
+      </div>
+    </div>
   </div>
 </div>

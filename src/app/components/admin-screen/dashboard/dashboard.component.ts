@@ -35,6 +35,18 @@ export class DashboardComponent implements OnInit {
   selectedObjectType: string = 'grumpis';
   id_profesor: number | string | null = null;
 
+  // 🔹 Para el modal
+  selectedTrainer: Trainer | null = null;
+  selectedObject: any = null;
+  selectedTrainers: Trainer[] = [];
+
+  // 🔹 Ejemplo de objetos disponibles (puedes cargar desde servicio)
+  grumpisDisponibles: any[] = [
+    { nombre: 'Grumpi 1' },
+    { nombre: 'Grumpi 2' },
+    { nombre: 'Grumpi 3' },
+  ];
+
   constructor(
     private trainerService: TrainerService,
     private cdr: ChangeDetectorRef
@@ -44,14 +56,11 @@ export class DashboardComponent implements OnInit {
     this.id_profesor = localStorage.getItem('id_profesor');
     console.log('id_profesor desde localStorage:', this.id_profesor);
 
-    // Cargar todos los profesores + sus entrenadores
-    this.loadProfesor(this.id_profesor);
+    if (this.id_profesor) {
+      this.loadProfesor(this.id_profesor);
+    }
   }
 
-  /**
-   * Función para obtener los datos del profesor que ha iniciado sesión.
-   * @param id Id del profesor que ha iniciado
-   */
   loadProfesor(id: any) {
     this.trainerService.getProfesor(id).subscribe((profesor: any) => {
       this.profesor = profesor;
@@ -59,27 +68,20 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  /**
-   * Función para obtener los entrenadores del profesor que ha iniciado sesión.
-   * @param id_profesor ID del profesor.
-   */
   cargarEntrenadoresProfesor(id_profesor: any) {
-    this.trainerService
-      .getEntrenadoresByProfesorId(id_profesor)
-      .subscribe((res: any) => {
+    this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe(
+      (res: any) => {
         console.log('Respuesta cruda entrenadores:', res);
 
         let entrenadores: any[] = [];
         if (Array.isArray(res)) {
           entrenadores = res;
-        } else if (Array.isArray(res?.trainers)) {
-          entrenadores = res.trainers;
+        } else if (Array.isArray(res?.data)) {
+          entrenadores = res.data;
         } else {
-          console.warn('El backend no devolvió un array:', res);
-          entrenadores = [];
+          console.warn('El backend no devolvió un array válido:', res);
         }
 
-        // Normalizar cada campo a array
         this.trainers = entrenadores.map((t: any) => ({
           ...t,
           energies: Array.isArray(t.energies) ? t.energies : [],
@@ -92,10 +94,100 @@ export class DashboardComponent implements OnInit {
         }));
 
         console.log('Entrenadores normalizados:', this.trainers);
-      });
+      },
+      (err) => console.error('Error cargando entrenadores:', err)
+    );
   }
 
   trackById(index: number, item: any): string {
     return item.id?.toString() ?? index.toString();
+  }
+
+  // Marcar/desmarcar entrenador
+  toggleTrainerSelection(trainer: Trainer, event: any) {
+    if (event.target.checked) {
+      this.selectedTrainers.push(trainer);
+    } else {
+      this.selectedTrainers = this.selectedTrainers.filter(
+        (t) => t.id !== trainer.id
+      );
+    }
+  }
+
+  openAssignModal(trainer: Trainer) {
+    this.selectedTrainer = trainer;
+    this.selectedObject = null; // reset
+
+    const modal = new (window as any).bootstrap.Modal(
+      document.getElementById('assignModal')
+    );
+    modal.show();
+  }
+
+  assignObjectToTrainer(object: any) {
+    if (!this.selectedTrainer || !object) return;
+
+    // Llamar al servicio según el tipo
+    switch (this.selectedObjectType) {
+      case 'grumpis':
+        this.trainerService
+          .assignCreatureToTrainer(this.selectedTrainer.id, object)
+          .subscribe(() => this.refreshTrainers());
+        break;
+      case 'medallas':
+        this.trainerService
+          .assignMedalToTrainer(this.selectedTrainer.name, object)
+          .subscribe(() => this.refreshTrainers());
+        break;
+      case 'distintivos':
+        this.trainerService
+          .assignBadgeToTrainers([this.selectedTrainer.name], object)
+          .subscribe(() => this.refreshTrainers());
+        break;
+      case 'recompensas':
+        this.trainerService
+          .assignReward(this.selectedTrainer.id, object)
+          .subscribe(() => this.refreshTrainers());
+        break;
+    }
+  }
+
+  // Asignar objeto a todos los entrenadores seleccionados
+  assignObjectToSelectedTrainers(object: any) {
+    if (!object || !this.selectedTrainers.length) return;
+
+    this.selectedTrainers.forEach((trainer) => {
+      switch (this.selectedObjectType) {
+        case 'grumpis':
+          this.trainerService
+            .assignCreatureToTrainer(trainer.id, object)
+            .subscribe(() => this.refreshTrainers());
+          break;
+        case 'medallas':
+          this.trainerService
+            .assignMedalToTrainer(trainer.name, object)
+            .subscribe(() => this.refreshTrainers());
+          break;
+        case 'distintivos':
+          this.trainerService
+            .assignBadgeToTrainers([trainer.name], object)
+            .subscribe(() => this.refreshTrainers());
+          break;
+        case 'recompensas':
+          this.trainerService
+            .assignReward(trainer.id, object)
+            .subscribe(() => this.refreshTrainers());
+          break;
+      }
+    });
+
+    // Limpiar selección después
+    this.selectedTrainers = [];
+  }
+
+  refreshTrainers() {
+    if (this.profesor?.id) {
+      this.cargarEntrenadoresProfesor(this.profesor.id);
+    }
   }
 }
