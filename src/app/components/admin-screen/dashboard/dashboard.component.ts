@@ -77,41 +77,36 @@ export class DashboardComponent implements OnInit {
 
   // Cargar entrenadores de un profesor
   loadTrainers(id_profesor: number) {
-    this.trainerService.getEntrenadoresByProfesorId(id_profesor).subscribe(
-      (data: any) => {
-        console.log('--- DEBUG ---');
-        console.log('Valor de data recibido:', data);
-        console.log('Tipo de data:', typeof data);
-        console.log('Es array?', Array.isArray(data));
-        console.log('Tiene data.trainers?', data?.trainers);
+    this.trainerService
+      .getEntrenadoresByProfesorId(id_profesor)
+      .subscribe((res: any) => {
+        // Normalizar siempre a array
+        let entrenadoresArray: any[] = [];
 
-        // Asegurarnos de que siempre sea un array
-        let trainersArray: any[] = [];
-        if (Array.isArray(data)) {
-          trainersArray = data;
-        } else if (Array.isArray(data?.trainers)) {
-          trainersArray = data.trainers;
+        if (Array.isArray(res)) {
+          entrenadoresArray = res;
+        } else if (Array.isArray(res?.trainers)) {
+          entrenadoresArray = res.trainers;
         } else {
-          console.warn(
-            'Backend no devolvió un array válido. Se usará array vacío.'
-          );
-          trainersArray = [];
+          console.warn('El backend no devolvió un array válido:', res);
+          entrenadoresArray = [];
         }
 
-        console.log('TrainersArray final que se mapeará:', trainersArray);
-
-        this.trainers = trainersArray.map((trainer: any) => ({
+        res.entrenadores = entrenadoresArray.map((trainer: any) => ({
           ...trainer,
           energies: Array.isArray(trainer.energies) ? trainer.energies : [],
+          grumpis: Array.isArray(trainer.grumpis) ? trainer.grumpis : [],
+          medallas: Array.isArray(trainer.medallas) ? trainer.medallas : [],
+          distintivos_liga: Array.isArray(trainer.distintivos_liga)
+            ? trainer.distintivos_liga
+            : [],
+          recompensas: Array.isArray(trainer.recompensas)
+            ? trainer.recompensas
+            : [],
         }));
 
-        console.log('Trainers cargados:', this.trainers);
-      },
-      (error) => {
-        console.error('Error al obtener los entrenadores:', error);
-        this.trainers = [];
-      }
-    );
+        this.cdr.detectChanges(); // forzar actualización
+      });
   }
 
   // Cargar profesores y sus entrenadores
