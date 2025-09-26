@@ -33,17 +33,30 @@ interface Trainer {
 export class DashboardComponent implements OnInit {
   trainers: Trainer[] = [];
   profesor: any;
-  selectedObjectType: string = 'grumpis';
   id_profesor: number | null = null;
 
   selectedTrainer: Trainer | null = null;
   selectedObject: any = null;
   selectedTrainers: Trainer[] = [];
+  modalObjectType: string = '';
 
+  // Disponibles (esto lo ideal es que venga de backend, pero dejo mock de ejemplo)
   grumpisDisponibles: any[] = [
     { nombre: 'Grumpi 1' },
     { nombre: 'Grumpi 2' },
     { nombre: 'Grumpi 3' },
+  ];
+  medallasDisponibles: any[] = [
+    { nombre: 'Medalla Agua' },
+    { nombre: 'Medalla Fuego' },
+  ];
+  distintivosDisponibles: any[] = [
+    { nombre: 'Distintivo Oro' },
+    { nombre: 'Distintivo Plata' },
+  ];
+  recompensasDisponibles: any[] = [
+    { nombre: 'Recompensa XP' },
+    { nombre: 'Recompensa Objeto' },
   ];
 
   constructor(
@@ -98,28 +111,62 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  openAssignModal(trainer: Trainer) {
+  // Abrir modal para asignar objetos
+  openAssignModal(trainer: Trainer, type: string) {
     this.selectedTrainer = trainer;
     this.selectedObject = null;
+    this.modalObjectType = type;
     const modal = new (window as any).bootstrap.Modal(
       document.getElementById('assignModal')
     );
     modal.show();
   }
 
-  assignObjectToTrainer(object: any) {
+  // Asignar objeto a un entrenador
+  assignObjectToTrainer(object: any, type: string) {
     if (!this.selectedTrainer || !object) return;
-    this.assignObject([this.selectedTrainer], object);
+    this.assignObject([this.selectedTrainer], object, type);
   }
 
-  assignObjectToSelectedTrainers(object: any) {
+  // Asignar objeto a varios entrenadores
+  assignObjectToSelectedTrainers(object: any, type: string) {
     if (!object || !this.selectedTrainers.length) return;
-    this.assignObject(this.selectedTrainers, object);
+    this.assignObject(this.selectedTrainers, object, type);
     this.selectedTrainers = [];
   }
 
-  private assignObject(trainers: Trainer[], object: any) {
-    const listKey = this.getListKeyByObjectType(this.selectedObjectType);
+  // Quitar objeto a un entrenador
+  removeObjectFromTrainer(trainer: Trainer, object: any, type: string) {
+    const listKey = this.getListKeyByObjectType(type);
+
+    // 1. Actualizas la lista en memoria
+    trainer[listKey] = trainer[listKey].filter(
+      (item: any) => item.nombre !== object.nombre
+    );
+
+    // 2. Preparas lo que vas a enviar al servicio
+    const objetosAEliminar = [
+      {
+        trainerId: trainer.id, // Asegúrate de que el Trainer tiene `id`
+        type, // Tipo de objeto (ej: 'grumpis', 'medallas', etc.)
+        object, // Objeto a eliminar
+      },
+    ];
+
+    // 3. Llamas al servicio que SÍ tienes definido
+    this.trainerService.deleteObjectsFromTrainer(objetosAEliminar).subscribe(
+      (res) => {
+        console.log('Objetos eliminados:', res);
+      },
+      (error) => {
+        console.error('Error al eliminar objetos:', error);
+      }
+    );
+  }
+
+  // Lógica general de asignación
+  private assignObject(trainers: Trainer[], object: any, type: string) {
+    const listKey = this.getListKeyByObjectType(type);
     const validTrainers: Trainer[] = [];
     let alreadyHasObject = false;
 
@@ -139,7 +186,7 @@ export class DashboardComponent implements OnInit {
 
     const trainerIds = validTrainers.map((t) => t.id);
     this.trainerService
-      .assignObjectToTrainers(trainerIds, object, this.selectedObjectType)
+      .assignObjectToTrainers(trainerIds, object, type)
       .subscribe(() => this.refreshTrainers());
   }
 
