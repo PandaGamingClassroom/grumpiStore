@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TrainerService } from '../../services/trainers/trainer.service';
 import { NavBarAdminComponent } from '../navBar-admin/nav-bar-admin/nav-bar-admin.component';
+import { GrumpiService } from '../../services/grumpi/grumpi.service';
 
 interface Energia {
   tipo: string;
@@ -26,7 +27,7 @@ interface Trainer {
   selector: 'app-dashboard-screen',
   standalone: true,
   imports: [CommonModule, FormsModule, NavBarAdminComponent],
-  providers: [TrainerService],
+  providers: [TrainerService, GrumpiService],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
@@ -41,105 +42,8 @@ export class DashboardComponent implements OnInit {
   modalObjectType: string = '';
 
   // Mock de disponibles (ideal: pedir al backend)
-  grumpisDisponibles: any[] = [
-    {
-      id: 8,
-      trainer_id: 0,
-      nombre: 'Elekspike',
-      PS: 120,
-      n_grumpidex: '008',
-      clase: 'evolucion',
-      img_general:
-        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/general/008.1.png',
-      img_conseguir:
-        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/howToGetGrumpis/008.1.png',
-      descripcion:
-        'Forma evolucionada de Elekspoke. Recubre su cuerpo con nuevas púas que le permite almacenar una mayor cantidad de electricidad. Es capaz de dar electricidad a un hogar solo con la energía que almacena en un día.',
-      Ciclo1: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      Ciclo2: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      Ciclo3: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      ataques: [
-        {
-          nombre: 'Púa Rayo',
-          efecto: '20: Lanzar moneda: Cara paraliza, cruz, no hace nada',
-          tipo: 'Rayo',
-        },
-        {
-          nombre: 'Descarga',
-          efecto: '40',
-          tipo: 'Rayo',
-        },
-      ],
-      tipo: 'Rayo',
-      cantidad: 1,
-    },
-    {
-      id: 9,
-      trainer_id: 0,
-      nombre: 'Elekspike',
-      PS: 120,
-      n_grumpidex: '008',
-      clase: 'evolucion',
-      img_general:
-        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/general/008.1.png',
-      img_conseguir:
-        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/howToGetGrumpis/008.1.png',
-      descripcion:
-        'Forma evolucionada de Elekspoke. Recubre su cuerpo con nuevas púas que le permite almacenar una mayor cantidad de electricidad. Es capaz de dar electricidad a un hogar solo con la energía que almacena en un día.',
-      Ciclo1: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      Ciclo2: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      Ciclo3: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      ataques: [
-        {
-          nombre: 'Púa Rayo',
-          efecto: '20: Lanzar moneda: Cara paraliza, cruz, no hace nada',
-          tipo: 'Rayo',
-        },
-        {
-          nombre: 'Descarga',
-          efecto: '40',
-          tipo: 'Rayo',
-        },
-      ],
-      tipo: 'Rayo',
-      cantidad: 1,
-    },
-    {
-      id: 10,
-      trainer_id: 0,
-      nombre: 'Elekspike',
-      PS: 120,
-      n_grumpidex: '008',
-      clase: 'evolucion',
-      img_general:
-        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/general/008.1.png',
-      img_conseguir:
-        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/howToGetGrumpis/008.1.png',
-      descripcion:
-        'Forma evolucionada de Elekspoke. Recubre su cuerpo con nuevas púas que le permite almacenar una mayor cantidad de electricidad. Es capaz de dar electricidad a un hogar solo con la energía que almacena en un día.',
-      Ciclo1: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      Ciclo2: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      Ciclo3: 'Pagar 3 energías de rayo y tener a Elekspoke.',
-      ataques: [
-        {
-          nombre: 'Púa Rayo',
-          efecto: '20: Lanzar moneda: Cara paraliza, cruz, no hace nada',
-          tipo: 'Rayo',
-        },
-        {
-          nombre: 'Descarga',
-          efecto: '40',
-          tipo: 'Rayo',
-        },
-      ],
-      tipo: 'Rayo',
-      cantidad: 1,
-    },
-  ];
-  medallasDisponibles: any[] = [
-    { nombre: 'Medalla Agua' },
-    { nombre: 'Medalla Fuego' },
-  ];
+  grumpisDisponibles: any[] = [];
+  medallasDisponibles: any[] = [];
   distintivosDisponibles: any[] = [
     { nombre: 'Distintivo Oro' },
     { nombre: 'Distintivo Plata' },
@@ -159,7 +63,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private trainerService: TrainerService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private grumpiService: GrumpiService
   ) {}
 
   ngOnInit(): void {
@@ -195,6 +100,36 @@ export class DashboardComponent implements OnInit {
       },
       error: (err) => console.error('Error cargando entrenadores:', err),
     });
+  }
+
+  /**
+   * Función para obtener la lista de Grumpis disponibles
+   */
+  loadGrumpis() {
+    this.grumpiService.getGrumpis().subscribe(
+      (response) => {
+        this.grumpisDisponibles = response.grumpis_list;
+        console.log('Grumpis: ', this.grumpisDisponibles);
+      },
+      (error) => {
+        console.error('Error al obtener las URLs de las imágenes:', error);
+      }
+    );
+  }
+
+  /**
+   * Función para obtener la lista de medallas disponibles
+   */
+  loadmedalsImages() {
+    this.grumpiService.getImageMedals().subscribe(
+      (response) => {
+        this.medallasDisponibles = response.medals_list;
+        console.log('URL: ', this.medallasDisponibles);
+      },
+      (error) => {
+        console.error('Error al obtener las URLs de las imágenes:', error);
+      }
+    );
   }
 
   trackById(index: number, item: any): string {
