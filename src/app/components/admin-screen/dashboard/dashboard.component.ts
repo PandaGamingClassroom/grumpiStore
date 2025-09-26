@@ -42,9 +42,99 @@ export class DashboardComponent implements OnInit {
 
   // Mock de disponibles (ideal: pedir al backend)
   grumpisDisponibles: any[] = [
-    { nombre: 'Grumpi 1' },
-    { nombre: 'Grumpi 2' },
-    { nombre: 'Grumpi 3' },
+    {
+      id: 8,
+      trainer_id: 0,
+      nombre: 'Elekspike',
+      PS: 120,
+      n_grumpidex: '008',
+      clase: 'evolucion',
+      img_general:
+        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/general/008.1.png',
+      img_conseguir:
+        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/howToGetGrumpis/008.1.png',
+      descripcion:
+        'Forma evolucionada de Elekspoke. Recubre su cuerpo con nuevas púas que le permite almacenar una mayor cantidad de electricidad. Es capaz de dar electricidad a un hogar solo con la energía que almacena en un día.',
+      Ciclo1: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      Ciclo2: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      Ciclo3: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      ataques: [
+        {
+          nombre: 'Púa Rayo',
+          efecto: '20: Lanzar moneda: Cara paraliza, cruz, no hace nada',
+          tipo: 'Rayo',
+        },
+        {
+          nombre: 'Descarga',
+          efecto: '40',
+          tipo: 'Rayo',
+        },
+      ],
+      tipo: 'Rayo',
+      cantidad: 1,
+    },
+    {
+      id: 9,
+      trainer_id: 0,
+      nombre: 'Elekspike',
+      PS: 120,
+      n_grumpidex: '008',
+      clase: 'evolucion',
+      img_general:
+        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/general/008.1.png',
+      img_conseguir:
+        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/howToGetGrumpis/008.1.png',
+      descripcion:
+        'Forma evolucionada de Elekspoke. Recubre su cuerpo con nuevas púas que le permite almacenar una mayor cantidad de electricidad. Es capaz de dar electricidad a un hogar solo con la energía que almacena en un día.',
+      Ciclo1: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      Ciclo2: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      Ciclo3: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      ataques: [
+        {
+          nombre: 'Púa Rayo',
+          efecto: '20: Lanzar moneda: Cara paraliza, cruz, no hace nada',
+          tipo: 'Rayo',
+        },
+        {
+          nombre: 'Descarga',
+          efecto: '40',
+          tipo: 'Rayo',
+        },
+      ],
+      tipo: 'Rayo',
+      cantidad: 1,
+    },
+    {
+      id: 10,
+      trainer_id: 0,
+      nombre: 'Elekspike',
+      PS: 120,
+      n_grumpidex: '008',
+      clase: 'evolucion',
+      img_general:
+        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/general/008.1.png',
+      img_conseguir:
+        'https://grumpi-app-server-6bfd34c5eb89.herokuapp.com/uploads/grumpis/howToGetGrumpis/008.1.png',
+      descripcion:
+        'Forma evolucionada de Elekspoke. Recubre su cuerpo con nuevas púas que le permite almacenar una mayor cantidad de electricidad. Es capaz de dar electricidad a un hogar solo con la energía que almacena en un día.',
+      Ciclo1: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      Ciclo2: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      Ciclo3: 'Pagar 3 energías de rayo y tener a Elekspoke.',
+      ataques: [
+        {
+          nombre: 'Púa Rayo',
+          efecto: '20: Lanzar moneda: Cara paraliza, cruz, no hace nada',
+          tipo: 'Rayo',
+        },
+        {
+          nombre: 'Descarga',
+          efecto: '40',
+          tipo: 'Rayo',
+        },
+      ],
+      tipo: 'Rayo',
+      cantidad: 1,
+    },
   ];
   medallasDisponibles: any[] = [
     { nombre: 'Medalla Agua' },
@@ -198,7 +288,18 @@ export class DashboardComponent implements OnInit {
     const trainerIds = validTrainers.map((t) => t.id);
     this.trainerService
       .assignObjectToTrainers(trainerIds, object, type)
-      .subscribe(() => this.refreshTrainers());
+      .subscribe(() => {
+        // ✅ Actualizar en memoria
+        validTrainers.forEach((t) => {
+          if (!Array.isArray(t[listKey])) t[listKey] = [];
+          t[listKey].push({ ...object });
+        });
+
+        // 🔄 Si quieres también puedes refrescar desde backend
+        // this.refreshTrainers();
+
+        this.cdr.detectChanges(); // fuerza update en la vista
+      });
   }
 
   private getListKeyByObjectType(type: string): string {
