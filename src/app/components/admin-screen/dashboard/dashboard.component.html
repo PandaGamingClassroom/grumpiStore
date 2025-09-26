@@ -28,7 +28,7 @@
             <!-- Grumpis -->
             <td>
               <ul>
-                <li *ngFor="let g of trainer.grumpis || []">
+                <li class="gap-2" *ngFor="let g of trainer.grumpis || []">
                   {{ g.nombre }}
                   <button
                     class="btn btn-sm btn-danger ms-2"
@@ -42,7 +42,7 @@
                 class="btn btn-sm btn-primary mt-1"
                 (click)="openAssignModal(trainer, 'grumpis')"
               >
-                ➕ Añadir
+                + Añadir
               </button>
             </td>
 
@@ -63,7 +63,7 @@
                 class="btn btn-sm btn-primary mt-1"
                 (click)="openAssignModal(trainer, 'medallas')"
               >
-                ➕ Añadir
+                + Añadir
               </button>
             </td>
 
@@ -84,7 +84,7 @@
                 class="btn btn-sm btn-primary mt-1"
                 (click)="openAssignModal(trainer, 'distintivos')"
               >
-                ➕ Añadir
+                + Añadir
               </button>
             </td>
 
@@ -105,7 +105,7 @@
                 class="btn btn-sm btn-primary mt-1"
                 (click)="openAssignModal(trainer, 'recompensas')"
               >
-                ➕ Añadir
+                + Añadir
               </button>
             </td>
 
@@ -126,7 +126,7 @@
                 class="btn btn-sm btn-primary mt-1"
                 (click)="openAssignModal(trainer, 'objetos_combate')"
               >
-                ➕ Añadir
+                + Añadir
               </button>
             </td>
 
@@ -147,7 +147,7 @@
                 class="btn btn-sm btn-primary mt-1"
                 (click)="openAssignModal(trainer, 'energias')"
               >
-                ➕ Añadir
+                + Añadir
               </button>
             </td>
           </tr>
@@ -162,37 +162,37 @@
         class="btn btn-success me-2"
         (click)="openAssignModalToSelected('grumpis')"
       >
-        ➕ Añadir Grumpis a seleccionados
+        + Añadir Grumpis a seleccionados
       </button>
       <button
         class="btn btn-success me-2"
         (click)="openAssignModalToSelected('medallas')"
       >
-        ➕ Añadir Medallas a seleccionados
+        + Añadir Medallas a seleccionados
       </button>
       <button
         class="btn btn-success me-2"
         (click)="openAssignModalToSelected('distintivos')"
       >
-        ➕ Añadir Distintivos a seleccionados
+        + Añadir Distintivos a seleccionados
       </button>
       <button
         class="btn btn-success me-2"
         (click)="openAssignModalToSelected('recompensas')"
       >
-        ➕ Añadir Recompensas a seleccionados
+        + Añadir Recompensas a seleccionados
       </button>
       <button
         class="btn btn-success me-2"
         (click)="openAssignModalToSelected('objetos_combate')"
       >
-        ➕ Añadir Objetos de Combate a seleccionados
+        + Añadir Objetos de Combate a seleccionados
       </button>
       <button
         class="btn btn-success"
         (click)="openAssignModalToSelected('energias')"
       >
-        ➕ Añadir Energías a seleccionados
+        + Añadir Energías a seleccionados
       </button>
     </div>
   </div>
