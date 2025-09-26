@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   selectedTrainers: Trainer[] = [];
   modalObjectType: string = '';
 
-  // Disponibles (esto lo ideal es que venga de backend, pero dejo mock de ejemplo)
+  // Mock de disponibles (ideal: pedir al backend)
   grumpisDisponibles: any[] = [
     { nombre: 'Grumpi 1' },
     { nombre: 'Grumpi 2' },
@@ -57,6 +57,14 @@ export class DashboardComponent implements OnInit {
   recompensasDisponibles: any[] = [
     { nombre: 'Recompensa XP' },
     { nombre: 'Recompensa Objeto' },
+  ];
+  objetosCombateDisponibles: any[] = [
+    { nombre: 'Poción' },
+    { nombre: 'Revivir' },
+  ];
+  energiasDisponibles: any[] = [
+    { tipo: 'Agua', cantidad: 1 },
+    { tipo: 'Fuego', cantidad: 1 },
   ];
 
   constructor(
@@ -111,7 +119,7 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  // Abrir modal para asignar objetos
+  // Abrir modal para asignar a un entrenador
   openAssignModal(trainer: Trainer, type: string) {
     this.selectedTrainer = trainer;
     this.selectedObject = null;
@@ -122,49 +130,49 @@ export class DashboardComponent implements OnInit {
     modal.show();
   }
 
-  // Asignar objeto a un entrenador
+  // Abrir modal para asignar a seleccionados
+  openAssignModalToSelected(type: string) {
+    this.selectedTrainer = null;
+    this.selectedObject = null;
+    this.modalObjectType = type;
+    const modal = new (window as any).bootstrap.Modal(
+      document.getElementById('assignModal')
+    );
+    modal.show();
+  }
+
+  // Asignar
   assignObjectToTrainer(object: any, type: string) {
-    if (!this.selectedTrainer || !object) return;
-    this.assignObject([this.selectedTrainer], object, type);
+    if (this.selectedTrainer) {
+      this.assignObject([this.selectedTrainer], object, type);
+    } else if (this.selectedTrainers.length) {
+      this.assignObject(this.selectedTrainers, object, type);
+      this.selectedTrainers = [];
+    }
   }
 
-  // Asignar objeto a varios entrenadores
-  assignObjectToSelectedTrainers(object: any, type: string) {
-    if (!object || !this.selectedTrainers.length) return;
-    this.assignObject(this.selectedTrainers, object, type);
-    this.selectedTrainers = [];
-  }
-
-  // Quitar objeto a un entrenador
+  // Eliminar
   removeObjectFromTrainer(trainer: Trainer, object: any, type: string) {
     const listKey = this.getListKeyByObjectType(type);
-
-    // 1. Actualizas la lista en memoria
     trainer[listKey] = trainer[listKey].filter(
-      (item: any) => item.nombre !== object.nombre
+      (item: any) => item.nombre !== object.nombre && item.tipo !== object.tipo
     );
 
-    // 2. Preparas lo que vas a enviar al servicio
     const objetosAEliminar = [
       {
-        trainerId: trainer.id, // Asegúrate de que el Trainer tiene `id`
-        type, // Tipo de objeto (ej: 'grumpis', 'medallas', etc.)
-        object, // Objeto a eliminar
+        trainerId: trainer.id,
+        type,
+        object,
       },
     ];
 
-    // 3. Llamas al servicio que SÍ tienes definido
     this.trainerService.deleteObjectsFromTrainer(objetosAEliminar).subscribe(
-      (res) => {
-        console.log('Objetos eliminados:', res);
-      },
-      (error) => {
-        console.error('Error al eliminar objetos:', error);
-      }
+      (res) => console.log('Objetos eliminados:', res),
+      (error) => console.error('Error al eliminar objetos:', error)
     );
   }
 
-  // Lógica general de asignación
+  // Asignación genérica
   private assignObject(trainers: Trainer[], object: any, type: string) {
     const listKey = this.getListKeyByObjectType(type);
     const validTrainers: Trainer[] = [];
@@ -172,7 +180,10 @@ export class DashboardComponent implements OnInit {
 
     trainers.forEach((trainer) => {
       const list = trainer[listKey] || [];
-      const exists = list.some((item: any) => item.nombre === object.nombre);
+      const exists = list.some(
+        (item: any) =>
+          item.nombre === object.nombre || item.tipo === object.tipo
+      );
       if (exists) alreadyHasObject = true;
       else validTrainers.push(trainer);
     });
@@ -194,7 +205,7 @@ export class DashboardComponent implements OnInit {
     return (
       {
         grumpis: 'grumpis',
-        grumpidolares: 'grumpidolar',
+        grumpidolar: 'grumpidolar',
         medallas: 'medallas',
         distintivos: 'distintivos_liga',
         recompensas: 'recompensas',
