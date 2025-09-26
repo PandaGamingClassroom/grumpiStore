@@ -71,6 +71,9 @@ export class DashboardComponent implements OnInit {
     const id = localStorage.getItem('id_profesor');
     this.id_profesor = id ? Number(id) : null;
     if (this.id_profesor) this.loadProfesor(this.id_profesor);
+
+    this.loadGrumpis();
+    this.loadmedalsImages();
   }
 
   loadProfesor(id: number) {
